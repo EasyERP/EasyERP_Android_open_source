@@ -12,10 +12,30 @@ android {
         versionCode 1
         versionName "1.0"
     }
+
+    signingConfigs {
+        debug {
+            keyAlias 'easyERP'
+            keyPassword 'thinkmobiles'
+            storeFile file('keystores/debug.jks')
+            storePassword 'thinkmobiles'
+        }
+        release {
+            keyAlias 'easyERP'
+            keyPassword 'thinkmobiles'
+            storeFile file('keystores/debug.jks')
+            storePassword 'thinkmobiles'
+        }
+    }
+
     buildTypes {
+        debug {
+            signingConfig signingConfigs.debug
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.debug
         }
     }
 
@@ -23,6 +43,7 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
 }
 
 def ASVersion = '25.1.0'
