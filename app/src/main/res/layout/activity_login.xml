@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="15dp">
+
+    <LinearLayout
+        android:id="@+id/largeLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center_vertical|center_horizontal"
+        android:layout_centerVertical="true"
+        android:layout_alignParentStart="true">
+
+        <EditText
+            android:id="@+id/etLogin_AL"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Login"
+            android:text="testAdmin"/>
+
+        <EditText
+            android:id="@+id/etPassword_AL"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Password"
+            android:text="111111"/>
+
+        <EditText
+            android:id="@+id/etDbId_AL"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="DB ID"
+            android:text="sergey"/>
+
+        <CheckBox
+            android:id="@+id/cbRememberMe_AL"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="Remember me?"/>
+
+        <Button
+            android:id="@+id/btnLogin_AK"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="LogIN"/>
+
+        <Button
+            android:id="@+id/btnGetCookie_AK"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Get Cookie"/>
+
+    </LinearLayout>
+
+</RelativeLayout>
