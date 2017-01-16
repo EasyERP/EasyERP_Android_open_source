@@ -16,7 +16,7 @@ import rx.schedulers.Schedulers;
  */
 
 @EBean(scope = EBean.Scope.Singleton)
-public class LeadsRepository implements LoginContract.LeadsModel {
+public class LeadsRepository {
 
     private LeadService leadService;
 
