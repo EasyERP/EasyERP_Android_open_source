@@ -1,5 +1,6 @@
 package com.thinkmobiles.easyerp.presentation.screens.login;
 
+import com.thinkmobiles.easyerp.data.model.leads.ResponseGetLeads;
 import com.thinkmobiles.easyerp.presentation.base.BaseModel;
 import com.thinkmobiles.easyerp.presentation.base.BasePresenter;
 import com.thinkmobiles.easyerp.presentation.base.BaseView;
@@ -10,7 +11,7 @@ import rx.Observable;
  * Created by Lynx on 1/13/2017.
  */
 
-public interface LoginCotract {
+public interface LoginContract {
     interface LoginView extends BaseView<LoginPresenter> {
         void displayResult(String result);
         void displayError(String error);

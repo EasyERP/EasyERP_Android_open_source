@@ -11,5 +11,7 @@ public class Constants {
 
     public static final String POST_LOGIN                   = "users/login";
 
+    public static final String GET_LEADS                    = "leads";
+
     public static final int DELAY_CLICK                     = 600;
 }

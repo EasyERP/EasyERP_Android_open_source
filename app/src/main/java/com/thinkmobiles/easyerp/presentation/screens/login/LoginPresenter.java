@@ -13,14 +13,14 @@ import rx.subscriptions.CompositeSubscription;
  * Created by Lynx on 1/13/2017.
  */
 
-public class LoginPresenter implements LoginCotract.LoginPresenter {
+public class LoginPresenter implements LoginContract.LoginPresenter {
 
-    private LoginCotract.LoginView view;
-    private LoginCotract.LoginModel model;
+    private LoginContract.LoginView view;
+    private LoginContract.LoginModel model;
 
     private CompositeSubscription compositeSubscription;
 
-    public LoginPresenter(LoginCotract.LoginView view, LoginCotract.LoginModel model) {
+    public LoginPresenter(LoginContract.LoginView view, LoginContract.LoginModel model) {
         this.view = view;
         this.model = model;
         compositeSubscription = new CompositeSubscription();
@@ -44,21 +44,21 @@ public class LoginPresenter implements LoginCotract.LoginPresenter {
         } else {
             compositeSubscription.add(
                     model.login(login, pass, dbId, isRememberMe)
-                    .subscribe(s -> {
-                        view.displayResult(s);
-                        Log.d("HTTP", "Response: " + s);
-                    }, t -> {
-                        String errMsg = "";
-                        if(t instanceof HttpException) {
-                            HttpException e = (HttpException) t;
-                            ResponseError responseError = Rest.getInstance().parseError(e.response().errorBody());
-                            errMsg = responseError.error;
-                        } else {
-                            errMsg = t.getMessage();
-                        }
-                        view.displayError(errMsg);
-                        Log.d("HTTP", "Error: " + t.getMessage());
-                    })
+                            .subscribe(s -> {
+                                view.displayResult(s);
+                                Log.d("HTTP", "Response: " + s);
+                            }, t -> {
+                                String errMsg = "";
+                                if(t instanceof HttpException) {
+                                    HttpException e = (HttpException) t;
+                                    ResponseError responseError = Rest.getInstance().parseError(e.response().errorBody());
+                                    errMsg = responseError.error;
+                                } else {
+                                    errMsg = t.getMessage();
+                                }
+                                view.displayError(errMsg);
+                                Log.d("HTTP", "Error: " + t.getMessage());
+                            })
             );
         }
     }
@@ -70,6 +70,6 @@ public class LoginPresenter implements LoginCotract.LoginPresenter {
 
     @Override
     public void unsubscribe() {
-
+        if(compositeSubscription.hasSubscriptions()) compositeSubscription.clear();
     }
 }
