@@ -23,9 +23,9 @@ import org.androidannotations.annotations.sharedpreferences.Pref;
 import java.util.concurrent.TimeUnit;
 
 @EActivity(R.layout.activity_login)
-public class LoginActivity extends AppCompatActivity implements LoginCotract.LoginView {
+public class LoginActivity extends AppCompatActivity implements LoginContract.LoginView {
 
-    private LoginCotract.LoginPresenter presenter;
+    private LoginContract.LoginPresenter presenter;
 
     @ViewById
     protected EditText etLogin_AL;
@@ -100,7 +100,7 @@ public class LoginActivity extends AppCompatActivity implements LoginCotract.Log
     }
 
     @Override
-    public void setPresenter(LoginCotract.LoginPresenter presenter) {
+    public void setPresenter(LoginContract.LoginPresenter presenter) {
         this.presenter = presenter;
     }
 }
