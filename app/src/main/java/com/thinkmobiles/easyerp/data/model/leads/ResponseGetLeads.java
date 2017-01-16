@@ -10,11 +10,8 @@ import java.util.ArrayList;
  */
 
 public class ResponseGetLeads implements Parcelable {
-    public ArrayList<QualifiedItem> qualifiedBy;
-    public ArrayList<QualifiedItem> qualifiedFrom;
-    public ArrayList<QualifiedItem> leadsBySales;
-    public ArrayList<AssignItem> createdBy;
-    public ArrayList<AssignItem> assignedTo;
+    public int total;
+    public ArrayList<LeadItem> data;
 
     @Override
     public int describeContents() {
@@ -23,22 +20,16 @@ public class ResponseGetLeads implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeTypedList(this.qualifiedBy);
-        dest.writeTypedList(this.qualifiedFrom);
-        dest.writeTypedList(this.leadsBySales);
-        dest.writeTypedList(this.createdBy);
-        dest.writeTypedList(this.assignedTo);
+        dest.writeInt(this.total);
+        dest.writeTypedList(this.data);
     }
 
     public ResponseGetLeads() {
     }
 
     protected ResponseGetLeads(Parcel in) {
-        this.qualifiedBy = in.createTypedArrayList(QualifiedItem.CREATOR);
-        this.qualifiedFrom = in.createTypedArrayList(QualifiedItem.CREATOR);
-        this.leadsBySales = in.createTypedArrayList(QualifiedItem.CREATOR);
-        this.createdBy = in.createTypedArrayList(AssignItem.CREATOR);
-        this.assignedTo = in.createTypedArrayList(AssignItem.CREATOR);
+        this.total = in.readInt();
+        this.data = in.createTypedArrayList(LeadItem.CREATOR);
     }
 
     public static final Parcelable.Creator<ResponseGetLeads> CREATOR = new Parcelable.Creator<ResponseGetLeads>() {
