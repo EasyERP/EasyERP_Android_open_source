@@ -1,6 +1,5 @@
 package com.thinkmobiles.easyerp.presentation.screens.login;
 
-import com.thinkmobiles.easyerp.data.model.leads.ResponseGetLeads;
 import com.thinkmobiles.easyerp.presentation.base.BaseModel;
 import com.thinkmobiles.easyerp.presentation.base.BasePresenter;
 import com.thinkmobiles.easyerp.presentation.base.BaseView;
@@ -13,13 +12,14 @@ import rx.Observable;
 
 public interface LoginContract {
     interface LoginView extends BaseView<LoginPresenter> {
-        void displayResult(String result);
         void displayError(String error);
 
         String getLogin();
         String getPassword();
         String getDbID();
         boolean isRememberMe();
+
+        void startHomeScreen();
     }
     interface LoginPresenter extends BasePresenter {
         void login();
