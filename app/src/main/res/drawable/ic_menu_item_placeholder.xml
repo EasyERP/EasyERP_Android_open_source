@@ -2,9 +2,10 @@
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
     android:width="32dp"
     android:height="32dp"
+    android:tint="@color/selector_color_menu_icons"
     android:viewportHeight="32"
     android:viewportWidth="32">
     <path
-        android:fillColor="@drawable/selector_color_menu_icons"
+        android:fillColor="#ffffff"
         android:pathData="M32 16A16 16 0 0 1 16 32 16 16 0 0 1 0 16 16 16 0 0 1 16 0 16 16 0 0 1 32 16Z" />
 </vector>
