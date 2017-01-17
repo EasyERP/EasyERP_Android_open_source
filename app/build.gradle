@@ -61,10 +61,6 @@ dependencies {
     apt "org.androidannotations:androidannotations:$AAVersion"
     compile "org.androidannotations:androidannotations-api:$AAVersion"
 
-    //UI
-    compile('com.mikepenz:materialdrawer:5.8.1@aar') {
-        transitive = true
-    }
     compile 'com.github.alex-michenko:recycleradapters:0.2.4'
 
     //Rx

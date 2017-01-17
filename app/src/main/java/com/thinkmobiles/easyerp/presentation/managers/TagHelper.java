@@ -6,7 +6,7 @@ import com.thinkmobiles.easyerp.R;
  * Created by Lynx on 1/16/2017.
  */
 
-public class TagHelper {
+public abstract class TagHelper {
     /**
      * "tag_bg_red
      "tag_bg_pink

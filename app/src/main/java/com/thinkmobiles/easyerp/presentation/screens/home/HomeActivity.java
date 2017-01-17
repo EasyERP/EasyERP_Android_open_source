@@ -2,7 +2,6 @@ package com.thinkmobiles.easyerp.presentation.screens.home;
 
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.widget.FrameLayout;
 
 import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.presentation.screens.leads.LeadsFragment_;

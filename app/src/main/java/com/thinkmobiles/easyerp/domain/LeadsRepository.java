@@ -4,7 +4,6 @@ import com.thinkmobiles.easyerp.data.api.Rest;
 import com.thinkmobiles.easyerp.data.model.leads.ResponseGetLeads;
 import com.thinkmobiles.easyerp.data.services.LeadService;
 import com.thinkmobiles.easyerp.presentation.screens.leads.LeadsContract;
-import com.thinkmobiles.easyerp.presentation.screens.login.LoginContract;
 
 import org.androidannotations.annotations.EBean;
 
