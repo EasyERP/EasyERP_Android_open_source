@@ -71,6 +71,7 @@ public class Rest {
                 .addNetworkInterceptor(new StethoInterceptor())
                 .addInterceptor(new AddCookieInterceptor(sharedPreferences))
                 .addInterceptor(new ReceiveCookieInterceptor(sharedPreferences))
+                .addInterceptor(new BadCookieInterceptor(sharedPreferences))
                 .build();
         retrofit = new Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create(malformedGson))
