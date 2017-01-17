@@ -1,10 +1,11 @@
 package com.thinkmobiles.easyerp.presentation.screens.home;
 
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
 import com.thinkmobiles.easyerp.R;
-import com.thinkmobiles.easyerp.presentation.screens.leads.LeadsFragment_;
+import com.thinkmobiles.easyerp.presentation.base.BaseMasterFlowActivity;
+import com.thinkmobiles.easyerp.presentation.custom.views.drawer_menu.MenuDrawerView;
+import com.thinkmobiles.easyerp.presentation.custom.views.drawer_menu.models.MenuConfigs;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EActivity;
@@ -15,16 +16,23 @@ import org.androidannotations.annotations.ViewById;
  */
 
 @EActivity(R.layout.activity_home)
-public class HomeActivity extends AppCompatActivity {
+public class HomeActivity extends BaseMasterFlowActivity {
 
-    @ViewById
-    protected Toolbar toolbar_LT;
+    @ViewById(R.id.mdvMenu_AM)
+    protected MenuDrawerView menuDrawerView;
 
     @AfterViews
-    protected void initUI() {
-        getSupportFragmentManager().beginTransaction()
-                .add(R.id.flFragmentContainer_AH, LeadsFragment_.builder().build())
-                .commit();
+    protected void initMenu() {
+        menuDrawerView.setMenuClickListener((moduleId, itemId) -> replaceFragmentContent(MenuConfigs.getFragmentByMenuId(moduleId, itemId)));
     }
 
+    @Override
+    protected int contentIdLayout() {
+        return R.id.flContentContainer;
+    }
+
+    @Override
+    protected int contentDetailIdLayout() {
+        return R.id.flContentDetailContainer;
+    }
 }

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="32dp"
+    android:height="32dp"
+    android:viewportHeight="32"
+    android:viewportWidth="32">
+    <path
+        android:fillColor="@drawable/selector_color_menu_icons"
+        android:pathData="M31.8 8.9C31.6 8.6 31.3 8.5 31 8.5L9.7 8.5 8.1 2.9C7.5 0.7 6 0.5 5.4 0.5l-4.3 0c-0.6 0 -1 0.4 -1 1 0 0.6 0.4 1 1 1l4.3 0c0.1 0 0.6 0 0.8 1l5.5 20.4c0.1 0.4 0.5 0.7 1 0.7l13.5 0c0.4 0 0.8 -0.3 0.9 -0.7L32 9.8C32.1 9.5 32 9.1 31.8 8.9l0 0zm-6.3 13.6l-12 0 -3.2 -12.1 19.3 0 -4.1 12.1zm-1.9 4c-1.4 0 -2.5 1.1 -2.5 2.5 0 1.4 1.1 2.5 2.5 2.5 1.4 0 2.5 -1.1 2.5 -2.5 0 -1.4 -1.1 -2.5 -2.5 -2.5zm-9.1 0c-1.4 0 -2.5 1.1 -2.5 2.5 0 1.4 1.1 2.5 2.5 2.5 1.4 0 2.5 -1.1 2.5 -2.5 0 -1.4 -1.1 -2.5 -2.5 -2.5z" />
+</vector>

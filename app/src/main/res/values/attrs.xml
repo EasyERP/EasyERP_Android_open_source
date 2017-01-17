@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="MenuDrawerContainer_">
+        <attr name="collapsedMenuWidth" format="dimension" />
+        <attr name="expandedMenuWidth" format="dimension" />
+        <attr name="stateMenu" format="enum" >
+            <enum name="open" value="0" />
+            <enum name="close" value="1" />
+            <enum name="hide" value="2" />
+        </attr>
+    </declare-styleable>
+
+</resources>
