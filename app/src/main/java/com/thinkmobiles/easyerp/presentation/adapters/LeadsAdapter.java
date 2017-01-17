@@ -15,6 +15,6 @@ import org.androidannotations.annotations.EBean;
 public class LeadsAdapter extends SimpleRecyclerAdapter<LeadDH, LeadVH> {
     @Override
     protected int getItemLayout() {
-        return R.layout.list_item_lead;
+        return R.layout.view_list_item_lead;
     }
 }

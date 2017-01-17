@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rlHeaderContainer_VDMH"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:showIn="@layout/view_drawer_menu">
+
+    <RelativeLayout
+        android:id="@+id/rlUserContainer_VDMH"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/ivAvatar_VDMH"
+            android:layout_width="@dimen/user_avatar_size"
+            android:layout_height="@dimen/user_avatar_size"
+            android:layout_margin="@dimen/default_padding"
+            android:src="@drawable/ic_avatar_placeholder_with_padding" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/default_padding"
+            android:layout_toEndOf="@id/ivAvatar_VDMH"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvUserName_VDMH"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="Michael Soyma"
+                android:textColor="@color/white_main_text_color" />
+
+            <TextView
+                android:id="@+id/tvUserMail_VDMH"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="michael.soyma@thinkmobiles.com"
+                android:textColor="@color/transparent_white_main_text_color"
+                android:textSize="@dimen/small_text_size" />
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tvMenuModule_VDMH"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rlUserContainer_VDMH"
+        android:layout_marginBottom="@dimen/default_padding"
+        android:layout_marginLeft="@dimen/default_padding"
+        android:layout_marginRight="@dimen/default_padding"
+        android:background="@drawable/bg_transp_white_with_round_rect"
+        android:drawableEnd="@drawable/ic_arrow_down"
+        android:drawablePadding="@dimen/default_padding"
+        android:gravity="center_vertical"
+        android:paddingBottom="@dimen/default_padding_half"
+        android:paddingLeft="@dimen/default_padding"
+        android:paddingRight="@dimen/default_padding_half"
+        android:paddingTop="@dimen/default_padding_half"
+        android:text="CRM"
+        android:textColor="@color/white_main_text_color" />
+
+    <View
+        android:id="@+id/vDivider_VDMH"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/tvMenuModule_VDMH"
+        android:background="@color/divider_white_color" />
+
+</RelativeLayout>

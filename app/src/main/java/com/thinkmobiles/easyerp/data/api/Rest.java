@@ -1,7 +1,5 @@
 package com.thinkmobiles.easyerp.data.api;
 
-import android.text.TextUtils;
-
 import com.facebook.stetho.okhttp3.StethoInterceptor;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -15,7 +13,6 @@ import java.io.IOException;
 import java.lang.annotation.Annotation;
 
 import okhttp3.OkHttpClient;
-import okhttp3.Request;
 import okhttp3.ResponseBody;
 import retrofit2.Converter;
 import retrofit2.Retrofit;

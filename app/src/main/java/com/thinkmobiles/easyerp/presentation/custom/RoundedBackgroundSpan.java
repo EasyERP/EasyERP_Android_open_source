@@ -3,6 +3,7 @@ package com.thinkmobiles.easyerp.presentation.custom;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.graphics.RectF;
 import android.support.v4.content.ContextCompat;
 import android.text.style.ReplacementSpan;
@@ -30,11 +31,14 @@ public class RoundedBackgroundSpan extends ReplacementSpan {
 
     @Override
     public void draw(Canvas canvas, CharSequence text, int start, int end, float x, int top, int y, int bottom, Paint paint) {
-        float width = paint.measureText(text.subSequence(start, end).toString());
-        RectF rect = new RectF(x, top + mPadding, x + width + 2 * mPadding, bottom);
+        final float width = paint.measureText(text.subSequence(start, end).toString());
+        final Paint.FontMetrics metrics = paint.getFontMetrics();
+        final float height = metrics.bottom - metrics.top;
+
+        RectF rect = new RectF(x, top, x + width + 2 * mPadding, top + height);
         paint.setColor(mBackgroundColor);
         canvas.drawRoundRect(rect, mPadding, mPadding, paint);
         paint.setColor(mTextColor);
-        canvas.drawText(text, start, end, x + mPadding, y, paint);
+        canvas.drawText(text, start, end, x + mPadding, top + height - 4 * mPadding / 5, paint);
     }
 }
