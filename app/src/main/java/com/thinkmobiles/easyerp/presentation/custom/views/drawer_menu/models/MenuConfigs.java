@@ -2,7 +2,8 @@ package com.thinkmobiles.easyerp.presentation.custom.views.drawer_menu.models;
 
 import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.presentation.base.BaseFragment;
-import com.thinkmobiles.easyerp.presentation.screens.leads.LeadsFragment_;
+import com.thinkmobiles.easyerp.presentation.screens.crm.dashboard.DashboardListFragment_;
+import com.thinkmobiles.easyerp.presentation.screens.crm.leads.LeadsFragment_;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -171,7 +172,7 @@ public abstract class MenuConfigs {
 
     private static BaseFragment getFragmentByIdWithCRMModule(final int itemId) {
         switch (itemId) {
-           case 0: return null;
+           case 0: return DashboardListFragment_.builder().build();
            case 1: return null;
            case 2: return LeadsFragment_.builder().build();
            case 3: return null;

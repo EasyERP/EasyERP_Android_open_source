@@ -47,7 +47,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
     protected UserRepository userRepository;
 
     @AfterInject
-    protected void initPresenter() {
+    public void initPresenter() {
         new LoginPresenter(this, userRepository);
     }
 

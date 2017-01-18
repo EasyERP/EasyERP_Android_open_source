@@ -1,4 +1,4 @@
-package com.thinkmobiles.easyerp.data.model.leads;
+package com.thinkmobiles.easyerp.data.model.crm.leads;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -9,7 +9,7 @@ import android.os.Parcelable;
 
 public class LeadWorkflow implements Parcelable {
     /**
-     *  _id: "528ce74ef3f67bc40b00001e",
+     *  id: "528ce74ef3f67bc40b00001e",
      name: "New",
      status: "New"
      */

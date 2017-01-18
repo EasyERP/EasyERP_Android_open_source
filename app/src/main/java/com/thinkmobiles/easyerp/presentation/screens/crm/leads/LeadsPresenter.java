@@ -1,10 +1,11 @@
-package com.thinkmobiles.easyerp.presentation.screens.leads;
+package com.thinkmobiles.easyerp.presentation.screens.crm.leads;
 
 import android.util.Log;
 
-import com.thinkmobiles.easyerp.data.model.leads.LeadItem;
-import com.thinkmobiles.easyerp.data.model.leads.ResponseGetLeads;
-import com.thinkmobiles.easyerp.presentation.holders.data.LeadDH;
+import com.thinkmobiles.easyerp.data.model.crm.leads.LeadItem;
+import com.thinkmobiles.easyerp.data.model.crm.leads.ResponseGetLeads;
+import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectablePresenterHelper;
+import com.thinkmobiles.easyerp.presentation.holders.data.crm.LeadDH;
 
 import java.util.ArrayList;
 
@@ -14,7 +15,7 @@ import rx.subscriptions.CompositeSubscription;
  * Created by Lynx on 1/16/2017.
  */
 
-public class LeadsPresenter implements LeadsContract.LeadsPresenter {
+public class LeadsPresenter extends MasterFlowSelectablePresenterHelper<String> implements LeadsContract.LeadsPresenter {
 
     private LeadsContract.LeadsView view;
     private LeadsContract.LeadsModel model;
@@ -54,9 +55,13 @@ public class LeadsPresenter implements LeadsContract.LeadsPresenter {
     }
 
     private ArrayList<LeadDH> prepareLeadDHs(ResponseGetLeads responseGetLeads) {
-        ArrayList<LeadDH> result = new ArrayList<>();
-        for (LeadItem leadItem : responseGetLeads.data)
-            result.add(new LeadDH(leadItem));
+        int position = 0;
+        final ArrayList<LeadDH> result = new ArrayList<>();
+        for (LeadItem leadItem : responseGetLeads.data) {
+            final LeadDH leadDH = new LeadDH(leadItem);
+            makeSelectedDHIfNeed(leadDH, view, position++);
+            result.add(leadDH);
+        }
         return result;
     }
 }

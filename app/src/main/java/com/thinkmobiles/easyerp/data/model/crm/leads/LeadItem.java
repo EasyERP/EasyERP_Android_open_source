@@ -1,7 +1,9 @@
-package com.thinkmobiles.easyerp.data.model.leads;
+package com.thinkmobiles.easyerp.data.model.crm.leads;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+
+import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 
@@ -12,14 +14,14 @@ import java.util.ArrayList;
 public class LeadItem implements Parcelable {
     /**
      {
-     _id: "583d66e2aefcfc140ea84b9d",
+     id: "583d66e2aefcfc140ea84b9d",
      total: 994,
      salesPerson: {
-     _id: "56e17661177f76f72edf774c",
+     id: "56e17661177f76f72edf774c",
      name: "Bogdana Stets"
      },
      workflow: {
-     _id: "528ce74ef3f67bc40b00001e",
+     id: "528ce74ef3f67bc40b00001e",
      name: "New",
      status: "New"
      },
@@ -34,7 +36,8 @@ public class LeadItem implements Parcelable {
      },
      */
 
-    public String _id;
+    @SerializedName("_id")
+    public String id;
     public int total;
     public LeadSalesPerson salesPerson;
     public LeadWorkflow workflow;
@@ -52,7 +55,7 @@ public class LeadItem implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(this._id);
+        dest.writeString(this.id);
         dest.writeInt(this.total);
         dest.writeParcelable(this.salesPerson, flags);
         dest.writeParcelable(this.workflow, flags);
@@ -68,7 +71,7 @@ public class LeadItem implements Parcelable {
     }
 
     protected LeadItem(Parcel in) {
-        this._id = in.readString();
+        this.id = in.readString();
         this.total = in.readInt();
         this.salesPerson = in.readParcelable(LeadSalesPerson.class.getClassLoader());
         this.workflow = in.readParcelable(LeadWorkflow.class.getClassLoader());

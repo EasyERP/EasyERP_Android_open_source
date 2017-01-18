@@ -4,6 +4,7 @@ import com.facebook.stetho.okhttp3.StethoInterceptor;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.thinkmobiles.easyerp.data.model.ResponseError;
+import com.thinkmobiles.easyerp.data.services.DashboardService;
 import com.thinkmobiles.easyerp.data.services.LeadService;
 import com.thinkmobiles.easyerp.data.services.LoginService;
 import com.thinkmobiles.easyerp.presentation.utils.AppSharedPreferences_;
@@ -33,6 +34,7 @@ public class Rest {
 
     private LoginService loginService;
     private LeadService leadService;
+    private DashboardService dashboardService;
 
     private Converter<ResponseBody, ResponseError> converter;
 
@@ -51,6 +53,10 @@ public class Rest {
 
     public LeadService getLeadService() {
         return leadService == null ? createService(LeadService.class) : leadService;
+    }
+
+    public DashboardService getDashboardService() {
+        return dashboardService == null ? createService(DashboardService.class) : dashboardService;
     }
 
     public ResponseError parseError(ResponseBody responseBody) {
