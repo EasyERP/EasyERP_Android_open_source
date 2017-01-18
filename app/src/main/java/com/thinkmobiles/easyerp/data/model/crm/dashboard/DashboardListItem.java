@@ -3,27 +3,34 @@ package com.thinkmobiles.easyerp.data.model.crm.dashboard;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Created by Asus_Dev on 1/18/2017.
  */
 
 public class DashboardListItem implements Parcelable {
 
-    public int id;
-    public String paramUrl;
-    public String label;
+    /**
+     "_id": "582d617bb11d8d9405a196b1",
+     "dataHeight": 1,
+     "dataWidth": 6,
+     "indexY": 0,
+     "indexX": 6,
+     "nameId": "chart",
+     "type": "overview",
+     "dataset": "totalSalesRevenue",
+     "startDate": "01, Jan 2017",
+     "endDate": "31, Jan 2017",
+     "dashboard": "582bfabf5a43a4bc2524bf09",
+     "name": "Sales Invoices"
+     */
 
-    public DashboardListItem(int id, String paramUrl, String label) {
-        this.id = id;
-        this.paramUrl = paramUrl;
-        this.label = label;
-    }
-
-    protected DashboardListItem(Parcel in) {
-        this.id = in.readInt();
-        this.paramUrl = in.readString();
-        this.label = in.readString();
-    }
+    @SerializedName("_id")
+    public String id;
+    public String type;
+    public String dataset;
+    public String name;
 
     @Override
     public int describeContents() {
@@ -32,12 +39,20 @@ public class DashboardListItem implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(this.id);
-        dest.writeString(this.paramUrl);
-        dest.writeString(this.label);
+        dest.writeString(this.id);
+        dest.writeString(this.type);
+        dest.writeString(this.dataset);
+        dest.writeString(this.name);
     }
 
-    public static final Parcelable.Creator<DashboardListItem> CREATOR = new Parcelable.Creator<DashboardListItem>() {
+    protected DashboardListItem(Parcel in) {
+        this.id = in.readString();
+        this.type = in.readString();
+        this.dataset = in.readString();
+        this.name = in.readString();
+    }
+
+    public static final Creator<DashboardListItem> CREATOR = new Creator<DashboardListItem>() {
         @Override
         public DashboardListItem createFromParcel(Parcel source) {
             return new DashboardListItem(source);
@@ -48,4 +63,5 @@ public class DashboardListItem implements Parcelable {
             return new DashboardListItem[size];
         }
     };
+
 }

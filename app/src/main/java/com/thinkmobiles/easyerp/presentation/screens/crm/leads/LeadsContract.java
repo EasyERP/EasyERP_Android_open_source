@@ -2,8 +2,8 @@ package com.thinkmobiles.easyerp.presentation.screens.crm.leads;
 
 import com.thinkmobiles.easyerp.data.model.crm.leads.ResponseGetLeads;
 import com.thinkmobiles.easyerp.presentation.base.BaseModel;
-import com.thinkmobiles.easyerp.presentation.base.BasePresenter;
-import com.thinkmobiles.easyerp.presentation.base.BaseView;
+import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectableBasePresenter;
+import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectableBaseView;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.LeadDH;
 
 import java.util.ArrayList;
@@ -15,10 +15,10 @@ import rx.Observable;
  */
 
 public interface LeadsContract {
-    interface LeadsView extends BaseView<LeadsPresenter> {
+    interface LeadsView extends MasterFlowSelectableBaseView<LeadsPresenter> {
         void displayLeads(ArrayList<LeadDH> leadDHs);
     }
-    interface LeadsPresenter extends BasePresenter {
+    interface LeadsPresenter extends MasterFlowSelectableBasePresenter<String> {
         void loadLeads(int page);
         void displayLeadDetails(String leadID);
     }

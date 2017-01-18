@@ -3,7 +3,6 @@ package com.thinkmobiles.easyerp.presentation.base.rules;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
 
-import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.presentation.base.BaseFragment;
 import com.thinkmobiles.easyerp.presentation.screens.home.HomeActivity;
 

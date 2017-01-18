@@ -1,4 +1,4 @@
-package com.thinkmobiles.easyerp.domain;
+package com.thinkmobiles.easyerp.domain.crm;
 
 import com.thinkmobiles.easyerp.data.api.Rest;
 import com.thinkmobiles.easyerp.data.model.crm.leads.ResponseGetLeads;

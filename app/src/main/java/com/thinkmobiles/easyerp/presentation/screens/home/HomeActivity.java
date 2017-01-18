@@ -1,6 +1,5 @@
 package com.thinkmobiles.easyerp.presentation.screens.home;
 
-import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.thinkmobiles.easyerp.R;

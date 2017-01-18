@@ -7,7 +7,7 @@ import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectableDHHe
  * Created by Asus_Dev on 1/18/2017.
  */
 
-public class DashboardListDH extends MasterFlowSelectableDHHelper<Integer> {
+public class DashboardListDH extends MasterFlowSelectableDHHelper<String> {
 
     private final DashboardListItem dashboardListItem;
 
@@ -15,12 +15,12 @@ public class DashboardListDH extends MasterFlowSelectableDHHelper<Integer> {
         this.dashboardListItem = dashboardListItem;
     }
 
-    public String getLabel() {
-        return dashboardListItem.label;
+    public DashboardListItem getDashboardListItem() {
+        return dashboardListItem;
     }
 
     @Override
-    public Integer getId() {
+    public String getId() {
         return dashboardListItem.id;
     }
 

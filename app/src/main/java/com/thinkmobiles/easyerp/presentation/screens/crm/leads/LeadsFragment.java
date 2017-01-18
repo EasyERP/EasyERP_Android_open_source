@@ -4,11 +4,11 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.thinkmobiles.easyerp.R;
-import com.thinkmobiles.easyerp.domain.LeadsRepository;
+import com.thinkmobiles.easyerp.domain.crm.LeadsRepository;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.LeadsAdapter;
+import com.thinkmobiles.easyerp.presentation.base.rules.SimpleListWithRefreshFragment;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.LeadDH;
 import com.thinkmobiles.easyerp.presentation.listeners.EndlessRecyclerViewScrollListener;
-import com.thinkmobiles.easyerp.presentation.base.rules.SimpleListWithRefreshFragment;
 
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterViews;
@@ -44,7 +44,6 @@ public class LeadsFragment extends SimpleListWithRefreshFragment implements Lead
 
     @AfterViews
     protected void initUI() {
-        displayProgress(true);
         LinearLayoutManager llm = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         scrollListener = new EndlessRecyclerViewScrollListener(llm) {
             @Override
@@ -56,8 +55,16 @@ public class LeadsFragment extends SimpleListWithRefreshFragment implements Lead
         listRecycler.setLayoutManager(llm);
         listRecycler.setAdapter(leadsAdapter);
         listRecycler.addOnScrollListener(scrollListener);
-        leadsAdapter.setOnCardClickListener((view, position, viewType) -> presenter.displayLeadDetails(leadsAdapter.getItem(position).getLeadItem().id));
+        leadsAdapter.setOnCardClickListener((view, position, viewType) -> {
+            if (position != presenter.getSelectedItemPosition()) {
+                final LeadDH itemDH = leadsAdapter.getItem(position);
+                leadsAdapter.replaceSelectedItem(presenter.getSelectedItemPosition(), position);
+                presenter.setSelectedInfo(position, itemDH.getId());
+                presenter.displayLeadDetails(itemDH.getLeadItem().id);
+            }
+        });
 
+        displayProgress(true);
         presenter.subscribe();
     }
 
@@ -76,8 +83,20 @@ public class LeadsFragment extends SimpleListWithRefreshFragment implements Lead
     @Override
     public void onRefresh() {
         scrollListener.resetState();
+        presenter.setSelectedInfo(-1, presenter.getSelectedItemId());
         leadsAdapter.clear();
         presenter.subscribe();
+    }
+
+    @Override
+    public int getCountItemsNow() {
+        return leadsAdapter.getItemCount();
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        presenter.unsubscribe();
     }
 
 }

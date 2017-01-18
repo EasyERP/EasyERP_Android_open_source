@@ -1,13 +1,13 @@
 package com.thinkmobiles.easyerp.presentation.holders.data.crm;
 
-import com.michenko.simpleadapter.RecyclerDH;
 import com.thinkmobiles.easyerp.data.model.crm.leads.LeadItem;
+import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectableDHHelper;
 
 /**
  * Created by Lynx on 1/16/2017.
  */
 
-public class LeadDH extends RecyclerDH {
+public class LeadDH extends MasterFlowSelectableDHHelper<String> {
     private LeadItem leadItem;
 
     public LeadDH(LeadItem leadItem) {
@@ -17,4 +17,10 @@ public class LeadDH extends RecyclerDH {
     public LeadItem getLeadItem() {
         return leadItem;
     }
+
+    @Override
+    public String getId() {
+        return leadItem.id;
+    }
+
 }

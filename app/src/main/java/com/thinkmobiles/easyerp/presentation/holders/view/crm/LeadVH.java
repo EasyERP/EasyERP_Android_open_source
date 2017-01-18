@@ -25,6 +25,7 @@ import java.util.ArrayList;
 
 public class LeadVH extends RecyclerVH<LeadDH> {
 
+    private View flLeadItemContainer_LIL;
     private TextView tvLeadName_LIL;
     private TextView tvStage_LIL;
     private TextView tvPriority_LIL;
@@ -38,6 +39,7 @@ public class LeadVH extends RecyclerVH<LeadDH> {
     public LeadVH(View itemView, @Nullable OnCardClickListener listener, int viewType) {
         super(itemView, listener, viewType);
 
+        flLeadItemContainer_LIL = findView(R.id.flLeadItemContainer_LIL);
         tvLeadName_LIL = findView(R.id.tvLeadName_LIL);
         tvStage_LIL = findView(R.id.tvStage_LIL);
         tvPriority_LIL = findView(R.id.tvPriority_LIL);
@@ -82,6 +84,8 @@ public class LeadVH extends RecyclerVH<LeadDH> {
             tvTags_LIL.setText(prepareTags(data.getLeadItem().tags));
         } else
             tvTags_LIL.setText("");
+
+        flLeadItemContainer_LIL.setSelected(data.isSelected());
     }
 
     private SpannableStringBuilder prepareTags(ArrayList<LeadTag> leadTags) {

@@ -1,5 +1,7 @@
 package com.thinkmobiles.easyerp.presentation.screens.crm.dashboard;
 
+import android.util.Log;
+
 import com.thinkmobiles.easyerp.data.model.crm.dashboard.DashboardListItem;
 import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectablePresenterHelper;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.DashboardListDH;
@@ -7,18 +9,22 @@ import com.thinkmobiles.easyerp.presentation.holders.data.crm.DashboardListDH;
 import java.util.ArrayList;
 import java.util.List;
 
+import rx.subscriptions.CompositeSubscription;
+
 /**
  * Created by Asus_Dev on 1/18/2017.
  */
 
-public class DashboardListPresenter extends MasterFlowSelectablePresenterHelper<Integer> implements DashboardListContract.DashboardListPresenter {
+public class DashboardListPresenter extends MasterFlowSelectablePresenterHelper<String> implements DashboardListContract.DashboardListPresenter {
 
     private DashboardListContract.DashboardListView view;
     private DashboardListContract.DashboardListModel model;
+    private CompositeSubscription compositeSubscription;
 
     public DashboardListPresenter(DashboardListContract.DashboardListView view, DashboardListContract.DashboardListModel model) {
         this.view = view;
         this.model = model;
+        compositeSubscription = new CompositeSubscription();
 
         this.view.setPresenter(this);
     }
@@ -30,22 +36,25 @@ public class DashboardListPresenter extends MasterFlowSelectablePresenterHelper<
 
     @Override
     public void unsubscribe() {
-
+        if (compositeSubscription.hasSubscriptions()) compositeSubscription.clear();
     }
 
     @Override
     public void prepareDashboardList() {
-        view.displayDashboardsList(prepareDashboardDHs(model.getStaticDashboardList()));
+        compositeSubscription.add(
+                model.getDashboardListCharts()
+                        .subscribe(getCRMDashboardCharts -> view.displayDashboardsList(prepareDashboardDHs(getCRMDashboardCharts.get(0).charts)), t -> Log.d("HTTP", "Error: " + t.getMessage()))
+        );
     }
 
     @Override
-    public void prepareDashboardDetailWithParams(String param) {
-        view.displayDashboardsDetail(param);
+    public void prepareDashboardDetailWithParams(DashboardListDH itemDashboardDH) {
+        view.displayDashboardsDetail(itemDashboardDH.getDashboardListItem());
     }
 
     private ArrayList<DashboardListDH> prepareDashboardDHs(final List<DashboardListItem> dashboardListItems) {
         int position = 0;
-        ArrayList<DashboardListDH> result = new ArrayList<>();
+        final ArrayList<DashboardListDH> result = new ArrayList<>();
         for (DashboardListItem dashboardListItem : dashboardListItems) {
             final DashboardListDH dashboardListDH = new DashboardListDH(dashboardListItem);
             makeSelectedDHIfNeed(dashboardListDH, view, position++);

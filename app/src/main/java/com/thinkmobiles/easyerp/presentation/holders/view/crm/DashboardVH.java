@@ -2,7 +2,6 @@ package com.thinkmobiles.easyerp.presentation.holders.view.crm;
 
 import android.support.annotation.Nullable;
 import android.view.View;
-import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.michenko.simpleadapter.OnCardClickListener;
@@ -16,8 +15,8 @@ import com.thinkmobiles.easyerp.presentation.holders.data.crm.DashboardListDH;
 
 public class DashboardVH extends RecyclerVH<DashboardListDH> {
 
+    private View flDashboardItemContainer_VLICD;
     private TextView tvDashboardName_VLICD;
-    private FrameLayout flDashboardItemContainer_VLICD;
 
     public DashboardVH(View itemView, @Nullable OnCardClickListener listener, int viewType) {
         super(itemView, listener, viewType);
@@ -28,7 +27,7 @@ public class DashboardVH extends RecyclerVH<DashboardListDH> {
 
     @Override
     public void bindData(DashboardListDH data) {
-        tvDashboardName_VLICD.setText(data.getLabel());
+        tvDashboardName_VLICD.setText(data.getDashboardListItem().name);
         flDashboardItemContainer_VLICD.setSelected(data.isSelected());
     }
 

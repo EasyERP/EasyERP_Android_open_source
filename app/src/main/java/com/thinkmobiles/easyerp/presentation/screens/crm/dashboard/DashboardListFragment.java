@@ -3,9 +3,9 @@ package com.thinkmobiles.easyerp.presentation.screens.crm.dashboard;
 import android.support.v7.widget.LinearLayoutManager;
 
 import com.thinkmobiles.easyerp.R;
-import com.thinkmobiles.easyerp.domain.local.CRMDashboardsRepository;
+import com.thinkmobiles.easyerp.data.model.crm.dashboard.DashboardListItem;
+import com.thinkmobiles.easyerp.domain.crm.DashboardRepository;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.DashboardListAdapter;
-import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectablePresenterHelper;
 import com.thinkmobiles.easyerp.presentation.base.rules.SimpleListWithRefreshFragment;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.DashboardListDH;
 
@@ -25,14 +25,14 @@ public class DashboardListFragment extends SimpleListWithRefreshFragment impleme
     private DashboardListContract.DashboardListPresenter presenter;
 
     @Bean
-    protected CRMDashboardsRepository crmDashboardsRepository;
+    protected DashboardRepository dashboardRepository;
     @Bean
     protected DashboardListAdapter dashboardListAdapter;
 
     @AfterInject
     @Override
     public void initPresenter() {
-        presenter = new DashboardListPresenter(this, crmDashboardsRepository);
+        presenter = new DashboardListPresenter(this, dashboardRepository);
     }
 
     @Override
@@ -46,11 +46,14 @@ public class DashboardListFragment extends SimpleListWithRefreshFragment impleme
         listRecycler.setAdapter(dashboardListAdapter);
         dashboardListAdapter.setOnCardClickListener((view, position, viewType) -> {
             if (position != presenter.getSelectedItemPosition()) {
+                final DashboardListDH itemDH = dashboardListAdapter.getItem(position);
                 dashboardListAdapter.replaceSelectedItem(presenter.getSelectedItemPosition(), position);
-                presenter.setSelectedInfo(position, dashboardListAdapter.getItem(position).getId());
+                presenter.setSelectedInfo(position, itemDH.getId());
+                presenter.prepareDashboardDetailWithParams(itemDH);
             }
         });
 
+        displayProgress(true);
         presenter.subscribe();
     }
 
@@ -68,18 +71,25 @@ public class DashboardListFragment extends SimpleListWithRefreshFragment impleme
 
     @Override
     protected boolean needProgress() {
-        return false;
+        return true;
     }
 
     @Override
     public void displayDashboardsList(ArrayList<DashboardListDH> listDashboards) {
+        displayProgress(false);
         swipeContainer.setRefreshing(false);
         dashboardListAdapter.addListDH(listDashboards);
     }
 
     @Override
-    public void displayDashboardsDetail(String param) {
+    public void displayDashboardsDetail(DashboardListItem itemChartDashboard) {
         // TODO open detail fragment
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        presenter.unsubscribe();
     }
 
 }

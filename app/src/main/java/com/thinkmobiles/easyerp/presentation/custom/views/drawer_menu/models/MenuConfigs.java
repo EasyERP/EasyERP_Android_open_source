@@ -2,7 +2,6 @@ package com.thinkmobiles.easyerp.presentation.custom.views.drawer_menu.models;
 
 import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.presentation.base.BaseFragment;
-import com.thinkmobiles.easyerp.presentation.screens.crm.dashboard.DashboardListFragment;
 import com.thinkmobiles.easyerp.presentation.screens.crm.dashboard.DashboardListFragment_;
 import com.thinkmobiles.easyerp.presentation.screens.crm.leads.LeadsFragment_;
 
