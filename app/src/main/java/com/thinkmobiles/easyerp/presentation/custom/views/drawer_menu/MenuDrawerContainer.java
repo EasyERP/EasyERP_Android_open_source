@@ -54,6 +54,10 @@ public class MenuDrawerContainer extends SlidingPaneLayout {
         this.stateMenu = stateMenu;
     }
 
+    public MenuDrawerState getStateMenu() {
+        return stateMenu;
+    }
+
     public void setCollapsedMenuWidth(int collapsedMenuWidth) {
         this.collapsedMenuWidth = collapsedMenuWidth;
     }
@@ -93,7 +97,10 @@ public class MenuDrawerContainer extends SlidingPaneLayout {
         super.onFinishInflate();
         super.setPanelSlideListener(slideMenuPanelListener);
         checkAndPreparingChilds();
+        initStateMenu();
+    }
 
+    public void initStateMenu() {
         switch (stateMenu) {
             case OPEN:
                 openPane();
@@ -115,13 +122,13 @@ public class MenuDrawerContainer extends SlidingPaneLayout {
         @Override
         public void onPanelOpened(View panel) {
             menuDrawerView.setSlideOffset(1f);
-
+            setStateMenu(MenuDrawerState.OPEN);
         }
 
         @Override
         public void onPanelClosed(View panel) {
             menuDrawerView.setSlideOffset(0f);
-
+            setStateMenu(MenuDrawerState.CLOSE);
         }
     };
 

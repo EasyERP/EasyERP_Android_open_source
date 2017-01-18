@@ -1,10 +1,13 @@
 package com.thinkmobiles.easyerp.presentation.screens.home;
 
-import android.widget.ImageView;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 
 import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.data.model.user.UserInfo;
 import com.thinkmobiles.easyerp.presentation.base.BaseMasterFlowActivity;
+import com.thinkmobiles.easyerp.presentation.custom.views.drawer_menu.MenuDrawerContainer;
+import com.thinkmobiles.easyerp.presentation.custom.views.drawer_menu.MenuDrawerState;
 import com.thinkmobiles.easyerp.presentation.custom.views.drawer_menu.MenuDrawerView;
 import com.thinkmobiles.easyerp.presentation.custom.views.drawer_menu.models.MenuConfigs;
 
@@ -23,10 +26,11 @@ public class HomeActivity extends BaseMasterFlowActivity {
     @Extra
     protected UserInfo userInfo;
 
-    @ViewById(R.id.mdvMenu_AM)
+    @ViewById(R.id.mdvMenu_AH)
     protected MenuDrawerView menuDrawerView;
-    @ViewById
-    protected ImageView ivImage;
+
+    @ViewById(R.id.mdvMenuContainer_AH)
+    protected MenuDrawerContainer menuDrawerContainer;
 
     @AfterViews
     protected void initMenu() {
@@ -42,4 +46,27 @@ public class HomeActivity extends BaseMasterFlowActivity {
     protected int contentDetailIdLayout() {
         return R.id.flContentDetailContainer;
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                changeStateMenu();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void changeStateMenu() {
+        switch (menuDrawerContainer.getStateMenu()) {
+            case OPEN:
+                menuDrawerContainer.setStateMenu(MenuDrawerState.CLOSE);
+                break;
+            case CLOSE:
+                menuDrawerContainer.setStateMenu(MenuDrawerState.OPEN);
+                break;
+        }
+        menuDrawerContainer.initStateMenu();
+    }
+
 }

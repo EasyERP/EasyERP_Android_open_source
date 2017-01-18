@@ -8,6 +8,7 @@
     <include layout="@layout/view_include_toolbar" />
 
     <com.thinkmobiles.easyerp.presentation.custom.views.drawer_menu.MenuDrawerContainer_
+        android:id="@+id/mdvMenuContainer_AH"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:collapsedMenuWidth="@dimen/collapsed_menu_width"
@@ -15,7 +16,7 @@
         app:stateMenu="close">
 
         <com.thinkmobiles.easyerp.presentation.custom.views.drawer_menu.MenuDrawerView_
-            android:id="@+id/mdvMenu_AM"
+            android:id="@+id/mdvMenu_AH"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
