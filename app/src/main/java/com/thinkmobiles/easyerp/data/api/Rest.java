@@ -7,7 +7,6 @@ import com.thinkmobiles.easyerp.data.model.ResponseError;
 import com.thinkmobiles.easyerp.data.services.LeadService;
 import com.thinkmobiles.easyerp.data.services.LoginService;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
-import com.thinkmobiles.easyerp.presentation.utils.CookieSharedPreferences;
 import com.thinkmobiles.easyerp.presentation.utils.CookieSharedPreferences_;
 
 import java.io.IOException;
@@ -47,7 +46,7 @@ public class Rest {
     }
 
     public LoginService getLoginService() {
-        return loginService == null ? createService(LoginService.class) : loginService;
+        return loginService == null ? createLoginService(LoginService.class) : loginService;
     }
 
     public LeadService getLeadService() {
@@ -61,6 +60,25 @@ public class Rest {
             e.printStackTrace();
         }
         return null;
+    }
+
+    private <T> T createLoginService(Class<T> service) {
+        malformedGson = new GsonBuilder()
+                .setLenient()
+                .create();
+
+        client = new OkHttpClient.Builder()
+                .addNetworkInterceptor(new StethoInterceptor())
+                .addInterceptor(new ReceiveCookieInterceptor(cookieSharedPreferences))
+                .build();
+        retrofit = new Retrofit.Builder()
+                .addConverterFactory(GsonConverterFactory.create(malformedGson))
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .client(client)
+                .baseUrl(Constants.BASE_URL)
+                .build();
+        converter = retrofit.responseBodyConverter(ResponseError.class, new Annotation[0]);
+        return retrofit.create(service);
     }
 
     private <T> T createService(Class<T> service) {
