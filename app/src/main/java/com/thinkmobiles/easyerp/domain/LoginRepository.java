@@ -1,8 +1,7 @@
 package com.thinkmobiles.easyerp.domain;
 
 import com.thinkmobiles.easyerp.data.api.Rest;
-import com.thinkmobiles.easyerp.data.model.user.ResponseGetCurrentUser;
-import com.thinkmobiles.easyerp.data.services.UserService;
+import com.thinkmobiles.easyerp.data.services.LoginService;
 import com.thinkmobiles.easyerp.presentation.screens.login.LoginContract;
 
 import org.androidannotations.annotations.EBean;
@@ -12,16 +11,16 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
 /**
- * Created by Lynx on 1/18/2017.
+ * Created by Lynx on 1/13/2017.
  */
 
 @EBean(scope = EBean.Scope.Singleton)
-public class UserRepository implements LoginContract.UserModel {
+public class LoginRepository implements LoginContract.LoginModel {
 
-    private UserService userService;
+    private LoginService loginService;
 
-    public UserRepository() {
-        userService = Rest.getInstance().getUserService();
+    public LoginRepository() {
+        loginService = Rest.getInstance().getLoginService();
     }
 
     private <T> Observable<T> getNetworkObservable(Observable<T> observable) {
@@ -29,8 +28,7 @@ public class UserRepository implements LoginContract.UserModel {
                 .subscribeOn(Schedulers.newThread());
     }
 
-    public Observable<ResponseGetCurrentUser> getCurrentUser() {
-        return getNetworkObservable(userService.getCurrentUser());
+    public Observable<String> login(String login, String pass, String dbId) {
+        return getNetworkObservable(loginService.login(login, pass, dbId, true));
     }
-
 }

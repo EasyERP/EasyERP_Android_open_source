@@ -20,6 +20,8 @@ import android.widget.Toast;
 
 import com.jakewharton.rxbinding.view.RxView;
 import com.thinkmobiles.easyerp.R;
+import com.thinkmobiles.easyerp.data.model.user.UserInfo;
+import com.thinkmobiles.easyerp.domain.LoginRepository;
 import com.thinkmobiles.easyerp.domain.UserRepository;
 import com.thinkmobiles.easyerp.presentation.managers.DateManager;
 import com.thinkmobiles.easyerp.presentation.screens.home.HomeActivity_;
@@ -39,7 +41,9 @@ import java.util.concurrent.TimeUnit;
 public class LoginActivity extends AppCompatActivity implements LoginContract.LoginView {
 
     private LoginContract.LoginPresenter presenter;
+
     private boolean isCookieExpired = true;
+    private AnimatorSet animatorSet;
 
     @ViewById
     protected RelativeLayout rvContainer_AL;
@@ -61,6 +65,8 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
     protected CookieSharedPreferences_ sharedPreferences;
 
     @Bean
+    protected LoginRepository loginRepository;
+    @Bean
     protected UserRepository userRepository;
 
     @AfterInject
@@ -70,7 +76,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
             sharedPreferences.edit().getCookieExpireDate().remove().apply();
             sharedPreferences.edit().geCoockies().remove().apply();
         }
-        new LoginPresenter(this, userRepository);
+        new LoginPresenter(this, loginRepository, userRepository);
     }
 
     @AfterViews
@@ -109,8 +115,10 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
     }
 
     @Override
-    public void startHomeScreen() {
-        HomeActivity_.intent(this).start();
+    public void startHomeScreen(UserInfo userInfo) {
+        HomeActivity_.intent(this)
+                .userInfo(userInfo)
+                .start();
         finish();
     }
 
@@ -137,7 +145,10 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
             @Override
             public void onAnimationEnd(Animator animation) {
                 super.onAnimationEnd(animation);
-                if(!isCookieExpired) startHomeScreen();
+                if(!isCookieExpired) {
+                    animatorSet.pause();
+                    presenter.getCurrentUser();
+                }
             }
         });
 
@@ -157,8 +168,14 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
         containerFade.setStartDelay(4000);
         containerFade.setDuration(1000);
 
-        AnimatorSet animatorSet = new AnimatorSet();
+        animatorSet = new AnimatorSet();
         animatorSet.playTogether(iconFade, iconScaleX, iconScaleY, iconTranslateY, containerFade);
         animatorSet.start();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if(animatorSet != null) animatorSet.cancel();
     }
 }

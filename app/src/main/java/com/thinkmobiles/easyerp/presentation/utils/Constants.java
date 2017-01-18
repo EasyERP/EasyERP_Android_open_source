@@ -10,6 +10,7 @@ public class Constants {
     public static final String HEADER_COOKIE                = "Cookie";
 
     public static final String POST_LOGIN                   = "users/login";
+    public static final String GET_CURRENT_USER             = "users/current";
 
     public static final String GET_LEADS                    = "leads";
 

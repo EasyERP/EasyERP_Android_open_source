@@ -3,9 +3,13 @@ package com.thinkmobiles.easyerp.data.api;
 import com.facebook.stetho.okhttp3.StethoInterceptor;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.thinkmobiles.easyerp.data.api.interceptors.AddCookieInterceptor;
+import com.thinkmobiles.easyerp.data.api.interceptors.BadCookieInterceptor;
+import com.thinkmobiles.easyerp.data.api.interceptors.ReceiveCookieInterceptor;
 import com.thinkmobiles.easyerp.data.model.ResponseError;
 import com.thinkmobiles.easyerp.data.services.LeadService;
 import com.thinkmobiles.easyerp.data.services.LoginService;
+import com.thinkmobiles.easyerp.data.services.UserService;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 import com.thinkmobiles.easyerp.presentation.utils.CookieSharedPreferences_;
 
@@ -33,6 +37,7 @@ public class Rest {
 
     private LoginService loginService;
     private LeadService leadService;
+    private UserService userService;
 
     private Converter<ResponseBody, ResponseError> converter;
 
@@ -47,6 +52,10 @@ public class Rest {
 
     public LoginService getLoginService() {
         return loginService == null ? createLoginService(LoginService.class) : loginService;
+    }
+
+    public UserService getUserService() {
+        return userService == null ? createService(UserService.class) : userService;
     }
 
     public LeadService getLeadService() {

@@ -1,4 +1,4 @@
-package com.thinkmobiles.easyerp.data.api;
+package com.thinkmobiles.easyerp.data.api.interceptors;
 
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 import com.thinkmobiles.easyerp.presentation.utils.CookieSharedPreferences_;

@@ -1,7 +1,8 @@
-package com.thinkmobiles.easyerp.data.api;
+package com.thinkmobiles.easyerp.data.api.interceptors;
 
 import android.text.TextUtils;
 
+import com.thinkmobiles.easyerp.data.api.Rest;
 import com.thinkmobiles.easyerp.presentation.EasyErpApplication;
 import com.thinkmobiles.easyerp.presentation.utils.CookieSharedPreferences_;
 
