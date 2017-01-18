@@ -32,7 +32,7 @@ public class DashboardRepository implements DashboardListContract.DashboardListM
                 .subscribeOn(Schedulers.newThread());
     }
 
-    public Observable<List<ResponseGetCRMDashboardCharts>> getDashboardListCharts() {
+    public Observable<List<ResponseGetCRMDashboardCharts>> getDashboardListCharts(/*Dashboard id: Strings*/) {
         return getNetworkObservable(dashboardService.getDashboardListCharts(Constants.CRM_DASHBOARD_BASE_ID));
     }
 
