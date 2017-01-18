@@ -5,7 +5,6 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.view.animation.AccelerateInterpolator;
@@ -71,7 +70,6 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
             sharedPreferences.edit().getCookieExpireDate().remove().apply();
             sharedPreferences.edit().geCoockies().remove().apply();
         }
-        Log.d("myLogs", "isCookieExpired = " + isCookieExpired);
         new LoginPresenter(this, userRepository);
     }
 
@@ -112,8 +110,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
 
     @Override
     public void startHomeScreen() {
-        HomeActivity_.intent(this)
-                .start();
+        HomeActivity_.intent(this).start();
         finish();
     }
 

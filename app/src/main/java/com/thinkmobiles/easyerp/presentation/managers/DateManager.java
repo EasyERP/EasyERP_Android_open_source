@@ -30,10 +30,7 @@ public abstract class DateManager {
     }
 
     public static boolean isCookieExpired(String strExpired) {
-        if(TextUtils.isEmpty(strExpired)) {
-            Log.d("myLogs", "isCookieExpired() :: Cookie is empty");
-            return true;
-        }
+        if(TextUtils.isEmpty(strExpired)) return true;
         SimpleDateFormat sdf = new SimpleDateFormat(PATTERN_COOKIE_EXPIRED, Locale.US);
         try {
             return sdf.parse(strExpired.substring(8)).getTime() < System.currentTimeMillis();
