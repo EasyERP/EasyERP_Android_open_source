@@ -1,9 +1,9 @@
-package com.thinkmobiles.easyerp.presentation.adapters;
+package com.thinkmobiles.easyerp.presentation.adapters.crm;
 
 import com.michenko.simpleadapter.SimpleRecyclerAdapter;
 import com.thinkmobiles.easyerp.R;
-import com.thinkmobiles.easyerp.presentation.holders.data.LeadDH;
-import com.thinkmobiles.easyerp.presentation.holders.view.LeadVH;
+import com.thinkmobiles.easyerp.presentation.holders.data.crm.LeadDH;
+import com.thinkmobiles.easyerp.presentation.holders.view.crm.LeadVH;
 
 import org.androidannotations.annotations.EBean;
 

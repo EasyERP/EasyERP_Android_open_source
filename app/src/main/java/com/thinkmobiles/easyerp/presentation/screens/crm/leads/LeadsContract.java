@@ -1,10 +1,10 @@
-package com.thinkmobiles.easyerp.presentation.screens.leads;
+package com.thinkmobiles.easyerp.presentation.screens.crm.leads;
 
-import com.thinkmobiles.easyerp.data.model.leads.ResponseGetLeads;
+import com.thinkmobiles.easyerp.data.model.crm.leads.ResponseGetLeads;
 import com.thinkmobiles.easyerp.presentation.base.BaseModel;
 import com.thinkmobiles.easyerp.presentation.base.BasePresenter;
 import com.thinkmobiles.easyerp.presentation.base.BaseView;
-import com.thinkmobiles.easyerp.presentation.holders.data.LeadDH;
+import com.thinkmobiles.easyerp.presentation.holders.data.crm.LeadDH;
 
 import java.util.ArrayList;
 

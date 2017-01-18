@@ -1,4 +1,4 @@
-package com.thinkmobiles.easyerp.presentation.holders.view;
+package com.thinkmobiles.easyerp.presentation.holders.view.crm;
 
 import android.graphics.Color;
 import android.support.annotation.Nullable;
@@ -11,9 +11,9 @@ import android.widget.TextView;
 import com.michenko.simpleadapter.OnCardClickListener;
 import com.michenko.simpleadapter.RecyclerVH;
 import com.thinkmobiles.easyerp.R;
-import com.thinkmobiles.easyerp.data.model.leads.LeadTag;
+import com.thinkmobiles.easyerp.data.model.crm.leads.LeadTag;
 import com.thinkmobiles.easyerp.presentation.custom.RoundedBackgroundSpan;
-import com.thinkmobiles.easyerp.presentation.holders.data.LeadDH;
+import com.thinkmobiles.easyerp.presentation.holders.data.crm.LeadDH;
 import com.thinkmobiles.easyerp.presentation.managers.DateManager;
 import com.thinkmobiles.easyerp.presentation.managers.TagHelper;
 

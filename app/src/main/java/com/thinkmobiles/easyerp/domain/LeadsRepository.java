@@ -1,9 +1,9 @@
 package com.thinkmobiles.easyerp.domain;
 
 import com.thinkmobiles.easyerp.data.api.Rest;
-import com.thinkmobiles.easyerp.data.model.leads.ResponseGetLeads;
+import com.thinkmobiles.easyerp.data.model.crm.leads.ResponseGetLeads;
 import com.thinkmobiles.easyerp.data.services.LeadService;
-import com.thinkmobiles.easyerp.presentation.screens.leads.LeadsContract;
+import com.thinkmobiles.easyerp.presentation.screens.crm.leads.LeadsContract;
 
 import org.androidannotations.annotations.EBean;
 

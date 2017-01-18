@@ -1,7 +1,7 @@
-package com.thinkmobiles.easyerp.presentation.holders.data;
+package com.thinkmobiles.easyerp.presentation.holders.data.crm;
 
 import com.michenko.simpleadapter.RecyclerDH;
-import com.thinkmobiles.easyerp.data.model.leads.LeadItem;
+import com.thinkmobiles.easyerp.data.model.crm.leads.LeadItem;
 
 /**
  * Created by Lynx on 1/16/2017.
