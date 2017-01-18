@@ -33,7 +33,6 @@ public class LoginPresenter implements LoginContract.LoginPresenter {
         String login = view.getLogin();
         String pass = view.getPassword();
         String dbId = view.getDbID();
-        boolean isRememberMe = view.isRememberMe();
 
         if(TextUtils.isEmpty(login)) {
             view.displayError("Input login");
@@ -43,7 +42,7 @@ public class LoginPresenter implements LoginContract.LoginPresenter {
             view.displayError("Input database ID");
         } else {
             compositeSubscription.add(
-                    model.login(login, pass, dbId, isRememberMe)
+                    model.login(login, pass, dbId)
                             .subscribe(s -> {
                                 if(s.equalsIgnoreCase("OK")) {
                                     view.startHomeScreen();

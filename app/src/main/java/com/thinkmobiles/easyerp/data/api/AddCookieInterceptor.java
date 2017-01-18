@@ -1,7 +1,7 @@
 package com.thinkmobiles.easyerp.data.api;
 
-import com.thinkmobiles.easyerp.presentation.utils.AppSharedPreferences_;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
+import com.thinkmobiles.easyerp.presentation.utils.CookieSharedPreferences_;
 
 import java.io.IOException;
 
@@ -15,15 +15,15 @@ import okhttp3.Response;
 
 public class AddCookieInterceptor implements Interceptor {
 
-    protected AppSharedPreferences_ sharedPreferences;
+    protected CookieSharedPreferences_ cookieSharedPreferences;
 
-    public AddCookieInterceptor(AppSharedPreferences_ sharedPreferences) {
-        this.sharedPreferences = sharedPreferences;
+    public AddCookieInterceptor(CookieSharedPreferences_ cookieSharedPreferences) {
+        this.cookieSharedPreferences = cookieSharedPreferences;
     }
 
     @Override
     public Response intercept(Chain chain) throws IOException {
-        String cookie = sharedPreferences.geCoockies().get();
+        String cookie = cookieSharedPreferences.geCoockies().get();
         Request.Builder builder = chain.request().newBuilder();
         builder.addHeader(Constants.HEADER_COOKIE, cookie);
         return chain.proceed(builder.build());

@@ -28,7 +28,7 @@ public class UserRepository implements LoginContract.LoginModel {
                 .subscribeOn(Schedulers.newThread());
     }
 
-    public Observable<String> login(String login, String pass, String dbId, boolean rememberMe) {
-        return getNetworkObservable(loginService.login(login, pass, dbId, rememberMe));
+    public Observable<String> login(String login, String pass, String dbId) {
+        return getNetworkObservable(loginService.login(login, pass, dbId, true));
     }
 }

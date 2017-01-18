@@ -6,7 +6,7 @@ import android.content.Intent;
 import com.facebook.stetho.Stetho;
 import com.thinkmobiles.easyerp.BuildConfig;
 import com.thinkmobiles.easyerp.data.api.Rest;
-import com.thinkmobiles.easyerp.presentation.utils.AppSharedPreferences_;
+import com.thinkmobiles.easyerp.presentation.utils.CookieSharedPreferences_;
 
 import org.androidannotations.annotations.EApplication;
 import org.androidannotations.annotations.sharedpreferences.Pref;
@@ -21,7 +21,7 @@ public class EasyErpApplication extends Application {
     private static EasyErpApplication INSTANCE;
 
     @Pref
-    protected AppSharedPreferences_ sharedPreferences;
+    protected CookieSharedPreferences_ cookieSharedPreferences;
 
     @Override
     public void onCreate() {
@@ -30,7 +30,7 @@ public class EasyErpApplication extends Application {
         if(!BuildConfig.PRODUCTION) {
             Stetho.initializeWithDefaults(this);
         }
-        Rest.getInstance().setPrefManager(sharedPreferences);
+        Rest.getInstance().setPrefManager(cookieSharedPreferences);
     }
 
     public static EasyErpApplication getInstace() {

@@ -8,9 +8,12 @@ import org.androidannotations.annotations.sharedpreferences.SharedPref;
  */
 
 @SharedPref(value = SharedPref.Scope.UNIQUE)
-public interface AppSharedPreferences {
+public interface CookieSharedPreferences {
 
     @DefaultString("")
     String geCoockies();
+
+    @DefaultString("")
+    String getCookieExpireDate();
 
 }

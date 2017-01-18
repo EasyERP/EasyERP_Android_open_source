@@ -17,7 +17,6 @@ public interface LoginContract {
         String getLogin();
         String getPassword();
         String getDbID();
-        boolean isRememberMe();
 
         void startHomeScreen();
     }
@@ -25,6 +24,6 @@ public interface LoginContract {
         void login();
     }
     interface LoginModel extends BaseModel {
-        Observable<String> login(String login, String password, String dbId, boolean isRememberMe);
+        Observable<String> login(String login, String password, String dbId);
     }
 }

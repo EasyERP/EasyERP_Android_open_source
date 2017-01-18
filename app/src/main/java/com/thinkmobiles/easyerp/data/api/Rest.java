@@ -6,8 +6,9 @@ import com.google.gson.GsonBuilder;
 import com.thinkmobiles.easyerp.data.model.ResponseError;
 import com.thinkmobiles.easyerp.data.services.LeadService;
 import com.thinkmobiles.easyerp.data.services.LoginService;
-import com.thinkmobiles.easyerp.presentation.utils.AppSharedPreferences_;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
+import com.thinkmobiles.easyerp.presentation.utils.CookieSharedPreferences;
+import com.thinkmobiles.easyerp.presentation.utils.CookieSharedPreferences_;
 
 import java.io.IOException;
 import java.lang.annotation.Annotation;
@@ -29,7 +30,7 @@ public class Rest {
     private Retrofit retrofit;
     private OkHttpClient client;
     private Gson malformedGson;
-    private AppSharedPreferences_ sharedPreferences;
+    private CookieSharedPreferences_ cookieSharedPreferences;
 
     private LoginService loginService;
     private LeadService leadService;
@@ -69,9 +70,9 @@ public class Rest {
 
         client = new OkHttpClient.Builder()
                 .addNetworkInterceptor(new StethoInterceptor())
-                .addInterceptor(new AddCookieInterceptor(sharedPreferences))
-                .addInterceptor(new ReceiveCookieInterceptor(sharedPreferences))
-                .addInterceptor(new BadCookieInterceptor(sharedPreferences))
+                .addInterceptor(new AddCookieInterceptor(cookieSharedPreferences))
+                .addInterceptor(new ReceiveCookieInterceptor(cookieSharedPreferences))
+                .addInterceptor(new BadCookieInterceptor(cookieSharedPreferences))
                 .build();
         retrofit = new Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create(malformedGson))
@@ -83,8 +84,8 @@ public class Rest {
         return retrofit.create(service);
     }
 
-    public void setPrefManager(AppSharedPreferences_ sharedPreferences) {
-        this.sharedPreferences = sharedPreferences;
+    public void setPrefManager(CookieSharedPreferences_ cookieSharedPreferences) {
+        this.cookieSharedPreferences = cookieSharedPreferences;
     }
 
 }
