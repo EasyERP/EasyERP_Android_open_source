@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="@dimen/default_padding_half"
+    android:layout_marginRight="@dimen/default_padding_half"
+    android:background="@drawable/bg_selector_mini_menu_item"
+    android:padding="@dimen/default_padding_half">
+
+    <ImageView
+        android:id="@+id/ivThumbItem_VDMMI"
+        android:layout_width="@dimen/menu_item_thumb_size"
+        android:layout_height="@dimen/menu_item_thumb_size"
+        android:layout_centerVertical="true"
+        android:layout_marginBottom="@dimen/default_padding_very_small"
+        android:layout_marginStart="@dimen/default_padding_small"
+        android:layout_marginTop="@dimen/default_padding_very_small"
+        android:padding="@dimen/default_padding_3dp"
+        tools:src="@drawable/ic_avatar_placeholder" />
+
+</RelativeLayout>

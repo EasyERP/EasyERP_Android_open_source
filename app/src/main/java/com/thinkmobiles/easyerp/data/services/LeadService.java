@@ -5,6 +5,7 @@ import com.thinkmobiles.easyerp.data.model.leads.details.ResponseGetLeadDetails;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
 import retrofit2.http.GET;
+import retrofit2.http.Query;
 import retrofit2.http.Path;
 import rx.Observable;
 
@@ -15,7 +16,10 @@ import rx.Observable;
 public interface LeadService {
 
     @GET(Constants.GET_LEADS)
-    Observable<ResponseGetLeads> getLeads();
+    Observable<ResponseGetLeads> getLeads(@Query("viewType") String viewType,
+                                          @Query("page") int page,
+                                          @Query("count") int count,
+                                          @Query("contentType") String contentType);
 
     @GET(Constants.GET_LEADS + "/{leadId}")
     Observable<ResponseGetLeadDetails> getLeadDetails(@Path("leadId") String leadId);

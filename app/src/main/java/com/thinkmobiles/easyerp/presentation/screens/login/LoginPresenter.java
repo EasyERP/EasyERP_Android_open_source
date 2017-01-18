@@ -45,7 +45,9 @@ public class LoginPresenter implements LoginContract.LoginPresenter {
             compositeSubscription.add(
                     model.login(login, pass, dbId, isRememberMe)
                             .subscribe(s -> {
-                                view.displayResult(s);
+                                if(s.equalsIgnoreCase("OK")) {
+                                    view.startHomeScreen();
+                                }
                                 Log.d("HTTP", "Response: " + s);
                             }, t -> {
                                 String errMsg = "";

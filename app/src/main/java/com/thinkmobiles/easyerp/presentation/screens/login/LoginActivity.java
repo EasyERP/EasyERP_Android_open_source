@@ -1,6 +1,5 @@
 package com.thinkmobiles.easyerp.presentation.screens.login;
 
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -10,6 +9,7 @@ import android.widget.Toast;
 import com.jakewharton.rxbinding.view.RxView;
 import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.domain.UserRepository;
+import com.thinkmobiles.easyerp.presentation.screens.home.HomeActivity_;
 import com.thinkmobiles.easyerp.presentation.utils.AppSharedPreferences_;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
@@ -64,17 +64,6 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
     }
 
     @Override
-    public void displayResult(String result) {
-        new AlertDialog.Builder(this)
-                .setTitle("Log in")
-                .setMessage(result)
-                .setPositiveButton("OK", (dialogInterface, i) -> dialogInterface.dismiss())
-                .setCancelable(false)
-                .create()
-                .show();
-    }
-
-    @Override
     public void displayError(String error) {
         Toast.makeText(this, error, Toast.LENGTH_SHORT).show();
     }
@@ -97,6 +86,13 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
     @Override
     public boolean isRememberMe() {
         return cbRememberMe_AL.isChecked();
+    }
+
+    @Override
+    public void startHomeScreen() {
+        HomeActivity_.intent(this)
+                .start();
+        finish();
     }
 
     @Override

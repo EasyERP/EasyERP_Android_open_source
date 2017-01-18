@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rlHeaderContainer_VDMMH"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="@dimen/user_avatar_divide_sizes"
+    tools:showIn="@layout/view_drawer_menu">
+
+    <ImageView
+        android:id="@+id/ivAvatar_VDMMH"
+        android:layout_width="@dimen/user_avatar_size_mini"
+        android:layout_height="@dimen/user_avatar_size_mini"
+        android:layout_margin="@dimen/default_padding"
+        android:src="@drawable/ic_avatar_placeholder_with_padding" />
+
+</RelativeLayout>

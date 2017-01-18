@@ -1,6 +1,7 @@
 package com.thinkmobiles.easyerp.presentation;
 
 import android.app.Application;
+import android.content.Intent;
 
 import com.facebook.stetho.Stetho;
 import com.thinkmobiles.easyerp.BuildConfig;
@@ -17,15 +18,29 @@ import org.androidannotations.annotations.sharedpreferences.Pref;
 @EApplication
 public class EasyErpApplication extends Application {
 
+    private static EasyErpApplication INSTANCE;
+
     @Pref
     protected AppSharedPreferences_ sharedPreferences;
 
     @Override
     public void onCreate() {
         super.onCreate();
+        INSTANCE = this;
         if(!BuildConfig.PRODUCTION) {
             Stetho.initializeWithDefaults(this);
         }
         Rest.getInstance().setPrefManager(sharedPreferences);
+    }
+
+    public static EasyErpApplication getInstace() {
+        return INSTANCE;
+    }
+
+    public void restartApp() {
+        Intent startIntent = getPackageManager()
+                .getLaunchIntentForPackage(getPackageName())
+                .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(startIntent);
     }
 }

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark">
+
+    <ScrollView
+        android:id="@+id/svContainerExpandedLayout_VDM"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:overScrollMode="never"
+        android:scrollbars="none"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/llInsideContainerExpandedLayout_VDM"
+            android:orientation="vertical">
+
+            <include layout="@layout/view_drawer_menu_header" />
+
+            <LinearLayout
+                android:id="@+id/llMenuItemsContainer_VDM"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/default_padding"
+                android:paddingTop="@dimen/default_padding" />
+
+            <View
+                android:id="@+id/vBottomDividerMenuItems_VDM"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/divider_white_color" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+    <ScrollView
+        android:id="@+id/svContainerCollapsedLayout_VDM"
+        android:layout_width="@dimen/collapsed_menu_width"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimaryDark"
+        android:overScrollMode="never"
+        android:scrollbars="none"
+        android:visibility="visible">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <include layout="@layout/view_drawer_mini_menu_header" />
+
+            <LinearLayout
+                android:id="@+id/llMiniMenuItemsContainer_VDM"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/default_padding" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</FrameLayout>

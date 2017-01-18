@@ -3,4 +3,26 @@
     <color name="colorPrimary">#364150</color>
     <color name="colorPrimaryDark">#2B3643</color>
     <color name="colorAccent">#7EADCC</color>
+
+
+    <color name="white_main_text_color">@android:color/white</color>
+    <color name="transparent_white_main_text_color">#99FFFFFF</color>
+    <color name="transparent_white_menu_selected_color">#22FFFFFF</color>
+
+    <color name="transparent_white_bg_color">#09FFFFFF</color>
+    <color name="divider_white_color">#50FFFFFF</color>
+
+    <color name="dividerColor">#e0e0e0</color>
+    
+    <color name="tag_bg_red">#eb5a46</color>
+    <color name="tag_bg_pink">#ff80ce</color>
+    <color name="tag_bg_orange">#ffab4a</color>
+    <color name="tag_bg_yellow">#f2d600</color>
+    <color name="tag_bg_green_dark">#61bd4f</color>
+    <color name="tag_bg_green_light">#51e898</color>
+    <color name="tag_bg_blue_light">#00c2e0</color>
+    <color name="tag_bg_blue_dark">#0079bf</color>
+    <color name="tag_bg_purple">#c377e0</color>
+    <color name="tag_bg_black">#4d4d4d</color>
+    <color name="tag_bg_grey">#b6bbbf</color>
 </resources>

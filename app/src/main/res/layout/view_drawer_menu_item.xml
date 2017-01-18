@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_selector_menu_item"
+    android:paddingBottom="@dimen/default_padding_half"
+    android:paddingLeft="@dimen/default_padding"
+    android:paddingRight="@dimen/default_padding"
+    android:paddingTop="@dimen/default_padding_half">
+
+    <ImageView
+        android:id="@+id/ivThumbItem_VDMI"
+        android:layout_width="@dimen/menu_item_thumb_size"
+        android:layout_height="@dimen/menu_item_thumb_size"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="@dimen/default_padding_very_small"
+        android:layout_marginBottom="@dimen/default_padding_very_small"
+        android:layout_marginStart="@dimen/default_padding_small"
+        android:padding="@dimen/default_padding_3dp"/>
+
+    <TextView
+        android:id="@+id/tvLabelItem_VDMI"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="@dimen/default_padding"
+        android:layout_toEndOf="@id/ivThumbItem_VDMI"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:padding="@dimen/default_padding_half"
+        android:textColor="@color/white_main_text_color"
+        android:textSize="@dimen/middle_text_size"
+        tools:text="Dashboard" />
+
+</RelativeLayout>

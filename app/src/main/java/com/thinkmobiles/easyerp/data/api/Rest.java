@@ -1,7 +1,5 @@
 package com.thinkmobiles.easyerp.data.api;
 
-import android.text.TextUtils;
-
 import com.facebook.stetho.okhttp3.StethoInterceptor;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -15,7 +13,6 @@ import java.io.IOException;
 import java.lang.annotation.Annotation;
 
 import okhttp3.OkHttpClient;
-import okhttp3.Request;
 import okhttp3.ResponseBody;
 import retrofit2.Converter;
 import retrofit2.Retrofit;
@@ -74,6 +71,7 @@ public class Rest {
                 .addNetworkInterceptor(new StethoInterceptor())
                 .addInterceptor(new AddCookieInterceptor(sharedPreferences))
                 .addInterceptor(new ReceiveCookieInterceptor(sharedPreferences))
+                .addInterceptor(new BadCookieInterceptor(sharedPreferences))
                 .build();
         retrofit = new Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create(malformedGson))
