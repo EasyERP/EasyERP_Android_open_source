@@ -11,6 +11,7 @@ import com.thinkmobiles.easyerp.presentation.base.BaseFragment;
 import com.thinkmobiles.easyerp.presentation.holders.data.LeadDH;
 import com.thinkmobiles.easyerp.presentation.listeners.EndlessRecyclerViewScrollListener;
 import com.thinkmobiles.easyerp.presentation.screens.home.HomeActivity;
+import com.thinkmobiles.easyerp.presentation.screens.leads.details.LeadDetailsFragment_;
 
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterViews;
@@ -81,6 +82,13 @@ public class LeadsFragment extends BaseFragment<HomeActivity> implements LeadsCo
         displayProgress(false);
         swipeContainer_FL.setRefreshing(false);
         leadsAdapter.addListDH(leadDHs);
+    }
+
+    @Override
+    public void openLeadDetailsScreen(String leadId) {
+        mActivity.replaceFragmentContentDetail(LeadDetailsFragment_.builder()
+                .leadId(leadId)
+                .build());
     }
 
     @Override

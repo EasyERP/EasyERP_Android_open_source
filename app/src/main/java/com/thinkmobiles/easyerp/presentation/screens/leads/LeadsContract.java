@@ -17,6 +17,7 @@ import rx.Observable;
 public interface LeadsContract {
     interface LeadsView extends BaseView<LeadsPresenter> {
         void displayLeads(ArrayList<LeadDH> leadDHs);
+        void openLeadDetailsScreen(String leadId);
     }
     interface LeadsPresenter extends BasePresenter {
         void loadLeads(int page);

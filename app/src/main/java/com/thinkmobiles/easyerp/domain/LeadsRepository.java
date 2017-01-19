@@ -2,8 +2,10 @@ package com.thinkmobiles.easyerp.domain;
 
 import com.thinkmobiles.easyerp.data.api.Rest;
 import com.thinkmobiles.easyerp.data.model.leads.ResponseGetLeads;
+import com.thinkmobiles.easyerp.data.model.leads.details.ResponseGetLeadDetails;
 import com.thinkmobiles.easyerp.data.services.LeadService;
 import com.thinkmobiles.easyerp.presentation.screens.leads.LeadsContract;
+import com.thinkmobiles.easyerp.presentation.screens.leads.details.LeadDetailsContract;
 
 import org.androidannotations.annotations.EBean;
 
@@ -16,7 +18,7 @@ import rx.schedulers.Schedulers;
  */
 
 @EBean(scope = EBean.Scope.Singleton)
-public class LeadsRepository implements LeadsContract.LeadsModel {
+public class LeadsRepository implements LeadsContract.LeadsModel, LeadDetailsContract.LeadDetailsModel {
 
     private LeadService leadService;
 
@@ -37,4 +39,8 @@ public class LeadsRepository implements LeadsContract.LeadsModel {
         return getNetworkObservable(leadService.getLeads("list", page, 50, "Leads"));
     }
 
+    @Override
+    public Observable<ResponseGetLeadDetails> getLeadDetails(String leadId) {
+        return getNetworkObservable(leadService.getLeadDetails(leadId));
+    }
 }
