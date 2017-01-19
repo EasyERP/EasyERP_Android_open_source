@@ -72,10 +72,10 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
     @AfterInject
     @Override
     public void initPresenter() {
+        new LoginPresenter(this, loginRepository, userRepository, sharedPreferences);
+
         isCookieExpired = DateManager.isCookieExpired(sharedPreferences.getCookieExpireDate().get());
         if(isCookieExpired) presenter.clearCookies();
-
-        new LoginPresenter(this, loginRepository, userRepository, sharedPreferences);
     }
 
     @AfterViews
@@ -157,14 +157,14 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
         iconTranslateY.setInterpolator(new DecelerateInterpolator());
         containerFade.setInterpolator(new AccelerateInterpolator());
 
-        iconFade.setDuration(2000);
-        iconScaleX.setDuration(2000);
-        iconScaleY.setDuration(2000);
+        iconFade.setDuration(1500);
+        iconScaleX.setDuration(1500);
+        iconScaleY.setDuration(1500);
 
-        iconTranslateY.setStartDelay(3000);
+        iconTranslateY.setStartDelay(1500);
         iconTranslateY.setDuration(1000);
 
-        containerFade.setStartDelay(4000);
+        containerFade.setStartDelay(2500);
         containerFade.setDuration(1000);
 
         animatorSet = new AnimatorSet();
