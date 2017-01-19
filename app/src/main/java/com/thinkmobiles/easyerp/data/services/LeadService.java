@@ -1,6 +1,6 @@
 package com.thinkmobiles.easyerp.data.services;
 
-import com.thinkmobiles.easyerp.data.model.leads.ResponseGetLeads;
+import com.thinkmobiles.easyerp.data.model.crm.leads.ResponseGetLeads;
 import com.thinkmobiles.easyerp.data.model.leads.details.ResponseGetLeadDetails;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 

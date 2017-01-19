@@ -1,0 +1,22 @@
+package com.thinkmobiles.easyerp.presentation.adapters.crm;
+
+
+import com.thinkmobiles.easyerp.R;
+import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectableAdapter;
+import com.thinkmobiles.easyerp.presentation.holders.data.crm.DashboardListDH;
+import com.thinkmobiles.easyerp.presentation.holders.view.crm.DashboardVH;
+
+import org.androidannotations.annotations.EBean;
+
+/**
+ * Created by Asus_Dev on 1/18/2017.
+ */
+@EBean
+public class DashboardListAdapter extends MasterFlowSelectableAdapter<DashboardListDH, DashboardVH> {
+
+    @Override
+    protected int getItemLayout() {
+        return R.layout.view_list_item_crm_dashbord;
+    }
+
+}

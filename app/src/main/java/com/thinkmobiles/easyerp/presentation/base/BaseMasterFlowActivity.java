@@ -7,16 +7,27 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
 import com.thinkmobiles.easyerp.R;
+import com.thinkmobiles.easyerp.presentation.EasyErpApplication;
+import com.thinkmobiles.easyerp.presentation.utils.CookieSharedPreferences;
+import com.thinkmobiles.easyerp.presentation.utils.CookieSharedPreferences_;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.OptionsItem;
+import org.androidannotations.annotations.OptionsMenu;
+import org.androidannotations.annotations.OptionsMenuItem;
 import org.androidannotations.annotations.ViewById;
+import org.androidannotations.annotations.sharedpreferences.Pref;
 
 /**
  * Created by Asus_Dev on 1/17/2017.
  */
 @EActivity
+@OptionsMenu(R.menu.menu_base)
 public abstract class BaseMasterFlowActivity extends AppCompatActivity {
+
+    @Pref
+    protected CookieSharedPreferences_ cookieSharedPreferences;
 
     @ViewById
     protected Toolbar toolbar;
@@ -31,6 +42,12 @@ public abstract class BaseMasterFlowActivity extends AppCompatActivity {
             actionBar.setDisplayHomeAsUpEnabled(true);
             actionBar.setHomeButtonEnabled(true);
         }
+    }
+
+    @OptionsItem(R.id.menuLogout_MB)
+    protected void logout() {
+        cookieSharedPreferences.clear();
+        EasyErpApplication.getInstance().restartApp();
     }
 
     public void replaceFragmentContent(final BaseFragment fragment) {

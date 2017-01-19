@@ -4,6 +4,7 @@
     <color name="colorPrimaryDark">#2B3643</color>
     <color name="colorAccent">#7EADCC</color>
 
+    <color name="text_grey_hint_color">#99000000</color>
 
     <color name="white_main_text_color">@android:color/white</color>
     <color name="transparent_white_main_text_color">#99FFFFFF</color>

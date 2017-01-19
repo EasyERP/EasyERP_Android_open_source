@@ -1,58 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rvContainer_AL"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white"
-    android:padding="15dp">
+    android:background="@drawable/bg_login_screen">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true"
+        android:scaleType="fitXY"
+        app:srcCompat="@drawable/bg_splash_white_trapeze" />
+
+    <ImageView
+        android:id="@+id/ivAppIcon_AL"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        app:srcCompat="@drawable/ic_erp" />
 
     <LinearLayout
-        android:id="@+id/largeLabel"
-        android:layout_width="match_parent"
+        android:id="@+id/llInput_AL"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_centerVertical="true"
-        android:layout_gravity="center_vertical|center_horizontal"
-        android:orientation="vertical">
+        android:layout_centerInParent="true"
+        android:layout_gravity="center"
+        android:minWidth="@dimen/login_min_width_form_credentials"
+        android:orientation="vertical"
+        android:paddingTop="150dp"
+        android:visibility="invisible">
 
-        <EditText
-            android:id="@+id/etLogin_AL"
+        <android.support.design.widget.TextInputLayout
+            style="@style/TextInputLayoutStyle"
+            android:id="@+id/tilLogin_AL"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/etLogin_AL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/hint_username"
+                android:inputType="text" />
+        </android.support.design.widget.TextInputLayout>
+
+
+        <android.support.design.widget.TextInputLayout
+            style="@style/TextInputLayoutStyle"
+            android:id="@+id/tilPassword_AL"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Login"
-            android:text="testAdmin" />
+            android:layout_marginTop="@dimen/default_padding_half">
 
-        <EditText
-            android:id="@+id/etPassword_AL"
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/etPassword_AL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/hint_password"
+                android:inputType="textPassword" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            style="@style/TextInputLayoutStyle"
+            android:id="@+id/tilDbId_AL"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Password"
-            android:text="111111" />
+            android:layout_marginTop="@dimen/default_padding_half">
 
-        <EditText
-            android:id="@+id/etDbId_AL"
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/etDbId_AL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/hint_database_id"
+                android:inputType="text" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/btnLogin_AL"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="DB ID"
-            android:text="sergey" />
-
-        <CheckBox
-            android:id="@+id/cbRememberMe_AL"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:checked="true"
-            android:text="Remember me?" />
-
-        <Button
-            android:id="@+id/btnLogin_AK"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="LogIN" />
-
-        <Button
-            android:id="@+id/btnGetCookie_AK"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Get Cookie" />
+            android:layout_marginTop="@dimen/default_padding"
+            android:text="@string/login" />
 
     </LinearLayout>
 

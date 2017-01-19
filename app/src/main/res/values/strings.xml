@@ -1,4 +1,17 @@
 <resources>
     <string name="app_name">EasyERP</string>
     <string name="no_data">No data</string>
+    <string name="hint_username">Username</string>
+    <string name="hint_password">Password</string>
+    <string name="hint_database_id">Database ID</string>
+    <string name="login">Login</string>
+    <string name="logout">Logout</string>
+
+    <string name="list_is_empty">Sorry, but list is empty.\nPlease try again later!</string>
+    <string name="try_again">Try again</string>
+
+    <!--Errors-->
+    <string name="err_login_required">Login is required</string>
+    <string name="err_password_required">Password is required</string>
+    <string name="err_db_id_required">Database ID is required</string>
 </resources>
