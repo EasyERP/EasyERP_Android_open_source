@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.thinkmobiles.easyerp.data.model.crm.leads.LeadItem;
 import com.thinkmobiles.easyerp.data.model.crm.leads.ResponseGetLeads;
+import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectablePresenterHelper;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.LeadDH;
 
@@ -33,10 +34,9 @@ public class LeadsPresenter extends MasterFlowSelectablePresenterHelper<String> 
     public void loadLeads(int page) {
         compositeSubscription.add(
                 model.getLeads(page)
-                        .subscribe(responseGetLeads -> {
-                            view.displayLeads(prepareLeadDHs(responseGetLeads));
-                        }, t -> Log.d("HTTP", "Error: " + t.getMessage()))
-        );
+                        .subscribe(
+                                responseGetLeads -> view.displayLeads(prepareLeadDHs(responseGetLeads)),
+                                t -> view.displayError(t.getMessage(), ErrorViewHelper.ErrorType.NETWORK)));
     }
 
     @Override

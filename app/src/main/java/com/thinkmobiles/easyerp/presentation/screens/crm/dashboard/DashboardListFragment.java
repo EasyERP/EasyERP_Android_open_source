@@ -1,11 +1,14 @@
 package com.thinkmobiles.easyerp.presentation.screens.crm.dashboard;
 
 import android.support.v7.widget.LinearLayoutManager;
+import android.view.View;
+import android.widget.Toast;
 
 import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.data.model.crm.dashboard.DashboardListItem;
 import com.thinkmobiles.easyerp.domain.crm.DashboardRepository;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.DashboardListAdapter;
+import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.base.rules.SimpleListWithRefreshFragment;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.DashboardListDH;
 
@@ -13,6 +16,8 @@ import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EFragment;
+import org.androidannotations.annotations.ViewById;
+import org.androidannotations.annotations.res.StringRes;
 
 import java.util.ArrayList;
 
@@ -28,6 +33,14 @@ public class DashboardListFragment extends SimpleListWithRefreshFragment impleme
     protected DashboardRepository dashboardRepository;
     @Bean
     protected DashboardListAdapter dashboardListAdapter;
+    @Bean
+    protected ErrorViewHelper errorViewHelper;
+
+    @StringRes(R.string.list_is_empty)
+    protected String string_list_is_empty;
+
+    @ViewById(R.id.llErrorLayout)
+    protected View errorLayout;
 
     @AfterInject
     @Override
@@ -42,6 +55,7 @@ public class DashboardListFragment extends SimpleListWithRefreshFragment impleme
 
     @AfterViews
     protected void initUI() {
+        errorViewHelper.init(errorLayout, view -> loadWithProgressBar());
         listRecycler.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
         listRecycler.setAdapter(dashboardListAdapter);
         dashboardListAdapter.setOnCardClickListener((view, position, viewType) -> {
@@ -52,7 +66,11 @@ public class DashboardListFragment extends SimpleListWithRefreshFragment impleme
                 presenter.prepareDashboardDetailWithParams(itemDH);
             }
         });
+        loadWithProgressBar();
+    }
 
+    private void loadWithProgressBar() {
+        errorViewHelper.hideError();
         displayProgress(true);
         presenter.subscribe();
     }
@@ -64,6 +82,7 @@ public class DashboardListFragment extends SimpleListWithRefreshFragment impleme
 
     @Override
     public void onRefresh() {
+        errorViewHelper.hideError();
         presenter.setSelectedInfo(-1, presenter.getSelectedItemId());
         dashboardListAdapter.clear();
         presenter.subscribe();
@@ -76,14 +95,29 @@ public class DashboardListFragment extends SimpleListWithRefreshFragment impleme
 
     @Override
     public void displayDashboardsList(ArrayList<DashboardListDH> listDashboards) {
+        errorViewHelper.hideError();
         displayProgress(false);
         swipeContainer.setRefreshing(false);
         dashboardListAdapter.addListDH(listDashboards);
+
+        if (getCountItemsNow() == 0)
+            displayError(null, ErrorViewHelper.ErrorType.LIST_EMPTY);
     }
 
     @Override
     public void displayDashboardsDetail(DashboardListItem itemChartDashboard) {
         // TODO open detail fragment
+    }
+
+    @Override
+    public void displayError(String msg, ErrorViewHelper.ErrorType errorType) {
+        displayProgress(false);
+        swipeContainer.setRefreshing(false);
+
+        final String resultMsg = errorType.equals(ErrorViewHelper.ErrorType.LIST_EMPTY) ? string_list_is_empty : msg;
+        if (getCountItemsNow() == 0)
+            errorViewHelper.showErrorMsg(resultMsg, errorType);
+        else Toast.makeText(getContext(), resultMsg, Toast.LENGTH_LONG).show();
     }
 
     @Override
