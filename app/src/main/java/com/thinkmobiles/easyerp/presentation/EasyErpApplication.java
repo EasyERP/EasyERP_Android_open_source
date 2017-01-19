@@ -33,7 +33,7 @@ public class EasyErpApplication extends Application {
         Rest.getInstance().setPrefManager(cookieSharedPreferences);
     }
 
-    public static EasyErpApplication getInstace() {
+    public static EasyErpApplication getInstance() {
         return INSTANCE;
     }
 

@@ -59,7 +59,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
     @ViewById
     protected EditText etDbId_AL;
     @ViewById
-    protected Button btnLogin_AK;
+    protected Button btnLogin_AL;
 
     @Pref
     protected CookieSharedPreferences_ sharedPreferences;
@@ -72,11 +72,9 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
     @AfterInject
     protected void initPresenter() {
         isCookieExpired = DateManager.isCookieExpired(sharedPreferences.getCookieExpireDate().get());
-        if(isCookieExpired) {
-            sharedPreferences.edit().getCookieExpireDate().remove().apply();
-            sharedPreferences.edit().geCoockies().remove().apply();
-        }
-        new LoginPresenter(this, loginRepository, userRepository);
+        if(isCookieExpired) presenter.clearCookies();
+
+        new LoginPresenter(this, loginRepository, userRepository, sharedPreferences);
     }
 
     @AfterViews
@@ -89,7 +87,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
             }
         });
 
-        RxView.clicks(btnLogin_AK)
+        RxView.clicks(btnLogin_AL)
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
                 .subscribe(aVoid -> presenter.login());
     }

@@ -28,7 +28,7 @@ public class BadCookieInterceptor implements Interceptor {
         if((originalResponse.code() == 404 && TextUtils.isEmpty(Rest.getInstance().parseError(originalResponse.body()).error))
                 || originalResponse.code() == 403) {
             cookieSharedPreferences.edit().geCoockies().put("").apply();
-            EasyErpApplication.getInstace().restartApp();
+            EasyErpApplication.getInstance().restartApp();
         }
         return originalResponse;
     }

@@ -48,7 +48,7 @@
             android:text="sergey"/>
 
         <Button
-            android:id="@+id/btnLogin_AK"
+            android:id="@+id/btnLogin_AL"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="LogIN"/>

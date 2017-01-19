@@ -51,7 +51,7 @@ public class Rest {
     }
 
     public LoginService getLoginService() {
-        return loginService == null ? createLoginService(LoginService.class) : loginService;
+        return loginService == null ? createService(LoginService.class, false) : loginService;
     }
 
     public UserService getUserService() {
@@ -71,36 +71,25 @@ public class Rest {
         return null;
     }
 
-    private <T> T createLoginService(Class<T> service) {
-        malformedGson = new GsonBuilder()
-                .setLenient()
-                .create();
-
-        client = new OkHttpClient.Builder()
-                .addNetworkInterceptor(new StethoInterceptor())
-                .addInterceptor(new ReceiveCookieInterceptor(cookieSharedPreferences))
-                .build();
-        retrofit = new Retrofit.Builder()
-                .addConverterFactory(GsonConverterFactory.create(malformedGson))
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .client(client)
-                .baseUrl(Constants.BASE_URL)
-                .build();
-        converter = retrofit.responseBodyConverter(ResponseError.class, new Annotation[0]);
-        return retrofit.create(service);
+    private <T> T createService(Class<T> service) {
+        return createService(service, true);
     }
 
-    private <T> T createService(Class<T> service) {
+    private <T> T createService(Class<T> service, boolean hasAllInterceptors) {
         malformedGson = new GsonBuilder()
                 .setLenient()
                 .create();
 
-        client = new OkHttpClient.Builder()
+        OkHttpClient.Builder clientBuilder = new OkHttpClient.Builder()
                 .addNetworkInterceptor(new StethoInterceptor())
-                .addInterceptor(new AddCookieInterceptor(cookieSharedPreferences))
-                .addInterceptor(new ReceiveCookieInterceptor(cookieSharedPreferences))
-                .addInterceptor(new BadCookieInterceptor(cookieSharedPreferences))
-                .build();
+                .addInterceptor(new ReceiveCookieInterceptor(cookieSharedPreferences));
+        
+        if(hasAllInterceptors) {
+            clientBuilder.addInterceptor(new AddCookieInterceptor(cookieSharedPreferences))
+                    .addInterceptor(new BadCookieInterceptor(cookieSharedPreferences));
+        }
+
+        client = clientBuilder.build();
         retrofit = new Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create(malformedGson))
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())

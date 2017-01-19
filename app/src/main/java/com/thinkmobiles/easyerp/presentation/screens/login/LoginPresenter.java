@@ -5,6 +5,7 @@ import android.util.Log;
 
 import com.thinkmobiles.easyerp.data.api.Rest;
 import com.thinkmobiles.easyerp.data.model.ResponseError;
+import com.thinkmobiles.easyerp.presentation.utils.CookieSharedPreferences_;
 
 import retrofit2.adapter.rxjava.HttpException;
 import rx.subscriptions.CompositeSubscription;
@@ -18,13 +19,15 @@ public class LoginPresenter implements LoginContract.LoginPresenter {
     private LoginContract.LoginView view;
     private LoginContract.LoginModel loginModel;
     private LoginContract.UserModel userModel;
+    private CookieSharedPreferences_ sharedPreferences;
 
     private CompositeSubscription compositeSubscription;
 
-    public LoginPresenter(LoginContract.LoginView view, LoginContract.LoginModel loginModel, LoginContract.UserModel userModel) {
+    public LoginPresenter(LoginContract.LoginView view, LoginContract.LoginModel loginModel, LoginContract.UserModel userModel, CookieSharedPreferences_ sharedPreferences) {
         this.view = view;
         this.loginModel = loginModel;
         this.userModel = userModel;
+        this.sharedPreferences = sharedPreferences;
         compositeSubscription = new CompositeSubscription();
 
         view.setPresenter(this);
@@ -77,6 +80,12 @@ public class LoginPresenter implements LoginContract.LoginPresenter {
                     Log.d("HTTP", "Error: " + t.getMessage());
                 })
         );
+    }
+
+    @Override
+    public void clearCookies() {
+        sharedPreferences.edit().getCookieExpireDate().remove().apply();
+        sharedPreferences.edit().geCoockies().remove().apply();
     }
 
     @Override

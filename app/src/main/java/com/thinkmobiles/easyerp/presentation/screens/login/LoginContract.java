@@ -25,6 +25,8 @@ public interface LoginContract {
     interface LoginPresenter extends BasePresenter {
         void login();
         void getCurrentUser();
+
+        void clearCookies();
     }
     interface LoginModel extends BaseModel {
         Observable<String> login(String login, String password, String dbId);
