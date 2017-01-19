@@ -12,6 +12,7 @@ import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.base.rules.SimpleListWithRefreshFragment;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.LeadDH;
 import com.thinkmobiles.easyerp.presentation.listeners.EndlessRecyclerViewScrollListener;
+import com.thinkmobiles.easyerp.presentation.screens.crm.leads.details.LeadDetailsFragment_;
 
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterViews;
@@ -105,6 +106,13 @@ public class LeadsFragment extends SimpleListWithRefreshFragment implements Lead
         if (getCountItemsNow() == 0)
             errorViewHelper.showErrorMsg(resultMsg, errorType);
         else Toast.makeText(getContext(), resultMsg, Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void openLeadDetailsScreen(String leadId) {
+        mActivity.replaceFragmentContentDetail(LeadDetailsFragment_.builder()
+                .leadId(leadId)
+                .build());
     }
 
     @Override

@@ -11,6 +11,7 @@
         android:background="@android:color/white">
 
         <View
+            android:id="@+id/vLine_LILH"
             android:layout_width="1dp"
             android:layout_height="match_parent"
             android:background="@color/colorPrimary"
@@ -21,7 +22,9 @@
             android:id="@+id/ivIconType_LILH"
             android:layout_width="36dp"
             android:layout_height="36dp"
-            android:layout_margin="@dimen/default_padding_half"
+            android:layout_marginTop="@dimen/default_padding_half"
+            android:layout_marginStart="@dimen/default_padding"
+            android:layout_marginEnd="@dimen/default_padding"
             android:background="@drawable/bg_circle_border" />
 
     </FrameLayout>
@@ -29,10 +32,12 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/default_padding_half"
+        android:layout_marginEnd="@dimen/default_padding"
+        android:layout_marginTop="@dimen/default_padding_half"
+        android:layout_marginBottom="@dimen/default_padding_half"
         android:orientation="vertical"
         android:background="@drawable/bg_border_rectangle"
-        android:padding="@dimen/default_padding_half">
+        android:padding="@dimen/default_padding">
 
         <LinearLayout
             android:layout_width="match_parent"

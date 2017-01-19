@@ -6,8 +6,8 @@ import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.TextUtils;
 
-import com.thinkmobiles.easyerp.data.model.leads.LeadTag;
-import com.thinkmobiles.easyerp.data.model.leads.details.LeadAddress;
+import com.thinkmobiles.easyerp.data.model.crm.leads.LeadTag;
+import com.thinkmobiles.easyerp.data.model.crm.leads.details.LeadAddress;
 import com.thinkmobiles.easyerp.presentation.EasyErpApplication_;
 import com.thinkmobiles.easyerp.presentation.custom.RoundedBackgroundSpan;
 import com.thinkmobiles.easyerp.presentation.managers.TagHelper;

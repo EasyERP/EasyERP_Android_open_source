@@ -8,6 +8,7 @@ import android.util.AttributeSet;
 import android.view.View;
 
 import com.thinkmobiles.easyerp.R;
+import com.thinkmobiles.easyerp.presentation.custom.views.sliding_pane_menu.SlidingPaneMenuLayout;
 
 import org.androidannotations.annotations.EView;
 
@@ -15,7 +16,7 @@ import org.androidannotations.annotations.EView;
  * Created by Asus_Dev on 1/13/2017.
  */
 @EView
-public class MenuDrawerContainer extends SlidingPaneLayout {
+public class MenuDrawerContainer extends SlidingPaneMenuLayout {
 
     // First child must be MenuDrawerView, second is content. Max child's count is 2
     private MenuDrawerView menuDrawerView;
