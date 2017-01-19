@@ -125,6 +125,8 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
 
     @Override
     public void displayError(String error) {
+        if (animatorSet.isPaused())
+            animatorSet.resume();
         Toast.makeText(this, error, Toast.LENGTH_SHORT).show();
     }
 
@@ -258,6 +260,6 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if(animatorSet != null) animatorSet.cancel();
+        if (animatorSet != null) animatorSet.cancel();
     }
 }
