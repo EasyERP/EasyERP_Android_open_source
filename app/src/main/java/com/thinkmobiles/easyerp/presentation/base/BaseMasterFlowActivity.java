@@ -46,7 +46,7 @@ public abstract class BaseMasterFlowActivity extends AppCompatActivity {
 
     @OptionsItem(R.id.menuLogout_MB)
     protected void logout() {
-        cookieSharedPreferences.edit().clear().apply();
+        cookieSharedPreferences.clear();
         EasyErpApplication.getInstance().restartApp();
     }
 
