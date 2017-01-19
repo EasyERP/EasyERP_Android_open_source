@@ -19,6 +19,7 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.jakewharton.rxbinding.view.RxView;
+import com.thinkmobiles.easyerp.BuildConfig;
 import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.data.model.user.UserInfo;
 import com.thinkmobiles.easyerp.domain.LoginRepository;
@@ -80,6 +81,8 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
 
     @AfterViews
     protected void initUI() {
+        if (!BuildConfig.PRODUCTION) putDefaultDebugCredentials();
+
         ivAppIcon_AL.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
             public void onGlobalLayout() {
@@ -91,6 +94,12 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
         RxView.clicks(btnLogin_AL)
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
                 .subscribe(aVoid -> presenter.login());
+    }
+
+    private void putDefaultDebugCredentials() {
+        etLogin_AL.setText("testAdmin");
+        etPassword_AL.setText("111111");
+        etDbId_AL.setText("sergey");
     }
 
     @Override
@@ -130,7 +139,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
         ObjectAnimator iconFade = ObjectAnimator.ofFloat(ivAppIcon_AL, View.ALPHA, 0.4f, 1f);
         ObjectAnimator iconScaleX = ObjectAnimator.ofFloat(ivAppIcon_AL, View.SCALE_X, 0.5f, 1f);
         ObjectAnimator iconScaleY = ObjectAnimator.ofFloat(ivAppIcon_AL, View.SCALE_Y, 0.5f, 1f);
-        ObjectAnimator iconTranslateY = ObjectAnimator.ofFloat(ivAppIcon_AL, View.Y, getResources().getDisplayMetrics().heightPixels / 16);
+        ObjectAnimator iconTranslateY = ObjectAnimator.ofFloat(ivAppIcon_AL, View.Y, getResources().getDisplayMetrics().heightPixels / 13);
         ObjectAnimator containerFade = ObjectAnimator.ofFloat(llInput_AL, View.ALPHA, 0f, 1f);
 
         containerFade.addListener(new AnimatorListenerAdapter() {
@@ -165,7 +174,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
         iconTranslateY.setDuration(1000);
 
         containerFade.setStartDelay(2500);
-        containerFade.setDuration(1000);
+        containerFade.setDuration(500);
 
         animatorSet = new AnimatorSet();
         animatorSet.playTogether(iconFade, iconScaleX, iconScaleY, iconTranslateY, containerFade);
