@@ -27,6 +27,7 @@ import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.data.model.user.UserInfo;
 import com.thinkmobiles.easyerp.domain.LoginRepository;
 import com.thinkmobiles.easyerp.domain.UserRepository;
+import com.thinkmobiles.easyerp.presentation.managers.CookieManager;
 import com.thinkmobiles.easyerp.presentation.managers.DateManager;
 import com.thinkmobiles.easyerp.presentation.screens.home.HomeActivity_;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
@@ -50,7 +51,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
     private boolean isCookieExpired = true;
     private boolean isAnimationFinished = false;
 
-    private AnimatorSet animatorSet;
+    private AnimatorSet animatorSet1, animatorSet2;
     private UserInfo userInfo;
 
     @ViewById
@@ -82,27 +83,26 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
     @StringRes(R.string.err_db_id_required)
     protected String errEmptyDbID;
 
-    @Pref
-    protected CookieSharedPreferences_ sharedPreferences;
-
     @Bean
     protected LoginRepository loginRepository;
     @Bean
     protected UserRepository userRepository;
+    @Bean
+    protected CookieManager cookieManager;
 
     @AfterInject
     @Override
     public void initPresenter() {
-        new LoginPresenter(this, loginRepository, userRepository, sharedPreferences);
+        new LoginPresenter(this, loginRepository, userRepository, cookieManager);
 
-        isCookieExpired = DateManager.isCookieExpired(sharedPreferences.getCookieExpireDate().get());
+        isCookieExpired = cookieManager.isCookieExpired();
         if(isCookieExpired) presenter.clearCookies();
     }
 
     @AfterViews
     protected void initUI() {
         if(!BuildConfig.PRODUCTION) putDefaultDebugCredentials();
-        if(!isCookieExpired) presenter.getCurrentUser();
+        if(cookieManager.isCookieExists()) presenter.getCurrentUser();
 
         ivAppIcon_AL.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
@@ -125,8 +125,8 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
 
     @Override
     public void displayError(String error) {
-        if (animatorSet.isPaused())
-            animatorSet.resume();
+        if (llInput_AL.getVisibility() != View.VISIBLE)
+            animatorSet2.start();
         Toast.makeText(this, error, Toast.LENGTH_SHORT).show();
     }
 
@@ -207,8 +207,20 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
         ObjectAnimator iconFade = ObjectAnimator.ofFloat(ivAppIcon_AL, View.ALPHA, 0.4f, 1f);
         ObjectAnimator iconScaleX = ObjectAnimator.ofFloat(ivAppIcon_AL, View.SCALE_X, 0.5f, 1f);
         ObjectAnimator iconScaleY = ObjectAnimator.ofFloat(ivAppIcon_AL, View.SCALE_Y, 0.5f, 1f);
+        iconFade.setDuration(1500);
+        iconScaleX.setDuration(1500);
+        iconScaleY.setDuration(1500);
+
         ObjectAnimator iconTranslateY = ObjectAnimator.ofFloat(ivAppIcon_AL, View.Y, getResources().getDisplayMetrics().heightPixels / 13);
         ObjectAnimator containerFade = ObjectAnimator.ofFloat(llInput_AL, View.ALPHA, 0f, 1f);
+        iconTranslateY.setDuration(1000);
+        containerFade.setDuration(500);
+
+        iconScaleX.setInterpolator(new OvershootInterpolator());
+        iconScaleY.setInterpolator(new OvershootInterpolator());
+        iconFade.setInterpolator(new LinearInterpolator());
+        iconTranslateY.setInterpolator(new DecelerateInterpolator());
+        containerFade.setInterpolator(new AccelerateInterpolator());
 
         containerFade.addListener(new AnimatorListenerAdapter() {
             @Override
@@ -217,49 +229,31 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
                 llInput_AL.setVisibility(View.VISIBLE);
             }
         });
-        iconFade.addListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(Animator animation) {
-                super.onAnimationEnd(animation);
-                if(!isCookieExpired) {
-                    isAnimationFinished = true;
-                    animatorSet.pause();
-                    if(userInfo != null) startHomeScreen(userInfo);
-                }
-            }
-        });
 
-        iconScaleX.setInterpolator(new OvershootInterpolator());
-        iconScaleY.setInterpolator(new OvershootInterpolator());
-        iconFade.setInterpolator(new LinearInterpolator());
-        iconTranslateY.setInterpolator(new DecelerateInterpolator());
-        containerFade.setInterpolator(new AccelerateInterpolator());
+        animatorSet1 = new AnimatorSet();
+        animatorSet1.playTogether(iconFade, iconScaleX, iconScaleY);
+        animatorSet2 = new AnimatorSet();
+        animatorSet2.playSequentially(iconTranslateY, containerFade);
 
-        iconFade.setDuration(1500);
-        iconScaleX.setDuration(1500);
-        iconScaleY.setDuration(1500);
-
-        iconTranslateY.setStartDelay(1500);
-        iconTranslateY.setDuration(1000);
-
-        containerFade.setStartDelay(2500);
-        containerFade.setDuration(500);
-
-        animatorSet = new AnimatorSet();
-        animatorSet.playTogether(iconFade, iconScaleX, iconScaleY, iconTranslateY, containerFade);
-        animatorSet.addListener(new AnimatorListenerAdapter() {
+        animatorSet1.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animation) {
                 super.onAnimationEnd(animation);
                 isAnimationFinished = true;
+                if(userInfo != null)
+                    startHomeScreen(userInfo);
+                else if(!cookieManager.isCookieExists())
+                    animatorSet2.start();
             }
         });
-        animatorSet.start();
+
+        animatorSet1.start();
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (animatorSet != null) animatorSet.cancel();
+        if (animatorSet1 != null) animatorSet1.cancel();
+        if (animatorSet2 != null) animatorSet2.cancel();
     }
 }

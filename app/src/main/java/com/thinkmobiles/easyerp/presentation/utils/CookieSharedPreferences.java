@@ -7,7 +7,7 @@ import org.androidannotations.annotations.sharedpreferences.SharedPref;
  * Created by Lynx on 1/13/2017.
  */
 
-@SharedPref(value = SharedPref.Scope.UNIQUE)
+@SharedPref(value = SharedPref.Scope.APPLICATION_DEFAULT)
 public interface CookieSharedPreferences {
 
     @DefaultString("")
