@@ -11,6 +11,6 @@ public interface MasterFlowSelectableBasePresenter<ID_TYPE> extends BasePresente
     void setSelectedInfo(final int position, final ID_TYPE id);
     Integer getSelectedItemPosition();
     ID_TYPE getSelectedItemId();
-    void makeSelectedDHIfNeed(final MasterFlowSelectableDHHelper<ID_TYPE> dhHelper, final MasterFlowSelectableBaseView baseViewWithCountItemsLeft, final int currentPositionInData);
+    void makeSelectedDHIfNeed(final MasterFlowSelectableDHHelper<ID_TYPE> dhHelper, final MasterFlowSelectableBaseView baseViewWithCountItemsLeft, final int currentPositionInData, final boolean isRefresh);
 
 }

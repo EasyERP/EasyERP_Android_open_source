@@ -39,9 +39,9 @@ public class LeadItem implements Parcelable {
     @SerializedName("_id")
     public String id;
     public int total;
-    public LeadSalesPerson salesPerson;
-    public LeadWorkflow workflow;
-    public LeadEditedBy editedBy;
+    public SalesPerson salesPerson;
+    public Workflow workflow;
+    public EditedBy editedBy;
     public String expectedClosing;
     public String name;
     public String priority;
@@ -73,9 +73,9 @@ public class LeadItem implements Parcelable {
     protected LeadItem(Parcel in) {
         this.id = in.readString();
         this.total = in.readInt();
-        this.salesPerson = in.readParcelable(LeadSalesPerson.class.getClassLoader());
-        this.workflow = in.readParcelable(LeadWorkflow.class.getClassLoader());
-        this.editedBy = in.readParcelable(LeadEditedBy.class.getClassLoader());
+        this.salesPerson = in.readParcelable(SalesPerson.class.getClassLoader());
+        this.workflow = in.readParcelable(Workflow.class.getClassLoader());
+        this.editedBy = in.readParcelable(EditedBy.class.getClassLoader());
         this.expectedClosing = in.readString();
         this.name = in.readString();
         this.priority = in.readString();

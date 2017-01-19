@@ -1,8 +1,7 @@
 package com.thinkmobiles.easyerp.presentation.screens.crm.dashboard;
 
-import android.util.Log;
-
 import com.thinkmobiles.easyerp.data.model.crm.dashboard.DashboardListItem;
+import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectablePresenterHelper;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.DashboardListDH;
 
@@ -43,7 +42,9 @@ public class DashboardListPresenter extends MasterFlowSelectablePresenterHelper<
     public void prepareDashboardList() {
         compositeSubscription.add(
                 model.getDashboardListCharts()
-                        .subscribe(getCRMDashboardCharts -> view.displayDashboardsList(prepareDashboardDHs(getCRMDashboardCharts.get(0).charts)), t -> Log.d("HTTP", "Error: " + t.getMessage()))
+                        .subscribe(
+                                getCRMDashboardCharts -> view.displayDashboardsList(prepareDashboardDHs(getCRMDashboardCharts.get(0).charts)),
+                                t -> view.displayError(t.getMessage(), ErrorViewHelper.ErrorType.NETWORK))
         );
     }
 
@@ -57,7 +58,7 @@ public class DashboardListPresenter extends MasterFlowSelectablePresenterHelper<
         final ArrayList<DashboardListDH> result = new ArrayList<>();
         for (DashboardListItem dashboardListItem : dashboardListItems) {
             final DashboardListDH dashboardListDH = new DashboardListDH(dashboardListItem);
-            makeSelectedDHIfNeed(dashboardListDH, view, position++);
+            makeSelectedDHIfNeed(dashboardListDH, view, position++, true);
             result.add(dashboardListDH);
         }
         return result;

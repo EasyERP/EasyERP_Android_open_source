@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.thinkmobiles.easyerp.data.model.crm.leads.LeadItem;
 import com.thinkmobiles.easyerp.data.model.crm.leads.ResponseGetLeads;
+import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectablePresenterHelper;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.LeadDH;
 
@@ -30,13 +31,13 @@ public class LeadsPresenter extends MasterFlowSelectablePresenterHelper<String> 
     }
 
     @Override
-    public void loadLeads(int page) {
+    public void loadLeads(final int page) {
+        final boolean needClear = page == 1;
         compositeSubscription.add(
                 model.getLeads(page)
-                        .subscribe(responseGetLeads -> {
-                            view.displayLeads(prepareLeadDHs(responseGetLeads));
-                        }, t -> Log.d("HTTP", "Error: " + t.getMessage()))
-        );
+                        .subscribe(
+                                responseGetLeads -> view.displayLeads(prepareLeadDHs(responseGetLeads, needClear), needClear),
+                                t -> view.displayError(t.getMessage(), ErrorViewHelper.ErrorType.NETWORK)));
     }
 
     @Override
@@ -54,14 +55,15 @@ public class LeadsPresenter extends MasterFlowSelectablePresenterHelper<String> 
         if(compositeSubscription.hasSubscriptions()) compositeSubscription.clear();
     }
 
-    private ArrayList<LeadDH> prepareLeadDHs(ResponseGetLeads responseGetLeads) {
+    private ArrayList<LeadDH> prepareLeadDHs(ResponseGetLeads responseGetLeads, boolean isFirstPage) {
         int position = 0;
         final ArrayList<LeadDH> result = new ArrayList<>();
         for (LeadItem leadItem : responseGetLeads.data) {
             final LeadDH leadDH = new LeadDH(leadItem);
-            makeSelectedDHIfNeed(leadDH, view, position++);
+            makeSelectedDHIfNeed(leadDH, view, position++, isFirstPage);
             result.add(leadDH);
         }
         return result;
     }
+
 }

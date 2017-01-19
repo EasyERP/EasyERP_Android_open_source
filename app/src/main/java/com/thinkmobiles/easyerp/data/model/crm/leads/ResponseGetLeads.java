@@ -10,6 +10,7 @@ import java.util.ArrayList;
  */
 
 public class ResponseGetLeads implements Parcelable {
+
     public int total;
     public ArrayList<LeadItem> data;
 

@@ -7,7 +7,7 @@
     android:background="@drawable/bg_login_screen">
 
     <ImageView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_centerHorizontal="true"
         android:scaleType="fitXY"
@@ -32,8 +32,8 @@
         android:visibility="invisible">
 
         <android.support.design.widget.TextInputLayout
-            style="@style/TextInputLayoutStyle"
             android:id="@+id/tilLogin_AL"
+            style="@style/TextInputLayoutStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -47,8 +47,8 @@
 
 
         <android.support.design.widget.TextInputLayout
-            style="@style/TextInputLayoutStyle"
             android:id="@+id/tilPassword_AL"
+            style="@style/TextInputLayoutStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/default_padding_half">
@@ -62,8 +62,8 @@
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
-            style="@style/TextInputLayoutStyle"
             android:id="@+id/tilDbId_AL"
+            style="@style/TextInputLayoutStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/default_padding_half">

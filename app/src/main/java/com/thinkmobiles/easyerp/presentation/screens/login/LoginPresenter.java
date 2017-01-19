@@ -1,6 +1,5 @@
 package com.thinkmobiles.easyerp.presentation.screens.login;
 
-import android.text.TextUtils;
 import android.util.Log;
 
 import com.thinkmobiles.easyerp.data.api.Rest;

@@ -17,4 +17,7 @@
         </android.support.v7.widget.RecyclerView>
 
     </android.support.v4.widget.SwipeRefreshLayout>
+
+    <include layout="@layout/view_error_with_holder_icon" />
+
 </FrameLayout>

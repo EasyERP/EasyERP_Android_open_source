@@ -2,10 +2,13 @@ package com.thinkmobiles.easyerp.presentation.screens.crm.leads;
 
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.Toast;
 
 import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.domain.crm.LeadsRepository;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.LeadsAdapter;
+import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.base.rules.SimpleListWithRefreshFragment;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.LeadDH;
 import com.thinkmobiles.easyerp.presentation.listeners.EndlessRecyclerViewScrollListener;
@@ -14,6 +17,8 @@ import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EFragment;
+import org.androidannotations.annotations.ViewById;
+import org.androidannotations.annotations.res.StringRes;
 
 import java.util.ArrayList;
 
@@ -30,6 +35,14 @@ public class LeadsFragment extends SimpleListWithRefreshFragment implements Lead
     protected LeadsRepository leadsRepository;
     @Bean
     protected LeadsAdapter leadsAdapter;
+    @Bean
+    protected ErrorViewHelper errorViewHelper;
+
+    @StringRes(R.string.list_is_empty)
+    protected String string_list_is_empty;
+
+    @ViewById(R.id.llErrorLayout)
+    protected View errorLayout;
 
     @AfterInject
     @Override
@@ -44,6 +57,8 @@ public class LeadsFragment extends SimpleListWithRefreshFragment implements Lead
 
     @AfterViews
     protected void initUI() {
+        errorViewHelper.init(errorLayout, view -> loadWithProgressBar());
+
         LinearLayoutManager llm = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         scrollListener = new EndlessRecyclerViewScrollListener(llm) {
             @Override
@@ -64,15 +79,38 @@ public class LeadsFragment extends SimpleListWithRefreshFragment implements Lead
             }
         });
 
+        loadWithProgressBar();
+    }
+
+    private void loadWithProgressBar() {
+        errorViewHelper.hideError();
         displayProgress(true);
         presenter.subscribe();
     }
 
     @Override
-    public void displayLeads(ArrayList<LeadDH> leadDHs) {
+    public void displayLeads(ArrayList<LeadDH> leadDHs, boolean needClear) {
+        errorViewHelper.hideError();
         displayProgress(false);
         swipeContainer.setRefreshing(false);
-        leadsAdapter.addListDH(leadDHs);
+
+        if (needClear)
+            leadsAdapter.setListDH(leadDHs);
+        else leadsAdapter.addListDH(leadDHs);
+
+        if (getCountItemsNow() == 0)
+            displayError(null, ErrorViewHelper.ErrorType.LIST_EMPTY);
+    }
+
+    @Override
+    public void displayError(String msg, ErrorViewHelper.ErrorType errorType) {
+        displayProgress(false);
+        swipeContainer.setRefreshing(false);
+
+        final String resultMsg = errorType.equals(ErrorViewHelper.ErrorType.LIST_EMPTY) ? string_list_is_empty : msg;
+        if (getCountItemsNow() == 0)
+            errorViewHelper.showErrorMsg(resultMsg, errorType);
+        else Toast.makeText(getContext(), resultMsg, Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -82,9 +120,9 @@ public class LeadsFragment extends SimpleListWithRefreshFragment implements Lead
 
     @Override
     public void onRefresh() {
+        errorViewHelper.hideError();
         scrollListener.resetState();
         presenter.setSelectedInfo(-1, presenter.getSelectedItemId());
-        leadsAdapter.clear();
         presenter.subscribe();
     }
 
