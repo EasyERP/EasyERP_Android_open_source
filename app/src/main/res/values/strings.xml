@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">EasyERP</string>
     <string name="no_data">No data</string>
+    <string name="logout">Logout</string>
 </resources>

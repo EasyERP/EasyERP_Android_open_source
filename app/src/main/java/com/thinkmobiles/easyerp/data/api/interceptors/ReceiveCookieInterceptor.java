@@ -30,7 +30,7 @@ public class ReceiveCookieInterceptor implements Interceptor {
             String cookie = allCookie[0];
             String expired = allCookie[2]; //Expires=Wed, 18 Jan 2017 08:58:07 GMT
             cookieSharedPreferences.edit()
-                    .geCoockies()
+                    .getCookies()
                     .put(cookie)
                     .apply();
             cookieSharedPreferences.edit()

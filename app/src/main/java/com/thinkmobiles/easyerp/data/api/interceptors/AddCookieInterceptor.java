@@ -23,7 +23,7 @@ public class AddCookieInterceptor implements Interceptor {
 
     @Override
     public Response intercept(Chain chain) throws IOException {
-        String cookie = cookieSharedPreferences.geCoockies().get();
+        String cookie = cookieSharedPreferences.getCookies().get();
         Request.Builder builder = chain.request().newBuilder();
         builder.addHeader(Constants.HEADER_COOKIE, cookie);
         return chain.proceed(builder.build());
