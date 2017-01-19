@@ -7,7 +7,7 @@ import android.os.Parcelable;
  * Created by Lynx on 1/16/2017.
  */
 
-public class LeadEditedBy implements Parcelable {
+public class EditedBy implements Parcelable {
     /**
      *  date: "2016-11-29T11:30:42.424Z"
      */
@@ -25,23 +25,23 @@ public class LeadEditedBy implements Parcelable {
         dest.writeString(this.user);
     }
 
-    public LeadEditedBy() {
+    public EditedBy() {
     }
 
-    protected LeadEditedBy(Parcel in) {
+    protected EditedBy(Parcel in) {
         this.date = in.readString();
         this.user = in.readString();
     }
 
-    public static final Parcelable.Creator<LeadEditedBy> CREATOR = new Parcelable.Creator<LeadEditedBy>() {
+    public static final Parcelable.Creator<EditedBy> CREATOR = new Parcelable.Creator<EditedBy>() {
         @Override
-        public LeadEditedBy createFromParcel(Parcel source) {
-            return new LeadEditedBy(source);
+        public EditedBy createFromParcel(Parcel source) {
+            return new EditedBy(source);
         }
 
         @Override
-        public LeadEditedBy[] newArray(int size) {
-            return new LeadEditedBy[size];
+        public EditedBy[] newArray(int size) {
+            return new EditedBy[size];
         }
     };
 }
