@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.thinkmobiles.easyerp.data.api.Rest;
 import com.thinkmobiles.easyerp.data.model.ResponseError;
+import com.thinkmobiles.easyerp.presentation.managers.CookieManager;
 import com.thinkmobiles.easyerp.presentation.managers.ValidationManager;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 import com.thinkmobiles.easyerp.presentation.utils.CookieSharedPreferences_;
@@ -20,15 +21,15 @@ public class LoginPresenter implements LoginContract.LoginPresenter {
     private LoginContract.LoginView view;
     private LoginContract.LoginModel loginModel;
     private LoginContract.UserModel userModel;
-    private CookieSharedPreferences_ sharedPreferences;
+    private CookieManager cookieManager;
 
     private CompositeSubscription compositeSubscription;
 
-    public LoginPresenter(LoginContract.LoginView view, LoginContract.LoginModel loginModel, LoginContract.UserModel userModel, CookieSharedPreferences_ sharedPreferences) {
+    public LoginPresenter(LoginContract.LoginView view, LoginContract.LoginModel loginModel, LoginContract.UserModel userModel, CookieManager cookieManager) {
         this.view = view;
         this.loginModel = loginModel;
         this.userModel = userModel;
-        this.sharedPreferences = sharedPreferences;
+        this.cookieManager = cookieManager;
         compositeSubscription = new CompositeSubscription();
 
         view.setPresenter(this);
@@ -89,8 +90,7 @@ public class LoginPresenter implements LoginContract.LoginPresenter {
 
     @Override
     public void clearCookies() {
-        sharedPreferences.getCookieExpireDate().remove();
-        sharedPreferences.getCookies().remove();
+        cookieManager.clearCookie();
     }
 
     @Override

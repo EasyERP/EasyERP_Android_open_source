@@ -4,6 +4,7 @@ import android.text.TextUtils;
 
 import com.thinkmobiles.easyerp.data.api.Rest;
 import com.thinkmobiles.easyerp.presentation.EasyErpApplication;
+import com.thinkmobiles.easyerp.presentation.managers.CookieManager;
 import com.thinkmobiles.easyerp.presentation.utils.CookieSharedPreferences_;
 
 import java.io.IOException;
@@ -16,10 +17,11 @@ import okhttp3.Response;
  */
 
 public class BadCookieInterceptor implements Interceptor {
-    protected CookieSharedPreferences_ cookieSharedPreferences;
 
-    public BadCookieInterceptor(CookieSharedPreferences_ cookieSharedPreferences) {
-        this.cookieSharedPreferences = cookieSharedPreferences;
+    protected CookieManager cookieManager;
+
+    public BadCookieInterceptor(CookieManager cookieManager) {
+        this.cookieManager = cookieManager;
     }
 
     @Override
@@ -27,7 +29,7 @@ public class BadCookieInterceptor implements Interceptor {
         Response originalResponse = chain.proceed(chain.request());
         if((originalResponse.code() == 404 && TextUtils.isEmpty(Rest.getInstance().parseError(originalResponse.body()).error))
                 || originalResponse.code() == 403) {
-            cookieSharedPreferences.getCookies().remove();
+            cookieManager.clearCookie();
             EasyErpApplication.getInstance().restartApp();
         }
         return originalResponse;

@@ -13,6 +13,7 @@ import com.thinkmobiles.easyerp.data.services.LeadService;
 import com.thinkmobiles.easyerp.data.services.LoginService;
 import com.thinkmobiles.easyerp.data.services.OrderService;
 import com.thinkmobiles.easyerp.data.services.UserService;
+import com.thinkmobiles.easyerp.presentation.managers.CookieManager;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 import com.thinkmobiles.easyerp.presentation.utils.CookieSharedPreferences_;
 
@@ -36,7 +37,7 @@ public class Rest {
     private Retrofit retrofit;
     private OkHttpClient client;
     private Gson malformedGson;
-    private CookieSharedPreferences_ cookieSharedPreferences;
+    private CookieManager cookieManager;
 
     private LoginService loginService;
     private LeadService leadService;
@@ -100,11 +101,11 @@ public class Rest {
 
         OkHttpClient.Builder clientBuilder = new OkHttpClient.Builder()
                 .addNetworkInterceptor(new StethoInterceptor())
-                .addInterceptor(new ReceiveCookieInterceptor(cookieSharedPreferences));
+                .addInterceptor(new ReceiveCookieInterceptor(cookieManager));
 
         if(hasAllInterceptors) {
-            clientBuilder.addInterceptor(new AddCookieInterceptor(cookieSharedPreferences))
-                    .addInterceptor(new BadCookieInterceptor(cookieSharedPreferences));
+            clientBuilder.addInterceptor(new AddCookieInterceptor(cookieManager))
+                    .addInterceptor(new BadCookieInterceptor(cookieManager));
         }
 
         client = clientBuilder.build();
@@ -118,8 +119,8 @@ public class Rest {
         return retrofit.create(service);
     }
 
-    public void setPrefManager(CookieSharedPreferences_ cookieSharedPreferences) {
-        this.cookieSharedPreferences = cookieSharedPreferences;
+    public void setCookieManager(CookieManager cookieManager) {
+        this.cookieManager = cookieManager;
     }
 
 }

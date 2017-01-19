@@ -8,12 +8,16 @@ import android.support.v7.widget.Toolbar;
 
 import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.presentation.EasyErpApplication;
+import com.thinkmobiles.easyerp.presentation.managers.CookieManager;
+import com.thinkmobiles.easyerp.presentation.utils.CookieSharedPreferences;
 import com.thinkmobiles.easyerp.presentation.utils.CookieSharedPreferences_;
 
 import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.OptionsItem;
 import org.androidannotations.annotations.OptionsMenu;
+import org.androidannotations.annotations.OptionsMenuItem;
 import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.sharedpreferences.Pref;
 
@@ -24,8 +28,8 @@ import org.androidannotations.annotations.sharedpreferences.Pref;
 @OptionsMenu(R.menu.menu_base)
 public abstract class BaseMasterFlowActivity extends AppCompatActivity {
 
-    @Pref
-    protected CookieSharedPreferences_ cookieSharedPreferences;
+    @Bean
+    protected CookieManager cookieManager;
 
     @ViewById
     protected Toolbar toolbar;
@@ -44,7 +48,7 @@ public abstract class BaseMasterFlowActivity extends AppCompatActivity {
 
     @OptionsItem(R.id.menuLogout_MB)
     protected void logout() {
-        cookieSharedPreferences.clear();
+        cookieManager.clearCookie();
         EasyErpApplication.getInstance().restartApp();
     }
 
