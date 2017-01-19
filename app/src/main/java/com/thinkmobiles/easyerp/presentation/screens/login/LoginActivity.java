@@ -70,7 +70,8 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
     protected UserRepository userRepository;
 
     @AfterInject
-    protected void initPresenter() {
+    @Override
+    public void initPresenter() {
         isCookieExpired = DateManager.isCookieExpired(sharedPreferences.getCookieExpireDate().get());
         if(isCookieExpired) presenter.clearCookies();
 
