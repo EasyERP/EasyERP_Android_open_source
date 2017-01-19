@@ -11,7 +11,7 @@ import org.androidannotations.annotations.sharedpreferences.SharedPref;
 public interface CookieSharedPreferences {
 
     @DefaultString("")
-    String geCoockies();
+    String getCookies();
 
     @DefaultString("")
     String getCookieExpireDate();

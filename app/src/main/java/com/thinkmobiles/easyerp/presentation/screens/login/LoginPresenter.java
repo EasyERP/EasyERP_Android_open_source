@@ -85,7 +85,7 @@ public class LoginPresenter implements LoginContract.LoginPresenter {
     @Override
     public void clearCookies() {
         sharedPreferences.edit().getCookieExpireDate().remove().apply();
-        sharedPreferences.edit().geCoockies().remove().apply();
+        sharedPreferences.edit().getCookies().remove().apply();
     }
 
     @Override
