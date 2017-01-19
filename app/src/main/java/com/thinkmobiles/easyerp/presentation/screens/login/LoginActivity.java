@@ -5,6 +5,7 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.support.design.widget.TextInputLayout;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewTreeObserver;
@@ -182,9 +183,9 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
     @Override
     public void startHomeScreen(UserInfo userInfo) {
         HomeActivity_.intent(this)
+                .flags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK)
                 .userInfo(userInfo)
                 .start();
-        finish();
     }
 
     @Override
