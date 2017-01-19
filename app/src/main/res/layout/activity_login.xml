@@ -33,6 +33,7 @@
 
         <android.support.design.widget.TextInputLayout
             style="@style/TextInputLayoutStyle"
+            android:id="@+id/tilLogin_AL"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -47,6 +48,7 @@
 
         <android.support.design.widget.TextInputLayout
             style="@style/TextInputLayoutStyle"
+            android:id="@+id/tilPassword_AL"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/default_padding_half">
@@ -61,6 +63,7 @@
 
         <android.support.design.widget.TextInputLayout
             style="@style/TextInputLayoutStyle"
+            android:id="@+id/tilDbId_AL"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/default_padding_half">

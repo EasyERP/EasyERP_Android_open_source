@@ -6,4 +6,9 @@
     <string name="hint_database_id">Database ID</string>
     <string name="login">Login</string>
     <string name="logout">Logout</string>
+    
+    <!--Errors-->
+    <string name="err_login_required">Login is required</string>
+    <string name="err_password_required">Password is required</string>
+    <string name="err_db_id_required">Database ID is required</string>
 </resources>

@@ -5,6 +5,7 @@ import com.thinkmobiles.easyerp.data.model.user.UserInfo;
 import com.thinkmobiles.easyerp.presentation.base.BaseModel;
 import com.thinkmobiles.easyerp.presentation.base.BasePresenter;
 import com.thinkmobiles.easyerp.presentation.base.BaseView;
+import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
 import rx.Observable;
 
@@ -19,6 +20,10 @@ public interface LoginContract {
         String getLogin();
         String getPassword();
         String getDbID();
+
+        void displayLoginError(Constants.ErrorCodes code);
+        void displayPasswordError(Constants.ErrorCodes code);
+        void displayDbIdError(Constants.ErrorCodes code);
 
         void startHomeScreen(UserInfo userInfo);
     }

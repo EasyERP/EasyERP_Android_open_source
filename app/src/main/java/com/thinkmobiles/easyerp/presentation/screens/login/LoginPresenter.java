@@ -5,6 +5,8 @@ import android.util.Log;
 
 import com.thinkmobiles.easyerp.data.api.Rest;
 import com.thinkmobiles.easyerp.data.model.ResponseError;
+import com.thinkmobiles.easyerp.presentation.managers.ValidationManager;
+import com.thinkmobiles.easyerp.presentation.utils.Constants;
 import com.thinkmobiles.easyerp.presentation.utils.CookieSharedPreferences_;
 
 import retrofit2.adapter.rxjava.HttpException;
@@ -39,13 +41,17 @@ public class LoginPresenter implements LoginContract.LoginPresenter {
         String pass = view.getPassword();
         String dbId = view.getDbID();
 
-        if(TextUtils.isEmpty(login)) {
-            view.displayError("Input login");
-        } else if(TextUtils.isEmpty(pass)) {
-            view.displayError("Input password");
-        } else if(TextUtils.isEmpty(dbId)) {
-            view.displayError("Input database ID");
-        } else {
+        Constants.ErrorCodes errCodeLogin = ValidationManager.isLoginValid(login);
+        Constants.ErrorCodes errCodePassword = ValidationManager.isPasswordValid(pass);
+        Constants.ErrorCodes errCodeDbID = ValidationManager.isDbIDValid(dbId);
+
+        view.displayLoginError(errCodeLogin);
+        view.displayPasswordError(errCodePassword);
+        view.displayDbIdError(errCodeDbID);
+
+        if(errCodeLogin == Constants.ErrorCodes.OK
+                && errCodePassword == Constants.ErrorCodes.OK
+                && errCodeDbID == Constants.ErrorCodes.OK) {
             compositeSubscription.add(
                     loginModel.login(login, pass, dbId)
                             .subscribe(s -> {

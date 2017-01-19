@@ -12,7 +12,6 @@
         <item name="editTextStyle">@style/AppTheme.DefaultBlackEditTextTheme</item>
 
         <item name="colorButtonNormal">@color/colorPrimary</item>
-        <item name="colorControlNormal">@color/text_grey_hint_color</item>
         <item name="colorControlActivated">@color/colorPrimary</item>
         <item name="colorControlHighlight">@color/colorPrimaryDark</item>
     </style>
@@ -29,6 +28,7 @@
     <style name="AppTheme.InputFields">
         <item name="android:textColor">@color/colorPrimaryDark</item>
         <item name="android:textColorHint">@color/colorPrimary</item>
+        <item name="colorControlNormal">@color/text_grey_hint_color</item>
     </style>
 
     <style name="TextInputLayoutStyle">
