@@ -20,5 +20,7 @@
 
     <dimen name="collapsed_menu_width">74dp</dimen>
     <dimen name="expanded_menu_width">260dp</dimen>
+    
+    <dimen name="login_min_width_form_credentials">300dp</dimen>
 
 </resources>
