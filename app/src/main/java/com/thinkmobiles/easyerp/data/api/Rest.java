@@ -8,8 +8,10 @@ import com.thinkmobiles.easyerp.data.api.interceptors.BadCookieInterceptor;
 import com.thinkmobiles.easyerp.data.api.interceptors.ReceiveCookieInterceptor;
 import com.thinkmobiles.easyerp.data.model.ResponseError;
 import com.thinkmobiles.easyerp.data.services.DashboardService;
+import com.thinkmobiles.easyerp.data.services.InvoiceService;
 import com.thinkmobiles.easyerp.data.services.LeadService;
 import com.thinkmobiles.easyerp.data.services.LoginService;
+import com.thinkmobiles.easyerp.data.services.OrderService;
 import com.thinkmobiles.easyerp.data.services.UserService;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 import com.thinkmobiles.easyerp.presentation.utils.CookieSharedPreferences_;
@@ -40,6 +42,8 @@ public class Rest {
     private LeadService leadService;
     private UserService userService;
     private DashboardService dashboardService;
+    private InvoiceService invoiceService;
+    private OrderService orderService;
 
     private Converter<ResponseBody, ResponseError> converter;
 
@@ -66,6 +70,14 @@ public class Rest {
 
     public DashboardService getDashboardService() {
         return dashboardService == null ? createService(DashboardService.class) : dashboardService;
+    }
+
+    public InvoiceService getInvoiceService() {
+        return invoiceService == null ? createService(InvoiceService.class) : invoiceService;
+    }
+
+    public OrderService getOrderService() {
+        return orderService == null ? createService(OrderService.class) : orderService;
     }
 
     public ResponseError parseError(ResponseBody responseBody) {

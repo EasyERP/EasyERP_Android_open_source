@@ -4,6 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import com.google.gson.annotations.SerializedName;
+import com.thinkmobiles.easyerp.data.model.crm.dashboard.detail.DashboardChartType;
 
 /**
  * Created by Asus_Dev on 1/18/2017.
@@ -63,5 +64,9 @@ public class DashboardListItem implements Parcelable {
             return new DashboardListItem[size];
         }
     };
+
+    public DashboardChartType getChartType() {
+        return DashboardChartType.valueOf(type.toUpperCase());
+    }
 
 }
