@@ -31,11 +31,12 @@ public class LeadsPresenter extends MasterFlowSelectablePresenterHelper<String> 
     }
 
     @Override
-    public void loadLeads(int page) {
+    public void loadLeads(final int page) {
+        final boolean needClear = page == 1;
         compositeSubscription.add(
                 model.getLeads(page)
                         .subscribe(
-                                responseGetLeads -> view.displayLeads(prepareLeadDHs(responseGetLeads)),
+                                responseGetLeads -> view.displayLeads(prepareLeadDHs(responseGetLeads, needClear), needClear),
                                 t -> view.displayError(t.getMessage(), ErrorViewHelper.ErrorType.NETWORK)));
     }
 
@@ -54,14 +55,15 @@ public class LeadsPresenter extends MasterFlowSelectablePresenterHelper<String> 
         if(compositeSubscription.hasSubscriptions()) compositeSubscription.clear();
     }
 
-    private ArrayList<LeadDH> prepareLeadDHs(ResponseGetLeads responseGetLeads) {
+    private ArrayList<LeadDH> prepareLeadDHs(ResponseGetLeads responseGetLeads, boolean isFirstPage) {
         int position = 0;
         final ArrayList<LeadDH> result = new ArrayList<>();
         for (LeadItem leadItem : responseGetLeads.data) {
             final LeadDH leadDH = new LeadDH(leadItem);
-            makeSelectedDHIfNeed(leadDH, view, position++);
+            makeSelectedDHIfNeed(leadDH, view, position++, isFirstPage);
             result.add(leadDH);
         }
         return result;
     }
+
 }

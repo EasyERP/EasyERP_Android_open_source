@@ -17,7 +17,7 @@ import rx.Observable;
 
 public interface LeadsContract {
     interface LeadsView extends MasterFlowSelectableBaseView<LeadsPresenter> {
-        void displayLeads(ArrayList<LeadDH> leadDHs);
+        void displayLeads(ArrayList<LeadDH> leadDHs, boolean needClear);
         void displayError(final String msg, final ErrorViewHelper.ErrorType errorType);
     }
     interface LeadsPresenter extends MasterFlowSelectableBasePresenter<String> {

@@ -89,11 +89,17 @@ public class LeadsFragment extends SimpleListWithRefreshFragment implements Lead
     }
 
     @Override
-    public void displayLeads(ArrayList<LeadDH> leadDHs) {
+    public void displayLeads(ArrayList<LeadDH> leadDHs, boolean needClear) {
         errorViewHelper.hideError();
         displayProgress(false);
         swipeContainer.setRefreshing(false);
-        leadsAdapter.addListDH(leadDHs);
+
+        if (needClear)
+            leadsAdapter.setListDH(leadDHs);
+        else leadsAdapter.addListDH(leadDHs);
+
+        if (getCountItemsNow() == 0)
+            displayError(null, ErrorViewHelper.ErrorType.LIST_EMPTY);
     }
 
     @Override
@@ -117,7 +123,6 @@ public class LeadsFragment extends SimpleListWithRefreshFragment implements Lead
         errorViewHelper.hideError();
         scrollListener.resetState();
         presenter.setSelectedInfo(-1, presenter.getSelectedItemId());
-        leadsAdapter.clear();
         presenter.subscribe();
     }
 

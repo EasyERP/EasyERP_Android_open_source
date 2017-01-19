@@ -25,10 +25,10 @@ public abstract class MasterFlowSelectablePresenterHelper<ID_TYPE> implements Ma
     }
 
     @Override
-    public void makeSelectedDHIfNeed(final MasterFlowSelectableDHHelper<ID_TYPE> dhHelper, final MasterFlowSelectableBaseView baseViewWithCountItemsLeft, final int currentPositionInData) {
+    public void makeSelectedDHIfNeed(final MasterFlowSelectableDHHelper<ID_TYPE> dhHelper, final MasterFlowSelectableBaseView baseViewWithCountItemsLeft, final int currentPositionInData, boolean isRefresh) {
         if (getSelectedItemPosition() == -1 && dhHelper.getId().equals(getSelectedItemId())) {
             dhHelper.setSelected(true);
-            setSelectedInfo(baseViewWithCountItemsLeft.getCountItemsNow() + currentPositionInData, getSelectedItemId());
+            setSelectedInfo((isRefresh ? 0 : baseViewWithCountItemsLeft.getCountItemsNow()) + currentPositionInData, getSelectedItemId());
         }
     }
 
