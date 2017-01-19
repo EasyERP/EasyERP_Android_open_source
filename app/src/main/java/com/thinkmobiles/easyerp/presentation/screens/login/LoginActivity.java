@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewTreeObserver;
@@ -34,6 +35,7 @@ import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
+import org.androidannotations.annotations.res.StringRes;
 import org.androidannotations.annotations.sharedpreferences.Pref;
 
 import java.util.concurrent.TimeUnit;
@@ -54,6 +56,12 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
     protected LinearLayout llInput_AL;
 
     @ViewById
+    protected TextInputLayout tilLogin_AL;
+    @ViewById
+    protected TextInputLayout tilPassword_AL;
+    @ViewById
+    protected TextInputLayout tilDbId_AL;
+    @ViewById
     protected EditText etLogin_AL;
     @ViewById
     protected EditText etPassword_AL;
@@ -61,6 +69,13 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
     protected EditText etDbId_AL;
     @ViewById
     protected Button btnLogin_AL;
+
+    @StringRes(R.string.err_login_required)
+    protected String errEmptyLogin;
+    @StringRes(R.string.err_password_required)
+    protected String errEmptyPassword;
+    @StringRes(R.string.err_db_id_required)
+    protected String errEmptyDbID;
 
     @Pref
     protected CookieSharedPreferences_ sharedPreferences;
@@ -120,6 +135,48 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
     @Override
     public String getDbID() {
         return etDbId_AL.getText().toString().trim();
+    }
+
+    @Override
+    public void displayLoginError(Constants.ErrorCodes code) {
+        switch (code) {
+            case FIELD_EMPTY:
+                tilLogin_AL.setError(errEmptyLogin);
+                tilLogin_AL.setErrorEnabled(true);
+                break;
+            case OK:
+                tilLogin_AL.setError(null);
+                tilLogin_AL.setErrorEnabled(false);
+                break;
+        }
+    }
+
+    @Override
+    public void displayPasswordError(Constants.ErrorCodes code) {
+        switch (code) {
+            case FIELD_EMPTY:
+                tilPassword_AL.setError(errEmptyPassword);
+                tilPassword_AL.setErrorEnabled(true);
+                break;
+            case OK:
+                tilPassword_AL.setError(null);
+                tilPassword_AL.setErrorEnabled(false);
+                break;
+        }
+    }
+
+    @Override
+    public void displayDbIdError(Constants.ErrorCodes code) {
+        switch (code) {
+            case FIELD_EMPTY:
+                tilDbId_AL.setError(errEmptyDbID);
+                tilDbId_AL.setErrorEnabled(true);
+                break;
+            case OK:
+                tilDbId_AL.setError(null);
+                tilDbId_AL.setErrorEnabled(false);
+                break;
+        }
     }
 
     @Override
