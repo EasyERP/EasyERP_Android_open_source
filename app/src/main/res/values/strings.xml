@@ -5,4 +5,5 @@
     <string name="hint_password">Password</string>
     <string name="hint_database_id">Database ID</string>
     <string name="login">Login</string>
+    <string name="logout">Logout</string>
 </resources>
