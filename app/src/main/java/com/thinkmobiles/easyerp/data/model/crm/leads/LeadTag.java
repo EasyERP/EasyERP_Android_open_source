@@ -1,4 +1,4 @@
-package com.thinkmobiles.easyerp.data.model.leads;
+package com.thinkmobiles.easyerp.data.model.crm.leads;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -9,7 +9,7 @@ import android.os.Parcelable;
 
 public class LeadTag implements Parcelable {
     /**
-     * {_id:"57a0448f0c873fdf1c596058",
+     * {id:"57a0448f0c873fdf1c596058",
      color:"bgBlueLight",
      name:".NET"}
      */

@@ -1,4 +1,4 @@
-package com.thinkmobiles.easyerp.data.model.leads;
+package com.thinkmobiles.easyerp.data.model.crm.leads;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -9,7 +9,7 @@ import android.os.Parcelable;
 
 public class LeadSalesPerson implements Parcelable {
     /**
-     * _id: "56e17661177f76f72edf774c",
+     * id: "56e17661177f76f72edf774c",
      name: "Bogdana Stets"
      */
     public String _id;

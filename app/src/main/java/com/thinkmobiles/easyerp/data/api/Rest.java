@@ -7,6 +7,7 @@ import com.thinkmobiles.easyerp.data.api.interceptors.AddCookieInterceptor;
 import com.thinkmobiles.easyerp.data.api.interceptors.BadCookieInterceptor;
 import com.thinkmobiles.easyerp.data.api.interceptors.ReceiveCookieInterceptor;
 import com.thinkmobiles.easyerp.data.model.ResponseError;
+import com.thinkmobiles.easyerp.data.services.DashboardService;
 import com.thinkmobiles.easyerp.data.services.LeadService;
 import com.thinkmobiles.easyerp.data.services.LoginService;
 import com.thinkmobiles.easyerp.data.services.UserService;
@@ -38,6 +39,7 @@ public class Rest {
     private LoginService loginService;
     private LeadService leadService;
     private UserService userService;
+    private DashboardService dashboardService;
 
     private Converter<ResponseBody, ResponseError> converter;
 
@@ -62,6 +64,10 @@ public class Rest {
         return leadService == null ? createService(LeadService.class) : leadService;
     }
 
+    public DashboardService getDashboardService() {
+        return dashboardService == null ? createService(DashboardService.class) : dashboardService;
+    }
+
     public ResponseError parseError(ResponseBody responseBody) {
         try {
             return converter.convert(responseBody);
@@ -83,7 +89,7 @@ public class Rest {
         OkHttpClient.Builder clientBuilder = new OkHttpClient.Builder()
                 .addNetworkInterceptor(new StethoInterceptor())
                 .addInterceptor(new ReceiveCookieInterceptor(cookieSharedPreferences));
-        
+
         if(hasAllInterceptors) {
             clientBuilder.addInterceptor(new AddCookieInterceptor(cookieSharedPreferences))
                     .addInterceptor(new BadCookieInterceptor(cookieSharedPreferences));

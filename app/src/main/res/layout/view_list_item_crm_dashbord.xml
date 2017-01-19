@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/flDashboardItemContainer_VLICD"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_with_bottom_divider_line_selector"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:padding="@dimen/default_padding_middle">
+
+    <TextView
+        android:id="@+id/tvDashboardName_VLICD"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textSize="@dimen/middle_text_size"
+        tools:text="Dashboard" />
+
+    <TextView
+        android:id="@+id/tvTypeChart_VLICD"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:background="@drawable/bg_accent_with_round_rect"
+        android:paddingTop="@dimen/default_padding_3dp"
+        android:paddingBottom="@dimen/default_padding_3dp"
+        android:paddingLeft="@dimen/default_padding_half"
+        android:paddingRight="@dimen/default_padding_half"
+        android:textSize="@dimen/small_text_size"
+        tools:text="Dashboard" />
+
+</LinearLayout>
