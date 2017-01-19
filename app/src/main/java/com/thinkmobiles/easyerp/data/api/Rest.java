@@ -3,12 +3,16 @@ package com.thinkmobiles.easyerp.data.api;
 import com.facebook.stetho.okhttp3.StethoInterceptor;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.thinkmobiles.easyerp.data.api.interceptors.AddCookieInterceptor;
+import com.thinkmobiles.easyerp.data.api.interceptors.BadCookieInterceptor;
+import com.thinkmobiles.easyerp.data.api.interceptors.ReceiveCookieInterceptor;
 import com.thinkmobiles.easyerp.data.model.ResponseError;
 import com.thinkmobiles.easyerp.data.services.DashboardService;
 import com.thinkmobiles.easyerp.data.services.LeadService;
 import com.thinkmobiles.easyerp.data.services.LoginService;
-import com.thinkmobiles.easyerp.presentation.utils.AppSharedPreferences_;
+import com.thinkmobiles.easyerp.data.services.UserService;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
+import com.thinkmobiles.easyerp.presentation.utils.CookieSharedPreferences_;
 
 import java.io.IOException;
 import java.lang.annotation.Annotation;
@@ -30,10 +34,11 @@ public class Rest {
     private Retrofit retrofit;
     private OkHttpClient client;
     private Gson malformedGson;
-    private AppSharedPreferences_ sharedPreferences;
+    private CookieSharedPreferences_ cookieSharedPreferences;
 
     private LoginService loginService;
     private LeadService leadService;
+    private UserService userService;
     private DashboardService dashboardService;
 
     private Converter<ResponseBody, ResponseError> converter;
@@ -48,7 +53,11 @@ public class Rest {
     }
 
     public LoginService getLoginService() {
-        return loginService == null ? createService(LoginService.class) : loginService;
+        return loginService == null ? createService(LoginService.class, false) : loginService;
+    }
+
+    public UserService getUserService() {
+        return userService == null ? createService(UserService.class) : userService;
     }
 
     public LeadService getLeadService() {
@@ -69,16 +78,24 @@ public class Rest {
     }
 
     private <T> T createService(Class<T> service) {
+        return createService(service, true);
+    }
+
+    private <T> T createService(Class<T> service, boolean hasAllInterceptors) {
         malformedGson = new GsonBuilder()
                 .setLenient()
                 .create();
 
-        client = new OkHttpClient.Builder()
+        OkHttpClient.Builder clientBuilder = new OkHttpClient.Builder()
                 .addNetworkInterceptor(new StethoInterceptor())
-                .addInterceptor(new AddCookieInterceptor(sharedPreferences))
-                .addInterceptor(new ReceiveCookieInterceptor(sharedPreferences))
-                .addInterceptor(new BadCookieInterceptor(sharedPreferences))
-                .build();
+                .addInterceptor(new ReceiveCookieInterceptor(cookieSharedPreferences));
+
+        if(hasAllInterceptors) {
+            clientBuilder.addInterceptor(new AddCookieInterceptor(cookieSharedPreferences))
+                    .addInterceptor(new BadCookieInterceptor(cookieSharedPreferences));
+        }
+
+        client = clientBuilder.build();
         retrofit = new Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create(malformedGson))
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
@@ -89,8 +106,8 @@ public class Rest {
         return retrofit.create(service);
     }
 
-    public void setPrefManager(AppSharedPreferences_ sharedPreferences) {
-        this.sharedPreferences = sharedPreferences;
+    public void setPrefManager(CookieSharedPreferences_ cookieSharedPreferences) {
+        this.cookieSharedPreferences = cookieSharedPreferences;
     }
 
 }

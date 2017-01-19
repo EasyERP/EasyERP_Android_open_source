@@ -3,6 +3,7 @@ package com.thinkmobiles.easyerp.presentation.screens.home;
 import android.view.MenuItem;
 
 import com.thinkmobiles.easyerp.R;
+import com.thinkmobiles.easyerp.data.model.user.UserInfo;
 import com.thinkmobiles.easyerp.presentation.base.BaseMasterFlowActivity;
 import com.thinkmobiles.easyerp.presentation.custom.views.drawer_menu.MenuDrawerContainer;
 import com.thinkmobiles.easyerp.presentation.custom.views.drawer_menu.MenuDrawerState;
@@ -11,6 +12,7 @@ import com.thinkmobiles.easyerp.presentation.custom.views.drawer_menu.models.Men
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.Extra;
 import org.androidannotations.annotations.ViewById;
 
 /**
@@ -19,6 +21,9 @@ import org.androidannotations.annotations.ViewById;
 
 @EActivity(R.layout.activity_home)
 public class HomeActivity extends BaseMasterFlowActivity {
+
+    @Extra
+    protected UserInfo userInfo;
 
     @ViewById(R.id.mdvMenu_AH)
     protected MenuDrawerView menuDrawerView;

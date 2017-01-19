@@ -5,6 +5,7 @@ import android.util.Log;
 
 import com.thinkmobiles.easyerp.data.api.Rest;
 import com.thinkmobiles.easyerp.data.model.ResponseError;
+import com.thinkmobiles.easyerp.presentation.utils.CookieSharedPreferences_;
 
 import retrofit2.adapter.rxjava.HttpException;
 import rx.subscriptions.CompositeSubscription;
@@ -16,13 +17,17 @@ import rx.subscriptions.CompositeSubscription;
 public class LoginPresenter implements LoginContract.LoginPresenter {
 
     private LoginContract.LoginView view;
-    private LoginContract.LoginModel model;
+    private LoginContract.LoginModel loginModel;
+    private LoginContract.UserModel userModel;
+    private CookieSharedPreferences_ sharedPreferences;
 
     private CompositeSubscription compositeSubscription;
 
-    public LoginPresenter(LoginContract.LoginView view, LoginContract.LoginModel model) {
+    public LoginPresenter(LoginContract.LoginView view, LoginContract.LoginModel loginModel, LoginContract.UserModel userModel, CookieSharedPreferences_ sharedPreferences) {
         this.view = view;
-        this.model = model;
+        this.loginModel = loginModel;
+        this.userModel = userModel;
+        this.sharedPreferences = sharedPreferences;
         compositeSubscription = new CompositeSubscription();
 
         view.setPresenter(this);
@@ -33,7 +38,6 @@ public class LoginPresenter implements LoginContract.LoginPresenter {
         String login = view.getLogin();
         String pass = view.getPassword();
         String dbId = view.getDbID();
-        boolean isRememberMe = view.isRememberMe();
 
         if(TextUtils.isEmpty(login)) {
             view.displayError("Input login");
@@ -43,10 +47,10 @@ public class LoginPresenter implements LoginContract.LoginPresenter {
             view.displayError("Input database ID");
         } else {
             compositeSubscription.add(
-                    model.login(login, pass, dbId, isRememberMe)
+                    loginModel.login(login, pass, dbId)
                             .subscribe(s -> {
                                 if(s.equalsIgnoreCase("OK")) {
-                                    view.startHomeScreen();
+                                    getCurrentUser();
                                 }
                                 Log.d("HTTP", "Response: " + s);
                             }, t -> {
@@ -63,6 +67,25 @@ public class LoginPresenter implements LoginContract.LoginPresenter {
                             })
             );
         }
+    }
+
+    @Override
+    public void getCurrentUser() {
+        compositeSubscription.add(
+                userModel.getCurrentUser()
+                .subscribe(responseGetCurrentUser -> {
+                    view.startHomeScreen(responseGetCurrentUser.user);
+                }, t -> {
+                    view.displayError(t.getMessage());
+                    Log.d("HTTP", "Error: " + t.getMessage());
+                })
+        );
+    }
+
+    @Override
+    public void clearCookies() {
+        sharedPreferences.edit().getCookieExpireDate().remove().apply();
+        sharedPreferences.edit().geCoockies().remove().apply();
     }
 
     @Override
