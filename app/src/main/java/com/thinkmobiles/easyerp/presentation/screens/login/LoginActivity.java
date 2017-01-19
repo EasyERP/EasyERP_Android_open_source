@@ -4,8 +4,10 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
+import android.content.Intent;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.view.animation.AccelerateInterpolator;
@@ -46,7 +48,10 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
     private LoginContract.LoginPresenter presenter;
 
     private boolean isCookieExpired = true;
+    private boolean isAnimationFinished = false;
+
     private AnimatorSet animatorSet;
+    private UserInfo userInfo;
 
     @ViewById
     protected RelativeLayout rvContainer_AL;
@@ -96,7 +101,8 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
 
     @AfterViews
     protected void initUI() {
-        if (!BuildConfig.PRODUCTION) putDefaultDebugCredentials();
+        if(!BuildConfig.PRODUCTION) putDefaultDebugCredentials();
+        if(!isCookieExpired) presenter.getCurrentUser();
 
         ivAppIcon_AL.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
@@ -181,10 +187,13 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
 
     @Override
     public void startHomeScreen(UserInfo userInfo) {
-        HomeActivity_.intent(this)
-                .userInfo(userInfo)
-                .start();
-        finish();
+        this.userInfo = userInfo;
+        if(isAnimationFinished) {
+            HomeActivity_.intent(this)
+                    .userInfo(userInfo)
+                    .flags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK)
+                    .start();
+        }
     }
 
     @Override
@@ -211,8 +220,9 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
             public void onAnimationEnd(Animator animation) {
                 super.onAnimationEnd(animation);
                 if(!isCookieExpired) {
+                    isAnimationFinished = true;
                     animatorSet.pause();
-                    presenter.getCurrentUser();
+                    if(userInfo != null) startHomeScreen(userInfo);
                 }
             }
         });
@@ -235,6 +245,13 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
 
         animatorSet = new AnimatorSet();
         animatorSet.playTogether(iconFade, iconScaleX, iconScaleY, iconTranslateY, containerFade);
+        animatorSet.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                super.onAnimationEnd(animation);
+                isAnimationFinished = true;
+            }
+        });
         animatorSet.start();
     }
 

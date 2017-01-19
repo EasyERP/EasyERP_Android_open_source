@@ -40,7 +40,7 @@ public class EasyErpApplication extends Application {
     public void restartApp() {
         Intent startIntent = getPackageManager()
                 .getLaunchIntentForPackage(getPackageName())
-                .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_NEW_TASK);
+                .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(startIntent);
     }
 }

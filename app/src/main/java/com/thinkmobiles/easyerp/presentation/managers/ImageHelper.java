@@ -4,6 +4,8 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Base64;
 
+import com.squareup.picasso.Transformation;
+
 import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
@@ -16,6 +18,12 @@ public abstract class ImageHelper {
 
     public static Observable<Bitmap> getBitmapFromBase64(final String base64) {
         return Observable.fromCallable(() -> getBitmap(base64))
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.newThread());
+    }
+
+    public static Observable<Bitmap> getBitmapFromBase64(final String base64, final Transformation transformation) {
+        return Observable.fromCallable(() -> transformation.transform(getBitmap(base64)))
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.newThread());
     }
