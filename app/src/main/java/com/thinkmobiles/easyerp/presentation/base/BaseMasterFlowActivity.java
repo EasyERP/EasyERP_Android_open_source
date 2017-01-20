@@ -56,7 +56,7 @@ public abstract class BaseMasterFlowActivity extends AppCompatActivity {
         replaceFragment(fragment, contentIdLayout());
     }
 
-    protected void replaceFragmentContentDetail(final BaseFragment fragment) {
+    public void replaceFragmentContentDetail(final BaseFragment fragment) {
         replaceFragment(fragment, contentDetailIdLayout());
     }
 

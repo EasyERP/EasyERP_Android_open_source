@@ -11,6 +11,8 @@ import com.thinkmobiles.easyerp.presentation.adapters.crm.DashboardListAdapter;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.base.rules.SimpleListWithRefreshFragment;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.DashboardListDH;
+import com.thinkmobiles.easyerp.presentation.screens.crm.dashboard.detail.DashboardDetailChartFragment;
+import com.thinkmobiles.easyerp.presentation.screens.crm.dashboard.detail.DashboardDetailChartFragment_;
 
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterViews;
@@ -105,7 +107,7 @@ public class DashboardListFragment extends SimpleListWithRefreshFragment impleme
 
     @Override
     public void displayDashboardsDetail(DashboardListItem itemChartDashboard) {
-        // TODO open detail fragment
+        mActivity.replaceFragmentContentDetail(DashboardDetailChartFragment_.builder().dashboardConfigsForChart(itemChartDashboard).build());
     }
 
     @Override

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white">
+
+    <LinearLayout
+        android:id="@+id/llHeaderChartsDetail_FDCD"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_accent_rect_header"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/default_padding_quart"
+        android:paddingLeft="@dimen/default_padding_half"
+        android:paddingRight="@dimen/default_padding_half"
+        android:paddingTop="@dimen/default_padding_quart">
+
+        <TextView
+            android:id="@+id/tvTitleDashboardDetail_FDCD"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="@dimen/default_padding_middle"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="@dimen/big_text_size"
+            tools:text="Costs by Sales Manager" />
+
+        <ImageView
+            android:id="@+id/ivCalendarDateFilter_FDCD"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/default_padding_half"
+            app:srcCompat="@drawable/ic_calendar" />
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/llHeaderChartsDetail_FDCD"
+        android:clipToPadding="false"
+        android:padding="@dimen/default_padding">
+
+        <TextView
+            android:id="@+id/tvJson_FDCD"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </ScrollView>
+
+    <include layout="@layout/view_error_with_holder_icon" />
+
+</RelativeLayout>

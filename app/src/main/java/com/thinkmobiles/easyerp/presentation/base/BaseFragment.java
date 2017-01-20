@@ -7,8 +7,10 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.FrameLayout;
+import android.widget.RelativeLayout;
 
 import com.thinkmobiles.easyerp.R;
 
@@ -23,7 +25,7 @@ import org.androidannotations.annotations.SystemService;
 public abstract class BaseFragment<T extends Activity> extends Fragment {
 
     protected T mActivity;
-    private FrameLayout progressView;
+    private View progressView;
 
     @SystemService
     protected InputMethodManager inputMethodManager;
@@ -41,9 +43,9 @@ public abstract class BaseFragment<T extends Activity> extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        if (needProgress() && view instanceof FrameLayout) {
-            progressView = (FrameLayout) LayoutInflater.from(getContext()).inflate(R.layout.view_progress, (FrameLayout) view, false);
-            ((FrameLayout) view).addView(progressView);
+        if (needProgress() && (view instanceof FrameLayout || view instanceof RelativeLayout)) {
+            progressView = LayoutInflater.from(getContext()).inflate(R.layout.view_progress, (ViewGroup) view, false);
+            ((ViewGroup) view).addView(progressView);
         }
     }
 

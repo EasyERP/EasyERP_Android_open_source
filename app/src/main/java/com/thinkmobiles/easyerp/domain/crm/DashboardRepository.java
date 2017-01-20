@@ -6,6 +6,7 @@ import com.thinkmobiles.easyerp.data.model.crm.dashboard.detail.DashboardChartTy
 import com.thinkmobiles.easyerp.data.model.crm.dashboard.detail.IChartModel;
 import com.thinkmobiles.easyerp.data.services.DashboardService;
 import com.thinkmobiles.easyerp.presentation.screens.crm.dashboard.DashboardListContract;
+import com.thinkmobiles.easyerp.presentation.screens.crm.dashboard.detail.DashboardDetailChartContract;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
 import org.androidannotations.annotations.Bean;
@@ -22,7 +23,7 @@ import rx.schedulers.Schedulers;
  */
 
 @EBean(scope = EBean.Scope.Singleton)
-public class DashboardRepository implements DashboardListContract.DashboardListModel {
+public class DashboardRepository implements DashboardListContract.DashboardListModel, DashboardDetailChartContract.DashboardDetailChartModel {
 
     @Bean
     protected DashboardChartsLayerRepository dashboardChartsLayerRepository;
@@ -42,13 +43,13 @@ public class DashboardRepository implements DashboardListContract.DashboardListM
         return getNetworkObservable(dashboardService.getDashboardListCharts(Constants.CRM_DASHBOARD_BASE_ID));
     }
 
+    @Override
     public Observable<?> getDashboardChartInfo(
             final String dataSet,
             final DashboardChartType chartType,
             final String filterDateFrom,
-            final String filterDateTo,
-            final boolean forSales) {
-        return getNetworkObservable(dashboardChartsLayerRepository.getDashboardChartObservable(dataSet, chartType, filterDateFrom, filterDateTo, forSales));
+            final String filterDateTo) {
+        return getNetworkObservable(dashboardChartsLayerRepository.getDashboardChartObservable(dataSet, chartType, filterDateFrom, filterDateTo));
     }
 
 }

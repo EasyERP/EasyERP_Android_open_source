@@ -13,9 +13,9 @@
         android:layout_width="@dimen/menu_item_thumb_size"
         android:layout_height="@dimen/menu_item_thumb_size"
         android:layout_centerVertical="true"
-        android:layout_marginBottom="@dimen/default_padding_very_small"
+        android:layout_marginBottom="@dimen/default_padding_quart"
         android:layout_marginStart="@dimen/default_padding_small"
-        android:layout_marginTop="@dimen/default_padding_very_small"
+        android:layout_marginTop="@dimen/default_padding_quart"
         android:padding="@dimen/default_padding_3dp"
         tools:src="@drawable/ic_avatar_placeholder" />
 
