@@ -1,4 +1,4 @@
-package com.thinkmobiles.easyerp.data.model.crm.persons.images;
+package com.thinkmobiles.easyerp.data.model.crm.persons.alphabet;
 
 import com.thinkmobiles.easyerp.data.model.crm.persons.alphabet.AlphabetItem;
 

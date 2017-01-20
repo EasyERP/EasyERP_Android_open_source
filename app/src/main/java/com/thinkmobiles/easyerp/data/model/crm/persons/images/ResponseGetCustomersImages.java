@@ -1,7 +1,5 @@
 package com.thinkmobiles.easyerp.data.model.crm.persons.images;
 
-import com.thinkmobiles.easyerp.data.model.crm.persons.alphabet.CustomerImageItem;
-
 import java.util.ArrayList;
 
 /**

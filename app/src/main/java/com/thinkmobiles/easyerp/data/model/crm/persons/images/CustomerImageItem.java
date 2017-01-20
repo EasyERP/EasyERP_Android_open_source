@@ -1,4 +1,4 @@
-package com.thinkmobiles.easyerp.data.model.crm.persons.alphabet;
+package com.thinkmobiles.easyerp.data.model.crm.persons.images;
 
 import com.google.gson.annotations.SerializedName;
 
