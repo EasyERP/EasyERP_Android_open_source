@@ -22,6 +22,11 @@ public abstract class Constants {
 
     public static final String GET_LEADS                    = "leads";
     public static final String GET_DASHBOARD_CHARTS         = "customDashboard/{dashboardId}";
+
+    public static final String GET_PERSONS_ALPHABET         = "persons/getPersonAlphabet?&contentType=Persons";
+    public static final String GET_CUSTOMER_IMAGES          = "customers/getCustomersImages?ids[]=587f407cab1707af208fdbca";
+    public static final String GET_ALL_PERSONS              = "persons/?viewType=list&count=50&contentType=Persons&page=1";
+    public static final String GET_PERSONS_BY_LETTER        = "persons/?viewType=list&filter[letter][key]=name.first&filter[letter][value]=M&filter[letter][type]=letter&contentType=Persons&count=50&page=1";
     // End CRM
 
     //Invoice
