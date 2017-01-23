@@ -1272,7 +1272,7 @@ public class SlidingPaneMenuLayout extends ViewGroup {
             }
 
             return ((SlidingPaneMenuLayout.LayoutParams) child.getLayoutParams()).slideable
-                    && (mSlideOffset > 0.5 || mDragHelper.getInitialMotionXForPointer(pointerId) < mSlideRange);
+                    && (mSlideOffset > 0.8 || mDragHelper.getInitialMotionXForPointer(pointerId) < mSlideRange / 3);
         }
 
         @Override

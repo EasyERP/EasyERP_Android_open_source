@@ -1,8 +1,8 @@
 package com.thinkmobiles.easyerp.data.services;
 
 import com.thinkmobiles.easyerp.data.model.crm.leads.ResponseGetLeads;
-import com.thinkmobiles.easyerp.data.model.crm.leads.details.ResponseGetLeadDetails;
-import com.thinkmobiles.easyerp.data.model.crm.leads.details.ResponseGetLeadWorkflow;
+import com.thinkmobiles.easyerp.data.model.crm.leads.detail.ResponseGetLeadDetails;
+import com.thinkmobiles.easyerp.data.model.crm.leads.detail.ResponseGetLeadWorkflow;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
 import retrofit2.http.GET;

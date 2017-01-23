@@ -5,15 +5,21 @@ import android.graphics.Color;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.TextUtils;
+import android.util.Xml;
 
 import com.thinkmobiles.easyerp.data.model.crm.leads.LeadTag;
-import com.thinkmobiles.easyerp.data.model.crm.leads.details.LeadAddress;
+import com.thinkmobiles.easyerp.data.model.crm.leads.detail.LeadAddress;
+import com.thinkmobiles.easyerp.data.model.crm.leads.detail.LeadAttachment;
 import com.thinkmobiles.easyerp.presentation.EasyErpApplication_;
 import com.thinkmobiles.easyerp.presentation.custom.RoundedBackgroundSpan;
 import com.thinkmobiles.easyerp.presentation.managers.TagHelper;
 
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Locale;
+
+import okhttp3.internal.Util;
 
 public abstract class StringUtil {
 
@@ -43,8 +49,20 @@ public abstract class StringUtil {
         return  builder.toString();
     }
 
-    public static String getField(String field) {
-        return TextUtils.isEmpty(field) ? "No specified" : field;
+    public static String getField(String field, String holder) {
+        return TextUtils.isEmpty(field) ? holder : field;
+    }
+
+    public static String getAttachments(ArrayList<LeadAttachment> attachments) {
+        StringBuilder builder = new StringBuilder();
+        for (LeadAttachment attachment : attachments) {
+            builder.append(String.format(Locale.ENGLISH,
+                    "<a href=\"%s\">%s</a><p>",
+                    Constants.BASE_URL + "download/" + attachment.shortPas,
+                    attachment.name));
+        }
+        int length = builder.length();
+        return builder.delete(length - 4, length - 1).toString();
     }
 
 

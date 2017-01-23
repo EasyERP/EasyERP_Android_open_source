@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@android:color/white">
 
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/srlRefresh_FLD"
@@ -13,7 +14,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@android:color/white"
+            android:animateLayoutChanges="true"
             android:orientation="vertical">
 
             <android.support.v4.widget.NestedScrollView
@@ -44,609 +45,300 @@
 
                     </HorizontalScrollView>
 
-                    <android.support.v7.widget.CardView
+
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/white"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tvNameLead_FLD"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/default_padding"
+                            android:text="Secret Deals"
+                            android:textColor="#212121"
+                            android:textSize="24sp" />
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/default_padding"
+                            android:text="About"
+                            android:textColor="#757575"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:background="@android:color/white"
+                            android:layout_marginTop="@dimen/default_padding_small"
+                            android:paddingEnd="@dimen/default_padding"
+                            android:paddingStart="@dimen/default_padding">
+
+                            <android.support.design.widget.TextInputLayout style="@style/AppTheme.LeadTextInputLayoutStyle">
+
+                                <EditText
+                                    android:id="@+id/tvCloseDate_FLD"
+                                    style="@style/AppTheme.LeadInputFieldStyle"
+                                    android:hint="Close Date" />
+
+                            </android.support.design.widget.TextInputLayout>
+
+                            <android.support.design.widget.TextInputLayout style="@style/AppTheme.LeadTextInputLayoutStyle">
+
+                                <EditText
+                                    android:id="@+id/tvAssignedTo_FLD"
+                                    style="@style/AppTheme.LeadInputFieldStyle"
+                                    android:hint="Assigned to" />
+
+                            </android.support.design.widget.TextInputLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/default_padding_small"
+                            android:paddingEnd="@dimen/default_padding"
+                            android:paddingStart="@dimen/default_padding">
+
+                            <android.support.design.widget.TextInputLayout
+                                style="@style/AppTheme.LeadTextInputLayoutStyle">
+
+                                <EditText
+                                    android:id="@+id/tvPriority_FLD"
+                                    style="@style/AppTheme.LeadInputFieldStyle"
+                                    android:hint="Priority" />
+
+                            </android.support.design.widget.TextInputLayout>
+
+                            <android.support.design.widget.TextInputLayout
+                                style="@style/AppTheme.LeadTextInputLayoutStyle">
+
+                                <EditText
+                                    android:id="@+id/tvSource_FLD"
+                                    style="@style/AppTheme.LeadInputFieldStyle"
+                                    android:hint="Source" />
+
+                            </android.support.design.widget.TextInputLayout>
+
+                        </LinearLayout>
+
+
+                        <TextView
+                            android:id="@+id/tvTags_FLD"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/default_padding"
+                            android:lineSpacingExtra="4dp"
+                            android:visibility="gone"
+                            tools:text="ThinkMobiles" />
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/default_padding"
+                            android:text="Contacts"
+                            android:textColor="#bdbdbd"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/default_padding_small"
+                            android:paddingEnd="@dimen/default_padding"
+                            android:paddingStart="@dimen/default_padding">
+
+                            <android.support.design.widget.TextInputLayout
+                                style="@style/AppTheme.LeadTextInputLayoutStyle">
+
+                                <EditText
+                                    android:id="@+id/tvPersonName_FLD"
+                                    style="@style/AppTheme.LeadInputFieldStyle"
+                                    android:hint="Person" />
+
+                            </android.support.design.widget.TextInputLayout>
+
+                            <android.support.design.widget.TextInputLayout
+                                style="@style/AppTheme.LeadTextInputLayoutStyle">
+
+                                <EditText
+                                    android:id="@+id/tvJobPosition_FLD"
+                                    style="@style/AppTheme.LeadInputFieldStyle"
+                                    android:hint="Job Position" />
+
+                            </android.support.design.widget.TextInputLayout>
+
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/default_padding_small"
+                            android:paddingEnd="@dimen/default_padding"
+                            android:paddingStart="@dimen/default_padding">
+
+                            <android.support.design.widget.TextInputLayout
+                                style="@style/AppTheme.LeadTextInputLayoutStyle">
+
+                                <EditText
+                                    android:id="@+id/tvDob_FLD"
+                                    style="@style/AppTheme.LeadInputFieldStyle"
+                                    android:hint="Date of Birth" />
+
+                            </android.support.design.widget.TextInputLayout>
+
+                            <android.support.design.widget.TextInputLayout
+                                style="@style/AppTheme.LeadTextInputLayoutStyle">
+
+                                <EditText
+                                    android:id="@+id/tvEmail_FLD"
+                                    style="@style/AppTheme.LeadInputFieldStyle"
+                                    android:hint="Email" />
+
+                            </android.support.design.widget.TextInputLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/default_padding_small"
+                            android:paddingEnd="@dimen/default_padding"
+                            android:paddingStart="@dimen/default_padding">
+
+                            <android.support.design.widget.TextInputLayout
+                                style="@style/AppTheme.LeadTextInputLayoutStyle">
+
+                                <EditText
+                                    android:id="@+id/tvPhone_FLD"
+                                    style="@style/AppTheme.LeadInputFieldStyle"
+                                    android:hint="Phone" />
+
+                            </android.support.design.widget.TextInputLayout>
+
+                            <android.support.design.widget.TextInputLayout
+                                style="@style/AppTheme.LeadTextInputLayoutStyle">
+
+                                <EditText
+                                    android:id="@+id/tvSkype_FLD"
+                                    style="@style/AppTheme.LeadInputFieldStyle"
+                                    android:hint="Skype" />
+
+                            </android.support.design.widget.TextInputLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/default_padding_small"
+                            android:paddingEnd="@dimen/default_padding"
+                            android:paddingStart="@dimen/default_padding">
+
+                            <android.support.design.widget.TextInputLayout
+                                style="@style/AppTheme.LeadTextInputLayoutStyle">
+
+                                <EditText
+                                    android:id="@+id/tvLinkedIn_FLD"
+                                    style="@style/AppTheme.LeadInputFieldStyle"
+                                    android:hint="LinkedIn" />
+
+                            </android.support.design.widget.TextInputLayout>
+
+                            <android.support.design.widget.TextInputLayout style="@style/AppTheme.LeadTextInputLayoutStyle">
+
+                                <EditText
+                                    android:id="@+id/tvFacebook_FLD"
+                                    style="@style/AppTheme.LeadInputFieldStyle"
+                                    android:hint="Facebook" />
+
+                            </android.support.design.widget.TextInputLayout>
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/default_padding"
+                            android:text="Company"
+                            android:textColor="#bdbdbd"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/default_padding_small"
+                            android:paddingEnd="@dimen/default_padding"
+                            android:paddingStart="@dimen/default_padding">
+
+                            <android.support.design.widget.TextInputLayout style="@style/AppTheme.LeadTextInputLayoutStyle">
+
+                                <EditText
+                                    android:id="@+id/tvCompanyName_FLD"
+                                    style="@style/AppTheme.LeadInputFieldStyle"
+                                    android:hint="Name" />
+
+                            </android.support.design.widget.TextInputLayout>
+
+                            <android.support.design.widget.TextInputLayout style="@style/AppTheme.LeadTextInputLayoutStyle">
+
+                                <EditText
+                                    android:id="@+id/tvCompanyAddress_FLD"
+                                    style="@style/AppTheme.LeadInputFieldStyle"
+                                    android:hint="Address" />
+
+                            </android.support.design.widget.TextInputLayout>
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/white"
+                        android:orientation="vertical"
+                        android:padding="@dimen/default_padding">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Attachments"
+                            android:textColor="#757575"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                        <LinearLayout
+                            android:id="@+id/llAttachmentsContainer_FLD"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
                             android:orientation="vertical">
 
                             <TextView
-                                android:id="@+id/tvNameLead_FLD"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_margin="@dimen/default_padding"
-                                android:text="Secret Deals"
-                                android:textColor="#212121"
-                                android:textSize="24sp" />
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:paddingStart="@dimen/default_padding"
-                                android:visibility="gone">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="About"
-                                    android:textColor="#bdbdbd"
-                                    android:textSize="15sp"
-                                    android:textStyle="bold" />
-
-                                <View
-                                    android:layout_width="match_parent"
-                                    android:layout_height="1dp"
-                                    android:layout_gravity="center_vertical"
-                                    android:layout_marginStart="@dimen/default_padding_half"
-                                    android:background="#bdbdbd" />
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal"
-                                android:padding="@dimen/default_padding">
-
-                                <ImageView
-                                    android:layout_width="24dp"
-                                    android:layout_height="24dp"
-                                    android:layout_gravity="center_vertical"
-                                    android:background="#bdbdbd" />
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginStart="@dimen/default_dimen_32"
-                                    android:orientation="vertical">
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="Close Date" />
-
-
-                                    <TextView
-                                        android:id="@+id/tvCloseDate_FLD"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content" />
-
-                                </LinearLayout>
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal"
-                                android:padding="@dimen/default_padding">
-
-                                <ImageView
-                                    android:layout_width="24dp"
-                                    android:layout_height="24dp"
-                                    android:layout_gravity="center_vertical"
-                                    android:background="#bdbdbd" />
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginStart="@dimen/default_dimen_32"
-                                    android:orientation="vertical">
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="Assigned to" />
-
-                                    <TextView
-                                        android:id="@+id/tvAssignedTo_FLD"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content" />
-
-
-                                </LinearLayout>
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal"
-                                android:padding="@dimen/default_padding">
-
-                                <ImageView
-                                    android:layout_width="24dp"
-                                    android:layout_height="24dp"
-                                    android:layout_gravity="center_vertical"
-                                    android:background="#bdbdbd" />
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginStart="@dimen/default_dimen_32"
-                                    android:orientation="vertical">
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="Priority" />
-
-
-                                    <TextView
-                                        android:id="@+id/tvPriority_FLD"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content" />
-                                </LinearLayout>
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal"
-                                android:padding="@dimen/default_padding">
-
-                                <ImageView
-                                    android:layout_width="24dp"
-                                    android:layout_height="24dp"
-                                    android:layout_gravity="center_vertical"
-                                    android:background="#bdbdbd" />
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginStart="@dimen/default_dimen_32"
-                                    android:orientation="vertical">
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="Source" />
-
-
-                                    <TextView
-                                        android:id="@+id/tvSource_FLD"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content" />
-                                </LinearLayout>
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="Tags: "
-                                    android:visibility="gone" />
-
-                                <TextView
-                                    android:id="@+id/tvTags_FLD"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_margin="@dimen/default_padding"
-                                    android:lineSpacingExtra="4dp"
-                                    android:visibility="gone"
-                                    tools:text="ThinkMobiles" />
-
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:paddingStart="@dimen/default_padding">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="Contacts"
-                                    android:textColor="#bdbdbd"
-                                    android:textSize="15sp"
-                                    android:textStyle="bold" />
-
-                                <View
-                                    android:layout_width="match_parent"
-                                    android:layout_height="1dp"
-                                    android:layout_gravity="center_vertical"
-                                    android:layout_marginStart="@dimen/default_padding_half"
-                                    android:background="#bdbdbd" />
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal"
-                                android:padding="@dimen/default_padding">
-
-                                <ImageView
-                                    android:layout_width="24dp"
-                                    android:layout_height="24dp"
-                                    android:layout_gravity="center_vertical"
-                                    android:background="#bdbdbd" />
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginStart="@dimen/default_dimen_32"
-                                    android:orientation="vertical">
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="Person" />
-
-
-                                    <TextView
-                                        android:id="@+id/tvPersonName_FLD"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content" />
-                                </LinearLayout>
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal"
-                                android:padding="@dimen/default_padding">
-
-                                <ImageView
-                                    android:layout_width="24dp"
-                                    android:layout_height="24dp"
-                                    android:layout_gravity="center_vertical"
-                                    android:background="#bdbdbd" />
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginStart="@dimen/default_dimen_32"
-                                    android:orientation="vertical">
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="Job Position" />
-
-                                    <TextView
-                                        android:id="@+id/tvJobPosition_FLD"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content" />
-
-
-                                </LinearLayout>
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal"
-                                android:padding="@dimen/default_padding">
-
-                                <ImageView
-                                    android:layout_width="24dp"
-                                    android:layout_height="24dp"
-                                    android:layout_gravity="center_vertical"
-                                    android:background="#bdbdbd" />
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginStart="@dimen/default_dimen_32"
-                                    android:orientation="vertical">
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="Date of Birth" />
-
-                                    <TextView
-                                        android:id="@+id/tvDob_FLD"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content" />
-
-                                </LinearLayout>
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal"
-                                android:padding="@dimen/default_padding">
-
-                                <ImageView
-                                    android:layout_width="24dp"
-                                    android:layout_height="24dp"
-                                    android:layout_gravity="center_vertical"
-                                    android:background="#bdbdbd" />
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginStart="@dimen/default_dimen_32"
-                                    android:orientation="vertical">
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="Email" />
-
-
-                                    <TextView
-                                        android:id="@+id/tvEmail_FLD"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content" />
-                                </LinearLayout>
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal"
-                                android:padding="@dimen/default_padding">
-
-                                <ImageView
-                                    android:layout_width="24dp"
-                                    android:layout_height="24dp"
-                                    android:layout_gravity="center_vertical"
-                                    android:background="#bdbdbd" />
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginStart="@dimen/default_dimen_32"
-                                    android:orientation="vertical">
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="Phone" />
-
-
-                                    <TextView
-                                        android:id="@+id/tvPhone_FLD"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content" />
-                                </LinearLayout>
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal"
-                                android:padding="@dimen/default_padding">
-
-                                <ImageView
-                                    android:layout_width="24dp"
-                                    android:layout_height="24dp"
-                                    android:layout_gravity="center_vertical"
-                                    android:background="#bdbdbd" />
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginStart="@dimen/default_dimen_32"
-                                    android:orientation="vertical">
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="Skype" />
-
-
-                                    <TextView
-                                        android:id="@+id/tvSkype_FLD"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content" />
-                                </LinearLayout>
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal"
-                                android:padding="@dimen/default_padding">
-
-                                <ImageView
-                                    android:layout_width="24dp"
-                                    android:layout_height="24dp"
-                                    android:layout_gravity="center_vertical"
-                                    android:background="#bdbdbd" />
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginStart="@dimen/default_dimen_32"
-                                    android:orientation="vertical">
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="LinkedIn" />
-
-
-                                    <TextView
-                                        android:id="@+id/tvLinkedIn_FLD"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content" />
-                                </LinearLayout>
-
-                            </LinearLayout>
-
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal"
-                                android:padding="@dimen/default_padding">
-
-                                <ImageView
-                                    android:layout_width="24dp"
-                                    android:layout_height="24dp"
-                                    android:layout_gravity="center_vertical"
-                                    android:background="#bdbdbd" />
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginStart="@dimen/default_dimen_32"
-                                    android:orientation="vertical">
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="Facebook" />
-
-
-                                    <TextView
-                                        android:id="@+id/tvFacebook_FLD"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content" />
-                                </LinearLayout>
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:paddingStart="@dimen/default_padding">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="Company"
-                                    android:textColor="#bdbdbd"
-                                    android:textSize="15sp"
-                                    android:textStyle="bold" />
-
-                                <View
-                                    android:layout_width="match_parent"
-                                    android:layout_height="1dp"
-                                    android:layout_gravity="center_vertical"
-                                    android:layout_marginStart="@dimen/default_padding_half"
-                                    android:background="#bdbdbd" />
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal"
-                                android:padding="@dimen/default_padding">
-
-                                <ImageView
-                                    android:layout_width="24dp"
-                                    android:layout_height="24dp"
-                                    android:layout_gravity="center_vertical"
-                                    android:background="#bdbdbd" />
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginStart="@dimen/default_dimen_32"
-                                    android:orientation="vertical">
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="Name" />
-
-
-                                    <TextView
-                                        android:id="@+id/tvCompanyName_FLD"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content" />
-                                </LinearLayout>
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal"
-                                android:padding="@dimen/default_padding">
-
-                                <ImageView
-                                    android:layout_width="24dp"
-                                    android:layout_height="24dp"
-                                    android:layout_gravity="center_vertical"
-                                    android:background="#bdbdbd" />
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginStart="@dimen/default_dimen_32"
-                                    android:orientation="vertical">
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="Address" />
-
-
-                                    <TextView
-                                        android:id="@+id/tvCompanyAddress_FLD"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content" />
-                                </LinearLayout>
-
-                            </LinearLayout>
-
-                        </LinearLayout>
-
-                    </android.support.v7.widget.CardView>
-
-                    <android.support.v7.widget.CardView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/default_padding">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="@android:color/white"
-                            android:orientation="vertical"
-                            android:padding="@dimen/default_padding">
-
-                            <TextView
+                                android:id="@+id/tvAttachments_FLD"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Attachments"
-                                android:textColor="#757575"
-                                android:textSize="16sp"
-                                android:textStyle="bold" />
-
-                            <LinearLayout
-                                android:id="@+id/llAttachmentsContainer_FLD"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="vertical">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:layout_margin="@dimen/default_padding_half"
-                                    android:alpha="0.83"
-                                    android:drawablePadding="@dimen/default_padding_half"
-                                    android:drawableTop="@drawable/ic_empty_content"
-                                    android:text="No attachments" />
-
-                            </LinearLayout>
+                                android:layout_marginTop="@dimen/default_padding_half"
+                                android:alpha="0.83"
+                                android:drawablePadding="@dimen/default_padding_half"
+                                android:text="No attachments" />
 
                         </LinearLayout>
 
-                    </android.support.v7.widget.CardView>
+                    </LinearLayout>
+
 
                 </LinearLayout>
 
@@ -656,7 +348,7 @@
                 android:id="@+id/btnHistory_FLD"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#e0e0e0"
+                android:background="#eeeeee"
                 android:elevation="3dp"
                 android:padding="@dimen/default_padding">
 

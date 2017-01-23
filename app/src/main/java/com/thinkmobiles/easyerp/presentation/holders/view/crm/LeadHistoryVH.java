@@ -9,7 +9,7 @@ import android.widget.TextView;
 import com.michenko.simpleadapter.OnCardClickListener;
 import com.michenko.simpleadapter.RecyclerVH;
 import com.thinkmobiles.easyerp.R;
-import com.thinkmobiles.easyerp.data.model.crm.leads.details.LeadNote;
+import com.thinkmobiles.easyerp.data.model.crm.leads.detail.LeadNote;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.LeadHistoryDH;
 import com.thinkmobiles.easyerp.presentation.managers.DateManager;
 import com.thinkmobiles.easyerp.presentation.utils.StringUtil;

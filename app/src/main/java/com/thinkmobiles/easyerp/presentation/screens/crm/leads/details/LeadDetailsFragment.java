@@ -2,12 +2,18 @@ package com.thinkmobiles.easyerp.presentation.screens.crm.leads.details;
 
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
+import android.text.InputType;
 import android.text.SpannableStringBuilder;
+import android.text.method.LinkMovementMethod;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -17,8 +23,8 @@ import android.widget.TextView;
 
 import com.jakewharton.rxbinding.view.RxView;
 import com.thinkmobiles.easyerp.R;
-import com.thinkmobiles.easyerp.data.model.crm.leads.details.LeadAttachment;
-import com.thinkmobiles.easyerp.data.model.crm.leads.details.LeadDetailWorkflow;
+import com.thinkmobiles.easyerp.data.model.crm.leads.detail.LeadAttachment;
+import com.thinkmobiles.easyerp.data.model.crm.leads.detail.LeadDetailWorkflow;
 import com.thinkmobiles.easyerp.domain.crm.LeadsRepository;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.LeadHistoryAdapter;
 import com.thinkmobiles.easyerp.presentation.base.BaseFragment;
@@ -92,6 +98,8 @@ public class LeadDetailsFragment extends BaseFragment<HomeActivity> implements L
     @ViewById
     protected LinearLayout llAttachmentsContainer_FLD;
     @ViewById
+    protected TextView tvAttachments_FLD;
+    @ViewById
     protected RelativeLayout btnHistory_FLD;
     @ViewById
     protected ImageView ivIconArrow_FLD;
@@ -108,6 +116,7 @@ public class LeadDetailsFragment extends BaseFragment<HomeActivity> implements L
         srlRefresh_FLD.setOnRefreshListener(() -> presenter.refresh());
         rvHistory_FLD.setLayoutManager(new LinearLayoutManager(getContext()));
         rvHistory_FLD.setAdapter(historyAdapter);
+        tvAttachments_FLD.setMovementMethod(LinkMovementMethod.getInstance());
 
         RxView.clicks(btnHistory_FLD)
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
@@ -233,24 +242,15 @@ public class LeadDetailsFragment extends BaseFragment<HomeActivity> implements L
     }
 
     @Override
-    public void setAttachments(ArrayList<LeadAttachment> attachments) {
-        llAttachmentsContainer_FLD.removeAllViews();
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        params.topMargin = (int) getResources().getDimension(R.dimen.default_padding_half);
-        for(LeadAttachment attachment : attachments) {
-            TextView tv = new TextView(getContext());
-            tv.setLayoutParams(params);
-            tv.setTextColor(ContextCompat.getColor(getContext(), android.R.color.black));
-            tv.setText(attachment.name);
-            llAttachmentsContainer_FLD.addView(tv);
-        }
+    public void setAttachments(String attachments) {
+        tvAttachments_FLD.setText(Html.fromHtml(attachments));
     }
 
     @Override
     public void showHistory(boolean enable) {
         if (enable) {
-            nsvContent_FLD.setVisibility(View.GONE);
             rvHistory_FLD.setVisibility(View.VISIBLE);
+            nsvContent_FLD.setVisibility(View.GONE);
             ivIconArrow_FLD.setImageDrawable(icArrowDown);
         } else {
             nsvContent_FLD.setVisibility(View.VISIBLE);
@@ -266,17 +266,26 @@ public class LeadDetailsFragment extends BaseFragment<HomeActivity> implements L
 
     @Override
     public void setWorkflow(ArrayList<LeadDetailWorkflow> workflows) {
-        llWorkflowContainer_FLD.removeAllViews();
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        params.rightMargin = (int) getResources().getDimension(R.dimen.default_padding);
-        for(LeadDetailWorkflow workflow : workflows) {
-            TextView tv = new TextView(getContext());
-            tv.setLayoutParams(params);
-            tv.setPadding(16, 16, 16, 16);
-            tv.setText(workflow.name);
-            tv.setTextColor(ContextCompat.getColor(getContext(), android.R.color.black));
-            tv.setBackgroundColor(Color.parseColor(workflow.color));
-            llWorkflowContainer_FLD.addView(tv);
+        if (llWorkflowContainer_FLD.getChildCount() != workflows.size()) {
+            llWorkflowContainer_FLD.removeAllViews();
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            params.rightMargin = (int) getResources().getDimension(R.dimen.default_padding);
+            for (LeadDetailWorkflow workflow : workflows) {
+                TextView tv = new TextView(getContext());
+                tv.setLayoutParams(params);
+                tv.setPadding(16, 16, 16, 16);
+                tv.setText(workflow.name);
+                tv.setTextColor(ContextCompat.getColor(getContext(), android.R.color.black));
+                tv.setBackgroundColor(Color.parseColor(workflow.color));
+                llWorkflowContainer_FLD.addView(tv);
+            }
+        } else {
+            for (int i = 0; i < workflows.size(); i++) {
+                TextView tv = (TextView) llWorkflowContainer_FLD.getChildAt(i);
+                tv.setText(workflows.get(i).name);
+                tv.setTextColor(ContextCompat.getColor(getContext(), android.R.color.black));
+                tv.setBackgroundColor(Color.parseColor(workflows.get(i).color));
+            }
         }
     }
 }

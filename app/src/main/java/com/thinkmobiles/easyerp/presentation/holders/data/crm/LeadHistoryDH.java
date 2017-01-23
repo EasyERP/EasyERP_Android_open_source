@@ -1,7 +1,7 @@
 package com.thinkmobiles.easyerp.presentation.holders.data.crm;
 
 import com.michenko.simpleadapter.RecyclerDH;
-import com.thinkmobiles.easyerp.data.model.crm.leads.details.LeadNote;
+import com.thinkmobiles.easyerp.data.model.crm.leads.detail.LeadNote;
 
 import java.util.ArrayList;
 

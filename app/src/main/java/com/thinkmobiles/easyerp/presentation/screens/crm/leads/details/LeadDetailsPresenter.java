@@ -1,7 +1,9 @@
 package com.thinkmobiles.easyerp.presentation.screens.crm.leads.details;
 
 
-import com.thinkmobiles.easyerp.data.model.crm.leads.details.ResponseGetLeadDetails;
+import com.thinkmobiles.easyerp.R;
+import com.thinkmobiles.easyerp.data.model.crm.leads.detail.ResponseGetLeadDetails;
+import com.thinkmobiles.easyerp.presentation.EasyErpApplication;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.LeadHistoryDH;
 import com.thinkmobiles.easyerp.presentation.managers.DateManager;
 import com.thinkmobiles.easyerp.presentation.utils.StringUtil;
@@ -19,6 +21,7 @@ public class LeadDetailsPresenter implements LeadDetailsContract.LeadDetailsPres
 
     private ResponseGetLeadDetails currentLead;
     private boolean isVisibleHistory;
+    private String notSpecified;
 
     public LeadDetailsPresenter(LeadDetailsContract.LeadDetailsView view, LeadDetailsContract.LeadDetailsModel model, String leadId) {
         this.view = view;
@@ -27,6 +30,8 @@ public class LeadDetailsPresenter implements LeadDetailsContract.LeadDetailsPres
         view.setPresenter(this);
 
         compositeSubscription = new CompositeSubscription();
+
+        notSpecified = EasyErpApplication.getInstance().getString(R.string.err_not_specified);
     }
 
     @Override
@@ -50,30 +55,31 @@ public class LeadDetailsPresenter implements LeadDetailsContract.LeadDetailsPres
         currentLead = response;
         view.setNameLead(response.name);
 
-        if (response.expectedClosing != null)
+        if (response.expectedClosing != null) {
             view.setCloseDate(DateManager.convertLeadDate(response.expectedClosing));
-        else
-            view.setCloseDate("No specified");
-        view.setAssignedTo(response.salesPerson != null ? response.salesPerson.fullName : "No specified");
-        view.setPriority(StringUtil.getField(response.priority));
-        view.setSource(StringUtil.getField(response.source));
+        } else {
+            view.setCloseDate(notSpecified);
+        }
+        view.setAssignedTo(response.salesPerson != null ? response.salesPerson.fullName : notSpecified);
+        view.setPriority(StringUtil.getField(response.priority, notSpecified));
+        view.setSource(StringUtil.getField(response.source, notSpecified));
         if (!response.tags.isEmpty())
             view.setTags(StringUtil.prepareTags(response.tags));
         view.setPersonName(StringUtil.getFullName(response.contactName.first, response.contactName.last));
-        view.setJobPosition(StringUtil.getField(response.jobPosition));
-        view.setDob(StringUtil.getField(response.dateBirth));
-        view.setEmail(StringUtil.getField(response.email));
-        view.setPhone(StringUtil.getField(response.phones.phone));
-        view.setSkype(StringUtil.getField(response.skype));
-        view.setLinkedIn(StringUtil.getField(response.social.linkedIn));
-        view.setTvFacebook(StringUtil.getField(response.social.facebook));
-        view.setCompanyName(StringUtil.getField(response.company != null ? response.company.fullName : response.tempCompanyField));
+        view.setJobPosition(StringUtil.getField(response.jobPosition, notSpecified));
+        view.setDob(StringUtil.getField(response.dateBirth, notSpecified));
+        view.setEmail(StringUtil.getField(response.email, notSpecified));
+        view.setPhone(StringUtil.getField(response.phones.phone, notSpecified));
+        view.setSkype(StringUtil.getField(response.skype, notSpecified));
+        view.setLinkedIn(StringUtil.getField(response.social.linkedIn, notSpecified));
+        view.setTvFacebook(StringUtil.getField(response.social.facebook, notSpecified));
+        view.setCompanyName(StringUtil.getField(response.company != null ? response.company.fullName : response.tempCompanyField, notSpecified));
         if (response.address != null) {
-            view.setCompanyAddress(StringUtil.getField(StringUtil.getAddress(response.address)));
+            view.setCompanyAddress(StringUtil.getField(StringUtil.getAddress(response.address), notSpecified));
         }
 
         if (response.attachments != null && !response.attachments.isEmpty()) {
-            view.setAttachments(response.attachments);
+            view.setAttachments(StringUtil.getAttachments(response.attachments));
         }
 
         Collections.reverse(response.notes);

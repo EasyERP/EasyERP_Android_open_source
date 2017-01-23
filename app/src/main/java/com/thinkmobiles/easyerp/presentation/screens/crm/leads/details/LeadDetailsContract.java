@@ -3,9 +3,9 @@ package com.thinkmobiles.easyerp.presentation.screens.crm.leads.details;
 
 import android.text.SpannableStringBuilder;
 
-import com.thinkmobiles.easyerp.data.model.crm.leads.details.LeadAttachment;
-import com.thinkmobiles.easyerp.data.model.crm.leads.details.LeadDetailWorkflow;
-import com.thinkmobiles.easyerp.data.model.crm.leads.details.ResponseGetLeadDetails;
+import com.thinkmobiles.easyerp.data.model.crm.leads.detail.LeadAttachment;
+import com.thinkmobiles.easyerp.data.model.crm.leads.detail.LeadDetailWorkflow;
+import com.thinkmobiles.easyerp.data.model.crm.leads.detail.ResponseGetLeadDetails;
 import com.thinkmobiles.easyerp.presentation.base.BaseModel;
 import com.thinkmobiles.easyerp.presentation.base.BasePresenter;
 import com.thinkmobiles.easyerp.presentation.base.BaseView;
@@ -37,7 +37,7 @@ public interface LeadDetailsContract {
         void setTvFacebook(String tvFacebook);
         void setCompanyName(String companyName);
         void setCompanyAddress(String companyAddress);
-        void setAttachments(ArrayList<LeadAttachment> attachments);
+        void setAttachments(String attachments);
         void setHistory(ArrayList<LeadHistoryDH> history);
 
         void setWorkflow(ArrayList<LeadDetailWorkflow> workflows);

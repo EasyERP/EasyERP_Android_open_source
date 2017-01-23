@@ -2,9 +2,8 @@ package com.thinkmobiles.easyerp.domain.crm;
 
 import com.thinkmobiles.easyerp.data.api.Rest;
 import com.thinkmobiles.easyerp.data.model.crm.leads.ResponseGetLeads;
-import com.thinkmobiles.easyerp.data.model.crm.leads.details.LeadDetailWorkflow;
-import com.thinkmobiles.easyerp.data.model.crm.leads.details.ResponseGetLeadDetails;
-import com.thinkmobiles.easyerp.data.model.crm.leads.details.ResponseGetLeadWorkflow;
+import com.thinkmobiles.easyerp.data.model.crm.leads.detail.LeadDetailWorkflow;
+import com.thinkmobiles.easyerp.data.model.crm.leads.detail.ResponseGetLeadDetails;
 import com.thinkmobiles.easyerp.data.services.LeadService;
 import com.thinkmobiles.easyerp.presentation.screens.crm.leads.LeadsContract;
 import com.thinkmobiles.easyerp.presentation.screens.crm.leads.details.LeadDetailsContract;
