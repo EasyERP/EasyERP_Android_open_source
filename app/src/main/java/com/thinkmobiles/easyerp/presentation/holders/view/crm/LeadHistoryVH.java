@@ -42,7 +42,7 @@ public class LeadHistoryVH extends RecyclerVH<LeadHistoryDH> {
     public void bindData(LeadHistoryDH data) {
         LeadNote note = data.getModel();
         tvDate_LILH.setText(DateManager.convertLeadDate(note.date));
-        tvPersonName_LILH.setText(StringUtil.getField(note.user.login));
+        tvPersonName_LILH.setText(StringUtil.getField(note.user.login, ""));
         if (note != null) {
             tvAction_LILH.setText("left a note");
             tvMessage_LILH.setText(note.note);

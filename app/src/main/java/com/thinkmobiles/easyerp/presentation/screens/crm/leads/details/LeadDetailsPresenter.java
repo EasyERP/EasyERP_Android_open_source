@@ -55,11 +55,7 @@ public class LeadDetailsPresenter implements LeadDetailsContract.LeadDetailsPres
         currentLead = response;
         view.setNameLead(response.name);
 
-        if (response.expectedClosing != null) {
-            view.setCloseDate(DateManager.convertLeadDate(response.expectedClosing));
-        } else {
-            view.setCloseDate(notSpecified);
-        }
+        view.setCloseDate(DateManager.convert(response.expectedClosing).toString());
         view.setAssignedTo(response.salesPerson != null ? response.salesPerson.fullName : notSpecified);
         view.setPriority(StringUtil.getField(response.priority, notSpecified));
         view.setSource(StringUtil.getField(response.source, notSpecified));

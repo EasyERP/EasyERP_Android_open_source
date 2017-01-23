@@ -249,10 +249,12 @@ public class LeadDetailsFragment extends BaseFragment<HomeActivity> implements L
     @Override
     public void showHistory(boolean enable) {
         if (enable) {
+            nsvContent_FLD.setVisibility(View.INVISIBLE);
             rvHistory_FLD.setVisibility(View.VISIBLE);
             nsvContent_FLD.setVisibility(View.GONE);
             ivIconArrow_FLD.setImageDrawable(icArrowDown);
         } else {
+            rvHistory_FLD.setVisibility(View.INVISIBLE);
             nsvContent_FLD.setVisibility(View.VISIBLE);
             rvHistory_FLD.setVisibility(View.GONE);
             ivIconArrow_FLD.setImageDrawable(icArrowUp);
