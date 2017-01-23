@@ -1,7 +1,6 @@
 package com.thinkmobiles.easyerp.data.services;
 
 import com.thinkmobiles.easyerp.data.model.crm.dashboard.detail.invoice.GetInvoiceResponse;
-import com.thinkmobiles.easyerp.data.model.crm.dashboard.detail.IChartModel;
 import com.thinkmobiles.easyerp.data.model.crm.dashboard.detail.invoice.InvoiceItem;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 

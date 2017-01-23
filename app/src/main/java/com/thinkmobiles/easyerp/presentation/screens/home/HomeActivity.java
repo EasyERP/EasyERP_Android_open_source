@@ -1,7 +1,5 @@
 package com.thinkmobiles.easyerp.presentation.screens.home;
 
-import android.view.MenuItem;
-
 import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.data.model.user.UserInfo;
 import com.thinkmobiles.easyerp.presentation.base.BaseMasterFlowActivity;
@@ -13,6 +11,7 @@ import com.thinkmobiles.easyerp.presentation.custom.views.drawer_menu.models.Men
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.Extra;
+import org.androidannotations.annotations.OptionsItem;
 import org.androidannotations.annotations.ViewById;
 
 /**
@@ -47,14 +46,9 @@ public class HomeActivity extends BaseMasterFlowActivity {
         return R.id.flContentDetailContainer;
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                changeStateMenu();
-                break;
-        }
-        return super.onOptionsItemSelected(item);
+    @OptionsItem(android.R.id.home)
+    void homeMenuSelect() {
+        changeStateMenu();
     }
 
     private void changeStateMenu() {

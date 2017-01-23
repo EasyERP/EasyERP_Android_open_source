@@ -3,7 +3,6 @@ package com.thinkmobiles.easyerp.domain.crm;
 import com.thinkmobiles.easyerp.data.api.Rest;
 import com.thinkmobiles.easyerp.data.model.crm.dashboard.ResponseGetCRMDashboardCharts;
 import com.thinkmobiles.easyerp.data.model.crm.dashboard.detail.DashboardChartType;
-import com.thinkmobiles.easyerp.data.model.crm.dashboard.detail.IChartModel;
 import com.thinkmobiles.easyerp.data.services.DashboardService;
 import com.thinkmobiles.easyerp.presentation.screens.crm.dashboard.DashboardListContract;
 import com.thinkmobiles.easyerp.presentation.screens.crm.dashboard.detail.DashboardDetailChartContract;

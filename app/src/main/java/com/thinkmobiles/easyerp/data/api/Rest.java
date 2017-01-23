@@ -15,7 +15,6 @@ import com.thinkmobiles.easyerp.data.services.OrderService;
 import com.thinkmobiles.easyerp.data.services.UserService;
 import com.thinkmobiles.easyerp.presentation.managers.CookieManager;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
-import com.thinkmobiles.easyerp.presentation.utils.CookieSharedPreferences_;
 
 import java.io.IOException;
 import java.lang.annotation.Annotation;

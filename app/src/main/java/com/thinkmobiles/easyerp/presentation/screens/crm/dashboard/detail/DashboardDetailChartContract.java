@@ -6,6 +6,8 @@ import com.thinkmobiles.easyerp.presentation.base.BaseModel;
 import com.thinkmobiles.easyerp.presentation.base.BasePresenter;
 import com.thinkmobiles.easyerp.presentation.base.BaseView;
 
+import java.util.Calendar;
+
 import rx.Observable;
 
 /**
@@ -17,9 +19,17 @@ public interface DashboardDetailChartContract {
         void displayHeader(final String title);
         void displayJson(final String json);
         void displayError(final String msg);
+        void displayDateFilterFromTo(final String fromToDate);
+        void chooseCustomDateFrom(final Calendar dateFrom);
+        void chooseCustomDateTo(final Calendar dateTo);
+        void reloadData();
     }
     interface DashboardDetailChartPresenter extends BasePresenter {
+        void chooseFilterType(final DateFilterType dateFilterType);
+        void setCustomFilterDateFrom(final Calendar dateFrom, boolean requireTo);
+        void setCustomFilterDateTo(final Calendar dateTo);
         void loadChartInfo();
+        DateFilterType getCurrentFilterType();
     }
     interface DashboardDetailChartModel extends BaseModel {
         Observable<?> getDashboardChartInfo(

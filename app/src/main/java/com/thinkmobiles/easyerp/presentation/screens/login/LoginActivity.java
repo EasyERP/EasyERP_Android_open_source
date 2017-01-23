@@ -7,7 +7,6 @@ import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.view.animation.AccelerateInterpolator;
@@ -28,10 +27,8 @@ import com.thinkmobiles.easyerp.data.model.user.UserInfo;
 import com.thinkmobiles.easyerp.domain.LoginRepository;
 import com.thinkmobiles.easyerp.domain.UserRepository;
 import com.thinkmobiles.easyerp.presentation.managers.CookieManager;
-import com.thinkmobiles.easyerp.presentation.managers.DateManager;
 import com.thinkmobiles.easyerp.presentation.screens.home.HomeActivity_;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
-import com.thinkmobiles.easyerp.presentation.utils.CookieSharedPreferences_;
 
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterViews;
@@ -39,7 +36,6 @@ import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.res.StringRes;
-import org.androidannotations.annotations.sharedpreferences.Pref;
 
 import java.util.concurrent.TimeUnit;
 

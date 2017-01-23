@@ -41,6 +41,12 @@ public abstract class BaseFragment<T extends Activity> extends Fragment {
     }
 
     @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
+
+    @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         if (needProgress() && (view instanceof FrameLayout || view instanceof RelativeLayout)) {

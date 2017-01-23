@@ -2,13 +2,10 @@ package com.thinkmobiles.easyerp.domain.crm;
 
 import com.thinkmobiles.easyerp.data.api.Rest;
 import com.thinkmobiles.easyerp.data.model.crm.dashboard.detail.DashboardChartType;
-import com.thinkmobiles.easyerp.data.model.crm.dashboard.detail.IChartModel;
 import com.thinkmobiles.easyerp.data.services.InvoiceService;
 import com.thinkmobiles.easyerp.data.services.OrderService;
 
 import org.androidannotations.annotations.EBean;
-
-import java.util.List;
 
 import rx.Observable;
 
