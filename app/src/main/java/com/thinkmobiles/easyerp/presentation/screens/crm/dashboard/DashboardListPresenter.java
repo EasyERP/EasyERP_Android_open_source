@@ -1,7 +1,5 @@
 package com.thinkmobiles.easyerp.presentation.screens.crm.dashboard;
 
-import android.util.Log;
-
 import com.thinkmobiles.easyerp.data.model.crm.dashboard.DashboardListItem;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectablePresenterHelper;
@@ -60,7 +58,7 @@ public class DashboardListPresenter extends MasterFlowSelectablePresenterHelper<
         final ArrayList<DashboardListDH> result = new ArrayList<>();
         for (DashboardListItem dashboardListItem : dashboardListItems) {
             final DashboardListDH dashboardListDH = new DashboardListDH(dashboardListItem);
-            makeSelectedDHIfNeed(dashboardListDH, view, position++);
+            makeSelectedDHIfNeed(dashboardListDH, view, position++, true);
             result.add(dashboardListDH);
         }
         return result;

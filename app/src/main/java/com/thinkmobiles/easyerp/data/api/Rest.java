@@ -8,9 +8,12 @@ import com.thinkmobiles.easyerp.data.api.interceptors.BadCookieInterceptor;
 import com.thinkmobiles.easyerp.data.api.interceptors.ReceiveCookieInterceptor;
 import com.thinkmobiles.easyerp.data.model.ResponseError;
 import com.thinkmobiles.easyerp.data.services.DashboardService;
+import com.thinkmobiles.easyerp.data.services.InvoiceService;
 import com.thinkmobiles.easyerp.data.services.LeadService;
 import com.thinkmobiles.easyerp.data.services.LoginService;
+import com.thinkmobiles.easyerp.data.services.OrderService;
 import com.thinkmobiles.easyerp.data.services.UserService;
+import com.thinkmobiles.easyerp.presentation.managers.CookieManager;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 import com.thinkmobiles.easyerp.presentation.utils.CookieSharedPreferences_;
 
@@ -34,12 +37,14 @@ public class Rest {
     private Retrofit retrofit;
     private OkHttpClient client;
     private Gson malformedGson;
-    private CookieSharedPreferences_ cookieSharedPreferences;
+    private CookieManager cookieManager;
 
     private LoginService loginService;
     private LeadService leadService;
     private UserService userService;
     private DashboardService dashboardService;
+    private InvoiceService invoiceService;
+    private OrderService orderService;
 
     private Converter<ResponseBody, ResponseError> converter;
 
@@ -68,6 +73,14 @@ public class Rest {
         return dashboardService == null ? createService(DashboardService.class) : dashboardService;
     }
 
+    public InvoiceService getInvoiceService() {
+        return invoiceService == null ? createService(InvoiceService.class) : invoiceService;
+    }
+
+    public OrderService getOrderService() {
+        return orderService == null ? createService(OrderService.class) : orderService;
+    }
+
     public ResponseError parseError(ResponseBody responseBody) {
         try {
             return converter.convert(responseBody);
@@ -88,11 +101,11 @@ public class Rest {
 
         OkHttpClient.Builder clientBuilder = new OkHttpClient.Builder()
                 .addNetworkInterceptor(new StethoInterceptor())
-                .addInterceptor(new ReceiveCookieInterceptor(cookieSharedPreferences));
+                .addInterceptor(new ReceiveCookieInterceptor(cookieManager));
 
         if(hasAllInterceptors) {
-            clientBuilder.addInterceptor(new AddCookieInterceptor(cookieSharedPreferences))
-                    .addInterceptor(new BadCookieInterceptor(cookieSharedPreferences));
+            clientBuilder.addInterceptor(new AddCookieInterceptor(cookieManager))
+                    .addInterceptor(new BadCookieInterceptor(cookieManager));
         }
 
         client = clientBuilder.build();
@@ -106,8 +119,8 @@ public class Rest {
         return retrofit.create(service);
     }
 
-    public void setPrefManager(CookieSharedPreferences_ cookieSharedPreferences) {
-        this.cookieSharedPreferences = cookieSharedPreferences;
+    public void setCookieManager(CookieManager cookieManager) {
+        this.cookieManager = cookieManager;
     }
 
 }

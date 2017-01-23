@@ -6,8 +6,10 @@ import android.content.Intent;
 import com.facebook.stetho.Stetho;
 import com.thinkmobiles.easyerp.BuildConfig;
 import com.thinkmobiles.easyerp.data.api.Rest;
+import com.thinkmobiles.easyerp.presentation.managers.CookieManager;
 import com.thinkmobiles.easyerp.presentation.utils.CookieSharedPreferences_;
 
+import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EApplication;
 import org.androidannotations.annotations.sharedpreferences.Pref;
 
@@ -20,8 +22,8 @@ public class EasyErpApplication extends Application {
 
     private static EasyErpApplication INSTANCE;
 
-    @Pref
-    protected CookieSharedPreferences_ cookieSharedPreferences;
+    @Bean
+    protected CookieManager cookieManager;
 
     @Override
     public void onCreate() {
@@ -30,7 +32,7 @@ public class EasyErpApplication extends Application {
         if(!BuildConfig.PRODUCTION) {
             Stetho.initializeWithDefaults(this);
         }
-        Rest.getInstance().setPrefManager(cookieSharedPreferences);
+        Rest.getInstance().setCookieManager(cookieManager);
     }
 
     public static EasyErpApplication getInstance() {
@@ -40,7 +42,7 @@ public class EasyErpApplication extends Application {
     public void restartApp() {
         Intent startIntent = getPackageManager()
                 .getLaunchIntentForPackage(getPackageName())
-                .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_NEW_TASK);
+                .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(startIntent);
     }
 }

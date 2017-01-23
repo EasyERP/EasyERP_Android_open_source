@@ -84,7 +84,6 @@ public class DashboardListFragment extends SimpleListWithRefreshFragment impleme
     public void onRefresh() {
         errorViewHelper.hideError();
         presenter.setSelectedInfo(-1, presenter.getSelectedItemId());
-        dashboardListAdapter.clear();
         presenter.subscribe();
     }
 
@@ -98,7 +97,7 @@ public class DashboardListFragment extends SimpleListWithRefreshFragment impleme
         errorViewHelper.hideError();
         displayProgress(false);
         swipeContainer.setRefreshing(false);
-        dashboardListAdapter.addListDH(listDashboards);
+        dashboardListAdapter.setListDH(listDashboards);
 
         if (getCountItemsNow() == 0)
             displayError(null, ErrorViewHelper.ErrorType.LIST_EMPTY);

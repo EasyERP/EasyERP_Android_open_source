@@ -8,9 +8,11 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.thinkmobiles.easyerp.R;
+import com.thinkmobiles.easyerp.data.model.user.UserInfo;
 import com.thinkmobiles.easyerp.presentation.custom.views.drawer_menu.holders.ITransformContent;
 import com.thinkmobiles.easyerp.presentation.custom.views.drawer_menu.holders.MenuHeaderViewHolder;
 import com.thinkmobiles.easyerp.presentation.custom.views.drawer_menu.holders.MenuItemViewHolder;
@@ -94,9 +96,9 @@ public class MenuDrawerView extends FrameLayout implements IMenuProviderFunction
     }
 
     @Override
-    public void setHeaderUserData(Object data) {
-        menuHeaderViewHolder.injectData(data);
-        miniMenuHeaderViewHolder.injectData(data);
+    public void setHeaderUserData(UserInfo userInfo) {
+        menuHeaderViewHolder.injectData(userInfo);
+        miniMenuHeaderViewHolder.injectData(userInfo);
     }
 
     @Override
@@ -168,7 +170,6 @@ public class MenuDrawerView extends FrameLayout implements IMenuProviderFunction
 
     @Override
     public void setSlideOffset(float slideOffset) {
-
         if (slideOffset <= 0f) {
             buildMiniMenuItems(MenuConfigs.menuModuleItems.get(menuHeaderViewHolder.getCurrentChosenModuleId()));
             containerExpandedLayout.setVisibility(GONE);
