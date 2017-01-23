@@ -4,6 +4,7 @@ import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.presentation.base.BaseFragment;
 import com.thinkmobiles.easyerp.presentation.screens.crm.dashboard.DashboardListFragment_;
 import com.thinkmobiles.easyerp.presentation.screens.crm.leads.LeadsFragment_;
+import com.thinkmobiles.easyerp.presentation.screens.crm.persons.PersonsFragment_;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -176,7 +177,7 @@ public abstract class MenuConfigs {
            case 1: return null;
            case 2: return LeadsFragment_.builder().build();
            case 3: return null;
-           case 4: return null;
+           case 4: return PersonsFragment_.builder().build();
            case 5: return null;
            case 6: return null;
            case 7: return null;

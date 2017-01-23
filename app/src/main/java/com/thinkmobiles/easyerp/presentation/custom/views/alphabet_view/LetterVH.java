@@ -1,6 +1,7 @@
 package com.thinkmobiles.easyerp.presentation.custom.views.alphabet_view;
 
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.TextView;
 
@@ -27,13 +28,13 @@ public class LetterVH extends RecyclerVH<LetterDH> {
         tvLetter_LIL.setText(data.getLetter());
         switch (data.getLetterState()) {
             case ENABLED:
-
+                tvLetter_LIL.setTextColor(ContextCompat.getColor(itemView.getContext(), R.color.colorPrimary));
                 break;
             case DISABLED:
-
+                tvLetter_LIL.setTextColor(ContextCompat.getColor(itemView.getContext(), android.R.color.darker_gray));
                 break;
             case SELECTED:
-
+                tvLetter_LIL.setTextColor(ContextCompat.getColor(itemView.getContext(), R.color.colorAccent));
                 break;
         }
     }
