@@ -35,7 +35,7 @@ public final class MiniMenuHeaderViewHolder extends BaseViewHolder<UserInfo> {
 
         if(!TextUtils.isEmpty(userInfo.imageSrc)) {
             ImageHelper.getBitmapFromBase64(userInfo.imageSrc, new CropCircleTransformation())
-                    .subscribe(userAvatarView::setImageBitmap);
+                    .subscribe(userAvatarView::setImageBitmap, t -> {});
         }
     }
 
