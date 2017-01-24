@@ -18,6 +18,9 @@ public class PersonModel implements Parcelable {
     public String fullName;
     public String id;
 
+    public PersonModel() {
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -36,9 +39,6 @@ public class PersonModel implements Parcelable {
         dest.writeString(this.id);
     }
 
-    public PersonModel() {
-    }
-
     protected PersonModel(Parcel in) {
         this._id = in.readString();
         this.editedBy = in.readParcelable(PersonCreatedEditedBy.class.getClassLoader());
@@ -51,7 +51,7 @@ public class PersonModel implements Parcelable {
         this.id = in.readString();
     }
 
-    public static final Parcelable.Creator<PersonModel> CREATOR = new Parcelable.Creator<PersonModel>() {
+    public static final Creator<PersonModel> CREATOR = new Creator<PersonModel>() {
         @Override
         public PersonModel createFromParcel(Parcel source) {
             return new PersonModel(source);

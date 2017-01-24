@@ -10,6 +10,9 @@ import android.os.Parcelable;
 public class PersonAddress implements Parcelable {
     public String country;
 
+    public PersonAddress() {
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -20,14 +23,11 @@ public class PersonAddress implements Parcelable {
         dest.writeString(this.country);
     }
 
-    public PersonAddress() {
-    }
-
     protected PersonAddress(Parcel in) {
         this.country = in.readString();
     }
 
-    public static final Parcelable.Creator<PersonAddress> CREATOR = new Parcelable.Creator<PersonAddress>() {
+    public static final Creator<PersonAddress> CREATOR = new Creator<PersonAddress>() {
         @Override
         public PersonAddress createFromParcel(Parcel source) {
             return new PersonAddress(source);

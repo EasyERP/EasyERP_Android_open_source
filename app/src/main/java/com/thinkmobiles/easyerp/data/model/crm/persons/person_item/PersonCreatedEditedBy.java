@@ -11,6 +11,9 @@ public class PersonCreatedEditedBy implements Parcelable {
     public String date;
     public PersonCreatedEditedUser user;
 
+    public PersonCreatedEditedBy() {
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -22,15 +25,12 @@ public class PersonCreatedEditedBy implements Parcelable {
         dest.writeParcelable(this.user, flags);
     }
 
-    public PersonCreatedEditedBy() {
-    }
-
     protected PersonCreatedEditedBy(Parcel in) {
         this.date = in.readString();
         this.user = in.readParcelable(PersonCreatedEditedUser.class.getClassLoader());
     }
 
-    public static final Parcelable.Creator<PersonCreatedEditedBy> CREATOR = new Parcelable.Creator<PersonCreatedEditedBy>() {
+    public static final Creator<PersonCreatedEditedBy> CREATOR = new Creator<PersonCreatedEditedBy>() {
         @Override
         public PersonCreatedEditedBy createFromParcel(Parcel source) {
             return new PersonCreatedEditedBy(source);
