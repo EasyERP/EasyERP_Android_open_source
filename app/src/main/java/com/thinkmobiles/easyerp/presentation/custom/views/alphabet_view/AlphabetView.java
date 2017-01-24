@@ -84,7 +84,7 @@ public class AlphabetView extends FrameLayout {
 
     private void initBaseLetters() {
         ArrayList<LetterDH> allLetters = new ArrayList<>();
-        allLetters.add(new LetterDH("All"));
+        allLetters.add(new LetterDH(LetterState.SELECTED, "All"));
         allLetters.add(new LetterDH("0-9"));
         allLetters.add(new LetterDH("A"));
         allLetters.add(new LetterDH("B"));

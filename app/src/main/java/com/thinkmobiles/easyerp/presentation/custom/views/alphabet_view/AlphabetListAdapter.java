@@ -13,6 +13,6 @@ import org.androidannotations.annotations.EBean;
 public class AlphabetListAdapter extends SimpleRecyclerAdapter<LetterDH, LetterVH> {
     @Override
     protected int getItemLayout() {
-        return R.layout.list_item_letter;
+        return R.layout.view_list_item_letter;
     }
 }
