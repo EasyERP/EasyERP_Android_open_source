@@ -59,7 +59,7 @@ public class LeadsFragment extends SimpleListWithRefreshFragment implements Lead
     protected void initUI() {
         errorViewHelper.init(errorLayout, view -> loadWithProgressBar());
 
-        LinearLayoutManager llm = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
+        LinearLayoutManager llm = new LinearLayoutManager(mActivity, LinearLayoutManager.VERTICAL, false);
         scrollListener = new EndlessRecyclerViewScrollListener(llm) {
             @Override
             public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
@@ -110,7 +110,7 @@ public class LeadsFragment extends SimpleListWithRefreshFragment implements Lead
         final String resultMsg = errorType.equals(ErrorViewHelper.ErrorType.LIST_EMPTY) ? string_list_is_empty : msg;
         if (getCountItemsNow() == 0)
             errorViewHelper.showErrorMsg(resultMsg, errorType);
-        else Toast.makeText(getContext(), resultMsg, Toast.LENGTH_LONG).show();
+        else Toast.makeText(mActivity, resultMsg, Toast.LENGTH_LONG).show();
     }
 
     @Override

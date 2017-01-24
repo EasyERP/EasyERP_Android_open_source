@@ -1,10 +1,10 @@
 package com.thinkmobiles.easyerp.presentation.base;
 
 import android.app.Activity;
+import android.app.Fragment;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,7 +50,7 @@ public abstract class BaseFragment<T extends Activity> extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         if (needProgress() && (view instanceof FrameLayout || view instanceof RelativeLayout)) {
-            progressView = LayoutInflater.from(getContext()).inflate(R.layout.view_progress, (ViewGroup) view, false);
+            progressView = LayoutInflater.from(mActivity).inflate(R.layout.view_progress, (ViewGroup) view, false);
             ((ViewGroup) view).addView(progressView);
         }
     }

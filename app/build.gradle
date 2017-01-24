@@ -74,4 +74,5 @@ dependencies {
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'com.facebook.stetho:stetho-okhttp3:1.4.2'
 
+    compile project(path: ':rangepickerdialog')
 }

@@ -1,7 +1,7 @@
 package com.thinkmobiles.easyerp.presentation.base;
 
+import android.app.Fragment;
 import android.support.annotation.IdRes;
-import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -59,13 +59,13 @@ public abstract class BaseMasterFlowActivity extends AppCompatActivity {
 
     private void replaceFragment(final BaseFragment fragment, final int containerId) {
         if (fragment != null) {
-            getSupportFragmentManager().beginTransaction()
+            getFragmentManager().beginTransaction()
                     .replace(containerId, fragment, fragment.getClass().getSimpleName())
                     .commitAllowingStateLoss();
         } else {
-            final Fragment targetFragmentForDelete = getSupportFragmentManager().findFragmentById(containerId);
+            final Fragment targetFragmentForDelete = getFragmentManager().findFragmentById(containerId);
             if (targetFragmentForDelete != null)
-                getSupportFragmentManager().beginTransaction()
+                getFragmentManager().beginTransaction()
                         .remove(targetFragmentForDelete)
                         .commitAllowingStateLoss();
         }

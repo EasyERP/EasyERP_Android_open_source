@@ -23,7 +23,4 @@
     <string name="last_financial_year">Last Financial Year</string>
     <string name="custom_dates">Custom Dates</string>
 
-    <string name="from_date">From Date</string>
-    <string name="to_date">To Date</string>
-
 </resources>

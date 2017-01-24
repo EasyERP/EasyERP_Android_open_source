@@ -20,14 +20,12 @@ public interface DashboardDetailChartContract {
         void displayJson(final String json);
         void displayError(final String msg);
         void displayDateFilterFromTo(final String fromToDate);
-        void chooseCustomDateFrom(final Calendar dateFrom);
-        void chooseCustomDateTo(final Calendar dateTo);
+        void chooseCustomDateRangeFromTo(final Calendar dateFrom, final Calendar dateTo);
         void reloadData();
     }
     interface DashboardDetailChartPresenter extends BasePresenter {
         void chooseFilterType(final DateFilterType dateFilterType);
-        void setCustomFilterDateFrom(final Calendar dateFrom, boolean requireTo);
-        void setCustomFilterDateTo(final Calendar dateTo);
+        void setCustomFilterRangeDateFromTo(final Calendar dateFrom, final Calendar dateTo);
         void loadChartInfo();
         DateFilterType getCurrentFilterType();
     }

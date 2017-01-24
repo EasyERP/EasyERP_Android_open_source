@@ -1,13 +1,12 @@
 package com.thinkmobiles.easyerp.presentation.screens.crm.dashboard.detail;
 
-import android.app.DatePickerDialog;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.leavjenn.smoothdaterangepicker.date.SmoothDateRangePickerFragment;
 import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.data.model.crm.dashboard.DashboardListItem;
 import com.thinkmobiles.easyerp.domain.crm.DashboardRepository;
@@ -125,7 +124,7 @@ public class DashboardDetailChartFragment extends BaseFragment<HomeActivity> imp
         displayProgress(false);
 
         if (containerChart.getVisibility() == View.VISIBLE)
-            Toast.makeText(getContext(), msg, Toast.LENGTH_LONG).show();
+            Toast.makeText(mActivity, msg, Toast.LENGTH_LONG).show();
         else errorViewHelper.showErrorMsg(msg, ErrorViewHelper.ErrorType.NETWORK);
     }
 
@@ -135,27 +134,17 @@ public class DashboardDetailChartFragment extends BaseFragment<HomeActivity> imp
     }
 
     @Override
-    public void chooseCustomDateFrom(Calendar dateFrom) {
-        final DatePickerDialog dialog = new DatePickerDialog(
-                getContext(),
-                (datePicker, year, monthOfYear, dayOfMonth) -> presenter.setCustomFilterDateFrom(new GregorianCalendar(year, monthOfYear, dayOfMonth), true),
+    public void chooseCustomDateRangeFromTo(Calendar dateFrom, Calendar dateTo) {
+        SmoothDateRangePickerFragment dateRangePickerFragment = SmoothDateRangePickerFragment.newInstance(
+                (rpFragment, y, m, d, yTo, mTo, dTo) -> presenter.setCustomFilterRangeDateFromTo(new GregorianCalendar(y, m, d), new GregorianCalendar(yTo, mTo, dTo)),
                 dateFrom.get(Calendar.YEAR),
                 dateFrom.get(Calendar.MONTH),
-                dateFrom.get(Calendar.DAY_OF_MONTH));
-        dialog.show();
-        Toast.makeText(getContext(), R.string.from_date, Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void chooseCustomDateTo(Calendar dateTo) {
-        final DatePickerDialog dialog = new DatePickerDialog(
-                getContext(),
-                (datePicker, year, monthOfYear, dayOfMonth) -> presenter.setCustomFilterDateTo(new GregorianCalendar(year, monthOfYear, dayOfMonth)),
+                dateFrom.get(Calendar.DAY_OF_MONTH),
                 dateTo.get(Calendar.YEAR),
                 dateTo.get(Calendar.MONTH),
                 dateTo.get(Calendar.DAY_OF_MONTH));
-        dialog.show();
-        Toast.makeText(getContext(), R.string.to_date, Toast.LENGTH_SHORT).show();
+        dateRangePickerFragment.setAccentColor(colorPrimary);
+        dateRangePickerFragment.show(getFragmentManager(), SmoothDateRangePickerFragment.class.getSimpleName());
     }
 
     @Override

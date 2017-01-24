@@ -2,8 +2,8 @@
 <resources>
 
     <dimen name="user_avatar_size">48dp</dimen>
-    <dimen name="user_avatar_size_mini">39dp</dimen>
-    <dimen name="user_avatar_divide_sizes">9dp</dimen>
+    <dimen name="user_avatar_size_mini">40dp</dimen>
+    <dimen name="user_avatar_divide_sizes">8dp</dimen>
     <dimen name="menu_items_distance_to_top">73dp</dimen>
 
     <dimen name="menu_item_thumb_size">30dp</dimen>

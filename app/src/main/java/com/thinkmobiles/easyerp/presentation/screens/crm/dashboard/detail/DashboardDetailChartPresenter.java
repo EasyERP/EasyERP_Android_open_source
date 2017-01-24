@@ -87,29 +87,22 @@ public class DashboardDetailChartPresenter implements DashboardDetailChartContra
         final Pair<Calendar, Calendar> fromToPair = getFromToFilterDate();
         view.displayDateFilterFromTo(getDateFromToString(fromToPair));
 
-        if (this.dateFilterType.equals(DateFilterType.CUSTOM_DATES)) view.chooseCustomDateFrom(fromToPair.first);
+        if (this.dateFilterType.equals(DateFilterType.CUSTOM_DATES)) view.chooseCustomDateRangeFromTo(fromToPair.first, fromToPair.second);
 
         view.reloadData();
     }
 
     @Override
-    public void setCustomFilterDateFrom(Calendar dateFrom, boolean requireTo) {
+    public void setCustomFilterRangeDateFromTo(Calendar dateFrom, Calendar dateTo) {
         customDateFrom = dateFrom.getTimeInMillis();
-        defaultStatesPreferences.edit().customDateFilterFromForCRMDashboardCharts().put(customDateFrom).apply();
-        view.displayDateFilterFromTo(getDateFromToString(getFromToFilterDate()));
-
-        if (requireTo)
-            view.chooseCustomDateTo(getFromToFilterDate().second);
-
-        view.reloadData();
-    }
-
-    @Override
-    public void setCustomFilterDateTo(Calendar dateTo) {
         customDateTo = dateTo.getTimeInMillis();
-        defaultStatesPreferences.edit().customDateFilterFromForCRMDashboardCharts().put(customDateTo).apply();
-        view.displayDateFilterFromTo(getDateFromToString(getFromToFilterDate()));
 
+        defaultStatesPreferences.edit()
+                .customDateFilterFromForCRMDashboardCharts().put(customDateFrom)
+                .customDateFilterToForCRMDashboardCharts().put(customDateTo)
+                .apply();
+
+        view.displayDateFilterFromTo(getDateFromToString(getFromToFilterDate()));
         view.reloadData();
     }
 
