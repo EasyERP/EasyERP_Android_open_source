@@ -4,7 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 
-public class LeadPhone implements Parcelable {
+public class Phone implements Parcelable {
 
     /**
      *
@@ -32,24 +32,24 @@ public class LeadPhone implements Parcelable {
         dest.writeString(this.mobile);
     }
 
-    public LeadPhone() {
+    public Phone() {
     }
 
-    protected LeadPhone(Parcel in) {
+    protected Phone(Parcel in) {
         this.fax = in.readString();
         this.phone = in.readString();
         this.mobile = in.readString();
     }
 
-    public static final Parcelable.Creator<LeadPhone> CREATOR = new Parcelable.Creator<LeadPhone>() {
+    public static final Parcelable.Creator<Phone> CREATOR = new Parcelable.Creator<Phone>() {
         @Override
-        public LeadPhone createFromParcel(Parcel source) {
-            return new LeadPhone(source);
+        public Phone createFromParcel(Parcel source) {
+            return new Phone(source);
         }
 
         @Override
-        public LeadPhone[] newArray(int size) {
-            return new LeadPhone[size];
+        public Phone[] newArray(int size) {
+            return new Phone[size];
         }
     };
 }

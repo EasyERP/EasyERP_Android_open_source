@@ -1,7 +1,6 @@
 package com.thinkmobiles.easyerp.presentation.holders.view.crm;
 
 import android.support.annotation.Nullable;
-import android.text.Html;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -10,12 +9,10 @@ import android.widget.TextView;
 import com.michenko.simpleadapter.OnCardClickListener;
 import com.michenko.simpleadapter.RecyclerVH;
 import com.thinkmobiles.easyerp.R;
-import com.thinkmobiles.easyerp.data.model.crm.leads.detail.LeadNote;
+import com.thinkmobiles.easyerp.data.model.crm.leads.detail.NoteItem;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.LeadHistoryDH;
 import com.thinkmobiles.easyerp.presentation.managers.DateManager;
 import com.thinkmobiles.easyerp.presentation.utils.StringUtil;
-
-import java.util.Locale;
 
 
 public class LeadHistoryVH extends RecyclerVH<LeadHistoryDH> {
@@ -41,7 +38,7 @@ public class LeadHistoryVH extends RecyclerVH<LeadHistoryDH> {
 
     @Override
     public void bindData(LeadHistoryDH data) {
-        LeadNote note = data.getModel();
+        NoteItem note = data.getModel();
         tvDate_LILH.setText(DateManager.convertLeadDate(note.date));
         tvPersonName_LILH.setText(StringUtil.getField(note.user.login, "Unknown"));
         tvAction_LILH.setText(StringUtil.getNoteAction(note));

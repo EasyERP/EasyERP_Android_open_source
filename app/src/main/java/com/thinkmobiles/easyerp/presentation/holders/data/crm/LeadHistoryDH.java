@@ -1,32 +1,32 @@
 package com.thinkmobiles.easyerp.presentation.holders.data.crm;
 
 import com.michenko.simpleadapter.RecyclerDH;
-import com.thinkmobiles.easyerp.data.model.crm.leads.detail.LeadNote;
+import com.thinkmobiles.easyerp.data.model.crm.leads.detail.NoteItem;
 
 import java.util.ArrayList;
 
 
 public class LeadHistoryDH extends RecyclerDH {
 
-    public static ArrayList<LeadHistoryDH> convert(ArrayList<LeadNote> list) {
+    public static ArrayList<LeadHistoryDH> convert(ArrayList<NoteItem> list) {
         ArrayList<LeadHistoryDH> historyDHs = new ArrayList<>();
-        for (LeadNote note : list) {
+        for (NoteItem note : list) {
             historyDHs.add(new LeadHistoryDH(note));
         }
         return historyDHs;
     }
 
-    private LeadNote model;
+    private NoteItem model;
 
-    public LeadHistoryDH(LeadNote model) {
+    public LeadHistoryDH(NoteItem model) {
         this.model = model;
     }
 
-    public LeadNote getModel() {
+    public NoteItem getModel() {
         return model;
     }
 
-    public void setModel(LeadNote model) {
+    public void setModel(NoteItem model) {
         this.model = model;
     }
 }

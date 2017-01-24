@@ -6,7 +6,7 @@ import android.os.Parcelable;
 
 import com.google.gson.annotations.SerializedName;
 
-public class LeadSocial implements Parcelable {
+public class Social implements Parcelable {
 
     /**
      * "social": {
@@ -31,23 +31,23 @@ public class LeadSocial implements Parcelable {
         dest.writeString(this.facebook);
     }
 
-    public LeadSocial() {
+    public Social() {
     }
 
-    protected LeadSocial(Parcel in) {
+    protected Social(Parcel in) {
         this.linkedIn = in.readString();
         this.facebook = in.readString();
     }
 
-    public static final Parcelable.Creator<LeadSocial> CREATOR = new Parcelable.Creator<LeadSocial>() {
+    public static final Parcelable.Creator<Social> CREATOR = new Parcelable.Creator<Social>() {
         @Override
-        public LeadSocial createFromParcel(Parcel source) {
-            return new LeadSocial(source);
+        public Social createFromParcel(Parcel source) {
+            return new Social(source);
         }
 
         @Override
-        public LeadSocial[] newArray(int size) {
-            return new LeadSocial[size];
+        public Social[] newArray(int size) {
+            return new Social[size];
         }
     };
 }

@@ -6,7 +6,7 @@ import android.os.Parcelable;
 
 import java.util.ArrayList;
 
-public class LeadTask implements Parcelable {
+public class NoteTask implements Parcelable {
 
     /**
     "task": {
@@ -65,20 +65,20 @@ public class LeadTask implements Parcelable {
     public String _id;
     public String description;
     public String dealDate;
-    public ArrayList<LeadAttachment> attachments;
-    public ArrayList<LeadNote> notes;
+    public ArrayList<AttachmentItem> attachments;
+    public ArrayList<NoteItem> notes;
     public String type;
     public LeadDetailWorkflow workflow;
     public String dueDate;
     public String contact;
-    public LeadCompany company;
+    public Company company;
     public int sequence;
     public LeadCategory category;
     public LeadAssignedTo assignedTo;
     public LeadDeal deal;
     public int taskCount;
     public int __v;
-    public LeadCreatedBy editedBy;
+    public CreatedEditedBy editedBy;
 
 
     @Override
@@ -107,38 +107,38 @@ public class LeadTask implements Parcelable {
         dest.writeParcelable(this.editedBy, flags);
     }
 
-    public LeadTask() {
+    public NoteTask() {
     }
 
-    protected LeadTask(Parcel in) {
+    protected NoteTask(Parcel in) {
         this._id = in.readString();
         this.description = in.readString();
         this.dealDate = in.readString();
-        this.attachments = in.createTypedArrayList(LeadAttachment.CREATOR);
-        this.notes = in.createTypedArrayList(LeadNote.CREATOR);
+        this.attachments = in.createTypedArrayList(AttachmentItem.CREATOR);
+        this.notes = in.createTypedArrayList(NoteItem.CREATOR);
         this.type = in.readString();
         this.workflow = in.readParcelable(LeadDetailWorkflow.class.getClassLoader());
         this.dueDate = in.readString();
         this.contact = in.readString();
-        this.company = in.readParcelable(LeadCompany.class.getClassLoader());
+        this.company = in.readParcelable(Company.class.getClassLoader());
         this.sequence = in.readInt();
         this.category = in.readParcelable(LeadCategory.class.getClassLoader());
         this.assignedTo = in.readParcelable(LeadAssignedTo.class.getClassLoader());
         this.deal = in.readParcelable(LeadDeal.class.getClassLoader());
         this.taskCount = in.readInt();
         this.__v = in.readInt();
-        this.editedBy = in.readParcelable(LeadCreatedBy.class.getClassLoader());
+        this.editedBy = in.readParcelable(CreatedEditedBy.class.getClassLoader());
     }
 
-    public static final Parcelable.Creator<LeadTask> CREATOR = new Parcelable.Creator<LeadTask>() {
+    public static final Parcelable.Creator<NoteTask> CREATOR = new Parcelable.Creator<NoteTask>() {
         @Override
-        public LeadTask createFromParcel(Parcel source) {
-            return new LeadTask(source);
+        public NoteTask createFromParcel(Parcel source) {
+            return new NoteTask(source);
         }
 
         @Override
-        public LeadTask[] newArray(int size) {
-            return new LeadTask[size];
+        public NoteTask[] newArray(int size) {
+            return new NoteTask[size];
         }
     };
 }

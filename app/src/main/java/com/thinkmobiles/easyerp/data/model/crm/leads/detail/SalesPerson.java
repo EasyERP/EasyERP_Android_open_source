@@ -7,7 +7,7 @@ import android.os.Parcelable;
  * Created by samson on 17.01.17.
  */
 
-public class LeadSalesPerson implements Parcelable {
+public class SalesPerson implements Parcelable {
 
     /**
      * "salesPerson": {
@@ -23,7 +23,7 @@ public class LeadSalesPerson implements Parcelable {
 
     public String _id;
     public String id;
-    public LeadName name;
+    public Name name;
     public String fullName;
 
 
@@ -40,25 +40,25 @@ public class LeadSalesPerson implements Parcelable {
         dest.writeString(this.fullName);
     }
 
-    public LeadSalesPerson() {
+    public SalesPerson() {
     }
 
-    protected LeadSalesPerson(Parcel in) {
+    protected SalesPerson(Parcel in) {
         this._id = in.readString();
         this.id = in.readString();
-        this.name = in.readParcelable(LeadName.class.getClassLoader());
+        this.name = in.readParcelable(Name.class.getClassLoader());
         this.fullName = in.readString();
     }
 
-    public static final Parcelable.Creator<LeadSalesPerson> CREATOR = new Parcelable.Creator<LeadSalesPerson>() {
+    public static final Parcelable.Creator<SalesPerson> CREATOR = new Parcelable.Creator<SalesPerson>() {
         @Override
-        public LeadSalesPerson createFromParcel(Parcel source) {
-            return new LeadSalesPerson(source);
+        public SalesPerson createFromParcel(Parcel source) {
+            return new SalesPerson(source);
         }
 
         @Override
-        public LeadSalesPerson[] newArray(int size) {
-            return new LeadSalesPerson[size];
+        public SalesPerson[] newArray(int size) {
+            return new SalesPerson[size];
         }
     };
 }

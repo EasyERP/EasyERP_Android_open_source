@@ -4,7 +4,7 @@ package com.thinkmobiles.easyerp.data.model.crm.leads.detail;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class LeadSalesPurchases implements Parcelable {
+public class SalesPurchases implements Parcelable {
 
     /**
      * "salesPurchases": {
@@ -46,10 +46,10 @@ public class LeadSalesPurchases implements Parcelable {
         dest.writeByte(this.isCustomer ? (byte) 1 : (byte) 0);
     }
 
-    public LeadSalesPurchases() {
+    public SalesPurchases() {
     }
 
-    protected LeadSalesPurchases(Parcel in) {
+    protected SalesPurchases(Parcel in) {
         this.receiveMessages = in.readInt();
         this.language = in.readString();
         this.reference = in.readString();
@@ -58,15 +58,15 @@ public class LeadSalesPurchases implements Parcelable {
         this.isCustomer = in.readByte() != 0;
     }
 
-    public static final Parcelable.Creator<LeadSalesPurchases> CREATOR = new Parcelable.Creator<LeadSalesPurchases>() {
+    public static final Parcelable.Creator<SalesPurchases> CREATOR = new Parcelable.Creator<SalesPurchases>() {
         @Override
-        public LeadSalesPurchases createFromParcel(Parcel source) {
-            return new LeadSalesPurchases(source);
+        public SalesPurchases createFromParcel(Parcel source) {
+            return new SalesPurchases(source);
         }
 
         @Override
-        public LeadSalesPurchases[] newArray(int size) {
-            return new LeadSalesPurchases[size];
+        public SalesPurchases[] newArray(int size) {
+            return new SalesPurchases[size];
         }
     };
 }

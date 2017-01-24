@@ -4,7 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 
-public class LeadCompanyInfo implements Parcelable {
+public class CompanyInfo implements Parcelable {
 
     /**
      * "companyInfo": {
@@ -25,22 +25,22 @@ public class LeadCompanyInfo implements Parcelable {
         dest.writeString(this.industry);
     }
 
-    public LeadCompanyInfo() {
+    public CompanyInfo() {
     }
 
-    protected LeadCompanyInfo(Parcel in) {
+    protected CompanyInfo(Parcel in) {
         this.industry = in.readString();
     }
 
-    public static final Parcelable.Creator<LeadCompanyInfo> CREATOR = new Parcelable.Creator<LeadCompanyInfo>() {
+    public static final Parcelable.Creator<CompanyInfo> CREATOR = new Parcelable.Creator<CompanyInfo>() {
         @Override
-        public LeadCompanyInfo createFromParcel(Parcel source) {
-            return new LeadCompanyInfo(source);
+        public CompanyInfo createFromParcel(Parcel source) {
+            return new CompanyInfo(source);
         }
 
         @Override
-        public LeadCompanyInfo[] newArray(int size) {
-            return new LeadCompanyInfo[size];
+        public CompanyInfo[] newArray(int size) {
+            return new CompanyInfo[size];
         }
     };
 }
