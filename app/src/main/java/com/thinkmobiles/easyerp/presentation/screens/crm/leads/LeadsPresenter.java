@@ -43,6 +43,7 @@ public class LeadsPresenter extends MasterFlowSelectablePresenterHelper<String> 
     @Override
     public void displayLeadDetails(String leadID) {
         Log.d("myLogs", "Display lead details ID = " + leadID);
+        view.openLeadDetailsScreen(leadID);
     }
 
     @Override

@@ -48,7 +48,7 @@ public abstract class BaseMasterFlowActivity extends AppCompatActivity {
         EasyErpApplication.getInstance().restartApp();
     }
 
-    protected void replaceFragmentContent(final BaseFragment fragment) {
+    public void replaceFragmentContent(final BaseFragment fragment) {
         replaceFragmentContentDetail(null);
         replaceFragment(fragment, contentIdLayout());
     }

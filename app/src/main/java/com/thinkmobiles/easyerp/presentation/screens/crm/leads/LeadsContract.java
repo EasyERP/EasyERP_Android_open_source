@@ -19,6 +19,7 @@ public interface LeadsContract {
     interface LeadsView extends MasterFlowSelectableBaseView<LeadsPresenter> {
         void displayLeads(ArrayList<LeadDH> leadDHs, boolean needClear);
         void displayError(final String msg, final ErrorViewHelper.ErrorType errorType);
+        void openLeadDetailsScreen(String leadId);
     }
     interface LeadsPresenter extends MasterFlowSelectableBasePresenter<String> {
         void loadLeads(int page);

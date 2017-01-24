@@ -29,7 +29,7 @@ public abstract class ImageHelper {
     }
 
     private static Bitmap getBitmap(String str) {
-        str = str.substring(str.indexOf(","));
+        str = str.substring(str.indexOf(","));    // cut useless values
         byte[] decodedString = Base64.decode(str, Base64.DEFAULT);
         return BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
     }

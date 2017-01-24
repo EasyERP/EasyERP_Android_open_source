@@ -11,6 +11,7 @@
     <string name="try_again">Try again</string>
 
     <!--Errors-->
+    <string name="err_not_specified">Not specified</string>
     <string name="err_login_required">Login is required</string>
     <string name="err_password_required">Password is required</string>
     <string name="err_db_id_required">Database ID is required</string>

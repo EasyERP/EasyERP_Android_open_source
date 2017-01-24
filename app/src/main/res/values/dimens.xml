@@ -12,6 +12,7 @@
     <dimen name="middle_text_size">15sp</dimen>
     <dimen name="small_text_size">12sp</dimen>
 
+    <dimen name="default_dimen_32">32dp</dimen>
     <dimen name="default_padding_big">24dp</dimen>
     <dimen name="default_padding">16dp</dimen>
     <dimen name="default_padding_middle">12dp</dimen>

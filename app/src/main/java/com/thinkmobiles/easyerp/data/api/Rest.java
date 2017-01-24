@@ -12,6 +12,7 @@ import com.thinkmobiles.easyerp.data.services.InvoiceService;
 import com.thinkmobiles.easyerp.data.services.LeadService;
 import com.thinkmobiles.easyerp.data.services.LoginService;
 import com.thinkmobiles.easyerp.data.services.OrderService;
+import com.thinkmobiles.easyerp.data.services.PersonsService;
 import com.thinkmobiles.easyerp.data.services.UserService;
 import com.thinkmobiles.easyerp.presentation.managers.CookieManager;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
@@ -44,6 +45,7 @@ public class Rest {
     private DashboardService dashboardService;
     private InvoiceService invoiceService;
     private OrderService orderService;
+    private PersonsService personsService;
 
     private Converter<ResponseBody, ResponseError> converter;
 
@@ -78,6 +80,10 @@ public class Rest {
 
     public OrderService getOrderService() {
         return orderService == null ? createService(OrderService.class) : orderService;
+    }
+
+    public PersonsService getPersonsService() {
+        return personsService == null ? createService(PersonsService.class) : personsService;
     }
 
     public ResponseError parseError(ResponseBody responseBody) {

@@ -1,10 +1,13 @@
 package com.thinkmobiles.easyerp.data.services;
 
 import com.thinkmobiles.easyerp.data.model.crm.leads.ResponseGetLeads;
+import com.thinkmobiles.easyerp.data.model.crm.leads.detail.ResponseGetLeadDetails;
+import com.thinkmobiles.easyerp.data.model.crm.leads.detail.ResponseGetLeadWorkflow;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
 import retrofit2.http.GET;
 import retrofit2.http.Query;
+import retrofit2.http.Path;
 import rx.Observable;
 
 /**
@@ -18,5 +21,11 @@ public interface LeadService {
                                           @Query("page") int page,
                                           @Query("count") int count,
                                           @Query("contentType") String contentType);
+
+    @GET(Constants.GET_LEADS + "/{leadId}")
+    Observable<ResponseGetLeadDetails> getLeadDetails(@Path("leadId") String leadId);
+
+    @GET("workflows/")
+    Observable<ResponseGetLeadWorkflow> getLeadWorkflow(@Query("id") String workflowId);
 
 }

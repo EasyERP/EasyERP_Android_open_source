@@ -35,4 +35,24 @@
         <item name="theme">@style/AppTheme.InputFields</item>
     </style>
 
+    <style name="AppTheme.LeadTextInputLayoutStyle" parent="TextInputLayoutStyle">
+        <item name="hintAnimationEnabled">false</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+
+    <style name="AppTheme.LeadInputFieldStyle" parent="AppTheme.DefaultBlackEditTextTheme">
+        <item name="android:focusable">false</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:lines">1</item>
+        <item name="android:scrollHorizontally">true</item>
+        <item name="android:textAlignment">textStart</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:inputType">text</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+    </style>
+
+
 </resources>

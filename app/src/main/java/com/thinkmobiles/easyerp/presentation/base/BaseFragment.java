@@ -22,7 +22,7 @@ import org.androidannotations.annotations.SystemService;
  */
 
 @EFragment
-public abstract class BaseFragment<T extends Activity> extends Fragment {
+public abstract class BaseFragment<T extends BaseMasterFlowActivity> extends Fragment {
 
     protected T mActivity;
     private View progressView;

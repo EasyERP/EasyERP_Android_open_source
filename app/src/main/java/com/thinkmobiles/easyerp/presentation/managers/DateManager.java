@@ -44,6 +44,14 @@ public abstract class DateManager {
         }
     }
 
+    public static DateConverter convert(String date) {
+        return new DateConverter(date);
+    }
+
+    public static DateConverter convert(Calendar date) {
+        return new DateConverter(date);
+    }
+
     public static class DateConverter {
         private String srcPattern = PATTERN_DATE;
         private String dstPattern = PATTERN_OUTPUT;
@@ -121,5 +129,5 @@ public abstract class DateManager {
             }
         }
     }
-
+}
 }
