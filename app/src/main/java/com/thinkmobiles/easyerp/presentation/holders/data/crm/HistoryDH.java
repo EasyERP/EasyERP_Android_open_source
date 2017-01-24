@@ -6,19 +6,19 @@ import com.thinkmobiles.easyerp.data.model.crm.leads.detail.NoteItem;
 import java.util.ArrayList;
 
 
-public class LeadHistoryDH extends RecyclerDH {
+public class HistoryDH extends RecyclerDH {
 
-    public static ArrayList<LeadHistoryDH> convert(ArrayList<NoteItem> list) {
-        ArrayList<LeadHistoryDH> historyDHs = new ArrayList<>();
+    public static ArrayList<HistoryDH> convert(ArrayList<NoteItem> list) {
+        ArrayList<HistoryDH> historyDHs = new ArrayList<>();
         for (NoteItem note : list) {
-            historyDHs.add(new LeadHistoryDH(note));
+            historyDHs.add(new HistoryDH(note));
         }
         return historyDHs;
     }
 
     private NoteItem model;
 
-    public LeadHistoryDH(NoteItem model) {
+    public HistoryDH(NoteItem model) {
         this.model = model;
     }
 

@@ -7,6 +7,7 @@ import com.thinkmobiles.easyerp.data.model.crm.persons.details.ResponseGetPerson
 import com.thinkmobiles.easyerp.data.model.crm.persons.images.ResponseGetCustomersImages;
 import com.thinkmobiles.easyerp.data.services.PersonsService;
 import com.thinkmobiles.easyerp.presentation.screens.crm.persons.PersonsContract;
+import com.thinkmobiles.easyerp.presentation.screens.crm.persons.details.PersonDetailsContract;
 
 import org.androidannotations.annotations.EBean;
 
@@ -21,7 +22,7 @@ import rx.schedulers.Schedulers;
  */
 
 @EBean(scope = EBean.Scope.Singleton)
-public class PersonsRepository implements PersonsContract.PersonsModel {
+public class PersonsRepository implements PersonsContract.PersonsModel, PersonDetailsContract.PersonDetailsModel {
 
     private PersonsService personsService;
 

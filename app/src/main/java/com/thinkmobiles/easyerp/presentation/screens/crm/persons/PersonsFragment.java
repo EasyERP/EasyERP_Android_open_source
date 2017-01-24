@@ -152,4 +152,10 @@ public class PersonsFragment extends SimpleListWithRefreshFragment implements Pe
     public int getCountItemsNow() {
         return personsAdapter.getItemCount();
     }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        if(presenter != null) presenter.unsubscribe();
+    }
 }

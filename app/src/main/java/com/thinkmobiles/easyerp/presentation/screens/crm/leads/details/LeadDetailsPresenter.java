@@ -4,7 +4,7 @@ package com.thinkmobiles.easyerp.presentation.screens.crm.leads.details;
 import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.data.model.crm.leads.detail.ResponseGetLeadDetails;
 import com.thinkmobiles.easyerp.presentation.EasyErpApplication;
-import com.thinkmobiles.easyerp.presentation.holders.data.crm.LeadHistoryDH;
+import com.thinkmobiles.easyerp.presentation.holders.data.crm.HistoryDH;
 import com.thinkmobiles.easyerp.presentation.managers.DateManager;
 import com.thinkmobiles.easyerp.presentation.utils.StringUtil;
 
@@ -79,7 +79,7 @@ public class LeadDetailsPresenter implements LeadDetailsContract.LeadDetailsPres
         }
 
         Collections.reverse(response.notes);
-        view.setHistory(LeadHistoryDH.convert(response.notes));
+        view.setHistory(HistoryDH.convert(response.notes));
         view.showHistory(isVisibleHistory);
         view.setWorkflow(response.leadWorkflow.data);
     }

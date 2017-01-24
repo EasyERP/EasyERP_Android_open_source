@@ -47,7 +47,6 @@ public class PersonVH extends RecyclerVH<PersonDH> {
     @Override
     public void bindData(PersonDH data) {
         PersonModel personModel = data.getPersonModel();
-        Log.d("myLogs", String.format("base 64 = %s", data.getBase64Image()));
         ImageHelper.getBitmapFromBase64(data.getBase64Image())
                 .subscribe(bitmap -> {
                     if(bitmap != null)
