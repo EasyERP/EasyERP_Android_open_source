@@ -3,7 +3,6 @@ package com.thinkmobiles.easyerp.presentation.screens.crm.dashboard.detail;
 
 import android.support.v4.util.Pair;
 
-import com.google.gson.GsonBuilder;
 import com.thinkmobiles.easyerp.data.model.crm.dashboard.DashboardListItem;
 import com.thinkmobiles.easyerp.presentation.managers.DateManager;
 import com.thinkmobiles.easyerp.presentation.utils.AppDefaultStatesPreferences_;
@@ -70,7 +69,7 @@ public class DashboardDetailChartPresenter implements DashboardDetailChartContra
                             new DateManager.DateConverter(fromToFilter.first).setDstPattern(DateManager.PATTERN_DASHBOARD_BACKEND).toString(),
                             new DateManager.DateConverter(fromToFilter.second).setDstPattern(DateManager.PATTERN_DASHBOARD_BACKEND).toString())
                             .subscribe(
-                                    result -> view.displayJson(new GsonBuilder().setPrettyPrinting().create().toJson(result)),
+                                    result -> view.displayChart(result, workDashboardInfoForChart.getChartType()),
                                     throwable -> view.displayError(throwable.getMessage())));
     }
 
@@ -115,8 +114,8 @@ public class DashboardDetailChartPresenter implements DashboardDetailChartContra
 
     private Pair<Calendar, Calendar> getFromToFilterDate() {
         final Calendar currentCalendar = GregorianCalendar.getInstance();
-        final Calendar from = new GregorianCalendar();
-        final Calendar to = new GregorianCalendar();
+        final Calendar from = new GregorianCalendar(0, 0, 0, 0, 0, 0);
+        final Calendar to = new GregorianCalendar(0, 0, 0, 0, 0, 0);
         switch (dateFilterType) {
             case THIS_MONTH:
                 from.set(currentCalendar.get(Calendar.YEAR), currentCalendar.get(Calendar.MONTH), 1);
@@ -141,7 +140,7 @@ public class DashboardDetailChartPresenter implements DashboardDetailChartContra
 
                 to.set(Calendar.YEAR, year);
                 to.set(Calendar.MONTH, month == 0 ? Calendar.DECEMBER : month - 1);
-                to.set(Calendar.DAY_OF_MONTH, to.getActualMaximum(Calendar.DAY_OF_MONTH));
+                to.set(Calendar.DAY_OF_MONTH, to.getMaximum(Calendar.DAY_OF_MONTH));
                 break;
             case LAST_QUARTER:
                 final int currentQuarter = currentCalendar.get(Calendar.MONTH) / 3 + 1;
@@ -154,7 +153,7 @@ public class DashboardDetailChartPresenter implements DashboardDetailChartContra
 
                 to.set(Calendar.YEAR, yearForPreviousQuarter);
                 to.set(Calendar.MONTH, previousQuarter * 3 - 1);
-                to.set(Calendar.DAY_OF_MONTH, to.getActualMaximum(Calendar.DAY_OF_MONTH));
+                to.set(Calendar.DAY_OF_MONTH, to.getMaximum(Calendar.DAY_OF_MONTH));
                 break;
             case LAST_FINANCIAL_YEAR:
                 from.set(Calendar.YEAR, currentCalendar.get(Calendar.YEAR) - 1);
@@ -163,7 +162,7 @@ public class DashboardDetailChartPresenter implements DashboardDetailChartContra
 
                 to.set(Calendar.YEAR, currentCalendar.get(Calendar.YEAR) - 1);
                 to.set(Calendar.MONTH, Calendar.DECEMBER);
-                to.set(Calendar.DAY_OF_MONTH, to.getActualMaximum(Calendar.DAY_OF_MONTH));
+                to.set(Calendar.DAY_OF_MONTH, to.getMaximum(Calendar.DAY_OF_MONTH));
                 break;
             case CUSTOM_DATES:
                 from.setTimeInMillis(customDateFrom = (customDateFrom < 0 ? currentCalendar.getTimeInMillis() : customDateFrom));

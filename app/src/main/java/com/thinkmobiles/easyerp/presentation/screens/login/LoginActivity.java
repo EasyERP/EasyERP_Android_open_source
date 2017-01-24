@@ -116,7 +116,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
     private void putDefaultDebugCredentials() {
         etLogin_AL.setText("testAdmin");
         etPassword_AL.setText("111111");
-        etDbId_AL.setText("sergey");
+        etDbId_AL.setText("lilyadb");
     }
 
     @Override

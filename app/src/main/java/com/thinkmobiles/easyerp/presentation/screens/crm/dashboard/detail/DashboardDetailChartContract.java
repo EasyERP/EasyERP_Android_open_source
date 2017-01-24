@@ -17,7 +17,7 @@ import rx.Observable;
 public interface DashboardDetailChartContract {
     interface DashboardDetailChartView extends BaseView<DashboardDetailChartPresenter> {
         void displayHeader(final String title);
-        void displayJson(final String json);
+        void displayChart(final Object data, final DashboardChartType chartType);
         void displayError(final String msg);
         void displayDateFilterFromTo(final String fromToDate);
         void chooseCustomDateRangeFromTo(final Calendar dateFrom, final Calendar dateTo);

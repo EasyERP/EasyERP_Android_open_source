@@ -3,16 +3,20 @@ package com.thinkmobiles.easyerp.presentation.screens.crm.dashboard.detail;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.leavjenn.smoothdaterangepicker.date.SmoothDateRangePickerFragment;
 import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.data.model.crm.dashboard.DashboardListItem;
+import com.thinkmobiles.easyerp.data.model.crm.dashboard.detail.DashboardChartType;
 import com.thinkmobiles.easyerp.domain.crm.DashboardRepository;
 import com.thinkmobiles.easyerp.presentation.base.BaseFragment;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.screens.crm.dashboard.detail.DashboardDetailChartContract.DashboardDetailChartView;
+import com.thinkmobiles.easyerp.presentation.screens.crm.dashboard.detail.charts.ChartViewFabric;
+import com.thinkmobiles.easyerp.presentation.screens.crm.dashboard.detail.charts.IChartView;
 import com.thinkmobiles.easyerp.presentation.screens.home.HomeActivity;
 import com.thinkmobiles.easyerp.presentation.utils.AppDefaultStatesPreferences_;
 
@@ -53,13 +57,11 @@ public class DashboardDetailChartFragment extends BaseFragment<HomeActivity> imp
     @ViewById
     protected SwipeRefreshLayout swipeContainer;
     @ViewById(R.id.flContainerChart_FDCD)
-    protected View containerChart;
+    protected FrameLayout containerChart;
     @ViewById(R.id.tvTitleDashboardDetail_FDCD)
     protected TextView titleDashboardChart;
     @ViewById(R.id.tvPreviewDateFilterDates_FDCD)
     protected TextView previewDateFilterDates;
-    @ViewById(R.id.tvJson_FDCD)
-    protected TextView jsonViewer;
 
     @ColorRes
     protected int colorPrimary;
@@ -111,11 +113,14 @@ public class DashboardDetailChartFragment extends BaseFragment<HomeActivity> imp
     }
 
     @Override
-    public void displayJson(String json) {
+    public void displayChart(Object data, DashboardChartType chartType) {
         swipeContainer.setRefreshing(false);
         displayProgress(false);
         containerChart.setVisibility(View.VISIBLE);
-        jsonViewer.setText(json);
+
+        IChartView chartView = ChartViewFabric.implementByChartType(chartType);
+        if (chartView != null)
+            chartView.render(containerChart, data);
     }
 
     @Override

@@ -46,15 +46,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_below="@id/llHeaderChartsDetail_FDCD"
-                android:padding="@dimen/default_padding">
-
-                <TextView
-                    android:id="@+id/tvJson_FDCD"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textSize="@dimen/small_text_size" />
-
-            </FrameLayout>
+                android:padding="@dimen/default_padding" />
 
         </RelativeLayout>
     </android.support.v4.widget.SwipeRefreshLayout>
