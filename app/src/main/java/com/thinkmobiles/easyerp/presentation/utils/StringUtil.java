@@ -2,6 +2,7 @@ package com.thinkmobiles.easyerp.presentation.utils;
 
 
 import android.graphics.Color;
+import android.text.Html;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.TextUtils;
@@ -10,6 +11,7 @@ import android.util.Xml;
 import com.thinkmobiles.easyerp.data.model.crm.leads.LeadTag;
 import com.thinkmobiles.easyerp.data.model.crm.leads.detail.LeadAddress;
 import com.thinkmobiles.easyerp.data.model.crm.leads.detail.LeadAttachment;
+import com.thinkmobiles.easyerp.data.model.crm.leads.detail.LeadNote;
 import com.thinkmobiles.easyerp.presentation.EasyErpApplication_;
 import com.thinkmobiles.easyerp.presentation.custom.RoundedBackgroundSpan;
 import com.thinkmobiles.easyerp.presentation.managers.TagHelper;
@@ -56,14 +58,61 @@ public abstract class StringUtil {
     public static String getAttachments(ArrayList<LeadAttachment> attachments) {
         StringBuilder builder = new StringBuilder();
         for (LeadAttachment attachment : attachments) {
-            builder.append(String.format(Locale.ENGLISH,
-                    "<a href=\"%s\">%s</a><p>",
-                    Constants.BASE_URL + "download/" + attachment.shortPas,
-                    attachment.name));
+            builder.append(getAttachmentURL(attachment.shortPas, attachment.name))
+                    .append("<br>");
         }
         int length = builder.length();
         return builder.delete(length - 4, length - 1).toString();
     }
+
+    public static String getAttachmentURL(String shortPas, String name) {
+        return String.format(Locale.ENGLISH,
+                "<a href=\"%s\">%s</a>",
+                Constants.BASE_URL + "download/" + shortPas,
+                name);
+    }
+
+    public static String getNoteAction(LeadNote note) {
+        if (note.task != null) {
+            return "created task";
+        } else if (note.history != null) {
+            if (note.history.prevValue == null) {
+                return "added";
+            } else {
+                return "changed";
+            }
+        } else {
+            return "left a note";
+        }
+    }
+
+    public static String getNoteMessage(LeadNote note) {
+        StringBuilder builder = new StringBuilder();
+        if (note.task != null) {
+            if (!TextUtils.isEmpty(note.task.description))
+                builder.append(note.task.description)
+                        .append("<br>");
+            builder.append("Assigned to ")
+                    .append(note.task.assignedTo.fullName);
+        } else if (note.history != null) {
+            builder.append(note.history.changedField);
+            if (note.history.prevValue != null) {
+                builder.append(" from ")
+                        .append(note.history.prevValue)
+                        .append(" to");
+            }
+            builder.append(" ").append(note.history.newValue);
+        } else if (!TextUtils.isEmpty(note.note)){
+            builder.append(note.note);
+        }
+        if (note.attachment != null) {
+            builder.append(builder.length() > 0 ? "<p>" : "")
+                    .append(StringUtil.getAttachmentURL(note.attachment.shortPas, note.attachment.name));
+        }
+
+        return Html.fromHtml(builder.toString()).toString();
+    }
+
 
 
     public static SpannableStringBuilder prepareTags(ArrayList<LeadTag> leadTags) {

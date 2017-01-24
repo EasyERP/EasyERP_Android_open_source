@@ -5,7 +5,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 
-import com.thinkmobiles.easyerp.data.model.crm.leads.LeadEditedBy;
+import com.thinkmobiles.easyerp.data.model.crm.leads.EditedBy;
 
 import java.util.ArrayList;
 
@@ -29,8 +29,8 @@ public class LeadCompany implements Parcelable {
     public String channel;
     public String integrationId;
     public LeadCompanyInfo companyInfo;
-    public LeadEditedBy editedBy;
-    public LeadEditedBy createdBy;
+    public EditedBy editedBy;
+    public EditedBy createdBy;
     public ArrayList<LeadHistory> history;
     public ArrayList<LeadAttachment> attachments;
     public ArrayList<LeadNote> notes;
@@ -113,8 +113,8 @@ public class LeadCompany implements Parcelable {
         this.channel = in.readString();
         this.integrationId = in.readString();
         this.companyInfo = in.readParcelable(LeadCompanyInfo.class.getClassLoader());
-        this.editedBy = in.readParcelable(LeadEditedBy.class.getClassLoader());
-        this.createdBy = in.readParcelable(LeadEditedBy.class.getClassLoader());
+        this.editedBy = in.readParcelable(EditedBy.class.getClassLoader());
+        this.createdBy = in.readParcelable(EditedBy.class.getClassLoader());
         this.history = in.createTypedArrayList(LeadHistory.CREATOR);
         this.attachments = in.createTypedArrayList(LeadAttachment.CREATOR);
         this.notes = in.createTypedArrayList(LeadNote.CREATOR);

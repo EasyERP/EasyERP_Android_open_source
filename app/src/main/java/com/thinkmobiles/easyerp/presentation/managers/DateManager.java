@@ -95,7 +95,7 @@ public abstract class DateManager {
                     return "No specified";
                 }
             } else {
-                return outFormat.format(calendar);
+                return outFormat.format(calendar.getTime());
             }
         }
 

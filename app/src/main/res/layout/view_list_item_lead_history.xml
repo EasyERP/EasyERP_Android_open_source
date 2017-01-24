@@ -25,6 +25,8 @@
             android:layout_marginTop="@dimen/default_padding_half"
             android:layout_marginStart="@dimen/default_padding"
             android:layout_marginEnd="@dimen/default_padding"
+            android:scaleType="center"
+            android:tint="@color/colorPrimary"
             android:background="@drawable/bg_circle_border" />
 
     </FrameLayout>

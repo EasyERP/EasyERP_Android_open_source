@@ -1,6 +1,7 @@
 package com.thinkmobiles.easyerp.presentation.holders.view.crm;
 
 import android.support.annotation.Nullable;
+import android.text.Html;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -42,25 +43,15 @@ public class LeadHistoryVH extends RecyclerVH<LeadHistoryDH> {
     public void bindData(LeadHistoryDH data) {
         LeadNote note = data.getModel();
         tvDate_LILH.setText(DateManager.convertLeadDate(note.date));
-        tvPersonName_LILH.setText(StringUtil.getField(note.user.login, ""));
-        if (note != null) {
-            tvAction_LILH.setText("left a note");
-            tvMessage_LILH.setText(note.note);
-        } else if (note.task != null){
-            tvAction_LILH.setText("created task");
-            tvMessage_LILH.setText("Assigned to " + note.task.assignedTo.fullName);
+        tvPersonName_LILH.setText(StringUtil.getField(note.user.login, "Unknown"));
+        tvAction_LILH.setText(StringUtil.getNoteAction(note));
+        tvMessage_LILH.setText(StringUtil.getNoteMessage(note));
+        if (note.task != null) {
+            ivIconType_LILH.setImageResource(R.drawable.ic_circle);
         } else if (note.history != null) {
-            tvAction_LILH.setText("changed");
-            tvMessage_LILH.setText(String.format(
-                    Locale.ENGLISH,
-                    "%s from %s to %s",
-                    note.history.changedField,
-                    note.history.prevValue,
-                    note.history.newValue
-                    ));
+            ivIconType_LILH.setImageResource(R.drawable.ic_dollar);
         } else {
-            tvAction_LILH.setText(null);
-            tvMessage_LILH.setText(null);
+            ivIconType_LILH.setImageResource(R.drawable.ic_calendar);
         }
     }
 }

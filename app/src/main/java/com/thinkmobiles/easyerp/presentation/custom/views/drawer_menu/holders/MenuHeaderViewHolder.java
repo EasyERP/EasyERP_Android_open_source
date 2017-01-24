@@ -58,7 +58,7 @@ public final class MenuHeaderViewHolder extends BaseViewHolder<UserInfo> impleme
 
         if(!TextUtils.isEmpty(userInfo.imageSrc)) {
             ImageHelper.getBitmapFromBase64(userInfo.imageSrc, new CropCircleTransformation())
-                    .subscribe(userAvatarView::setImageBitmap);
+                    .subscribe(userAvatarView::setImageBitmap, t -> {});
         }
         if(!TextUtils.isEmpty(userInfo.profile.profileName))
             userNameView.setText(userInfo.profile.profileName);
