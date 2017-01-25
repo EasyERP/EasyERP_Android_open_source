@@ -15,7 +15,7 @@ public final class ChartViewFabric {
             case DONUT: return new DonutChartViewImpl();
 //            case OVERVIEW: return new OverviewChartViewImpl();
 //            case TABLE: return new TableChartViewImpl();
-//            case HORIZONTALBAR: return new HorizontalBarChartViewImpl();
+            case HORIZONTALBAR: return new HorizontalBarChartViewImpl();
             default : return null;
         }
     }

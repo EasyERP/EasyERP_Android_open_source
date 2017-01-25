@@ -16,7 +16,7 @@ import java.util.Locale;
  * Created by Asus_Dev on 1/24/2017.
  */
 
-public class DollarFormatter implements IValueFormatter, IAxisValueFormatter {
+public final class DollarFormatter implements IValueFormatter, IAxisValueFormatter {
 
     protected DecimalFormat mFormat;
 

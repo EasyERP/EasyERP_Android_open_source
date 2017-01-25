@@ -11,6 +11,7 @@ import android.widget.FrameLayout;
 
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.PieData;
@@ -29,8 +30,8 @@ import java.util.List;
  */
 
 public final class DonutChartViewImpl implements IChartView<PieData> {
-    
-    private int[] colors = new int[] {
+
+    private static int[] colors = new int[] {
             Color.parseColor("#4db7da"),
             Color.parseColor("#e36028"),
             Color.parseColor("#ffb128"),
@@ -48,7 +49,6 @@ public final class DonutChartViewImpl implements IChartView<PieData> {
 
         pieChart = new PieChart(parent.getContext());
         pieChart.setData(prepareData(data));
-        pieChart.getDescription().setEnabled(false);
         pieChart.setExtraOffsets(15, 15, 15, 15);
 
         pieChart.setDrawCenterText(true);
@@ -59,11 +59,13 @@ public final class DonutChartViewImpl implements IChartView<PieData> {
         pieChart.setEntryLabelTextSize(15);
         pieChart.setDragDecelerationFrictionCoef(0.95f);
 
-        pieChart.getDescription().setTextSize(15);
-        pieChart.getDescription().setTextColor(ContextCompat.getColor(parent.getContext(), R.color.colorPrimary));
-        pieChart.getDescription().setTextAlign(Paint.Align.LEFT);
-        pieChart.getDescription().setTypeface(Typeface.DEFAULT_BOLD);
-        pieChart.getDescription().setPosition(0, 28);
+        final Description description = pieChart.getDescription();
+        description.setEnabled(false);
+        description.setTextSize(15);
+        description.setTextColor(ContextCompat.getColor(parent.getContext(), R.color.colorPrimary));
+        description.setTextAlign(Paint.Align.LEFT);
+        description.setTypeface(Typeface.DEFAULT_BOLD);
+        description.setPosition(0, 28);
 
         Legend legend = pieChart.getLegend();
         legend.setVerticalAlignment(Legend.LegendVerticalAlignment.BOTTOM);

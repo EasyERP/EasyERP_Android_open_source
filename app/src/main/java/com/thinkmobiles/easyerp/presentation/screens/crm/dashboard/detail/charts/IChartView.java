@@ -1,5 +1,6 @@
 package com.thinkmobiles.easyerp.presentation.screens.crm.dashboard.detail.charts;
 
+import android.graphics.Color;
 import android.widget.FrameLayout;
 
 /**
