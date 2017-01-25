@@ -245,23 +245,29 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical">
+                            android:orientation="horizontal">
 
                             <CheckBox
+                                android:theme="@android:style/Theme.Holo.Light"
                                 android:id="@+id/cbIsCustomer_FPD"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
                                 android:clickable="false"
-                                android:text="Is Customer"/>
+                                android:text="Is Customer"
+                                tools:checked="true"
+                                android:textColor="@color/text_grey_hint_color"/>
 
                             <CheckBox
+                                android:theme="@android:style/Theme.Holo.Light"
                                 android:id="@+id/cbIsSupplier_FPD"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
                                 android:clickable="false"
-                                android:text="Is Supplier"/>
+                                android:text="Is Supplier"
+                                tools:checked="false"
+                                android:textColor="@color/text_grey_hint_color"/>
 
                         </LinearLayout>
 
@@ -311,7 +317,7 @@
                                 style="@style/AppTheme.LeadTextInputLayoutStyle">
 
                                 <EditText
-                                    android:id="@+id/etSalesLanguagee_FPD"
+                                    android:id="@+id/etSalesLanguage_FPD"
                                     style="@style/AppTheme.LeadInputFieldStyle"
                                     android:hint="Language"/>
 

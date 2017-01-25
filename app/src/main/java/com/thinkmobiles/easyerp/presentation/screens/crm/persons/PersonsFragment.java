@@ -16,6 +16,7 @@ import com.thinkmobiles.easyerp.presentation.custom.views.alphabet_view.Alphabet
 import com.thinkmobiles.easyerp.presentation.custom.views.alphabet_view.AlphabetView;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.PersonDH;
 import com.thinkmobiles.easyerp.presentation.listeners.EndlessRecyclerViewScrollListener;
+import com.thinkmobiles.easyerp.presentation.screens.crm.persons.details.PersonDetailsFragment_;
 
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterViews;
@@ -141,6 +142,13 @@ public class PersonsFragment extends SimpleListWithRefreshFragment implements Pe
         if (getCountItemsNow() == 0)
             errorViewHelper.showErrorMsg(resultMsg, errorType);
         else Toast.makeText(getContext(), resultMsg, Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void openPersonDetailsScreen(String personID) {
+        mActivity.replaceFragmentContentDetail(PersonDetailsFragment_.builder()
+                .personID(personID)
+                .build());
     }
 
     @Override

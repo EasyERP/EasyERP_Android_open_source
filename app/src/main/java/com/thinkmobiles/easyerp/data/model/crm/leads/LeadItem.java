@@ -40,7 +40,7 @@ public class LeadItem implements Parcelable {
     @SerializedName("_id")
     public String id;
     public int total;
-    public com.thinkmobiles.easyerp.data.model.crm.leads.detail.SalesPerson salesPerson;
+    public SalesTeam salesPerson;
     public Workflow workflow;
     public EditedBy editedBy;
     public String expectedClosing;

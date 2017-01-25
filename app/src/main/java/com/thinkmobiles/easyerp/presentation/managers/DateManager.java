@@ -19,6 +19,8 @@ public abstract class DateManager {
     private static final String PATTERN_OUTPUT              = "dd MMM, yyyy, HH:mm:ss";
     private static final String PATTERN_COOKIE_EXPIRED      = "E, dd MMM yyyy HH:mm:ss z"; //Expires=Wed, 18 Jan 2017 08:58:07 GMT
 
+    public static final String PATTERN_OUT_PERSON_DOB      = "dd MMM, yyyy";
+
     public static String convertLeadDate(String uglyDate) { //2017-01-16T11:45:04.183Z
         SimpleDateFormat sdf = new SimpleDateFormat(PATTERN_DATE, Locale.US);
         SimpleDateFormat sdfOut = new SimpleDateFormat(PATTERN_OUTPUT, Locale.US);

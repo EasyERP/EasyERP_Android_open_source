@@ -39,9 +39,12 @@ public class ResponseGetPersonDetails implements Parcelable {
     public Phone phones;
     public Address shippingAddress;
     public Address address;
-    public Company company;
+    public CompanyPersonDetails company;
     public Name name;
     public ArrayList<OpportunityItem> opportunities;
+
+    public ResponseGetPersonDetails() {
+    }
 
     @Override
     public int describeContents() {
@@ -72,9 +75,6 @@ public class ResponseGetPersonDetails implements Parcelable {
         dest.writeTypedList(this.opportunities);
     }
 
-    public ResponseGetPersonDetails() {
-    }
-
     protected ResponseGetPersonDetails(Parcel in) {
         this.id = in.readString();
         this.fullName = in.readString();
@@ -93,12 +93,12 @@ public class ResponseGetPersonDetails implements Parcelable {
         this.phones = in.readParcelable(Phone.class.getClassLoader());
         this.shippingAddress = in.readParcelable(Address.class.getClassLoader());
         this.address = in.readParcelable(Address.class.getClassLoader());
-        this.company = in.readParcelable(Company.class.getClassLoader());
+        this.company = in.readParcelable(CompanyPersonDetails.class.getClassLoader());
         this.name = in.readParcelable(Name.class.getClassLoader());
         this.opportunities = in.createTypedArrayList(OpportunityItem.CREATOR);
     }
 
-    public static final Parcelable.Creator<ResponseGetPersonDetails> CREATOR = new Parcelable.Creator<ResponseGetPersonDetails>() {
+    public static final Creator<ResponseGetPersonDetails> CREATOR = new Creator<ResponseGetPersonDetails>() {
         @Override
         public ResponseGetPersonDetails createFromParcel(Parcel source) {
             return new ResponseGetPersonDetails(source);

@@ -17,8 +17,14 @@ import rx.Observable;
 
 public interface PersonDetailsContract {
     interface PersonDetailsView extends BaseView<PersonDetailsPresenter> {
+        void showProgress(boolean enable);
+        void showHistory(boolean isShow);
+        void showCompanyInfo(boolean isShow);
+        void showSalesPurchasesInfo(boolean isShow);
+
+        void displayPersonAboutName(String name);
         void displayPersonAvatar(String base64Avatar);
-        void displayFfirstName(String firstName);
+        void displayFirstName(String firstName);
         void displayLastName(String lastName);
         void displayJobPosition(String jobPosition);
         void displayEmail(String email);
@@ -39,14 +45,13 @@ public interface PersonDetailsContract {
         void displayBillingZipcode(String billingZipcode);
         void displayBillingCountry(String billingCountry);
 
-        void displayShippingFirstName(String shippingFirstName);
+        void displayShippingFullName(String shippingFullname);
         void displayShippingStreet(String shippingStreet);
         void displayShippingCity(String shippingCity);
         void displayShippingState(String shippingState);
         void displayShippingZipcode(String shippingZipcode);
         void displayShippingCountry(String shippingCountry);
 
-        void showSalesPurchasesInfo(boolean isShow);
         void displayIsCustomer(boolean isCustomer);
         void displayIsSupplier(boolean isSupplier);
         void displaySalesTeam(String salesTeam);
@@ -55,7 +60,6 @@ public interface PersonDetailsContract {
         void displaySalesReference(String reference);
         void displaySalesLanguage(String language);
 
-        void showCompanyInfo(boolean isShow);
         void displayCompanyImage(String base64CompanyImage);
         void displayCompanyNameTitle(String companyName);
         void displayCompanyUrl(String companyUrl);
