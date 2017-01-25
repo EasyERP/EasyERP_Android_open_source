@@ -6,7 +6,6 @@ import android.os.Parcelable;
 import com.google.gson.annotations.SerializedName;
 import com.thinkmobiles.easyerp.data.model.crm.dashboard.detail.IChartModel;
 import com.thinkmobiles.easyerp.data.model.crm.leads.EditedBy;
-import com.thinkmobiles.easyerp.data.model.crm.leads.SalesPerson;
 import com.thinkmobiles.easyerp.data.model.crm.leads.Workflow;
 
 /**
@@ -17,11 +16,11 @@ public class InvoiceItem implements Parcelable, IChartModel {
 
     @SerializedName("_id")
     public String id;
-    public SalesPerson salesPerson;
+    public com.thinkmobiles.easyerp.data.model.crm.leads.detail.SalesPerson salesPerson;
     public Workflow workflow;
-    public SalesPerson supplier;
+    public com.thinkmobiles.easyerp.data.model.crm.leads.detail.SalesPerson supplier;
     public Currency currency;
-    public SalesPerson journal;
+    public com.thinkmobiles.easyerp.data.model.crm.leads.detail.SalesPerson journal;
     public PaymentInfo paymentInfo;
     public String invoiceDate;
     public String name;
@@ -66,11 +65,11 @@ public class InvoiceItem implements Parcelable, IChartModel {
 
     protected InvoiceItem(Parcel in) {
         this.id = in.readString();
-        this.salesPerson = in.readParcelable(SalesPerson.class.getClassLoader());
+        this.salesPerson = in.readParcelable(com.thinkmobiles.easyerp.data.model.crm.leads.detail.SalesPerson.class.getClassLoader());
         this.workflow = in.readParcelable(Workflow.class.getClassLoader());
-        this.supplier = in.readParcelable(SalesPerson.class.getClassLoader());
+        this.supplier = in.readParcelable(com.thinkmobiles.easyerp.data.model.crm.leads.detail.SalesPerson.class.getClassLoader());
         this.currency = in.readParcelable(Currency.class.getClassLoader());
-        this.journal = in.readParcelable(SalesPerson.class.getClassLoader());
+        this.journal = in.readParcelable(com.thinkmobiles.easyerp.data.model.crm.leads.detail.SalesPerson.class.getClassLoader());
         this.paymentInfo = in.readParcelable(PaymentInfo.class.getClassLoader());
         this.invoiceDate = in.readString();
         this.name = in.readString();

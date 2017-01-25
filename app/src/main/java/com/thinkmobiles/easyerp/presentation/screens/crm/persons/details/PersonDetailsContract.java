@@ -46,6 +46,15 @@ public interface PersonDetailsContract {
         void displayShippingZipcode(String shippingZipcode);
         void displayShippingCountry(String shippingCountry);
 
+        void showSalesPurchasesInfo(boolean isShow);
+        void displayIsCustomer(boolean isCustomer);
+        void displayIsSupplier(boolean isSupplier);
+        void displaySalesTeam(String salesTeam);
+        void displaySalesPerson(String salesPerson);
+        void displaySalesImplementedBy(String implementedBy);
+        void displaySalesReference(String reference);
+        void displaySalesLanguage(String language);
+
         void showCompanyInfo(boolean isShow);
         void displayCompanyImage(String base64CompanyImage);
         void displayCompanyNameTitle(String companyName);
