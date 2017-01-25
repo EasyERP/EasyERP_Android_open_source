@@ -3,6 +3,7 @@ package com.thinkmobiles.easyerp.presentation.screens.crm.dashboard.detail.chart
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.support.v4.content.ContextCompat;
+import android.text.TextUtils;
 import android.widget.FrameLayout;
 
 import com.github.mikephil.charting.charts.HorizontalBarChart;
@@ -16,6 +17,7 @@ import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.utils.Utils;
 import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.data.model.crm.dashboard.detail.invoice.InvoiceItem;
+import com.thinkmobiles.easyerp.presentation.managers.ColorGenerateManager;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -97,14 +99,14 @@ public final class HorizontalBarChartViewImpl implements IChartView<BarData> {
         int x = 0;
         for (InvoiceItem invoiceItem: invoiceItems) {
             barEntries.add(new BarEntry(x++, (float) (invoiceItem.sum / 100d)));
-            xLabels.add(invoiceItem.id);
+            xLabels.add(TextUtils.isEmpty(invoiceItem.id) ? "Not Assigned" : invoiceItem.id);
         }
 
         final BarDataSet barDataSet = new BarDataSet(barEntries, "Sales Managers");
         barDataSet.setValueFormatter(new DollarFormatter());
         barDataSet.setValueTextSize(10);
         barDataSet.setDrawValues(true);
-        barDataSet.setColors(generateGradientColor(invoiceItems.size()));
+        barDataSet.setColors(ColorGenerateManager.generateGradientBetweenColors(invoiceItems.size(), Color.parseColor("#99D6EA"), Color.parseColor("#1082a7")));
         barDataSet.setForm(Legend.LegendForm.CIRCLE);
         barDataSet.setFormSize(12);
 
@@ -112,33 +114,6 @@ public final class HorizontalBarChartViewImpl implements IChartView<BarData> {
         barData.setHighlightEnabled(false);
 
         return barData;
-    }
-
-    private int[] generateGradientColor(int size) {
-        final int[] colors = new int[size];
-        final int startColor = Color.parseColor("#99D6EA");
-        final int endColor = Color.parseColor("#1082a7");
-
-        int rStart = Color.red(startColor);
-        int gStart = Color.green(startColor);
-        int bStart = Color.blue(startColor);
-
-        int rEnd = Color.red(endColor);
-        int gEnd = Color.green(endColor);
-        int bEnd = Color.blue(endColor);
-
-        if (size <= 1)
-            return new int[] {startColor, endColor};
-        else {
-            int redStep = (rEnd - rStart) / (size - 1);
-            int greenStep = (gEnd - gStart) / (size - 1);
-            int blueStep = (bEnd - bStart) / (size - 1);
-
-            for (int i = 0; i < size; i++)
-                colors[i] = Color.rgb(rStart + i * redStep, gStart + i * greenStep, bStart + i * blueStep);
-
-            return colors;
-        }
     }
 
 }

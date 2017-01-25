@@ -104,7 +104,7 @@ public final class DonutChartViewImpl implements IChartView<PieData> {
         for (InvoiceItem invoiceItem: invoiceItems) {
             final Double sum = invoiceItem.sum / 100d;
             totalRevenue += sum;
-            pieEntries.add(new PieEntry(sum.floatValue(), TextUtils.isEmpty(invoiceItem.id) ? "Unknown" : invoiceItem.id));
+            pieEntries.add(new PieEntry(sum.floatValue(), TextUtils.isEmpty(invoiceItem.id) ? "Not Assigned" : invoiceItem.id));
         }
 
         final PieDataSet pieDataSet = new PieDataSet(pieEntries, null);
