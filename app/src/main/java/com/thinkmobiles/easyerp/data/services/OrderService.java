@@ -1,6 +1,5 @@
 package com.thinkmobiles.easyerp.data.services;
 
-import com.thinkmobiles.easyerp.data.model.crm.dashboard.detail.IChartModel;
 import com.thinkmobiles.easyerp.data.model.crm.dashboard.detail.order.OrderItem;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 

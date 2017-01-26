@@ -3,8 +3,6 @@ package com.thinkmobiles.easyerp.data.model.crm.persons.images;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.thinkmobiles.easyerp.data.model.crm.persons.CommonPersonsResponse;
-
 import java.util.ArrayList;
 
 /**

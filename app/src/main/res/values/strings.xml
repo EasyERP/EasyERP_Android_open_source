@@ -15,4 +15,18 @@
     <string name="err_login_required">Login is required</string>
     <string name="err_password_required">Password is required</string>
     <string name="err_db_id_required">Database ID is required</string>
+
+    <string name="date_filter">Date filter</string>
+    <string name="this_month">This Month</string>
+    <string name="this_financial_year">This Financial Year</string>
+    <string name="last_month">Last Month</string>
+    <string name="last_quarter">Last Quarter</string>
+    <string name="last_financial_year">Last Financial Year</string>
+    <string name="custom_dates">Custom Dates</string>
+    <string name="allocated">Allocated</string>
+    <string name="fulfilled">Fulfilled</string>
+    <string name="shipped">Shipped</string>
+    <string name="total_count">Total count</string>
+    <string name="total_revenue">Total revenue</string>
+
 </resources>

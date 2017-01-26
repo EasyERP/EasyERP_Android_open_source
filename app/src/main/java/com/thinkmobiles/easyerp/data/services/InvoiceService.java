@@ -1,8 +1,8 @@
 package com.thinkmobiles.easyerp.data.services;
 
 import com.thinkmobiles.easyerp.data.model.crm.dashboard.detail.invoice.GetInvoiceResponse;
-import com.thinkmobiles.easyerp.data.model.crm.dashboard.detail.IChartModel;
 import com.thinkmobiles.easyerp.data.model.crm.dashboard.detail.invoice.InvoiceItem;
+import com.thinkmobiles.easyerp.data.model.crm.dashboard.detail.order.OrderItem;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
 import java.util.List;
@@ -28,7 +28,7 @@ public interface InvoiceService {
             @Query("contentType") final String contentType);
 
     @GET(Constants.GET_INVOICE_BY_WORKFLOWS)
-    Observable<List<InvoiceItem>> getInvoiceByWorkflows(
+    Observable<List<OrderItem>> getInvoiceByWorkflows(
             @Query("filter[date][value][0]") final String filterDateValueFrom,
             @Query("filter[date][value][1]") final String filterDateValueTo,
             @Query("forSales") final boolean forSales,

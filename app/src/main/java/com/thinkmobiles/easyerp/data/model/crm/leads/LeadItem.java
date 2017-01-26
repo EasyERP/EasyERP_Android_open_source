@@ -4,7 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import com.google.gson.annotations.SerializedName;
-import com.thinkmobiles.easyerp.data.model.crm.leads.detail.*;
+import com.thinkmobiles.easyerp.data.model.crm.leads.detail.SalesTeam;
 
 import java.util.ArrayList;
 

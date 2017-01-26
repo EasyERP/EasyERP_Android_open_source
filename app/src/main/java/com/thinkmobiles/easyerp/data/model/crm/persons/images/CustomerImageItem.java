@@ -3,8 +3,6 @@ package com.thinkmobiles.easyerp.data.model.crm.persons.images;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.google.gson.annotations.SerializedName;
-
 /**
  * Created by Lynx on 1/20/2017.
  */

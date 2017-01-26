@@ -1,14 +1,15 @@
 package com.thinkmobiles.easyerp.presentation.base;
 
-import android.app.Activity;
+import android.app.Fragment;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.FrameLayout;
+import android.widget.RelativeLayout;
 
 import com.thinkmobiles.easyerp.R;
 
@@ -23,7 +24,7 @@ import org.androidannotations.annotations.SystemService;
 public abstract class BaseFragment<T extends BaseMasterFlowActivity> extends Fragment {
 
     protected T mActivity;
-    private FrameLayout progressView;
+    private View progressView;
 
     @SystemService
     protected InputMethodManager inputMethodManager;
@@ -39,11 +40,17 @@ public abstract class BaseFragment<T extends BaseMasterFlowActivity> extends Fra
     }
 
     @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
+
+    @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        if (needProgress() && view instanceof FrameLayout) {
-            progressView = (FrameLayout) LayoutInflater.from(getContext()).inflate(R.layout.view_progress, (FrameLayout) view, false);
-            ((FrameLayout) view).addView(progressView);
+        if (needProgress() && (view instanceof FrameLayout || view instanceof RelativeLayout)) {
+            progressView = LayoutInflater.from(mActivity).inflate(R.layout.view_progress, (ViewGroup) view, false);
+            ((ViewGroup) view).addView(progressView);
         }
     }
 

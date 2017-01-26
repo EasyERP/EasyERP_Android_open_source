@@ -7,11 +7,9 @@ import com.facebook.stetho.Stetho;
 import com.thinkmobiles.easyerp.BuildConfig;
 import com.thinkmobiles.easyerp.data.api.Rest;
 import com.thinkmobiles.easyerp.presentation.managers.CookieManager;
-import com.thinkmobiles.easyerp.presentation.utils.CookieSharedPreferences_;
 
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EApplication;
-import org.androidannotations.annotations.sharedpreferences.Pref;
 
 /**
  * Created by Lynx on 1/13/2017.
