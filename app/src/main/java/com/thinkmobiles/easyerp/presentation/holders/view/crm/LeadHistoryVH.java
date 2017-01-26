@@ -49,7 +49,11 @@ public class LeadHistoryVH extends RecyclerVH<HistoryDH> {
         if (note.task != null) {
             ivIconType_LILH.setImageResource(R.drawable.ic_circle);
         } else if (note.history != null) {
-            ivIconType_LILH.setImageResource(R.drawable.ic_dollar);
+            if(note.history.collectionName.toLowerCase().equals("persons")) {
+                ivIconType_LILH.setImageResource(R.drawable.ic_person_outline_black_24dp);
+            } else {
+                ivIconType_LILH.setImageResource(R.drawable.ic_dollar);
+            }
         } else {
             ivIconType_LILH.setImageResource(R.drawable.ic_calendar);
         }
