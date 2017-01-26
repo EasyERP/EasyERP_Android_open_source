@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="25dp"
             android:textColor="@android:color/primary_text_light"
-            android:textSize="20sp"
+            android:textSize="16sp"
             tools:text="200$"/>
 
         <TextView
@@ -31,7 +31,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/colorPrimary"
-            android:textSize="20sp"
+            android:textSize="16sp"
             tools:text="SubjecTTTT"/>
 
     </LinearLayout>
@@ -47,7 +47,7 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="20dp"
             android:textColor="@android:color/primary_text_light"
-            android:textSize="24sp"
+            android:textSize="20sp"
             tools:text="Andriy Matviychuk"/>
 
         <TextView
@@ -55,7 +55,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@android:color/primary_text_light"
-            android:textSize="24sp"
+            android:textSize="20sp"
             tools:text="Sent"/>
 
     </LinearLayout>

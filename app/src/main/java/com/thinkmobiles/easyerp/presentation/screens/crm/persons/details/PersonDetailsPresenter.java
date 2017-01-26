@@ -95,6 +95,7 @@ public class PersonDetailsPresenter implements PersonDetailsContract.PersonDetai
         }
         if(!TextUtils.isEmpty(data.imageSrc)) view.displayPersonAvatar(data.imageSrc);
         if(!TextUtils.isEmpty(data.jobPosition)) view.displayJobPosition(data.jobPosition);
+        if(!TextUtils.isEmpty(data.email)) view.displayEmail(data.email);
         if(!TextUtils.isEmpty(data.skype)) view.displaySkype(data.skype);
         if(data.phones != null) {
             if(!TextUtils.isEmpty(data.phones.phone)) view.displayPhone(data.phones.phone);
@@ -137,6 +138,7 @@ public class PersonDetailsPresenter implements PersonDetailsContract.PersonDetai
 
     private void setSalesPurchasesInfo(ResponseGetPersonDetails data) {
         if(data.salesPurchases != null && (data.salesPurchases.isCustomer || data.salesPurchases.isSupplier)) {
+            view.showSalesPurchasesInfo(true);
             view.displayIsCustomer(data.salesPurchases.isCustomer);
             view.displayIsSupplier(data.salesPurchases.isSupplier);
             if(data.salesPurchases.salesTeam != null && !TextUtils.isEmpty(data.salesPurchases.salesTeam.name)) {
@@ -154,7 +156,8 @@ public class PersonDetailsPresenter implements PersonDetailsContract.PersonDetai
             if(!TextUtils.isEmpty(data.salesPurchases.language)) {
                 view.displaySalesLanguage(data.salesPurchases.language);
             }
-        }
+        } else
+            view.showSalesPurchasesInfo(false);
     }
 
     private void setCompanyInfo(ResponseGetPersonDetails data) {
@@ -163,6 +166,7 @@ public class PersonDetailsPresenter implements PersonDetailsContract.PersonDetai
             view.displayCompanyNameTitle(data.company.fullName);
             view.displayCompanyName(data.company.fullName);
             if(!TextUtils.isEmpty(data.company.imageSrc)) view.displayCompanyImage(data.company.imageSrc);
+            if(!TextUtils.isEmpty(data.company.website)) view.displayCompanyUrl(StringUtil.getClickableUrl(data.company.website, data.company.website));
             if(data.company.address != null) {
                 if(!TextUtils.isEmpty(data.company.address.street)) view.displayCompanyStreet(data.company.address.street);
                 if(!TextUtils.isEmpty(data.company.address.city)) view.displayCompanyCity(data.company.address.city);

@@ -17,7 +17,11 @@ public class CompanyPersonDetails implements Parcelable {
     public String email;
     public String imageSrc;
     public String fullName;
+    public String website;
     public String id;
+
+    public CompanyPersonDetails() {
+    }
 
     @Override
     public int describeContents() {
@@ -31,10 +35,8 @@ public class CompanyPersonDetails implements Parcelable {
         dest.writeString(this.email);
         dest.writeString(this.imageSrc);
         dest.writeString(this.fullName);
+        dest.writeString(this.website);
         dest.writeString(this.id);
-    }
-
-    public CompanyPersonDetails() {
     }
 
     protected CompanyPersonDetails(Parcel in) {
@@ -43,10 +45,11 @@ public class CompanyPersonDetails implements Parcelable {
         this.email = in.readString();
         this.imageSrc = in.readString();
         this.fullName = in.readString();
+        this.website = in.readString();
         this.id = in.readString();
     }
 
-    public static final Parcelable.Creator<CompanyPersonDetails> CREATOR = new Parcelable.Creator<CompanyPersonDetails>() {
+    public static final Creator<CompanyPersonDetails> CREATOR = new Creator<CompanyPersonDetails>() {
         @Override
         public CompanyPersonDetails createFromParcel(Parcel source) {
             return new CompanyPersonDetails(source);

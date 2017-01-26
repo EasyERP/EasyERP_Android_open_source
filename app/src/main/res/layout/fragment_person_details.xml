@@ -64,30 +64,54 @@
 
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
+                            android:layout_height="wrap_content"
                             android:layout_marginLeft="15dp"
                             android:gravity="center_vertical"
                             android:orientation="vertical">
 
-                            <android.support.design.widget.TextInputLayout
-                                style="@style/AppTheme.LeadTextInputLayoutStyle">
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
 
-                                <EditText
-                                    android:id="@+id/etFirstName_FPD"
-                                    style="@style/AppTheme.LeadInputFieldStyle"
-                                    android:hint="First Name"/>
+                                <android.support.design.widget.TextInputLayout
+                                    style="@style/AppTheme.LeadTextInputLayoutStyle">
 
-                            </android.support.design.widget.TextInputLayout>
+                                    <EditText
+                                        android:id="@+id/etFirstName_FPD"
+                                        style="@style/AppTheme.LeadInputFieldStyle"
+                                        android:hint="First Name"/>
 
-                            <android.support.design.widget.TextInputLayout
-                                style="@style/AppTheme.LeadTextInputLayoutStyle">
+                                </android.support.design.widget.TextInputLayout>
 
-                                <EditText
-                                    android:id="@+id/etLastName_FPD"
-                                    style="@style/AppTheme.LeadInputFieldStyle"
-                                    android:hint="Last Name"/>
+                                <View
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"/>
 
-                            </android.support.design.widget.TextInputLayout>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <android.support.design.widget.TextInputLayout
+                                    style="@style/AppTheme.LeadTextInputLayoutStyle">
+
+                                    <EditText
+                                        android:id="@+id/etLastName_FPD"
+                                        style="@style/AppTheme.LeadInputFieldStyle"
+                                        android:hint="Last Name"/>
+
+                                </android.support.design.widget.TextInputLayout>
+
+                                <View
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"/>
+
+                            </LinearLayout>
 
                         </LinearLayout>
 
@@ -96,7 +120,8 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:layout_marginTop="20dp">
 
                         <android.support.design.widget.TextInputLayout
                             style="@style/AppTheme.LeadTextInputLayoutStyle">
@@ -232,120 +257,6 @@
                             android:paddingRight="10dp"
                             android:visibility="gone"
                             app:srcCompat="@drawable/ic_facebook"/>
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/llContainerSalesPurchases_FPD"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:padding="20dp">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal">
-
-                            <CheckBox
-                                android:theme="@android:style/Theme.Holo.Light"
-                                android:id="@+id/cbIsCustomer_FPD"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:clickable="false"
-                                android:text="Is Customer"
-                                tools:checked="true"
-                                android:textColor="@color/text_grey_hint_color"/>
-
-                            <CheckBox
-                                android:theme="@android:style/Theme.Holo.Light"
-                                android:id="@+id/cbIsSupplier_FPD"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:clickable="false"
-                                android:text="Is Supplier"
-                                tools:checked="false"
-                                android:textColor="@color/text_grey_hint_color"/>
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal">
-
-                            <android.support.design.widget.TextInputLayout
-                                style="@style/AppTheme.LeadTextInputLayoutStyle">
-
-                                <EditText
-                                    android:id="@+id/etSalesTeam_FPD"
-                                    style="@style/AppTheme.LeadInputFieldStyle"
-                                    android:hint="Sales Team"/>
-
-                            </android.support.design.widget.TextInputLayout>
-
-                            <android.support.design.widget.TextInputLayout
-                                style="@style/AppTheme.LeadTextInputLayoutStyle">
-
-                                <EditText
-                                    android:id="@+id/etSalesReference_FPD"
-                                    style="@style/AppTheme.LeadInputFieldStyle"
-                                    android:hint="Reference"/>
-
-                            </android.support.design.widget.TextInputLayout>
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal">
-
-                            <android.support.design.widget.TextInputLayout
-                                style="@style/AppTheme.LeadTextInputLayoutStyle">
-
-                                <EditText
-                                    android:id="@+id/etSalesPerson_FPD"
-                                    style="@style/AppTheme.LeadInputFieldStyle"
-                                    android:hint="Sales Person"/>
-
-                            </android.support.design.widget.TextInputLayout>
-
-                            <android.support.design.widget.TextInputLayout
-                                style="@style/AppTheme.LeadTextInputLayoutStyle">
-
-                                <EditText
-                                    android:id="@+id/etSalesLanguage_FPD"
-                                    style="@style/AppTheme.LeadInputFieldStyle"
-                                    android:hint="Language"/>
-
-                            </android.support.design.widget.TextInputLayout>
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal">
-
-                            <android.support.design.widget.TextInputLayout
-                                style="@style/AppTheme.LeadTextInputLayoutStyle">
-
-                                <EditText
-                                    android:id="@+id/etSalesImplementedBy_FPD"
-                                    style="@style/AppTheme.LeadInputFieldStyle"
-                                    android:hint="Implemented By"/>
-
-                            </android.support.design.widget.TextInputLayout>
-
-                            <View
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"/>
-
-                        </LinearLayout>
 
                     </LinearLayout>
 
@@ -525,6 +436,120 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/llContainerSalesPurchases_FPD"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="20dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <CheckBox
+                                android:id="@+id/cbIsCustomer_FPD"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:clickable="false"
+                                android:text="Is Customer"
+                                android:textColor="@color/text_grey_hint_color"
+                                android:theme="@android:style/Theme.Holo.Light"
+                                tools:checked="true"/>
+
+                            <CheckBox
+                                android:id="@+id/cbIsSupplier_FPD"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:clickable="false"
+                                android:text="Is Supplier"
+                                android:textColor="@color/text_grey_hint_color"
+                                android:theme="@android:style/Theme.Holo.Light"
+                                tools:checked="false"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <android.support.design.widget.TextInputLayout
+                                style="@style/AppTheme.LeadTextInputLayoutStyle">
+
+                                <EditText
+                                    android:id="@+id/etSalesTeam_FPD"
+                                    style="@style/AppTheme.LeadInputFieldStyle"
+                                    android:hint="Sales Team"/>
+
+                            </android.support.design.widget.TextInputLayout>
+
+                            <android.support.design.widget.TextInputLayout
+                                style="@style/AppTheme.LeadTextInputLayoutStyle">
+
+                                <EditText
+                                    android:id="@+id/etSalesReference_FPD"
+                                    style="@style/AppTheme.LeadInputFieldStyle"
+                                    android:hint="Reference"/>
+
+                            </android.support.design.widget.TextInputLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <android.support.design.widget.TextInputLayout
+                                style="@style/AppTheme.LeadTextInputLayoutStyle">
+
+                                <EditText
+                                    android:id="@+id/etSalesPerson_FPD"
+                                    style="@style/AppTheme.LeadInputFieldStyle"
+                                    android:hint="Sales Person"/>
+
+                            </android.support.design.widget.TextInputLayout>
+
+                            <android.support.design.widget.TextInputLayout
+                                style="@style/AppTheme.LeadTextInputLayoutStyle">
+
+                                <EditText
+                                    android:id="@+id/etSalesLanguage_FPD"
+                                    style="@style/AppTheme.LeadInputFieldStyle"
+                                    android:hint="Language"/>
+
+                            </android.support.design.widget.TextInputLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <android.support.design.widget.TextInputLayout
+                                style="@style/AppTheme.LeadTextInputLayoutStyle">
+
+                                <EditText
+                                    android:id="@+id/etSalesImplementedBy_FPD"
+                                    style="@style/AppTheme.LeadInputFieldStyle"
+                                    android:hint="Implemented By"/>
+
+                            </android.support.design.widget.TextInputLayout>
+
+                            <View
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"/>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
                         android:id="@+id/llCompanyContainer_FPD"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -564,18 +589,19 @@
                                 android:id="@+id/tvCompanyTitleUrl_FPD"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_below="@id/tvCompanyTitleName_FPD"
-                                android:textColor="@color/colorPrimary"
-                                android:textSize="16sp"
                                 android:layout_alignStart="@id/tvCompanyTitleName_FPD"
-                                android:layout_marginTop="10dp"/>
+                                android:layout_below="@id/tvCompanyTitleName_FPD"
+                                android:layout_marginTop="10dp"
+                                android:textColor="@color/colorPrimary"
+                                android:textSize="16sp"/>
 
                         </RelativeLayout>
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal">
+                            android:orientation="horizontal"
+                            android:layout_marginTop="20dp">
 
                             <android.support.design.widget.TextInputLayout
                                 style="@style/AppTheme.LeadTextInputLayoutStyle">

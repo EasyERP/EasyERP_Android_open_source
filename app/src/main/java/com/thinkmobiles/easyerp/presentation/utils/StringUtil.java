@@ -67,6 +67,11 @@ public abstract class StringUtil {
                 name);
     }
 
+    public static String getClickableUrl(String url, String name) {
+        if(!url.startsWith("http://")) url = "http://" + url;
+        return String.format(Locale.ENGLISH, "<a href=\"%s\">%s</a>", url, name);
+    }
+
     public static String getNoteAction(NoteItem note) {
         if (note.task != null) {
             return "created task";
