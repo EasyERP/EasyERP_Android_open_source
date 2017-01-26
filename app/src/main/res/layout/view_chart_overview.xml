@@ -1,6 +1,176 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="550dp"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:padding="@dimen/default_padding_half"
+    tools:background="@android:color/white">
 
-</LinearLayout>
+    <LinearLayout
+        android:id="@+id/llHeaderInfo_VCO"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/llAllocated_VCO"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="@dimen/default_padding_3dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableEnd="@drawable/ic_allocated"
+                android:drawablePadding="@dimen/default_padding_half"
+                android:gravity="center_vertical"
+                android:minWidth="105dp"
+                android:text="@string/allocated"
+                android:textAllCaps="true"
+                android:textColor="@color/chart_workflow_item_text_color"
+                android:textSize="@dimen/middle_text_size" />
+
+            <TextView
+                android:id="@+id/tvAllocatedValue_VCO"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/default_padding_middle"
+                android:textSize="@dimen/middle_text_size"
+                tools:text="4" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llFulFilled_VCO"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="@dimen/default_padding_3dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableEnd="@drawable/ic_fulfilled"
+                android:drawablePadding="@dimen/default_padding_half"
+                android:gravity="center_vertical"
+                android:minWidth="105dp"
+                android:text="@string/fulfilled"
+                android:textAllCaps="true"
+                android:textColor="@color/chart_workflow_item_text_color"
+                android:textSize="@dimen/middle_text_size" />
+
+            <TextView
+                android:id="@+id/tvFulfilledValue_VCO"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/default_padding_middle"
+                android:textSize="@dimen/middle_text_size"
+                tools:text="2" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llShipped_VCO"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="@dimen/default_padding_3dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableEnd="@drawable/ic_shipped"
+                android:drawablePadding="@dimen/default_padding_half"
+                android:gravity="center_vertical"
+                android:minWidth="105dp"
+                android:text="@string/shipped"
+                android:textAllCaps="true"
+                android:textColor="@color/chart_workflow_item_text_color"
+                android:textSize="@dimen/middle_text_size" />
+
+            <TextView
+                android:id="@+id/tvShippedValue_VCO"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/default_padding_middle"
+                android:textSize="@dimen/middle_text_size"
+                tools:text="4" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llTotalCountContainer_VCO"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/llHeaderInfo_VCO"
+        android:layout_alignTop="@id/llHeaderInfo_VCO"
+        android:layout_centerHorizontal="true"
+        android:gravity="end|center_vertical"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvTotalCountValue_VCO"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/default_padding_3dp"
+            android:textSize="@dimen/big_text_size"
+            android:textStyle="bold"
+            tools:text="20" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/default_padding_3dp"
+            android:text="@string/total_count"
+            android:textAllCaps="true"
+            android:textColor="@color/chart_workflow_item_text_color"
+            android:textSize="@dimen/middle_text_size" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llTotalRevenueContainer_VCO"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/llHeaderInfo_VCO"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@id/llHeaderInfo_VCO"
+        android:gravity="end|center_vertical"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvTotalRevenue_VCO"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/default_padding_3dp"
+            android:textSize="@dimen/big_text_size"
+            android:textStyle="bold"
+            tools:text="$19 499.25" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/default_padding_3dp"
+            android:text="@string/total_revenue"
+            android:textAllCaps="true"
+            android:textColor="@color/chart_workflow_item_text_color"
+            android:textSize="@dimen/middle_text_size" />
+
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rvWorkflows_VCO"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/llHeaderInfo_VCO"
+        android:layout_marginTop="@dimen/default_padding_half"
+        android:overScrollMode="never"
+        android:scrollbars="none" />
+
+</RelativeLayout>
