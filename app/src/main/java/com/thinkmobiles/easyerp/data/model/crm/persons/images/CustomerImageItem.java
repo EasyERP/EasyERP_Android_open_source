@@ -1,12 +1,15 @@
 package com.thinkmobiles.easyerp.data.model.crm.persons.images;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.SerializedName;
 
 /**
  * Created by Lynx on 1/20/2017.
  */
 
-public class CustomerImageItem {
+public class CustomerImageItem implements Parcelable {
     /**
      * {
      _id: "587752046cfe921708d8718a",
@@ -18,4 +21,35 @@ public class CustomerImageItem {
 
     public String id;
     public String imageSrc;
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.id);
+        dest.writeString(this.imageSrc);
+    }
+
+    public CustomerImageItem() {
+    }
+
+    protected CustomerImageItem(Parcel in) {
+        this.id = in.readString();
+        this.imageSrc = in.readString();
+    }
+
+    public static final Parcelable.Creator<CustomerImageItem> CREATOR = new Parcelable.Creator<CustomerImageItem>() {
+        @Override
+        public CustomerImageItem createFromParcel(Parcel source) {
+            return new CustomerImageItem(source);
+        }
+
+        @Override
+        public CustomerImageItem[] newArray(int size) {
+            return new CustomerImageItem[size];
+        }
+    };
 }

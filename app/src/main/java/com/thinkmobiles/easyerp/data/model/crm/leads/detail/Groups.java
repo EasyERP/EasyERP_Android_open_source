@@ -9,7 +9,7 @@ import java.util.ArrayList;
  * Created by samson on 16.01.17.
  */
 
-public class LeadGroups implements Parcelable {
+public class Groups implements Parcelable {
 
     /**
      *
@@ -21,8 +21,8 @@ public class LeadGroups implements Parcelable {
      */
 
     public ArrayList<Object> group;
-    public ArrayList<LeadUser> users;
-    public LeadUser owner;
+    public ArrayList<User> users;
+    public User owner;
 
 
     @Override
@@ -37,25 +37,25 @@ public class LeadGroups implements Parcelable {
         dest.writeParcelable(this.owner, flags);
     }
 
-    public LeadGroups() {
+    public Groups() {
     }
 
-    protected LeadGroups(Parcel in) {
+    protected Groups(Parcel in) {
         this.group = new ArrayList<Object>();
         in.readList(this.group, Object.class.getClassLoader());
-        this.users = in.createTypedArrayList(LeadUser.CREATOR);
-        this.owner = in.readParcelable(LeadUser.class.getClassLoader());
+        this.users = in.createTypedArrayList(User.CREATOR);
+        this.owner = in.readParcelable(User.class.getClassLoader());
     }
 
-    public static final Parcelable.Creator<LeadGroups> CREATOR = new Parcelable.Creator<LeadGroups>() {
+    public static final Parcelable.Creator<Groups> CREATOR = new Parcelable.Creator<Groups>() {
         @Override
-        public LeadGroups createFromParcel(Parcel source) {
-            return new LeadGroups(source);
+        public Groups createFromParcel(Parcel source) {
+            return new Groups(source);
         }
 
         @Override
-        public LeadGroups[] newArray(int size) {
-            return new LeadGroups[size];
+        public Groups[] newArray(int size) {
+            return new Groups[size];
         }
     };
 }

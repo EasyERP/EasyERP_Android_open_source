@@ -101,6 +101,7 @@ public class PersonsPresenter extends MasterFlowSelectablePresenterHelper<String
     @Override
     public void displayPersonDetails(String personID) {
         Log.d("myLogs", "Display person details ID = " + personID);
+        view.openPersonDetailsScreen(personID);
     }
 
     @Override

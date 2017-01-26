@@ -16,6 +16,7 @@ import com.thinkmobiles.easyerp.presentation.custom.views.alphabet_view.Alphabet
 import com.thinkmobiles.easyerp.presentation.custom.views.alphabet_view.AlphabetView;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.PersonDH;
 import com.thinkmobiles.easyerp.presentation.listeners.EndlessRecyclerViewScrollListener;
+import com.thinkmobiles.easyerp.presentation.screens.crm.persons.details.PersonDetailsFragment_;
 
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterViews;
@@ -144,6 +145,13 @@ public class PersonsFragment extends SimpleListWithRefreshFragment implements Pe
     }
 
     @Override
+    public void openPersonDetailsScreen(String personID) {
+        mActivity.replaceFragmentContentDetail(PersonDetailsFragment_.builder()
+                .personID(personID)
+                .build());
+    }
+
+    @Override
     public void setPresenter(PersonsContract.PersonsPresenter presenter) {
         this.presenter = presenter;
     }
@@ -151,5 +159,11 @@ public class PersonsFragment extends SimpleListWithRefreshFragment implements Pe
     @Override
     public int getCountItemsNow() {
         return personsAdapter.getItemCount();
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        if(presenter != null) presenter.unsubscribe();
     }
 }

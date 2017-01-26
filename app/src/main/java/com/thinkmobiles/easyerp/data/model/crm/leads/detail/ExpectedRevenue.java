@@ -4,7 +4,7 @@ package com.thinkmobiles.easyerp.data.model.crm.leads.detail;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class LeadExpectedRevenue implements Parcelable {
+public class ExpectedRevenue implements Parcelable {
 
     /**
      * "expectedRevenue": {
@@ -31,24 +31,24 @@ public class LeadExpectedRevenue implements Parcelable {
         dest.writeInt(this.value);
     }
 
-    public LeadExpectedRevenue() {
+    public ExpectedRevenue() {
     }
 
-    protected LeadExpectedRevenue(Parcel in) {
+    protected ExpectedRevenue(Parcel in) {
         this.currency = in.readString();
         this.progress = in.readInt();
         this.value = in.readInt();
     }
 
-    public static final Parcelable.Creator<LeadExpectedRevenue> CREATOR = new Parcelable.Creator<LeadExpectedRevenue>() {
+    public static final Parcelable.Creator<ExpectedRevenue> CREATOR = new Parcelable.Creator<ExpectedRevenue>() {
         @Override
-        public LeadExpectedRevenue createFromParcel(Parcel source) {
-            return new LeadExpectedRevenue(source);
+        public ExpectedRevenue createFromParcel(Parcel source) {
+            return new ExpectedRevenue(source);
         }
 
         @Override
-        public LeadExpectedRevenue[] newArray(int size) {
-            return new LeadExpectedRevenue[size];
+        public ExpectedRevenue[] newArray(int size) {
+            return new ExpectedRevenue[size];
         }
     };
 }

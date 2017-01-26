@@ -9,7 +9,7 @@ import com.thinkmobiles.easyerp.data.model.crm.leads.EditedBy;
 
 import java.util.ArrayList;
 
-public class LeadCompany implements Parcelable {
+public class Company implements Parcelable {
 
     //
     /**
@@ -28,33 +28,33 @@ public class LeadCompany implements Parcelable {
     public int __v;
     public String channel;
     public String integrationId;
-    public LeadCompanyInfo companyInfo;
+    public CompanyInfo companyInfo;
     public EditedBy editedBy;
     public EditedBy createdBy;
-    public ArrayList<LeadHistory> history;
-    public ArrayList<LeadAttachment> attachments;
-    public ArrayList<LeadNote> notes;
-    public LeadGroups groups;
+    public ArrayList<NoteHistory> history;
+    public ArrayList<AttachmentItem> attachments;
+    public ArrayList<NoteItem> notes;
+    public Groups groups;
     public String whoCanRW;
-    public LeadSocial social;
+    public Social social;
     public String color; //"#4d5a75"
-    public LeadUser relatedUser;
-    public LeadSalesPurchases salesPurchases;
+    public User relatedUser;
+    public SalesPurchases salesPurchases;
     public String title;
     public String internalNotes;
 //    public ArrayList<> contacts;
-    public LeadPhone phones;
+    public Phone phones;
     public String skype;
     public String jobPosition;
     public String website;
-    public LeadAddress shippingAddress;
-    public LeadAddress address;
+    public Address shippingAddress;
+    public Address address;
     public String timezone;
 //    public String department;
 //    public String company;
     public String email;
     public String imageSrc;
-    public LeadName name;
+    public Name name;
     public boolean isHidden;
     public boolean isOwn;
     public String type;
@@ -104,38 +104,38 @@ public class LeadCompany implements Parcelable {
         dest.writeString(this.id);
     }
 
-    public LeadCompany() {
+    public Company() {
     }
 
-    protected LeadCompany(Parcel in) {
+    protected Company(Parcel in) {
         this._id = in.readString();
         this.__v = in.readInt();
         this.channel = in.readString();
         this.integrationId = in.readString();
-        this.companyInfo = in.readParcelable(LeadCompanyInfo.class.getClassLoader());
+        this.companyInfo = in.readParcelable(CompanyInfo.class.getClassLoader());
         this.editedBy = in.readParcelable(EditedBy.class.getClassLoader());
         this.createdBy = in.readParcelable(EditedBy.class.getClassLoader());
-        this.history = in.createTypedArrayList(LeadHistory.CREATOR);
-        this.attachments = in.createTypedArrayList(LeadAttachment.CREATOR);
-        this.notes = in.createTypedArrayList(LeadNote.CREATOR);
-        this.groups = in.readParcelable(LeadGroups.class.getClassLoader());
+        this.history = in.createTypedArrayList(NoteHistory.CREATOR);
+        this.attachments = in.createTypedArrayList(AttachmentItem.CREATOR);
+        this.notes = in.createTypedArrayList(NoteItem.CREATOR);
+        this.groups = in.readParcelable(Groups.class.getClassLoader());
         this.whoCanRW = in.readString();
-        this.social = in.readParcelable(LeadSocial.class.getClassLoader());
+        this.social = in.readParcelable(Social.class.getClassLoader());
         this.color = in.readString();
-        this.relatedUser = in.readParcelable(LeadUser.class.getClassLoader());
-        this.salesPurchases = in.readParcelable(LeadSalesPurchases.class.getClassLoader());
+        this.relatedUser = in.readParcelable(User.class.getClassLoader());
+        this.salesPurchases = in.readParcelable(SalesPurchases.class.getClassLoader());
         this.title = in.readString();
         this.internalNotes = in.readString();
-        this.phones = in.readParcelable(LeadPhone.class.getClassLoader());
+        this.phones = in.readParcelable(Phone.class.getClassLoader());
         this.skype = in.readString();
         this.jobPosition = in.readString();
         this.website = in.readString();
-        this.shippingAddress = in.readParcelable(LeadAddress.class.getClassLoader());
-        this.address = in.readParcelable(LeadAddress.class.getClassLoader());
+        this.shippingAddress = in.readParcelable(Address.class.getClassLoader());
+        this.address = in.readParcelable(Address.class.getClassLoader());
         this.timezone = in.readString();
         this.email = in.readString();
         this.imageSrc = in.readString();
-        this.name = in.readParcelable(LeadName.class.getClassLoader());
+        this.name = in.readParcelable(Name.class.getClassLoader());
         this.isHidden = in.readByte() != 0;
         this.isOwn = in.readByte() != 0;
         this.type = in.readString();
@@ -143,15 +143,15 @@ public class LeadCompany implements Parcelable {
         this.id = in.readString();
     }
 
-    public static final Creator<LeadCompany> CREATOR = new Creator<LeadCompany>() {
+    public static final Creator<Company> CREATOR = new Creator<Company>() {
         @Override
-        public LeadCompany createFromParcel(Parcel source) {
-            return new LeadCompany(source);
+        public Company createFromParcel(Parcel source) {
+            return new Company(source);
         }
 
         @Override
-        public LeadCompany[] newArray(int size) {
-            return new LeadCompany[size];
+        public Company[] newArray(int size) {
+            return new Company[size];
         }
     };
 }

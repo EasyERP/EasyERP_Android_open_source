@@ -20,7 +20,7 @@ public class LeadAssignedTo implements Parcelable {
      */
 
     public String _id;
-    public LeadName name;
+    public Name name;
     public String imageSrc;
     public String fullName;
     public String id;
@@ -45,7 +45,7 @@ public class LeadAssignedTo implements Parcelable {
 
     protected LeadAssignedTo(Parcel in) {
         this._id = in.readString();
-        this.name = in.readParcelable(LeadName.class.getClassLoader());
+        this.name = in.readParcelable(Name.class.getClassLoader());
         this.imageSrc = in.readString();
         this.fullName = in.readString();
         this.id = in.readString();

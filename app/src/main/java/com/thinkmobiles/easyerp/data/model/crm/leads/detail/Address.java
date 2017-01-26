@@ -4,7 +4,7 @@ package com.thinkmobiles.easyerp.data.model.crm.leads.detail;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class LeadAddress implements Parcelable {
+public class Address implements Parcelable {
 
     /**
      * "address": {
@@ -24,7 +24,7 @@ public class LeadAddress implements Parcelable {
     public String street;
 
 
-    public LeadAddress() {
+    public Address() {
     }
 
     @Override
@@ -42,7 +42,7 @@ public class LeadAddress implements Parcelable {
         dest.writeString(this.street);
     }
 
-    protected LeadAddress(Parcel in) {
+    protected Address(Parcel in) {
         this.name = in.readString();
         this.country = in.readString();
         this.zip = in.readString();
@@ -51,15 +51,15 @@ public class LeadAddress implements Parcelable {
         this.street = in.readString();
     }
 
-    public static final Creator<LeadAddress> CREATOR = new Creator<LeadAddress>() {
+    public static final Creator<Address> CREATOR = new Creator<Address>() {
         @Override
-        public LeadAddress createFromParcel(Parcel source) {
-            return new LeadAddress(source);
+        public Address createFromParcel(Parcel source) {
+            return new Address(source);
         }
 
         @Override
-        public LeadAddress[] newArray(int size) {
-            return new LeadAddress[size];
+        public Address[] newArray(int size) {
+            return new Address[size];
         }
     };
 }

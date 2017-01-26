@@ -2,12 +2,14 @@ package com.thinkmobiles.easyerp.data.services;
 
 import com.thinkmobiles.easyerp.data.model.crm.persons.ResponseGetPersons;
 import com.thinkmobiles.easyerp.data.model.crm.persons.alphabet.ResponseGetPersonsAlphabet;
+import com.thinkmobiles.easyerp.data.model.crm.persons.details.ResponseGetPersonDetails;
 import com.thinkmobiles.easyerp.data.model.crm.persons.images.ResponseGetCustomersImages;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
 import java.util.ArrayList;
 
 import retrofit2.http.GET;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 import rx.Observable;
 
@@ -37,4 +39,7 @@ public interface PersonsService {
                                                       @Query("contentType") String contentType,
                                                       @Query("count") int count,
                                                       @Query("page") int page);
+
+    @GET(Constants.GET_PERSON_DETAILS)
+    Observable<ResponseGetPersonDetails> getPersonDetails(@Path("PersonId") String PersonId);
 }
