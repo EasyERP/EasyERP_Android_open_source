@@ -11,9 +11,7 @@ import android.graphics.Typeface;
 import android.support.v4.graphics.ColorUtils;
 import android.util.Property;
 import android.view.View;
-import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
-import android.view.animation.OvershootInterpolator;
 
 import com.github.mikephil.charting.utils.Utils;
 

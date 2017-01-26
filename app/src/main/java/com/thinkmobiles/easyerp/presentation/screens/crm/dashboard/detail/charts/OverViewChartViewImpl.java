@@ -1,6 +1,5 @@
 package com.thinkmobiles.easyerp.presentation.screens.crm.dashboard.detail.charts;
 
-import android.graphics.Paint;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;

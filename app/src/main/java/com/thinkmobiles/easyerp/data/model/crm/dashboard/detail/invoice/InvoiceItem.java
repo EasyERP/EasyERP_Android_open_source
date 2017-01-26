@@ -17,11 +17,11 @@ public class InvoiceItem implements Parcelable, IChartModel, Comparable<InvoiceI
 
     @SerializedName("_id")
     public String id;
-    public com.thinkmobiles.easyerp.data.model.crm.leads.detail.SalesPerson salesPerson;
+    public SalesPerson salesPerson;
     public Workflow workflow;
-    public com.thinkmobiles.easyerp.data.model.crm.leads.detail.SalesPerson supplier;
+    public SalesPerson supplier;
     public Currency currency;
-    public com.thinkmobiles.easyerp.data.model.crm.leads.detail.SalesPerson journal;
+    public SalesPerson journal;
     public PaymentInfo paymentInfo;
     public String invoiceDate;
     public String name;
