@@ -13,8 +13,10 @@
     <color name="transparent_white_bg_color">#09FFFFFF</color>
     <color name="divider_white_color">#50FFFFFF</color>
 
-    <color name="dividerColor">#e0e0e0</color>
-    
+    <color name="dividerColor">#e6e6e6</color>
+    <color name="chart_workflow_item_bg_color">#F7F7F7</color>
+    <color name="chart_workflow_item_text_color">#7F7F80</color>
+
     <color name="tag_bg_red">#eb5a46</color>
     <color name="tag_bg_pink">#ff80ce</color>
     <color name="tag_bg_orange">#ffab4a</color>

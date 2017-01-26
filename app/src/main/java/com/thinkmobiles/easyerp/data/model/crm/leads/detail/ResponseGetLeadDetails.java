@@ -3,7 +3,6 @@ package com.thinkmobiles.easyerp.data.model.crm.leads.detail;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-
 import com.thinkmobiles.easyerp.data.model.crm.leads.LeadTag;
 import com.thinkmobiles.easyerp.data.model.crm.leads.Workflow;
 

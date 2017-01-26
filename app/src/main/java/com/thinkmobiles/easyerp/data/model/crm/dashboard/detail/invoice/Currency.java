@@ -11,7 +11,7 @@ import com.google.gson.annotations.SerializedName;
 
 public class Currency implements Parcelable {
 
-    public int rate;
+    public Double rate;
     @SerializedName("_id")
     public CurrencyID id;
 
@@ -22,7 +22,7 @@ public class Currency implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(this.rate);
+        dest.writeValue(this.rate);
         dest.writeParcelable(this.id, flags);
     }
 
@@ -30,7 +30,7 @@ public class Currency implements Parcelable {
     }
 
     protected Currency(Parcel in) {
-        this.rate = in.readInt();
+        this.rate = (Double) in.readValue(Double.class.getClassLoader());
         this.id = in.readParcelable(CurrencyID.class.getClassLoader());
     }
 

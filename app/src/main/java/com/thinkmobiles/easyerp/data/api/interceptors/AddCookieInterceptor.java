@@ -2,7 +2,6 @@ package com.thinkmobiles.easyerp.data.api.interceptors;
 
 import com.thinkmobiles.easyerp.presentation.managers.CookieManager;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
-import com.thinkmobiles.easyerp.presentation.utils.CookieSharedPreferences_;
 
 import java.io.IOException;
 

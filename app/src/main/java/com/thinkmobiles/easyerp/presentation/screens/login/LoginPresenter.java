@@ -7,7 +7,6 @@ import com.thinkmobiles.easyerp.data.model.ResponseError;
 import com.thinkmobiles.easyerp.presentation.managers.CookieManager;
 import com.thinkmobiles.easyerp.presentation.managers.ValidationManager;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
-import com.thinkmobiles.easyerp.presentation.utils.CookieSharedPreferences_;
 
 import retrofit2.adapter.rxjava.HttpException;
 import rx.subscriptions.CompositeSubscription;

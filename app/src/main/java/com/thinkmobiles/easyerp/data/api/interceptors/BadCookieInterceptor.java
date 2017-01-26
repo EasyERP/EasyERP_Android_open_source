@@ -5,7 +5,6 @@ import android.text.TextUtils;
 import com.thinkmobiles.easyerp.data.api.Rest;
 import com.thinkmobiles.easyerp.presentation.EasyErpApplication;
 import com.thinkmobiles.easyerp.presentation.managers.CookieManager;
-import com.thinkmobiles.easyerp.presentation.utils.CookieSharedPreferences_;
 
 import java.io.IOException;
 

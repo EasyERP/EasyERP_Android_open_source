@@ -15,14 +15,19 @@ import java.util.Locale;
 
 public abstract class DateManager {
 
-    private static final String PATTERN_DATE = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'";
-    private static final String PATTERN_OUTPUT = "dd MMM, yyyy, HH:mm:ss";
-    private static final String PATTERN_COOKIE_EXPIRED = "E, dd MMM yyyy HH:mm:ss z"; //Expires=Wed, 18 Jan 2017 08:58:07 GMT
+    private static final String PATTERN_DATE                = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'";
+    private static final String PATTERN_OUTPUT              = "dd MMM, yyyy, HH:mm:ss";
+    private static final String PATTERN_COOKIE_EXPIRED      = "E, dd MMM yyyy HH:mm:ss z"; //Expires=Wed, 18 Jan 2017 08:58:07 GMT
 
     private static final String PATTERN_SIMPLE_DATE = "M dd, yyyy"; //January 15, 2017
     private static final String PATTERN_SIMPLE_TIME = "h:m a";   // 2:45 PM
 
     public static final String PATTERN_OUT_PERSON_DOB = "dd MMM, yyyy";
+    public static final String PATTERN_DASHBOARD_PREVIEW    = "dd, MMM yyyy";
+    public static final String PATTERN_DASHBOARD_BACKEND    = "E MMM dd yyyy HH:mm:ss z";
+    public static final String PATTERN_DASHBOARD_DAY_VIEW   = "EEEE, HH:mm";
+
+    public static final String PATTERN_OUT_PERSON_DOB      = "dd MMM, yyyy";
 
     private static final String YESTERDAY = "Yesterday";
     private static final String TODAY = "Today";
@@ -122,12 +127,12 @@ public abstract class DateManager {
 
         public String toString() {
             SimpleDateFormat outFormat = new SimpleDateFormat(dstPattern, locale);
-            if(calendar == null) {
-                if(!TextUtils.isEmpty(date)) {
+            if (calendar == null) {
+                if (!TextUtils.isEmpty(date)) {
                     SimpleDateFormat inFormat = new SimpleDateFormat(srcPattern, locale);
                     try {
                         Date day = inFormat.parse(date);
-                        if(day == null) {
+                        if (day == null) {
                             return "Not match patterns";
                         } else {
                             return outFormat.format(day);
@@ -145,12 +150,12 @@ public abstract class DateManager {
         }
 
         public Calendar toCalendar() {
-            if(calendar == null) {
+            if (calendar == null) {
                 SimpleDateFormat outFormat = new SimpleDateFormat(dstPattern, locale);
                 try {
-                    if(!TextUtils.isEmpty(date)) {
+                    if (!TextUtils.isEmpty(date)) {
                         Date day = outFormat.parse(date);
-                        if(day == null) {
+                        if (day == null) {
                             new NullPointerException("Not match patterns").printStackTrace();
                             return Calendar.getInstance();
                         } else {
