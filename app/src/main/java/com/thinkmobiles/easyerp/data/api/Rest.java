@@ -3,11 +3,13 @@ package com.thinkmobiles.easyerp.data.api;
 import com.facebook.stetho.okhttp3.StethoInterceptor;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.thinkmobiles.easyerp.BuildConfig;
 import com.thinkmobiles.easyerp.data.api.interceptors.AddCookieInterceptor;
 import com.thinkmobiles.easyerp.data.api.interceptors.BadCookieInterceptor;
 import com.thinkmobiles.easyerp.data.api.interceptors.ReceiveCookieInterceptor;
 import com.thinkmobiles.easyerp.data.model.ResponseError;
 import com.thinkmobiles.easyerp.data.services.DashboardService;
+import com.thinkmobiles.easyerp.data.services.FilterService;
 import com.thinkmobiles.easyerp.data.services.InvoiceService;
 import com.thinkmobiles.easyerp.data.services.LeadService;
 import com.thinkmobiles.easyerp.data.services.LoginService;
@@ -22,6 +24,7 @@ import java.lang.annotation.Annotation;
 
 import okhttp3.OkHttpClient;
 import okhttp3.ResponseBody;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Converter;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
@@ -46,6 +49,7 @@ public class Rest {
     private InvoiceService invoiceService;
     private OrderService orderService;
     private PersonsService personsService;
+    private FilterService filterService;
 
     private Converter<ResponseBody, ResponseError> converter;
 
@@ -86,6 +90,13 @@ public class Rest {
         return personsService == null ? createService(PersonsService.class) : personsService;
     }
 
+    public FilterService getFilterService() {
+        if (filterService == null) {
+            filterService = createService(FilterService.class);
+        }
+        return filterService;
+    }
+
     public ResponseError parseError(ResponseBody responseBody) {
         try {
             return converter.convert(responseBody);
@@ -104,8 +115,13 @@ public class Rest {
                 .setLenient()
                 .create();
 
+        HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
+        loggingInterceptor.setLevel(!BuildConfig.PRODUCTION ? HttpLoggingInterceptor.Level.BODY : HttpLoggingInterceptor.Level.NONE);
+
+
         OkHttpClient.Builder clientBuilder = new OkHttpClient.Builder()
                 .addNetworkInterceptor(new StethoInterceptor())
+                .addInterceptor(loggingInterceptor)
                 .addInterceptor(new ReceiveCookieInterceptor(cookieManager));
 
         if(hasAllInterceptors) {

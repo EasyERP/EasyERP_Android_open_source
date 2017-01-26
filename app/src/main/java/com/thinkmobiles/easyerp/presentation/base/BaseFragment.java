@@ -41,6 +41,7 @@ public abstract class BaseFragment<T extends BaseMasterFlowActivity> extends Fra
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        setHasOptionsMenu(true);
         if (needProgress() && view instanceof FrameLayout) {
             progressView = (FrameLayout) LayoutInflater.from(getContext()).inflate(R.layout.view_progress, (FrameLayout) view, false);
             ((FrameLayout) view).addView(progressView);
@@ -50,9 +51,7 @@ public abstract class BaseFragment<T extends BaseMasterFlowActivity> extends Fra
     @Override
     public void onStop() {
         super.onStop();
-        if(getView() != null) {
-            inputMethodManager.hideSoftInputFromWindow(getView().getWindowToken(), InputMethodManager.RESULT_UNCHANGED_SHOWN);
-        }
+        hideKeyboard();
     }
 
     public void displayProgress(boolean isShow) {
@@ -60,4 +59,10 @@ public abstract class BaseFragment<T extends BaseMasterFlowActivity> extends Fra
     }
 
     protected abstract boolean needProgress();
+
+    protected void hideKeyboard() {
+        if(getView() != null) {
+            inputMethodManager.hideSoftInputFromWindow(getView().getWindowToken(), InputMethodManager.RESULT_UNCHANGED_SHOWN);
+        }
+    }
 }

@@ -1,23 +1,33 @@
 package com.thinkmobiles.easyerp.presentation.screens.crm.leads;
 
+import android.support.v7.widget.AppCompatAutoCompleteTextView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
 import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.domain.crm.LeadsRepository;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.LeadsAdapter;
+import com.thinkmobiles.easyerp.presentation.adapters.crm.SearchAdapter;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.base.rules.SimpleListWithRefreshFragment;
+import com.thinkmobiles.easyerp.presentation.holders.data.crm.FilterDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.LeadDH;
 import com.thinkmobiles.easyerp.presentation.listeners.EndlessRecyclerViewScrollListener;
 import com.thinkmobiles.easyerp.presentation.screens.crm.leads.details.LeadDetailsFragment_;
 
 import org.androidannotations.annotations.AfterInject;
+import org.androidannotations.annotations.AfterTextChange;
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EFragment;
+import org.androidannotations.annotations.OptionsItem;
+import org.androidannotations.annotations.OptionsMenuItem;
 import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.res.StringRes;
 
@@ -45,6 +55,15 @@ public class LeadsFragment extends SimpleListWithRefreshFragment implements Lead
     @ViewById(R.id.llErrorLayout)
     protected View errorLayout;
 
+    @ViewById
+    protected AppCompatAutoCompleteTextView actSearch;
+
+    @Bean
+    protected SearchAdapter searchAdapter;
+
+    @OptionsMenuItem(R.id.menuFilterContactName)
+    protected MenuItem menuContactName;
+
     @AfterInject
     @Override
     public void initPresenter() {
@@ -58,49 +77,80 @@ public class LeadsFragment extends SimpleListWithRefreshFragment implements Lead
 
     @AfterViews
     protected void initUI() {
-        errorViewHelper.init(errorLayout, view -> loadWithProgressBar());
+        errorViewHelper.init(errorLayout, view -> presenter.subscribe());
 
-        LinearLayoutManager llm = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
+        LinearLayoutManager llm = new LinearLayoutManager(getContext());
         scrollListener = new EndlessRecyclerViewScrollListener(llm) {
             @Override
             public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
-                displayProgress(true);
-                presenter.loadLeads(page);
+                presenter.loadNextPage(page);
             }
         };
         listRecycler.setLayoutManager(llm);
         listRecycler.setAdapter(leadsAdapter);
         listRecycler.addOnScrollListener(scrollListener);
-        leadsAdapter.setOnCardClickListener((view, position, viewType) -> {
-            if (position != presenter.getSelectedItemPosition()) {
-                final LeadDH itemDH = leadsAdapter.getItem(position);
-                leadsAdapter.replaceSelectedItem(presenter.getSelectedItemPosition(), position);
-                presenter.setSelectedInfo(position, itemDH.getId());
-                presenter.displayLeadDetails(itemDH.getLeadItem().id);
+        leadsAdapter.setOnCardClickListener((view, position, viewType) ->
+                presenter.selectItemLead(leadsAdapter.getItem(position), position)
+        );
+
+        actSearch.setAdapter(searchAdapter);
+        actSearch.setOnItemClickListener((adapterView, view, i, l) ->
+                presenter.setContactNameToFilter(searchAdapter.getItem(i))
+        );
+        actSearch.setOnClickListener((v) -> actSearch.setText(""));
+        actSearch.setOnKeyListener((v, keyCode, event) -> {
+            if (event.getKeyCode() == KeyEvent.KEYCODE_ENTER
+                    && event.getAction() == KeyEvent.ACTION_DOWN) {
+
+                presenter.filterForContactName(actSearch.getText().toString());
+
+                hideKeyboard();
+                actSearch.dismissDropDown();
+                return true;
             }
+            return false;
         });
 
-        loadWithProgressBar();
+        presenter.subscribe();
     }
 
-    private void loadWithProgressBar() {
-        errorViewHelper.hideError();
-        displayProgress(true);
-        presenter.subscribe();
+    @AfterTextChange(R.id.actSearch)
+    protected void afterSearchChanged(Editable editable) {
+        if (editable.length() > 1) {
+            searchAdapter.getFilter().filter(editable.toString());
+        }
     }
 
     @Override
     public void displayLeads(ArrayList<LeadDH> leadDHs, boolean needClear) {
-        errorViewHelper.hideError();
-        displayProgress(false);
-        swipeContainer.setRefreshing(false);
-
         if (needClear)
             leadsAdapter.setListDH(leadDHs);
-        else leadsAdapter.addListDH(leadDHs);
+        else
+            leadsAdapter.addListDH(leadDHs);
+    }
 
-        if (getCountItemsNow() == 0)
-            displayError(null, ErrorViewHelper.ErrorType.LIST_EMPTY);
+    @Override
+    public void showProgress(boolean isShow) {
+        if (isShow) {
+            errorViewHelper.hideError();
+            displayProgress(true);
+            swipeContainer.setRefreshing(false);
+        } else {
+            errorViewHelper.hideError();
+            displayProgress(false);
+            swipeContainer.setRefreshing(false);
+        }
+    }
+
+    @Override
+    public void changeSelectedItem(int oldPosition, int newPosition) {
+        leadsAdapter.replaceSelectedItem(oldPosition, newPosition);
+    }
+
+    @Override
+    public void showEmptyState() {
+        leadsAdapter.setListDH(new ArrayList<>());
+        errorViewHelper.showErrorMsg(string_list_is_empty, ErrorViewHelper.ErrorType.LIST_EMPTY);
     }
 
     @Override
@@ -116,9 +166,13 @@ public class LeadsFragment extends SimpleListWithRefreshFragment implements Lead
 
     @Override
     public void openLeadDetailsScreen(String leadId) {
-        mActivity.replaceFragmentContentDetail(LeadDetailsFragment_.builder()
-                .leadId(leadId)
-                .build());
+        if (leadId != null) {
+            mActivity.replaceFragmentContentDetail(LeadDetailsFragment_.builder()
+                    .leadId(leadId)
+                    .build());
+        } else {
+            mActivity.replaceFragmentContentDetail(null);
+        }
     }
 
     @Override
@@ -128,10 +182,8 @@ public class LeadsFragment extends SimpleListWithRefreshFragment implements Lead
 
     @Override
     public void onRefresh() {
-        errorViewHelper.hideError();
         scrollListener.resetState();
-        presenter.setSelectedInfo(-1, presenter.getSelectedItemId());
-        presenter.subscribe();
+        presenter.refresh();
     }
 
     @Override
@@ -145,4 +197,38 @@ public class LeadsFragment extends SimpleListWithRefreshFragment implements Lead
         presenter.unsubscribe();
     }
 
+    @Override
+    public void onPrepareOptionsMenu(Menu menu) {
+        if (presenter != null && presenter.isEnabledFilters()) {
+            menu.findItem(R.id.menuFilter_MB).setVisible(true);
+        }
+    }
+
+    @OptionsItem(R.id.menuFilterContactName)
+    protected void clickContactName() {
+
+    }
+
+    @OptionsItem(R.id.menuFilterRemoveAll)
+    protected void clickRemoveAll() {
+        presenter.removeAll();
+    }
+
+    @Override
+    public void setContactNames(ArrayList<FilterDH> contactNames) {
+        searchAdapter.setItems(contactNames);
+    }
+
+    @Override
+    public void setTextToSearch(String text) {
+        actSearch.setText(text);
+        actSearch.setSelection(text.length());
+        hideKeyboard();
+    }
+
+    @Override
+    public void showFilters() {
+        actSearch.setVisibility(View.VISIBLE);
+        mActivity.invalidateOptionsMenu();
+    }
 }
