@@ -17,8 +17,10 @@ import com.thinkmobiles.easyerp.presentation.custom.RoundedBackgroundSpan;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.LeadDH;
 import com.thinkmobiles.easyerp.presentation.managers.DateManager;
 import com.thinkmobiles.easyerp.presentation.managers.TagHelper;
+import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * Created by Lynx on 1/16/2017.
@@ -32,8 +34,7 @@ public class LeadVH extends RecyclerVH<LeadDH> {
     private TextView tvPriority_LIL;
     private TextView tvSource_LIL;
     private TextView tvAssignedTo_LIL;
-    private TextView tvEditedDate_LIL;
-    private TextView tvTags_LIL;
+    private TextView tvEditedBy_VLIL;
     private LinearLayout llFirstLine_VLIL;
 
     private String noData;
@@ -47,9 +48,8 @@ public class LeadVH extends RecyclerVH<LeadDH> {
         tvPriority_LIL = findView(R.id.tvPriority_LIL);
         tvSource_LIL = findView(R.id.tvSource_LIL);
         tvAssignedTo_LIL = findView(R.id.tvAssignedTo_LIL);
-        tvEditedDate_LIL = findView(R.id.tvEditedDate_LIL);
-        tvTags_LIL = findView(R.id.tvTags_LIL);
         llFirstLine_VLIL = findView(R.id.llFirstLine_VLIL);
+        tvEditedBy_VLIL = findView(R.id.tvEditedBy_VLIL);
 
         noData = itemView.getContext().getString(R.string.no_data);
     }
@@ -64,10 +64,11 @@ public class LeadVH extends RecyclerVH<LeadDH> {
             tvStage_LIL.setText(data.getLeadItem().workflow.name);
         else
             tvStage_LIL.setText(noData);
-        if(!TextUtils.isEmpty(data.getLeadItem().priority))
-            tvPriority_LIL.setText(data.getLeadItem().priority);
-        else
-            tvPriority_LIL.setText(noData);
+        if(!TextUtils.isEmpty(data.getLeadItem().priority)) {
+            tvPriority_LIL.setVisibility(View.VISIBLE);
+            tvPriority_LIL.setText(buildPriorityTag(data.getLeadItem().priority));
+        } else
+            tvPriority_LIL.setVisibility(View.GONE);
         if(!TextUtils.isEmpty(data.getLeadItem().source))
             tvSource_LIL.setText(data.getLeadItem().source);
         else
@@ -77,39 +78,27 @@ public class LeadVH extends RecyclerVH<LeadDH> {
         else
             tvAssignedTo_LIL.setText(noData);
         if(data.getLeadItem().editedBy != null && !TextUtils.isEmpty(data.getLeadItem().editedBy.date)) {
-            String out = DateManager.convertLeadDate(data.getLeadItem().editedBy.date);
+            //Last Edited: Today, at 2:45 PM by Test Admin
+            String strDate = data.getLeadItem().editedBy.date;
+            String out = String.format("Last edited: %s at %s", DateManager.getDateToNow(strDate), DateManager.getTime(strDate));
             if(!TextUtils.isEmpty(data.getLeadItem().editedBy.user))
-                out = String.format("%s (%s)", out, data.getLeadItem().editedBy.user);
-            tvEditedDate_LIL.setText(out);
+                out = out + " by " + data.getLeadItem().editedBy.user;
+            tvEditedBy_VLIL.setText(out);
         } else
-            tvEditedDate_LIL.setText(noData);
-        if(data.getLeadItem().tags != null && data.getLeadItem().tags.size() > 0) {
-            tvTags_LIL.setText(prepareTags(data.getLeadItem().tags));
-        } else
-            tvTags_LIL.setText("");
+            tvEditedBy_VLIL.setText(noData);
 
         flLeadItemContainer_LIL.setSelected(data.isSelected());
-        llFirstLine_VLIL.requestLayout();
+        tvLeadName_LIL.requestLayout();
     }
 
-    private SpannableStringBuilder prepareTags(ArrayList<LeadTag> leadTags) {
+    private SpannableStringBuilder buildPriorityTag(String priority) {
         SpannableStringBuilder stringBuilder = new SpannableStringBuilder();
-
-        String between = " ";
-        int tagStart = 0;
-
-        for (LeadTag tag : leadTags) {
-            // Append tag and space after
-            stringBuilder.append(tag.name);
-            stringBuilder.append(between);
-
-            // Set span for tag
-            RoundedBackgroundSpan tagSpan = new RoundedBackgroundSpan(itemView.getContext(), TagHelper.getColorResIdByName(tag.color), Color.WHITE);
-            stringBuilder.setSpan(tagSpan, tagStart, tagStart + tag.name.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-
-            // Update to next tag start
-            tagStart += tag.name.length() + between.length();
-        }
+        stringBuilder.append(" ");
+        if(priority.startsWith(TagHelper.MEDIUM)) priority = priority.substring(0,3);
+        stringBuilder.append(priority.toUpperCase());
+        stringBuilder.append("  ");
+        RoundedBackgroundSpan tagSpan = new RoundedBackgroundSpan(itemView.getContext(), TagHelper.getColorResIdByName(priority), Color.WHITE);
+        stringBuilder.setSpan(tagSpan, 0, stringBuilder.length() - 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         return stringBuilder;
     }
 }

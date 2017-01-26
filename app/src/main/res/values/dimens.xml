@@ -36,12 +36,10 @@
     <dimen name="chips_separate_16">16dp</dimen>
 
     <!--text-->
-    <dimen name="list_item_large_20">20sp</dimen>
-    <dimen name="list_item_medium_16">16sp</dimen>
-    <dimen name="list_item_small_14">14sp</dimen>
-    <dimen name="list_item_chips_large">15sp</dimen>
-
-    <!--colors-->
+    <dimen name="text_list_item_large_20">20sp</dimen>
+    <dimen name="text_list_item_medium_16">16sp</dimen>
+    <dimen name="text_list_item_small_14">14sp</dimen>
+    <dimen name="text_list_item_chips_large">15sp</dimen>
 
 
 </resources>

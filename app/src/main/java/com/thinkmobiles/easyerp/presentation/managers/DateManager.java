@@ -15,11 +15,17 @@ import java.util.Locale;
 
 public abstract class DateManager {
 
-    private static final String PATTERN_DATE                = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'";
-    private static final String PATTERN_OUTPUT              = "dd MMM, yyyy, HH:mm:ss";
-    private static final String PATTERN_COOKIE_EXPIRED      = "E, dd MMM yyyy HH:mm:ss z"; //Expires=Wed, 18 Jan 2017 08:58:07 GMT
+    private static final String PATTERN_DATE = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'";
+    private static final String PATTERN_OUTPUT = "dd MMM, yyyy, HH:mm:ss";
+    private static final String PATTERN_COOKIE_EXPIRED = "E, dd MMM yyyy HH:mm:ss z"; //Expires=Wed, 18 Jan 2017 08:58:07 GMT
 
-    public static final String PATTERN_OUT_PERSON_DOB      = "dd MMM, yyyy";
+    private static final String PATTERN_SIMPLE_DATE = "M dd, yyyy"; //January 15, 2017
+    private static final String PATTERN_SIMPLE_TIME = "h:m a";   // 2:45 PM
+
+    public static final String PATTERN_OUT_PERSON_DOB = "dd MMM, yyyy";
+
+    private static final String YESTERDAY = "Yesterday";
+    private static final String TODAY = "Today";
 
     public static String convertLeadDate(String uglyDate) { //2017-01-16T11:45:04.183Z
         SimpleDateFormat sdf = new SimpleDateFormat(PATTERN_DATE, Locale.US);
@@ -40,6 +46,43 @@ public abstract class DateManager {
         } catch (ParseException e) {
             Log.d("myLogs", "Parse cookie date error " + e.getMessage());
             return true;
+        }
+    }
+
+    public static String getDateToNow(String date) {
+        SimpleDateFormat sdf = new SimpleDateFormat(PATTERN_DATE, Locale.US);
+        SimpleDateFormat sdfOut = new SimpleDateFormat(PATTERN_SIMPLE_DATE, Locale.US);
+        Calendar calendar = Calendar.getInstance();
+        Calendar current = Calendar.getInstance();
+        try {
+            calendar.setTime(sdf.parse(date));
+            Date d = sdf.parse(date);
+            if(calendar.get(Calendar.YEAR) == current.get(Calendar.YEAR)
+                    && calendar.get(Calendar.MONTH) == current.get(Calendar.MONTH)) {
+                if(calendar.get(Calendar.DAY_OF_YEAR) == current.get(Calendar.DAY_OF_YEAR))
+                    return TODAY;
+                else if(current.get(Calendar.DAY_OF_YEAR) - calendar.get(Calendar.DAY_OF_YEAR) == 1)
+                    return YESTERDAY;
+                else
+                    return sdfOut.format(d);
+            } else {
+                return sdfOut.format(d);
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return "Error";
+    }
+
+    public static String getTime(String date) {
+        SimpleDateFormat sdf = new SimpleDateFormat(PATTERN_DATE, Locale.US);
+        SimpleDateFormat sdfOut = new SimpleDateFormat(PATTERN_SIMPLE_TIME, Locale.US);
+        try {
+            Date d = sdf.parse(date);
+            return sdfOut.format(d);
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return "Error";
         }
     }
 
@@ -79,12 +122,12 @@ public abstract class DateManager {
 
         public String toString() {
             SimpleDateFormat outFormat = new SimpleDateFormat(dstPattern, locale);
-            if (calendar == null) {
-                if (!TextUtils.isEmpty(date)) {
+            if(calendar == null) {
+                if(!TextUtils.isEmpty(date)) {
                     SimpleDateFormat inFormat = new SimpleDateFormat(srcPattern, locale);
                     try {
                         Date day = inFormat.parse(date);
-                        if (day == null) {
+                        if(day == null) {
                             return "Not match patterns";
                         } else {
                             return outFormat.format(day);
@@ -102,12 +145,12 @@ public abstract class DateManager {
         }
 
         public Calendar toCalendar() {
-            if (calendar == null) {
+            if(calendar == null) {
                 SimpleDateFormat outFormat = new SimpleDateFormat(dstPattern, locale);
                 try {
-                    if (!TextUtils.isEmpty(date)) {
+                    if(!TextUtils.isEmpty(date)) {
                         Date day = outFormat.parse(date);
-                        if (day == null) {
+                        if(day == null) {
                             new NullPointerException("Not match patterns").printStackTrace();
                             return Calendar.getInstance();
                         } else {

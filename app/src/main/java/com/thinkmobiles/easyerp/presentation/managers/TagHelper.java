@@ -33,6 +33,10 @@ public abstract class TagHelper {
     private static final String COLOR_BLACK        = "bgBlack";
     private static final String COLOR_GREY         = "bgGrey";
 
+    public static final String COLD               = "Cold";
+    public static final String MEDIUM             = "Med";
+    public static final String HOT                = "Hot";
+
     public static int getColorResIdByName(String colorName) {
         switch (colorName) {
             case COLOR_RED:
@@ -57,6 +61,12 @@ public abstract class TagHelper {
                 return R.color.tag_bg_black;
             case COLOR_GREY:
                 return R.color.tag_bg_grey;
+            case COLD:
+                return R.color.color_chips_blue;
+            case MEDIUM:
+                return R.color.color_chips_orange;
+            case HOT:
+                return R.color.color_chips_red;
             default:
                 return R.color.tag_bg_grey;
         }

@@ -35,22 +35,19 @@
                     android:maxLines="1"
                     android:text="@string/no_data"
                     android:textColor="@color/color_text_black"
-                    android:textSize="@dimen/list_item_large_20"
-                    tools:text="Web development"/>
+                    android:textSize="@dimen/text_list_item_large_20"
+                    tools:text="Web development"
+                    android:layout_gravity="center"/>
 
                 <TextView
                     android:id="@+id/tvPriority_LIL"
-                    style="@style/RobotoMedium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:maxLines="1"
-                    android:padding="@dimen/chips_padding"
-                    android:text="@string/no_data"
-                    android:textColor="@android:color/white"
-                    android:textSize="@dimen/list_item_chips_large"
+                    android:padding="@dimen/default_padding_small"
+                    android:textSize="@dimen/text_list_item_chips_large"
                     tools:text="Medium"
-                    android:layout_marginRight="@dimen/list_item_chips_large"
-                    android:layout_marginLeft="@dimen/list_item_side_8"/>
+                    android:layout_marginStart="@dimen/chips_padding"
+                    android:layout_marginEnd="@dimen/text_list_item_chips_large"/>
 
             </LinearLayout>
 
@@ -60,109 +57,58 @@
             android:id="@+id/tvStage_LIL"
             style="@style/RobotoRegular"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
             android:layout_gravity="center"
             android:ellipsize="end"
             android:maxLines="1"
             android:text="@string/no_data"
-            android:textSize="@dimen/list_item_medium_16"
+            android:textSize="@dimen/text_list_item_medium_16"
             tools:text="Not Interested"/>
 
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/RobotoRegular"
+            android:id="@+id/tvAssignedTo_LIL"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="@string/no_data"
+            android:textSize="@dimen/text_list_item_medium_16"
+            android:textColor="@color/color_text_black"
+            tools:text="Alex Hoshylyk" />
+
+        <TextView
+            style="@style/RobotoRegular"
+            android:id="@+id/tvSource_LIL"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:gravity="right"
+            android:maxLines="1"
+            android:textSize="@dimen/text_list_item_medium_16"
+            android:text="@string/no_data"
+            android:textColor="@color/color_text_black"
+            android:layout_weight="1"
+            tools:text="ThinkMobiles" />
+
+    </LinearLayout>
+    
+    <TextView
+        android:id="@+id/tvEditedBy_VLIL"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="Last Edited: Today, at 2:45 PM by Test Admin"
+        android:layout_marginTop="@dimen/list_item_line_18"
+        android:textSize="@dimen/text_list_item_medium_16"
+        android:textColor="@color/color_text_gray"/>
+
 </LinearLayout>
 
-
-    <!--<LinearLayout-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:orientation="horizontal">-->
-
-    <!--<TextView-->
-    <!--android:id="@+id/tvLeadName_LIL"-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="match_parent"-->
-    <!--android:layout_weight="1"-->
-    <!--android:ellipsize="end"-->
-    <!--android:maxLines="1"-->
-    <!--android:text="@string/no_data"-->
-    <!--tools:text="Web development" />-->
-
-    <!--<TextView-->
-    <!--android:id="@+id/tvStage_LIL"-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="match_parent"-->
-    <!--android:layout_weight="1"-->
-    <!--android:ellipsize="end"-->
-    <!--android:gravity="right"-->
-    <!--android:maxLines="1"-->
-    <!--android:text="@string/no_data"-->
-    <!--tools:text="Not Interested" />-->
-
-    <!--</LinearLayout>-->
-
-    <!--<LinearLayout-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:orientation="horizontal">-->
-
-    <!--<TextView-->
-    <!--android:id="@+id/tvPriority_LIL"-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_weight="1"-->
-    <!--android:ellipsize="end"-->
-    <!--android:maxLines="1"-->
-    <!--android:text="@string/no_data"-->
-    <!--tools:text="Medium" />-->
-
-    <!--<TextView-->
-    <!--android:id="@+id/tvSource_LIL"-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_weight="1"-->
-    <!--android:ellipsize="end"-->
-    <!--android:gravity="right"-->
-    <!--android:maxLines="1"-->
-    <!--android:text="@string/no_data"-->
-    <!--tools:text="ThinkMobiles" />-->
-
-    <!--</LinearLayout>-->
-
-    <!--<LinearLayout-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:orientation="horizontal">-->
-
-    <!--<TextView-->
-    <!--android:id="@+id/tvAssignedTo_LIL"-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_weight="1"-->
-    <!--android:ellipsize="end"-->
-    <!--android:maxLines="1"-->
-    <!--android:text="@string/no_data"-->
-    <!--tools:text="Alex Hoshylyk" />-->
-
-    <!--<TextView-->
-    <!--android:id="@+id/tvEditedDate_LIL"-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_weight="1"-->
-    <!--android:ellipsize="end"-->
-    <!--android:gravity="right"-->
-    <!--android:maxLines="1"-->
-    <!--android:text="@string/no_data"-->
-    <!--tools:text="testAdmin" />-->
-
-    <!--</LinearLayout>-->
-
-    <!--<TextView-->
-    <!--android:id="@+id/tvTags_LIL"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_marginTop="@dimen/default_padding_3dp"-->
-    <!--android:lineSpacingExtra="4dp"-->
-    <!--android:paddingBottom="@dimen/default_padding_3dp"-->
-    <!--android:paddingTop="@dimen/default_padding_3dp"-->
-    <!--android:text="@string/no_data" />-->
