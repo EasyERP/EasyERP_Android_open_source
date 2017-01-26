@@ -30,9 +30,9 @@ public class TableChartViewImpl implements IChartView<List<TableDataView.TableIt
 
         final List<TableDataView.TableItemData> preparedData = prepareData(data);
         tableDataView.setData(preparedData);
-        tableDataView.setColors(ColorGenerateManager.generateGradientBetweenColors(preparedData.size(), Color.parseColor("#f6faff"), Color.parseColor("#dbebff")));
-        tableDataView.setStrokeColor(Color.parseColor("#CC364150"));
-
+        tableDataView.setColors(ColorGenerateManager.generateGradientBetweenColors(preparedData.size(), Color.parseColor("#1D455A"), Color.parseColor("#083045")));
+        tableDataView.setStrokeColor(Color.parseColor("#EED369"));
+        tableDataView.animateY(1000);
         parent.addView(tableDataView);
     }
 
@@ -44,7 +44,9 @@ public class TableChartViewImpl implements IChartView<List<TableDataView.TableIt
         final DecimalFormat sumFormat = new DollarFormatter().getFormat();
         for (InvoiceItem invoiceItem: getInvoiceResponse.data)
             dataList.add(new TableDataView.TableItemData(
-                    new DateManager.DateConverter(invoiceItem.invoiceDate).setDstPattern(DateManager.PATTERN_DASHBOARD_PREVIEW).toString(),
+                    String.format("%s\n%s",
+                            new DateManager.DateConverter(invoiceItem.invoiceDate).setDstPattern(DateManager.PATTERN_DASHBOARD_PREVIEW).toString(),
+                            new DateManager.DateConverter(invoiceItem.invoiceDate).setDstPattern(DateManager.PATTERN_DASHBOARD_DAY_VIEW).toString()),
                     TextUtils.isEmpty(invoiceItem.supplier.name) ? "Not Assigned" : invoiceItem.supplier.name,
                     String.format("%s %s", invoiceItem.currency.id.symbol, sumFormat.format(invoiceItem.paymentInfo.total / 100d))));
 
