@@ -9,7 +9,7 @@ import com.google.gson.annotations.SerializedName;
  * Created by samson on 16.01.17.
  */
 
-public class LeadUser implements Parcelable {
+public class User implements Parcelable {
 
 
     /**
@@ -35,23 +35,23 @@ public class LeadUser implements Parcelable {
         dest.writeString(this.login);
     }
 
-    public LeadUser() {
+    public User() {
     }
 
-    protected LeadUser(Parcel in) {
+    protected User(Parcel in) {
         this.id = in.readString();
         this.login = in.readString();
     }
 
-    public static final Parcelable.Creator<LeadUser> CREATOR = new Parcelable.Creator<LeadUser>() {
+    public static final Parcelable.Creator<User> CREATOR = new Parcelable.Creator<User>() {
         @Override
-        public LeadUser createFromParcel(Parcel source) {
-            return new LeadUser(source);
+        public User createFromParcel(Parcel source) {
+            return new User(source);
         }
 
         @Override
-        public LeadUser[] newArray(int size) {
-            return new LeadUser[size];
+        public User[] newArray(int size) {
+            return new User[size];
         }
     };
 }

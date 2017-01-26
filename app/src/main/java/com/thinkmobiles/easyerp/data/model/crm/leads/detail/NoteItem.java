@@ -4,7 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 
-public class LeadNote implements Parcelable {
+public class NoteItem implements Parcelable {
 
     /**
     {
@@ -37,10 +37,10 @@ public class LeadNote implements Parcelable {
     public String _id;
     public String  date;
     public String  note;
-    public LeadTask  task;
-    public LeadHistory history;
-    public LeadUser user;
-    public LeadAttachment attachment;
+    public NoteTask task;
+    public NoteHistory history;
+    public User user;
+    public AttachmentItem attachment;
 
 
     @Override
@@ -59,28 +59,28 @@ public class LeadNote implements Parcelable {
         dest.writeParcelable(this.attachment, flags);
     }
 
-    public LeadNote() {
+    public NoteItem() {
     }
 
-    protected LeadNote(Parcel in) {
+    protected NoteItem(Parcel in) {
         this._id = in.readString();
         this.date = in.readString();
         this.note = in.readString();
-        this.task = in.readParcelable(LeadTask.class.getClassLoader());
-        this.history = in.readParcelable(LeadHistory.class.getClassLoader());
-        this.user = in.readParcelable(LeadUser.class.getClassLoader());
-        this.attachment = in.readParcelable(LeadAttachment.class.getClassLoader());
+        this.task = in.readParcelable(NoteTask.class.getClassLoader());
+        this.history = in.readParcelable(NoteHistory.class.getClassLoader());
+        this.user = in.readParcelable(User.class.getClassLoader());
+        this.attachment = in.readParcelable(AttachmentItem.class.getClassLoader());
     }
 
-    public static final Creator<LeadNote> CREATOR = new Creator<LeadNote>() {
+    public static final Creator<NoteItem> CREATOR = new Creator<NoteItem>() {
         @Override
-        public LeadNote createFromParcel(Parcel source) {
-            return new LeadNote(source);
+        public NoteItem createFromParcel(Parcel source) {
+            return new NoteItem(source);
         }
 
         @Override
-        public LeadNote[] newArray(int size) {
-            return new LeadNote[size];
+        public NoteItem[] newArray(int size) {
+            return new NoteItem[size];
         }
     };
 }

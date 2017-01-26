@@ -7,7 +7,7 @@ import android.os.Parcelable;
  * Created by samson on 16.01.17.
  */
 
-public class LeadNextAction implements Parcelable {
+public class NextAction implements Parcelable {
 
     /**
      *  "nextAction": {
@@ -31,23 +31,23 @@ public class LeadNextAction implements Parcelable {
         dest.writeString(this.desc);
     }
 
-    public LeadNextAction() {
+    public NextAction() {
     }
 
-    protected LeadNextAction(Parcel in) {
+    protected NextAction(Parcel in) {
         this.date = in.readString();
         this.desc = in.readString();
     }
 
-    public static final Parcelable.Creator<LeadNextAction> CREATOR = new Parcelable.Creator<LeadNextAction>() {
+    public static final Parcelable.Creator<NextAction> CREATOR = new Parcelable.Creator<NextAction>() {
         @Override
-        public LeadNextAction createFromParcel(Parcel source) {
-            return new LeadNextAction(source);
+        public NextAction createFromParcel(Parcel source) {
+            return new NextAction(source);
         }
 
         @Override
-        public LeadNextAction[] newArray(int size) {
-            return new LeadNextAction[size];
+        public NextAction[] newArray(int size) {
+            return new NextAction[size];
         }
     };
 }

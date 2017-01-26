@@ -8,7 +8,7 @@ import android.os.Parcelable;
  * Created by samson on 16.01.17.
  */
 
-public class LeadHistory implements Parcelable {
+public class NoteHistory implements Parcelable {
 
     /**
     "history": {
@@ -25,7 +25,7 @@ public class LeadHistory implements Parcelable {
     },
      */
 
-    public LeadUser editedBy;
+    public User editedBy;
     public String prevValue;
     public String newValue;
     public String changedField;
@@ -49,11 +49,11 @@ public class LeadHistory implements Parcelable {
         dest.writeString(this.date);
     }
 
-    public LeadHistory() {
+    public NoteHistory() {
     }
 
-    protected LeadHistory(Parcel in) {
-        this.editedBy = in.readParcelable(LeadUser.class.getClassLoader());
+    protected NoteHistory(Parcel in) {
+        this.editedBy = in.readParcelable(User.class.getClassLoader());
         this.prevValue = in.readString();
         this.newValue = in.readString();
         this.changedField = in.readString();
@@ -62,15 +62,15 @@ public class LeadHistory implements Parcelable {
         this.date = in.readString();
     }
 
-    public static final Parcelable.Creator<LeadHistory> CREATOR = new Parcelable.Creator<LeadHistory>() {
+    public static final Parcelable.Creator<NoteHistory> CREATOR = new Parcelable.Creator<NoteHistory>() {
         @Override
-        public LeadHistory createFromParcel(Parcel source) {
-            return new LeadHistory(source);
+        public NoteHistory createFromParcel(Parcel source) {
+            return new NoteHistory(source);
         }
 
         @Override
-        public LeadHistory[] newArray(int size) {
-            return new LeadHistory[size];
+        public NoteHistory[] newArray(int size) {
+            return new NoteHistory[size];
         }
     };
 }

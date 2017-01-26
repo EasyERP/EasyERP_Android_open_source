@@ -4,6 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import com.google.gson.annotations.SerializedName;
+import com.thinkmobiles.easyerp.data.model.crm.leads.detail.*;
 
 import java.util.ArrayList;
 
@@ -39,7 +40,7 @@ public class LeadItem implements Parcelable {
     @SerializedName("_id")
     public String id;
     public int total;
-    public SalesPerson salesPerson;
+    public SalesTeam salesPerson;
     public Workflow workflow;
     public EditedBy editedBy;
     public String expectedClosing;
@@ -47,6 +48,9 @@ public class LeadItem implements Parcelable {
     public String priority;
     public ArrayList<LeadTag> tags;
     public String source;
+
+    public LeadItem() {
+    }
 
     @Override
     public int describeContents() {
@@ -67,13 +71,10 @@ public class LeadItem implements Parcelable {
         dest.writeString(this.source);
     }
 
-    public LeadItem() {
-    }
-
     protected LeadItem(Parcel in) {
         this.id = in.readString();
         this.total = in.readInt();
-        this.salesPerson = in.readParcelable(SalesPerson.class.getClassLoader());
+        this.salesPerson = in.readParcelable(com.thinkmobiles.easyerp.data.model.crm.leads.detail.SalesPerson.class.getClassLoader());
         this.workflow = in.readParcelable(Workflow.class.getClassLoader());
         this.editedBy = in.readParcelable(EditedBy.class.getClassLoader());
         this.expectedClosing = in.readString();
@@ -83,7 +84,7 @@ public class LeadItem implements Parcelable {
         this.source = in.readString();
     }
 
-    public static final Parcelable.Creator<LeadItem> CREATOR = new Parcelable.Creator<LeadItem>() {
+    public static final Creator<LeadItem> CREATOR = new Creator<LeadItem>() {
         @Override
         public LeadItem createFromParcel(Parcel source) {
             return new LeadItem(source);

@@ -6,22 +6,17 @@ import android.text.Html;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.TextUtils;
-import android.util.Xml;
 
 import com.thinkmobiles.easyerp.data.model.crm.leads.LeadTag;
-import com.thinkmobiles.easyerp.data.model.crm.leads.detail.LeadAddress;
-import com.thinkmobiles.easyerp.data.model.crm.leads.detail.LeadAttachment;
-import com.thinkmobiles.easyerp.data.model.crm.leads.detail.LeadNote;
+import com.thinkmobiles.easyerp.data.model.crm.leads.detail.Address;
+import com.thinkmobiles.easyerp.data.model.crm.leads.detail.AttachmentItem;
+import com.thinkmobiles.easyerp.data.model.crm.leads.detail.NoteItem;
 import com.thinkmobiles.easyerp.presentation.EasyErpApplication_;
 import com.thinkmobiles.easyerp.presentation.custom.RoundedBackgroundSpan;
 import com.thinkmobiles.easyerp.presentation.managers.TagHelper;
 
-import java.net.URLDecoder;
-import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Locale;
-
-import okhttp3.internal.Util;
 
 public abstract class StringUtil {
 
@@ -34,7 +29,7 @@ public abstract class StringUtil {
         );
     }
 
-    public static String getAddress(LeadAddress address) {
+    public static String getAddress(Address address) {
         StringBuilder builder = new StringBuilder();
         if (!TextUtils.isEmpty(address.zip))
             builder.append(address.zip).append(", ");
@@ -55,9 +50,9 @@ public abstract class StringUtil {
         return TextUtils.isEmpty(field) ? holder : field;
     }
 
-    public static String getAttachments(ArrayList<LeadAttachment> attachments) {
+    public static String getAttachments(ArrayList<AttachmentItem> attachments) {
         StringBuilder builder = new StringBuilder();
-        for (LeadAttachment attachment : attachments) {
+        for (AttachmentItem attachment : attachments) {
             builder.append(getAttachmentURL(attachment.shortPas, attachment.name))
                     .append("<br>");
         }
@@ -72,7 +67,12 @@ public abstract class StringUtil {
                 name);
     }
 
-    public static String getNoteAction(LeadNote note) {
+    public static String getClickableUrl(String url, String name) {
+        if(!url.startsWith("http://")) url = "http://" + url;
+        return String.format(Locale.ENGLISH, "<a href=\"%s\">%s</a>", url, name);
+    }
+
+    public static String getNoteAction(NoteItem note) {
         if (note.task != null) {
             return "created task";
         } else if (note.history != null) {
@@ -86,7 +86,7 @@ public abstract class StringUtil {
         }
     }
 
-    public static String getNoteMessage(LeadNote note) {
+    public static String getNoteMessage(NoteItem note) {
         StringBuilder builder = new StringBuilder();
         if (note.task != null) {
             if (!TextUtils.isEmpty(note.task.description))

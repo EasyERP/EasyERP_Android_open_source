@@ -23,6 +23,7 @@ public interface PersonsContract {
         void displayEnabledLetters(ArrayList<AlphabetItem> enabledAlphabetItems);
         void displayPersons(ArrayList<PersonDH> personDHs, boolean needClear);
         void displayError(final String msg, final ErrorViewHelper.ErrorType errorType);
+        void openPersonDetailsScreen(String personID);
     }
     interface PersonsPresenter extends MasterFlowSelectableBasePresenter<String> {
         void setLetter(String letter);

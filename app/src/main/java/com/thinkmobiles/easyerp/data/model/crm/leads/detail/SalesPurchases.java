@@ -4,7 +4,7 @@ package com.thinkmobiles.easyerp.data.model.crm.leads.detail;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class LeadSalesPurchases implements Parcelable {
+public class SalesPurchases implements Parcelable {
 
     /**
      * "salesPurchases": {
@@ -24,12 +24,15 @@ public class LeadSalesPurchases implements Parcelable {
     public String language;
     public String reference;
     public boolean active;
-//    public String implementedBy;
-//    public String salesTeam;
-//    public String salesPerson;
+    public SalesPerson implementedBy;
+    public SalesTeam salesTeam;
+    public SalesPerson salesPerson;
     public boolean isSupplier;
     public boolean isCustomer;
 
+
+    public SalesPurchases() {
+    }
 
     @Override
     public int describeContents() {
@@ -42,31 +45,34 @@ public class LeadSalesPurchases implements Parcelable {
         dest.writeString(this.language);
         dest.writeString(this.reference);
         dest.writeByte(this.active ? (byte) 1 : (byte) 0);
+        dest.writeParcelable(this.implementedBy, flags);
+        dest.writeParcelable(this.salesTeam, flags);
+        dest.writeParcelable(this.salesPerson, flags);
         dest.writeByte(this.isSupplier ? (byte) 1 : (byte) 0);
         dest.writeByte(this.isCustomer ? (byte) 1 : (byte) 0);
     }
 
-    public LeadSalesPurchases() {
-    }
-
-    protected LeadSalesPurchases(Parcel in) {
+    protected SalesPurchases(Parcel in) {
         this.receiveMessages = in.readInt();
         this.language = in.readString();
         this.reference = in.readString();
         this.active = in.readByte() != 0;
+        this.implementedBy = in.readParcelable(SalesPerson.class.getClassLoader());
+        this.salesTeam = in.readParcelable(SalesTeam.class.getClassLoader());
+        this.salesPerson = in.readParcelable(SalesPerson.class.getClassLoader());
         this.isSupplier = in.readByte() != 0;
         this.isCustomer = in.readByte() != 0;
     }
 
-    public static final Parcelable.Creator<LeadSalesPurchases> CREATOR = new Parcelable.Creator<LeadSalesPurchases>() {
+    public static final Creator<SalesPurchases> CREATOR = new Creator<SalesPurchases>() {
         @Override
-        public LeadSalesPurchases createFromParcel(Parcel source) {
-            return new LeadSalesPurchases(source);
+        public SalesPurchases createFromParcel(Parcel source) {
+            return new SalesPurchases(source);
         }
 
         @Override
-        public LeadSalesPurchases[] newArray(int size) {
-            return new LeadSalesPurchases[size];
+        public SalesPurchases[] newArray(int size) {
+            return new SalesPurchases[size];
         }
     };
 }

@@ -23,6 +23,8 @@ public abstract class DateManager {
     public static final String PATTERN_DASHBOARD_BACKEND    = "E MMM dd yyyy HH:mm:ss z";
     public static final String PATTERN_DASHBOARD_DAY_VIEW   = "EEEE, HH:mm";
 
+    public static final String PATTERN_OUT_PERSON_DOB      = "dd MMM, yyyy";
+
     public static String convertLeadDate(String uglyDate) { //2017-01-16T11:45:04.183Z
         SimpleDateFormat sdf = new SimpleDateFormat(PATTERN_DATE, Locale.US);
         SimpleDateFormat sdfOut = new SimpleDateFormat(PATTERN_OUTPUT, Locale.US);

@@ -1,15 +1,14 @@
 package com.thinkmobiles.easyerp.presentation.adapters.crm;
 
 import com.michenko.simpleadapter.SimpleRecyclerAdapter;
-import com.michenko.simpleadapter.TypedRecyclerAdapter;
 import com.thinkmobiles.easyerp.R;
-import com.thinkmobiles.easyerp.presentation.holders.data.crm.LeadHistoryDH;
+import com.thinkmobiles.easyerp.presentation.holders.data.crm.HistoryDH;
 import com.thinkmobiles.easyerp.presentation.holders.view.crm.LeadHistoryVH;
 
 import org.androidannotations.annotations.EBean;
 
 @EBean
-public class LeadHistoryAdapter extends SimpleRecyclerAdapter<LeadHistoryDH, LeadHistoryVH> {
+public class LeadHistoryAdapter extends SimpleRecyclerAdapter<HistoryDH, LeadHistoryVH> {
 
     @Override
     protected int getItemLayout() {

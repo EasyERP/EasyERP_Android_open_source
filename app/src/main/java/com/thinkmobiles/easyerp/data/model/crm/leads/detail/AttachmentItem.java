@@ -9,7 +9,7 @@ import com.google.gson.annotations.SerializedName;
  * Created by samson on 16.01.17.
  */
 
-public class LeadAttachment implements Parcelable {
+public class AttachmentItem implements Parcelable {
 
     /**
      * {
@@ -45,10 +45,10 @@ public class LeadAttachment implements Parcelable {
         dest.writeString(this.uploaderName);
     }
 
-    public LeadAttachment() {
+    public AttachmentItem() {
     }
 
-    protected LeadAttachment(Parcel in) {
+    protected AttachmentItem(Parcel in) {
         this.id = in.readString();
         this.name = in.readString();
         this.shortPas = in.readString();
@@ -57,15 +57,15 @@ public class LeadAttachment implements Parcelable {
         this.uploaderName = in.readString();
     }
 
-    public static final Parcelable.Creator<LeadAttachment> CREATOR = new Parcelable.Creator<LeadAttachment>() {
+    public static final Parcelable.Creator<AttachmentItem> CREATOR = new Parcelable.Creator<AttachmentItem>() {
         @Override
-        public LeadAttachment createFromParcel(Parcel source) {
-            return new LeadAttachment(source);
+        public AttachmentItem createFromParcel(Parcel source) {
+            return new AttachmentItem(source);
         }
 
         @Override
-        public LeadAttachment[] newArray(int size) {
-            return new LeadAttachment[size];
+        public AttachmentItem[] newArray(int size) {
+            return new AttachmentItem[size];
         }
     };
 }
