@@ -6,6 +6,7 @@ import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.michenko.simpleadapter.OnCardClickListener;
@@ -33,6 +34,7 @@ public class LeadVH extends RecyclerVH<LeadDH> {
     private TextView tvAssignedTo_LIL;
     private TextView tvEditedDate_LIL;
     private TextView tvTags_LIL;
+    private LinearLayout llFirstLine_VLIL;
 
     private String noData;
 
@@ -47,6 +49,7 @@ public class LeadVH extends RecyclerVH<LeadDH> {
         tvAssignedTo_LIL = findView(R.id.tvAssignedTo_LIL);
         tvEditedDate_LIL = findView(R.id.tvEditedDate_LIL);
         tvTags_LIL = findView(R.id.tvTags_LIL);
+        llFirstLine_VLIL = findView(R.id.llFirstLine_VLIL);
 
         noData = itemView.getContext().getString(R.string.no_data);
     }
@@ -86,6 +89,7 @@ public class LeadVH extends RecyclerVH<LeadDH> {
             tvTags_LIL.setText("");
 
         flLeadItemContainer_LIL.setSelected(data.isSelected());
+        llFirstLine_VLIL.requestLayout();
     }
 
     private SpannableStringBuilder prepareTags(ArrayList<LeadTag> leadTags) {

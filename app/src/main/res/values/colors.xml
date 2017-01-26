@@ -26,4 +26,14 @@
     <color name="tag_bg_purple">#c377e0</color>
     <color name="tag_bg_black">#4d4d4d</color>
     <color name="tag_bg_grey">#b6bbbf</color>
+    
+    <!--//////////////////////// DESIGN ////////////////////////-->
+    <color name="color_divider">#bbbbbb</color>
+
+    <color name="color_text_black">#2b2b2b</color>
+    <color name="color_text_gray">#737373</color>
+
+    <color name="color_chips_red">#eb5a46</color>
+    <color name="color_chips_blue">#3687bb</color>
+    <color name="color_chips_orange">#fbaf5d</color>
 </resources>
