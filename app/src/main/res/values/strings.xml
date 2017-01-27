@@ -53,5 +53,9 @@
     <string name="zip">Zip</string>
     <string name="country">Country</string>
     <string name="tags">Tags</string>
+    <string name="attachments">Attachments</string>
+    <string name="no_attachments">No attachments</string>
+    <string name="no_tags">No tags</string>
+    <string name="notes_amp_timeline"><![CDATA[Notes & Timeline]]></string>
 
 </resources>

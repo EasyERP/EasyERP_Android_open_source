@@ -57,6 +57,8 @@ public class LeadDetailsFragment extends BaseFragment<HomeActivity> implements L
     @ViewById
     protected TextView tvNameLead_FLD;
     @ViewById
+    protected TextView tvCurrentStatus_FLD;
+    @ViewById
     protected TextView tvCloseDate_FLD;
     @ViewById
     protected TextView tvAssignedTo_FLD;
@@ -291,6 +293,11 @@ public class LeadDetailsFragment extends BaseFragment<HomeActivity> implements L
     @Override
     public void setLeadName(String leadName) {
         tvNameLead_FLD.setText(leadName);
+    }
+
+    @Override
+    public void setCurrentStatus(String currentStatus) {
+        tvCurrentStatus_FLD.setText(currentStatus);
     }
 
     @Override

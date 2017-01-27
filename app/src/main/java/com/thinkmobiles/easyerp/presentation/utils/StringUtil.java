@@ -57,7 +57,7 @@ public abstract class StringUtil {
                     .append("<br>");
         }
         int length = builder.length();
-        return builder.delete(length - 4, length - 1).toString();
+        return builder.delete(length - 4, length).toString();
     }
 
     public static String getAttachmentURL(String shortPas, String name) {
@@ -118,7 +118,7 @@ public abstract class StringUtil {
     public static SpannableStringBuilder prepareTags(ArrayList<LeadTag> leadTags) {
         SpannableStringBuilder stringBuilder = new SpannableStringBuilder();
 
-        String between = " ";
+        String between = "   ";
         int tagStart = 0;
 
         for (LeadTag tag : leadTags) {

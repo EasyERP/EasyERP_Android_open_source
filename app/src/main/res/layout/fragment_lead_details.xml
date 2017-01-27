@@ -48,7 +48,7 @@
                             android:paddingTop="@dimen/default_padding"
                             android:text="@string/no_data"
                             android:textColor="@color/color_text_black"
-                            android:textSize="@dimen/text_list_item_large_20"
+                            android:textSize="@dimen/text_list_item_extra_large_24"
                             tools:text="Web development"/>
 
                         <View
@@ -61,12 +61,12 @@
                             style="@style/RobotoMedium"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/default_padding_half"
+                            android:layout_marginTop="@dimen/default_padding"
                             android:paddingEnd="@dimen/default_padding"
                             android:paddingStart="@dimen/default_padding"
                             android:text="@string/about"
                             android:textColor="@color/color_text_black"
-                            android:textSize="@dimen/text_list_item_medium_16"/>
+                            android:textSize="@dimen/text_list_item_large_20"/>
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -155,18 +155,18 @@
                             style="@style/RobotoMedium"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/default_padding_half"
+                            android:layout_marginTop="@dimen/default_padding"
                             android:paddingEnd="@dimen/default_padding"
                             android:paddingStart="@dimen/default_padding"
                             android:text="@string/contacts"
                             android:textColor="@color/color_text_black"
-                            android:textSize="@dimen/text_list_item_medium_16"/>
+                            android:textSize="@dimen/text_list_item_large_20"/>
 
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/default_padding"
+                            android:layout_marginTop="@dimen/default_padding_half"
                             android:paddingEnd="@dimen/default_padding"
                             android:paddingStart="@dimen/default_padding">
 
@@ -312,17 +312,17 @@
                             style="@style/RobotoMedium"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/default_padding_half"
+                            android:layout_marginTop="@dimen/default_padding"
                             android:paddingEnd="@dimen/default_padding"
                             android:paddingStart="@dimen/default_padding"
                             android:text="@string/company"
                             android:textColor="@color/color_text_black"
-                            android:textSize="@dimen/text_list_item_medium_16"/>
+                            android:textSize="@dimen/text_list_item_large_20"/>
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/default_padding"
+                            android:layout_marginTop="@dimen/default_padding_half"
                             android:paddingEnd="@dimen/default_padding"
                             android:paddingStart="@dimen/default_padding">
 
@@ -410,21 +410,23 @@
                             style="@style/RobotoMedium"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/default_padding_half"
+                            android:layout_marginTop="@dimen/default_padding"
                             android:paddingEnd="@dimen/default_padding"
                             android:paddingStart="@dimen/default_padding"
                             android:text="@string/tags"
                             android:textColor="@color/color_text_black"
-                            android:textSize="@dimen/text_list_item_medium_16"/>
+                            android:textSize="@dimen/text_list_item_large_20"/>
 
                         <TextView
                             android:id="@+id/tvTags_FLD"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_margin="@dimen/default_padding"
-                            android:lineSpacingExtra="4dp"
-                            android:visibility="gone"
-                            tools:text="ThinkMobiles"/>
+                            android:lineSpacingExtra="@dimen/tag_line_spacing_default"
+                            android:layout_marginTop="@dimen/default_padding_half"
+                            android:text="@string/no_tags"
+                            android:paddingEnd="@dimen/default_padding"
+                            android:paddingStart="@dimen/default_padding"
+                            android:paddingBottom="@dimen/default_padding"/>
 
                     </LinearLayout>
 
@@ -434,21 +436,24 @@
                         android:layout_height="wrap_content"
                         android:background="@android:color/white"
                         android:orientation="vertical"
-                        android:padding="@dimen/default_padding">
+                        android:layout_marginTop="@dimen/default_padding"
+                        android:paddingEnd="@dimen/default_padding"
+                        android:paddingStart="@dimen/default_padding">
 
                         <TextView
+                            style="@style/RobotoMedium"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Attachments"
-                            android:textColor="#757575"
-                            android:textSize="16sp"
-                            android:textStyle="bold"/>
+                            android:text="@string/attachments"
+                            android:textColor="@color/color_text_black"
+                            android:textSize="@dimen/text_list_item_large_20"/>
 
                         <LinearLayout
                             android:id="@+id/llAttachmentsContainer_FLD"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical">
+                            android:orientation="vertical"
+                            android:layout_marginBottom="@dimen/default_padding">
 
                             <TextView
                                 android:id="@+id/tvAttachments_FLD"
@@ -457,7 +462,8 @@
                                 android:layout_marginTop="@dimen/default_padding_half"
                                 android:alpha="0.83"
                                 android:drawablePadding="@dimen/default_padding_half"
-                                android:text="No attachments"/>
+                                android:lineSpacingExtra="@dimen/tag_line_spacing_default"
+                                android:text="@string/no_attachments"/>
 
                         </LinearLayout>
 
@@ -472,19 +478,19 @@
                 android:id="@+id/btnHistory_FLD"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#eeeeee"
+                android:background="@color/color_grey_transparent"
                 android:elevation="3dp"
                 android:padding="@dimen/default_padding">
 
 
                 <TextView
+                    style="@style/RobotoMedium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:text="History"
-                    android:textColor="#757575"
-                    android:textSize="16sp"
-                    android:textStyle="bold"/>
+                    android:text="@string/notes_amp_timeline"
+                    android:textColor="@color/color_text_black"
+                    android:textSize="@dimen/text_list_item_large_20"/>
 
                 <ImageView
                     android:id="@+id/ivIconArrow_FLD"
@@ -492,7 +498,8 @@
                     android:layout_height="24dp"
                     android:layout_alignParentEnd="true"
                     android:tint="@android:color/black"
-                    app:srcCompat="@drawable/ic_arrow_up"/>
+                    app:srcCompat="@drawable/ic_arrow_up"
+                    android:visibility="invisible"/>
 
             </RelativeLayout>
 

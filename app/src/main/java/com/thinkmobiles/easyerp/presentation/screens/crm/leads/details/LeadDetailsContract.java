@@ -21,6 +21,7 @@ public interface LeadDetailsContract {
         void showHistory(boolean enable);
 
         void setLeadName(String leadName);
+        void setCurrentStatus(String currentStatus);
         void setCloseDate(String closeDate);
         void setAssignedTo(String assignedTo);
         void setPriority(String priority);

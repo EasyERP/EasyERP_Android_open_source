@@ -54,6 +54,7 @@ public class LeadDetailsPresenter implements LeadDetailsContract.LeadDetailsPres
     private void setData(ResponseGetLeadDetails response) {
         currentLead = response;
 
+        if(response.workflow != null) view.setCurrentStatus(StringUtil.getField(response.workflow.name, notSpecified));
         view.setLeadName(StringUtil.getField(response.name, notSpecified));
         view.setCloseDate(DateManager.convert(response.expectedClosing).toString());
         view.setAssignedTo(response.salesPerson != null ? response.salesPerson.fullName : notSpecified);
@@ -78,6 +79,12 @@ public class LeadDetailsPresenter implements LeadDetailsContract.LeadDetailsPres
             view.setCompanyState(StringUtil.getField(response.company.address.street, notSpecified));
             view.setCompanyZipcode(StringUtil.getField(response.company.address.zip, notSpecified));
             view.setCompanyCountry(StringUtil.getField(response.company.address.country, notSpecified));
+        } else {
+            view.setCompanyStreet(notSpecified);
+            view.setCompanyCity(notSpecified);
+            view.setCompanyState(notSpecified);
+            view.setCompanyZipcode(notSpecified);
+            view.setCompanyCountry(notSpecified);
         }
 
         if (response.attachments != null && !response.attachments.isEmpty()) {

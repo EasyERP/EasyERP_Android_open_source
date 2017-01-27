@@ -35,7 +35,7 @@
                     android:maxLines="1"
                     android:text="@string/no_data"
                     android:textColor="@color/color_text_black"
-                    android:textSize="@dimen/text_list_item_large_20"
+                    android:textSize="@dimen/text_list_item_extra_large_24"
                     tools:text="Web development" />
 
                 <TextView
@@ -44,7 +44,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/default_padding"
-                    android:layout_marginStart="@dimen/default_padding_quart"
                     android:padding="@dimen/default_padding_small"
                     android:textSize="@dimen/middle_text_size"
                     tools:text="Medium" />
@@ -71,7 +70,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/default_padding_half">
 
         <TextView
             android:id="@+id/tvAssignedTo_LIL"
@@ -83,7 +83,7 @@
             android:text="@string/no_data"
             android:textColor="@color/color_text_black"
             android:textSize="@dimen/text_list_item_medium_16"
-            tools:text="Alex Hoshylyk" />
+            tools:text="Alex Hoshylyk"/>
 
         <TextView
             android:id="@+id/tvSource_LIL"

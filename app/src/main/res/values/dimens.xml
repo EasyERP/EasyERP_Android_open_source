@@ -33,8 +33,10 @@
     <dimen name="default_padding_half">8dp</dimen>
 
     <!--text-->
+    <dimen name="text_list_item_extra_large_24">24sp</dimen>
     <dimen name="text_list_item_large_20">20sp</dimen>
     <dimen name="text_list_item_medium_16">16sp</dimen>
+    <dimen name="tag_line_spacing_default">8dp</dimen>
 
 
 </resources>
