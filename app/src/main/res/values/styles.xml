@@ -54,5 +54,17 @@
         <item name="android:layout_width">match_parent</item>
     </style>
 
+    <!-- Fonts-->
+    <style name="RobotoMedium">
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+    <style name="RobotoRegular">
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+    <style name="RobotoBold">
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
 
 </resources>

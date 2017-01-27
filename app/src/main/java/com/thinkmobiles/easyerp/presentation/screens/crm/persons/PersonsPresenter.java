@@ -60,7 +60,7 @@ public class PersonsPresenter extends MasterFlowSelectablePresenterHelper<String
                            .flatMap(responseGetPersons -> personsModel.getCustomerImages(prepareIDsForImagesRequest(responseGetPersons)),
                                    CommonPersonsResponse::new)
                            .subscribe(commonPersonsResponse -> {
-                               view.displayPersons(prepareDataHolders(commonPersonsResponse), needClear);
+                               view.displayPersons(prepareDataHolders(commonPersonsResponse, needClear), needClear);
                            })
            );
         } else {
@@ -70,18 +70,21 @@ public class PersonsPresenter extends MasterFlowSelectablePresenterHelper<String
                             .flatMap(responseGetPersons -> personsModel.getCustomerImages(prepareIDsForImagesRequest(responseGetPersons)),
                                     CommonPersonsResponse::new)
                             .subscribe(commonPersonsResponse -> {
-                                view.displayPersons(prepareDataHolders(commonPersonsResponse), needClear);
+                                view.displayPersons(prepareDataHolders(commonPersonsResponse, needClear), needClear);
                             })
             );
         }
     }
 
-    private ArrayList<PersonDH> prepareDataHolders(CommonPersonsResponse commonPersonsResponse) {
+    private ArrayList<PersonDH> prepareDataHolders(CommonPersonsResponse commonPersonsResponse, boolean isFirstPage) {
+        int position = 0;
         ArrayList<PersonDH> result = new ArrayList<>();
         for(PersonModel personModel : commonPersonsResponse.responseGetPersons.data) {
             for(CustomerImageItem imageItem : commonPersonsResponse.responseGetCustomersImages.data) {
                 if(personModel.id.equalsIgnoreCase(imageItem.id)) {
-                    result.add(new PersonDH(imageItem.imageSrc, personModel));
+                    final PersonDH personDH = new PersonDH(imageItem.imageSrc, personModel);
+                    makeSelectedDHIfNeed(personDH, view, position++, isFirstPage);
+                    result.add(personDH);
                 }
             }
         }

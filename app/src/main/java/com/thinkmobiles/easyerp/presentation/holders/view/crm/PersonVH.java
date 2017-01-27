@@ -64,5 +64,6 @@ public class PersonVH extends RecyclerVH<PersonDH> {
         } else {
             tvPersonPhone_VLIP.setText(noData);
         }
+        flPersonItemContainer_VLIP.setSelected(data.isSelected());
     }
 }
