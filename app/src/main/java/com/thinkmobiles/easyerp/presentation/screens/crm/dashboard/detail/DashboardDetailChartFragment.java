@@ -1,6 +1,7 @@
 package com.thinkmobiles.easyerp.presentation.screens.crm.dashboard.detail;
 
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -39,7 +40,6 @@ import java.util.GregorianCalendar;
  * Created by Asus_Dev on 1/20/2017.
  */
 @EFragment(R.layout.fragment_dashboard_chart_detail)
-@OptionsMenu(R.menu.menu_crm_dashboard_detail)
 public class DashboardDetailChartFragment extends BaseFragment<HomeActivity> implements DashboardDetailChartView {
 
     private DashboardDetailChartContract.DashboardDetailChartPresenter presenter;
@@ -163,8 +163,13 @@ public class DashboardDetailChartFragment extends BaseFragment<HomeActivity> imp
         presenter.unsubscribe();
     }
 
-    @OptionsItem({R.id.thisMonth_MCDD, R.id.thisFinancialYear_MCDD, R.id.lastMonth_MCDD, R.id.lastQuarter_MCDD, R.id.lastFinancialYear_MCDD, R.id.customDates_MCDD})
-    protected void chooseFilter(final MenuItem item) {
+    @Override
+    public int optionsMenuRes() {
+        return R.menu.menu_crm_dashboard_detail;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
         item.setChecked(true);
         switch (item.getItemId()) {
             case R.id.thisMonth_MCDD:
@@ -186,35 +191,36 @@ public class DashboardDetailChartFragment extends BaseFragment<HomeActivity> imp
                 presenter.chooseFilterType(DateFilterType.CUSTOM_DATES);
                 break;
         }
+        return super.onOptionsItemSelected(item);
     }
 
-    protected void initStartFilterState(
-            @OptionsMenuItem MenuItem thisMonth_MCDD,
-            @OptionsMenuItem MenuItem thisFinancialYear_MCDD,
-            @OptionsMenuItem MenuItem lastMonth_MCDD,
-            @OptionsMenuItem MenuItem lastQuarter_MCDD,
-            @OptionsMenuItem MenuItem lastFinancialYear_MCDD,
-            @OptionsMenuItem MenuItem customDates_MCDD) {
+    @Override
+    public void optionsMenuInitialized(Menu menu) {
         switch (presenter.getCurrentFilterType()) {
             case THIS_MONTH:
-                thisMonth_MCDD.setChecked(true);
+                menu.findItem(R.id.thisMonth_MCDD).setChecked(true);
                 break;
             case THIS_FINANCIAL_YEAR:
-                thisFinancialYear_MCDD.setChecked(true);
+                menu.findItem(R.id.thisFinancialYear_MCDD).setChecked(true);
                 break;
             case LAST_MONTH:
-                lastMonth_MCDD.setChecked(true);
+                menu.findItem(R.id.lastMonth_MCDD).setChecked(true);
                 break;
             case LAST_QUARTER:
-                lastQuarter_MCDD.setChecked(true);
+                menu.findItem(R.id.lastQuarter_MCDD).setChecked(true);
                 break;
             case LAST_FINANCIAL_YEAR:
-                lastFinancialYear_MCDD.setChecked(true);
+                menu.findItem(R.id.lastFinancialYear_MCDD).setChecked(true);
                 break;
             case CUSTOM_DATES:
-                customDates_MCDD.setChecked(true);
+                menu.findItem(R.id.customDates_MCDD).setChecked(true);
                 break;
         }
+    }
+
+    @Override
+    public boolean optionsMenuForDetail() {
+        return true;
     }
 
 }

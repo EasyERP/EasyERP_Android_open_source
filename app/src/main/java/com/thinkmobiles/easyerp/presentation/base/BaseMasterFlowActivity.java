@@ -5,6 +5,8 @@ import android.support.annotation.IdRes;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.presentation.EasyErpApplication;
@@ -16,12 +18,12 @@ import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.OptionsItem;
 import org.androidannotations.annotations.OptionsMenu;
 import org.androidannotations.annotations.ViewById;
+import org.androidannotations.annotations.res.BooleanRes;
 
 /**
  * Created by Asus_Dev on 1/17/2017.
  */
 @EActivity
-@OptionsMenu(R.menu.menu_base)
 public abstract class BaseMasterFlowActivity extends AppCompatActivity {
 
     @Bean
@@ -29,6 +31,15 @@ public abstract class BaseMasterFlowActivity extends AppCompatActivity {
 
     @ViewById
     protected Toolbar toolbar;
+
+    @ViewById
+    protected Toolbar toolbarDetail;
+
+    @BooleanRes
+    public boolean isTablet;
+
+    @BooleanRes
+    public boolean isPortrait;
 
     @AfterViews
     protected void initToolbar() {
@@ -39,6 +50,31 @@ public abstract class BaseMasterFlowActivity extends AppCompatActivity {
             actionBar.setHomeAsUpIndicator(R.drawable.ic_hamburger_menu);
             actionBar.setDisplayHomeAsUpEnabled(true);
             actionBar.setHomeButtonEnabled(true);
+        }
+    }
+
+    public Toolbar getToolbar() {
+        return toolbar;
+    }
+
+    public Toolbar getToolbarDetail() {
+        return toolbarDetail;
+    }
+
+    public void resetDetailToolbarToBase() {
+        toolbarDetail.getMenu().clear();
+        toolbarDetail.inflateMenu(R.menu.menu_base);
+        toolbarDetail.setOnMenuItemClickListener(this::onOptionsItemSelected);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        if (isTablet) {
+            resetDetailToolbarToBase();
+            return false;
+        } else {
+            getMenuInflater().inflate(R.menu.menu_base, menu);
+            return true;
         }
     }
 
@@ -71,12 +107,7 @@ public abstract class BaseMasterFlowActivity extends AppCompatActivity {
         }
     }
 
-    protected abstract
-    @IdRes
-    int contentIdLayout();
-
-    protected abstract
-    @IdRes
-    int contentDetailIdLayout();
+    protected abstract @IdRes int contentIdLayout();
+    protected abstract @IdRes int contentDetailIdLayout();
 
 }
