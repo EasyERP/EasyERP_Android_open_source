@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <bool name="isTablet">true</bool> <!--TODO for testing, need isTablet = false -->
+    <bool name="isPortrait">false</bool>
+</resources>

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@android:color/white">
+             xmlns:app="http://schemas.android.com/apk/res-auto"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:background="@android:color/white">
 
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/srlRefresh_FLD"
@@ -59,7 +59,7 @@
                             android:layout_margin="@dimen/default_padding"
                             android:text="Secret Deals"
                             android:textColor="#212121"
-                            android:textSize="24sp" />
+                            android:textSize="24sp"/>
 
 
                         <TextView
@@ -69,7 +69,7 @@
                             android:text="About"
                             android:textColor="#757575"
                             android:textSize="16sp"
-                            android:textStyle="bold" />
+                            android:textStyle="bold"/>
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -83,7 +83,7 @@
                                 <EditText
                                     android:id="@+id/tvCloseDate_FLD"
                                     style="@style/AppTheme.LeadInputFieldStyle"
-                                    android:hint="Close Date" />
+                                    android:hint="Close Date"/>
 
                             </android.support.design.widget.TextInputLayout>
 
@@ -92,7 +92,7 @@
                                 <EditText
                                     android:id="@+id/tvAssignedTo_FLD"
                                     style="@style/AppTheme.LeadInputFieldStyle"
-                                    android:hint="Assigned to" />
+                                    android:hint="Assigned to"/>
 
                             </android.support.design.widget.TextInputLayout>
 
@@ -111,7 +111,7 @@
                                 <EditText
                                     android:id="@+id/tvPriority_FLD"
                                     style="@style/AppTheme.LeadInputFieldStyle"
-                                    android:hint="Priority" />
+                                    android:hint="Priority"/>
 
                             </android.support.design.widget.TextInputLayout>
 
@@ -121,7 +121,7 @@
                                 <EditText
                                     android:id="@+id/tvSource_FLD"
                                     style="@style/AppTheme.LeadInputFieldStyle"
-                                    android:hint="Source" />
+                                    android:hint="Source"/>
 
                             </android.support.design.widget.TextInputLayout>
 
@@ -135,7 +135,7 @@
                             android:layout_margin="@dimen/default_padding"
                             android:lineSpacingExtra="4dp"
                             android:visibility="gone"
-                            tools:text="ThinkMobiles" />
+                            tools:text="ThinkMobiles"/>
 
 
                         <TextView
@@ -145,7 +145,7 @@
                             android:text="Contacts"
                             android:textColor="#bdbdbd"
                             android:textSize="15sp"
-                            android:textStyle="bold" />
+                            android:textStyle="bold"/>
 
 
                         <LinearLayout
@@ -161,7 +161,7 @@
                                 <EditText
                                     android:id="@+id/tvPersonName_FLD"
                                     style="@style/AppTheme.LeadInputFieldStyle"
-                                    android:hint="Person" />
+                                    android:hint="Person"/>
 
                             </android.support.design.widget.TextInputLayout>
 
@@ -171,7 +171,7 @@
                                 <EditText
                                     android:id="@+id/tvJobPosition_FLD"
                                     style="@style/AppTheme.LeadInputFieldStyle"
-                                    android:hint="Job Position" />
+                                    android:hint="Job Position"/>
 
                             </android.support.design.widget.TextInputLayout>
 
@@ -191,7 +191,7 @@
                                 <EditText
                                     android:id="@+id/tvDob_FLD"
                                     style="@style/AppTheme.LeadInputFieldStyle"
-                                    android:hint="Date of Birth" />
+                                    android:hint="Date of Birth"/>
 
                             </android.support.design.widget.TextInputLayout>
 
@@ -201,7 +201,7 @@
                                 <EditText
                                     android:id="@+id/tvEmail_FLD"
                                     style="@style/AppTheme.LeadInputFieldStyle"
-                                    android:hint="Email" />
+                                    android:hint="Email"/>
 
                             </android.support.design.widget.TextInputLayout>
 
@@ -220,7 +220,7 @@
                                 <EditText
                                     android:id="@+id/tvPhone_FLD"
                                     style="@style/AppTheme.LeadInputFieldStyle"
-                                    android:hint="Phone" />
+                                    android:hint="Phone"/>
 
                             </android.support.design.widget.TextInputLayout>
 
@@ -230,7 +230,7 @@
                                 <EditText
                                     android:id="@+id/tvSkype_FLD"
                                     style="@style/AppTheme.LeadInputFieldStyle"
-                                    android:hint="Skype" />
+                                    android:hint="Skype"/>
 
                             </android.support.design.widget.TextInputLayout>
 
@@ -249,7 +249,7 @@
                                 <EditText
                                     android:id="@+id/tvLinkedIn_FLD"
                                     style="@style/AppTheme.LeadInputFieldStyle"
-                                    android:hint="LinkedIn" />
+                                    android:hint="LinkedIn"/>
 
                             </android.support.design.widget.TextInputLayout>
 
@@ -258,7 +258,7 @@
                                 <EditText
                                     android:id="@+id/tvFacebook_FLD"
                                     style="@style/AppTheme.LeadInputFieldStyle"
-                                    android:hint="Facebook" />
+                                    android:hint="Facebook"/>
 
                             </android.support.design.widget.TextInputLayout>
 
@@ -271,7 +271,7 @@
                             android:text="Company"
                             android:textColor="#bdbdbd"
                             android:textSize="15sp"
-                            android:textStyle="bold" />
+                            android:textStyle="bold"/>
 
 
                         <LinearLayout
@@ -286,7 +286,7 @@
                                 <EditText
                                     android:id="@+id/tvCompanyName_FLD"
                                     style="@style/AppTheme.LeadInputFieldStyle"
-                                    android:hint="Name" />
+                                    android:hint="Name"/>
 
                             </android.support.design.widget.TextInputLayout>
 
@@ -295,7 +295,7 @@
                                 <EditText
                                     android:id="@+id/tvCompanyAddress_FLD"
                                     style="@style/AppTheme.LeadInputFieldStyle"
-                                    android:hint="Address" />
+                                    android:hint="Address"/>
 
                             </android.support.design.widget.TextInputLayout>
 
@@ -318,7 +318,7 @@
                             android:text="Attachments"
                             android:textColor="#757575"
                             android:textSize="16sp"
-                            android:textStyle="bold" />
+                            android:textStyle="bold"/>
 
                         <LinearLayout
                             android:id="@+id/llAttachmentsContainer_FLD"
@@ -333,7 +333,7 @@
                                 android:layout_marginTop="@dimen/default_padding_half"
                                 android:alpha="0.83"
                                 android:drawablePadding="@dimen/default_padding_half"
-                                android:text="No attachments" />
+                                android:text="No attachments"/>
 
                         </LinearLayout>
 
@@ -360,7 +360,7 @@
                     android:text="History"
                     android:textColor="#757575"
                     android:textSize="16sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"/>
 
                 <ImageView
                     android:id="@+id/ivIconArrow_FLD"
@@ -368,7 +368,7 @@
                     android:layout_height="24dp"
                     android:layout_alignParentEnd="true"
                     android:tint="@android:color/black"
-                    app:srcCompat="@drawable/ic_arrow_up" />
+                    app:srcCompat="@drawable/ic_arrow_up"/>
 
             </RelativeLayout>
 
@@ -377,7 +377,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@android:color/white"
-                android:visibility="gone" />
+                android:visibility="gone"/>
 
         </LinearLayout>
 

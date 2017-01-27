@@ -2,26 +2,39 @@
 <resources>
 
     <dimen name="user_avatar_size">48dp</dimen>
-    <dimen name="user_avatar_size_mini">39dp</dimen>
-    <dimen name="user_avatar_divide_sizes">9dp</dimen>
+    <dimen name="user_avatar_size_mini">40dp</dimen>
+    <dimen name="user_avatar_divide_sizes">8dp</dimen>
     <dimen name="menu_items_distance_to_top">73dp</dimen>
 
     <dimen name="menu_item_thumb_size">30dp</dimen>
 
+    <dimen name="big_text_size">18sp</dimen>
     <dimen name="middle_text_size">15sp</dimen>
     <dimen name="small_text_size">12sp</dimen>
 
     <dimen name="default_dimen_32">32dp</dimen>
+    <dimen name="default_padding_big">24dp</dimen>
     <dimen name="default_padding">16dp</dimen>
     <dimen name="default_padding_middle">12dp</dimen>
     <dimen name="default_padding_half">8dp</dimen>
     <dimen name="default_padding_small">6dp</dimen>
-    <dimen name="default_padding_very_small">4dp</dimen>
+    <dimen name="default_padding_quart">4dp</dimen>
     <dimen name="default_padding_3dp">3dp</dimen>
 
     <dimen name="collapsed_menu_width">74dp</dimen>
     <dimen name="expanded_menu_width">260dp</dimen>
     
     <dimen name="login_min_width_form_credentials">300dp</dimen>
+
+    <!--/////////////////////// DESIGN ///////////////////////-->
+
+    <!--margins-->
+    <dimen name="list_item_line_12">12dp</dimen>
+    <dimen name="list_item_side_8">8dp</dimen>
+
+    <!--text-->
+    <dimen name="text_list_item_large_20">20sp</dimen>
+    <dimen name="text_list_item_medium_16">16sp</dimen>
+
 
 </resources>

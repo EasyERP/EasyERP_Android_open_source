@@ -2,18 +2,18 @@ package com.thinkmobiles.easyerp.data.model.crm.dashboard.detail.invoice;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 
 import com.google.gson.annotations.SerializedName;
 import com.thinkmobiles.easyerp.data.model.crm.dashboard.detail.IChartModel;
 import com.thinkmobiles.easyerp.data.model.crm.leads.EditedBy;
-import com.thinkmobiles.easyerp.data.model.crm.leads.SalesPerson;
 import com.thinkmobiles.easyerp.data.model.crm.leads.Workflow;
 
 /**
  * Created by Asus_Dev on 1/19/2017.
  */
 
-public class InvoiceItem implements Parcelable, IChartModel {
+public class InvoiceItem implements Parcelable, IChartModel, Comparable<InvoiceItem> {
 
     @SerializedName("_id")
     public String id;
@@ -66,11 +66,11 @@ public class InvoiceItem implements Parcelable, IChartModel {
 
     protected InvoiceItem(Parcel in) {
         this.id = in.readString();
-        this.salesPerson = in.readParcelable(SalesPerson.class.getClassLoader());
+        this.salesPerson = in.readParcelable(com.thinkmobiles.easyerp.data.model.crm.leads.detail.SalesPerson.class.getClassLoader());
         this.workflow = in.readParcelable(Workflow.class.getClassLoader());
-        this.supplier = in.readParcelable(SalesPerson.class.getClassLoader());
+        this.supplier = in.readParcelable(com.thinkmobiles.easyerp.data.model.crm.leads.detail.SalesPerson.class.getClassLoader());
         this.currency = in.readParcelable(Currency.class.getClassLoader());
-        this.journal = in.readParcelable(SalesPerson.class.getClassLoader());
+        this.journal = in.readParcelable(com.thinkmobiles.easyerp.data.model.crm.leads.detail.SalesPerson.class.getClassLoader());
         this.paymentInfo = in.readParcelable(PaymentInfo.class.getClassLoader());
         this.invoiceDate = in.readString();
         this.name = in.readString();
@@ -95,4 +95,10 @@ public class InvoiceItem implements Parcelable, IChartModel {
             return new InvoiceItem[size];
         }
     };
+
+    @Override
+    public int compareTo(@NonNull InvoiceItem invoiceItem) {
+        return sum > invoiceItem.sum ? 1 : (sum < invoiceItem.sum ? -1 : 0);
+    }
+
 }

@@ -2,13 +2,10 @@ package com.thinkmobiles.easyerp.domain.crm;
 
 import com.thinkmobiles.easyerp.data.api.Rest;
 import com.thinkmobiles.easyerp.data.model.crm.dashboard.detail.DashboardChartType;
-import com.thinkmobiles.easyerp.data.model.crm.dashboard.detail.IChartModel;
 import com.thinkmobiles.easyerp.data.services.InvoiceService;
 import com.thinkmobiles.easyerp.data.services.OrderService;
 
 import org.androidannotations.annotations.EBean;
-
-import java.util.List;
 
 import rx.Observable;
 
@@ -30,69 +27,68 @@ class DashboardChartsLayerRepository {
             final String dataSet,
             final DashboardChartType chartType,
             final String filterDateFrom,
-            final String filterDateTo,
-            final boolean forSales) {
+            final String filterDateTo) {
         switch (dataSet) {
             case "totalSalesRevenue":
                 switch (chartType) {
-                    case OVERVIEW: return invoiceService.getInvoiceByWorkflows(filterDateFrom, filterDateTo, forSales, "list", 5, -1, "invoice");
-                    case TABLE: return invoiceService.getInvoice(filterDateFrom, filterDateTo, forSales, "list", 5, -1, "invoice");
+                    case OVERVIEW: return invoiceService.getInvoiceByWorkflows(filterDateFrom, filterDateTo, true, "list", 5, -1, "invoice");
+                    case TABLE: return invoiceService.getInvoice(filterDateFrom, filterDateTo, true, "list", 5, -1, "invoice");
                 }
                 break;
             case "revenueBySales":
                 switch (chartType) {
-                    case HORIZONTALBAR: return invoiceService.getInvoiceBySales(filterDateFrom, filterDateTo, forSales);
+                    case HORIZONTALBAR: return invoiceService.getInvoiceBySales(filterDateFrom, filterDateTo, true);
                 }
                 break;
             case "revenueByCustomer":
                 switch (chartType) {
-                    case DONUT: return invoiceService.getInvoiceByCustomer(filterDateFrom, filterDateTo, forSales);
+                    case DONUT: return invoiceService.getInvoiceByCustomer(filterDateFrom, filterDateTo, true);
                 }
                 break;
             case "purchaseOrders":
                 switch (chartType) {
-                    case OVERVIEW: return orderService.getOrderByWorkflows(filterDateFrom, filterDateTo, forSales);
+                    case OVERVIEW: return orderService.getOrderByWorkflows(filterDateFrom, filterDateTo, false);
                 }
                 break;
             case "totalPurchaseRevenue":
                 switch (chartType) {
-                    case OVERVIEW: return invoiceService.getInvoiceByWorkflows(filterDateFrom, filterDateTo, forSales, "list", 5, -1, "purchaseInvoices");
-                    case TABLE: return invoiceService.getInvoice(filterDateFrom, filterDateTo, forSales, "list", 5, -1, "purchaseInvoices");
+                    case OVERVIEW: return invoiceService.getInvoiceByWorkflows(filterDateFrom, filterDateTo, false, "list", 5, -1, "purchaseInvoices");
+                    case TABLE: return invoiceService.getInvoice(filterDateFrom, filterDateTo, false, "list", 5, -1, "purchaseInvoices");
                 }
                 break;
             case "purchaseRevenueBySales":
                 switch (chartType) {
-                    case HORIZONTALBAR: return invoiceService.getInvoiceByCountry(filterDateFrom, filterDateTo, forSales);
+                    case HORIZONTALBAR: return invoiceService.getInvoiceByCountry(filterDateFrom, filterDateTo, false);
                 }
                 break;
             case "purchaseRevenueByCustomer":
                 switch (chartType) {
-                    case DONUT: return invoiceService.getInvoiceByCustomer(filterDateFrom, filterDateTo, forSales);
+                    case DONUT: return invoiceService.getInvoiceByCustomer(filterDateFrom, filterDateTo, false);
                 }
                 break;
             case "orders":
                 switch (chartType) {
-                    case OVERVIEW: return orderService.getOrderByWorkflows(filterDateFrom, filterDateTo, forSales);
+                    case OVERVIEW: return orderService.getOrderByWorkflows(filterDateFrom, filterDateTo, true);
                 }
                 break;
             case "pastDueInvoices":
                 switch (chartType) {
-                    case TABLE: return invoiceService.getInvoice(filterDateFrom, filterDateTo, forSales, "list", 5, -1, "invoice");
+                    case TABLE: return invoiceService.getInvoice(filterDateFrom, filterDateTo, true, "list", 5, -1, "invoice");
                 }
                 break;
             case "purchaseRevenueByCountry":
                 switch (chartType) {
-                    case DONUT: return invoiceService.getInvoiceBySales(filterDateFrom, filterDateTo, forSales);
+                    case DONUT: return invoiceService.getInvoiceBySales(filterDateFrom, filterDateTo, false);
                 }
                 break;
             case "revenueByCountry":
                 switch (chartType) {
-                    case DONUT: return invoiceService.getInvoiceByCountry(filterDateFrom, filterDateTo, forSales);
+                    case DONUT: return invoiceService.getInvoiceByCountry(filterDateFrom, filterDateTo, true);
                 }
                 break;
             case "pastDuePurchaseInvoices":
                 switch (chartType) {
-                    case TABLE: return invoiceService.getInvoice(filterDateFrom, filterDateTo, forSales, "list", 5, -1, "purchaseInvoices");
+                    case TABLE: return invoiceService.getInvoice(filterDateFrom, filterDateTo, false, "list", 5, -1, "purchaseInvoices");
                 }
                 break;
         }

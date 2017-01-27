@@ -14,8 +14,6 @@
         <item name="editTextStyle">@style/AppTheme.DefaultBlackEditTextTheme</item>
 
         <item name="colorButtonNormal">@color/colorPrimary</item>
-        <item name="colorControlActivated">@color/colorPrimary</item>
-        <item name="colorControlHighlight">@color/colorPrimaryDark</item>
     </style>
 
     <style name="AppTheme.DefaultBlackTextTheme">
@@ -32,6 +30,8 @@
         <item name="android:textColor">@color/colorPrimaryDark</item>
         <item name="android:textColorHint">@color/colorPrimary</item>
         <item name="colorControlNormal">@color/text_grey_hint_color</item>
+        <item name="colorControlActivated">@color/colorPrimary</item>
+        <item name="colorControlHighlight">@color/colorPrimaryDark</item>
     </style>
 
     <style name="TextInputLayoutStyle">
@@ -53,6 +53,18 @@
         <item name="android:inputType">text</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">match_parent</item>
+    </style>
+
+    <!-- Fonts-->
+    <style name="RobotoMedium">
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+    <style name="RobotoRegular">
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+    <style name="RobotoBold">
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:textStyle">bold</item>
     </style>
 
     <style name="AppTheme.FilterDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">

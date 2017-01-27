@@ -3,13 +3,12 @@ package com.thinkmobiles.easyerp.presentation.screens.crm.leads.details;
 
 import android.text.SpannableStringBuilder;
 
-import com.thinkmobiles.easyerp.data.model.crm.leads.detail.LeadAttachment;
 import com.thinkmobiles.easyerp.data.model.crm.leads.detail.LeadDetailWorkflow;
 import com.thinkmobiles.easyerp.data.model.crm.leads.detail.ResponseGetLeadDetails;
 import com.thinkmobiles.easyerp.presentation.base.BaseModel;
 import com.thinkmobiles.easyerp.presentation.base.BasePresenter;
 import com.thinkmobiles.easyerp.presentation.base.BaseView;
-import com.thinkmobiles.easyerp.presentation.holders.data.crm.LeadHistoryDH;
+import com.thinkmobiles.easyerp.presentation.holders.data.crm.HistoryDH;
 
 import java.util.ArrayList;
 
@@ -38,7 +37,7 @@ public interface LeadDetailsContract {
         void setCompanyName(String companyName);
         void setCompanyAddress(String companyAddress);
         void setAttachments(String attachments);
-        void setHistory(ArrayList<LeadHistoryDH> history);
+        void setHistory(ArrayList<HistoryDH> history);
 
         void setWorkflow(ArrayList<LeadDetailWorkflow> workflows);
     }

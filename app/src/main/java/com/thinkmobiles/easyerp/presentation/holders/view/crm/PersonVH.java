@@ -1,9 +1,7 @@
 package com.thinkmobiles.easyerp.presentation.holders.view.crm;
 
 import android.support.annotation.Nullable;
-import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -47,7 +45,6 @@ public class PersonVH extends RecyclerVH<PersonDH> {
     @Override
     public void bindData(PersonDH data) {
         PersonModel personModel = data.getPersonModel();
-        Log.d("myLogs", String.format("base 64 = %s", data.getBase64Image()));
         ImageHelper.getBitmapFromBase64(data.getBase64Image())
                 .subscribe(bitmap -> {
                     if(bitmap != null)
@@ -67,5 +64,6 @@ public class PersonVH extends RecyclerVH<PersonDH> {
         } else {
             tvPersonPhone_VLIP.setText(noData);
         }
+        flPersonItemContainer_VLIP.setSelected(data.isSelected());
     }
 }

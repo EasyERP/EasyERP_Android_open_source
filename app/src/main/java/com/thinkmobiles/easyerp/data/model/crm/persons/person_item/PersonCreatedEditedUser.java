@@ -20,6 +20,9 @@ public class PersonCreatedEditedUser implements Parcelable {
     public String id;
     public String login;
 
+    public PersonCreatedEditedUser() {
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -31,15 +34,12 @@ public class PersonCreatedEditedUser implements Parcelable {
         dest.writeString(this.login);
     }
 
-    public PersonCreatedEditedUser() {
-    }
-
     protected PersonCreatedEditedUser(Parcel in) {
         this.id = in.readString();
         this.login = in.readString();
     }
 
-    public static final Parcelable.Creator<PersonCreatedEditedUser> CREATOR = new Parcelable.Creator<PersonCreatedEditedUser>() {
+    public static final Creator<PersonCreatedEditedUser> CREATOR = new Creator<PersonCreatedEditedUser>() {
         @Override
         public PersonCreatedEditedUser createFromParcel(Parcel source) {
             return new PersonCreatedEditedUser(source);

@@ -11,6 +11,7 @@ import com.thinkmobiles.easyerp.presentation.adapters.crm.DashboardListAdapter;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.base.rules.SimpleListWithRefreshFragment;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.DashboardListDH;
+import com.thinkmobiles.easyerp.presentation.screens.crm.dashboard.detail.DashboardDetailChartFragment_;
 
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterViews;
@@ -56,15 +57,14 @@ public class DashboardListFragment extends SimpleListWithRefreshFragment impleme
     @AfterViews
     protected void initUI() {
         errorViewHelper.init(errorLayout, view -> loadWithProgressBar());
-        listRecycler.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
+        listRecycler.setLayoutManager(new LinearLayoutManager(mActivity, LinearLayoutManager.VERTICAL, false));
         listRecycler.setAdapter(dashboardListAdapter);
         dashboardListAdapter.setOnCardClickListener((view, position, viewType) -> {
-            if (position != presenter.getSelectedItemPosition()) {
-                final DashboardListDH itemDH = dashboardListAdapter.getItem(position);
-                dashboardListAdapter.replaceSelectedItem(presenter.getSelectedItemPosition(), position);
-                presenter.setSelectedInfo(position, itemDH.getId());
+            final DashboardListDH itemDH = dashboardListAdapter.getItem(position);
+            dashboardListAdapter.replaceSelectedItem(presenter.getSelectedItemPosition(), position);
+            if (position != presenter.getSelectedItemPosition())
                 presenter.prepareDashboardDetailWithParams(itemDH);
-            }
+            presenter.setSelectedInfo(position, itemDH.getId());
         });
         loadWithProgressBar();
     }
@@ -105,7 +105,7 @@ public class DashboardListFragment extends SimpleListWithRefreshFragment impleme
 
     @Override
     public void displayDashboardsDetail(DashboardListItem itemChartDashboard) {
-        // TODO open detail fragment
+        mActivity.replaceFragmentContentDetail(DashboardDetailChartFragment_.builder().dashboardConfigsForChart(itemChartDashboard).build());
     }
 
     @Override
@@ -116,7 +116,7 @@ public class DashboardListFragment extends SimpleListWithRefreshFragment impleme
         final String resultMsg = errorType.equals(ErrorViewHelper.ErrorType.LIST_EMPTY) ? string_list_is_empty : msg;
         if (getCountItemsNow() == 0)
             errorViewHelper.showErrorMsg(resultMsg, errorType);
-        else Toast.makeText(getContext(), resultMsg, Toast.LENGTH_LONG).show();
+        else Toast.makeText(mActivity, resultMsg, Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -125,4 +125,8 @@ public class DashboardListFragment extends SimpleListWithRefreshFragment impleme
         presenter.unsubscribe();
     }
 
+    @Override
+    public int optionsMenuRes() {
+        return R.menu.menu_test;
+    }
 }

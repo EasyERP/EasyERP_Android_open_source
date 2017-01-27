@@ -75,4 +75,6 @@ dependencies {
     compile 'com.facebook.stetho:stetho-okhttp3:1.4.2'
     compile 'com.squareup.okhttp3:logging-interceptor:3.4.1'
 
+    compile project(path: ':rangepickerdialog')
+    compile 'com.github.PhilJay:MPAndroidChart:v3.0.1'
 }

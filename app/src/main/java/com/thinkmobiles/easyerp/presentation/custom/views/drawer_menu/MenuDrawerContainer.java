@@ -3,7 +3,6 @@ package com.thinkmobiles.easyerp.presentation.custom.views.drawer_menu;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.support.annotation.Nullable;
-import android.support.v4.widget.SlidingPaneLayout;
 import android.util.AttributeSet;
 import android.view.View;
 

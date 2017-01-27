@@ -2,7 +2,6 @@ package com.thinkmobiles.easyerp.presentation.screens.crm.leads.details;
 
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -11,7 +10,6 @@ import android.text.Html;
 import android.text.SpannableStringBuilder;
 import android.text.method.LinkMovementMethod;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -23,7 +21,7 @@ import com.thinkmobiles.easyerp.data.model.crm.leads.detail.LeadDetailWorkflow;
 import com.thinkmobiles.easyerp.domain.crm.LeadsRepository;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.LeadHistoryAdapter;
 import com.thinkmobiles.easyerp.presentation.base.BaseFragment;
-import com.thinkmobiles.easyerp.presentation.holders.data.crm.LeadHistoryDH;
+import com.thinkmobiles.easyerp.presentation.holders.data.crm.HistoryDH;
 import com.thinkmobiles.easyerp.presentation.screens.home.HomeActivity;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
@@ -255,7 +253,7 @@ public class LeadDetailsFragment extends BaseFragment<HomeActivity> implements L
     }
 
     @Override
-    public void setHistory(ArrayList<LeadHistoryDH> history) {
+    public void setHistory(ArrayList<HistoryDH> history) {
         historyAdapter.setListDH(history);
     }
 

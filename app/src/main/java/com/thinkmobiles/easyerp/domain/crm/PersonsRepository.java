@@ -3,9 +3,11 @@ package com.thinkmobiles.easyerp.domain.crm;
 import com.thinkmobiles.easyerp.data.api.Rest;
 import com.thinkmobiles.easyerp.data.model.crm.persons.ResponseGetPersons;
 import com.thinkmobiles.easyerp.data.model.crm.persons.alphabet.ResponseGetPersonsAlphabet;
+import com.thinkmobiles.easyerp.data.model.crm.persons.details.ResponseGetPersonDetails;
 import com.thinkmobiles.easyerp.data.model.crm.persons.images.ResponseGetCustomersImages;
 import com.thinkmobiles.easyerp.data.services.PersonsService;
 import com.thinkmobiles.easyerp.presentation.screens.crm.persons.PersonsContract;
+import com.thinkmobiles.easyerp.presentation.screens.crm.persons.details.PersonDetailsContract;
 
 import org.androidannotations.annotations.EBean;
 
@@ -20,7 +22,7 @@ import rx.schedulers.Schedulers;
  */
 
 @EBean(scope = EBean.Scope.Singleton)
-public class PersonsRepository implements PersonsContract.PersonsModel {
+public class PersonsRepository implements PersonsContract.PersonsModel, PersonDetailsContract.PersonDetailsModel {
 
     private PersonsService personsService;
 
@@ -47,5 +49,9 @@ public class PersonsRepository implements PersonsContract.PersonsModel {
 
     public Observable<ResponseGetPersons> getPersonsByLetter(String letter, int page) {
         return getNetworkObservable(personsService.getPersonsByLetter("list", "name.first", letter, "letter", "Persons", 50, page));
+    }
+
+    public Observable<ResponseGetPersonDetails> getPersonDetails(String personID) {
+        return getNetworkObservable(personsService.getPersonDetails(personID));
     }
 }

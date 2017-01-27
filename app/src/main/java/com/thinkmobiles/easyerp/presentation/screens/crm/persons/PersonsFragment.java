@@ -9,13 +9,13 @@ import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.data.model.crm.persons.alphabet.AlphabetItem;
 import com.thinkmobiles.easyerp.domain.crm.PersonsRepository;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.PersonsAdapter;
-import com.thinkmobiles.easyerp.presentation.base.BasePresenter;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.base.rules.SimpleListWithRefreshFragment;
 import com.thinkmobiles.easyerp.presentation.custom.views.alphabet_view.AlphabetListAdapter;
 import com.thinkmobiles.easyerp.presentation.custom.views.alphabet_view.AlphabetView;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.PersonDH;
 import com.thinkmobiles.easyerp.presentation.listeners.EndlessRecyclerViewScrollListener;
+import com.thinkmobiles.easyerp.presentation.screens.crm.persons.details.PersonDetailsFragment_;
 
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterViews;
@@ -66,11 +66,11 @@ public class PersonsFragment extends SimpleListWithRefreshFragment implements Pe
             presenter.loadMore(1);
         });
         listRecycler.setAdapter(alphabetListAdapter);
-        listRecycler.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
+        listRecycler.setLayoutManager(new LinearLayoutManager(mActivity, LinearLayoutManager.VERTICAL, false));
 
         errorViewHelper.init(errorLayout, view -> loadWithProgressBar());
 
-        LinearLayoutManager llm = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
+        LinearLayoutManager llm = new LinearLayoutManager(mActivity, LinearLayoutManager.VERTICAL, false);
         scrollListener = new EndlessRecyclerViewScrollListener(llm) {
             @Override
             public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
@@ -82,16 +82,14 @@ public class PersonsFragment extends SimpleListWithRefreshFragment implements Pe
         listRecycler.setAdapter(personsAdapter);
         listRecycler.addOnScrollListener(scrollListener);
         personsAdapter.setOnCardClickListener((view, position, viewType) -> {
-            if (position != presenter.getSelectedItemPosition()) {
-                final PersonDH itemDH = personsAdapter.getItem(position);
-                personsAdapter.replaceSelectedItem(presenter.getSelectedItemPosition(), position);
-                presenter.setSelectedInfo(position, itemDH.getId());
+            final PersonDH itemDH = personsAdapter.getItem(position);
+            personsAdapter.replaceSelectedItem(presenter.getSelectedItemPosition(), position);
+            if (position != presenter.getSelectedItemPosition())
                 presenter.displayPersonDetails(itemDH.getPersonModel().id);
-            }
+            presenter.setSelectedInfo(position, itemDH.getId());
         });
 
         loadWithProgressBar();
-
     }
 
     private void loadWithProgressBar() {
@@ -140,7 +138,14 @@ public class PersonsFragment extends SimpleListWithRefreshFragment implements Pe
         final String resultMsg = errorType.equals(ErrorViewHelper.ErrorType.LIST_EMPTY) ? string_list_is_empty : msg;
         if (getCountItemsNow() == 0)
             errorViewHelper.showErrorMsg(resultMsg, errorType);
-        else Toast.makeText(getContext(), resultMsg, Toast.LENGTH_LONG).show();
+        else Toast.makeText(mActivity, resultMsg, Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void openPersonDetailsScreen(String personID) {
+        mActivity.replaceFragmentContentDetail(PersonDetailsFragment_.builder()
+                .personID(personID)
+                .build());
     }
 
     @Override
@@ -151,5 +156,11 @@ public class PersonsFragment extends SimpleListWithRefreshFragment implements Pe
     @Override
     public int getCountItemsNow() {
         return personsAdapter.getItemCount();
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        if (presenter != null) presenter.unsubscribe();
     }
 }

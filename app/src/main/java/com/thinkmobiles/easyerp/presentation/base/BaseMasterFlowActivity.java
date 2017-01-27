@@ -1,31 +1,29 @@
 package com.thinkmobiles.easyerp.presentation.base;
 
+import android.app.Fragment;
 import android.support.annotation.IdRes;
-import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.presentation.EasyErpApplication;
 import com.thinkmobiles.easyerp.presentation.managers.CookieManager;
-import com.thinkmobiles.easyerp.presentation.utils.CookieSharedPreferences;
-import com.thinkmobiles.easyerp.presentation.utils.CookieSharedPreferences_;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.OptionsItem;
 import org.androidannotations.annotations.OptionsMenu;
-import org.androidannotations.annotations.OptionsMenuItem;
 import org.androidannotations.annotations.ViewById;
-import org.androidannotations.annotations.sharedpreferences.Pref;
+import org.androidannotations.annotations.res.BooleanRes;
 
 /**
  * Created by Asus_Dev on 1/17/2017.
  */
 @EActivity
-@OptionsMenu(R.menu.menu_base)
 public abstract class BaseMasterFlowActivity extends AppCompatActivity {
 
     @Bean
@@ -33,6 +31,15 @@ public abstract class BaseMasterFlowActivity extends AppCompatActivity {
 
     @ViewById
     protected Toolbar toolbar;
+
+    @ViewById
+    protected Toolbar toolbarDetail;
+
+    @BooleanRes
+    public boolean isTablet;
+
+    @BooleanRes
+    public boolean isPortrait;
 
     @AfterViews
     protected void initToolbar() {
@@ -46,6 +53,31 @@ public abstract class BaseMasterFlowActivity extends AppCompatActivity {
         }
     }
 
+    public Toolbar getToolbar() {
+        return toolbar;
+    }
+
+    public Toolbar getToolbarDetail() {
+        return toolbarDetail;
+    }
+
+    public void resetDetailToolbarToBase() {
+        toolbarDetail.getMenu().clear();
+        toolbarDetail.inflateMenu(R.menu.menu_base);
+        toolbarDetail.setOnMenuItemClickListener(this::onOptionsItemSelected);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        if (isTablet) {
+            resetDetailToolbarToBase();
+            return false;
+        } else {
+            getMenuInflater().inflate(R.menu.menu_base, menu);
+            return true;
+        }
+    }
+
     @OptionsItem(R.id.menuLogout_MB)
     protected void logout() {
         cookieManager.clearCookie();
@@ -53,6 +85,7 @@ public abstract class BaseMasterFlowActivity extends AppCompatActivity {
     }
 
     public void replaceFragmentContent(final BaseFragment fragment) {
+        replaceFragmentContentDetail(null);
         replaceFragment(fragment, contentIdLayout());
     }
 
@@ -62,24 +95,19 @@ public abstract class BaseMasterFlowActivity extends AppCompatActivity {
 
     private void replaceFragment(final BaseFragment fragment, final int containerId) {
         if (fragment != null) {
-            getSupportFragmentManager().beginTransaction()
+            getFragmentManager().beginTransaction()
                     .replace(containerId, fragment, fragment.getClass().getSimpleName())
                     .commitAllowingStateLoss();
         } else {
-            final Fragment targetFragmentForDelete = getSupportFragmentManager().findFragmentById(containerId);
+            final Fragment targetFragmentForDelete = getFragmentManager().findFragmentById(containerId);
             if (targetFragmentForDelete != null)
-                getSupportFragmentManager().beginTransaction()
+                getFragmentManager().beginTransaction()
                         .remove(targetFragmentForDelete)
                         .commitAllowingStateLoss();
         }
     }
 
-    protected abstract
-    @IdRes
-    int contentIdLayout();
-
-    protected abstract
-    @IdRes
-    int contentDetailIdLayout();
+    protected abstract @IdRes int contentIdLayout();
+    protected abstract @IdRes int contentDetailIdLayout();
 
 }

@@ -19,6 +19,17 @@ public abstract class DateManager {
     private static final String PATTERN_OUTPUT              = "dd MMM, yyyy, HH:mm:ss";
     private static final String PATTERN_COOKIE_EXPIRED      = "E, dd MMM yyyy HH:mm:ss z"; //Expires=Wed, 18 Jan 2017 08:58:07 GMT
 
+    private static final String PATTERN_SIMPLE_DATE         = "M dd, yyyy"; //January 15, 2017
+    private static final String PATTERN_SIMPLE_TIME         = "h:m a";   // 2:45 PM
+
+    public static final String PATTERN_OUT_PERSON_DOB       = "dd MMM, yyyy";
+    public static final String PATTERN_DASHBOARD_PREVIEW    = "dd, MMM yyyy";
+    public static final String PATTERN_DASHBOARD_BACKEND    = "E MMM dd yyyy HH:mm:ss z";
+    public static final String PATTERN_DASHBOARD_DAY_VIEW   = "EEEE, HH:mm";
+
+    private static final String YESTERDAY                   = "Yesterday";
+    private static final String TODAY                       = "Today";
+
     public static String convertLeadDate(String uglyDate) { //2017-01-16T11:45:04.183Z
         SimpleDateFormat sdf = new SimpleDateFormat(PATTERN_DATE, Locale.US);
         SimpleDateFormat sdfOut = new SimpleDateFormat(PATTERN_OUTPUT, Locale.US);
@@ -38,6 +49,43 @@ public abstract class DateManager {
         } catch (ParseException e) {
             Log.d("myLogs", "Parse cookie date error " + e.getMessage());
             return true;
+        }
+    }
+
+    public static String getDateToNow(String date) {
+        SimpleDateFormat sdf = new SimpleDateFormat(PATTERN_DATE, Locale.US);
+        SimpleDateFormat sdfOut = new SimpleDateFormat(PATTERN_SIMPLE_DATE, Locale.US);
+        Calendar calendar = Calendar.getInstance();
+        Calendar current = Calendar.getInstance();
+        try {
+            calendar.setTime(sdf.parse(date));
+            Date d = sdf.parse(date);
+            if(calendar.get(Calendar.YEAR) == current.get(Calendar.YEAR)
+                    && calendar.get(Calendar.MONTH) == current.get(Calendar.MONTH)) {
+                if(calendar.get(Calendar.DAY_OF_YEAR) == current.get(Calendar.DAY_OF_YEAR))
+                    return TODAY;
+                else if(current.get(Calendar.DAY_OF_YEAR) - calendar.get(Calendar.DAY_OF_YEAR) == 1)
+                    return YESTERDAY;
+                else
+                    return sdfOut.format(d);
+            } else {
+                return sdfOut.format(d);
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return "Error";
+    }
+
+    public static String getTime(String date) {
+        SimpleDateFormat sdf = new SimpleDateFormat(PATTERN_DATE, Locale.US);
+        SimpleDateFormat sdfOut = new SimpleDateFormat(PATTERN_SIMPLE_TIME, Locale.US);
+        try {
+            Date d = sdf.parse(date);
+            return sdfOut.format(d);
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return "Error";
         }
     }
 

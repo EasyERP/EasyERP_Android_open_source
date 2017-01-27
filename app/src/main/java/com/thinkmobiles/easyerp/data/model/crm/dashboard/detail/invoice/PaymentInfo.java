@@ -19,11 +19,11 @@ public class PaymentInfo implements Parcelable {
      }
      */
 
-    public Integer taxes;
-    public Integer discount;
-    public Integer unTaxed;
-    public Integer balance;
-    public Integer total;
+    public Double taxes;
+    public Double discount;
+    public Double unTaxed;
+    public Double balance;
+    public Double total;
 
     @Override
     public int describeContents() {
@@ -43,11 +43,11 @@ public class PaymentInfo implements Parcelable {
     }
 
     protected PaymentInfo(Parcel in) {
-        this.taxes = (Integer) in.readValue(Integer.class.getClassLoader());
-        this.discount = (Integer) in.readValue(Integer.class.getClassLoader());
-        this.unTaxed = (Integer) in.readValue(Integer.class.getClassLoader());
-        this.balance = (Integer) in.readValue(Integer.class.getClassLoader());
-        this.total = (Integer) in.readValue(Integer.class.getClassLoader());
+        this.taxes = (Double) in.readValue(Double.class.getClassLoader());
+        this.discount = (Double) in.readValue(Double.class.getClassLoader());
+        this.unTaxed = (Double) in.readValue(Double.class.getClassLoader());
+        this.balance = (Double) in.readValue(Double.class.getClassLoader());
+        this.total = (Double) in.readValue(Double.class.getClassLoader());
     }
 
     public static final Parcelable.Creator<PaymentInfo> CREATOR = new Parcelable.Creator<PaymentInfo>() {
