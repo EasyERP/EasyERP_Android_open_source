@@ -27,21 +27,14 @@
     <dimen name="login_min_width_form_credentials">300dp</dimen>
 
     <!--/////////////////////// DESIGN ///////////////////////-->
-    <!--padding-->
-    <dimen name="list_item_24">24dp</dimen>
-    <dimen name="chips_padding">7dp</dimen>
 
     <!--margins-->
     <dimen name="list_item_line_12">12dp</dimen>
-    <dimen name="list_item_line_18">18dp</dimen>
     <dimen name="list_item_side_8">8dp</dimen>
-    <dimen name="chips_separate_16">16dp</dimen>
 
     <!--text-->
     <dimen name="text_list_item_large_20">20sp</dimen>
     <dimen name="text_list_item_medium_16">16sp</dimen>
-    <dimen name="text_list_item_small_14">14sp</dimen>
-    <dimen name="text_list_item_chips_large">15sp</dimen>
 
 
 </resources>

@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:id="@+id/flLeadItemContainer_LIL"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:background="@drawable/bg_with_bottom_divider_line_selector"
-              android:orientation="vertical"
-              android:padding="@dimen/list_item_24">
-
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/flLeadItemContainer_LIL"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_with_bottom_divider_line_selector"
+    android:orientation="vertical"
+    android:padding="@dimen/default_padding">
 
     <LinearLayout
         android:id="@+id/llFirstLine_VLIL"
@@ -23,6 +22,7 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center_vertical"
                 android:orientation="horizontal">
 
                 <TextView
@@ -36,18 +36,18 @@
                     android:text="@string/no_data"
                     android:textColor="@color/color_text_black"
                     android:textSize="@dimen/text_list_item_large_20"
-                    tools:text="Web development"
-                    android:layout_gravity="center"/>
+                    tools:text="Web development" />
 
                 <TextView
                     android:id="@+id/tvPriority_LIL"
+                    style="@style/RobotoMedium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/default_padding"
+                    android:layout_marginStart="@dimen/default_padding_quart"
                     android:padding="@dimen/default_padding_small"
-                    android:textSize="@dimen/text_list_item_chips_large"
-                    tools:text="Medium"
-                    android:layout_marginStart="@dimen/chips_padding"
-                    android:layout_marginEnd="@dimen/text_list_item_chips_large"/>
+                    android:textSize="@dimen/middle_text_size"
+                    tools:text="Medium" />
 
             </LinearLayout>
 
@@ -58,13 +58,13 @@
             style="@style/RobotoRegular"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:gravity="center"
             android:layout_gravity="center"
             android:ellipsize="end"
+            android:gravity="center"
             android:maxLines="1"
             android:text="@string/no_data"
             android:textSize="@dimen/text_list_item_medium_16"
-            tools:text="Not Interested"/>
+            tools:text="Not Interested" />
 
     </LinearLayout>
 
@@ -74,41 +74,41 @@
         android:orientation="horizontal">
 
         <TextView
-            style="@style/RobotoRegular"
             android:id="@+id/tvAssignedTo_LIL"
+            style="@style/RobotoRegular"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ellipsize="end"
             android:maxLines="1"
             android:text="@string/no_data"
-            android:textSize="@dimen/text_list_item_medium_16"
             android:textColor="@color/color_text_black"
+            android:textSize="@dimen/text_list_item_medium_16"
             tools:text="Alex Hoshylyk" />
 
         <TextView
-            style="@style/RobotoRegular"
             android:id="@+id/tvSource_LIL"
-            android:layout_width="wrap_content"
+            style="@style/RobotoRegular"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:ellipsize="end"
             android:gravity="right"
             android:maxLines="1"
-            android:textSize="@dimen/text_list_item_medium_16"
             android:text="@string/no_data"
             android:textColor="@color/color_text_black"
-            android:layout_weight="1"
+            android:textSize="@dimen/text_list_item_medium_16"
             tools:text="ThinkMobiles" />
 
     </LinearLayout>
-    
+
     <TextView
         android:id="@+id/tvEditedBy_VLIL"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:text="Last Edited: Today, at 2:45 PM by Test Admin"
-        android:layout_marginTop="@dimen/list_item_line_18"
+        android:layout_marginTop="@dimen/default_padding"
+        android:textColor="@color/color_text_gray"
         android:textSize="@dimen/text_list_item_medium_16"
-        android:textColor="@color/color_text_gray"/>
+        tools:text="Last Edited: Today, at 2:45 PM by Test Admin" />
 
 </LinearLayout>
 

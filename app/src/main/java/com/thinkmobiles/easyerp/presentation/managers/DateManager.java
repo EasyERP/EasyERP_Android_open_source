@@ -19,18 +19,16 @@ public abstract class DateManager {
     private static final String PATTERN_OUTPUT              = "dd MMM, yyyy, HH:mm:ss";
     private static final String PATTERN_COOKIE_EXPIRED      = "E, dd MMM yyyy HH:mm:ss z"; //Expires=Wed, 18 Jan 2017 08:58:07 GMT
 
-    private static final String PATTERN_SIMPLE_DATE = "M dd, yyyy"; //January 15, 2017
-    private static final String PATTERN_SIMPLE_TIME = "h:m a";   // 2:45 PM
+    private static final String PATTERN_SIMPLE_DATE         = "M dd, yyyy"; //January 15, 2017
+    private static final String PATTERN_SIMPLE_TIME         = "h:m a";   // 2:45 PM
 
-    public static final String PATTERN_OUT_PERSON_DOB = "dd MMM, yyyy";
+    public static final String PATTERN_OUT_PERSON_DOB       = "dd MMM, yyyy";
     public static final String PATTERN_DASHBOARD_PREVIEW    = "dd, MMM yyyy";
     public static final String PATTERN_DASHBOARD_BACKEND    = "E MMM dd yyyy HH:mm:ss z";
     public static final String PATTERN_DASHBOARD_DAY_VIEW   = "EEEE, HH:mm";
 
-    public static final String PATTERN_OUT_PERSON_DOB      = "dd MMM, yyyy";
-
-    private static final String YESTERDAY = "Yesterday";
-    private static final String TODAY = "Today";
+    private static final String YESTERDAY                   = "Yesterday";
+    private static final String TODAY                       = "Today";
 
     public static String convertLeadDate(String uglyDate) { //2017-01-16T11:45:04.183Z
         SimpleDateFormat sdf = new SimpleDateFormat(PATTERN_DATE, Locale.US);
