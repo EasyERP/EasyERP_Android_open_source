@@ -60,12 +60,11 @@ public class DashboardListFragment extends SimpleListWithRefreshFragment impleme
         listRecycler.setLayoutManager(new LinearLayoutManager(mActivity, LinearLayoutManager.VERTICAL, false));
         listRecycler.setAdapter(dashboardListAdapter);
         dashboardListAdapter.setOnCardClickListener((view, position, viewType) -> {
-            if (position != presenter.getSelectedItemPosition()) {
-                final DashboardListDH itemDH = dashboardListAdapter.getItem(position);
-                dashboardListAdapter.replaceSelectedItem(presenter.getSelectedItemPosition(), position);
-                presenter.setSelectedInfo(position, itemDH.getId());
+            final DashboardListDH itemDH = dashboardListAdapter.getItem(position);
+            dashboardListAdapter.replaceSelectedItem(presenter.getSelectedItemPosition(), position);
+            if (position != presenter.getSelectedItemPosition())
                 presenter.prepareDashboardDetailWithParams(itemDH);
-            }
+            presenter.setSelectedInfo(position, itemDH.getId());
         });
         loadWithProgressBar();
     }
@@ -126,4 +125,8 @@ public class DashboardListFragment extends SimpleListWithRefreshFragment impleme
         presenter.unsubscribe();
     }
 
+    @Override
+    public int optionsMenuRes() {
+        return R.menu.menu_test;
+    }
 }

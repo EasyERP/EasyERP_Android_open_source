@@ -72,12 +72,12 @@ public class LeadsFragment extends SimpleListWithRefreshFragment implements Lead
         listRecycler.setAdapter(leadsAdapter);
         listRecycler.addOnScrollListener(scrollListener);
         leadsAdapter.setOnCardClickListener((view, position, viewType) -> {
-            if (position != presenter.getSelectedItemPosition()) {
-                final LeadDH itemDH = leadsAdapter.getItem(position);
-                leadsAdapter.replaceSelectedItem(presenter.getSelectedItemPosition(), position);
-                presenter.setSelectedInfo(position, itemDH.getId());
+            final LeadDH itemDH = leadsAdapter.getItem(position);
+            leadsAdapter.replaceSelectedItem(presenter.getSelectedItemPosition(), position);
+            if (position != presenter.getSelectedItemPosition())
                 presenter.displayLeadDetails(itemDH.getLeadItem().id);
-            }
+            presenter.setSelectedInfo(position, itemDH.getId());
+
         });
 
         loadWithProgressBar();
