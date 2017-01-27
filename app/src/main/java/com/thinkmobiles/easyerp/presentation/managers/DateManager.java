@@ -20,7 +20,8 @@ public abstract class DateManager {
     private static final String PATTERN_COOKIE_EXPIRED      = "E, dd MMM yyyy HH:mm:ss z"; //Expires=Wed, 18 Jan 2017 08:58:07 GMT
 
     private static final String PATTERN_SIMPLE_DATE         = "MMMM dd, yyyy"; //January 15, 2017
-    private static final String PATTERN_SIMPLE_TIME         = "h:m a";   // 2:45 PM
+    private static final String PATTERN_SIMPLE_DATE_SHORT   = "MMM dd, yyyy"; //Jan 15, 2017
+    private static final String PATTERN_SIMPLE_TIME         = "h:mm a";   // 2:45 PM
 
     public static final String PATTERN_OUT_PERSON_DOB       = "dd MMM, yyyy";
     public static final String PATTERN_DASHBOARD_PREVIEW    = "dd, MMM yyyy";
@@ -55,6 +56,31 @@ public abstract class DateManager {
     public static String getDateToNow(String date) {
         SimpleDateFormat sdf = new SimpleDateFormat(PATTERN_DATE, Locale.US);
         SimpleDateFormat sdfOut = new SimpleDateFormat(PATTERN_SIMPLE_DATE, Locale.US);
+        Calendar calendar = Calendar.getInstance();
+        Calendar current = Calendar.getInstance();
+        try {
+            calendar.setTime(sdf.parse(date));
+            Date d = sdf.parse(date);
+            if(calendar.get(Calendar.YEAR) == current.get(Calendar.YEAR)
+                    && calendar.get(Calendar.MONTH) == current.get(Calendar.MONTH)) {
+                if(calendar.get(Calendar.DAY_OF_YEAR) == current.get(Calendar.DAY_OF_YEAR))
+                    return TODAY;
+                else if(current.get(Calendar.DAY_OF_YEAR) - calendar.get(Calendar.DAY_OF_YEAR) == 1)
+                    return YESTERDAY;
+                else
+                    return sdfOut.format(d);
+            } else {
+                return sdfOut.format(d);
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return "Error";
+    }
+
+    public static String getShortDate(String date) {
+        SimpleDateFormat sdf = new SimpleDateFormat(PATTERN_DATE, Locale.US);
+        SimpleDateFormat sdfOut = new SimpleDateFormat(PATTERN_SIMPLE_DATE_SHORT, Locale.US);
         Calendar calendar = Calendar.getInstance();
         Calendar current = Calendar.getInstance();
         try {

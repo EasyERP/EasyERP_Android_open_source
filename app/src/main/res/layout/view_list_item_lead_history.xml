@@ -1,9 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@android:color/white">
+              xmlns:tools="http://schemas.android.com/tools"
+              android:orientation="horizontal"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="@android:color/white">
+
+    <LinearLayout
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginStart="@dimen/default_padding_big"
+        android:paddingTop="@dimen/default_padding">
+
+        <TextView
+            style="@style/RobotoMedium"
+            android:id="@+id/tvNoteDateDate_LILH"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="24 Jan, 17"
+            android:gravity="center"
+            android:textColor="@color/color_text_black"
+            android:textSize="@dimen/text_list_item_medium_16"/>
+
+        <TextView
+            style="@style/RobotoRegular"
+            android:id="@+id/tvNoteTime_LILH"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="10:35 AM"
+            android:textColor="@color/color_text_black"
+            android:gravity="center"
+            android:textSize="@dimen/text_size_small"/>
+
+    </LinearLayout>
 
     <FrameLayout
         android:layout_width="wrap_content"
@@ -14,7 +44,7 @@
             android:id="@+id/vLine_LILH"
             android:layout_width="1dp"
             android:layout_height="match_parent"
-            android:background="@color/colorPrimary"
+            android:background="@color/color_divider"
             android:layout_gravity="center_horizontal"/>
 
 
@@ -34,51 +64,53 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/default_padding"
-        android:layout_marginTop="@dimen/default_padding_half"
-        android:layout_marginBottom="@dimen/default_padding_half"
         android:orientation="vertical"
-        android:background="@drawable/bg_border_rectangle"
-        android:padding="@dimen/default_padding">
+        android:layout_marginRight="@dimen/default_padding_big"
+        android:paddingTop="@dimen/default_padding"
+        android:paddingBottom="@dimen/default_padding_half">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/tvPersonName_LILH"
+                style="@style/RobotoMedium"
+                android:id="@+id/tvAction_LILH"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_gravity="end"
-                android:text="safds"/>
+                android:textSize="@dimen/text_list_item_large_20"
+                tools:text="Notej"
+                android:textColor="@color/color_text_black"
+                android:layout_weight="1"/>
+
 
             <TextView
-                android:id="@+id/tvDate_LILH"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/RobotoRegular"
+                android:id="@+id/tvPersonName_LILH"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
                 android:layout_gravity="end"
-                android:text="safds"/>
+                android:textSize="@dimen/text_size_small"
+                tools:text="by Elizabeth Beaver"
+                android:textColor="@color/color_text_gray"
+                android:layout_weight="1"
+                android:gravity="right|center_vertical"/>
 
         </LinearLayout>
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="@dimen/default_padding_small"
-            android:background="@color/colorPrimary"
-            android:alpha="0.5"/>
-
         <TextView
-            android:id="@+id/tvAction_LILH"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/default_padding_half"/>
-
-        <TextView
+            style="@style/RobotoRegular"
             android:id="@+id/tvMessage_LILH"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            tools:text="Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
+Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur
+ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla
+consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.
+In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede
+mollis pretium. Integer tincidunt. Cras dapibus."
+            android:textSize="@dimen/text_list_item_medium_16"
             android:layout_marginTop="@dimen/default_padding_half"/>
 
     </LinearLayout>

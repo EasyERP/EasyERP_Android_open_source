@@ -2,10 +2,13 @@ package com.thinkmobiles.easyerp.presentation.utils;
 
 
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.text.Html;
+import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.TextUtils;
+import android.text.style.StyleSpan;
 
 import com.thinkmobiles.easyerp.data.model.crm.leads.LeadTag;
 import com.thinkmobiles.easyerp.data.model.crm.leads.detail.Address;
@@ -133,6 +136,17 @@ public abstract class StringUtil {
             // Update to next tag start
             tagStart += tag.name.length() + between.length();
         }
+        return stringBuilder;
+    }
+
+    public static SpannableStringBuilder getSpannedByUser(String userName) {
+        StyleSpan boldSpan = new StyleSpan(Typeface.BOLD);
+
+        SpannableStringBuilder stringBuilder = new SpannableStringBuilder();
+        stringBuilder.append("by ");
+        stringBuilder.append(userName);
+        stringBuilder.setSpan(boldSpan, 3, stringBuilder.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+
         return stringBuilder;
     }
 }

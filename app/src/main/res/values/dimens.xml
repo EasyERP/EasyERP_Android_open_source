@@ -13,8 +13,6 @@
     <dimen name="small_text_size">12sp</dimen>
 
     <dimen name="default_dimen_32">32dp</dimen>
-    <dimen name="default_padding_big">24dp</dimen>
-    <dimen name="default_padding">16dp</dimen>
     <dimen name="default_padding_middle">12dp</dimen>
     <dimen name="default_padding_small">6dp</dimen>
     <dimen name="default_padding_quart">4dp</dimen>
@@ -28,6 +26,8 @@
     <!--/////////////////////// DESIGN ///////////////////////-->
 
     <!--margins & paddings-->
+    <dimen name="default_padding">16dp</dimen>
+    <dimen name="default_padding_big">24dp</dimen>
     <dimen name="list_item_line_12">12dp</dimen>
     <dimen name="list_item_side_8">8dp</dimen>
     <dimen name="default_padding_half">8dp</dimen>
@@ -36,6 +36,7 @@
     <dimen name="text_list_item_extra_large_24">24sp</dimen>
     <dimen name="text_list_item_large_20">20sp</dimen>
     <dimen name="text_list_item_medium_16">16sp</dimen>
+    <dimen name="text_size_small">14sp</dimen>
     <dimen name="tag_line_spacing_default">8dp</dimen>
 
 
