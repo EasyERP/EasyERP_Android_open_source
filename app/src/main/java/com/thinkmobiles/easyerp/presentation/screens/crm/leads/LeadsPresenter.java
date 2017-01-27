@@ -19,7 +19,7 @@ import rx.subscriptions.CompositeSubscription;
  * Created by Lynx on 1/16/2017.
  */
 
-public class LeadsPresenter extends MasterFlowSelectablePresenterHelper<String> implements LeadsContract.LeadsPresenter {
+public class LeadsPresenter extends MasterFlowSelectablePresenterHelper<String, LeadDH> implements LeadsContract.LeadsPresenter {
 
     private LeadsContract.LeadsView view;
     private LeadsContract.LeadsModel model;
@@ -94,7 +94,7 @@ public class LeadsPresenter extends MasterFlowSelectablePresenterHelper<String> 
     }
 
     @Override
-    public void selectItemLead(LeadDH leadDh, int position) {
+    public void selectItem(LeadDH leadDh, int position) {
         if (position != getSelectedItemPosition()) {
             view.changeSelectedItem(getSelectedItemPosition(), position);
             setSelectedInfo(position, leadDh.getId());

@@ -23,7 +23,6 @@ public interface LeadsContract {
         void displayLeads(ArrayList<LeadDH> leadDHs, boolean needClear);
         void displayError(final String msg, final ErrorViewHelper.ErrorType errorType);
         void openLeadDetailsScreen(String leadId);
-        void changeSelectedItem(int oldPosition, int newPosition);
 
         void setContactNames(ArrayList<FilterDH> contactNames);
         void setTextToSearch(String text);
@@ -40,9 +39,7 @@ public interface LeadsContract {
         void showEmptyState();
 
     }
-    interface LeadsPresenter extends MasterFlowSelectableBasePresenter<String> {
-        void selectItemLead(LeadDH leadDh, int position);
-
+    interface LeadsPresenter extends MasterFlowSelectableBasePresenter<String, LeadDH> {
         void refresh();
         void loadNextPage(int page);
 

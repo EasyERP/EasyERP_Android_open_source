@@ -59,13 +59,7 @@ public class DashboardListFragment extends SimpleListWithRefreshFragment impleme
         errorViewHelper.init(errorLayout, view -> loadWithProgressBar());
         listRecycler.setLayoutManager(new LinearLayoutManager(mActivity, LinearLayoutManager.VERTICAL, false));
         listRecycler.setAdapter(dashboardListAdapter);
-        dashboardListAdapter.setOnCardClickListener((view, position, viewType) -> {
-            final DashboardListDH itemDH = dashboardListAdapter.getItem(position);
-            dashboardListAdapter.replaceSelectedItem(presenter.getSelectedItemPosition(), position);
-            if (position != presenter.getSelectedItemPosition())
-                presenter.prepareDashboardDetailWithParams(itemDH);
-            presenter.setSelectedInfo(position, itemDH.getId());
-        });
+        dashboardListAdapter.setOnCardClickListener((view, position, viewType) -> presenter.selectItem(dashboardListAdapter.getItem(position), position));
         loadWithProgressBar();
     }
 
@@ -78,6 +72,11 @@ public class DashboardListFragment extends SimpleListWithRefreshFragment impleme
     @Override
     public int getCountItemsNow() {
         return dashboardListAdapter.getItemCount();
+    }
+
+    @Override
+    public void changeSelectedItem(int oldPosition, int newPosition) {
+        dashboardListAdapter.replaceSelectedItem(oldPosition, newPosition);
     }
 
     @Override
@@ -125,8 +124,4 @@ public class DashboardListFragment extends SimpleListWithRefreshFragment impleme
         presenter.unsubscribe();
     }
 
-    @Override
-    public int optionsMenuRes() {
-        return R.menu.menu_test;
-    }
 }

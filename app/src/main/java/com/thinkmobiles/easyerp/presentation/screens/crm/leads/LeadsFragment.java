@@ -66,19 +66,10 @@ public class LeadsFragment extends SimpleListWithRefreshFragment implements Lead
     @Bean
     protected SearchAdapter searchAdapter;
 
-    @OptionsMenuItem(R.id.menuFilterContactName)
     protected MenuItem menuContactName;
-
-    @OptionsMenuItem(R.id.menuFilterAssignedTo)
     protected MenuItem menuAssignedTo;
-
-    @OptionsMenuItem(R.id.menuFilterCreatedBy)
     protected MenuItem menuCreatedBy;
-
-    @OptionsMenuItem(R.id.menuFilterSource)
     protected MenuItem menuSource;
-
-    @OptionsMenuItem(R.id.menuFilterStage)
     protected MenuItem menuWorkflow;
 
     @AfterInject
@@ -107,7 +98,7 @@ public class LeadsFragment extends SimpleListWithRefreshFragment implements Lead
         listRecycler.setAdapter(leadsAdapter);
         listRecycler.addOnScrollListener(scrollListener);
         leadsAdapter.setOnCardClickListener((view, position, viewType) ->
-                presenter.selectItemLead(leadsAdapter.getItem(position), position)
+                presenter.selectItem(leadsAdapter.getItem(position), position)
         );
 
         actSearch.setAdapter(searchAdapter);
@@ -214,13 +205,6 @@ public class LeadsFragment extends SimpleListWithRefreshFragment implements Lead
         presenter.unsubscribe();
     }
 
-    @Override
-    public void onPrepareOptionsMenu(Menu menu) {
-        if (presenter != null && presenter.isEnabledFilters()) {
-            menu.findItem(R.id.menuFilter_MB).setVisible(true);
-        }
-    }
-
     @OptionsItem(R.id.menuFilterContactName)
     protected void clickContactName() {
         presenter.changeFilter(Constants.REQUEST_CODE_FILTER_CONTACT_NAME);
@@ -266,7 +250,6 @@ public class LeadsFragment extends SimpleListWithRefreshFragment implements Lead
     @Override
     public void showFilters() {
         actSearch.setVisibility(View.VISIBLE);
-        mActivity.invalidateOptionsMenu();
     }
 
     @Override
@@ -353,4 +336,19 @@ public class LeadsFragment extends SimpleListWithRefreshFragment implements Lead
             presenter.removeFilterSource();
         }
     }
+
+    @Override
+    public int optionsMenuRes() {
+        return R.menu.menu_filters;
+    }
+
+    @Override
+    public void optionsMenuInitialized(Menu menu) {
+        this.menuContactName = menu.findItem(R.id.menuFilterContactName);
+        this.menuAssignedTo = menu.findItem(R.id.menuFilterAssignedTo);
+        this.menuCreatedBy = menu.findItem(R.id.menuFilterCreatedBy);
+        this.menuSource = menu.findItem(R.id.menuFilterSource);
+        this.menuWorkflow = menu.findItem(R.id.menuFilterStage);
+    }
+
 }
