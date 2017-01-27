@@ -479,7 +479,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/color_grey_transparent"
-                android:elevation="3dp"
                 android:padding="@dimen/default_padding">
 
 
@@ -502,6 +501,12 @@
                     android:visibility="invisible"/>
 
             </RelativeLayout>
+
+            <View
+                android:id="@+id/viewHistoryDivider_FLD"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/color_divider"/>
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/rvHistory_FLD"
