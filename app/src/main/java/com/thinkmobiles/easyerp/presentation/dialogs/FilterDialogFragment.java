@@ -2,15 +2,15 @@ package com.thinkmobiles.easyerp.presentation.dialogs;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.app.DialogFragment;
+import android.app.Fragment;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatDialogFragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
@@ -30,7 +30,7 @@ import com.thinkmobiles.easyerp.presentation.utils.Constants;
 import java.util.ArrayList;
 
 
-public class FilterDialogFragment extends AppCompatDialogFragment implements DialogInterface.OnClickListener {
+public class FilterDialogFragment extends DialogFragment implements DialogInterface.OnClickListener {
 
     private EditText etSearch;
     private RecyclerView rvList;
@@ -64,7 +64,7 @@ public class FilterDialogFragment extends AppCompatDialogFragment implements Dia
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        View parent = LayoutInflater.from(getContext()).inflate(R.layout.dialog_filter, null);
+        View parent = LayoutInflater.from(getActivity()).inflate(R.layout.dialog_filter, null);
 
         etSearch = (EditText) parent.findViewById(R.id.etSearch_DF);
         etSearch.addTextChangedListener(new TextWatcher() {
@@ -94,10 +94,10 @@ public class FilterDialogFragment extends AppCompatDialogFragment implements Dia
         });
 
         rvList = (RecyclerView) parent.findViewById(R.id.rvList_DF);
-        rvList.setLayoutManager(new LinearLayoutManager(getContext()));
+        rvList.setLayoutManager(new LinearLayoutManager(getActivity()));
         rvList.setAdapter(searchAdapter);
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(getContext(), R.style.AppTheme_FilterDialogStyle)
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(), R.style.AppTheme_FilterDialogStyle)
                 .setView(parent)
                 .setTitle(R.string.menu_filter)
                 .setPositiveButton(R.string.dialog_btn_apply, this)
