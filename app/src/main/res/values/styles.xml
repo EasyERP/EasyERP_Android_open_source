@@ -53,12 +53,31 @@
         <item name="android:maxLines">1</item>
         <item name="android:lines">1</item>
         <item name="android:scrollHorizontally">true</item>
-        <item name="android:textAlignment">textStart</item>
-        <item name="android:ellipsize">end</item>
         <item name="android:inputType">text</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">match_parent</item>
     </style>
 
+    <style name="AppTheme.FilterDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="colorAccent">@color/colorAccent</item>
+        
+        <item name="android:windowTitleStyle">@style/AppTheme.FilterDialog.TitleStyle</item>
+        <item name="editTextStyle">@style/AppTheme.FilterDialog.SearchFieldStyle</item>
+    </style>
+
+    <style name="AppTheme.FilterDialog.SearchFieldStyle" parent="AppTheme.LeadInputFieldStyle">
+        <item name="android:focusable">true</item>
+        <item name="android:textColor">@color/textColorPrimary</item>
+        <item name="android:textColorHint">@color/textColorHint</item>
+        <item name="colorControlNormal">@color/colorPrimary</item>
+        <item name="colorControlActivated">@color/colorAccent</item>
+        <item name="colorControlHighlight">@color/colorAccent</item>
+    </style>
+
+    <style name="AppTheme.FilterDialog.TitleStyle" parent="android:Widget.TextView">
+        <item name="android:textSize">21sp</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:padding">@dimen/default_padding</item>
+    </style>
 
 </resources>

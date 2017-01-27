@@ -1,5 +1,7 @@
 package com.thinkmobiles.easyerp.presentation.screens.crm.leads;
 
+import android.app.Activity;
+import android.os.Bundle;
 import android.support.v7.widget.AppCompatAutoCompleteTextView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -16,16 +18,19 @@ import com.thinkmobiles.easyerp.presentation.adapters.crm.LeadsAdapter;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.SearchAdapter;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.base.rules.SimpleListWithRefreshFragment;
+import com.thinkmobiles.easyerp.presentation.dialogs.FilterDialogFragment;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.FilterDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.LeadDH;
 import com.thinkmobiles.easyerp.presentation.listeners.EndlessRecyclerViewScrollListener;
 import com.thinkmobiles.easyerp.presentation.screens.crm.leads.details.LeadDetailsFragment_;
+import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterTextChange;
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EFragment;
+import org.androidannotations.annotations.OnActivityResult;
 import org.androidannotations.annotations.OptionsItem;
 import org.androidannotations.annotations.OptionsMenuItem;
 import org.androidannotations.annotations.ViewById;
@@ -95,14 +100,14 @@ public class LeadsFragment extends SimpleListWithRefreshFragment implements Lead
 
         actSearch.setAdapter(searchAdapter);
         actSearch.setOnItemClickListener((adapterView, view, i, l) ->
-                presenter.setContactNameToFilter(searchAdapter.getItem(i))
+                presenter.filterByContactName(searchAdapter.getItem(i))
         );
         actSearch.setOnClickListener((v) -> actSearch.setText(""));
         actSearch.setOnKeyListener((v, keyCode, event) -> {
             if (event.getKeyCode() == KeyEvent.KEYCODE_ENTER
                     && event.getAction() == KeyEvent.ACTION_DOWN) {
 
-                presenter.filterForContactName(actSearch.getText().toString());
+                presenter.filterBySearchContactName(actSearch.getText().toString());
 
                 hideKeyboard();
                 actSearch.dismissDropDown();
@@ -206,7 +211,7 @@ public class LeadsFragment extends SimpleListWithRefreshFragment implements Lead
 
     @OptionsItem(R.id.menuFilterContactName)
     protected void clickContactName() {
-
+        presenter.changeContactNameFilter();
     }
 
     @OptionsItem(R.id.menuFilterRemoveAll)
@@ -230,5 +235,30 @@ public class LeadsFragment extends SimpleListWithRefreshFragment implements Lead
     public void showFilters() {
         actSearch.setVisibility(View.VISIBLE);
         mActivity.invalidateOptionsMenu();
+    }
+
+    @Override
+    public void selectContactNameInFilters(boolean isSelected) {
+        menuContactName.setChecked(isSelected);
+    }
+
+    @Override
+    public void showFilterDialog(ArrayList<FilterDH> filterDHs, int requestCode) {
+        FilterDialogFragment dialogFragment = new FilterDialogFragment();
+        Bundle bundle = new Bundle();
+        bundle.putParcelableArrayList(Constants.KEY_FILTER_LIST, filterDHs);
+        dialogFragment.setArguments(bundle);
+        dialogFragment.setTargetFragment(this, requestCode);
+        dialogFragment.show(getFragmentManager(), getClass().getName());
+    }
+
+    @OnActivityResult(Constants.REQUEST_CODE_FILTER_CONTACT_NAME)
+    protected void resultContactName(int resultCode,
+                                     @OnActivityResult.Extra(value = Constants.KEY_FILTER_LIST) ArrayList<FilterDH> filterDHs) {
+        if (resultCode == Activity.RESULT_OK) {
+            presenter.filterByListContactNames(filterDHs);
+        } else {
+            presenter.removeFilterContactName();
+        }
     }
 }

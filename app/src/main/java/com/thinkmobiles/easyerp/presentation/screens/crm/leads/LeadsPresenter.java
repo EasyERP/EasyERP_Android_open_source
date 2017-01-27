@@ -10,6 +10,7 @@ import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectablePresenterHelper;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.FilterDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.LeadDH;
+import com.thinkmobiles.easyerp.presentation.utils.Constants;
 import com.thinkmobiles.easyerp.presentation.utils.FilterQuery;
 
 import java.util.ArrayList;
@@ -95,28 +96,6 @@ public class LeadsPresenter extends MasterFlowSelectablePresenterHelper<String> 
     }
 
     @Override
-    public void setContactNameToFilter(FilterDH filterDH) {
-        for (FilterDH dh : contactName) {
-            dh.selected = dh.equals(filterDH);
-        }
-        queryBuilder.setSingleContactName(filterDH.id);
-        view.setTextToSearch(filterDH.name);
-        getFirstPage();
-    }
-
-    public void filterForContactName(String name) {
-        queryBuilder.removeAllContactNames()
-                .createContactNameKey();
-        for (FilterDH dh : contactName) {
-            if (dh.name.toLowerCase().contains(name)) {
-                queryBuilder.addContactName(dh.id);
-                dh.selected = true;
-            }
-        }
-        getFirstPage();
-    }
-
-    @Override
     public void selectItemLead(LeadDH leadDh, int position) {
         if (position != getSelectedItemPosition()) {
             view.changeSelectedItem(getSelectedItemPosition(), position);
@@ -161,12 +140,68 @@ public class LeadsPresenter extends MasterFlowSelectablePresenterHelper<String> 
     }
 
     @Override
+    public void changeContactNameFilter() {
+        view.showFilterDialog(contactName, Constants.REQUEST_CODE_FILTER_CONTACT_NAME);
+    }
+
+    @Override
     public void removeAll() {
         for (FilterDH dh : contactName) {
             dh.selected = false;
         }
         view.setTextToSearch("");
+        view.selectContactNameInFilters(false);
         queryBuilder.removeAllContactNames();
+        getFirstPage();
+    }
+
+    @Override
+    public void filterByContactName(FilterDH filterDH) {
+        for (FilterDH dh : contactName) {
+            dh.selected = dh.equals(filterDH);
+        }
+        queryBuilder.setSingleContactName(filterDH.id);
+        view.setTextToSearch(filterDH.name);
+        view.selectContactNameInFilters(true);
+        getFirstPage();
+    }
+
+    public void filterBySearchContactName(String name) {
+        queryBuilder.removeAllContactNames()
+                .createContactNameKey();
+        for (FilterDH dh : contactName) {
+            if (dh.name.toLowerCase().contains(name)) {
+                queryBuilder.addContactName(dh.id);
+                dh.selected = true;
+            }
+        }
+        view.selectContactNameInFilters(true);
+        getFirstPage();
+    }
+
+    @Override
+    public void filterByListContactNames(ArrayList<FilterDH> filterDHs) {
+        contactName = filterDHs;
+        queryBuilder.removeAllContactNames();
+        for (FilterDH dh : contactName) {
+            if (dh.selected) {
+                queryBuilder.addContactName(dh.id);
+            }
+        }
+        view.setTextToSearch("");
+        boolean needCheckFilterContactName = queryBuilder.build().contactNames != null;
+        view.selectContactNameInFilters(needCheckFilterContactName);
+        getFirstPage();
+    }
+
+    @Override
+    public void removeFilterContactName() {
+        for (FilterDH dh : contactName) {
+            dh.selected = false;
+        }
+        queryBuilder.removeAllContactNames();
+        view.setTextToSearch("");
+        view.selectContactNameInFilters(false);
         getFirstPage();
     }
 }

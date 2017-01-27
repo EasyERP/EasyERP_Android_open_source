@@ -16,6 +16,12 @@ public class FilterVH extends RecyclerVH<FilterDH> {
     public FilterVH(View itemView, @Nullable OnCardClickListener listener, int viewType) {
         super(itemView, listener, viewType);
         cbItem = findView(R.id.cbItem);
+
+        cbItem.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (listener != null) {
+                listener.onClick(cbItem, getAdapterPosition(), viewType);
+            }
+        });
     }
 
     @Override

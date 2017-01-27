@@ -28,6 +28,9 @@ public interface LeadsContract {
         void setContactNames(ArrayList<FilterDH> contactNames);
         void setTextToSearch(String text);
         void showFilters();
+        void selectContactNameInFilters(boolean isSelected);
+
+        void showFilterDialog(ArrayList<FilterDH> filterDHs, int requestCode);
 
         void showProgress(boolean isShow);
         void showEmptyState();
@@ -39,10 +42,14 @@ public interface LeadsContract {
         void refresh();
         void loadNextPage(int page);
 
-        void removeAll();
-        void setContactNameToFilter(FilterDH filterDH);
-        void filterForContactName(String name);
+        void filterByContactName(FilterDH filterDH);
+        void filterByListContactNames(ArrayList<FilterDH> filterDHs);
+        void removeFilterContactName();
+        void filterBySearchContactName(String name);
         boolean isEnabledFilters();
+
+        void changeContactNameFilter();
+        void removeAll();
     }
     interface LeadsModel extends BaseModel {
         Observable<ResponseGetLeads> getLeads(int page);

@@ -40,7 +40,17 @@ public abstract class Constants {
     public static final String GET_ORDER_BY_WORKFLOWS       = "order/getByWorkflows";
     //End Order
 
+    //Filters
+    public static final String GET_FILTER                   = "filter";
+    //End Filters
+
     public static final int DELAY_CLICK                     = 600;
+
+    //Request codes
+    public static final int REQUEST_CODE_FILTER_CONTACT_NAME = 15;
+
+    //Bundle keys
+    public static final String KEY_FILTER_LIST              = "keyFilterList";
 
     public enum ErrorCodes {
         OK,
