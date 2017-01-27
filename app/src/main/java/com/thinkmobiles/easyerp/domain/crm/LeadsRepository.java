@@ -67,22 +67,6 @@ public class LeadsRepository implements LeadsContract.LeadsModel, LeadDetailsCon
 
     @Override
     public Observable<ResponseGetLeadDetails> getLeadDetails(String leadId) {
-        return getNetworkObservable(Observable.zip(leadService.getLeadDetails(leadId),
-                leadService.getLeadWorkflow("Leads"),
-                (responseGetLeadDetails, responseGetLeadWorkflow) -> {
-                    boolean isSelected = false;
-                    for (LeadDetailWorkflow w : responseGetLeadWorkflow.data) {
-                        if (responseGetLeadDetails.workflow._id.equals(w._id)) {
-                            isSelected = true;
-                            w.color = "#0079bf";
-                        } else if (isSelected) {
-                            w.color = "#e0e0ff";
-                        } else {
-                            w.color = "#61bd4f";
-                        }
-                    }
-                    responseGetLeadDetails.leadWorkflow = responseGetLeadWorkflow;
-                    return responseGetLeadDetails;
-                }));
+        return getNetworkObservable(leadService.getLeadDetails(leadId));
     }
 }

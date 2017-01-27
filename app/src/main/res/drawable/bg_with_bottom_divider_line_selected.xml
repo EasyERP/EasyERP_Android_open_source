@@ -5,10 +5,10 @@
         android:right="-5dp"
         android:top="-5dp">
         <shape>
-            <solid android:color="@color/dividerColor" />
+            <solid android:color="@color/color_bg_selected_item" />
             <stroke
                 android:width="4dp"
-                android:color="@color/colorAccent" />
+                android:color="@color/color_blue" />
         </shape>
     </item>
 </layer-list>

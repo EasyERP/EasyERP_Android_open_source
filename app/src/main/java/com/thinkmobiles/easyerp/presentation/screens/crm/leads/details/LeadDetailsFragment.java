@@ -55,9 +55,9 @@ public class LeadDetailsFragment extends BaseFragment<HomeActivity> implements L
     @ViewById
     protected NestedScrollView nsvContent_FLD;
     @ViewById
-    protected LinearLayout llWorkflowContainer_FLD;
-    @ViewById
     protected TextView tvNameLead_FLD;
+    @ViewById
+    protected TextView tvCurrentStatus_FLD;
     @ViewById
     protected TextView tvCloseDate_FLD;
     @ViewById
@@ -70,6 +70,10 @@ public class LeadDetailsFragment extends BaseFragment<HomeActivity> implements L
     protected TextView tvTags_FLD;
     @ViewById
     protected TextView tvPersonName_FLD;
+    @ViewById
+    protected TextView tvFirstName_FLD;
+    @ViewById
+    protected TextView tvLastName_FLD;
     @ViewById
     protected TextView tvJobPosition_FLD;
     @ViewById
@@ -87,7 +91,16 @@ public class LeadDetailsFragment extends BaseFragment<HomeActivity> implements L
     @ViewById
     protected TextView tvCompanyName_FLD;
     @ViewById
-    protected TextView tvCompanyAddress_FLD;
+    protected TextView tvCompanyStreet_FLD;
+    @ViewById
+    protected TextView tvCompanyCity_FLD;
+    @ViewById
+    protected TextView tvCompanyState_FLD;
+    @ViewById
+    protected TextView tvCompanyZipcode_FLD;
+    @ViewById
+    protected TextView tvCompanyCountry_FLD;
+
     @ViewById
     protected LinearLayout llAttachmentsContainer_FLD;
     @ViewById
@@ -107,7 +120,7 @@ public class LeadDetailsFragment extends BaseFragment<HomeActivity> implements L
     @AfterViews
     protected void initUI() {
         srlRefresh_FLD.setOnRefreshListener(() -> presenter.refresh());
-        rvHistory_FLD.setLayoutManager(new LinearLayoutManager(getContext()));
+        rvHistory_FLD.setLayoutManager(new LinearLayoutManager(getActivity()));
         rvHistory_FLD.setAdapter(historyAdapter);
         tvAttachments_FLD.setMovementMethod(LinkMovementMethod.getInstance());
 
@@ -154,11 +167,6 @@ public class LeadDetailsFragment extends BaseFragment<HomeActivity> implements L
     }
 
     @Override
-    public void setNameLead(String nameLead) {
-                tvNameLead_FLD.setText(nameLead);
-    }
-
-    @Override
     public void setCloseDate(String closeDate) {
         tvCloseDate_FLD.setText(closeDate);
     }
@@ -187,6 +195,16 @@ public class LeadDetailsFragment extends BaseFragment<HomeActivity> implements L
     @Override
     public void setPersonName(String personName) {
         tvPersonName_FLD.setText(personName);
+    }
+
+    @Override
+    public void setFirstName(String firstName) {
+        tvFirstName_FLD.setText(firstName);
+    }
+
+    @Override
+    public void setLastName(String lastName) {
+        tvLastName_FLD.setText(lastName);
     }
 
     @Override
@@ -230,8 +248,28 @@ public class LeadDetailsFragment extends BaseFragment<HomeActivity> implements L
     }
 
     @Override
-    public void setCompanyAddress(String companyAddress) {
-        tvCompanyAddress_FLD.setText(companyAddress);
+    public void setCompanyStreet(String companyStreet) {
+        tvCompanyStreet_FLD.setText(companyStreet);
+    }
+
+    @Override
+    public void setCompanyCity(String companyCity) {
+        tvCompanyCity_FLD.setText(companyCity);
+    }
+
+    @Override
+    public void setCompanyState(String companyState) {
+        tvCompanyState_FLD.setText(companyState);
+    }
+
+    @Override
+    public void setCompanyZipcode(String companyZipcode) {
+        tvCompanyZipcode_FLD.setText(companyZipcode);
+    }
+
+    @Override
+    public void setCompanyCountry(String companyCountry) {
+        tvCompanyCountry_FLD.setText(companyCountry);
     }
 
     @Override
@@ -253,26 +291,17 @@ public class LeadDetailsFragment extends BaseFragment<HomeActivity> implements L
     }
 
     @Override
-    public void setHistory(ArrayList<HistoryDH> history) {
-        historyAdapter.setListDH(history);
+    public void setLeadName(String leadName) {
+        tvNameLead_FLD.setText(leadName);
     }
 
     @Override
-    public void setWorkflow(ArrayList<LeadDetailWorkflow> workflows) {
-        if (llWorkflowContainer_FLD.getChildCount() != workflows.size()) {
-            llWorkflowContainer_FLD.removeAllViews();
-            for (LeadDetailWorkflow workflow : workflows) {
-                TextView tv = (TextView) View.inflate(getContext(), R.layout.view_workflow, null);
-                tv.setText(workflow.name);
-                tv.setBackgroundColor(Color.parseColor(workflow.color));
-                llWorkflowContainer_FLD.addView(tv);
-            }
-        } else {
-            for (int i = 0; i < workflows.size(); i++) {
-                TextView tv = (TextView) llWorkflowContainer_FLD.getChildAt(i);
-                tv.setText(workflows.get(i).name);
-                tv.setBackgroundColor(Color.parseColor(workflows.get(i).color));
-            }
-        }
+    public void setCurrentStatus(String currentStatus) {
+        tvCurrentStatus_FLD.setText(currentStatus);
+    }
+
+    @Override
+    public void setHistory(ArrayList<HistoryDH> history) {
+        historyAdapter.setListDH(history);
     }
 }
