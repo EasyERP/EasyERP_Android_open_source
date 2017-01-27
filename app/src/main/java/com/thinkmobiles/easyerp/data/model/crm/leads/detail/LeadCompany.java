@@ -1,122 +1,49 @@
 package com.thinkmobiles.easyerp.data.model.crm.leads.detail;
 
-
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.thinkmobiles.easyerp.data.model.crm.persons.details.CreatedEditedUserString;
+import com.thinkmobiles.easyerp.data.model.crm.leads.EditedBy;
 
 import java.util.ArrayList;
 
-public class LeadCustomer implements Parcelable {
+/**
+ * Created by Lynx on 1/27/2017.
+ */
 
+public class LeadCompany implements Parcelable {
+    //
     /**
-     * "customer": {
-     "_id": "57ce6557a3c7f97535e33da5",
-     "dateBirth": "",
+     * duplicate of {@link LeadCustomer}
+     * "company": {
+     "_id": "5877a4243336a81d081bd4a9",
      "__v": 0,
      "channel": null,
      "integrationId": "",
      "companyInfo": {
      "industry": null
      },
-     "editedBy": {
-     "date": "2016-09-06T06:42:31.976Z",
-     "user": "577a78347134263421cab3ed"
-     },
-     "createdBy": {
-     "date": "2016-09-06T06:42:31.976Z",
-     "user": "577a78347134263421cab3ed"
-     },
-     "history": [],
-     "attachments": [],
-     "notes": [],
-     "groups": {
-     "group": [],
-     "users": [],
-     "owner": null
-     },
-     "whoCanRW": "everyOne",
-     "social": {
-     "LI": "",
-     "FB": ""
-     },
-     "color": "#4d5a75",
-     "relatedUser": null,
-     "salesPurchases": {
-     "receiveMessages": 0,
-     "language": "English",
-     "reference": "",
-     "active": false,
-     "implementedBy": null,
-     "salesTeam": null,
-     "salesPerson": null,
-     "isSupplier": false,
-     "isCustomer": true
-     },
-     "title": "",
-     "internalNotes": "",
-     "contacts": [],
-     "phones": {
-     "fax": "",
-     "mobile": "",
-     "phone": ""
-     },
-     "skype": "aaronius0000",
-     "jobPosition": "CEO",
-     "website": "",
-     "shippingAddress": {
-     "name": "",
-     "country": "",
-     "zip": "",
-     "state": "",
-     "city": "",
-     "street": ""
-     },
-     "address": {
-     "country": "Select",
-     "zip": "",
-     "state": "",
-     "city": "",
-     "street": ""
-     },
-     "timezone": "UTC",
-     "department": null,
-     "company": null,
-     "email": "",
-     "imageSrc": "data:image/png;base64",
-     "name": {
-     "last": "Hurst",
-     "first": "Aaron"
-     },
-     "isHidden": false,
-     "isOwn": false,
-     "type": "Person",
-     "fullName": "Aaron Hurst",
-     "id": "57ce6557a3c7f97535e33da5"
-     },
      */
 
     public String _id;
-    public String dateBirth;
     public int __v;
-//    public String channel;
+    public String channel;
     public String integrationId;
     public CompanyInfo companyInfo;
-    public CreatedEditedUserString editedBy;
-    public CreatedEditedUserString createdBy;
+    public EditedBy editedBy;
+    public EditedBy createdBy;
     public ArrayList<NoteHistory> history;
     public ArrayList<AttachmentItem> attachments;
     public ArrayList<NoteItem> notes;
     public Groups groups;
     public String whoCanRW;
     public Social social;
-    public String color;
-//    public User relatedUser;
-    public SalesPurchases salesPurchases;
+    public String color; //"#4d5a75"
+    public User relatedUser;
+//    public SalesPurchases salesPurchases;
     public String title;
     public String internalNotes;
-//    public ArrayList<> contacts;
+    //    public ArrayList<> contacts;
     public Phone phones;
     public String skype;
     public String jobPosition;
@@ -124,7 +51,7 @@ public class LeadCustomer implements Parcelable {
     public Address shippingAddress;
     public Address address;
     public String timezone;
-//    public String department;
+    //    public String department;
 //    public String company;
     public String email;
     public String imageSrc;
@@ -135,10 +62,6 @@ public class LeadCustomer implements Parcelable {
     public String fullName;
     public String id;
 
-
-    public LeadCustomer() {
-    }
-
     @Override
     public int describeContents() {
         return 0;
@@ -147,8 +70,8 @@ public class LeadCustomer implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(this._id);
-        dest.writeString(this.dateBirth);
         dest.writeInt(this.__v);
+        dest.writeString(this.channel);
         dest.writeString(this.integrationId);
         dest.writeParcelable(this.companyInfo, flags);
         dest.writeParcelable(this.editedBy, flags);
@@ -160,7 +83,7 @@ public class LeadCustomer implements Parcelable {
         dest.writeString(this.whoCanRW);
         dest.writeParcelable(this.social, flags);
         dest.writeString(this.color);
-        dest.writeParcelable(this.salesPurchases, flags);
+        dest.writeParcelable(this.relatedUser, flags);
         dest.writeString(this.title);
         dest.writeString(this.internalNotes);
         dest.writeParcelable(this.phones, flags);
@@ -180,14 +103,17 @@ public class LeadCustomer implements Parcelable {
         dest.writeString(this.id);
     }
 
-    protected LeadCustomer(Parcel in) {
+    public LeadCompany() {
+    }
+
+    protected LeadCompany(Parcel in) {
         this._id = in.readString();
-        this.dateBirth = in.readString();
         this.__v = in.readInt();
+        this.channel = in.readString();
         this.integrationId = in.readString();
         this.companyInfo = in.readParcelable(CompanyInfo.class.getClassLoader());
-        this.editedBy = in.readParcelable(CreatedEditedUserString.class.getClassLoader());
-        this.createdBy = in.readParcelable(CreatedEditedUserString.class.getClassLoader());
+        this.editedBy = in.readParcelable(EditedBy.class.getClassLoader());
+        this.createdBy = in.readParcelable(EditedBy.class.getClassLoader());
         this.history = in.createTypedArrayList(NoteHistory.CREATOR);
         this.attachments = in.createTypedArrayList(AttachmentItem.CREATOR);
         this.notes = in.createTypedArrayList(NoteItem.CREATOR);
@@ -195,7 +121,7 @@ public class LeadCustomer implements Parcelable {
         this.whoCanRW = in.readString();
         this.social = in.readParcelable(Social.class.getClassLoader());
         this.color = in.readString();
-        this.salesPurchases = in.readParcelable(SalesPurchases.class.getClassLoader());
+        this.relatedUser = in.readParcelable(User.class.getClassLoader());
         this.title = in.readString();
         this.internalNotes = in.readString();
         this.phones = in.readParcelable(Phone.class.getClassLoader());
@@ -215,15 +141,15 @@ public class LeadCustomer implements Parcelable {
         this.id = in.readString();
     }
 
-    public static final Creator<LeadCustomer> CREATOR = new Creator<LeadCustomer>() {
+    public static final Parcelable.Creator<LeadCompany> CREATOR = new Parcelable.Creator<LeadCompany>() {
         @Override
-        public LeadCustomer createFromParcel(Parcel source) {
-            return new LeadCustomer(source);
+        public LeadCompany createFromParcel(Parcel source) {
+            return new LeadCompany(source);
         }
 
         @Override
-        public LeadCustomer[] newArray(int size) {
-            return new LeadCustomer[size];
+        public LeadCompany[] newArray(int size) {
+            return new LeadCompany[size];
         }
     };
 }

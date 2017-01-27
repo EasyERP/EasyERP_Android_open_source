@@ -16,7 +16,6 @@
     <dimen name="default_padding_big">24dp</dimen>
     <dimen name="default_padding">16dp</dimen>
     <dimen name="default_padding_middle">12dp</dimen>
-    <dimen name="default_padding_half">8dp</dimen>
     <dimen name="default_padding_small">6dp</dimen>
     <dimen name="default_padding_quart">4dp</dimen>
     <dimen name="default_padding_3dp">3dp</dimen>
@@ -28,9 +27,10 @@
 
     <!--/////////////////////// DESIGN ///////////////////////-->
 
-    <!--margins-->
+    <!--margins & paddings-->
     <dimen name="list_item_line_12">12dp</dimen>
     <dimen name="list_item_side_8">8dp</dimen>
+    <dimen name="default_padding_half">8dp</dimen>
 
     <!--text-->
     <dimen name="text_list_item_large_20">20sp</dimen>

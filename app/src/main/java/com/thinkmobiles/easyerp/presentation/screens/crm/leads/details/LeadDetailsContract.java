@@ -20,13 +20,15 @@ public interface LeadDetailsContract {
         void showProgress(boolean enable);
         void showHistory(boolean enable);
 
-        void setNameLead(String nameLead);
+        void setLeadName(String leadName);
         void setCloseDate(String closeDate);
         void setAssignedTo(String assignedTo);
         void setPriority(String priority);
         void setSource(String source);
         void setTags(SpannableStringBuilder tags);
         void setPersonName(String personName);
+        void setFirstName(String firstName);
+        void setLastName(String lastName);
         void setJobPosition(String jobPosition);
         void setDob(String dob);
         void setEmail(String email);
@@ -35,11 +37,13 @@ public interface LeadDetailsContract {
         void setLinkedIn(String linkedIn);
         void setTvFacebook(String tvFacebook);
         void setCompanyName(String companyName);
-        void setCompanyAddress(String companyAddress);
+        void setCompanyStreet(String companyStreet);
+        void setCompanyCity(String companyCity);
+        void setCompanyState(String companyState);
+        void setCompanyZipcode(String companyZipcode);
+        void setCompanyCountry(String companyCountry);
         void setAttachments(String attachments);
         void setHistory(ArrayList<HistoryDH> history);
-
-        void setWorkflow(ArrayList<LeadDetailWorkflow> workflows);
     }
 
     interface LeadDetailsPresenter extends BasePresenter {
