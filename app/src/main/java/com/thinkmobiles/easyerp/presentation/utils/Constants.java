@@ -48,6 +48,10 @@ public abstract class Constants {
 
     //Request codes
     public static final int REQUEST_CODE_FILTER_CONTACT_NAME = 15;
+    public static final int REQUEST_CODE_FILTER_WORKFLOW    = 16;
+    public static final int REQUEST_CODE_FILTER_ASSIGNED_TO    = 17;
+    public static final int REQUEST_CODE_FILTER_CREATED_BY = 18;
+    public static final int REQUEST_CODE_FILTER_SOURCE    = 19;
 
     //Bundle keys
     public static final String KEY_FILTER_LIST              = "keyFilterList";

@@ -2,14 +2,13 @@ package com.thinkmobiles.easyerp.presentation.dialogs;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatDialogFragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -19,6 +18,7 @@ import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.CheckBox;
 import android.widget.EditText;
 
@@ -39,9 +39,13 @@ public class FilterDialogFragment extends AppCompatDialogFragment implements Dia
 
     private ArrayList<FilterDH> filterList;
 
+    private InputMethodManager inputMethodManager;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        inputMethodManager = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
 
         filterList = getArguments().getParcelableArrayList(Constants.KEY_FILTER_LIST);
 
@@ -83,6 +87,7 @@ public class FilterDialogFragment extends AppCompatDialogFragment implements Dia
             if (event.getKeyCode() == KeyEvent.KEYCODE_ENTER
                     && event.getAction() == KeyEvent.ACTION_DOWN) {
                 searchAdapter.getFilter().filter(etSearch.getText());
+                inputMethodManager.hideSoftInputFromWindow(etSearch.getWindowToken(), InputMethodManager.RESULT_UNCHANGED_SHOWN);
                 return true;
             }
             return false;

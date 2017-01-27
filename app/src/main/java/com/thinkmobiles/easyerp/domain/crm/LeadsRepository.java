@@ -52,10 +52,10 @@ public class LeadsRepository implements LeadsContract.LeadsModel, LeadDetailsCon
         return getNetworkObservable(leadService.getFilteredLeads(
                 query.queryMap,
                 query.contactNames,
-                null,
-                null,
-                null,
-                null,
+                query.source,
+                query.workflow,
+                query.assignedTo,
+                query.createdBy,
                 page,
                 50
         ));

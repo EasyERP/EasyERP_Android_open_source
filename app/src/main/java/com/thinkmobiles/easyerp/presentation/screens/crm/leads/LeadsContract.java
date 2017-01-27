@@ -29,6 +29,10 @@ public interface LeadsContract {
         void setTextToSearch(String text);
         void showFilters();
         void selectContactNameInFilters(boolean isSelected);
+        void selectWorkflowInFilters(boolean isSelected);
+        void selectAssignedToInFilters(boolean isSelected);
+        void selectCreatedByInFilters(boolean isSelected);
+        void selectSourceInFilters(boolean isSelected);
 
         void showFilterDialog(ArrayList<FilterDH> filterDHs, int requestCode);
 
@@ -42,13 +46,21 @@ public interface LeadsContract {
         void refresh();
         void loadNextPage(int page);
 
+        boolean isEnabledFilters();
         void filterByContactName(FilterDH filterDH);
+        void filterBySearchContactName(String name);
         void filterByListContactNames(ArrayList<FilterDH> filterDHs);
         void removeFilterContactName();
-        void filterBySearchContactName(String name);
-        boolean isEnabledFilters();
+        void filterByListWorkflow(ArrayList<FilterDH> filterDHs);
+        void removeFilterWorkflow();
+        void filterByListAssignedTo(ArrayList<FilterDH> filterDHs);
+        void removeFilterAssignedTo();
+        void filterByListCreatedBy(ArrayList<FilterDH> filterDHs);
+        void removeFilterCreatedBy();
+        void filterByListSource(ArrayList<FilterDH> filterDHs);
+        void removeFilterSource();
 
-        void changeContactNameFilter();
+        void changeFilter(int requestCode);
         void removeAll();
     }
     interface LeadsModel extends BaseModel {

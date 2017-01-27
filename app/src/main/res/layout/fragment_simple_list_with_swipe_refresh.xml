@@ -10,19 +10,13 @@
         android:orientation="vertical">
 
         <android.support.v7.widget.AppCompatAutoCompleteTextView
+            style="@style/AppTheme.FilterDialog.SearchFieldStyle"
             android:id="@+id/actSearch"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:hint="@string/list_searchview_hint"
-            android:scrollHorizontally="true"
-            android:lines="1"
-            android:maxLines="1"
-            android:inputType="text"
             android:imeOptions="flagNoExtractUi|actionSearch"
             android:drawableStart="@drawable/ic_search_black"
             android:drawablePadding="@dimen/default_padding_half"
             android:padding="@dimen/default_padding"
-            android:includeFontPadding="true"
             android:visibility="gone"/>
 
         <android.support.v4.widget.SwipeRefreshLayout

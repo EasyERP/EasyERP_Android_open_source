@@ -4,6 +4,11 @@
     android:layout_height="match_parent"
     android:background="@android:color/white">
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorPrimaryDark"/>
+
     <EditText
         style="@style/AppTheme.FilterDialog.SearchFieldStyle"
         android:id="@+id/etSearch_DF"

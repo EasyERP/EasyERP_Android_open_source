@@ -1,7 +1,5 @@
 package com.thinkmobiles.easyerp.presentation.screens.crm.leads;
 
-import android.util.Log;
-
 import com.thinkmobiles.easyerp.data.model.crm.leads.LeadItem;
 import com.thinkmobiles.easyerp.data.model.crm.leads.ResponseGetLeads;
 import com.thinkmobiles.easyerp.data.model.crm.leads.filter.FilterItem;
@@ -137,21 +135,42 @@ public class LeadsPresenter extends MasterFlowSelectablePresenterHelper<String> 
             FilterDH leadDH = new FilterDH(leadItem);
             contactName.add(leadDH);
         }
-    }
-
-    @Override
-    public void changeContactNameFilter() {
-        view.showFilterDialog(contactName, Constants.REQUEST_CODE_FILTER_CONTACT_NAME);
+        for (FilterItem leadItem : responseGetLeadsFilters.salesPerson) {
+            FilterDH leadDH = new FilterDH(leadItem);
+            assignedTo.add(leadDH);
+        }
+        for (FilterItem leadItem : responseGetLeadsFilters.createdBy) {
+            FilterDH leadDH = new FilterDH(leadItem);
+            createdBy.add(leadDH);
+        }
+        for (FilterItem leadItem : responseGetLeadsFilters.workflow) {
+            FilterDH leadDH = new FilterDH(leadItem);
+            workflow.add(leadDH);
+        }
+        for (FilterItem leadItem : responseGetLeadsFilters.source) {
+            FilterDH leadDH = new FilterDH(leadItem);
+            source.add(leadDH);
+        }
     }
 
     @Override
     public void removeAll() {
-        for (FilterDH dh : contactName) {
-            dh.selected = false;
-        }
+        unselectAll(contactName);
+        unselectAll(workflow);
+        unselectAll(createdBy);
+        unselectAll(assignedTo);
+        unselectAll(source);
         view.setTextToSearch("");
         view.selectContactNameInFilters(false);
-        queryBuilder.removeAllContactNames();
+        view.selectWorkflowInFilters(false);
+        view.selectAssignedToInFilters(false);
+        view.selectSourceInFilters(false);
+        view.selectCreatedByInFilters(false);
+        queryBuilder.removeAllContactNames()
+                .removeAllWorkflows()
+                .removeAllAssignedTo()
+                .removeAllCreatedBy()
+                .removeAllSource();
         getFirstPage();
     }
 
@@ -194,14 +213,129 @@ public class LeadsPresenter extends MasterFlowSelectablePresenterHelper<String> 
         getFirstPage();
     }
 
-    @Override
-    public void removeFilterContactName() {
-        for (FilterDH dh : contactName) {
+    private void unselectAll(ArrayList<FilterDH> list) {
+        for (FilterDH dh : list) {
             dh.selected = false;
         }
+    }
+
+    @Override
+    public void removeFilterContactName() {
+        unselectAll(contactName);
         queryBuilder.removeAllContactNames();
         view.setTextToSearch("");
         view.selectContactNameInFilters(false);
+        getFirstPage();
+    }
+
+    @Override
+    public void changeFilter(int requestCode) {
+        switch (requestCode) {
+            case Constants.REQUEST_CODE_FILTER_CONTACT_NAME:
+                view.showFilterDialog(contactName, requestCode);
+                break;
+            case Constants.REQUEST_CODE_FILTER_WORKFLOW:
+                view.showFilterDialog(workflow, requestCode);
+                break;
+            case Constants.REQUEST_CODE_FILTER_ASSIGNED_TO:
+                view.showFilterDialog(assignedTo, requestCode);
+                break;
+            case Constants.REQUEST_CODE_FILTER_CREATED_BY:
+                view.showFilterDialog(createdBy, requestCode);
+                break;
+            case Constants.REQUEST_CODE_FILTER_SOURCE:
+                view.showFilterDialog(source, requestCode);
+                break;
+        }
+    }
+
+    @Override
+    public void filterByListWorkflow(ArrayList<FilterDH> filterDHs) {
+        workflow = filterDHs;
+        queryBuilder.removeAllWorkflows();
+        for (FilterDH dh : workflow) {
+            if (dh.selected) {
+                queryBuilder.addWorkflow(dh.id);
+            }
+        }
+        boolean needCheckFilter = queryBuilder.build().workflow != null;
+        view.selectWorkflowInFilters(needCheckFilter);
+        getFirstPage();
+    }
+
+    @Override
+    public void removeFilterWorkflow() {
+        unselectAll(workflow);
+        queryBuilder.removeAllWorkflows();
+        view.selectWorkflowInFilters(false);
+        getFirstPage();
+    }
+
+    @Override
+    public void filterByListAssignedTo(ArrayList<FilterDH> filterDHs) {
+        assignedTo = filterDHs;
+        queryBuilder.removeAllAssignedTo();
+        for (FilterDH dh : assignedTo) {
+            if (dh.selected) {
+                queryBuilder.addAssignedTo(dh.id);
+            }
+        }
+        boolean needCheckFilter = queryBuilder.build().assignedTo != null;
+        view.selectAssignedToInFilters(needCheckFilter);
+        getFirstPage();
+    }
+
+    @Override
+    public void removeFilterAssignedTo() {
+        unselectAll(assignedTo);
+        queryBuilder.removeAllAssignedTo();
+        view.selectAssignedToInFilters(false);
+        getFirstPage();
+
+    }
+
+    @Override
+    public void filterByListCreatedBy(ArrayList<FilterDH> filterDHs) {
+        createdBy = filterDHs;
+        queryBuilder.removeAllCreatedBy();
+        for (FilterDH dh : createdBy) {
+            if (dh.selected) {
+                queryBuilder.addCreatedBy(dh.id);
+            }
+        }
+        boolean needCheckFilter = queryBuilder.build().createdBy != null;
+        view.selectCreatedByInFilters(needCheckFilter);
+        getFirstPage();
+    }
+
+    @Override
+    public void removeFilterCreatedBy() {
+        unselectAll(createdBy);
+        queryBuilder.removeAllCreatedBy();
+        view.selectCreatedByInFilters(false);
+        getFirstPage();
+
+    }
+
+    @Override
+    public void filterByListSource(ArrayList<FilterDH> filterDHs) {
+        source = filterDHs;
+        queryBuilder.removeAllSource();
+        for (FilterDH dh : source) {
+            if (dh.selected) {
+                queryBuilder.addSource(dh.id);
+            }
+        }
+        boolean needCheckFilter = queryBuilder.build().source != null;
+        view.selectSourceInFilters(needCheckFilter);
+        getFirstPage();
+    }
+
+    @Override
+    public void removeFilterSource() {
+        unselectAll(source);
+        queryBuilder.removeAllSource();
+        view.selectSourceInFilters(false);
         getFirstPage();
     }
 }

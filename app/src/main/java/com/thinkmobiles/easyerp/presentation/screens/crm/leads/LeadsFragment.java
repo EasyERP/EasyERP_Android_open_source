@@ -69,6 +69,18 @@ public class LeadsFragment extends SimpleListWithRefreshFragment implements Lead
     @OptionsMenuItem(R.id.menuFilterContactName)
     protected MenuItem menuContactName;
 
+    @OptionsMenuItem(R.id.menuFilterAssignedTo)
+    protected MenuItem menuAssignedTo;
+
+    @OptionsMenuItem(R.id.menuFilterCreatedBy)
+    protected MenuItem menuCreatedBy;
+
+    @OptionsMenuItem(R.id.menuFilterSource)
+    protected MenuItem menuSource;
+
+    @OptionsMenuItem(R.id.menuFilterStage)
+    protected MenuItem menuWorkflow;
+
     @AfterInject
     @Override
     public void initPresenter() {
@@ -211,7 +223,27 @@ public class LeadsFragment extends SimpleListWithRefreshFragment implements Lead
 
     @OptionsItem(R.id.menuFilterContactName)
     protected void clickContactName() {
-        presenter.changeContactNameFilter();
+        presenter.changeFilter(Constants.REQUEST_CODE_FILTER_CONTACT_NAME);
+    }
+
+    @OptionsItem(R.id.menuFilterStage)
+    protected void clickStage() {
+        presenter.changeFilter(Constants.REQUEST_CODE_FILTER_WORKFLOW);
+    }
+
+    @OptionsItem(R.id.menuFilterCreatedBy)
+    protected void clickcreatedBy() {
+        presenter.changeFilter(Constants.REQUEST_CODE_FILTER_CREATED_BY);
+    }
+
+    @OptionsItem(R.id.menuFilterAssignedTo)
+    protected void clickAssignedTo() {
+        presenter.changeFilter(Constants.REQUEST_CODE_FILTER_ASSIGNED_TO);
+    }
+
+    @OptionsItem(R.id.menuFilterSource)
+    protected void clickSource() {
+        presenter.changeFilter(Constants.REQUEST_CODE_FILTER_SOURCE);
     }
 
     @OptionsItem(R.id.menuFilterRemoveAll)
@@ -243,6 +275,26 @@ public class LeadsFragment extends SimpleListWithRefreshFragment implements Lead
     }
 
     @Override
+    public void selectWorkflowInFilters(boolean isSelected) {
+        menuWorkflow.setChecked(isSelected);
+    }
+
+    @Override
+    public void selectAssignedToInFilters(boolean isSelected) {
+        menuAssignedTo.setChecked(isSelected);
+    }
+
+    @Override
+    public void selectCreatedByInFilters(boolean isSelected) {
+        menuCreatedBy.setChecked(isSelected);
+    }
+
+    @Override
+    public void selectSourceInFilters(boolean isSelected) {
+        menuSource.setChecked(isSelected);
+    }
+
+    @Override
     public void showFilterDialog(ArrayList<FilterDH> filterDHs, int requestCode) {
         FilterDialogFragment dialogFragment = new FilterDialogFragment();
         Bundle bundle = new Bundle();
@@ -259,6 +311,46 @@ public class LeadsFragment extends SimpleListWithRefreshFragment implements Lead
             presenter.filterByListContactNames(filterDHs);
         } else {
             presenter.removeFilterContactName();
+        }
+    }
+
+    @OnActivityResult(Constants.REQUEST_CODE_FILTER_WORKFLOW)
+    protected void resultWorkflows(int resultCode,
+                                     @OnActivityResult.Extra(value = Constants.KEY_FILTER_LIST) ArrayList<FilterDH> filterDHs) {
+        if (resultCode == Activity.RESULT_OK) {
+            presenter.filterByListWorkflow(filterDHs);
+        } else {
+            presenter.removeFilterWorkflow();
+        }
+    }
+
+    @OnActivityResult(Constants.REQUEST_CODE_FILTER_ASSIGNED_TO)
+    protected void resultAssignedTo(int resultCode,
+                                     @OnActivityResult.Extra(value = Constants.KEY_FILTER_LIST) ArrayList<FilterDH> filterDHs) {
+        if (resultCode == Activity.RESULT_OK) {
+            presenter.filterByListAssignedTo(filterDHs);
+        } else {
+            presenter.removeFilterAssignedTo();
+        }
+    }
+
+    @OnActivityResult(Constants.REQUEST_CODE_FILTER_CREATED_BY)
+    protected void resultCreatedBy(int resultCode,
+                                     @OnActivityResult.Extra(value = Constants.KEY_FILTER_LIST) ArrayList<FilterDH> filterDHs) {
+        if (resultCode == Activity.RESULT_OK) {
+            presenter.filterByListCreatedBy(filterDHs);
+        } else {
+            presenter.removeFilterCreatedBy();
+        }
+    }
+
+    @OnActivityResult(Constants.REQUEST_CODE_FILTER_SOURCE)
+    protected void resultSource(int resultCode,
+                                     @OnActivityResult.Extra(value = Constants.KEY_FILTER_LIST) ArrayList<FilterDH> filterDHs) {
+        if (resultCode == Activity.RESULT_OK) {
+            presenter.filterByListSource(filterDHs);
+        } else {
+            presenter.removeFilterSource();
         }
     }
 }

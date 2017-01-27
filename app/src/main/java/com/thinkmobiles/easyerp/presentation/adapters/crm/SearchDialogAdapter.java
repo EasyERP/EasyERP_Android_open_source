@@ -48,7 +48,7 @@ public class SearchDialogAdapter extends SimpleRecyclerAdapter<FilterDH, FilterV
                 ArrayList<FilterDH> filterItems = new ArrayList<>();
 
                 for (FilterDH item : originList) {
-                    if (item.name.toLowerCase().contains(query)) {
+                    if ( item.name != null && item.name.toLowerCase().contains(query)) {
                         filterItems.add(item);
                     }
                 }
