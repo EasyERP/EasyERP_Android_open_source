@@ -4,7 +4,6 @@ package com.thinkmobiles.easyerp.presentation.utils;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.text.Html;
-import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.TextUtils;

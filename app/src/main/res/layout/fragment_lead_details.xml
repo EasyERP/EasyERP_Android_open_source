@@ -57,419 +57,381 @@
                             android:layout_marginTop="@dimen/default_padding"
                             android:background="@color/color_divider"/>
 
-                        <TextView
-                            style="@style/RobotoMedium"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/default_padding"
-                            android:paddingEnd="@dimen/default_padding"
-                            android:paddingStart="@dimen/default_padding"
-                            android:text="@string/about"
-                            android:textColor="@color/color_text_black"
-                            android:textSize="@dimen/text_list_item_large_20"/>
-
                         <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/default_padding"
-                            android:paddingEnd="@dimen/default_padding"
-                            android:paddingStart="@dimen/default_padding">
-
-                            <android.support.design.widget.TextInputLayout
-                                style="@style/AppTheme.LeadTextInputLayoutStyle">
-
-                                <EditText
-                                    android:id="@+id/tvCurrentStatus_FLD"
-                                    style="@style/AppTheme.LeadInputFieldStyle"
-                                    android:hint="@string/current_status"/>
-
-                            </android.support.design.widget.TextInputLayout>
-
-                            <android.support.design.widget.TextInputLayout
-                                style="@style/AppTheme.LeadTextInputLayoutStyle">
-
-                                <EditText
-                                    android:id="@+id/tvCloseDate_FLD"
-                                    style="@style/AppTheme.LeadInputFieldStyle"
-                                    android:hint="@string/close_date"/>
-
-                            </android.support.design.widget.TextInputLayout>
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/default_padding"
-                            android:paddingEnd="@dimen/default_padding"
-                            android:paddingStart="@dimen/default_padding">
-
-                            <android.support.design.widget.TextInputLayout
-                                style="@style/AppTheme.LeadTextInputLayoutStyle">
-
-                                <EditText
-                                    android:id="@+id/tvAssignedTo_FLD"
-                                    style="@style/AppTheme.LeadInputFieldStyle"
-                                    android:hint="@string/assigned_to"/>
-
-                            </android.support.design.widget.TextInputLayout>
-
-                            <android.support.design.widget.TextInputLayout
-                                style="@style/AppTheme.LeadTextInputLayoutStyle">
-
-                                <EditText
-                                    android:id="@+id/tvPriority_FLD"
-                                    style="@style/AppTheme.LeadInputFieldStyle"
-                                    android:hint="@string/priority"/>
-
-                            </android.support.design.widget.TextInputLayout>
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/default_padding"
-                            android:paddingEnd="@dimen/default_padding"
-                            android:paddingStart="@dimen/default_padding">
-
-                            <android.support.design.widget.TextInputLayout
-                                style="@style/AppTheme.LeadTextInputLayoutStyle">
-
-                                <EditText
-                                    android:id="@+id/tvSource_FLD"
-                                    style="@style/AppTheme.LeadInputFieldStyle"
-                                    android:hint="@string/source"/>
-
-                            </android.support.design.widget.TextInputLayout>
-
-                            <View
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"/>
-
-                        </LinearLayout>
-
-
-                        <TextView
-                            style="@style/RobotoMedium"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/default_padding"
-                            android:paddingEnd="@dimen/default_padding"
-                            android:paddingStart="@dimen/default_padding"
-                            android:text="@string/contacts"
-                            android:textColor="@color/color_text_black"
-                            android:textSize="@dimen/text_list_item_large_20"/>
-
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/default_padding_half"
-                            android:paddingEnd="@dimen/default_padding"
-                            android:paddingStart="@dimen/default_padding">
-
-                            <android.support.design.widget.TextInputLayout
-                                style="@style/AppTheme.LeadTextInputLayoutStyle">
-
-                                <EditText
-                                    android:id="@+id/tvPersonName_FLD"
-                                    style="@style/AppTheme.LeadInputFieldStyle"
-                                    android:hint="@string/contact_person"/>
-
-                            </android.support.design.widget.TextInputLayout>
-
-                            <android.support.design.widget.TextInputLayout
-                                style="@style/AppTheme.LeadTextInputLayoutStyle">
-
-                                <EditText
-                                    android:id="@+id/tvFirstName_FLD"
-                                    style="@style/AppTheme.LeadInputFieldStyle"
-                                    android:hint="@string/first_name"/>
-
-                            </android.support.design.widget.TextInputLayout>
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/default_padding"
-                            android:paddingEnd="@dimen/default_padding"
-                            android:paddingStart="@dimen/default_padding">
-
-                            <android.support.design.widget.TextInputLayout
-                                style="@style/AppTheme.LeadTextInputLayoutStyle">
-
-                                <EditText
-                                    android:id="@+id/tvLastName_FLD"
-                                    style="@style/AppTheme.LeadInputFieldStyle"
-                                    android:hint="@string/last_name"/>
-
-                            </android.support.design.widget.TextInputLayout>
-
-                            <android.support.design.widget.TextInputLayout
-                                style="@style/AppTheme.LeadTextInputLayoutStyle">
-
-                                <EditText
-                                    android:id="@+id/tvJobPosition_FLD"
-                                    style="@style/AppTheme.LeadInputFieldStyle"
-                                    android:hint="@string/job_position"/>
-
-                            </android.support.design.widget.TextInputLayout>
-
-                        </LinearLayout>
-
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/default_padding"
-                            android:paddingEnd="@dimen/default_padding"
-                            android:paddingStart="@dimen/default_padding">
-
-                            <android.support.design.widget.TextInputLayout
-                                style="@style/AppTheme.LeadTextInputLayoutStyle">
-
-                                <EditText
-                                    android:id="@+id/tvDob_FLD"
-                                    style="@style/AppTheme.LeadInputFieldStyle"
-                                    android:hint="@string/date_of_birth"/>
-
-                            </android.support.design.widget.TextInputLayout>
-
-                            <android.support.design.widget.TextInputLayout
-                                style="@style/AppTheme.LeadTextInputLayoutStyle">
-
-                                <EditText
-                                    android:id="@+id/tvEmail_FLD"
-                                    style="@style/AppTheme.LeadInputFieldStyle"
-                                    android:hint="@string/email"/>
-
-                            </android.support.design.widget.TextInputLayout>
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/default_padding"
-                            android:paddingEnd="@dimen/default_padding"
-                            android:paddingStart="@dimen/default_padding">
-
-                            <android.support.design.widget.TextInputLayout
-                                style="@style/AppTheme.LeadTextInputLayoutStyle">
-
-                                <EditText
-                                    android:id="@+id/tvPhone_FLD"
-                                    style="@style/AppTheme.LeadInputFieldStyle"
-                                    android:hint="@string/phone"/>
-
-                            </android.support.design.widget.TextInputLayout>
-
-                            <android.support.design.widget.TextInputLayout
-                                style="@style/AppTheme.LeadTextInputLayoutStyle">
-
-                                <EditText
-                                    android:id="@+id/tvSkype_FLD"
-                                    style="@style/AppTheme.LeadInputFieldStyle"
-                                    android:hint="@string/skype"/>
-
-                            </android.support.design.widget.TextInputLayout>
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/default_padding"
-                            android:paddingEnd="@dimen/default_padding"
-                            android:paddingStart="@dimen/default_padding">
-
-                            <android.support.design.widget.TextInputLayout
-                                style="@style/AppTheme.LeadTextInputLayoutStyle">
-
-                                <EditText
-                                    android:id="@+id/tvLinkedIn_FLD"
-                                    style="@style/AppTheme.LeadInputFieldStyle"
-                                    android:hint="@string/linkedin"/>
-
-                            </android.support.design.widget.TextInputLayout>
-
-                            <android.support.design.widget.TextInputLayout style="@style/AppTheme.LeadTextInputLayoutStyle">
-
-                                <EditText
-                                    android:id="@+id/tvFacebook_FLD"
-                                    style="@style/AppTheme.LeadInputFieldStyle"
-                                    android:hint="@string/facebook"/>
-
-                            </android.support.design.widget.TextInputLayout>
-
-                        </LinearLayout>
-
-                        <TextView
-                            style="@style/RobotoMedium"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/default_padding"
-                            android:paddingEnd="@dimen/default_padding"
-                            android:paddingStart="@dimen/default_padding"
-                            android:text="@string/company"
-                            android:textColor="@color/color_text_black"
-                            android:textSize="@dimen/text_list_item_large_20"/>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/default_padding_half"
-                            android:paddingEnd="@dimen/default_padding"
-                            android:paddingStart="@dimen/default_padding">
-
-                            <android.support.design.widget.TextInputLayout
-                                style="@style/AppTheme.LeadTextInputLayoutStyle">
-
-                                <EditText
-                                    android:id="@+id/tvCompanyName_FLD"
-                                    style="@style/AppTheme.LeadInputFieldStyle"
-                                    android:hint="@string/name"/>
-
-                            </android.support.design.widget.TextInputLayout>
-
-                            <android.support.design.widget.TextInputLayout
-                                style="@style/AppTheme.LeadTextInputLayoutStyle">
-
-                                <EditText
-                                    android:id="@+id/tvCompanyStreet_FLD"
-                                    style="@style/AppTheme.LeadInputFieldStyle"
-                                    android:hint="@string/street"/>
-
-                            </android.support.design.widget.TextInputLayout>
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/default_padding"
-                            android:paddingEnd="@dimen/default_padding"
-                            android:paddingStart="@dimen/default_padding">
-
-                            <android.support.design.widget.TextInputLayout
-                                style="@style/AppTheme.LeadTextInputLayoutStyle">
-
-                                <EditText
-                                    android:id="@+id/tvCompanyCity_FLD"
-                                    style="@style/AppTheme.LeadInputFieldStyle"
-                                    android:hint="@string/hint_city"/>
-
-                            </android.support.design.widget.TextInputLayout>
-
-                            <android.support.design.widget.TextInputLayout
-                                style="@style/AppTheme.LeadTextInputLayoutStyle">
-
-                                <EditText
-                                    android:id="@+id/tvCompanyState_FLD"
-                                    style="@style/AppTheme.LeadInputFieldStyle"
-                                    android:hint="@string/state"/>
-
-                            </android.support.design.widget.TextInputLayout>
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/default_padding"
-                            android:paddingEnd="@dimen/default_padding"
-                            android:paddingStart="@dimen/default_padding">
-
-                            <android.support.design.widget.TextInputLayout
-                                style="@style/AppTheme.LeadTextInputLayoutStyle">
-
-                                <EditText
-                                    android:id="@+id/tvCompanyZipcode_FLD"
-                                    style="@style/AppTheme.LeadInputFieldStyle"
-                                    android:hint="@string/zip"/>
-
-                            </android.support.design.widget.TextInputLayout>
-
-                            <android.support.design.widget.TextInputLayout
-                                style="@style/AppTheme.LeadTextInputLayoutStyle">
-
-                                <EditText
-                                    android:id="@+id/tvCompanyCountry_FLD"
-                                    style="@style/AppTheme.LeadInputFieldStyle"
-                                    android:hint="@string/country"/>
-
-                            </android.support.design.widget.TextInputLayout>
-
-                        </LinearLayout>
-
-                        <TextView
-                            style="@style/RobotoMedium"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/default_padding"
-                            android:paddingEnd="@dimen/default_padding"
-                            android:paddingStart="@dimen/default_padding"
-                            android:text="@string/tags"
-                            android:textColor="@color/color_text_black"
-                            android:textSize="@dimen/text_list_item_large_20"/>
-
-                        <TextView
-                            android:id="@+id/tvTags_FLD"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:lineSpacingExtra="@dimen/tag_line_spacing_default"
-                            android:layout_marginTop="@dimen/default_padding_half"
-                            android:text="@string/no_tags"
-                            android:maxLines="2"
-                            android:paddingEnd="@dimen/default_padding"
-                            android:paddingStart="@dimen/default_padding"
-                            android:paddingBottom="@dimen/default_padding"/>
-
-                    </LinearLayout>
-
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@android:color/white"
-                        android:orientation="vertical"
-                        android:layout_marginTop="@dimen/default_padding"
-                        android:paddingEnd="@dimen/default_padding"
-                        android:paddingStart="@dimen/default_padding">
-
-                        <TextView
-                            style="@style/RobotoMedium"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/attachments"
-                            android:textColor="@color/color_text_black"
-                            android:textSize="@dimen/text_list_item_large_20"/>
-
-                        <LinearLayout
-                            android:id="@+id/llAttachmentsContainer_FLD"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
-                            android:layout_marginBottom="@dimen/default_padding">
+                            android:paddingEnd="@dimen/default_padding"
+                            android:paddingStart="@dimen/default_padding">
 
                             <TextView
-                                android:id="@+id/tvAttachments_FLD"
+                                style="@style/ContentTitleStyle"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/default_padding_half"
-                                android:alpha="0.83"
-                                android:drawablePadding="@dimen/default_padding_half"
+                                android:text="@string/about"/>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/default_padding">
+
+                                <android.support.design.widget.TextInputLayout
+                                    style="@style/AppTheme.LeadTextInputLayoutStyle">
+
+                                    <EditText
+                                        android:id="@+id/tvCurrentStatus_FLD"
+                                        style="@style/AppTheme.LeadInputFieldStyle"
+                                        android:hint="@string/current_status"/>
+
+                                </android.support.design.widget.TextInputLayout>
+
+                                <android.support.design.widget.TextInputLayout
+                                    style="@style/AppTheme.LeadTextInputLayoutStyle">
+
+                                    <EditText
+                                        android:id="@+id/tvCloseDate_FLD"
+                                        style="@style/AppTheme.LeadInputFieldStyle"
+                                        android:hint="@string/close_date"/>
+
+                                </android.support.design.widget.TextInputLayout>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/default_padding">
+
+                                <android.support.design.widget.TextInputLayout
+                                    style="@style/AppTheme.LeadTextInputLayoutStyle">
+
+                                    <EditText
+                                        android:id="@+id/tvAssignedTo_FLD"
+                                        style="@style/AppTheme.LeadInputFieldStyle"
+                                        android:hint="@string/assigned_to"/>
+
+                                </android.support.design.widget.TextInputLayout>
+
+                                <android.support.design.widget.TextInputLayout
+                                    style="@style/AppTheme.LeadTextInputLayoutStyle">
+
+                                    <EditText
+                                        android:id="@+id/tvPriority_FLD"
+                                        style="@style/AppTheme.LeadInputFieldStyle"
+                                        android:hint="@string/priority"/>
+
+                                </android.support.design.widget.TextInputLayout>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/default_padding">
+
+                                <android.support.design.widget.TextInputLayout
+                                    style="@style/AppTheme.LeadTextInputLayoutStyle">
+
+                                    <EditText
+                                        android:id="@+id/tvSource_FLD"
+                                        style="@style/AppTheme.LeadInputFieldStyle"
+                                        android:hint="@string/source"/>
+
+                                </android.support.design.widget.TextInputLayout>
+
+                                <View
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"/>
+
+                            </LinearLayout>
+
+
+                            <TextView
+                                style="@style/ContentTitleStyle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/contacts"/>
+
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/default_padding_half">
+
+                                <android.support.design.widget.TextInputLayout
+                                    style="@style/AppTheme.LeadTextInputLayoutStyle">
+
+                                    <EditText
+                                        android:id="@+id/tvPersonName_FLD"
+                                        style="@style/AppTheme.LeadInputFieldStyle"
+                                        android:hint="@string/contact_person"/>
+
+                                </android.support.design.widget.TextInputLayout>
+
+                                <android.support.design.widget.TextInputLayout
+                                    style="@style/AppTheme.LeadTextInputLayoutStyle">
+
+                                    <EditText
+                                        android:id="@+id/tvFirstName_FLD"
+                                        style="@style/AppTheme.LeadInputFieldStyle"
+                                        android:hint="@string/first_name"/>
+
+                                </android.support.design.widget.TextInputLayout>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/default_padding">
+
+                                <android.support.design.widget.TextInputLayout
+                                    style="@style/AppTheme.LeadTextInputLayoutStyle">
+
+                                    <EditText
+                                        android:id="@+id/tvLastName_FLD"
+                                        style="@style/AppTheme.LeadInputFieldStyle"
+                                        android:hint="@string/last_name"/>
+
+                                </android.support.design.widget.TextInputLayout>
+
+                                <android.support.design.widget.TextInputLayout
+                                    style="@style/AppTheme.LeadTextInputLayoutStyle">
+
+                                    <EditText
+                                        android:id="@+id/tvJobPosition_FLD"
+                                        style="@style/AppTheme.LeadInputFieldStyle"
+                                        android:hint="@string/job_position"/>
+
+                                </android.support.design.widget.TextInputLayout>
+
+                            </LinearLayout>
+
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/default_padding">
+
+                                <android.support.design.widget.TextInputLayout
+                                    style="@style/AppTheme.LeadTextInputLayoutStyle">
+
+                                    <EditText
+                                        android:id="@+id/tvDob_FLD"
+                                        style="@style/AppTheme.LeadInputFieldStyle"
+                                        android:hint="@string/date_of_birth"/>
+
+                                </android.support.design.widget.TextInputLayout>
+
+                                <android.support.design.widget.TextInputLayout
+                                    style="@style/AppTheme.LeadTextInputLayoutStyle">
+
+                                    <EditText
+                                        android:id="@+id/tvEmail_FLD"
+                                        style="@style/AppTheme.LeadInputFieldStyle"
+                                        android:hint="@string/email"/>
+
+                                </android.support.design.widget.TextInputLayout>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/default_padding">
+
+                                <android.support.design.widget.TextInputLayout
+                                    style="@style/AppTheme.LeadTextInputLayoutStyle">
+
+                                    <EditText
+                                        android:id="@+id/tvPhone_FLD"
+                                        style="@style/AppTheme.LeadInputFieldStyle"
+                                        android:hint="@string/phone"/>
+
+                                </android.support.design.widget.TextInputLayout>
+
+                                <android.support.design.widget.TextInputLayout
+                                    style="@style/AppTheme.LeadTextInputLayoutStyle">
+
+                                    <EditText
+                                        android:id="@+id/tvSkype_FLD"
+                                        style="@style/AppTheme.LeadInputFieldStyle"
+                                        android:hint="@string/skype"/>
+
+                                </android.support.design.widget.TextInputLayout>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/default_padding">
+
+                                <android.support.design.widget.TextInputLayout
+                                    style="@style/AppTheme.LeadTextInputLayoutStyle">
+
+                                    <EditText
+                                        android:id="@+id/tvLinkedIn_FLD"
+                                        style="@style/AppTheme.LeadInputFieldStyle"
+                                        android:hint="@string/linkedin"/>
+
+                                </android.support.design.widget.TextInputLayout>
+
+                                <android.support.design.widget.TextInputLayout style="@style/AppTheme.LeadTextInputLayoutStyle">
+
+                                    <EditText
+                                        android:id="@+id/tvFacebook_FLD"
+                                        style="@style/AppTheme.LeadInputFieldStyle"
+                                        android:hint="@string/facebook"/>
+
+                                </android.support.design.widget.TextInputLayout>
+
+                            </LinearLayout>
+
+                            <TextView
+                                style="@style/ContentTitleStyle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/company"/>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/default_padding_half">
+
+                                <android.support.design.widget.TextInputLayout
+                                    style="@style/AppTheme.LeadTextInputLayoutStyle">
+
+                                    <EditText
+                                        android:id="@+id/tvCompanyName_FLD"
+                                        style="@style/AppTheme.LeadInputFieldStyle"
+                                        android:hint="@string/name"/>
+
+                                </android.support.design.widget.TextInputLayout>
+
+                                <android.support.design.widget.TextInputLayout
+                                    style="@style/AppTheme.LeadTextInputLayoutStyle">
+
+                                    <EditText
+                                        android:id="@+id/tvCompanyStreet_FLD"
+                                        style="@style/AppTheme.LeadInputFieldStyle"
+                                        android:hint="@string/street"/>
+
+                                </android.support.design.widget.TextInputLayout>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/default_padding">
+
+                                <android.support.design.widget.TextInputLayout
+                                    style="@style/AppTheme.LeadTextInputLayoutStyle">
+
+                                    <EditText
+                                        android:id="@+id/tvCompanyCity_FLD"
+                                        style="@style/AppTheme.LeadInputFieldStyle"
+                                        android:hint="@string/hint_city"/>
+
+                                </android.support.design.widget.TextInputLayout>
+
+                                <android.support.design.widget.TextInputLayout
+                                    style="@style/AppTheme.LeadTextInputLayoutStyle">
+
+                                    <EditText
+                                        android:id="@+id/tvCompanyState_FLD"
+                                        style="@style/AppTheme.LeadInputFieldStyle"
+                                        android:hint="@string/state"/>
+
+                                </android.support.design.widget.TextInputLayout>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/default_padding">
+
+                                <android.support.design.widget.TextInputLayout
+                                    style="@style/AppTheme.LeadTextInputLayoutStyle">
+
+                                    <EditText
+                                        android:id="@+id/tvCompanyZipcode_FLD"
+                                        style="@style/AppTheme.LeadInputFieldStyle"
+                                        android:hint="@string/zip"/>
+
+                                </android.support.design.widget.TextInputLayout>
+
+                                <android.support.design.widget.TextInputLayout
+                                    style="@style/AppTheme.LeadTextInputLayoutStyle">
+
+                                    <EditText
+                                        android:id="@+id/tvCompanyCountry_FLD"
+                                        style="@style/AppTheme.LeadInputFieldStyle"
+                                        android:hint="@string/country"/>
+
+                                </android.support.design.widget.TextInputLayout>
+
+                            </LinearLayout>
+
+                            <TextView
+                                style="@style/ContentTitleStyle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/tags"/>
+
+                            <TextView
+                                android:id="@+id/tvTags_FLD"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
                                 android:lineSpacingExtra="@dimen/tag_line_spacing_default"
-                                android:text="@string/no_attachments"/>
+                                android:layout_marginTop="@dimen/default_padding_half"
+                                android:text="@string/no_tags"
+                                android:maxLines="2"
+                                android:paddingEnd="@dimen/default_padding"
+                                android:paddingStart="@dimen/default_padding"
+                                android:paddingBottom="@dimen/default_padding_half"/>
+
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/default_padding"
+                                android:background="@android:color/white"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    style="@style/ContentTitleStyle"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/attachments"/>
+
+                                <LinearLayout
+                                    android:id="@+id/llAttachmentsContainer_FLD"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="@dimen/default_padding"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:id="@+id/tvAttachments_FLD"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="@dimen/default_padding_half"
+                                        android:alpha="0.83"
+                                        android:drawablePadding="@dimen/default_padding_half"
+                                        android:lineSpacingExtra="@dimen/tag_line_spacing_default"
+                                        android:text="@string/no_attachments"/>
+
+                                </LinearLayout>
+
+                            </LinearLayout>
 
                         </LinearLayout>
 
                     </LinearLayout>
-
 
                 </LinearLayout>
 
@@ -498,8 +460,8 @@
                     android:layout_height="24dp"
                     android:layout_alignParentEnd="true"
                     android:tint="@android:color/black"
-                    app:srcCompat="@drawable/ic_arrow_up"
-                    android:visibility="invisible"/>
+                    android:visibility="invisible"
+                    app:srcCompat="@drawable/ic_arrow_up"/>
 
             </RelativeLayout>
 
