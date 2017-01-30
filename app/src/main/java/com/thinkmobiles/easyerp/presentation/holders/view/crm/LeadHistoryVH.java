@@ -1,6 +1,7 @@
 package com.thinkmobiles.easyerp.presentation.holders.view.crm;
 
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -19,17 +20,20 @@ public class LeadHistoryVH extends RecyclerVH<HistoryDH> {
 
     private ImageView ivIconType_LILH;
     private TextView tvPersonName_LILH;
-    private TextView tvDate_LILH;
     private TextView tvAction_LILH;
     private TextView tvMessage_LILH;
+    private TextView tvNoteTime_LILH;
+    private TextView tvNoteDateDate_LILH;
 
     public LeadHistoryVH(View itemView, @Nullable OnCardClickListener listener, int viewType) {
         super(itemView, listener, viewType);
         ivIconType_LILH = findView(R.id.ivIconType_LILH);
         tvPersonName_LILH = findView(R.id.tvPersonName_LILH);
-        tvDate_LILH = findView(R.id.tvDate_LILH);
         tvAction_LILH = findView(R.id.tvAction_LILH);
         tvMessage_LILH = findView(R.id.tvMessage_LILH);
+        tvNoteTime_LILH = findView(R.id.tvNoteTime_LILH);
+        tvNoteDateDate_LILH = findView(R.id.tvNoteDateDate_LILH);
+
         View line = findView(R.id.vLine_LILH);
         ViewGroup.LayoutParams params = line.getLayoutParams();
         params.height = viewType == 0 ? ViewGroup.LayoutParams.MATCH_PARENT : 50;
@@ -39,11 +43,14 @@ public class LeadHistoryVH extends RecyclerVH<HistoryDH> {
     @Override
     public void bindData(HistoryDH data) {
         NoteItem note = data.getModel();
-        tvDate_LILH.setText(DateManager.convertLeadDate(note.date));
+
+        tvNoteTime_LILH.setText(TextUtils.isEmpty(note.date) ? "" : DateManager.getTime(note.date));
+        tvNoteDateDate_LILH.setText(TextUtils.isEmpty(note.date) ? "" : DateManager.getShortDate(note.date));
+
         if(note.user != null) {
-            tvPersonName_LILH.setText(StringUtil.getField(note.user.login, "Unknown"));
+            tvPersonName_LILH.setText(StringUtil.getSpannedByUser(StringUtil.getField(note.user.login, "Unknown")));
         } else
-            tvPersonName_LILH.setText("Unknown");
+            tvPersonName_LILH.setText(StringUtil.getSpannedByUser("Unknown"));
         tvAction_LILH.setText(StringUtil.getNoteAction(note));
         tvMessage_LILH.setText(StringUtil.getNoteMessage(note));
         if (note.task != null) {
@@ -58,4 +65,5 @@ public class LeadHistoryVH extends RecyclerVH<HistoryDH> {
             ivIconType_LILH.setImageResource(R.drawable.ic_calendar);
         }
     }
+
 }

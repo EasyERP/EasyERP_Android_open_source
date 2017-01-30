@@ -2,6 +2,7 @@ package com.thinkmobiles.easyerp.presentation.screens.crm.leads.details;
 
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -100,6 +101,8 @@ public class LeadDetailsFragment extends BaseFragment<HomeActivity> implements L
     protected TextView tvCompanyZipcode_FLD;
     @ViewById
     protected TextView tvCompanyCountry_FLD;
+    @ViewById
+    protected View viewHistoryDivider_FLD;
 
     @ViewById
     protected LinearLayout llAttachmentsContainer_FLD;
@@ -280,12 +283,16 @@ public class LeadDetailsFragment extends BaseFragment<HomeActivity> implements L
     @Override
     public void showHistory(boolean enable) {
         if (enable) {
-            rvHistory_FLD.setVisibility(View.VISIBLE);
+            btnHistory_FLD.setBackgroundColor(ContextCompat.getColor(getActivity(), (android.R.color.white)));
             nsvContent_FLD.setVisibility(View.GONE);
+            rvHistory_FLD.setVisibility(View.VISIBLE);
+            viewHistoryDivider_FLD.setVisibility(View.VISIBLE);
             ivIconArrow_FLD.setImageDrawable(icArrowDown);
         } else {
-            nsvContent_FLD.setVisibility(View.VISIBLE);
+            btnHistory_FLD.setBackgroundColor(ContextCompat.getColor(getActivity(), (R.color.color_grey_transparent)));
             rvHistory_FLD.setVisibility(View.GONE);
+            nsvContent_FLD.setVisibility(View.VISIBLE);
+            viewHistoryDivider_FLD.setVisibility(View.GONE);
             ivIconArrow_FLD.setImageDrawable(icArrowUp);
         }
     }

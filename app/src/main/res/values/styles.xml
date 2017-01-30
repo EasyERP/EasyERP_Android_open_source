@@ -56,6 +56,13 @@
         <item name="android:layout_width">match_parent</item>
     </style>
 
+    <style name="ContentTitleStyle" parent="@style/RobotoMedium">
+        <item name="android:layout_marginTop">@dimen/default_padding</item>
+        <item name="android:layout_marginStart">@dimen/default_padding_3dp</item>
+        <item name="android:textColor">@color/color_text_black</item>
+        <item name="android:textSize">@dimen/text_list_item_large_20</item>
+    </style>
+
     <!-- Fonts-->
     <style name="RobotoMedium">
         <item name="android:fontFamily">sans-serif-medium</item>
