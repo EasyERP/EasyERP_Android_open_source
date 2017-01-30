@@ -6,8 +6,7 @@
         android:id="@+id/menuFilter_MB"
         android:icon="@drawable/ic_filter_white"
         android:title="@string/menu_filter"
-        app:showAsAction="ifRoom"
-        android:visible="false">
+        app:showAsAction="ifRoom">
         <menu>
             <item
                 android:id="@+id/menuFilterContactName"

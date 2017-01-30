@@ -56,6 +56,7 @@ public abstract class Constants {
 
     //Bundle keys
     public static final String KEY_FILTER_LIST              = "keyFilterList";
+    public static final String KEY_FILTER_NAME              = "keyFilterName";
 
     public enum ErrorCodes {
         OK,

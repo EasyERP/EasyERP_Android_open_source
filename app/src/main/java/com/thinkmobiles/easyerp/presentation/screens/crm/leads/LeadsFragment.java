@@ -11,6 +11,7 @@ import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
 import com.thinkmobiles.easyerp.R;
@@ -106,7 +107,6 @@ public class LeadsFragment extends SimpleListWithRefreshFragment implements Lead
         actSearch.setOnItemClickListener((adapterView, view, i, l) ->
                 presenter.filterByContactName(searchAdapter.getItem(i))
         );
-        actSearch.setOnClickListener((v) -> actSearch.setText(""));
         actSearch.setOnKeyListener((v, keyCode, event) -> {
             if (event.getKeyCode() == KeyEvent.KEYCODE_ENTER
                     && event.getAction() == KeyEvent.ACTION_DOWN) {
@@ -117,6 +117,7 @@ public class LeadsFragment extends SimpleListWithRefreshFragment implements Lead
 
                 hideKeyboard();
                 actSearch.dismissDropDown();
+                listRecycler.requestFocus();
                 return true;
             }
             return false;
@@ -210,27 +211,27 @@ public class LeadsFragment extends SimpleListWithRefreshFragment implements Lead
 
     @OptionsItem(R.id.menuFilterContactName)
     protected void clickContactName() {
-        presenter.changeFilter(Constants.REQUEST_CODE_FILTER_CONTACT_NAME);
+        presenter.changeFilter(Constants.REQUEST_CODE_FILTER_CONTACT_NAME, getString(R.string.menu_filter_contact_name));
     }
 
     @OptionsItem(R.id.menuFilterStage)
     protected void clickStage() {
-        presenter.changeFilter(Constants.REQUEST_CODE_FILTER_WORKFLOW);
+        presenter.changeFilter(Constants.REQUEST_CODE_FILTER_WORKFLOW, getString(R.string.menu_filter_stage));
     }
 
     @OptionsItem(R.id.menuFilterCreatedBy)
     protected void clickCreatedBy() {
-        presenter.changeFilter(Constants.REQUEST_CODE_FILTER_CREATED_BY);
+        presenter.changeFilter(Constants.REQUEST_CODE_FILTER_CREATED_BY, getString(R.string.menu_filter_created_by));
     }
 
     @OptionsItem(R.id.menuFilterAssignedTo)
     protected void clickAssignedTo() {
-        presenter.changeFilter(Constants.REQUEST_CODE_FILTER_ASSIGNED_TO);
+        presenter.changeFilter(Constants.REQUEST_CODE_FILTER_ASSIGNED_TO, getString(R.string.menu_filter_assigned_to));
     }
 
     @OptionsItem(R.id.menuFilterSource)
     protected void clickSource() {
-        presenter.changeFilter(Constants.REQUEST_CODE_FILTER_SOURCE);
+        presenter.changeFilter(Constants.REQUEST_CODE_FILTER_SOURCE, getString(R.string.menu_filter_source));
     }
 
     @OptionsItem(R.id.menuFilterRemoveAll)
@@ -251,9 +252,9 @@ public class LeadsFragment extends SimpleListWithRefreshFragment implements Lead
     }
 
     @Override
-    public void showFilters() {
-        actSearch.setVisibility(View.VISIBLE);
-        menuFilter.setVisible(true);
+    public void showFilters(boolean isShow) {
+        actSearch.setVisibility(isShow ? View.VISIBLE : View.GONE);
+        menuFilter.setVisible(isShow);
     }
 
     @Override
@@ -282,10 +283,13 @@ public class LeadsFragment extends SimpleListWithRefreshFragment implements Lead
     }
 
     @Override
-    public void showFilterDialog(ArrayList<FilterDH> filterDHs, int requestCode) {
+    public void showFilterDialog(ArrayList<FilterDH> filterDHs, int requestCode, String filterName) {
+        actSearch.clearFocus();
+        listRecycler.requestFocus();
         FilterDialogFragment dialogFragment = new FilterDialogFragment();
         Bundle bundle = new Bundle();
         bundle.putParcelableArrayList(Constants.KEY_FILTER_LIST, filterDHs);
+        bundle.putString(Constants.KEY_FILTER_NAME, filterName);
         dialogFragment.setArguments(bundle);
         dialogFragment.setTargetFragment(this, requestCode);
         dialogFragment.show(getFragmentManager(), getClass().getName());

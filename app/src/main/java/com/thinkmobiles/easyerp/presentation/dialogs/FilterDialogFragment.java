@@ -38,6 +38,7 @@ public class FilterDialogFragment extends DialogFragment implements DialogInterf
     private SearchDialogAdapter searchAdapter;
 
     private ArrayList<FilterDH> filterList;
+    private String filterName;
 
     private InputMethodManager inputMethodManager;
 
@@ -48,6 +49,7 @@ public class FilterDialogFragment extends DialogFragment implements DialogInterf
         inputMethodManager = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
 
         filterList = getArguments().getParcelableArrayList(Constants.KEY_FILTER_LIST);
+        filterName = getArguments().getString(Constants.KEY_FILTER_NAME);
 
         searchAdapter = new SearchDialogAdapter();
         searchAdapter.setOriginList(filterList);
@@ -83,15 +85,6 @@ public class FilterDialogFragment extends DialogFragment implements DialogInterf
             }
         });
         etSearch.setOnClickListener((v) -> etSearch.setText(""));
-        etSearch.setOnKeyListener((v, keyCode, event) -> {
-            if (event.getKeyCode() == KeyEvent.KEYCODE_ENTER
-                    && event.getAction() == KeyEvent.ACTION_DOWN) {
-                searchAdapter.getFilter().filter(etSearch.getText());
-                inputMethodManager.hideSoftInputFromWindow(etSearch.getWindowToken(), InputMethodManager.RESULT_UNCHANGED_SHOWN);
-                return true;
-            }
-            return false;
-        });
 
         rvList = (RecyclerView) parent.findViewById(R.id.rvList_DF);
         rvList.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -99,7 +92,7 @@ public class FilterDialogFragment extends DialogFragment implements DialogInterf
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(), R.style.AppTheme_FilterDialogStyle)
                 .setView(parent)
-                .setTitle(R.string.menu_filter)
+                .setTitle(String.format("%s : %s", getString(R.string.menu_filter), filterName))
                 .setPositiveButton(R.string.dialog_btn_apply, this)
                 .setNegativeButton(R.string.dialog_btn_cancel, this)
                 .setNeutralButton(R.string.dialog_btn_remove, this);

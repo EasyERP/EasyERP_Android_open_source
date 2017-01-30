@@ -82,9 +82,12 @@ public class LeadsPresenter extends MasterFlowSelectablePresenterHelper<String, 
         compositeSubscription.add(model.getLeadFilters()
                 .subscribe(responseGetLeadsFilters -> {
                     prepareFilterDHs(responseGetLeadsFilters);
-                    view.showFilters();
+                    view.showFilters(true);
                     view.setContactNames(contactName);
-                }, Throwable::printStackTrace));
+                }, t -> {
+                    view.showFilters(false);
+                    view.displayError(t.getMessage(), ErrorViewHelper.ErrorType.NETWORK);
+                }));
     }
 
     @Override
@@ -185,22 +188,22 @@ public class LeadsPresenter extends MasterFlowSelectablePresenterHelper<String, 
     }
 
     @Override
-    public void changeFilter(int requestCode) {
+    public void changeFilter(int requestCode, String filterName) {
         switch (requestCode) {
             case Constants.REQUEST_CODE_FILTER_CONTACT_NAME:
-                view.showFilterDialog(contactName, requestCode);
+                view.showFilterDialog(contactName, requestCode, filterName);
                 break;
             case Constants.REQUEST_CODE_FILTER_WORKFLOW:
-                view.showFilterDialog(workflow, requestCode);
+                view.showFilterDialog(workflow, requestCode, filterName);
                 break;
             case Constants.REQUEST_CODE_FILTER_ASSIGNED_TO:
-                view.showFilterDialog(assignedTo, requestCode);
+                view.showFilterDialog(assignedTo, requestCode, filterName);
                 break;
             case Constants.REQUEST_CODE_FILTER_CREATED_BY:
-                view.showFilterDialog(createdBy, requestCode);
+                view.showFilterDialog(createdBy, requestCode, filterName);
                 break;
             case Constants.REQUEST_CODE_FILTER_SOURCE:
-                view.showFilterDialog(source, requestCode);
+                view.showFilterDialog(source, requestCode, filterName);
                 break;
         }
     }

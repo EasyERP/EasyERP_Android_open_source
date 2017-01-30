@@ -13,7 +13,7 @@
         style="@style/AppTheme.FilterDialog.SearchFieldStyle"
         android:id="@+id/etSearch_DF"
         android:hint="@string/list_searchview_hint"
-        android:imeOptions="flagNoExtractUi|actionSearch"
+        android:imeOptions="flagNoExtractUi|actionDone"
         android:drawableStart="@drawable/ic_search_black"
         android:drawablePadding="@dimen/default_padding_half"
         android:padding="@dimen/default_padding" />
