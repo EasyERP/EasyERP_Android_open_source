@@ -47,7 +47,6 @@ public class LeadHistoryVH extends RecyclerVH<HistoryDH> {
         tvNoteTime_LILH.setText(TextUtils.isEmpty(note.date) ? "" : DateManager.getTime(note.date));
         tvNoteDateDate_LILH.setText(TextUtils.isEmpty(note.date) ? "" : DateManager.getShortDate(note.date));
 
-//        tvDate_LILH.setText(DateManager.convertLeadDate(note.date));
         if(note.user != null) {
             tvPersonName_LILH.setText(StringUtil.getSpannedByUser(StringUtil.getField(note.user.login, "Unknown")));
         } else

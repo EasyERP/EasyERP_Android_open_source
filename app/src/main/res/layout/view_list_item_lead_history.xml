@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_marginStart="@dimen/default_padding_big"
-        android:paddingTop="@dimen/default_padding">
+        android:paddingTop="@dimen/default_padding_big">
 
         <TextView
             style="@style/RobotoMedium"
@@ -52,11 +52,10 @@
             android:id="@+id/ivIconType_LILH"
             android:layout_width="36dp"
             android:layout_height="36dp"
-            android:layout_marginTop="@dimen/default_padding_half"
+            android:layout_marginTop="@dimen/default_padding_big"
             android:layout_marginStart="@dimen/default_padding"
             android:layout_marginEnd="@dimen/default_padding"
             android:scaleType="center"
-            android:tint="@color/colorPrimary"
             android:background="@drawable/bg_circle_border" />
 
     </FrameLayout>
@@ -66,7 +65,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_marginRight="@dimen/default_padding_big"
-        android:paddingTop="@dimen/default_padding"
+        android:paddingTop="@dimen/default_padding_big"
         android:paddingBottom="@dimen/default_padding_half">
 
         <LinearLayout

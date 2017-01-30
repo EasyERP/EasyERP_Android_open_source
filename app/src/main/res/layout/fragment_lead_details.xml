@@ -424,6 +424,7 @@
                             android:lineSpacingExtra="@dimen/tag_line_spacing_default"
                             android:layout_marginTop="@dimen/default_padding_half"
                             android:text="@string/no_tags"
+                            android:maxLines="2"
                             android:paddingEnd="@dimen/default_padding"
                             android:paddingStart="@dimen/default_padding"
                             android:paddingBottom="@dimen/default_padding"/>

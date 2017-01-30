@@ -284,14 +284,14 @@ public class LeadDetailsFragment extends BaseFragment<HomeActivity> implements L
     public void showHistory(boolean enable) {
         if (enable) {
             btnHistory_FLD.setBackgroundColor(ContextCompat.getColor(getActivity(), (android.R.color.white)));
-            rvHistory_FLD.setVisibility(View.VISIBLE);
             nsvContent_FLD.setVisibility(View.GONE);
+            rvHistory_FLD.setVisibility(View.VISIBLE);
             viewHistoryDivider_FLD.setVisibility(View.VISIBLE);
             ivIconArrow_FLD.setImageDrawable(icArrowDown);
         } else {
             btnHistory_FLD.setBackgroundColor(ContextCompat.getColor(getActivity(), (R.color.color_grey_transparent)));
-            nsvContent_FLD.setVisibility(View.VISIBLE);
             rvHistory_FLD.setVisibility(View.GONE);
+            nsvContent_FLD.setVisibility(View.VISIBLE);
             viewHistoryDivider_FLD.setVisibility(View.GONE);
             ivIconArrow_FLD.setImageDrawable(icArrowUp);
         }
