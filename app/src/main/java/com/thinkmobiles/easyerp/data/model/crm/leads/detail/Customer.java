@@ -1,6 +1,5 @@
 package com.thinkmobiles.easyerp.data.model.crm.leads.detail;
 
-
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -8,8 +7,11 @@ import com.thinkmobiles.easyerp.data.model.crm.persons.details.CreatedEditedUser
 
 import java.util.ArrayList;
 
-public class LeadCustomer implements Parcelable {
+/**
+ * Created by Lynx on 1/27/2017.
+ */
 
+public class Customer implements Parcelable {
     /**
      * "customer": {
      "_id": "57ce6557a3c7f97535e33da5",
@@ -100,7 +102,7 @@ public class LeadCustomer implements Parcelable {
     public String _id;
     public String dateBirth;
     public int __v;
-//    public String channel;
+    //    public String channel;
     public String integrationId;
     public CompanyInfo companyInfo;
     public CreatedEditedUserString editedBy;
@@ -112,11 +114,11 @@ public class LeadCustomer implements Parcelable {
     public String whoCanRW;
     public Social social;
     public String color;
-//    public User relatedUser;
-    public SalesPurchases salesPurchases;
+    //    public User relatedUser;
+//    public SalesPurchases salesPurchases;
     public String title;
     public String internalNotes;
-//    public ArrayList<> contacts;
+    //    public ArrayList<> contacts;
     public Phone phones;
     public String skype;
     public String jobPosition;
@@ -124,7 +126,7 @@ public class LeadCustomer implements Parcelable {
     public Address shippingAddress;
     public Address address;
     public String timezone;
-//    public String department;
+    //    public String department;
 //    public String company;
     public String email;
     public String imageSrc;
@@ -135,9 +137,6 @@ public class LeadCustomer implements Parcelable {
     public String fullName;
     public String id;
 
-
-    public LeadCustomer() {
-    }
 
     @Override
     public int describeContents() {
@@ -160,7 +159,6 @@ public class LeadCustomer implements Parcelable {
         dest.writeString(this.whoCanRW);
         dest.writeParcelable(this.social, flags);
         dest.writeString(this.color);
-        dest.writeParcelable(this.salesPurchases, flags);
         dest.writeString(this.title);
         dest.writeString(this.internalNotes);
         dest.writeParcelable(this.phones, flags);
@@ -180,7 +178,10 @@ public class LeadCustomer implements Parcelable {
         dest.writeString(this.id);
     }
 
-    protected LeadCustomer(Parcel in) {
+    public Customer() {
+    }
+
+    protected Customer(Parcel in) {
         this._id = in.readString();
         this.dateBirth = in.readString();
         this.__v = in.readInt();
@@ -195,7 +196,6 @@ public class LeadCustomer implements Parcelable {
         this.whoCanRW = in.readString();
         this.social = in.readParcelable(Social.class.getClassLoader());
         this.color = in.readString();
-        this.salesPurchases = in.readParcelable(SalesPurchases.class.getClassLoader());
         this.title = in.readString();
         this.internalNotes = in.readString();
         this.phones = in.readParcelable(Phone.class.getClassLoader());
@@ -215,15 +215,15 @@ public class LeadCustomer implements Parcelable {
         this.id = in.readString();
     }
 
-    public static final Creator<LeadCustomer> CREATOR = new Creator<LeadCustomer>() {
+    public static final Parcelable.Creator<Customer> CREATOR = new Parcelable.Creator<Customer>() {
         @Override
-        public LeadCustomer createFromParcel(Parcel source) {
-            return new LeadCustomer(source);
+        public Customer createFromParcel(Parcel source) {
+            return new Customer(source);
         }
 
         @Override
-        public LeadCustomer[] newArray(int size) {
-            return new LeadCustomer[size];
+        public Customer[] newArray(int size) {
+            return new Customer[size];
         }
     };
 }

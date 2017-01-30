@@ -405,8 +405,8 @@ public class ResponseGetLeadDetails implements Parcelable {
     public Name contactName;
     public Address address;
     public ArrayList<LeadTag> tags;
-    public LeadCustomer customer;
-    public Company company;
+    public Customer customer;
+    public LeadCompany company;
     public String tempCompanyField;
     public String jobPosition;
     public ExpectedRevenue expectedRevenue;
@@ -417,9 +417,6 @@ public class ResponseGetLeadDetails implements Parcelable {
     //for combine in Observable
     public ResponseGetLeadWorkflow leadWorkflow;
 
-
-    public ResponseGetLeadDetails() {
-    }
 
     @Override
     public int describeContents() {
@@ -462,6 +459,9 @@ public class ResponseGetLeadDetails implements Parcelable {
         dest.writeParcelable(this.leadWorkflow, flags);
     }
 
+    public ResponseGetLeadDetails() {
+    }
+
     protected ResponseGetLeadDetails(Parcel in) {
         this._id = in.readString();
         this.dateBirth = in.readString();
@@ -486,8 +486,8 @@ public class ResponseGetLeadDetails implements Parcelable {
         this.contactName = in.readParcelable(Name.class.getClassLoader());
         this.address = in.readParcelable(Address.class.getClassLoader());
         this.tags = in.createTypedArrayList(LeadTag.CREATOR);
-        this.customer = in.readParcelable(LeadCustomer.class.getClassLoader());
-        this.company = in.readParcelable(Company.class.getClassLoader());
+        this.customer = in.readParcelable(Customer.class.getClassLoader());
+        this.company = in.readParcelable(LeadCompany.class.getClassLoader());
         this.tempCompanyField = in.readString();
         this.jobPosition = in.readString();
         this.expectedRevenue = in.readParcelable(ExpectedRevenue.class.getClassLoader());

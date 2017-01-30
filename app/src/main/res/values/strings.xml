@@ -28,5 +28,34 @@
     <string name="shipped">Shipped</string>
     <string name="total_count">Total count</string>
     <string name="total_revenue">Total revenue</string>
+    <string name="about">About</string>
+    <string name="contacts">Contacts</string>
+    <string name="current_status">Current Status</string>
+    <string name="close_date">Close Date</string>
+    <string name="assigned_to">Assigned to</string>
+    <string name="priority">Priority</string>
+    <string name="source">Source</string>
+    <string name="contact_person">Contact Person</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="job_position">Job Position</string>
+    <string name="date_of_birth">Date of Birth</string>
+    <string name="email">Email</string>
+    <string name="phone">Phone</string>
+    <string name="skype">Skype</string>
+    <string name="linkedin">LinkedIn</string>
+    <string name="facebook">Facebook</string>
+    <string name="company">Company</string>
+    <string name="name">Name</string>
+    <string name="street">Street</string>
+    <string name="hint_city">City</string>
+    <string name="state">State</string>
+    <string name="zip">Zip</string>
+    <string name="country">Country</string>
+    <string name="tags">Tags</string>
+    <string name="attachments">Attachments</string>
+    <string name="no_attachments">No attachments</string>
+    <string name="no_tags">No tags</string>
+    <string name="notes_amp_timeline"><![CDATA[Notes & Timeline]]></string>
 
 </resources>

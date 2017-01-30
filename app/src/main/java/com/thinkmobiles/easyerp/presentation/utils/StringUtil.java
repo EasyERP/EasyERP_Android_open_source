@@ -2,10 +2,12 @@ package com.thinkmobiles.easyerp.presentation.utils;
 
 
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.text.Html;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.TextUtils;
+import android.text.style.StyleSpan;
 
 import com.thinkmobiles.easyerp.data.model.crm.leads.LeadTag;
 import com.thinkmobiles.easyerp.data.model.crm.leads.detail.Address;
@@ -13,6 +15,7 @@ import com.thinkmobiles.easyerp.data.model.crm.leads.detail.AttachmentItem;
 import com.thinkmobiles.easyerp.data.model.crm.leads.detail.NoteItem;
 import com.thinkmobiles.easyerp.presentation.EasyErpApplication_;
 import com.thinkmobiles.easyerp.presentation.custom.RoundedBackgroundSpan;
+import com.thinkmobiles.easyerp.presentation.managers.DateManager;
 import com.thinkmobiles.easyerp.presentation.managers.TagHelper;
 
 import java.util.ArrayList;
@@ -20,6 +23,8 @@ import java.util.Locale;
 
 public abstract class StringUtil {
 
+    private static final String CHANGED_FIELD_CREATION_DATE = "Creation Date";
+    private static final String CHANGED_FIELD_CLOSE_DATE    = "Close Date";
 
     public static String getFullName(String first, String last) {
         return String.format(Locale.ENGLISH,
@@ -57,7 +62,7 @@ public abstract class StringUtil {
                     .append("<br>");
         }
         int length = builder.length();
-        return builder.delete(length - 4, length - 1).toString();
+        return builder.delete(length - 4, length).toString();
     }
 
     public static String getAttachmentURL(String shortPas, String name) {
@@ -96,12 +101,25 @@ public abstract class StringUtil {
                     .append(note.task.assignedTo.fullName);
         } else if (note.history != null) {
             builder.append(note.history.changedField);
-            if (note.history.prevValue != null) {
-                builder.append(" from ")
-                        .append(note.history.prevValue)
-                        .append(" to");
+            if(note.history.changedField.equalsIgnoreCase(CHANGED_FIELD_CLOSE_DATE) || note.history.changedField.equalsIgnoreCase(CHANGED_FIELD_CREATION_DATE)) {
+                String from = "";
+                String to = "";
+                if(!TextUtils.isEmpty(note.history.prevValue)) from = DateManager.getShortDate(note.history.prevValue);
+                if(!TextUtils.isEmpty(note.history.newValue)) to = DateManager.getShortDate(note.history.newValue);
+                if(note.history.prevValue != null) {
+                    builder.append(" from ")
+                            .append(from)
+                            .append(" to");
+                }
+                builder.append(" ").append(to);
+            } else {
+                if(note.history.prevValue != null) {
+                    builder.append(" from ")
+                            .append(note.history.prevValue)
+                            .append(" to");
+                }
+                builder.append(" ").append(note.history.newValue);
             }
-            builder.append(" ").append(note.history.newValue);
         } else if (!TextUtils.isEmpty(note.note)){
             builder.append(note.note);
         }
@@ -118,7 +136,7 @@ public abstract class StringUtil {
     public static SpannableStringBuilder prepareTags(ArrayList<LeadTag> leadTags) {
         SpannableStringBuilder stringBuilder = new SpannableStringBuilder();
 
-        String between = " ";
+        String between = "   ";
         int tagStart = 0;
 
         for (LeadTag tag : leadTags) {
@@ -133,6 +151,17 @@ public abstract class StringUtil {
             // Update to next tag start
             tagStart += tag.name.length() + between.length();
         }
+        return stringBuilder;
+    }
+
+    public static SpannableStringBuilder getSpannedByUser(String userName) {
+        StyleSpan boldSpan = new StyleSpan(Typeface.BOLD);
+
+        SpannableStringBuilder stringBuilder = new SpannableStringBuilder();
+        stringBuilder.append("by ");
+        stringBuilder.append(userName);
+        stringBuilder.setSpan(boldSpan, 3, stringBuilder.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+
         return stringBuilder;
     }
 }

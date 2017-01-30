@@ -53,8 +53,9 @@ public class LeadDetailsPresenter implements LeadDetailsContract.LeadDetailsPres
 
     private void setData(ResponseGetLeadDetails response) {
         currentLead = response;
-        view.setNameLead(response.name);
 
+        if(response.workflow != null) view.setCurrentStatus(StringUtil.getField(response.workflow.name, notSpecified));
+        view.setLeadName(StringUtil.getField(response.name, notSpecified));
         view.setCloseDate(DateManager.convert(response.expectedClosing).toString());
         view.setAssignedTo(response.salesPerson != null ? response.salesPerson.fullName : notSpecified);
         view.setPriority(StringUtil.getField(response.priority, notSpecified));
@@ -62,6 +63,8 @@ public class LeadDetailsPresenter implements LeadDetailsContract.LeadDetailsPres
         if (!response.tags.isEmpty())
             view.setTags(StringUtil.prepareTags(response.tags));
         view.setPersonName(StringUtil.getFullName(response.contactName.first, response.contactName.last));
+        view.setFirstName(StringUtil.getField(response.contactName.first, notSpecified));
+        view.setLastName(StringUtil.getField(response.contactName.last, notSpecified));
         view.setJobPosition(StringUtil.getField(response.jobPosition, notSpecified));
         view.setDob(StringUtil.getField(response.dateBirth, notSpecified));
         view.setEmail(StringUtil.getField(response.email, notSpecified));
@@ -70,8 +73,18 @@ public class LeadDetailsPresenter implements LeadDetailsContract.LeadDetailsPres
         view.setLinkedIn(StringUtil.getField(response.social.linkedIn, notSpecified));
         view.setTvFacebook(StringUtil.getField(response.social.facebook, notSpecified));
         view.setCompanyName(StringUtil.getField(response.company != null ? response.company.fullName : response.tempCompanyField, notSpecified));
-        if (response.address != null) {
-            view.setCompanyAddress(StringUtil.getField(StringUtil.getAddress(response.address), notSpecified));
+        if (response.company != null && response.company.address != null) {
+            view.setCompanyStreet(StringUtil.getField(response.company.address.street, notSpecified));
+            view.setCompanyCity(StringUtil.getField(response.company.address.city, notSpecified));
+            view.setCompanyState(StringUtil.getField(response.company.address.street, notSpecified));
+            view.setCompanyZipcode(StringUtil.getField(response.company.address.zip, notSpecified));
+            view.setCompanyCountry(StringUtil.getField(response.company.address.country, notSpecified));
+        } else {
+            view.setCompanyStreet(notSpecified);
+            view.setCompanyCity(notSpecified);
+            view.setCompanyState(notSpecified);
+            view.setCompanyZipcode(notSpecified);
+            view.setCompanyCountry(notSpecified);
         }
 
         if (response.attachments != null && !response.attachments.isEmpty()) {
@@ -81,7 +94,6 @@ public class LeadDetailsPresenter implements LeadDetailsContract.LeadDetailsPres
         Collections.reverse(response.notes);
         view.setHistory(HistoryDH.convert(response.notes));
         view.showHistory(isVisibleHistory);
-        view.setWorkflow(response.leadWorkflow.data);
     }
 
     @Override

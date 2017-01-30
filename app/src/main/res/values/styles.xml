@@ -40,6 +40,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_weight">1</item>
+        <item name="android:textColorHint">@color/color_text_gray</item>
     </style>
 
     <style name="AppTheme.LeadInputFieldStyle" parent="AppTheme.DefaultBlackEditTextTheme">
@@ -52,6 +53,13 @@
         <item name="android:inputType">text</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">match_parent</item>
+    </style>
+
+    <style name="ContentTitleStyle" parent="@style/RobotoMedium">
+        <item name="android:layout_marginTop">@dimen/default_padding</item>
+        <item name="android:layout_marginStart">@dimen/default_padding_3dp</item>
+        <item name="android:textColor">@color/color_text_black</item>
+        <item name="android:textSize">@dimen/text_list_item_large_20</item>
     </style>
 
     <!-- Fonts-->
