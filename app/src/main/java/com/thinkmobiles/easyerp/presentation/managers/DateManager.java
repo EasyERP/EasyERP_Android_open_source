@@ -1,6 +1,7 @@
 package com.thinkmobiles.easyerp.presentation.managers;
 
 import android.text.TextUtils;
+import android.text.format.DateUtils;
 import android.util.Log;
 
 import java.text.ParseException;
@@ -80,27 +81,12 @@ public abstract class DateManager {
 
     public static String getShortDate(String date) {
         SimpleDateFormat sdf = new SimpleDateFormat(PATTERN_DATE, Locale.US);
-        SimpleDateFormat sdfOut = new SimpleDateFormat(PATTERN_SIMPLE_DATE_SHORT, Locale.US);
-        Calendar calendar = Calendar.getInstance();
-        Calendar current = Calendar.getInstance();
         try {
-            calendar.setTime(sdf.parse(date));
-            Date d = sdf.parse(date);
-            if(calendar.get(Calendar.YEAR) == current.get(Calendar.YEAR)
-                    && calendar.get(Calendar.MONTH) == current.get(Calendar.MONTH)) {
-                if(calendar.get(Calendar.DAY_OF_YEAR) == current.get(Calendar.DAY_OF_YEAR))
-                    return TODAY;
-                else if(current.get(Calendar.DAY_OF_YEAR) - calendar.get(Calendar.DAY_OF_YEAR) == 1)
-                    return YESTERDAY;
-                else
-                    return sdfOut.format(d);
-            } else {
-                return sdfOut.format(d);
-            }
+            return DateUtils.getRelativeTimeSpanString(sdf.parse(date).getTime()).toString();
         } catch (ParseException e) {
             e.printStackTrace();
+            return "Error";
         }
-        return "Error";
     }
 
     public static String getTime(String date) {

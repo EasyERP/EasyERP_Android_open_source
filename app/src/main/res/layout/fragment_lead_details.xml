@@ -386,19 +386,19 @@
                                 android:id="@+id/tvTags_FLD"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:lineSpacingExtra="@dimen/tag_line_spacing_default"
+                                android:lineSpacingExtra="@dimen/default_padding_half"
                                 android:layout_marginTop="@dimen/default_padding_half"
                                 android:text="@string/no_tags"
-                                android:maxLines="2"
+                                android:maxLines="5"
                                 android:paddingEnd="@dimen/default_padding"
                                 android:paddingStart="@dimen/default_padding"
-                                android:paddingBottom="@dimen/default_padding_half"/>
+                                android:paddingBottom="@dimen/default_padding_half"
+                                android:layout_marginBottom="@dimen/default_padding_3dp"/>
 
 
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/default_padding"
                                 android:background="@android:color/white"
                                 android:orientation="vertical">
 
