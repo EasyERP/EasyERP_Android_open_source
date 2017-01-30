@@ -1,6 +1,7 @@
 package com.thinkmobiles.easyerp.presentation.screens.crm.leads;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.AppCompatAutoCompleteTextView;
 import android.support.v7.widget.LinearLayoutManager;
@@ -32,7 +33,6 @@ import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.OnActivityResult;
 import org.androidannotations.annotations.OptionsItem;
-import org.androidannotations.annotations.OptionsMenuItem;
 import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.res.StringRes;
 
@@ -66,6 +66,7 @@ public class LeadsFragment extends SimpleListWithRefreshFragment implements Lead
     @Bean
     protected SearchAdapter searchAdapter;
 
+    protected MenuItem menuFilter;
     protected MenuItem menuContactName;
     protected MenuItem menuAssignedTo;
     protected MenuItem menuCreatedBy;
@@ -110,7 +111,9 @@ public class LeadsFragment extends SimpleListWithRefreshFragment implements Lead
             if (event.getKeyCode() == KeyEvent.KEYCODE_ENTER
                     && event.getAction() == KeyEvent.ACTION_DOWN) {
 
-                presenter.filterBySearchContactName(actSearch.getText().toString());
+                String name = actSearch.getText().toString();
+                if (!name.trim().isEmpty())
+                    presenter.filterBySearchContactName(name);
 
                 hideKeyboard();
                 actSearch.dismissDropDown();
@@ -216,7 +219,7 @@ public class LeadsFragment extends SimpleListWithRefreshFragment implements Lead
     }
 
     @OptionsItem(R.id.menuFilterCreatedBy)
-    protected void clickcreatedBy() {
+    protected void clickCreatedBy() {
         presenter.changeFilter(Constants.REQUEST_CODE_FILTER_CREATED_BY);
     }
 
@@ -250,6 +253,7 @@ public class LeadsFragment extends SimpleListWithRefreshFragment implements Lead
     @Override
     public void showFilters() {
         actSearch.setVisibility(View.VISIBLE);
+        menuFilter.setVisible(true);
     }
 
     @Override
@@ -287,53 +291,13 @@ public class LeadsFragment extends SimpleListWithRefreshFragment implements Lead
         dialogFragment.show(getFragmentManager(), getClass().getName());
     }
 
-    @OnActivityResult(Constants.REQUEST_CODE_FILTER_CONTACT_NAME)
-    protected void resultContactName(int resultCode,
-                                     @OnActivityResult.Extra(value = Constants.KEY_FILTER_LIST) ArrayList<FilterDH> filterDHs) {
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == Activity.RESULT_OK) {
-            presenter.filterByListContactNames(filterDHs);
+            ArrayList<FilterDH> filterDHs = data.getParcelableArrayListExtra(Constants.KEY_FILTER_LIST);
+            presenter.filterByList(filterDHs, requestCode);
         } else {
-            presenter.removeFilterContactName();
-        }
-    }
-
-    @OnActivityResult(Constants.REQUEST_CODE_FILTER_WORKFLOW)
-    protected void resultWorkflows(int resultCode,
-                                     @OnActivityResult.Extra(value = Constants.KEY_FILTER_LIST) ArrayList<FilterDH> filterDHs) {
-        if (resultCode == Activity.RESULT_OK) {
-            presenter.filterByListWorkflow(filterDHs);
-        } else {
-            presenter.removeFilterWorkflow();
-        }
-    }
-
-    @OnActivityResult(Constants.REQUEST_CODE_FILTER_ASSIGNED_TO)
-    protected void resultAssignedTo(int resultCode,
-                                     @OnActivityResult.Extra(value = Constants.KEY_FILTER_LIST) ArrayList<FilterDH> filterDHs) {
-        if (resultCode == Activity.RESULT_OK) {
-            presenter.filterByListAssignedTo(filterDHs);
-        } else {
-            presenter.removeFilterAssignedTo();
-        }
-    }
-
-    @OnActivityResult(Constants.REQUEST_CODE_FILTER_CREATED_BY)
-    protected void resultCreatedBy(int resultCode,
-                                     @OnActivityResult.Extra(value = Constants.KEY_FILTER_LIST) ArrayList<FilterDH> filterDHs) {
-        if (resultCode == Activity.RESULT_OK) {
-            presenter.filterByListCreatedBy(filterDHs);
-        } else {
-            presenter.removeFilterCreatedBy();
-        }
-    }
-
-    @OnActivityResult(Constants.REQUEST_CODE_FILTER_SOURCE)
-    protected void resultSource(int resultCode,
-                                     @OnActivityResult.Extra(value = Constants.KEY_FILTER_LIST) ArrayList<FilterDH> filterDHs) {
-        if (resultCode == Activity.RESULT_OK) {
-            presenter.filterByListSource(filterDHs);
-        } else {
-            presenter.removeFilterSource();
+            presenter.removeFilter(requestCode);
         }
     }
 
@@ -344,6 +308,7 @@ public class LeadsFragment extends SimpleListWithRefreshFragment implements Lead
 
     @Override
     public void optionsMenuInitialized(Menu menu) {
+        this.menuFilter = menu.findItem(R.id.menuFilter_MB);
         this.menuContactName = menu.findItem(R.id.menuFilterContactName);
         this.menuAssignedTo = menu.findItem(R.id.menuFilterAssignedTo);
         this.menuCreatedBy = menu.findItem(R.id.menuFilterCreatedBy);

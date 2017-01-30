@@ -8,7 +8,7 @@ import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectableBase
 import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectableBaseView;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.FilterDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.LeadDH;
-import com.thinkmobiles.easyerp.presentation.utils.FilterQuery;
+import com.thinkmobiles.easyerp.presentation.utils.filter.FilterQuery;
 
 import java.util.ArrayList;
 
@@ -43,25 +43,15 @@ public interface LeadsContract {
         void refresh();
         void loadNextPage(int page);
 
-        boolean isEnabledFilters();
         void filterByContactName(FilterDH filterDH);
         void filterBySearchContactName(String name);
-        void filterByListContactNames(ArrayList<FilterDH> filterDHs);
-        void removeFilterContactName();
-        void filterByListWorkflow(ArrayList<FilterDH> filterDHs);
-        void removeFilterWorkflow();
-        void filterByListAssignedTo(ArrayList<FilterDH> filterDHs);
-        void removeFilterAssignedTo();
-        void filterByListCreatedBy(ArrayList<FilterDH> filterDHs);
-        void removeFilterCreatedBy();
-        void filterByListSource(ArrayList<FilterDH> filterDHs);
-        void removeFilterSource();
+        void filterByList(ArrayList<FilterDH> filterDHs, int requestCode);
+        void removeFilter(int requestCode);
 
         void changeFilter(int requestCode);
         void removeAll();
     }
     interface LeadsModel extends BaseModel {
-        Observable<ResponseGetLeads> getLeads(int page);
         Observable<ResponseGetLeads> getFilteredLeads(FilterQuery query, int page);
         Observable<ResponseGetLeadsFilters> getLeadFilters();
     }
