@@ -63,4 +63,7 @@ public class HomeActivity extends BaseMasterFlowActivity {
         menuDrawerContainer.initStateMenu();
     }
 
+    public UserInfo getUserInfo() {
+        return userInfo;
+    }
 }

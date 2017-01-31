@@ -1,0 +1,459 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white">
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/srlRefresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:animateLayoutChanges="true"
+            android:orientation="vertical">
+
+            <android.support.v4.widget.NestedScrollView
+                android:id="@+id/nsvContent"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/white">
+
+                    <TextView
+                        android:id="@+id/tvOrderStatus"
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
+                        android:elevation="3dp"
+                        android:gravity="center"
+                        android:rotation="-45"
+                        tools:text="Draft/ Quotation" />
+
+                    <android.support.v7.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="@dimen/default_padding">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@android:color/white"
+                            android:orientation="vertical"
+                            android:padding="@dimen/default_padding">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="80dp">
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:id="@+id/tvCompanyName"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        tools:text="EasyERP Inc" />
+
+                                    <TextView
+                                        android:id="@+id/tvCompanyAddress"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        tools:text="Uzhhorod, 47 Shandora Petefi sq., 7th floor, Transcarpation, 88000, Ukraine" />
+
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="end"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textAllCaps="true"
+                                        android:textSize="26sp"
+                                        tools:text="Order" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        tools:text="SO_30" />
+
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/default_dimen_32">
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Bill to" />
+
+                                    <TextView
+                                        android:id="@+id/tvSupplierName"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        tools:text="Adrian Trif" />
+
+                                    <TextView
+                                        android:id="@+id/tvSupplierAddress"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        tools:text="Transcarpation, 88000, Ukraine, Uzhhorod, 47 Shandora Petefi sq., 7th floor," />
+
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
+                                    android:gravity="end"
+                                    android:orientation="vertical">
+
+                                    <LinearLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="Expected Date :" />
+
+                                        <TextView
+                                            android:id="@+id/tvExpectedDate"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginStart="@dimen/default_dimen_32"
+                                            tools:text="25 Jan, 2017" />
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="Order Date :" />
+
+                                        <TextView
+                                            android:id="@+id/tvOrderDate"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginStart="@dimen/default_dimen_32"
+                                            tools:text="25 Jan, 2017" />
+                                    </LinearLayout>
+
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                            <android.support.v7.widget.RecyclerView
+                                android:id="@+id/rvProductList"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/default_padding" />
+
+                                <TextView
+                                    android:id="@+id/tvSubTotal"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="end"
+                                    android:layout_marginTop="@dimen/default_padding"
+                                    android:gravity="end"
+                                    android:minWidth="100dp"
+                                    tools:text="Sub Total 10058620.00" />
+
+                                <TextView
+                                    android:id="@+id/tvDiscount"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="end"
+                                    android:layout_marginTop="@dimen/default_padding"
+                                    android:gravity="end"
+                                    android:minWidth="100dp"
+                                    tools:text="Discount 10058620.00" />
+
+                                <TextView
+                                    android:id="@+id/tvTaxes"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="end"
+                                    android:layout_marginTop="@dimen/default_padding"
+                                    android:gravity="end"
+                                    android:minWidth="100dp"
+                                    tools:text="Taxes 10058620.00" />
+
+                                <TextView
+                                    android:id="@+id/tvTotal"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="end"
+                                    android:layout_marginTop="@dimen/default_padding"
+                                    android:gravity="end"
+                                    android:minWidth="100dp"
+                                    tools:text="Total 10058620.00" />
+
+                                <TextView
+                                    android:id="@+id/tvPrepaid"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="end"
+                                    android:layout_marginTop="@dimen/default_padding"
+                                    android:gravity="end"
+                                    android:minWidth="100dp"
+                                    tools:text="Prepaid 10058620.00" />
+
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="2dp"
+                                android:layout_marginTop="@dimen/default_padding"
+                                android:background="@android:color/black" />
+
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/default_dimen_32">
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Payment details" />
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:minWidth="140dp"
+                                            android:text="Name of Beneficiary" />
+                                        <TextView
+                                            android:id="@+id/tvNameBeneficiary"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginStart="@dimen/default_padding"
+                                            tools:text="Name of Beneficiary" />
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:minWidth="140dp"
+                                            android:text="Bank" />
+                                        <TextView
+                                            android:id="@+id/tvBank"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginStart="@dimen/default_padding"
+                                            tools:text="Bank" />
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:minWidth="140dp"
+                                            android:text="Bank address" />
+                                        <TextView
+                                            android:id="@+id/tvBankAddress"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginStart="@dimen/default_padding"
+                                            tools:text="Bank address" />
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:minWidth="140dp"
+                                            android:text="IBAN" />
+                                        <TextView
+                                            android:id="@+id/tvBankIBAN"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginStart="@dimen/default_padding"
+                                            tools:text="2415464351" />
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:minWidth="140dp"
+                                            android:text="SWIFT code" />
+                                        <TextView
+                                            android:id="@+id/tvSwiftCode"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginStart="@dimen/default_padding"
+                                            tools:text="523" />
+
+                                    </LinearLayout>
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_marginStart="@dimen/default_padding"
+                                    android:gravity="end"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Other information" />
+
+                                    <TextView
+                                        android:id="@+id/tvOwnerName"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        tools:text="Test" />
+
+                                    <TextView
+                                        android:id="@+id/tvOwnerSite"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        tools:text="www.google.ua" />
+
+                                    <TextView
+                                        android:id="@+id/tvOwnerEmail"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        tools:text="info@thinkmobiles.com" />
+
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/default_padding"
+                                android:text="Dear Customer, be informed that total amount for services do not include bank fee.Please pay attention for it when you make your payment"
+                                android:textColor="@android:color/holo_red_light" />
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:layout_marginTop="@dimen/default_padding"
+                                android:background="@android:color/black" />
+
+                            <TextView
+                                android:id="@+id/tv"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/default_padding"
+                                android:text="Payment should be made by bank transfer or check made payable to TEST."
+                                android:textColor="@android:color/black" />
+
+
+                        </LinearLayout>
+
+                    </android.support.v7.widget.CardView>
+
+
+                </FrameLayout>
+
+            </android.support.v4.widget.NestedScrollView>
+
+            <RelativeLayout
+                android:id="@+id/btnHistory_FOD"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/color_grey_transparent"
+                android:padding="@dimen/default_padding">
+
+
+                <TextView
+                    style="@style/RobotoMedium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="@string/notes_amp_timeline"
+                    android:textColor="@color/color_text_black"
+                    android:textSize="@dimen/text_list_item_large_20" />
+
+                <ImageView
+                    android:id="@+id/ivIconArrow_FOD"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_alignParentEnd="true"
+                    android:tint="@android:color/black"
+                    android:visibility="invisible"
+                    app:srcCompat="@drawable/ic_arrow_up" />
+
+            </RelativeLayout>
+
+            <View
+                android:id="@+id/viewHistoryDivider_FLD"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/color_divider" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rvHistory_FOD"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/white"
+                android:visibility="gone" />
+
+        </LinearLayout>
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+</FrameLayout>
