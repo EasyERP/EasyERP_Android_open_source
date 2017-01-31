@@ -77,7 +77,6 @@ public class LeadsFragment extends SimpleListWithRefreshFragment implements Lead
             if (position != presenter.getSelectedItemPosition())
                 presenter.displayLeadDetails(itemDH.getLeadItem().id);
             presenter.setSelectedInfo(position, itemDH.getId());
-
         });
 
         loadWithProgressBar();

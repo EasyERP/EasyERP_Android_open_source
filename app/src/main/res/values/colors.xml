@@ -41,4 +41,8 @@
     <color name="color_chips_red">#eb5a46</color>
     <color name="color_chips_blue">#3687bb</color>
     <color name="color_chips_orange">#fbaf5d</color>
+    <color name="color_chips_grey">#94A5A6</color>
+    <color name="color_chips_light_blue">#2C96DD</color>
+    <color name="color_chips_green">#1AAF5D</color>
+
 </resources>

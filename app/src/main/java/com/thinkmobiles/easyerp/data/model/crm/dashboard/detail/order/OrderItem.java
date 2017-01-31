@@ -5,6 +5,10 @@ import android.os.Parcelable;
 
 import com.google.gson.annotations.SerializedName;
 import com.thinkmobiles.easyerp.data.model.crm.dashboard.detail.IChartModel;
+import com.thinkmobiles.easyerp.data.model.crm.dashboard.detail.invoice.Currency;
+import com.thinkmobiles.easyerp.data.model.crm.dashboard.detail.invoice.PaymentInfo;
+import com.thinkmobiles.easyerp.data.model.crm.dashboard.detail.invoice.SalesPerson;
+import com.thinkmobiles.easyerp.data.model.crm.leads.Workflow;
 
 import java.util.List;
 
@@ -19,6 +23,11 @@ public class OrderItem implements Parcelable, IChartModel {
     public Double total;
     public Integer count;
     public String name;
+    public String orderDate;
+    public Workflow workflow;
+    public SalesPerson supplier;
+    public PaymentInfo paymentInfo;
+    public Currency currency;
     public List<OrderStatus> status;
 
     @Override
@@ -32,6 +41,9 @@ public class OrderItem implements Parcelable, IChartModel {
         dest.writeValue(this.total);
         dest.writeValue(this.count);
         dest.writeString(this.name);
+        dest.writeString(this.orderDate);
+        dest.writeParcelable(this.workflow, flags);
+        dest.writeParcelable(this.supplier, flags);
         dest.writeTypedList(this.status);
     }
 
@@ -43,10 +55,13 @@ public class OrderItem implements Parcelable, IChartModel {
         this.total = (Double) in.readValue(Double.class.getClassLoader());
         this.count = (Integer) in.readValue(Integer.class.getClassLoader());
         this.name = in.readString();
+        this.orderDate = in.readString();
+        this.workflow = in.readParcelable(Workflow.class.getClassLoader());
+        this.supplier = in.readParcelable(SalesPerson.class.getClassLoader());
         this.status = in.createTypedArrayList(OrderStatus.CREATOR);
     }
 
-    public static final Parcelable.Creator<OrderItem> CREATOR = new Parcelable.Creator<OrderItem>() {
+    public static final Creator<OrderItem> CREATOR = new Creator<OrderItem>() {
         @Override
         public OrderItem createFromParcel(Parcel source) {
             return new OrderItem(source);
