@@ -16,7 +16,7 @@ import rx.Observable;
 public interface OrderService {
 
     @GET(Constants.GET_ORDER)
-    Observable<List<OrderItem>> getOrders();
+    Observable<List<OrderItem>> getOrder();
 
     @GET(Constants.GET_ORDER_BY_WORKFLOWS)
     Observable<List<OrderItem>> getOrderByWorkflows(
