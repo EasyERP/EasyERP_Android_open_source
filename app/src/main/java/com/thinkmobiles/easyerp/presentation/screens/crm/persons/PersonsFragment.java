@@ -81,13 +81,7 @@ public class PersonsFragment extends SimpleListWithRefreshFragment implements Pe
         listRecycler.setLayoutManager(llm);
         listRecycler.setAdapter(personsAdapter);
         listRecycler.addOnScrollListener(scrollListener);
-        personsAdapter.setOnCardClickListener((view, position, viewType) -> {
-            final PersonDH itemDH = personsAdapter.getItem(position);
-            personsAdapter.replaceSelectedItem(presenter.getSelectedItemPosition(), position);
-            if (position != presenter.getSelectedItemPosition())
-                presenter.displayPersonDetails(itemDH.getPersonModel().id);
-            presenter.setSelectedInfo(position, itemDH.getId());
-        });
+        personsAdapter.setOnCardClickListener((view, position, viewType) -> presenter.selectItem(personsAdapter.getItem(position), position));
 
         loadWithProgressBar();
     }
@@ -159,8 +153,14 @@ public class PersonsFragment extends SimpleListWithRefreshFragment implements Pe
     }
 
     @Override
+    public void changeSelectedItem(int oldPosition, int newPosition) {
+        personsAdapter.replaceSelectedItem(oldPosition, newPosition);
+    }
+
+    @Override
     public void onDestroyView() {
         super.onDestroyView();
         if (presenter != null) presenter.unsubscribe();
     }
+
 }

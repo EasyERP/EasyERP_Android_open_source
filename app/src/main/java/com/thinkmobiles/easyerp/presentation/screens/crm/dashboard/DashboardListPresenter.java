@@ -2,8 +2,10 @@ package com.thinkmobiles.easyerp.presentation.screens.crm.dashboard;
 
 import com.thinkmobiles.easyerp.data.model.crm.dashboard.DashboardListItem;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
+import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectableDHHelper;
 import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectablePresenterHelper;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.DashboardListDH;
+import com.thinkmobiles.easyerp.presentation.holders.data.crm.LeadDH;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +16,7 @@ import rx.subscriptions.CompositeSubscription;
  * Created by Asus_Dev on 1/18/2017.
  */
 
-public class DashboardListPresenter extends MasterFlowSelectablePresenterHelper<String> implements DashboardListContract.DashboardListPresenter {
+public class DashboardListPresenter extends MasterFlowSelectablePresenterHelper<String, DashboardListDH> implements DashboardListContract.DashboardListPresenter {
 
     private DashboardListContract.DashboardListView view;
     private DashboardListContract.DashboardListModel model;
@@ -49,8 +51,12 @@ public class DashboardListPresenter extends MasterFlowSelectablePresenterHelper<
     }
 
     @Override
-    public void prepareDashboardDetailWithParams(DashboardListDH itemDashboardDH) {
-        view.displayDashboardsDetail(itemDashboardDH.getDashboardListItem());
+    public void selectItem(DashboardListDH dashboardListDH, int position) {
+        if (position != getSelectedItemPosition()) {
+            view.changeSelectedItem(getSelectedItemPosition(), position);
+            setSelectedInfo(position, dashboardListDH.getId());
+            view.displayDashboardsDetail(dashboardListDH.getDashboardListItem());
+        }
     }
 
     private ArrayList<DashboardListDH> prepareDashboardDHs(final List<DashboardListItem> dashboardListItems) {

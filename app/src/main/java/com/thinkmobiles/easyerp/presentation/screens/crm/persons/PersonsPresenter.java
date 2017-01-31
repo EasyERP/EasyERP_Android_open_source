@@ -18,7 +18,7 @@ import rx.subscriptions.CompositeSubscription;
  * Created by Lynx on 1/20/2017.
  */
 
-public class PersonsPresenter extends MasterFlowSelectablePresenterHelper<String> implements PersonsContract.PersonsPresenter {
+public class PersonsPresenter extends MasterFlowSelectablePresenterHelper<String, PersonDH> implements PersonsContract.PersonsPresenter {
 
     private PersonsContract.PersonsView view;
     private PersonsContract.PersonsModel personsModel;
@@ -32,6 +32,15 @@ public class PersonsPresenter extends MasterFlowSelectablePresenterHelper<String
         compositeSubscription = new CompositeSubscription();
 
         view.setPresenter(this);
+    }
+
+    @Override
+    public void selectItem(PersonDH personDH, int position) {
+        if (position != getSelectedItemPosition()) {
+            view.changeSelectedItem(getSelectedItemPosition(), position);
+            setSelectedInfo(position, personDH.getId());
+            view.openPersonDetailsScreen(personDH.getId());
+        }
     }
 
     @Override
@@ -99,12 +108,6 @@ public class PersonsPresenter extends MasterFlowSelectablePresenterHelper<String
             }
         }
         return personIDs;
-    }
-
-    @Override
-    public void displayPersonDetails(String personID) {
-        Log.d("myLogs", "Display person details ID = " + personID);
-        view.openPersonDetailsScreen(personID);
     }
 
     @Override

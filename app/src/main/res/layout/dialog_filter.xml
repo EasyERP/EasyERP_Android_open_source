@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorPrimaryDark"/>
+
+    <EditText
+        style="@style/AppTheme.FilterDialog.SearchFieldStyle"
+        android:id="@+id/etSearch_DF"
+        android:hint="@string/list_searchview_hint"
+        android:imeOptions="flagNoExtractUi|actionDone"
+        android:drawableStart="@drawable/ic_search_black"
+        android:drawablePadding="@dimen/default_padding_half"
+        android:padding="@dimen/default_padding" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rvList_DF"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:minHeight="56dp"/>
+
+</LinearLayout>

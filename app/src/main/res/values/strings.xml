@@ -5,7 +5,9 @@
     <string name="hint_password">Password</string>
     <string name="hint_database_id">Database ID</string>
     <string name="login">Login</string>
-    <string name="logout">Logout</string>
+
+    <string name="menu_filter">Filter</string>
+    <string name="menu_logout">Logout</string>
 
     <string name="list_is_empty">Sorry, but list is empty.\nPlease try again later!</string>
     <string name="try_again">Try again</string>
@@ -58,4 +60,14 @@
     <string name="no_tags">No tags</string>
     <string name="notes_amp_timeline"><![CDATA[Notes & Timeline]]></string>
 
+    <string name="list_searchview_hint">Search</string>
+    <string name="menu_filter_contact_name">Contact name</string>
+    <string name="menu_filter_source">Source</string>
+    <string name="menu_filter_stage">Stage</string>
+    <string name="menu_filter_assigned_to">Assigned to</string>
+    <string name="menu_filter_created_by">Created by</string>
+    <string name="menu_filter_remove_all">Remove all</string>
+    <string name="dialog_btn_apply">Apply</string>
+    <string name="dialog_btn_cancel">Cancel</string>
+    <string name="dialog_btn_remove">Remove</string>
 </resources>
