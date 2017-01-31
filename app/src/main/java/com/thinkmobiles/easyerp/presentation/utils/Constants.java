@@ -38,6 +38,7 @@ public abstract class Constants {
     //End Invoice
 
     //Order
+    public static final String GET_ORDER                    = "order";
     public static final String GET_ORDER_BY_WORKFLOWS       = "order/getByWorkflows";
     //End Order
 
