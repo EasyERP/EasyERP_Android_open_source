@@ -1,4 +1,4 @@
-package com.thinkmobiles.easyerp.presentation.base.rules;
+package com.thinkmobiles.easyerp.presentation.base;
 
 import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;

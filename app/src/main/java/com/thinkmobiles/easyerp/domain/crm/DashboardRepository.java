@@ -4,7 +4,7 @@ import com.thinkmobiles.easyerp.data.api.Rest;
 import com.thinkmobiles.easyerp.data.model.crm.dashboard.ResponseGetCRMDashboardCharts;
 import com.thinkmobiles.easyerp.data.model.crm.dashboard.detail.DashboardChartType;
 import com.thinkmobiles.easyerp.data.services.DashboardService;
-import com.thinkmobiles.easyerp.presentation.base.rules.NetworkRepository;
+import com.thinkmobiles.easyerp.presentation.base.NetworkRepository;
 import com.thinkmobiles.easyerp.presentation.screens.crm.dashboard.DashboardListContract;
 import com.thinkmobiles.easyerp.presentation.screens.crm.dashboard.detail.DashboardDetailChartContract;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
@@ -15,8 +15,6 @@ import org.androidannotations.annotations.EBean;
 import java.util.List;
 
 import rx.Observable;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
 
 /**
  * Created by Lynx on 1/16/2017.

@@ -12,6 +12,7 @@
         android:layout_height="match_parent">
 
         <LinearLayout
+            android:id="@+id/llMainContent_FLD"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:animateLayoutChanges="true"
@@ -386,14 +387,14 @@
                                 android:id="@+id/tvTags_FLD"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:lineSpacingExtra="@dimen/default_padding_half"
+                                android:layout_marginBottom="@dimen/default_padding_3dp"
                                 android:layout_marginTop="@dimen/default_padding_half"
-                                android:text="@string/no_tags"
+                                android:lineSpacingExtra="@dimen/default_padding_half"
                                 android:maxLines="5"
+                                android:paddingBottom="@dimen/default_padding_half"
                                 android:paddingEnd="@dimen/default_padding_3dp"
                                 android:paddingStart="@dimen/default_padding_3dp"
-                                android:paddingBottom="@dimen/default_padding_half"
-                                android:layout_marginBottom="@dimen/default_padding_3dp"/>
+                                android:text="@string/no_tags"/>
 
 
                             <LinearLayout
@@ -477,7 +478,9 @@
                 android:background="@android:color/white"
                 android:visibility="gone"/>
 
-            </LinearLayout>
+        </LinearLayout>
 
     </android.support.v4.widget.SwipeRefreshLayout>
+
+    <include layout="@layout/view_error_with_holder_icon"/>
 </FrameLayout>

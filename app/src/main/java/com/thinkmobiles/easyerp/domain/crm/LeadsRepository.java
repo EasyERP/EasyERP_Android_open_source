@@ -6,7 +6,7 @@ import com.thinkmobiles.easyerp.data.model.crm.leads.detail.ResponseGetLeadDetai
 import com.thinkmobiles.easyerp.data.model.crm.leads.filter.ResponseGetLeadsFilters;
 import com.thinkmobiles.easyerp.data.services.FilterService;
 import com.thinkmobiles.easyerp.data.services.LeadService;
-import com.thinkmobiles.easyerp.presentation.base.rules.NetworkRepository;
+import com.thinkmobiles.easyerp.presentation.base.NetworkRepository;
 import com.thinkmobiles.easyerp.presentation.screens.crm.leads.LeadsContract;
 import com.thinkmobiles.easyerp.presentation.screens.crm.leads.details.LeadDetailsContract;
 import com.thinkmobiles.easyerp.presentation.utils.filter.FilterQuery;
@@ -14,8 +14,6 @@ import com.thinkmobiles.easyerp.presentation.utils.filter.FilterQuery;
 import org.androidannotations.annotations.EBean;
 
 import rx.Observable;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
 
 /**
  * Created by Lynx on 1/16/2017.

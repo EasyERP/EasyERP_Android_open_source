@@ -2,14 +2,12 @@ package com.thinkmobiles.easyerp.domain;
 
 import com.thinkmobiles.easyerp.data.api.Rest;
 import com.thinkmobiles.easyerp.data.services.LoginService;
-import com.thinkmobiles.easyerp.presentation.base.rules.NetworkRepository;
+import com.thinkmobiles.easyerp.presentation.base.NetworkRepository;
 import com.thinkmobiles.easyerp.presentation.screens.login.LoginContract;
 
 import org.androidannotations.annotations.EBean;
 
 import rx.Observable;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
 
 /**
  * Created by Lynx on 1/13/2017.
