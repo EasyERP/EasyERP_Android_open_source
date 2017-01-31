@@ -1,8 +1,16 @@
 package com.thinkmobiles.easyerp.presentation.screens.crm.orders.details;
 
-/**
- * Created by samson on 31.01.17.
- */
+import com.thinkmobiles.easyerp.data.model.crm.orders.detail.ResponseGerOrderDetails;
+import com.thinkmobiles.easyerp.presentation.base.BaseModel;
+
+
+import rx.Observable;
+
 
 public interface OrderDetailsContract {
+
+
+    interface OrderDetailsModel extends BaseModel {
+        Observable<ResponseGerOrderDetails> getOrderDetails(String orderId);
+    }
 }

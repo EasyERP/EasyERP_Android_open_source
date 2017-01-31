@@ -78,6 +78,7 @@
                                 <LinearLayout
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
+                                    android:layout_weight="1"
                                     android:gravity="end"
                                     android:orientation="vertical">
 
@@ -131,6 +132,7 @@
                                 <LinearLayout
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
+                                    android:layout_weight="1"
                                     android:layout_gravity="center_vertical"
                                     android:gravity="end"
                                     android:orientation="vertical">
@@ -429,7 +431,7 @@
                     android:textSize="@dimen/text_list_item_large_20" />
 
                 <ImageView
-                    android:id="@+id/ivIconArrow_FOD"
+                    android:id="@+id/ivIconArrow"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:layout_alignParentEnd="true"
@@ -440,13 +442,13 @@
             </RelativeLayout>
 
             <View
-                android:id="@+id/viewHistoryDivider_FLD"
+                android:id="@+id/viewHistoryDivider"
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/color_divider" />
+                android:layout_height="3dp"
+                android:background="@drawable/bg_line_of_shadow" />
 
             <android.support.v7.widget.RecyclerView
-                android:id="@+id/rvHistory_FOD"
+                android:id="@+id/rvHistory"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@android:color/white"

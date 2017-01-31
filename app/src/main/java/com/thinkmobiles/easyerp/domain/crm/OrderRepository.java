@@ -2,8 +2,10 @@ package com.thinkmobiles.easyerp.domain.crm;
 
 import com.thinkmobiles.easyerp.data.api.Rest;
 import com.thinkmobiles.easyerp.data.model.crm.dashboard.detail.order.OrderItem;
+import com.thinkmobiles.easyerp.data.model.crm.orders.detail.ResponseGerOrderDetails;
 import com.thinkmobiles.easyerp.data.services.OrderService;
 import com.thinkmobiles.easyerp.presentation.screens.crm.orders.OrdersContract;
+import com.thinkmobiles.easyerp.presentation.screens.crm.orders.details.OrderDetailsContract;
 
 import org.androidannotations.annotations.EBean;
 
@@ -18,7 +20,7 @@ import rx.schedulers.Schedulers;
  */
 
 @EBean(scope = EBean.Scope.Singleton)
-public class OrderRepository implements OrdersContract.OrdersModel {
+public class OrderRepository implements OrdersContract.OrdersModel, OrderDetailsContract.OrderDetailsModel {
 
     private OrderService orderService;
 
@@ -33,7 +35,12 @@ public class OrderRepository implements OrdersContract.OrdersModel {
 
     @Override
     public Observable<List<OrderItem>> getOrders() {
-        return orderService.getOrder();
+        return getNetworkObservable(orderService.getOrder());
+    }
+
+    @Override
+    public Observable<ResponseGerOrderDetails> getOrderDetails(String orderId) {
+        return getNetworkObservable(orderService.getOrderDetails(orderId));
     }
 
 }

@@ -39,9 +39,10 @@ public class Rest {
 
     private static Rest restInstance;
     private Retrofit retrofit;
-    private OkHttpClient client;
-    private Gson malformedGson;
-    private CookieManager cookieManager;
+    private Retrofit retrofitFull;
+    private ReceiveCookieInterceptor receiveCookieInterceptor;
+    private AddCookieInterceptor addCookieInterceptor;
+    private BadCookieInterceptor badCookieInterceptor;
 
     private LoginService loginService;
     private LeadService leadService;
@@ -56,7 +57,34 @@ public class Rest {
     private Converter<ResponseBody, ResponseError> converter;
 
     private Rest() {
+        Gson malformedGson = new GsonBuilder()
+            .setLenient()
+            .create();
 
+        receiveCookieInterceptor = new ReceiveCookieInterceptor();
+        addCookieInterceptor = new AddCookieInterceptor();
+        badCookieInterceptor = new BadCookieInterceptor();
+
+        OkHttpClient.Builder clientBuilder = new OkHttpClient.Builder()
+                .addNetworkInterceptor(new StethoInterceptor())
+                .addInterceptor(receiveCookieInterceptor);
+
+        Retrofit.Builder builder = new Retrofit.Builder()
+                .addConverterFactory(GsonConverterFactory.create(malformedGson))
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .baseUrl(Constants.BASE_URL)
+                .client(clientBuilder.build());
+
+        retrofit = builder.build();
+
+        clientBuilder.addInterceptor(addCookieInterceptor)
+                .addInterceptor(badCookieInterceptor);
+
+        retrofitFull = builder
+                .client(clientBuilder.build())
+                .build();
+
+        converter = retrofitFull.responseBodyConverter(ResponseError.class, new Annotation[0]);
     }
 
     public static Rest getInstance() {
@@ -117,37 +145,13 @@ public class Rest {
     }
 
     private <T> T createService(Class<T> service, boolean hasAllInterceptors) {
-        malformedGson = new GsonBuilder()
-                .setLenient()
-                .create();
-
-        HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
-        loggingInterceptor.setLevel(!BuildConfig.PRODUCTION ? HttpLoggingInterceptor.Level.BODY : HttpLoggingInterceptor.Level.NONE);
-
-
-        OkHttpClient.Builder clientBuilder = new OkHttpClient.Builder()
-                .addNetworkInterceptor(new StethoInterceptor())
-                .addInterceptor(loggingInterceptor)
-                .addInterceptor(new ReceiveCookieInterceptor(cookieManager));
-
-        if(hasAllInterceptors) {
-            clientBuilder.addInterceptor(new AddCookieInterceptor(cookieManager))
-                    .addInterceptor(new BadCookieInterceptor(cookieManager));
-        }
-
-        client = clientBuilder.build();
-        retrofit = new Retrofit.Builder()
-                .addConverterFactory(GsonConverterFactory.create(malformedGson))
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .client(client)
-                .baseUrl(Constants.BASE_URL)
-                .build();
-        converter = retrofit.responseBodyConverter(ResponseError.class, new Annotation[0]);
-        return retrofit.create(service);
+        return hasAllInterceptors ? retrofitFull.create(service) : retrofit.create(service);
     }
 
     public void setCookieManager(CookieManager cookieManager) {
-        this.cookieManager = cookieManager;
+        receiveCookieInterceptor.setCookieManager(cookieManager);
+        addCookieInterceptor.setCookieManager(cookieManager);
+        badCookieInterceptor.setCookieManager(cookieManager);
     }
 
 }

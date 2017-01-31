@@ -5,6 +5,7 @@ import com.thinkmobiles.easyerp.presentation.base.BaseModel;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectableBasePresenter;
 import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectableBaseView;
+import com.thinkmobiles.easyerp.presentation.holders.data.crm.OrderDH;
 
 import java.util.List;
 
@@ -20,7 +21,7 @@ public interface OrdersContract {
         void displayError(final String msg, final ErrorViewHelper.ErrorType errorType);
         void openOrderDetailsScreen(String orderID);
     }
-    interface OrdersPresenter extends MasterFlowSelectableBasePresenter<String> {
+    interface OrdersPresenter extends MasterFlowSelectableBasePresenter<String, OrderDH> {
         void loadOrders(int page);
         void displayOrderDetail(String orderId);
     }
