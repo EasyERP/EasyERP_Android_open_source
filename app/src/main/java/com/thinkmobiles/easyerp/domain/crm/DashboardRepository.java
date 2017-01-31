@@ -4,6 +4,7 @@ import com.thinkmobiles.easyerp.data.api.Rest;
 import com.thinkmobiles.easyerp.data.model.crm.dashboard.ResponseGetCRMDashboardCharts;
 import com.thinkmobiles.easyerp.data.model.crm.dashboard.detail.DashboardChartType;
 import com.thinkmobiles.easyerp.data.services.DashboardService;
+import com.thinkmobiles.easyerp.presentation.base.rules.NetworkRepository;
 import com.thinkmobiles.easyerp.presentation.screens.crm.dashboard.DashboardListContract;
 import com.thinkmobiles.easyerp.presentation.screens.crm.dashboard.detail.DashboardDetailChartContract;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
@@ -22,7 +23,7 @@ import rx.schedulers.Schedulers;
  */
 
 @EBean(scope = EBean.Scope.Singleton)
-public class DashboardRepository implements DashboardListContract.DashboardListModel, DashboardDetailChartContract.DashboardDetailChartModel {
+public class DashboardRepository extends NetworkRepository implements DashboardListContract.DashboardListModel, DashboardDetailChartContract.DashboardDetailChartModel {
 
     @Bean
     protected DashboardChartsLayerRepository dashboardChartsLayerRepository;
@@ -31,11 +32,6 @@ public class DashboardRepository implements DashboardListContract.DashboardListM
 
     public DashboardRepository() {
         dashboardService = Rest.getInstance().getDashboardService();
-    }
-
-    private <T> Observable<T> getNetworkObservable(Observable<T> observable) {
-        return observable.observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.newThread());
     }
 
     public Observable<List<ResponseGetCRMDashboardCharts>> getDashboardListCharts(/*Dashboard id: String*/) {

@@ -54,16 +54,21 @@ public class PersonDetailsPresenter implements PersonDetailsContract.PersonDetai
         compositeSubscription.add(model.getPersonDetails(personID)
                 .subscribe(responseGetPersonDetails -> {
                     view.showProgress(false);
-                    setData(responseGetPersonDetails);
+                    currentLead = responseGetPersonDetails;
+                    setData(currentLead);
+                    view.displayError(null);
                 }, throwable -> {
-                    Log.d("HTTP", "Error while retrieve person details data = " + throwable.getMessage());
                     view.showProgress(false);
+                    if(currentLead != null && currentLead.id.equalsIgnoreCase(personID))
+                        view.showMessage(throwable.getMessage());
+                    else
+                        view.displayError(throwable.getMessage());
                 }));
     }
 
     @Override
     public void subscribe() {
-        if (currentLead == null) {
+        if (currentLead == null || !currentLead.id.equalsIgnoreCase(personID)) {
             view.showProgress(true);
             refresh();
         } else {

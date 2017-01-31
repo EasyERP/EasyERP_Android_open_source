@@ -3,6 +3,7 @@ package com.thinkmobiles.easyerp.domain.crm;
 import com.thinkmobiles.easyerp.data.api.Rest;
 import com.thinkmobiles.easyerp.data.model.crm.opportunities.ResponseGetOpportunities;
 import com.thinkmobiles.easyerp.data.services.OpportunityService;
+import com.thinkmobiles.easyerp.presentation.base.rules.NetworkRepository;
 import com.thinkmobiles.easyerp.presentation.screens.crm.opportunities.OpportunitiesContract;
 
 import org.androidannotations.annotations.EBean;
@@ -16,17 +17,12 @@ import rx.schedulers.Schedulers;
  */
 
 @EBean
-public class OpportunitiesRepository implements OpportunitiesContract.OpportunitiesModel {
+public class OpportunitiesRepository extends NetworkRepository implements OpportunitiesContract.OpportunitiesModel {
 
     private OpportunityService opportunityService;
 
     public OpportunitiesRepository() {
         opportunityService = Rest.getInstance().getOpportunityService();
-    }
-
-    private <T> Observable<T> getNetworkObservable(Observable<T> observable) {
-        return observable.observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.newThread());
     }
 
     public Observable<ResponseGetOpportunities> getOpportunities(int page) {

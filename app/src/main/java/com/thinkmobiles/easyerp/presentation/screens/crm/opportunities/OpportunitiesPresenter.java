@@ -14,7 +14,7 @@ import rx.subscriptions.CompositeSubscription;
  * Created by Lynx on 1/30/2017.
  */
 
-public class OpportunitiesPresenter extends MasterFlowSelectablePresenterHelper<String> implements OpportunitiesContract.OpportunitiesPresenter {
+public class OpportunitiesPresenter extends MasterFlowSelectablePresenterHelper<String, OpportunityDH> implements OpportunitiesContract.OpportunitiesPresenter {
 
     private OpportunitiesContract.OpportunitiesView view;
     private OpportunitiesContract.OpportunitiesModel model;
@@ -62,5 +62,14 @@ public class OpportunitiesPresenter extends MasterFlowSelectablePresenterHelper<
             result.add(opportunityDH);
         }
         return result;
+    }
+
+    @Override
+    public void selectItem(OpportunityDH dh, int position) {
+        if (position != getSelectedItemPosition()) {
+            view.changeSelectedItem(getSelectedItemPosition(), position);
+            setSelectedInfo(position, dh.getId());
+            view.openOpportunityDetailsScreen(dh.getId());
+        }
     }
 }

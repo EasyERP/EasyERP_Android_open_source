@@ -23,7 +23,7 @@ public interface OpportunitiesContract {
         void openOpportunityDetailsScreen(String opportunityID);
     }
 
-    interface OpportunitiesPresenter extends MasterFlowSelectableBasePresenter<String> {
+    interface OpportunitiesPresenter extends MasterFlowSelectableBasePresenter<String, OpportunityDH> {
         void loadOpportunities(int page);
         void displayOpportunityDetails(String opportunityID);
     }

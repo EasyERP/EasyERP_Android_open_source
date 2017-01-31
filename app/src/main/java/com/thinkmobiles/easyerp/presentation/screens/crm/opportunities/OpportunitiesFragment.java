@@ -131,6 +131,11 @@ public class OpportunitiesFragment extends SimpleListWithRefreshFragment impleme
     }
 
     @Override
+    public void changeSelectedItem(int oldPosition, int newPosition) {
+        opportunitiesAdapter.replaceSelectedItem(oldPosition, newPosition);
+    }
+
+    @Override
     public void setPresenter(OpportunitiesContract.OpportunitiesPresenter presenter) {
         this.presenter = presenter;
     }

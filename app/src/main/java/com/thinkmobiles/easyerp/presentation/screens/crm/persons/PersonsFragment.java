@@ -74,6 +74,7 @@ public class PersonsFragment extends SimpleListWithRefreshFragment implements Pe
         scrollListener = new EndlessRecyclerViewScrollListener(llm) {
             @Override
             public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
+
                 displayProgress(true);
                 presenter.loadMore(page);
             }
@@ -130,9 +131,10 @@ public class PersonsFragment extends SimpleListWithRefreshFragment implements Pe
         swipeContainer.setRefreshing(false);
 
         final String resultMsg = errorType.equals(ErrorViewHelper.ErrorType.LIST_EMPTY) ? string_list_is_empty : msg;
-        if (getCountItemsNow() == 0)
+        if (getCountItemsNow() == 0) {
             errorViewHelper.showErrorMsg(resultMsg, errorType);
-        else Toast.makeText(mActivity, resultMsg, Toast.LENGTH_LONG).show();
+        } else
+            Toast.makeText(mActivity, resultMsg, Toast.LENGTH_LONG).show();
     }
 
     @Override
