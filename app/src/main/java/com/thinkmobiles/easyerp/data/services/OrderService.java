@@ -15,6 +15,9 @@ import rx.Observable;
 
 public interface OrderService {
 
+    @GET(Constants.GET_ORDER)
+    Observable<List<OrderItem>> getOrders();
+
     @GET(Constants.GET_ORDER_BY_WORKFLOWS)
     Observable<List<OrderItem>> getOrderByWorkflows(
             @Query("filter[date][value][0]") final String filterDateValueFrom,

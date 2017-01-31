@@ -71,7 +71,7 @@ public abstract class BaseMasterFlowActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         if (isTablet) {
             resetDetailToolbarToBase();
-            return false;
+            return true;
         } else {
             getMenuInflater().inflate(R.menu.menu_base, menu);
             return true;
