@@ -2,6 +2,7 @@ package com.thinkmobiles.easyerp.presentation.base.rules;
 
 import android.support.annotation.DrawableRes;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -18,15 +19,17 @@ public class ErrorViewHelper {
     private View rootLayout;
     private ImageView placeholderIconView;
     private TextView errorMsgView;
+    private Button btnTryAgain;
 
     public void init(final View errorLayout, final View.OnClickListener tryAgainListener) {
         rootLayout = errorLayout;
         if (rootLayout != null) {
             placeholderIconView = (ImageView) rootLayout.findViewById(R.id.ivPlaceholderIcon_VEWHI);
             errorMsgView = (TextView) rootLayout.findViewById(R.id.tvErrorLabel_VEWHI);
+            btnTryAgain = (Button) rootLayout.findViewById(R.id.btnTryAgain_CEWHI);
 
             if (tryAgainListener != null)
-                rootLayout.findViewById(R.id.btnTryAgain_CEWHI).setOnClickListener(tryAgainListener);
+                btnTryAgain.setOnClickListener(tryAgainListener);
         }
     }
 
@@ -35,6 +38,7 @@ public class ErrorViewHelper {
             placeholderIconView.setImageResource(getPlaceholderIcon(errorType));
             errorMsgView.setText(msg);
             rootLayout.setVisibility(View.VISIBLE);
+            btnTryAgain.setVisibility(errorType == ErrorType.LIST_EMPTY ? View.GONE : View.VISIBLE);
         }
     }
 

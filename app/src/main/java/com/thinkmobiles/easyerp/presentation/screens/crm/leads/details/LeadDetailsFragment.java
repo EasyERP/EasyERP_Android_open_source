@@ -134,6 +134,8 @@ public class LeadDetailsFragment extends BaseFragment<HomeActivity> implements L
         presenter.subscribe();
     }
 
+    public boolean optionsMenuForDetail() { return true; }
+
     @Override
     public void onDestroyView() {
         presenter.unsubscribe();
