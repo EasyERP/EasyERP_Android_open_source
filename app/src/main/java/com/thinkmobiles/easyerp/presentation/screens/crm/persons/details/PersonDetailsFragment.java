@@ -23,10 +23,10 @@ import com.jakewharton.rxbinding.view.RxView;
 import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.domain.crm.PersonsRepository;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.LeadHistoryAdapter;
-import com.thinkmobiles.easyerp.presentation.adapters.crm.OpportunityAdapter;
+import com.thinkmobiles.easyerp.presentation.adapters.crm.OpportunityPreviewAdapter;
 import com.thinkmobiles.easyerp.presentation.base.BaseFragment;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.HistoryDH;
-import com.thinkmobiles.easyerp.presentation.holders.data.crm.OpportunityDH;
+import com.thinkmobiles.easyerp.presentation.holders.data.crm.OpportunityPreviewDH;
 import com.thinkmobiles.easyerp.presentation.managers.ImageHelper;
 import com.thinkmobiles.easyerp.presentation.screens.home.HomeActivity;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
@@ -175,7 +175,7 @@ public class PersonDetailsFragment extends BaseFragment<HomeActivity> implements
     @Bean
     protected LeadHistoryAdapter historyAdapter;
     @Bean
-    protected OpportunityAdapter opportunityAdapter;
+    protected OpportunityPreviewAdapter opportunityPreviewAdapter;
 
     @AfterViews
     protected void initUI() {
@@ -183,7 +183,7 @@ public class PersonDetailsFragment extends BaseFragment<HomeActivity> implements
         rvHistory_FPD.setLayoutManager(new LinearLayoutManager(getContext()));
         rvHistory_FPD.setAdapter(historyAdapter);
         rvOpportunities_FPD.setLayoutManager(new LinearLayoutManager(getContext()));
-        rvOpportunities_FPD.setAdapter(opportunityAdapter);
+        rvOpportunities_FPD.setAdapter(opportunityPreviewAdapter);
 
         RxView.clicks(btnHistory_FPD)
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
@@ -454,8 +454,8 @@ public class PersonDetailsFragment extends BaseFragment<HomeActivity> implements
     }
 
     @Override
-    public void displayOpportunities(ArrayList<OpportunityDH> opportunityDHs) {
-        opportunityAdapter.setListDH(opportunityDHs);
+    public void displayOpportunities(ArrayList<OpportunityPreviewDH> opportunityPreviewDHs) {
+        opportunityPreviewAdapter.setListDH(opportunityPreviewDHs);
     }
 
     @Override

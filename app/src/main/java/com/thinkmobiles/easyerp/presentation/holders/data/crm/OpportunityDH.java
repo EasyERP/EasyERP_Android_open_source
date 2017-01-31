@@ -1,20 +1,26 @@
 package com.thinkmobiles.easyerp.presentation.holders.data.crm;
 
-import com.michenko.simpleadapter.RecyclerDH;
-import com.thinkmobiles.easyerp.data.model.crm.persons.details.OpportunityItem;
+import com.thinkmobiles.easyerp.data.model.crm.opportunities.list_item.OpportunityListItem;
+import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectableDHHelper;
 
 /**
- * Created by Lynx on 1/24/2017.
+ * Created by Lynx on 1/30/2017.
  */
 
-public class OpportunityDH extends RecyclerDH {
-    private OpportunityItem opportunityItem;
+public class OpportunityDH extends MasterFlowSelectableDHHelper<String> {
 
-    public OpportunityDH(OpportunityItem opportunityItem) {
-        this.opportunityItem = opportunityItem;
+    private OpportunityListItem opportunityListItem;
+
+    public OpportunityDH(OpportunityListItem opportunityListItem) {
+        this.opportunityListItem = opportunityListItem;
     }
 
-    public OpportunityItem getOpportunityItem() {
-        return opportunityItem;
+    public OpportunityListItem getOpportunityListItem() {
+        return opportunityListItem;
+    }
+
+    @Override
+    public String getId() {
+        return opportunityListItem._id;
     }
 }

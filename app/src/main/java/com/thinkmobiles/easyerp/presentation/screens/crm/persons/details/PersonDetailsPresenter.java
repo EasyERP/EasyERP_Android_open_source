@@ -8,7 +8,7 @@ import com.thinkmobiles.easyerp.data.model.crm.persons.details.OpportunityItem;
 import com.thinkmobiles.easyerp.data.model.crm.persons.details.ResponseGetPersonDetails;
 import com.thinkmobiles.easyerp.presentation.EasyErpApplication;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.HistoryDH;
-import com.thinkmobiles.easyerp.presentation.holders.data.crm.OpportunityDH;
+import com.thinkmobiles.easyerp.presentation.holders.data.crm.OpportunityPreviewDH;
 import com.thinkmobiles.easyerp.presentation.managers.DateManager;
 import com.thinkmobiles.easyerp.presentation.utils.StringUtil;
 
@@ -186,10 +186,10 @@ public class PersonDetailsPresenter implements PersonDetailsContract.PersonDetai
 
     private void setOpportunities(ResponseGetPersonDetails data) {
         if(data.opportunities != null && !data.opportunities.isEmpty()) {
-            ArrayList<OpportunityDH> opportunityDHs = new ArrayList<>();
+            ArrayList<OpportunityPreviewDH> opportunityPreviewDHs = new ArrayList<>();
             for(OpportunityItem item : data.opportunities)
-                opportunityDHs.add(new OpportunityDH(item));
-            view.displayOpportunities(opportunityDHs);
+                opportunityPreviewDHs.add(new OpportunityPreviewDH(item));
+            view.displayOpportunities(opportunityPreviewDHs);
         }
     }
 
