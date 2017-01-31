@@ -32,6 +32,7 @@
     <dimen name="default_padding_half">8dp</dimen>
     <dimen name="default_padding_3dp">3dp</dimen>
     <dimen name="padding_large_45">45dp</dimen>
+    <dimen name="list_item_height">130dp</dimen>
 
     <!--text-->
     <dimen name="text_list_item_extra_large_24">24sp</dimen>

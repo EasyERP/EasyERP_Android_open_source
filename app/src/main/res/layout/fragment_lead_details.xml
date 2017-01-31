@@ -390,8 +390,8 @@
                                 android:layout_marginTop="@dimen/default_padding_half"
                                 android:text="@string/no_tags"
                                 android:maxLines="5"
-                                android:paddingEnd="@dimen/default_padding"
-                                android:paddingStart="@dimen/default_padding"
+                                android:paddingEnd="@dimen/default_padding_3dp"
+                                android:paddingStart="@dimen/default_padding_3dp"
                                 android:paddingBottom="@dimen/default_padding_half"
                                 android:layout_marginBottom="@dimen/default_padding_3dp"/>
 
@@ -421,8 +421,8 @@
                                         android:layout_height="wrap_content"
                                         android:layout_marginTop="@dimen/default_padding_half"
                                         android:alpha="0.83"
-                                        android:drawablePadding="@dimen/default_padding_half"
-                                        android:lineSpacingExtra="@dimen/tag_line_spacing_default"
+                                        android:drawablePadding="@dimen/default_padding_3dp"
+                                        android:lineSpacingExtra="@dimen/default_padding_3dp"
                                         android:text="@string/no_attachments"/>
 
                                 </LinearLayout>
@@ -460,7 +460,6 @@
                     android:layout_height="24dp"
                     android:layout_alignParentEnd="true"
                     android:tint="@android:color/black"
-                    android:visibility="invisible"
                     app:srcCompat="@drawable/ic_arrow_up"/>
 
             </RelativeLayout>
@@ -478,7 +477,7 @@
                 android:background="@android:color/white"
                 android:visibility="gone"/>
 
-        </LinearLayout>
+            </LinearLayout>
 
     </android.support.v4.widget.SwipeRefreshLayout>
 </FrameLayout>
