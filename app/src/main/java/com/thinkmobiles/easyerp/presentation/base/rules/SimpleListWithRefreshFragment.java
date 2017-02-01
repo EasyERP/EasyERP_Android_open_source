@@ -28,7 +28,7 @@ public abstract class SimpleListWithRefreshFragment extends BaseFragment<HomeAct
     protected int colorPrimaryDark;
 
     @AfterViews
-    protected void defaulInit() {
+    protected void defaultInit() {
         swipeContainer.setColorSchemeColors(colorPrimary, colorPrimaryDark);
         swipeContainer.setOnRefreshListener(this);
     }

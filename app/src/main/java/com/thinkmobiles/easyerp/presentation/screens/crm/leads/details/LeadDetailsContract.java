@@ -19,6 +19,8 @@ public interface LeadDetailsContract {
     interface LeadDetailsView extends BaseView<LeadDetailsPresenter> {
         void showProgress(boolean enable);
         void showHistory(boolean enable);
+        void showError(String errMsg);
+        void showMessage(String message);
 
         void setLeadName(String leadName);
         void setCurrentStatus(String currentStatus);

@@ -7,6 +7,7 @@ import com.thinkmobiles.easyerp.data.model.crm.persons.CommonPersonsResponse;
 import com.thinkmobiles.easyerp.data.model.crm.persons.ResponseGetPersons;
 import com.thinkmobiles.easyerp.data.model.crm.persons.images.CustomerImageItem;
 import com.thinkmobiles.easyerp.data.model.crm.persons.person_item.PersonModel;
+import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectablePresenterHelper;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.PersonDH;
 
@@ -18,7 +19,7 @@ import rx.subscriptions.CompositeSubscription;
  * Created by Lynx on 1/20/2017.
  */
 
-public class PersonsPresenter extends MasterFlowSelectablePresenterHelper<String> implements PersonsContract.PersonsPresenter {
+public class PersonsPresenter extends MasterFlowSelectablePresenterHelper<String, PersonDH> implements PersonsContract.PersonsPresenter {
 
     private PersonsContract.PersonsView view;
     private PersonsContract.PersonsModel personsModel;
@@ -32,6 +33,15 @@ public class PersonsPresenter extends MasterFlowSelectablePresenterHelper<String
         compositeSubscription = new CompositeSubscription();
 
         view.setPresenter(this);
+    }
+
+    @Override
+    public void selectItem(PersonDH personDH, int position) {
+        if (position != getSelectedItemPosition()) {
+            view.changeSelectedItem(getSelectedItemPosition(), position);
+            setSelectedInfo(position, personDH.getId());
+            view.openPersonDetailsScreen(personDH.getId());
+        }
     }
 
     @Override
@@ -61,7 +71,7 @@ public class PersonsPresenter extends MasterFlowSelectablePresenterHelper<String
                                    CommonPersonsResponse::new)
                            .subscribe(commonPersonsResponse -> {
                                view.displayPersons(prepareDataHolders(commonPersonsResponse, needClear), needClear);
-                           })
+                           }, t -> view.displayError(t.getMessage(), ErrorViewHelper.ErrorType.NETWORK))
            );
         } else {
             //load by letter
@@ -71,7 +81,7 @@ public class PersonsPresenter extends MasterFlowSelectablePresenterHelper<String
                                     CommonPersonsResponse::new)
                             .subscribe(commonPersonsResponse -> {
                                 view.displayPersons(prepareDataHolders(commonPersonsResponse, needClear), needClear);
-                            })
+                            }, t -> view.displayError(t.getMessage(), ErrorViewHelper.ErrorType.NETWORK))
             );
         }
     }
@@ -99,12 +109,6 @@ public class PersonsPresenter extends MasterFlowSelectablePresenterHelper<String
             }
         }
         return personIDs;
-    }
-
-    @Override
-    public void displayPersonDetails(String personID) {
-        Log.d("myLogs", "Display person details ID = " + personID);
-        view.openPersonDetailsScreen(personID);
     }
 
     @Override

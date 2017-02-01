@@ -25,11 +25,10 @@ public interface PersonsContract {
         void displayError(final String msg, final ErrorViewHelper.ErrorType errorType);
         void openPersonDetailsScreen(String personID);
     }
-    interface PersonsPresenter extends MasterFlowSelectableBasePresenter<String> {
+    interface PersonsPresenter extends MasterFlowSelectableBasePresenter<String, PersonDH> {
         void setLetter(String letter);
         void loadAlphabet();
         void loadMore(int page);
-        void displayPersonDetails(String personID);
     }
     interface PersonsModel extends BaseModel {
         Observable<ResponseGetPersonsAlphabet> getPersonsAlphabet();

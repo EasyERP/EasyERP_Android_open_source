@@ -9,4 +9,5 @@ import com.thinkmobiles.easyerp.presentation.base.BaseView;
 
 public interface MasterFlowSelectableBaseView<T extends BasePresenter> extends BaseView<T> {
     int getCountItemsNow();
+    void changeSelectedItem(int oldPosition, int newPosition);
 }

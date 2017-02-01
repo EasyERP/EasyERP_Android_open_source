@@ -8,41 +8,52 @@ import android.widget.TextView;
 import com.michenko.simpleadapter.OnCardClickListener;
 import com.michenko.simpleadapter.RecyclerVH;
 import com.thinkmobiles.easyerp.R;
-import com.thinkmobiles.easyerp.data.model.crm.persons.details.OpportunityItem;
+import com.thinkmobiles.easyerp.data.model.crm.opportunities.list_item.OpportunityListItem;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.OpportunityDH;
 
+import java.util.Locale;
+
 /**
- * Created by Lynx on 1/25/2017.
+ * Created by Lynx on 1/30/2017.
  */
 
 public class OpportunityVH extends RecyclerVH<OpportunityDH> {
 
-    private TextView tvOpportunityCost_VLIP;
-    private TextView tvOpportunityName_VLIP;
-    private TextView tvOpportunityAssignedTo_VLIP;
-    private TextView tvOpportunityStatus_VLIP;
+    private View flOpportunityItemContainer_VLIO;
+    private TextView tvOpportunityName_VLIO;
+    private TextView tvStage_LIL;
+    private TextView tvAssignedTo_VLIO;
+    private TextView tvRevenue_VLIO;
+
+    private String noData;
 
     public OpportunityVH(View itemView, @Nullable OnCardClickListener listener, int viewType) {
         super(itemView, listener, viewType);
 
-        tvOpportunityCost_VLIP = findView(R.id.tvOpportunityCost_VLIP);
-        tvOpportunityName_VLIP = findView(R.id.tvOpportunityName_VLIP);
-        tvOpportunityAssignedTo_VLIP = findView(R.id.tvOpportunityAssignedTo_VLIP);
-        tvOpportunityStatus_VLIP = findView(R.id.tvOpportunityStatus_VLIP);
+        flOpportunityItemContainer_VLIO = findView(R.id.flOpportunityItemContainer_VLIO);
+        tvOpportunityName_VLIO = findView(R.id.tvOpportunityName_VLIO);
+        tvStage_LIL = findView(R.id.tvStage_LIL);
+        tvAssignedTo_VLIO = findView(R.id.tvAssignedTo_VLIO);
+        tvRevenue_VLIO = findView(R.id.tvRevenue_VLIO);
+
+        noData = itemView.getContext().getString(R.string.no_data);
     }
 
     @Override
     public void bindData(OpportunityDH data) {
-        OpportunityItem opportunityItem = data.getOpportunityItem();
-        boolean isCostVisible = (opportunityItem.expectedRevenue != null) && (opportunityItem.expectedRevenue.value > 0);
-        tvOpportunityCost_VLIP.setVisibility(isCostVisible ? View.VISIBLE : View.GONE);
-        if(isCostVisible) {
-            tvOpportunityCost_VLIP.setText(opportunityItem.expectedRevenue.value + " " + opportunityItem.expectedRevenue.currency);
+        OpportunityListItem item = data.getOpportunityListItem();
+
+        tvOpportunityName_VLIO.setText(TextUtils.isEmpty(item.name) ? "Unknown" : item.name);
+        if(item.workflow != null && !TextUtils.isEmpty(item.workflow.name))
+            tvStage_LIL.setText(item.workflow.name);
+        if(item.salesPerson != null && !TextUtils.isEmpty(item.salesPerson.name))
+            tvAssignedTo_VLIO.setText(item.salesPerson.name);
+        if(item.expectedRevenue != null) {
+            tvRevenue_VLIO.setText(String.format(Locale.US, "%d %s",
+                    item.expectedRevenue.value,
+                    TextUtils.isEmpty(item.expectedRevenue.currency) ? "$" : item.expectedRevenue.currency));
         }
-        tvOpportunityName_VLIP.setText(TextUtils.isEmpty(opportunityItem.name) ? "" : opportunityItem.name);
-        tvOpportunityAssignedTo_VLIP.setText((opportunityItem.salesPerson != null && !TextUtils.isEmpty(opportunityItem.salesPerson.fullName))
-                ? opportunityItem.salesPerson.fullName : "");
-        tvOpportunityStatus_VLIP.setText((opportunityItem.workflow != null && !TextUtils.isEmpty(opportunityItem.workflow.name))
-                ? opportunityItem.workflow.name : "");
+        flOpportunityItemContainer_VLIO.setSelected(data.isSelected());
     }
+
 }

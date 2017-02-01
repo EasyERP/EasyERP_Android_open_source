@@ -5,7 +5,7 @@ import android.support.v4.util.Pair;
 /**
  * @author michael.soyma@thinkmobiles.com (Created on 1/18/2017.)
  */
-public abstract class MasterFlowSelectablePresenterHelper<ID_TYPE> implements MasterFlowSelectableBasePresenter<ID_TYPE> {
+public abstract class MasterFlowSelectablePresenterHelper<ID_TYPE, DH_TYPE extends MasterFlowSelectableDHHelper<ID_TYPE>> implements MasterFlowSelectableBasePresenter<ID_TYPE, DH_TYPE> {
 
     protected Pair<Integer, ID_TYPE> selectedInfo;
 

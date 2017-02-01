@@ -1,14 +1,13 @@
 package com.thinkmobiles.easyerp.presentation.screens.crm.persons.details;
 
 import android.text.TextUtils;
-import android.util.Log;
 
 import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.data.model.crm.persons.details.OpportunityItem;
 import com.thinkmobiles.easyerp.data.model.crm.persons.details.ResponseGetPersonDetails;
 import com.thinkmobiles.easyerp.presentation.EasyErpApplication;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.HistoryDH;
-import com.thinkmobiles.easyerp.presentation.holders.data.crm.OpportunityDH;
+import com.thinkmobiles.easyerp.presentation.holders.data.crm.OpportunityPreviewDH;
 import com.thinkmobiles.easyerp.presentation.managers.DateManager;
 import com.thinkmobiles.easyerp.presentation.utils.StringUtil;
 
@@ -28,7 +27,7 @@ public class PersonDetailsPresenter implements PersonDetailsContract.PersonDetai
     private String personID;
     private CompositeSubscription compositeSubscription;
 
-    private ResponseGetPersonDetails currentLead;
+    private ResponseGetPersonDetails currentPerson;
     private boolean isVisibleHistory;
     private String notSpecified;
 
@@ -54,20 +53,25 @@ public class PersonDetailsPresenter implements PersonDetailsContract.PersonDetai
         compositeSubscription.add(model.getPersonDetails(personID)
                 .subscribe(responseGetPersonDetails -> {
                     view.showProgress(false);
-                    setData(responseGetPersonDetails);
+                    currentPerson = responseGetPersonDetails;
+                    setData(currentPerson);
+                    view.displayError(null);
                 }, throwable -> {
-                    Log.d("HTTP", "Error while retrieve person details data = " + throwable.getMessage());
                     view.showProgress(false);
+                    if(currentPerson != null && currentPerson.id.equalsIgnoreCase(personID))
+                        view.showMessage(throwable.getMessage());
+                    else
+                        view.displayError(throwable.getMessage());
                 }));
     }
 
     @Override
     public void subscribe() {
-        if (currentLead == null) {
+        if (currentPerson == null || !currentPerson.id.equalsIgnoreCase(personID)) {
             view.showProgress(true);
             refresh();
         } else {
-            setData(currentLead);
+            setData(currentPerson);
         }
     }
 
@@ -186,10 +190,10 @@ public class PersonDetailsPresenter implements PersonDetailsContract.PersonDetai
 
     private void setOpportunities(ResponseGetPersonDetails data) {
         if(data.opportunities != null && !data.opportunities.isEmpty()) {
-            ArrayList<OpportunityDH> opportunityDHs = new ArrayList<>();
+            ArrayList<OpportunityPreviewDH> opportunityPreviewDHs = new ArrayList<>();
             for(OpportunityItem item : data.opportunities)
-                opportunityDHs.add(new OpportunityDH(item));
-            view.displayOpportunities(opportunityDHs);
+                opportunityPreviewDHs.add(new OpportunityPreviewDH(item));
+            view.displayOpportunities(opportunityPreviewDHs);
         }
     }
 

@@ -74,6 +74,7 @@ public class PersonsFragment extends SimpleListWithRefreshFragment implements Pe
         scrollListener = new EndlessRecyclerViewScrollListener(llm) {
             @Override
             public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
+
                 displayProgress(true);
                 presenter.loadMore(page);
             }
@@ -81,13 +82,7 @@ public class PersonsFragment extends SimpleListWithRefreshFragment implements Pe
         listRecycler.setLayoutManager(llm);
         listRecycler.setAdapter(personsAdapter);
         listRecycler.addOnScrollListener(scrollListener);
-        personsAdapter.setOnCardClickListener((view, position, viewType) -> {
-            final PersonDH itemDH = personsAdapter.getItem(position);
-            personsAdapter.replaceSelectedItem(presenter.getSelectedItemPosition(), position);
-            if (position != presenter.getSelectedItemPosition())
-                presenter.displayPersonDetails(itemDH.getPersonModel().id);
-            presenter.setSelectedInfo(position, itemDH.getId());
-        });
+        personsAdapter.setOnCardClickListener((view, position, viewType) -> presenter.selectItem(personsAdapter.getItem(position), position));
 
         loadWithProgressBar();
     }
@@ -118,6 +113,7 @@ public class PersonsFragment extends SimpleListWithRefreshFragment implements Pe
     @Override
     public void displayPersons(ArrayList<PersonDH> personDHs, boolean needClear) {
         errorViewHelper.hideError();
+        alphabetView_FP.setVisibility(View.VISIBLE);
         displayProgress(false);
         swipeContainer.setRefreshing(false);
 
@@ -135,9 +131,11 @@ public class PersonsFragment extends SimpleListWithRefreshFragment implements Pe
         swipeContainer.setRefreshing(false);
 
         final String resultMsg = errorType.equals(ErrorViewHelper.ErrorType.LIST_EMPTY) ? string_list_is_empty : msg;
-        if (getCountItemsNow() == 0)
+        if (getCountItemsNow() == 0) {
+            alphabetView_FP.setVisibility(View.GONE);
             errorViewHelper.showErrorMsg(resultMsg, errorType);
-        else Toast.makeText(mActivity, resultMsg, Toast.LENGTH_LONG).show();
+        } else
+            Toast.makeText(mActivity, resultMsg, Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -158,8 +156,14 @@ public class PersonsFragment extends SimpleListWithRefreshFragment implements Pe
     }
 
     @Override
+    public void changeSelectedItem(int oldPosition, int newPosition) {
+        personsAdapter.replaceSelectedItem(oldPosition, newPosition);
+    }
+
+    @Override
     public void onDestroyView() {
         super.onDestroyView();
         if (presenter != null) presenter.unsubscribe();
     }
+
 }

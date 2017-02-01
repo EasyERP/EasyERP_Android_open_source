@@ -1,5 +1,6 @@
 package com.thinkmobiles.easyerp.presentation.base;
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
 import android.os.Bundle;
@@ -35,7 +36,7 @@ public abstract class BaseFragment<T extends BaseMasterFlowActivity> extends Fra
     protected InputMethodManager inputMethodManager;
 
     @Override
-    public void onAttach(Context context) {
+    public void onAttach(Activity context) {
         super.onAttach(context);
         try {
             mActivity = (T) context;
@@ -62,9 +63,7 @@ public abstract class BaseFragment<T extends BaseMasterFlowActivity> extends Fra
     @Override
     public void onStop() {
         super.onStop();
-        if(getView() != null) {
-            inputMethodManager.hideSoftInputFromWindow(getView().getWindowToken(), InputMethodManager.RESULT_UNCHANGED_SHOWN);
-        }
+        hideKeyboard();
     }
 
     public void displayProgress(boolean isShow) {
@@ -104,4 +103,10 @@ public abstract class BaseFragment<T extends BaseMasterFlowActivity> extends Fra
     public void optionsMenuInitialized(final Menu menu) {}
 
     protected abstract boolean needProgress();
+
+    protected void hideKeyboard() {
+        if(getView() != null) {
+            inputMethodManager.hideSoftInputFromWindow(getView().getWindowToken(), InputMethodManager.RESULT_UNCHANGED_SHOWN);
+        }
+    }
 }
