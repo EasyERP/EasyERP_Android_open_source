@@ -34,7 +34,7 @@ public class OpportunitiesPresenter extends MasterFlowSelectablePresenterHelper<
         compositeSubscription.add(
                 model.getOpportunities(page)
                         .subscribe(
-                                responseGetLeads -> view.displayOpportunities(prepareOpportunitiesDHs(responseGetLeads, needClear), needClear),
+                                responseGetOpportunities -> view.displayOpportunities(prepareOpportunitiesDHs(responseGetOpportunities, needClear), needClear),
                                 t -> view.displayError(t.getMessage(), ErrorViewHelper.ErrorType.NETWORK)));
     }
 
