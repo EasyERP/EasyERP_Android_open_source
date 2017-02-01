@@ -34,7 +34,7 @@ public class OpportunitiesPresenter extends MasterFlowSelectablePresenterHelper<
         compositeSubscription.add(
                 model.getOpportunities(page)
                         .subscribe(
-                                responseGetLeads -> view.displayOpportunities(prepareLeadDHs(responseGetLeads, needClear), needClear),
+                                responseGetLeads -> view.displayOpportunities(prepareOpportunitiesDHs(responseGetLeads, needClear), needClear),
                                 t -> view.displayError(t.getMessage(), ErrorViewHelper.ErrorType.NETWORK)));
     }
 
@@ -53,7 +53,7 @@ public class OpportunitiesPresenter extends MasterFlowSelectablePresenterHelper<
         if(compositeSubscription.hasSubscriptions()) compositeSubscription.clear();
     }
 
-    private ArrayList<OpportunityDH> prepareLeadDHs(ResponseGetOpportunities responseGetOpportunities, boolean isFirstPage) {
+    private ArrayList<OpportunityDH> prepareOpportunitiesDHs(ResponseGetOpportunities responseGetOpportunities, boolean isFirstPage) {
         int position = 0;
         final ArrayList<OpportunityDH> result = new ArrayList<>();
         for (OpportunityListItem opportunityItem : responseGetOpportunities.data) {
