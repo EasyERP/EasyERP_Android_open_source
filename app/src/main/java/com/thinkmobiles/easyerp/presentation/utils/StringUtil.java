@@ -9,7 +9,7 @@ import android.text.Spanned;
 import android.text.TextUtils;
 import android.text.style.StyleSpan;
 
-import com.thinkmobiles.easyerp.data.model.crm.leads.LeadTag;
+import com.thinkmobiles.easyerp.data.model.crm.leads.TagItem;
 import com.thinkmobiles.easyerp.data.model.crm.leads.detail.Address;
 import com.thinkmobiles.easyerp.data.model.crm.leads.detail.AttachmentItem;
 import com.thinkmobiles.easyerp.data.model.crm.leads.detail.NoteItem;
@@ -133,13 +133,13 @@ public abstract class StringUtil {
 
 
 
-    public static SpannableStringBuilder prepareTags(ArrayList<LeadTag> leadTags) {
+    public static SpannableStringBuilder prepareTags(ArrayList<TagItem> tagItems) {
         SpannableStringBuilder stringBuilder = new SpannableStringBuilder();
 
         String between = "   ";
         int tagStart = 0;
 
-        for (LeadTag tag : leadTags) {
+        for (TagItem tag : tagItems) {
             // Append tag and space after
             stringBuilder.append(tag.name);
             stringBuilder.append(between);

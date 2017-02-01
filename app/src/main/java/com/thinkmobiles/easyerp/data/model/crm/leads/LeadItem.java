@@ -46,7 +46,7 @@ public class LeadItem implements Parcelable {
     public String expectedClosing;
     public String name;
     public String priority;
-    public ArrayList<LeadTag> tags;
+    public ArrayList<TagItem> tags;
     public String source;
 
     public LeadItem() {
@@ -80,7 +80,7 @@ public class LeadItem implements Parcelable {
         this.expectedClosing = in.readString();
         this.name = in.readString();
         this.priority = in.readString();
-        this.tags = in.createTypedArrayList(LeadTag.CREATOR);
+        this.tags = in.createTypedArrayList(TagItem.CREATOR);
         this.source = in.readString();
     }
 

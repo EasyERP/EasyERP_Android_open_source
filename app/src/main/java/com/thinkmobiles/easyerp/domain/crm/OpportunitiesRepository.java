@@ -6,6 +6,7 @@ import com.thinkmobiles.easyerp.data.model.crm.opportunities.detail.ResponseGetO
 import com.thinkmobiles.easyerp.data.services.OpportunityService;
 import com.thinkmobiles.easyerp.presentation.base.NetworkRepository;
 import com.thinkmobiles.easyerp.presentation.screens.crm.opportunities.OpportunitiesContract;
+import com.thinkmobiles.easyerp.presentation.screens.crm.opportunities.details.OpportunityDetailsContract;
 
 import org.androidannotations.annotations.EBean;
 
@@ -16,7 +17,7 @@ import rx.Observable;
  */
 
 @EBean
-public class OpportunitiesRepository extends NetworkRepository implements OpportunitiesContract.OpportunitiesModel {
+public class OpportunitiesRepository extends NetworkRepository implements OpportunitiesContract.OpportunitiesModel, OpportunityDetailsContract.OpportunityDetailsModel {
 
     private OpportunityService opportunityService;
 

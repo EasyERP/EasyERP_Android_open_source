@@ -12,6 +12,7 @@ import com.thinkmobiles.easyerp.data.model.crm.leads.detail.NoteItem;
 import com.thinkmobiles.easyerp.data.model.crm.leads.detail.Phone;
 import com.thinkmobiles.easyerp.data.model.crm.leads.detail.SalesPerson;
 import com.thinkmobiles.easyerp.data.model.crm.leads.detail.Social;
+import com.thinkmobiles.easyerp.data.model.crm.opportunities.list_item.ExpectedRevenue;
 
 import java.util.ArrayList;
 
@@ -59,6 +60,9 @@ public class OpportunityItem implements Parcelable {
     public ExpectedRevenue expectedRevenue;
     public String name;
     public boolean isOpportunitie;
+
+    public OpportunityItem() {
+    }
 
     @Override
     public int describeContents() {
@@ -108,9 +112,6 @@ public class OpportunityItem implements Parcelable {
         dest.writeByte(this.isOpportunitie ? (byte) 1 : (byte) 0);
     }
 
-    public OpportunityItem() {
-    }
-
     protected OpportunityItem(Parcel in) {
         this._id = in.readString();
         this.skype = in.readString();
@@ -153,7 +154,7 @@ public class OpportunityItem implements Parcelable {
         this.isOpportunitie = in.readByte() != 0;
     }
 
-    public static final Parcelable.Creator<OpportunityItem> CREATOR = new Parcelable.Creator<OpportunityItem>() {
+    public static final Creator<OpportunityItem> CREATOR = new Creator<OpportunityItem>() {
         @Override
         public OpportunityItem createFromParcel(Parcel source) {
             return new OpportunityItem(source);

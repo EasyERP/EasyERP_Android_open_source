@@ -1,14 +1,15 @@
 package com.thinkmobiles.easyerp.data.model.crm.opportunities.detail;
 
-import android.nfc.Tag;
 import android.os.Parcel;
 import android.os.Parcelable;
 
 import com.google.gson.annotations.SerializedName;
+import com.thinkmobiles.easyerp.data.model.crm.leads.TagItem;
 import com.thinkmobiles.easyerp.data.model.crm.leads.Workflow;
 import com.thinkmobiles.easyerp.data.model.crm.leads.detail.AttachmentItem;
 import com.thinkmobiles.easyerp.data.model.crm.leads.detail.Company;
 import com.thinkmobiles.easyerp.data.model.crm.leads.detail.Customer;
+import com.thinkmobiles.easyerp.data.model.crm.leads.detail.LeadCompany;
 import com.thinkmobiles.easyerp.data.model.crm.leads.detail.NoteItem;
 import com.thinkmobiles.easyerp.data.model.crm.leads.detail.SalesPerson;
 import com.thinkmobiles.easyerp.data.model.crm.opportunities.list_item.ExpectedRevenue;
@@ -29,10 +30,13 @@ public class ResponseGetOpportunityDetails implements Parcelable {
     public String priority;
     public String expectedClosing;  //"2017-01-31T00:00:00.000Z"
     public SalesPerson salesPerson;
-    public ArrayList<Tag> tags;
+    public ArrayList<TagItem> tags;
     public Customer customer;
-    public Company company;
+    public LeadCompany company;
     public ExpectedRevenue expectedRevenue;
+
+    public ResponseGetOpportunityDetails() {
+    }
 
     @Override
     public int describeContents() {
@@ -55,9 +59,6 @@ public class ResponseGetOpportunityDetails implements Parcelable {
         dest.writeParcelable(this.expectedRevenue, flags);
     }
 
-    public ResponseGetOpportunityDetails() {
-    }
-
     protected ResponseGetOpportunityDetails(Parcel in) {
         this.id = in.readString();
         this.name = in.readString();
@@ -67,13 +68,13 @@ public class ResponseGetOpportunityDetails implements Parcelable {
         this.priority = in.readString();
         this.expectedClosing = in.readString();
         this.salesPerson = in.readParcelable(SalesPerson.class.getClassLoader());
-        this.tags = in.createTypedArrayList(Tag.CREATOR);
+        this.tags = in.createTypedArrayList(TagItem.CREATOR);
         this.customer = in.readParcelable(Customer.class.getClassLoader());
-        this.company = in.readParcelable(Company.class.getClassLoader());
+        this.company = in.readParcelable(LeadCompany.class.getClassLoader());
         this.expectedRevenue = in.readParcelable(ExpectedRevenue.class.getClassLoader());
     }
 
-    public static final Parcelable.Creator<ResponseGetOpportunityDetails> CREATOR = new Parcelable.Creator<ResponseGetOpportunityDetails>() {
+    public static final Creator<ResponseGetOpportunityDetails> CREATOR = new Creator<ResponseGetOpportunityDetails>() {
         @Override
         public ResponseGetOpportunityDetails createFromParcel(Parcel source) {
             return new ResponseGetOpportunityDetails(source);
