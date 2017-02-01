@@ -97,7 +97,6 @@ public class PersonsFragment extends SimpleListWithRefreshFragment implements Pe
     public void onRefresh() {
         errorViewHelper.hideError();
         scrollListener.resetState();
-        presenter.setSelectedInfo(-1, presenter.getSelectedItemId());
         presenter.subscribe();
     }
 

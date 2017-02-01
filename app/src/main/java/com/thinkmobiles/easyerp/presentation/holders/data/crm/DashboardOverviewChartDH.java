@@ -3,7 +3,7 @@ package com.thinkmobiles.easyerp.presentation.holders.data.crm;
 import com.michenko.simpleadapter.RecyclerDH;
 
 /**
- * Created by Asus_Dev on 1/26/2017.
+ * @author michael.soyma@thinkmobiles.com (Created on 1/26/2017.)
  */
 
 public class DashboardOverviewChartDH extends RecyclerDH {

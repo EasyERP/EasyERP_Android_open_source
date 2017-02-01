@@ -1,14 +1,13 @@
 package com.thinkmobiles.easyerp.presentation.custom.views;
 
 import android.content.Context;
-import android.graphics.Canvas;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.LinearLayout;
 
 /**
- * Created by Asus_Dev on 1/27/2017.
+ * @author michael.soyma@thinkmobiles.com (Created on 1/27/2017.)
  */
 
 public class MasterFlowToolbarLayout extends LinearLayout {

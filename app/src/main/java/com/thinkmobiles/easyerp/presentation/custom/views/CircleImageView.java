@@ -15,7 +15,7 @@ import android.util.AttributeSet;
 import android.view.animation.Animation;
 
 /**
- * Created by Asus_Dev on 1/16/2017.
+ * @author michael.soyma@thinkmobiles.com (Created on 1/16/2017.)
  */
 
 public class CircleImageView extends AppCompatImageView {

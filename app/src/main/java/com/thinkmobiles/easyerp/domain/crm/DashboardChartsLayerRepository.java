@@ -10,7 +10,7 @@ import org.androidannotations.annotations.EBean;
 import rx.Observable;
 
 /**
- * Created by Asus_Dev on 1/19/2017.
+ * @author michael.soyma@thinkmobiles.com (Created on 1/19/2017.)
  */
 @EBean(scope = EBean.Scope.Singleton)
 class DashboardChartsLayerRepository {

@@ -77,4 +77,5 @@ dependencies {
 
     compile project(path: ':rangepickerdialog')
     compile 'com.github.PhilJay:MPAndroidChart:v3.0.1'
+
 }

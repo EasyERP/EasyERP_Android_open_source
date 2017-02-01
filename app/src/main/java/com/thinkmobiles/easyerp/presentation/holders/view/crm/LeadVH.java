@@ -12,15 +12,10 @@ import android.widget.TextView;
 import com.michenko.simpleadapter.OnCardClickListener;
 import com.michenko.simpleadapter.RecyclerVH;
 import com.thinkmobiles.easyerp.R;
-import com.thinkmobiles.easyerp.data.model.crm.leads.LeadTag;
 import com.thinkmobiles.easyerp.presentation.custom.RoundedBackgroundSpan;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.LeadDH;
 import com.thinkmobiles.easyerp.presentation.managers.DateManager;
 import com.thinkmobiles.easyerp.presentation.managers.TagHelper;
-import com.thinkmobiles.easyerp.presentation.utils.Constants;
-
-import java.util.ArrayList;
-import java.util.Date;
 
 /**
  * Created by Lynx on 1/16/2017.

@@ -10,7 +10,7 @@ import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.DashboardListDH;
 
 /**
- * Created by Asus_Dev on 1/18/2017.
+ * @author michael.soyma@thinkmobiles.com (Created on 1/18/2017.)
  */
 
 public class DashboardVH extends RecyclerVH<DashboardListDH> {

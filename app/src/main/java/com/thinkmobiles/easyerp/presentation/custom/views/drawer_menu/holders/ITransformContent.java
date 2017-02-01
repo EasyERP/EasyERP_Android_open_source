@@ -1,7 +1,7 @@
 package com.thinkmobiles.easyerp.presentation.custom.views.drawer_menu.holders;
 
 /**
- * Created by Asus_Dev on 1/16/2017.
+ * @author michael.soyma@thinkmobiles.com (Created on 1/16/2017.)
  */
 
 public interface ITransformContent {

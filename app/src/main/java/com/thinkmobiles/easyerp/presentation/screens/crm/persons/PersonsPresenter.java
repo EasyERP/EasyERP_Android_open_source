@@ -1,7 +1,6 @@
 package com.thinkmobiles.easyerp.presentation.screens.crm.persons;
 
 import android.text.TextUtils;
-import android.util.Log;
 
 import com.thinkmobiles.easyerp.data.model.crm.persons.CommonPersonsResponse;
 import com.thinkmobiles.easyerp.data.model.crm.persons.ResponseGetPersons;
