@@ -3,12 +3,7 @@ package com.thinkmobiles.easyerp.data.model.crm.dashboard.detail.order;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.google.gson.annotations.SerializedName;
 import com.thinkmobiles.easyerp.data.model.crm.dashboard.detail.IChartModel;
-import com.thinkmobiles.easyerp.data.model.crm.dashboard.detail.invoice.Currency;
-import com.thinkmobiles.easyerp.data.model.crm.dashboard.detail.invoice.PaymentInfo;
-import com.thinkmobiles.easyerp.data.model.crm.dashboard.detail.invoice.SalesPerson;
-import com.thinkmobiles.easyerp.data.model.crm.leads.Workflow;
 
 import java.util.List;
 

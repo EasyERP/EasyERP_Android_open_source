@@ -6,8 +6,6 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.thinkmobiles.easyerp.R;
-import com.thinkmobiles.easyerp.data.model.crm.dashboard.detail.order.OrderItem;
-import com.thinkmobiles.easyerp.data.services.OrderService;
 import com.thinkmobiles.easyerp.domain.crm.OrderRepository;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.OrdersAdapter;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
@@ -74,13 +72,7 @@ public class OrdersFragment extends SimpleListWithRefreshFragment implements Ord
         listRecycler.setLayoutManager(llm);
         listRecycler.setAdapter(ordersAdapter);
         listRecycler.addOnScrollListener(scrollListener);
-        ordersAdapter.setOnCardClickListener((view, position, viewType) -> {
-            final OrderDH itemDH = ordersAdapter.getItem(position);
-            ordersAdapter.replaceSelectedItem(presenter.getSelectedItemPosition(), position);
-            if (position != presenter.getSelectedItemPosition())
-                presenter.displayOrderDetail(itemDH.getOrder().id);
-            presenter.setSelectedInfo(position, itemDH.getId());
-        });
+        ordersAdapter.setOnCardClickListener((view, position, viewType) -> presenter.selectItem(ordersAdapter.getItem(position), position));
 
         loadWithProgressBar();
     }
@@ -101,6 +93,11 @@ public class OrdersFragment extends SimpleListWithRefreshFragment implements Ord
     @Override
     public int getCountItemsNow() {
         return ordersAdapter.getItemCount();
+    }
+
+    @Override
+    public void changeSelectedItem(int oldPosition, int newPosition) {
+        ordersAdapter.replaceSelectedItem(oldPosition, newPosition);
     }
 
     @Override
@@ -130,7 +127,11 @@ public class OrdersFragment extends SimpleListWithRefreshFragment implements Ord
 
     @Override
     public void openOrderDetailsScreen(String orderID) {
-        //TODO open orders detail
+        if (orderID != null) {
+            //TODO open order detail
+        } else {
+            mActivity.replaceFragmentContentDetail(null);
+        }
     }
 
     @Override

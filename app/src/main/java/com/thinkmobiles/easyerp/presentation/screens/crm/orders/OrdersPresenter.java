@@ -1,10 +1,8 @@
 package com.thinkmobiles.easyerp.presentation.screens.crm.orders;
 
-import com.thinkmobiles.easyerp.data.model.crm.dashboard.DashboardListItem;
 import com.thinkmobiles.easyerp.data.model.crm.orders.Order;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectablePresenterHelper;
-import com.thinkmobiles.easyerp.presentation.holders.data.crm.DashboardListDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.OrderDH;
 
 import java.util.ArrayList;
@@ -17,7 +15,7 @@ import rx.subscriptions.CompositeSubscription;
  *         Company: Thinkmobiles
  *         Email: michael.soyma@thinkmobiles.com
  */
-public class OrdersPresenter extends MasterFlowSelectablePresenterHelper<String> implements OrdersContract.OrdersPresenter {
+public class OrdersPresenter extends MasterFlowSelectablePresenterHelper<String, OrderDH> implements OrdersContract.OrdersPresenter {
 
     private OrdersContract.OrdersView view;
     private OrdersContract.OrdersModel model;
@@ -54,8 +52,13 @@ public class OrdersPresenter extends MasterFlowSelectablePresenterHelper<String>
     }
 
     @Override
-    public void displayOrderDetail(String orderId) {
-        view.openOrderDetailsScreen(orderId);
+    public void selectItem(OrderDH dh, int position) {
+        if (position != getSelectedItemPosition()) {
+            view.changeSelectedItem(getSelectedItemPosition(), position);
+            setSelectedInfo(position, dh.getId());
+            view.openOrderDetailsScreen(dh.getId());
+        }
+
     }
 
     private ArrayList<OrderDH> prepareOrderDHs(final List<Order> orders) {

@@ -2,9 +2,7 @@ package com.thinkmobiles.easyerp.presentation.adapters.crm;
 
 import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectableAdapter;
-import com.thinkmobiles.easyerp.presentation.holders.data.crm.LeadDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.OrderDH;
-import com.thinkmobiles.easyerp.presentation.holders.view.crm.LeadVH;
 import com.thinkmobiles.easyerp.presentation.holders.view.crm.OrderVH;
 
 import org.androidannotations.annotations.EBean;

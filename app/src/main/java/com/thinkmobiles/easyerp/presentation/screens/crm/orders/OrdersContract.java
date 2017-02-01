@@ -1,7 +1,5 @@
 package com.thinkmobiles.easyerp.presentation.screens.crm.orders;
 
-import com.thinkmobiles.easyerp.data.model.crm.dashboard.detail.order.OrderItem;
-import com.thinkmobiles.easyerp.data.model.crm.orders.Order;
 import com.thinkmobiles.easyerp.data.model.crm.orders.ResponseGetOrders;
 import com.thinkmobiles.easyerp.presentation.base.BaseModel;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
@@ -10,7 +8,6 @@ import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectableBase
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.OrderDH;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import rx.Observable;
 
@@ -24,9 +21,8 @@ public interface OrdersContract {
         void displayError(final String msg, final ErrorViewHelper.ErrorType errorType);
         void openOrderDetailsScreen(String orderID);
     }
-    interface OrdersPresenter extends MasterFlowSelectableBasePresenter<String> {
+    interface OrdersPresenter extends MasterFlowSelectableBasePresenter<String, OrderDH> {
         void loadOrders(int page);
-        void displayOrderDetail(String orderId);
     }
     interface OrdersModel extends BaseModel {
         Observable<ResponseGetOrders> getOrders();
