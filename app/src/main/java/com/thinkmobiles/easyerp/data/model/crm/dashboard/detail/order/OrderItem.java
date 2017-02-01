@@ -13,21 +13,11 @@ import com.thinkmobiles.easyerp.data.model.crm.leads.Workflow;
 import java.util.List;
 
 /**
- * Created by Asus_Dev on 1/19/2017.
+ * @author michael.soyma@thinkmobiles.com (Created on 1/19/2017.)
  */
 
-public class OrderItem implements Parcelable, IChartModel {
+public class OrderItem extends OrderBase implements Parcelable, IChartModel {
 
-    @SerializedName("_id")
-    public String id;
-    public Double total;
-    public Integer count;
-    public String name;
-    public String orderDate;
-    public Workflow workflow;
-    public SalesPerson supplier;
-    public PaymentInfo paymentInfo;
-    public Currency currency;
     public List<OrderStatus> status;
 
     @Override
@@ -37,13 +27,7 @@ public class OrderItem implements Parcelable, IChartModel {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(this.id);
-        dest.writeValue(this.total);
-        dest.writeValue(this.count);
-        dest.writeString(this.name);
-        dest.writeString(this.orderDate);
-        dest.writeParcelable(this.workflow, flags);
-        dest.writeParcelable(this.supplier, flags);
+        super.writeToParcel(dest, flags);
         dest.writeTypedList(this.status);
     }
 
@@ -51,13 +35,7 @@ public class OrderItem implements Parcelable, IChartModel {
     }
 
     protected OrderItem(Parcel in) {
-        this.id = in.readString();
-        this.total = (Double) in.readValue(Double.class.getClassLoader());
-        this.count = (Integer) in.readValue(Integer.class.getClassLoader());
-        this.name = in.readString();
-        this.orderDate = in.readString();
-        this.workflow = in.readParcelable(Workflow.class.getClassLoader());
-        this.supplier = in.readParcelable(SalesPerson.class.getClassLoader());
+        super(in);
         this.status = in.createTypedArrayList(OrderStatus.CREATOR);
     }
 

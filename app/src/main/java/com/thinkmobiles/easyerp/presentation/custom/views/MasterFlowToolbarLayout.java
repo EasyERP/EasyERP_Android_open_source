@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 
 /**
- * Created by Asus_Dev on 1/27/2017.
+ * @author michael.soyma@thinkmobiles.com (Created on 1/27/2017.)
  */
 
 public class MasterFlowToolbarLayout extends LinearLayout {

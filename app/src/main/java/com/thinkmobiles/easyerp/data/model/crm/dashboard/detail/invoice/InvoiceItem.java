@@ -10,7 +10,7 @@ import com.thinkmobiles.easyerp.data.model.crm.leads.EditedBy;
 import com.thinkmobiles.easyerp.data.model.crm.leads.Workflow;
 
 /**
- * Created by Asus_Dev on 1/19/2017.
+ * @author michael.soyma@thinkmobiles.com (Created on 1/19/2017.)
  */
 
 public class InvoiceItem implements Parcelable, IChartModel, Comparable<InvoiceItem> {

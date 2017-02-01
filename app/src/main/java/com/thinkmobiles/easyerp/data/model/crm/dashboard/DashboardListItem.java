@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName;
 import com.thinkmobiles.easyerp.data.model.crm.dashboard.detail.DashboardChartType;
 
 /**
- * Created by Asus_Dev on 1/18/2017.
+ * @author michael.soyma@thinkmobiles.com (Created on 1/18/2017.)
  */
 
 public class DashboardListItem implements Parcelable {

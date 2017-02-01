@@ -129,7 +129,6 @@ public class LeadsFragment extends SimpleListWithRefreshFragment implements Lead
     public void onRefresh() {
         errorViewHelper.hideError();
         scrollListener.resetState();
-        presenter.setSelectedInfo(-1, presenter.getSelectedItemId());
         presenter.subscribe();
     }
 

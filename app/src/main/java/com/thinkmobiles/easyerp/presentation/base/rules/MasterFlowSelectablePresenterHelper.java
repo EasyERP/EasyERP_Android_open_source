@@ -3,7 +3,7 @@ package com.thinkmobiles.easyerp.presentation.base.rules;
 import android.support.v4.util.Pair;
 
 /**
- * Created by Asus_Dev on 1/18/2017.
+ * @author michael.soyma@thinkmobiles.com (Created on 1/18/2017.)
  */
 public abstract class MasterFlowSelectablePresenterHelper<ID_TYPE> implements MasterFlowSelectableBasePresenter<ID_TYPE> {
 
@@ -26,7 +26,7 @@ public abstract class MasterFlowSelectablePresenterHelper<ID_TYPE> implements Ma
 
     @Override
     public void makeSelectedDHIfNeed(final MasterFlowSelectableDHHelper<ID_TYPE> dhHelper, final MasterFlowSelectableBaseView baseViewWithCountItemsLeft, final int currentPositionInData, boolean isRefresh) {
-        if (getSelectedItemPosition() == -1 && dhHelper.getId().equals(getSelectedItemId())) {
+        if (dhHelper.getId().equals(getSelectedItemId())) {
             dhHelper.setSelected(true);
             setSelectedInfo((isRefresh ? 0 : baseViewWithCountItemsLeft.getCountItemsNow()) + currentPositionInData, getSelectedItemId());
         }

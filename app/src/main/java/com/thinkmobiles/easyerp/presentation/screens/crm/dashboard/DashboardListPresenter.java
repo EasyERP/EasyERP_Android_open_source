@@ -11,7 +11,7 @@ import java.util.List;
 import rx.subscriptions.CompositeSubscription;
 
 /**
- * Created by Asus_Dev on 1/18/2017.
+ * @author michael.soyma@thinkmobiles.com (Created on 1/18/2017.)
  */
 
 public class DashboardListPresenter extends MasterFlowSelectablePresenterHelper<String> implements DashboardListContract.DashboardListPresenter {

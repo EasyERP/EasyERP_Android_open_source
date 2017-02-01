@@ -2,6 +2,7 @@ package com.thinkmobiles.easyerp.domain.crm;
 
 import com.thinkmobiles.easyerp.data.api.Rest;
 import com.thinkmobiles.easyerp.data.model.crm.dashboard.detail.order.OrderItem;
+import com.thinkmobiles.easyerp.data.model.crm.orders.Order;
 import com.thinkmobiles.easyerp.data.services.OrderService;
 import com.thinkmobiles.easyerp.presentation.screens.crm.orders.OrdersContract;
 
@@ -32,7 +33,7 @@ public class OrderRepository implements OrdersContract.OrdersModel {
     }
 
     @Override
-    public Observable<List<OrderItem>> getOrders() {
+    public Observable<List<Order>> getOrders() {
         return orderService.getOrder();
     }
 

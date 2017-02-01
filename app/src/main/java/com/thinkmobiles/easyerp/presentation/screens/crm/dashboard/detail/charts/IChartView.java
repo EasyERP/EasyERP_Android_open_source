@@ -3,7 +3,7 @@ package com.thinkmobiles.easyerp.presentation.screens.crm.dashboard.detail.chart
 import android.widget.FrameLayout;
 
 /**
- * Created by Asus_Dev on 1/24/2017.
+ * @author michael.soyma@thinkmobiles.com (Created on 1/24/2017.)
  */
 
 public interface IChartView<T> {

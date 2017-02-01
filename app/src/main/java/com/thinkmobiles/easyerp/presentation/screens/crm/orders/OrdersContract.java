@@ -1,6 +1,7 @@
 package com.thinkmobiles.easyerp.presentation.screens.crm.orders;
 
 import com.thinkmobiles.easyerp.data.model.crm.dashboard.detail.order.OrderItem;
+import com.thinkmobiles.easyerp.data.model.crm.orders.Order;
 import com.thinkmobiles.easyerp.presentation.base.BaseModel;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectableBasePresenter;
@@ -25,6 +26,6 @@ public interface OrdersContract {
         void displayOrderDetail(String orderId);
     }
     interface OrdersModel extends BaseModel {
-        Observable<List<OrderItem>> getOrders();
+        Observable<List<Order>> getOrders();
     }
 }

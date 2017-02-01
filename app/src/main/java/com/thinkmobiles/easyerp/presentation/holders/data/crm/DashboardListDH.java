@@ -4,7 +4,7 @@ import com.thinkmobiles.easyerp.data.model.crm.dashboard.DashboardListItem;
 import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectableDHHelper;
 
 /**
- * Created by Asus_Dev on 1/18/2017.
+ * @author michael.soyma@thinkmobiles.com (Created on 1/18/2017.)
  */
 
 public class DashboardListDH extends MasterFlowSelectableDHHelper<String> {
