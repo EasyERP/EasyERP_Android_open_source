@@ -37,15 +37,11 @@ public abstract class TagHelper {
     public static final String MEDIUM               = "Med";
     public static final String HOT                  = "Hot";
 
-    public static final String PENDING_PO           = "Pending PO";
-    public static final String PRODUCT_RECEIVED     = "Product received";
-    public static final String ON_HOLD              = "On hold";
-    public static final String DRAFT_QUOTATION      = "Draft/ Quotation";
-    public static final String NEW_ORDER            = "New Order";
-    public static final String PROCESSING           = "Processing";
+    public static final String PENDING              = "Pending";
+    public static final String NEW                  = "New";
+    public static final String IN_PROGRESS          = "In Progress";
     public static final String CANCELLED            = "Cancelled";
-    public static final String INVOICED             = "Invoiced";
-    public static final String INVOICED_RECEIVED    = "Invoiced received";
+    public static final String DONE                 = "Done";
 
     public static int getColorResIdByName(String colorName) {
         switch (colorName) {
@@ -79,23 +75,15 @@ public abstract class TagHelper {
             case HOT:
                 return R.color.color_chips_red;
 
-            case PENDING_PO:
+            case PENDING:
                 return R.color.color_chips_grey;
-            case PRODUCT_RECEIVED:
+            case NEW:
                 return R.color.color_chips_grey;
-            case ON_HOLD:
-                return R.color.color_chips_grey;
-            case DRAFT_QUOTATION:
-                return R.color.color_chips_grey;
-            case NEW_ORDER:
-                return R.color.color_chips_grey;
-            case PROCESSING:
+            case IN_PROGRESS:
                 return R.color.color_chips_light_blue;
             case CANCELLED:
                 return R.color.color_chips_grey;
-            case INVOICED:
-                return R.color.color_chips_green;
-            case INVOICED_RECEIVED:
+            case DONE:
                 return R.color.color_chips_green;
             default:
                 return R.color.tag_bg_grey;

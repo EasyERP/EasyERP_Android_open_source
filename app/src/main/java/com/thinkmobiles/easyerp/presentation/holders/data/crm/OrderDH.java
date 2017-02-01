@@ -1,7 +1,6 @@
 package com.thinkmobiles.easyerp.presentation.holders.data.crm;
 
-import com.thinkmobiles.easyerp.data.model.crm.dashboard.detail.order.OrderItem;
-import com.thinkmobiles.easyerp.data.model.crm.leads.LeadItem;
+import com.thinkmobiles.easyerp.data.model.crm.orders.Order;
 import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectableDHHelper;
 
 /**
@@ -9,19 +8,19 @@ import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectableDHHe
  */
 
 public class OrderDH extends MasterFlowSelectableDHHelper<String> {
-    private OrderItem orderItem;
+    private Order order;
 
-    public OrderDH(OrderItem orderItem) {
-        this.orderItem = orderItem;
+    public OrderDH(Order order) {
+        this.order = order;
     }
 
-    public OrderItem getOrderItem() {
-        return orderItem;
+    public Order getOrder() {
+        return order;
     }
 
     @Override
     public String getId() {
-        return orderItem.id;
+        return order.id;
     }
 
 }
