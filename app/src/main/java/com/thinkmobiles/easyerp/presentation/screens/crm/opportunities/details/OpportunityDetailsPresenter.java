@@ -95,7 +95,7 @@ public class OpportunityDetailsPresenter implements OpportunityDetailsContract.O
         if(data.company != null) {
             if(!TextUtils.isEmpty(data.company.imageSrc)) view.displayCompanyImage(data.company.imageSrc);
             if(!TextUtils.isEmpty(data.company.fullName)) view.displayCompanyTitleName(data.company.fullName);
-            if(!TextUtils.isEmpty(data.company.website)) view.displayCompanyUrl(data.company.website);
+            if(!TextUtils.isEmpty(data.company.website)) view.displayCompanyUrl(StringUtil.getClickableUrl(data.company.website, data.company.website));
             if(!TextUtils.isEmpty(data.company.fullName)) view.displayCompanyName(data.company.fullName);
             if(data.company.address != null) {
                 if(!TextUtils.isEmpty(data.company.address.street)) view.displayCompanyStreet(data.company.address.street);
