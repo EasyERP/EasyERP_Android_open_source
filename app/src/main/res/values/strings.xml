@@ -70,4 +70,6 @@
     <string name="dialog_btn_apply">Apply</string>
     <string name="dialog_btn_cancel">Cancel</string>
     <string name="dialog_btn_remove">Remove</string>
+    <string name="amount">Amount</string>
+    <string name="contact">Contact</string>
 </resources>
