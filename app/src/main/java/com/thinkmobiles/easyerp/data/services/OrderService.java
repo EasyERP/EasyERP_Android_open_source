@@ -19,7 +19,10 @@ import rx.Observable;
 public interface OrderService {
 
     @GET(Constants.GET_ORDER)
-    Observable<ResponseGetOrders> getOrder();
+    Observable<ResponseGetOrders> getOrder(@Query("viewType") String viewType,
+                                           @Query("page") int page,
+                                           @Query("count") int count,
+                                           @Query("contentType") String contentType);
 
     @GET(Constants.GET_ORDER_BY_WORKFLOWS)
     Observable<List<OrderItem>> getOrderByWorkflows(

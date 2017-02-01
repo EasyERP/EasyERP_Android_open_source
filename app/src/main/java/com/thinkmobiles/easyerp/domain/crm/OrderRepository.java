@@ -30,8 +30,12 @@ public class OrderRepository extends NetworkRepository implements OrdersContract
     }
 
     @Override
-    public Observable<ResponseGetOrders> getOrders() {
-        return getNetworkObservable(orderService.getOrder());
+    public Observable<ResponseGetOrders> getOrders(final int page) {
+        return getNetworkObservable(orderService.getOrder(
+                "list",
+                page,
+                50,
+                "order"));
     }
 
     @Override
