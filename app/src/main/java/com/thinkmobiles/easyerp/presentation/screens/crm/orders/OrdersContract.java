@@ -25,6 +25,6 @@ public interface OrdersContract {
         void loadOrders(int page);
     }
     interface OrdersModel extends BaseModel {
-        Observable<ResponseGetOrders> getOrders();
+        Observable<ResponseGetOrders> getOrders(final int page);
     }
 }

@@ -44,7 +44,7 @@ public class OrdersPresenter extends MasterFlowSelectablePresenterHelper<String,
     public void loadOrders(int page) {
         final boolean needClear = page == 1;
         compositeSubscription.add(
-                model.getOrders().subscribe(
+                model.getOrders(page).subscribe(
                         responseGetOrders -> view.displayOrders(prepareOrderDHs(responseGetOrders.data), needClear),
                         throwable -> view.displayError(throwable.getMessage(), ErrorViewHelper.ErrorType.NETWORK)
                 )

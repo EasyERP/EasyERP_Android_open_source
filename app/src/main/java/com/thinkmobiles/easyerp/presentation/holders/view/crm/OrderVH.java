@@ -58,7 +58,9 @@ public class OrderVH extends RecyclerVH<OrderDH> {
         tvOrderStatus_VLIO.setText(buildStatusTag(data.getOrder().workflow.name, TagHelper.getColorResIdByName(data.getOrder().workflow.status)));
         tvCustomer_VLIO.setText(data.getOrder().supplier.name);
         tvCreatedDate_VLIO.setText(new DateManager.DateConverter(data.getOrder().orderDate).setDstPattern(DateManager.PATTERN_OUT_PERSON_DOB).toString());
-        tvTotalPrice_VLIO.setText(String.format("%s %s", data.getOrder().currency.id.symbol, new DollarFormatter().getFormat().format(data.getOrder().paymentInfo.total)));
+        tvTotalPrice_VLIO.setText(String.format("%s %s",
+                data.getOrder().currency.id != null ? data.getOrder().currency.id.symbol : "$",
+                new DollarFormatter().getFormat().format(data.getOrder().paymentInfo.total)));
 
         switch (data.getOrder().status.allocateStatus) {
             case "NOT":
