@@ -71,20 +71,23 @@ public class OrderProduct implements Parcelable {
     public int totalTaxes;
 //    public Object channel;
     public FilterItem creditAccount;
-    public Integer debitAccount;
+    public FilterItem debitAccount;
     public String creationDate;
-    public Integer nominalCode;
-    public Integer subTotal;
-    public Integer costPrice;
-    public Integer unitPrice;
+    public Long nominalCode;
+    public Long subTotal;
+    public Long costPrice;
+    public Long unitPrice;
     public ArrayList<OrderTax> taxes;
-    public Float quantity;
+    public Double quantity;
     public FilterItem warehouse;
     public String order;
     public SubProduct product;
 //    public ArrayList<NoteItem> goodsNotes;
     public Double fulfilled;
 
+
+    public OrderProduct() {
+    }
 
     @Override
     public int describeContents() {
@@ -97,7 +100,7 @@ public class OrderProduct implements Parcelable {
         dest.writeString(this.description);
         dest.writeInt(this.totalTaxes);
         dest.writeParcelable(this.creditAccount, flags);
-        dest.writeValue(this.debitAccount);
+        dest.writeParcelable(this.debitAccount, flags);
         dest.writeString(this.creationDate);
         dest.writeValue(this.nominalCode);
         dest.writeValue(this.subTotal);
@@ -111,29 +114,26 @@ public class OrderProduct implements Parcelable {
         dest.writeValue(this.fulfilled);
     }
 
-    public OrderProduct() {
-    }
-
     protected OrderProduct(Parcel in) {
         this._id = in.readString();
         this.description = in.readString();
         this.totalTaxes = in.readInt();
         this.creditAccount = in.readParcelable(FilterItem.class.getClassLoader());
-        this.debitAccount = (Integer) in.readValue(Integer.class.getClassLoader());
+        this.debitAccount = in.readParcelable(FilterItem.class.getClassLoader());
         this.creationDate = in.readString();
-        this.nominalCode = (Integer) in.readValue(Integer.class.getClassLoader());
-        this.subTotal = (Integer) in.readValue(Integer.class.getClassLoader());
-        this.costPrice = (Integer) in.readValue(Integer.class.getClassLoader());
-        this.unitPrice = (Integer) in.readValue(Integer.class.getClassLoader());
+        this.nominalCode = (Long) in.readValue(Long.class.getClassLoader());
+        this.subTotal = (Long) in.readValue(Long.class.getClassLoader());
+        this.costPrice = (Long) in.readValue(Long.class.getClassLoader());
+        this.unitPrice = (Long) in.readValue(Long.class.getClassLoader());
         this.taxes = in.createTypedArrayList(OrderTax.CREATOR);
-        this.quantity = (Float) in.readValue(Float.class.getClassLoader());
+        this.quantity = (Double) in.readValue(Double.class.getClassLoader());
         this.warehouse = in.readParcelable(FilterItem.class.getClassLoader());
         this.order = in.readString();
         this.product = in.readParcelable(SubProduct.class.getClassLoader());
         this.fulfilled = (Double) in.readValue(Double.class.getClassLoader());
     }
 
-    public static final Parcelable.Creator<OrderProduct> CREATOR = new Parcelable.Creator<OrderProduct>() {
+    public static final Creator<OrderProduct> CREATOR = new Creator<OrderProduct>() {
         @Override
         public OrderProduct createFromParcel(Parcel source) {
             return new OrderProduct(source);

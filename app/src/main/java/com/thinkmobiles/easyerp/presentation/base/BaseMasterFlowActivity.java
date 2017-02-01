@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.presentation.EasyErpApplication;
 import com.thinkmobiles.easyerp.presentation.managers.CookieManager;
+import com.thinkmobiles.easyerp.presentation.screens.crm.orders.details.OrderDetailsFragment_;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Bean;
@@ -87,6 +88,9 @@ public abstract class BaseMasterFlowActivity extends AppCompatActivity {
     public void replaceFragmentContent(final BaseFragment fragment) {
         replaceFragmentContentDetail(null);
         replaceFragment(fragment, contentIdLayout());
+        replaceFragmentContentDetail(OrderDetailsFragment_.builder()
+                .orderId("5890560b3743284b65d83f15")
+                .build());
     }
 
     public void replaceFragmentContentDetail(final BaseFragment fragment) {

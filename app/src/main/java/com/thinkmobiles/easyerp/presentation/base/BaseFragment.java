@@ -102,7 +102,9 @@ public abstract class BaseFragment<T extends BaseMasterFlowActivity> extends Fra
     public @MenuRes int optionsMenuRes() { return 0; }
     public void optionsMenuInitialized(final Menu menu) {}
 
-    protected abstract boolean needProgress();
+    protected boolean needProgress() {
+        return true;
+    }
 
     protected void hideKeyboard() {
         if(getView() != null) {

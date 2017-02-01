@@ -20,10 +20,13 @@ public class Prepayment implements Parcelable {
      */
 
     public String _id;
-    public int sum;
+    public Long sum;
     public ArrayList<String> names;
     public String date;
 
+
+    public Prepayment() {
+    }
 
     @Override
     public int describeContents() {
@@ -33,22 +36,19 @@ public class Prepayment implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(this._id);
-        dest.writeInt(this.sum);
+        dest.writeValue(this.sum);
         dest.writeStringList(this.names);
         dest.writeString(this.date);
     }
 
-    public Prepayment() {
-    }
-
     protected Prepayment(Parcel in) {
         this._id = in.readString();
-        this.sum = in.readInt();
+        this.sum = (Long) in.readValue(Long.class.getClassLoader());
         this.names = in.createStringArrayList();
         this.date = in.readString();
     }
 
-    public static final Parcelable.Creator<Prepayment> CREATOR = new Parcelable.Creator<Prepayment>() {
+    public static final Creator<Prepayment> CREATOR = new Creator<Prepayment>() {
         @Override
         public Prepayment createFromParcel(Parcel source) {
             return new Prepayment(source);
