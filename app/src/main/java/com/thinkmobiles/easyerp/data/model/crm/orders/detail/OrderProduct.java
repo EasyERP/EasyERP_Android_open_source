@@ -68,15 +68,15 @@ public class OrderProduct implements Parcelable {
 
     public String _id;
     public String description;
-    public int totalTaxes;
+    public Double totalTaxes;
 //    public Object channel;
     public FilterItem creditAccount;
     public FilterItem debitAccount;
     public String creationDate;
-    public Long nominalCode;
-    public Long subTotal;
-    public Long costPrice;
-    public Long unitPrice;
+    public Double nominalCode;
+    public Double subTotal;
+    public Double costPrice;
+    public Double unitPrice;
     public ArrayList<OrderTax> taxes;
     public Double quantity;
     public FilterItem warehouse;
@@ -98,7 +98,7 @@ public class OrderProduct implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(this._id);
         dest.writeString(this.description);
-        dest.writeInt(this.totalTaxes);
+        dest.writeValue(this.totalTaxes);
         dest.writeParcelable(this.creditAccount, flags);
         dest.writeParcelable(this.debitAccount, flags);
         dest.writeString(this.creationDate);
@@ -117,14 +117,14 @@ public class OrderProduct implements Parcelable {
     protected OrderProduct(Parcel in) {
         this._id = in.readString();
         this.description = in.readString();
-        this.totalTaxes = in.readInt();
+        this.totalTaxes = (Double) in.readValue(Double.class.getClassLoader());
         this.creditAccount = in.readParcelable(FilterItem.class.getClassLoader());
         this.debitAccount = in.readParcelable(FilterItem.class.getClassLoader());
         this.creationDate = in.readString();
-        this.nominalCode = (Long) in.readValue(Long.class.getClassLoader());
-        this.subTotal = (Long) in.readValue(Long.class.getClassLoader());
-        this.costPrice = (Long) in.readValue(Long.class.getClassLoader());
-        this.unitPrice = (Long) in.readValue(Long.class.getClassLoader());
+        this.nominalCode = (Double) in.readValue(Double.class.getClassLoader());
+        this.subTotal = (Double) in.readValue(Double.class.getClassLoader());
+        this.costPrice = (Double) in.readValue(Double.class.getClassLoader());
+        this.unitPrice = (Double) in.readValue(Double.class.getClassLoader());
         this.taxes = in.createTypedArrayList(OrderTax.CREATOR);
         this.quantity = (Double) in.readValue(Double.class.getClassLoader());
         this.warehouse = in.readParcelable(FilterItem.class.getClassLoader());

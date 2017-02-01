@@ -86,9 +86,6 @@ public abstract class BaseMasterFlowActivity extends AppCompatActivity {
     public void replaceFragmentContent(final BaseFragment fragment) {
         replaceFragmentContentDetail(null);
         replaceFragment(fragment, contentIdLayout());
-        replaceFragmentContentDetail(OrderDetailsFragment_.builder()
-                .orderId("5890560b3743284b65d83f15")
-                .build());
     }
 
     public void replaceFragmentContentDetail(final BaseFragment fragment) {

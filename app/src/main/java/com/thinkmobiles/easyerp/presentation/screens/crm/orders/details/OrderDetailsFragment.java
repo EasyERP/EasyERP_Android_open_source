@@ -5,6 +5,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -83,6 +84,8 @@ public class OrderDetailsFragment extends BaseFragment<HomeActivity> implements 
     @ViewById
     protected TextView tvAdvice_FOD;
     @ViewById
+    protected TextView tvAttachments_FOD;
+    @ViewById
     protected RelativeLayout btnHistory_FOD;
     @ViewById
     protected ImageView ivIconArrow_FOD;
@@ -104,12 +107,12 @@ public class OrderDetailsFragment extends BaseFragment<HomeActivity> implements 
     @AfterInject
     @Override
     public void initPresenter() {
-        new OrderDetailsPresenter(this, orderRepository, mActivity.getUserInfo(), orderId);
+        new OrderDetailsPresenter(this, orderRepository, orderId);
     }
 
     @AfterViews
     protected void initUI() {
-
+        srlRefresh_FOD.setOnRefreshListener(() -> presenter.refresh());
         presenter.subscribe();
     }
 
@@ -256,6 +259,11 @@ public class OrderDetailsFragment extends BaseFragment<HomeActivity> implements 
     @Override
     public void setOwnerEmail(String ownerEmail) {
         tvOwnerEmail_FOD.setText(ownerEmail);
+    }
+
+    @Override
+    public void setAttachments(String attachments) {
+        tvAttachments_FOD.setText(Html.fromHtml(attachments));
     }
 
     @Override

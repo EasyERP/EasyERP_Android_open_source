@@ -97,7 +97,10 @@ public class Rest {
     }
 
     public UserService getUserService() {
-        return userService == null ? createService(UserService.class) : userService;
+        if (userService == null) {
+            userService = createService(UserService.class);
+        }
+        return userService;
     }
 
     public LeadService getLeadService() {

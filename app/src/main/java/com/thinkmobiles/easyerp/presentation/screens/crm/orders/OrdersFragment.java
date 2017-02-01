@@ -12,6 +12,7 @@ import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.base.rules.SimpleListWithRefreshFragment;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.OrderDH;
 import com.thinkmobiles.easyerp.presentation.listeners.EndlessRecyclerViewScrollListener;
+import com.thinkmobiles.easyerp.presentation.screens.crm.orders.details.OrderDetailsFragment_;
 
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterViews;
@@ -128,7 +129,9 @@ public class OrdersFragment extends SimpleListWithRefreshFragment implements Ord
     @Override
     public void openOrderDetailsScreen(String orderID) {
         if (orderID != null) {
-            //TODO open order detail
+            mActivity.replaceFragmentContentDetail(OrderDetailsFragment_.builder()
+                    .orderId(orderID)
+                    .build());
         } else {
             mActivity.replaceFragmentContentDetail(null);
         }

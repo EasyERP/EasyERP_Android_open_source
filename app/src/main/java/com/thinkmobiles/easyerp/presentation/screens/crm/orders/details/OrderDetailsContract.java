@@ -1,6 +1,7 @@
 package com.thinkmobiles.easyerp.presentation.screens.crm.orders.details;
 
 import com.thinkmobiles.easyerp.data.model.crm.orders.detail.ResponseGerOrderDetails;
+import com.thinkmobiles.easyerp.data.model.user.organization.ResponseGetOrganizationSettings;
 import com.thinkmobiles.easyerp.presentation.base.BaseModel;
 import com.thinkmobiles.easyerp.presentation.base.BasePresenter;
 import com.thinkmobiles.easyerp.presentation.base.BaseView;
@@ -37,6 +38,7 @@ public interface OrderDetailsContract {
         void setOwnerName(String ownerName);
         void setOwnerSite(String ownerSite);
         void setOwnerEmail(String ownerEmail);
+        void setAttachments(String attachments);
         void setAdvice(String advice);
 
         void showErrorState(String errorMessage, ErrorViewHelper.ErrorType errorType);
@@ -50,5 +52,6 @@ public interface OrderDetailsContract {
 
     interface OrderDetailsModel extends BaseModel {
         Observable<ResponseGerOrderDetails> getOrderDetails(String orderId);
+        Observable<ResponseGetOrganizationSettings> getOrganizationSettings();
     }
 }

@@ -15,6 +15,7 @@ public abstract class Constants {
 
     //User
     public static final String GET_CURRENT_USER             = "users/current";
+    public static final String GET_ORGANIZATION_SETTINGS    = "organizationSettings";
     //End User
 
     //CRM

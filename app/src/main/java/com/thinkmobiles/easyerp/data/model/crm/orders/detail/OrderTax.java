@@ -19,9 +19,12 @@ public class OrderTax implements Parcelable {
      ],
      */
 
-    public int tax;
+    public Double tax;
     public OrderTaxCode taxCode;
 
+
+    public OrderTax() {
+    }
 
     @Override
     public int describeContents() {
@@ -30,19 +33,16 @@ public class OrderTax implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(this.tax);
+        dest.writeValue(this.tax);
         dest.writeParcelable(this.taxCode, flags);
     }
 
-    public OrderTax() {
-    }
-
     protected OrderTax(Parcel in) {
-        this.tax = in.readInt();
+        this.tax = (Double) in.readValue(Double.class.getClassLoader());
         this.taxCode = in.readParcelable(OrderTaxCode.class.getClassLoader());
     }
 
-    public static final Parcelable.Creator<OrderTax> CREATOR = new Parcelable.Creator<OrderTax>() {
+    public static final Creator<OrderTax> CREATOR = new Creator<OrderTax>() {
         @Override
         public OrderTax createFromParcel(Parcel source) {
             return new OrderTax(source);
