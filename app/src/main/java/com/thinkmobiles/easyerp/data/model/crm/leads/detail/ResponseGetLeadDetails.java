@@ -5,6 +5,7 @@ import android.os.Parcelable;
 
 import com.thinkmobiles.easyerp.data.model.crm.leads.LeadTag;
 import com.thinkmobiles.easyerp.data.model.crm.leads.Workflow;
+import com.thinkmobiles.easyerp.data.model.crm.opportunities.list_item.ExpectedRevenue;
 
 import java.util.ArrayList;
 
@@ -418,6 +419,9 @@ public class ResponseGetLeadDetails implements Parcelable {
     public ResponseGetLeadWorkflow leadWorkflow;
 
 
+    public ResponseGetLeadDetails() {
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -457,9 +461,6 @@ public class ResponseGetLeadDetails implements Parcelable {
         dest.writeByte(this.isOpportunitie ? (byte) 1 : (byte) 0);
         dest.writeTypedList(this.followers);
         dest.writeParcelable(this.leadWorkflow, flags);
-    }
-
-    public ResponseGetLeadDetails() {
     }
 
     protected ResponseGetLeadDetails(Parcel in) {

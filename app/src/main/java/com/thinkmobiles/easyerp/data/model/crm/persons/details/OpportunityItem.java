@@ -6,7 +6,6 @@ import android.os.Parcelable;
 import com.thinkmobiles.easyerp.data.model.crm.leads.Workflow;
 import com.thinkmobiles.easyerp.data.model.crm.leads.detail.Address;
 import com.thinkmobiles.easyerp.data.model.crm.leads.detail.AttachmentItem;
-import com.thinkmobiles.easyerp.data.model.crm.leads.detail.ExpectedRevenue;
 import com.thinkmobiles.easyerp.data.model.crm.leads.detail.Name;
 import com.thinkmobiles.easyerp.data.model.crm.leads.detail.NextAction;
 import com.thinkmobiles.easyerp.data.model.crm.leads.detail.NoteItem;
