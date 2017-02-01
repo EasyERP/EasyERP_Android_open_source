@@ -16,7 +16,7 @@ import com.thinkmobiles.easyerp.presentation.managers.DateManager;
 import com.thinkmobiles.easyerp.presentation.utils.StringUtil;
 
 
-public class LeadHistoryVH extends RecyclerVH<HistoryDH> {
+public class HistoryVH extends RecyclerVH<HistoryDH> {
 
     private ImageView ivIconType_LILH;
     private TextView tvPersonName_LILH;
@@ -25,7 +25,7 @@ public class LeadHistoryVH extends RecyclerVH<HistoryDH> {
     private TextView tvNoteTime_LILH;
     private TextView tvNoteDateDate_LILH;
 
-    public LeadHistoryVH(View itemView, @Nullable OnCardClickListener listener, int viewType) {
+    public HistoryVH(View itemView, @Nullable OnCardClickListener listener, int viewType) {
         super(itemView, listener, viewType);
         ivIconType_LILH = findView(R.id.ivIconType_LILH);
         tvPersonName_LILH = findView(R.id.tvPersonName_LILH);

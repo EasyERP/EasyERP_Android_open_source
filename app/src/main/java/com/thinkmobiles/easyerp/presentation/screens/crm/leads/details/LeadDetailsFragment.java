@@ -1,7 +1,5 @@
 package com.thinkmobiles.easyerp.presentation.screens.crm.leads.details;
 
-import android.animation.ObjectAnimator;
-import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.NestedScrollView;
@@ -12,7 +10,6 @@ import android.text.Html;
 import android.text.SpannableStringBuilder;
 import android.text.method.LinkMovementMethod;
 import android.view.View;
-import android.view.animation.LinearInterpolator;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -21,9 +18,8 @@ import android.widget.Toast;
 
 import com.jakewharton.rxbinding.view.RxView;
 import com.thinkmobiles.easyerp.R;
-import com.thinkmobiles.easyerp.data.model.crm.leads.detail.LeadDetailWorkflow;
 import com.thinkmobiles.easyerp.domain.crm.LeadsRepository;
-import com.thinkmobiles.easyerp.presentation.adapters.crm.LeadHistoryAdapter;
+import com.thinkmobiles.easyerp.presentation.adapters.crm.HistoryAdapter;
 import com.thinkmobiles.easyerp.presentation.base.BaseFragment;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.HistoryDH;
@@ -50,7 +46,7 @@ public class LeadDetailsFragment extends BaseFragment<HomeActivity> implements L
     @Bean
     protected LeadsRepository leadsRepository;
     @Bean
-    protected LeadHistoryAdapter historyAdapter;
+    protected HistoryAdapter historyAdapter;
     @Bean
     protected ErrorViewHelper errorViewHelper;
 

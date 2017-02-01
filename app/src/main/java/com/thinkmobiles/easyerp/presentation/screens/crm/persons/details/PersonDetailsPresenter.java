@@ -1,7 +1,6 @@
 package com.thinkmobiles.easyerp.presentation.screens.crm.persons.details;
 
 import android.text.TextUtils;
-import android.util.Log;
 
 import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.data.model.crm.persons.details.OpportunityItem;
@@ -28,7 +27,7 @@ public class PersonDetailsPresenter implements PersonDetailsContract.PersonDetai
     private String personID;
     private CompositeSubscription compositeSubscription;
 
-    private ResponseGetPersonDetails currentLead;
+    private ResponseGetPersonDetails currentPerson;
     private boolean isVisibleHistory;
     private String notSpecified;
 
@@ -54,12 +53,12 @@ public class PersonDetailsPresenter implements PersonDetailsContract.PersonDetai
         compositeSubscription.add(model.getPersonDetails(personID)
                 .subscribe(responseGetPersonDetails -> {
                     view.showProgress(false);
-                    currentLead = responseGetPersonDetails;
-                    setData(currentLead);
+                    currentPerson = responseGetPersonDetails;
+                    setData(currentPerson);
                     view.displayError(null);
                 }, throwable -> {
                     view.showProgress(false);
-                    if(currentLead != null && currentLead.id.equalsIgnoreCase(personID))
+                    if(currentPerson != null && currentPerson.id.equalsIgnoreCase(personID))
                         view.showMessage(throwable.getMessage());
                     else
                         view.displayError(throwable.getMessage());
@@ -68,11 +67,11 @@ public class PersonDetailsPresenter implements PersonDetailsContract.PersonDetai
 
     @Override
     public void subscribe() {
-        if (currentLead == null || !currentLead.id.equalsIgnoreCase(personID)) {
+        if (currentPerson == null || !currentPerson.id.equalsIgnoreCase(personID)) {
             view.showProgress(true);
             refresh();
         } else {
-            setData(currentLead);
+            setData(currentPerson);
         }
     }
 

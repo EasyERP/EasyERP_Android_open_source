@@ -22,7 +22,7 @@ import android.widget.Toast;
 import com.jakewharton.rxbinding.view.RxView;
 import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.domain.crm.PersonsRepository;
-import com.thinkmobiles.easyerp.presentation.adapters.crm.LeadHistoryAdapter;
+import com.thinkmobiles.easyerp.presentation.adapters.crm.HistoryAdapter;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.OpportunityPreviewAdapter;
 import com.thinkmobiles.easyerp.presentation.base.BaseFragment;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
@@ -176,7 +176,7 @@ public class PersonDetailsFragment extends BaseFragment<HomeActivity> implements
     @Bean
     protected PersonsRepository personsRepository;
     @Bean
-    protected LeadHistoryAdapter historyAdapter;
+    protected HistoryAdapter historyAdapter;
     @Bean
     protected OpportunityPreviewAdapter opportunityPreviewAdapter;
     @Bean
