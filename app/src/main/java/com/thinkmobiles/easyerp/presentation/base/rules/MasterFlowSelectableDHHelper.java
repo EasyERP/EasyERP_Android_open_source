@@ -3,7 +3,7 @@ package com.thinkmobiles.easyerp.presentation.base.rules;
 import com.michenko.simpleadapter.RecyclerDH;
 
 /**
- * Created by Asus_Dev on 1/18/2017.
+ * @author michael.soyma@thinkmobiles.com (Created on 1/18/2017.)
  */
 
 public abstract class MasterFlowSelectableDHHelper<T> extends RecyclerDH {

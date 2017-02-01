@@ -1,7 +1,7 @@
 package com.thinkmobiles.easyerp.presentation.screens.crm.dashboard.detail;
 
 /**
- * Created by Asus_Dev on 1/23/2017.
+ * @author michael.soyma@thinkmobiles.com (Created on 1/23/2017.)
  */
 
 public enum DateFilterType {

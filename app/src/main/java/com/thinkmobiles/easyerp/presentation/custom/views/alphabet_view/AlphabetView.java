@@ -17,7 +17,7 @@ import org.androidannotations.annotations.ViewById;
 import java.util.ArrayList;
 
 /**
- * Created by Lynx on 1/20/2017.
+ * Created by Lynx on 1/20/2017.)
  */
 
 @EViewGroup(R.layout.view_alphabet)

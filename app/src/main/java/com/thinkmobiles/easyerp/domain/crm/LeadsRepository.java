@@ -6,6 +6,7 @@ import com.thinkmobiles.easyerp.data.model.crm.leads.detail.ResponseGetLeadDetai
 import com.thinkmobiles.easyerp.data.model.crm.leads.filter.ResponseGetLeadsFilters;
 import com.thinkmobiles.easyerp.data.services.FilterService;
 import com.thinkmobiles.easyerp.data.services.LeadService;
+import com.thinkmobiles.easyerp.presentation.base.NetworkRepository;
 import com.thinkmobiles.easyerp.presentation.screens.crm.leads.LeadsContract;
 import com.thinkmobiles.easyerp.presentation.screens.crm.leads.details.LeadDetailsContract;
 import com.thinkmobiles.easyerp.presentation.utils.filter.FilterQuery;
@@ -13,15 +14,13 @@ import com.thinkmobiles.easyerp.presentation.utils.filter.FilterQuery;
 import org.androidannotations.annotations.EBean;
 
 import rx.Observable;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
 
 /**
  * Created by Lynx on 1/16/2017.
  */
 
 @EBean(scope = EBean.Scope.Singleton)
-public class LeadsRepository implements LeadsContract.LeadsModel, LeadDetailsContract.LeadDetailsModel {
+public class LeadsRepository extends NetworkRepository implements LeadsContract.LeadsModel, LeadDetailsContract.LeadDetailsModel {
 
     private LeadService leadService;
     private FilterService filterService;
@@ -29,11 +28,6 @@ public class LeadsRepository implements LeadsContract.LeadsModel, LeadDetailsCon
     public LeadsRepository() {
         leadService = Rest.getInstance().getLeadService();
         filterService = Rest.getInstance().getFilterService();
-    }
-
-    private <T> Observable<T> getNetworkObservable(Observable<T> observable) {
-        return observable.observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.newThread());
     }
 
     @Override

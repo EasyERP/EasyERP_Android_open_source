@@ -1,7 +1,6 @@
 package com.thinkmobiles.easyerp.presentation.base.rules;
 
 import com.thinkmobiles.easyerp.presentation.base.BasePresenter;
-import com.thinkmobiles.easyerp.presentation.holders.data.crm.DashboardListDH;
 
 /**
  * Created by Lynx on 1/13/2017.

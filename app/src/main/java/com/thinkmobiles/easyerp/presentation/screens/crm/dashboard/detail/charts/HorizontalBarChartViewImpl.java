@@ -24,7 +24,7 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * Created by Asus_Dev on 1/24/2017.
+ * @author michael.soyma@thinkmobiles.com (Created on 1/24/2017.)
  */
 
 public final class HorizontalBarChartViewImpl implements IChartView<BarData> {

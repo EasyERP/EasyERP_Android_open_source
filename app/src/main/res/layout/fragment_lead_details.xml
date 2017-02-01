@@ -12,6 +12,7 @@
         android:layout_height="match_parent">
 
         <LinearLayout
+            android:id="@+id/llMainContent_FLD"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:animateLayoutChanges="true"
@@ -386,14 +387,14 @@
                                 android:id="@+id/tvTags_FLD"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:lineSpacingExtra="@dimen/default_padding_half"
+                                android:layout_marginBottom="@dimen/default_padding_3dp"
                                 android:layout_marginTop="@dimen/default_padding_half"
-                                android:text="@string/no_tags"
+                                android:lineSpacingExtra="@dimen/default_padding_half"
                                 android:maxLines="5"
-                                android:paddingEnd="@dimen/default_padding"
-                                android:paddingStart="@dimen/default_padding"
                                 android:paddingBottom="@dimen/default_padding_half"
-                                android:layout_marginBottom="@dimen/default_padding_3dp"/>
+                                android:paddingEnd="@dimen/default_padding_3dp"
+                                android:paddingStart="@dimen/default_padding_3dp"
+                                android:text="@string/no_tags"/>
 
 
                             <LinearLayout
@@ -421,8 +422,8 @@
                                         android:layout_height="wrap_content"
                                         android:layout_marginTop="@dimen/default_padding_half"
                                         android:alpha="0.83"
-                                        android:drawablePadding="@dimen/default_padding_half"
-                                        android:lineSpacingExtra="@dimen/tag_line_spacing_default"
+                                        android:drawablePadding="@dimen/default_padding_3dp"
+                                        android:lineSpacingExtra="@dimen/default_padding_3dp"
                                         android:text="@string/no_attachments"/>
 
                                 </LinearLayout>
@@ -460,7 +461,6 @@
                     android:layout_height="24dp"
                     android:layout_alignParentEnd="true"
                     android:tint="@android:color/black"
-                    android:visibility="invisible"
                     app:srcCompat="@drawable/ic_arrow_up"/>
 
             </RelativeLayout>
@@ -481,4 +481,6 @@
         </LinearLayout>
 
     </android.support.v4.widget.SwipeRefreshLayout>
+
+    <include layout="@layout/view_error_with_holder_icon"/>
 </FrameLayout>

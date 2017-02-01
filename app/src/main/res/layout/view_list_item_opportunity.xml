@@ -3,7 +3,7 @@
               xmlns:tools="http://schemas.android.com/tools"
               android:id="@+id/flOpportunityItemContainer_VLIO"
               android:layout_width="match_parent"
-              android:layout_height="wrap_content"
+              android:layout_height="@dimen/list_item_height"
               android:background="@drawable/bg_with_bottom_divider_line_selector"
               android:orientation="vertical"
               android:padding="@dimen/default_padding">
@@ -18,13 +18,13 @@
             style="@style/RobotoMedium"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight="2"
             android:ellipsize="end"
-            android:maxLines="1"
+            android:maxLines="2"
             android:text="@string/no_data"
             android:textColor="@color/color_text_black"
             android:textSize="@dimen/text_list_item_extra_large_24"
-            tools:text="Sajid Ghafoor" />
+            tools:text="Sajid GhafoorSajid GhafoorSajid Ghafoor" />
 
         <TextView
             android:id="@+id/tvStage_LIL"
@@ -33,19 +33,20 @@
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:ellipsize="end"
-            android:gravity="end|center_vertical"
+            android:gravity="end|top"
             android:text="@string/no_data"
             android:textSize="@dimen/text_list_item_medium_16"
             android:layout_weight="1"
+            android:paddingTop="@dimen/default_padding_small"
             tools:text="test3" />
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="horizontal"
-        android:layout_marginTop="@dimen/padding_large_45">
+        android:gravity="bottom">
 
         <TextView
             android:id="@+id/tvAssignedTo_VLIO"

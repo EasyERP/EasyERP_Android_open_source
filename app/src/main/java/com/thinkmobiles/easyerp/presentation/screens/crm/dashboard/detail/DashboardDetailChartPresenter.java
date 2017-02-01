@@ -13,7 +13,7 @@ import java.util.GregorianCalendar;
 import rx.subscriptions.CompositeSubscription;
 
 /**
- * Created by Asus_Dev on 1/20/2017.
+ * @author michael.soyma@thinkmobiles.com (Created on 1/20/2017.)
  */
 
 public class DashboardDetailChartPresenter implements DashboardDetailChartContract.DashboardDetailChartPresenter {

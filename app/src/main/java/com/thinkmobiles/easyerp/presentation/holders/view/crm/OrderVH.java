@@ -31,9 +31,12 @@ public class OrderVH extends RecyclerVH<OrderDH> {
     private ImageView ivAllocated_VLIO;
     private ImageView ivFulfilled_VLIO;
     private ImageView ivShipped_VLIO;
+    private View containerItemLayout;
 
     public OrderVH(View itemView, @Nullable OnCardClickListener listener, int viewType) {
         super(itemView, listener, viewType);
+
+        containerItemLayout = itemView;
 
         tvOrderName_VLIO = findView(R.id.tvOrderName_VLIO);
         tvOrderStatus_VLIO = findView(R.id.tvOrderStatus_VLIO);
@@ -48,25 +51,58 @@ public class OrderVH extends RecyclerVH<OrderDH> {
 
     @Override
     public void bindData(OrderDH data) {
-        tvOrderName_VLIO.setText(data.getOrderItem().name);
-        tvOrderStatus_VLIO.setText(buildStatusTag(data.getOrderItem().workflow.name));
-        tvCustomer_VLIO.setText(buildStatusTag(data.getOrderItem().supplier.name));
-        tvCreatedDate_VLIO.setText(buildStatusTag(new DateManager.DateConverter(data.getOrderItem().orderDate).setDstPattern(DateManager.PATTERN_OUT_PERSON_DOB).toString()));
-        tvTotalPrice_VLIO.setText(buildStatusTag(String.format("%s %s", data.getOrderItem().currency.id.symbol, new DollarFormatter().getFormat().format(data.getOrderItem().paymentInfo.total))));
 
-//        ivAllocated_VLIO.setImageResource(data.getOrderItem().status);
-        // TODO need change status model|array - wtf ?
-        ivAllocated_VLIO.setImageResource(R.drawable.ic_allocated);
-        ivFulfilled_VLIO.setImageResource(R.drawable.ic_fulfilled);
-        ivShipped_VLIO.setImageResource(R.drawable.ic_shipped);
+        containerItemLayout.setSelected(data.isSelected());
+
+        tvOrderName_VLIO.setText(data.getOrder().name);
+        tvOrderStatus_VLIO.setText(buildStatusTag(data.getOrder().workflow.name, TagHelper.getColorResIdByName(data.getOrder().workflow.status)));
+        tvCustomer_VLIO.setText(data.getOrder().supplier.name);
+        tvCreatedDate_VLIO.setText(new DateManager.DateConverter(data.getOrder().orderDate).setDstPattern(DateManager.PATTERN_OUT_PERSON_DOB).toString());
+        tvTotalPrice_VLIO.setText(String.format("%s %s", data.getOrder().currency.id.symbol, new DollarFormatter().getFormat().format(data.getOrder().paymentInfo.total)));
+
+        switch (data.getOrder().status.allocateStatus) {
+            case "NOT":
+                ivAllocated_VLIO.setImageResource( R.drawable.ic_allocated_off);
+                break;
+            case "NOR":
+                ivAllocated_VLIO.setImageResource( R.drawable.ic_allocated_middle_on);
+                break;
+            case "ALL":
+                ivAllocated_VLIO.setImageResource( R.drawable.ic_allocated);
+                break;
+        }
+
+        switch (data.getOrder().status.fulfillStatus) {
+            case "NOT":
+                ivFulfilled_VLIO.setImageResource( R.drawable.ic_fulfilled_off);
+                break;
+            case "NOR":
+                ivFulfilled_VLIO.setImageResource( R.drawable.ic_fulfilled_middle_on);
+                break;
+            case "ALL":
+                ivFulfilled_VLIO.setImageResource( R.drawable.ic_fulfilled);
+                break;
+        }
+
+        switch (data.getOrder().status.shippingStatus) {
+            case "NOT":
+                ivShipped_VLIO.setImageResource( R.drawable.ic_shipped_off);
+                break;
+            case "NOR":
+                ivShipped_VLIO.setImageResource( R.drawable.ic_shipped_middle_on);
+                break;
+            case "ALL":
+                ivShipped_VLIO.setImageResource( R.drawable.ic_shipped);
+                break;
+        }
     }
 
-    private SpannableStringBuilder buildStatusTag(String status) {
+    private SpannableStringBuilder buildStatusTag(String status, int bgColor) {
         SpannableStringBuilder stringBuilder = new SpannableStringBuilder();
         stringBuilder.append(" ");
         stringBuilder.append(status.toUpperCase());
         stringBuilder.append("  ");
-        RoundedBackgroundSpan tagSpan = new RoundedBackgroundSpan(itemView.getContext(), TagHelper.getColorResIdByName(status), Color.WHITE);
+        RoundedBackgroundSpan tagSpan = new RoundedBackgroundSpan(itemView.getContext(), bgColor, Color.WHITE);
         stringBuilder.setSpan(tagSpan, 0, stringBuilder.length() - 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         return stringBuilder;
     }

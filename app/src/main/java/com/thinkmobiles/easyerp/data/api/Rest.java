@@ -120,15 +120,15 @@ public class Rest {
         return personsService == null ? createService(PersonsService.class) : personsService;
     }
 
+    public OpportunityService getOpportunityService() {
+        return opportunityService == null ? createService(OpportunityService.class) : opportunityService;
+    }
+
     public FilterService getFilterService() {
         if (filterService == null) {
             filterService = createService(FilterService.class);
         }
         return filterService;
-    }
-
-    public OpportunityService getOpportunityService() {
-        return opportunityService == null ? createService(OpportunityService.class) : opportunityService;
     }
 
     public ResponseError parseError(ResponseBody responseBody) {

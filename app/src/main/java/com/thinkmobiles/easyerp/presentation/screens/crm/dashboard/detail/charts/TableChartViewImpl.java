@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Asus_Dev on 1/25/2017.
+ * @author michael.soyma@thinkmobiles.com (Created on 1/25/2017.)
  */
 
 public class TableChartViewImpl implements IChartView<List<TableDataView.TableItemData>> {

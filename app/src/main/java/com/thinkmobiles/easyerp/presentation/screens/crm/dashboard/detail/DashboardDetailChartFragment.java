@@ -26,9 +26,6 @@ import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.FragmentArg;
-import org.androidannotations.annotations.OptionsItem;
-import org.androidannotations.annotations.OptionsMenu;
-import org.androidannotations.annotations.OptionsMenuItem;
 import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.res.ColorRes;
 import org.androidannotations.annotations.sharedpreferences.Pref;
@@ -37,7 +34,7 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 /**
- * Created by Asus_Dev on 1/20/2017.
+ * @author michael.soyma@thinkmobiles.com (Created on 1/20/2017.)
  */
 @EFragment(R.layout.fragment_dashboard_chart_detail)
 public class DashboardDetailChartFragment extends BaseFragment<HomeActivity> implements DashboardDetailChartView {

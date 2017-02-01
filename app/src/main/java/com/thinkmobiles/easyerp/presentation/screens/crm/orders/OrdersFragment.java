@@ -1,17 +1,16 @@
-package com.thinkmobiles.easyerp.presentation.screens.crm.opportunities;
+package com.thinkmobiles.easyerp.presentation.screens.crm.orders;
 
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
 import com.thinkmobiles.easyerp.R;
-import com.thinkmobiles.easyerp.domain.crm.OpportunitiesRepository;
-import com.thinkmobiles.easyerp.presentation.adapters.crm.OpportunitiesAdapter;
+import com.thinkmobiles.easyerp.domain.crm.OrderRepository;
+import com.thinkmobiles.easyerp.presentation.adapters.crm.OrdersAdapter;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.base.rules.SimpleListWithRefreshFragment;
-import com.thinkmobiles.easyerp.presentation.holders.data.crm.OpportunityDH;
+import com.thinkmobiles.easyerp.presentation.holders.data.crm.OrderDH;
 import com.thinkmobiles.easyerp.presentation.listeners.EndlessRecyclerViewScrollListener;
 
 import org.androidannotations.annotations.AfterInject;
@@ -24,19 +23,20 @@ import org.androidannotations.annotations.res.StringRes;
 import java.util.ArrayList;
 
 /**
- * Created by Lynx on 1/30/2017.
+ * @author Michael Soyma (Created on 2/1/2017).
+ *         Company: Thinkmobiles
+ *         Email: michael.soyma@thinkmobiles.com
  */
-
 @EFragment(R.layout.fragment_simple_list_with_swipe_refresh)
-public class OpportunitiesFragment extends SimpleListWithRefreshFragment implements OpportunitiesContract.OpportunitiesView {
+public class OrdersFragment extends SimpleListWithRefreshFragment implements OrdersContract.OrdersView {
 
-    private OpportunitiesContract.OpportunitiesPresenter presenter;
+    private OrdersContract.OrdersPresenter presenter;
     private EndlessRecyclerViewScrollListener scrollListener;
 
     @Bean
-    protected OpportunitiesRepository opportunitiesRepository;
+    protected OrderRepository orderRepository;
     @Bean
-    protected OpportunitiesAdapter opportunitiesAdapter;
+    protected OrdersAdapter ordersAdapter;
     @Bean
     protected ErrorViewHelper errorViewHelper;
 
@@ -46,11 +46,15 @@ public class OpportunitiesFragment extends SimpleListWithRefreshFragment impleme
     @ViewById(R.id.llErrorLayout)
     protected View errorLayout;
 
-
     @AfterInject
     @Override
     public void initPresenter() {
-        new OpportunitiesPresenter(this, opportunitiesRepository);
+        new OrdersPresenter(this, orderRepository);
+    }
+
+    @Override
+    public void setPresenter(OrdersContract.OrdersPresenter presenter) {
+        this.presenter = presenter;
     }
 
     @AfterViews
@@ -62,47 +66,49 @@ public class OpportunitiesFragment extends SimpleListWithRefreshFragment impleme
             @Override
             public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
                 displayProgress(true);
-                presenter.loadOpportunities(page);
+                presenter.loadOrders(page);
             }
         };
-
         listRecycler.setLayoutManager(llm);
-        listRecycler.setAdapter(opportunitiesAdapter);
+        listRecycler.setAdapter(ordersAdapter);
         listRecycler.addOnScrollListener(scrollListener);
-        opportunitiesAdapter.setOnCardClickListener((view, position, viewType) -> {
-            final OpportunityDH itemDH = opportunitiesAdapter.getItem(position);
-            opportunitiesAdapter.replaceSelectedItem(presenter.getSelectedItemPosition(), position);
-            if (position != presenter.getSelectedItemPosition())
-                presenter.displayOpportunityDetails(itemDH.getOpportunityListItem()._id);
-            presenter.setSelectedInfo(position, itemDH.getId());
-
-        });
+        ordersAdapter.setOnCardClickListener((view, position, viewType) -> presenter.selectItem(ordersAdapter.getItem(position), position));
 
         loadWithProgressBar();
+    }
+
+    private void loadWithProgressBar() {
+        errorViewHelper.hideError();
+        displayProgress(true);
+        presenter.subscribe();
     }
 
     @Override
     public void onRefresh() {
         errorViewHelper.hideError();
         scrollListener.resetState();
-        presenter.setSelectedInfo(-1, presenter.getSelectedItemId());
         presenter.subscribe();
     }
 
     @Override
-    protected boolean needProgress() {
-        return true;
+    public int getCountItemsNow() {
+        return ordersAdapter.getItemCount();
     }
 
     @Override
-    public void displayOpportunities(ArrayList<OpportunityDH> opportunityDHs, boolean needClear) {
+    public void changeSelectedItem(int oldPosition, int newPosition) {
+        ordersAdapter.replaceSelectedItem(oldPosition, newPosition);
+    }
+
+    @Override
+    public void displayOrders(ArrayList<OrderDH> orderDHs, boolean needClear) {
         errorViewHelper.hideError();
         displayProgress(false);
         swipeContainer.setRefreshing(false);
 
         if (needClear)
-            opportunitiesAdapter.setListDH(opportunityDHs);
-        else opportunitiesAdapter.addListDH(opportunityDHs);
+            ordersAdapter.setListDH(orderDHs);
+        else ordersAdapter.addListDH(orderDHs);
 
         if (getCountItemsNow() == 0)
             displayError(null, ErrorViewHelper.ErrorType.LIST_EMPTY);
@@ -116,39 +122,26 @@ public class OpportunitiesFragment extends SimpleListWithRefreshFragment impleme
         final String resultMsg = errorType.equals(ErrorViewHelper.ErrorType.LIST_EMPTY) ? string_list_is_empty : msg;
         if (getCountItemsNow() == 0)
             errorViewHelper.showErrorMsg(resultMsg, errorType);
-        else
-            Toast.makeText(mActivity, resultMsg, Toast.LENGTH_LONG).show();
+        else Toast.makeText(mActivity, resultMsg, Toast.LENGTH_LONG).show();
     }
 
     @Override
-    public void openOpportunityDetailsScreen(String opportunityID) {
-        Log.d("myLogs", "Open opportunity details. ID = " + opportunityID);
+    public void openOrderDetailsScreen(String orderID) {
+        if (orderID != null) {
+            //TODO open order detail
+        } else {
+            mActivity.replaceFragmentContentDetail(null);
+        }
     }
 
     @Override
-    public int getCountItemsNow() {
-        return opportunitiesAdapter.getItemCount();
-    }
-
-    @Override
-    public void changeSelectedItem(int oldPosition, int newPosition) {
-        opportunitiesAdapter.replaceSelectedItem(oldPosition, newPosition);
-    }
-
-    @Override
-    public void setPresenter(OpportunitiesContract.OpportunitiesPresenter presenter) {
-        this.presenter = presenter;
-    }
-
-    private void loadWithProgressBar() {
-        errorViewHelper.hideError();
-        displayProgress(true);
-        presenter.subscribe();
+    protected boolean needProgress() {
+        return true;
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        if(presenter != null) presenter.unsubscribe();
+        presenter.unsubscribe();
     }
 }

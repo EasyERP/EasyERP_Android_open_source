@@ -3,7 +3,6 @@ package com.thinkmobiles.easyerp.presentation.screens.crm.leads.details;
 
 import android.text.SpannableStringBuilder;
 
-import com.thinkmobiles.easyerp.data.model.crm.leads.detail.LeadDetailWorkflow;
 import com.thinkmobiles.easyerp.data.model.crm.leads.detail.ResponseGetLeadDetails;
 import com.thinkmobiles.easyerp.presentation.base.BaseModel;
 import com.thinkmobiles.easyerp.presentation.base.BasePresenter;
@@ -19,6 +18,8 @@ public interface LeadDetailsContract {
     interface LeadDetailsView extends BaseView<LeadDetailsPresenter> {
         void showProgress(boolean enable);
         void showHistory(boolean enable);
+        void showError(String errMsg);
+        void showMessage(String message);
 
         void setLeadName(String leadName);
         void setCurrentStatus(String currentStatus);

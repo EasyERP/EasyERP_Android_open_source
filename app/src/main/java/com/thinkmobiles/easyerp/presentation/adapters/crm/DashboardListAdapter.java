@@ -9,7 +9,7 @@ import com.thinkmobiles.easyerp.presentation.holders.view.crm.DashboardVH;
 import org.androidannotations.annotations.EBean;
 
 /**
- * Created by Asus_Dev on 1/18/2017.
+ * @author michael.soyma@thinkmobiles.com (Created on 1/18/2017.)
  */
 @EBean
 public class DashboardListAdapter extends MasterFlowSelectableAdapter<DashboardListDH, DashboardVH> {

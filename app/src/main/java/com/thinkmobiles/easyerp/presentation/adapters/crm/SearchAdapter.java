@@ -9,7 +9,6 @@ import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.TextView;
 
-
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.FilterDH;
 
 import org.androidannotations.annotations.EBean;

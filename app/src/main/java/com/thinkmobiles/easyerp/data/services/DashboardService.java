@@ -10,7 +10,7 @@ import retrofit2.http.Path;
 import rx.Observable;
 
 /**
- * Created by Lynx on 1/16/2017.
+ * @author michael.soyma@thinkmobiles.com (Created on 1/16/2017.)
  */
 
 public interface DashboardService {

@@ -22,8 +22,11 @@ public class Groups implements Parcelable {
 
     public ArrayList<Object> group;
     public ArrayList<User> users;
-    public User owner;
+    public String owner;
 
+
+    public Groups() {
+    }
 
     @Override
     public int describeContents() {
@@ -34,20 +37,17 @@ public class Groups implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeList(this.group);
         dest.writeTypedList(this.users);
-        dest.writeParcelable(this.owner, flags);
-    }
-
-    public Groups() {
+        dest.writeString(this.owner);
     }
 
     protected Groups(Parcel in) {
         this.group = new ArrayList<Object>();
         in.readList(this.group, Object.class.getClassLoader());
         this.users = in.createTypedArrayList(User.CREATOR);
-        this.owner = in.readParcelable(User.class.getClassLoader());
+        this.owner = in.readString();
     }
 
-    public static final Parcelable.Creator<Groups> CREATOR = new Parcelable.Creator<Groups>() {
+    public static final Creator<Groups> CREATOR = new Creator<Groups>() {
         @Override
         public Groups createFromParcel(Parcel source) {
             return new Groups(source);

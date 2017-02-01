@@ -21,6 +21,8 @@ public interface PersonDetailsContract {
         void showHistory(boolean isShow);
         void showCompanyInfo(boolean isShow);
         void showSalesPurchasesInfo(boolean isShow);
+        void displayError(final String msg);
+        void showMessage(String message);
 
         void displayPersonAboutName(String name);
         void displayPersonAvatar(String base64Avatar);

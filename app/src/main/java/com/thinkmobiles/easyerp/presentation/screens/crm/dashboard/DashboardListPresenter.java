@@ -2,10 +2,8 @@ package com.thinkmobiles.easyerp.presentation.screens.crm.dashboard;
 
 import com.thinkmobiles.easyerp.data.model.crm.dashboard.DashboardListItem;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
-import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectableDHHelper;
 import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectablePresenterHelper;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.DashboardListDH;
-import com.thinkmobiles.easyerp.presentation.holders.data.crm.LeadDH;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +11,7 @@ import java.util.List;
 import rx.subscriptions.CompositeSubscription;
 
 /**
- * Created by Asus_Dev on 1/18/2017.
+ * @author michael.soyma@thinkmobiles.com (Created on 1/18/2017.)
  */
 
 public class DashboardListPresenter extends MasterFlowSelectablePresenterHelper<String, DashboardListDH> implements DashboardListContract.DashboardListPresenter {
