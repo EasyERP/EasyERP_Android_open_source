@@ -3,7 +3,7 @@ package com.thinkmobiles.easyerp.presentation.custom.views.drawer_menu.models;
 import android.support.annotation.DrawableRes;
 
 /**
- * Created by Asus_Dev on 1/16/2017.
+ * @author michael.soyma@thinkmobiles.com (Created on 1/16/2017.)
  */
 
 public final class MenuItem {

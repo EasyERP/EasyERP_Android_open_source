@@ -28,7 +28,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Asus_Dev on 1/13/2017.
+ * @author michael.soyma@thinkmobiles.com (Created on 1/13/2017.)
  */
 @EViewGroup(R.layout.view_drawer_menu)
 public class MenuDrawerView extends FrameLayout implements IMenuProviderFunctions {

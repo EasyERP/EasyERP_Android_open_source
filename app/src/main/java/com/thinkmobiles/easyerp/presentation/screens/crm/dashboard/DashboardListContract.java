@@ -7,7 +7,6 @@ import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectableBasePresenter;
 import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectableBaseView;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.DashboardListDH;
-import com.thinkmobiles.easyerp.presentation.holders.data.crm.LeadDH;
 
 import java.util.ArrayList;
 import java.util.List;

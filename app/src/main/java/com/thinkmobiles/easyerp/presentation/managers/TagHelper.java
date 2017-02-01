@@ -21,21 +21,27 @@ public abstract class TagHelper {
      "tag_bg_grey
      */
 
-    private static final String COLOR_RED          = "bgRed";
-    private static final String COLOR_PINK         = "bgPink";
-    private static final String COLOR_ORANGE       = "bgOrange";
-    private static final String COLOR_YELLOW       = "bgYellow";
-    private static final String COLOR_GREEN_DARK   = "bgGreenDark";
-    private static final String COLOR_GREEN_LIGHT  = "bgGreenLight";
-    private static final String COLOR_BLUE_LIGHT   = "bgBlueLight";
-    private static final String COLOR_BLUE_DARK    = "bgBlueDark";
-    private static final String COLOR_PURPLE       = "bgPurple";
-    private static final String COLOR_BLACK        = "bgBlack";
-    private static final String COLOR_GREY         = "bgGrey";
+    private static final String COLOR_RED           = "bgRed";
+    private static final String COLOR_PINK          = "bgPink";
+    private static final String COLOR_ORANGE        = "bgOrange";
+    private static final String COLOR_YELLOW        = "bgYellow";
+    private static final String COLOR_GREEN_DARK    = "bgGreenDark";
+    private static final String COLOR_GREEN_LIGHT   = "bgGreenLight";
+    private static final String COLOR_BLUE_LIGHT    = "bgBlueLight";
+    private static final String COLOR_BLUE_DARK     = "bgBlueDark";
+    private static final String COLOR_PURPLE        = "bgPurple";
+    private static final String COLOR_BLACK         = "bgBlack";
+    private static final String COLOR_GREY          = "bgGrey";
 
-    public static final String COLD               = "Cold";
-    public static final String MEDIUM             = "Med";
-    public static final String HOT                = "Hot";
+    public static final String COLD                 = "Cold";
+    public static final String MEDIUM               = "Med";
+    public static final String HOT                  = "Hot";
+
+    public static final String PENDING              = "Pending";
+    public static final String NEW                  = "New";
+    public static final String IN_PROGRESS          = "In Progress";
+    public static final String CANCELLED            = "Cancelled";
+    public static final String DONE                 = "Done";
 
     public static int getColorResIdByName(String colorName) {
         switch (colorName) {
@@ -61,12 +67,24 @@ public abstract class TagHelper {
                 return R.color.tag_bg_black;
             case COLOR_GREY:
                 return R.color.tag_bg_grey;
+
             case COLD:
                 return R.color.color_chips_blue;
             case MEDIUM:
                 return R.color.color_chips_orange;
             case HOT:
                 return R.color.color_chips_red;
+
+            case PENDING:
+                return R.color.color_chips_grey;
+            case NEW:
+                return R.color.color_chips_grey;
+            case IN_PROGRESS:
+                return R.color.color_chips_light_blue;
+            case CANCELLED:
+                return R.color.color_chips_grey;
+            case DONE:
+                return R.color.color_chips_green;
             default:
                 return R.color.tag_bg_grey;
         }

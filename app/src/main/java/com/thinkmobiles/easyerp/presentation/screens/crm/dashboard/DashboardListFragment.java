@@ -23,7 +23,7 @@ import org.androidannotations.annotations.res.StringRes;
 import java.util.ArrayList;
 
 /**
- * Created by Asus_Dev on 1/18/2017.
+ * @author michael.soyma@thinkmobiles.com (Created on 1/18/2017.)
  */
 @EFragment(R.layout.fragment_simple_list_with_swipe_refresh)
 public class DashboardListFragment extends SimpleListWithRefreshFragment implements DashboardListContract.DashboardListView {
@@ -82,7 +82,6 @@ public class DashboardListFragment extends SimpleListWithRefreshFragment impleme
     @Override
     public void onRefresh() {
         errorViewHelper.hideError();
-        presenter.setSelectedInfo(-1, presenter.getSelectedItemId());
         presenter.subscribe();
     }
 

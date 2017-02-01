@@ -6,7 +6,7 @@ import com.michenko.simpleadapter.SimpleRecyclerAdapter;
 import java.util.ArrayList;
 
 /**
- * Created by Asus_Dev on 1/18/2017.
+ * @author michael.soyma@thinkmobiles.com (Created on 1/18/2017.)
  */
 public abstract class MasterFlowSelectableAdapter<DH extends MasterFlowSelectableDHHelper, VH extends RecyclerVH> extends SimpleRecyclerAdapter<DH, VH> {
 

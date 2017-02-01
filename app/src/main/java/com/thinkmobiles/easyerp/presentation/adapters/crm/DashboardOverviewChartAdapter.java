@@ -6,7 +6,7 @@ import com.thinkmobiles.easyerp.presentation.holders.data.crm.DashboardOverviewC
 import com.thinkmobiles.easyerp.presentation.holders.view.crm.DashboardOverviewChartVH;
 
 /**
- * Created by Asus_Dev on 1/26/2017.
+ * @author michael.soyma@thinkmobiles.com (Created on 1/26/2017.)
  */
 
 public class DashboardOverviewChartAdapter extends SimpleRecyclerAdapter<DashboardOverviewChartDH, DashboardOverviewChartVH> {
