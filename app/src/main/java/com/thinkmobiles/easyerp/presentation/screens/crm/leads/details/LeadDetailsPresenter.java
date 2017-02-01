@@ -44,10 +44,16 @@ public class LeadDetailsPresenter implements LeadDetailsContract.LeadDetailsPres
     public void refresh() {
         compositeSubscription.add(model.getLeadDetails(leadId)
                 .subscribe(responseGetLeadDetails -> {
+                    currentLead = responseGetLeadDetails;
+                    setData(currentLead);
                     view.showProgress(false);
-                    setData(responseGetLeadDetails);
+                    view.showError(null);
                 }, throwable -> {
                     view.showProgress(false);
+                    if(currentLead != null && currentLead._id.equalsIgnoreCase(leadId))
+                        view.showMessage(throwable.getMessage());
+                    else
+                        view.showError(throwable.getMessage());
                 }));
     }
 

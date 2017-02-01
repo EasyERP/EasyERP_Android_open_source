@@ -1,6 +1,5 @@
 package com.thinkmobiles.easyerp.presentation.screens.crm.leads.details;
 
-import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.NestedScrollView;
@@ -15,13 +14,14 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.jakewharton.rxbinding.view.RxView;
 import com.thinkmobiles.easyerp.R;
-import com.thinkmobiles.easyerp.data.model.crm.leads.detail.LeadDetailWorkflow;
 import com.thinkmobiles.easyerp.domain.crm.LeadsRepository;
-import com.thinkmobiles.easyerp.presentation.adapters.crm.LeadHistoryAdapter;
+import com.thinkmobiles.easyerp.presentation.adapters.crm.HistoryAdapter;
 import com.thinkmobiles.easyerp.presentation.base.BaseFragment;
+import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.HistoryDH;
 import com.thinkmobiles.easyerp.presentation.screens.home.HomeActivity;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
@@ -46,11 +46,18 @@ public class LeadDetailsFragment extends BaseFragment<HomeActivity> implements L
     @Bean
     protected LeadsRepository leadsRepository;
     @Bean
-    protected LeadHistoryAdapter historyAdapter;
+    protected HistoryAdapter historyAdapter;
+    @Bean
+    protected ErrorViewHelper errorViewHelper;
 
     @FragmentArg
     protected String leadId;
 
+    //region Views inject
+    @ViewById(R.id.llErrorLayout)
+    protected View errorLayout;
+    @ViewById
+    protected LinearLayout llMainContent_FLD;
     @ViewById
     protected SwipeRefreshLayout srlRefresh_FLD;
     @ViewById
@@ -103,7 +110,6 @@ public class LeadDetailsFragment extends BaseFragment<HomeActivity> implements L
     protected TextView tvCompanyCountry_FLD;
     @ViewById
     protected View viewHistoryDivider_FLD;
-
     @ViewById
     protected LinearLayout llAttachmentsContainer_FLD;
     @ViewById
@@ -114,6 +120,7 @@ public class LeadDetailsFragment extends BaseFragment<HomeActivity> implements L
     protected ImageView ivIconArrow_FLD;
     @ViewById
     protected RecyclerView rvHistory_FLD;
+    //endregion
 
     @DrawableRes(R.drawable.ic_arrow_up)
     protected Drawable icArrowUp;
@@ -122,6 +129,8 @@ public class LeadDetailsFragment extends BaseFragment<HomeActivity> implements L
 
     @AfterViews
     protected void initUI() {
+        errorViewHelper.init(errorLayout, v -> presenter.refresh());
+
         srlRefresh_FLD.setOnRefreshListener(() -> presenter.refresh());
         rvHistory_FLD.setLayoutManager(new LinearLayoutManager(getActivity()));
         rvHistory_FLD.setAdapter(historyAdapter);
@@ -134,7 +143,9 @@ public class LeadDetailsFragment extends BaseFragment<HomeActivity> implements L
         presenter.subscribe();
     }
 
-    public boolean optionsMenuForDetail() { return true; }
+    public boolean optionsMenuForDetail() {
+        return true;
+    }
 
     @Override
     public void onDestroyView() {
@@ -160,7 +171,7 @@ public class LeadDetailsFragment extends BaseFragment<HomeActivity> implements L
 
     @Override
     public void showProgress(boolean enable) {
-        if (enable) {
+        if(enable) {
             displayProgress(true);
             srlRefresh_FLD.setVisibility(View.GONE);
             srlRefresh_FLD.setRefreshing(false);
@@ -284,7 +295,7 @@ public class LeadDetailsFragment extends BaseFragment<HomeActivity> implements L
 
     @Override
     public void showHistory(boolean enable) {
-        if (enable) {
+        if(enable) {
             btnHistory_FLD.setBackgroundColor(ContextCompat.getColor(getActivity(), (android.R.color.white)));
             nsvContent_FLD.setVisibility(View.GONE);
             rvHistory_FLD.setVisibility(View.VISIBLE);
@@ -297,6 +308,21 @@ public class LeadDetailsFragment extends BaseFragment<HomeActivity> implements L
             viewHistoryDivider_FLD.setVisibility(View.GONE);
             ivIconArrow_FLD.setImageDrawable(icArrowUp);
         }
+    }
+
+    @Override
+    public void showError(String errMsg) {
+        if(errMsg == null) {
+            errorViewHelper.hideError();
+        } else {
+            errorViewHelper.showErrorMsg(errMsg, ErrorViewHelper.ErrorType.NETWORK);
+        }
+        llMainContent_FLD.setVisibility(errMsg == null ? View.VISIBLE : View.GONE);
+    }
+
+    @Override
+    public void showMessage(String message) {
+        Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
     }
 
     @Override

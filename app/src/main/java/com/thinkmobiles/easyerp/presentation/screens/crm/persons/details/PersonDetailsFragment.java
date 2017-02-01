@@ -22,11 +22,12 @@ import android.widget.Toast;
 import com.jakewharton.rxbinding.view.RxView;
 import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.domain.crm.PersonsRepository;
-import com.thinkmobiles.easyerp.presentation.adapters.crm.LeadHistoryAdapter;
-import com.thinkmobiles.easyerp.presentation.adapters.crm.OpportunityAdapter;
+import com.thinkmobiles.easyerp.presentation.adapters.crm.HistoryAdapter;
+import com.thinkmobiles.easyerp.presentation.adapters.crm.OpportunityPreviewAdapter;
 import com.thinkmobiles.easyerp.presentation.base.BaseFragment;
+import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.HistoryDH;
-import com.thinkmobiles.easyerp.presentation.holders.data.crm.OpportunityDH;
+import com.thinkmobiles.easyerp.presentation.holders.data.crm.OpportunityPreviewDH;
 import com.thinkmobiles.easyerp.presentation.managers.ImageHelper;
 import com.thinkmobiles.easyerp.presentation.screens.home.HomeActivity;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
@@ -55,6 +56,8 @@ public class PersonDetailsFragment extends BaseFragment<HomeActivity> implements
     protected String personID;
 
     //region View Inject
+    @ViewById(R.id.llErrorLayout)
+    protected View errorLayout;
     @ViewById
     protected SwipeRefreshLayout srlRefresh_FPD;
     @ViewById
@@ -173,17 +176,21 @@ public class PersonDetailsFragment extends BaseFragment<HomeActivity> implements
     @Bean
     protected PersonsRepository personsRepository;
     @Bean
-    protected LeadHistoryAdapter historyAdapter;
+    protected HistoryAdapter historyAdapter;
     @Bean
-    protected OpportunityAdapter opportunityAdapter;
+    protected OpportunityPreviewAdapter opportunityPreviewAdapter;
+    @Bean
+    protected ErrorViewHelper errorViewHelper;
 
     @AfterViews
     protected void initUI() {
+        errorViewHelper.init(errorLayout, v -> presenter.refresh());
+
         srlRefresh_FPD.setOnRefreshListener(() -> presenter.refresh());
-        rvHistory_FPD.setLayoutManager(new LinearLayoutManager(getContext()));
+        rvHistory_FPD.setLayoutManager(new LinearLayoutManager(getActivity()));
         rvHistory_FPD.setAdapter(historyAdapter);
-        rvOpportunities_FPD.setLayoutManager(new LinearLayoutManager(getContext()));
-        rvOpportunities_FPD.setAdapter(opportunityAdapter);
+        rvOpportunities_FPD.setLayoutManager(new LinearLayoutManager(getActivity()));
+        rvOpportunities_FPD.setAdapter(opportunityPreviewAdapter);
 
         RxView.clicks(btnHistory_FPD)
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
@@ -352,6 +359,22 @@ public class PersonDetailsFragment extends BaseFragment<HomeActivity> implements
     }
 
     @Override
+    public void displayError(String msg) {
+        if(msg == null) errorViewHelper.hideError();
+        else {
+            srlRefresh_FPD.setRefreshing(false);
+            displayProgress(false);
+            srlRefresh_FPD.setVisibility(View.GONE);
+            errorViewHelper.showErrorMsg(msg, ErrorViewHelper.ErrorType.NETWORK);
+        }
+    }
+
+    @Override
+    public void showMessage(String message) {
+        Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
     public void displayPersonAboutName(String name) {
         tvAboutName_FPD.setText(name);
     }
@@ -454,8 +477,8 @@ public class PersonDetailsFragment extends BaseFragment<HomeActivity> implements
     }
 
     @Override
-    public void displayOpportunities(ArrayList<OpportunityDH> opportunityDHs) {
-        opportunityAdapter.setListDH(opportunityDHs);
+    public void displayOpportunities(ArrayList<OpportunityPreviewDH> opportunityPreviewDHs) {
+        opportunityPreviewAdapter.setListDH(opportunityPreviewDHs);
     }
 
     @Override

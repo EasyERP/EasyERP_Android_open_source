@@ -90,15 +90,10 @@ public abstract class DateManager {
     }
 
     public static String getTime(String date) {
-        SimpleDateFormat sdf = new SimpleDateFormat(PATTERN_DATE, Locale.US);
-        SimpleDateFormat sdfOut = new SimpleDateFormat(PATTERN_SIMPLE_TIME, Locale.US);
-        try {
-            Date d = sdf.parse(date);
-            return sdfOut.format(d);
-        } catch (ParseException e) {
-            e.printStackTrace();
-            return "Error";
-        }
+        return new DateConverter(date)
+                .setSrcPattern(PATTERN_DATE)
+                .setDstPattern(PATTERN_SIMPLE_TIME)
+                .toString();
     }
 
     public static DateConverter convert(String date) {
@@ -125,7 +120,7 @@ public abstract class DateManager {
             this.calendar = calendar;
         }
 
-        public DateConverter srcPattern(String srcPattern) {
+        public DateConverter setSrcPattern(String srcPattern) {
             this.srcPattern = srcPattern;
             return this;
         }

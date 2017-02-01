@@ -7,6 +7,7 @@ import com.thinkmobiles.easyerp.data.model.crm.persons.CommonPersonsResponse;
 import com.thinkmobiles.easyerp.data.model.crm.persons.ResponseGetPersons;
 import com.thinkmobiles.easyerp.data.model.crm.persons.images.CustomerImageItem;
 import com.thinkmobiles.easyerp.data.model.crm.persons.person_item.PersonModel;
+import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectablePresenterHelper;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.PersonDH;
 
@@ -70,7 +71,7 @@ public class PersonsPresenter extends MasterFlowSelectablePresenterHelper<String
                                    CommonPersonsResponse::new)
                            .subscribe(commonPersonsResponse -> {
                                view.displayPersons(prepareDataHolders(commonPersonsResponse, needClear), needClear);
-                           })
+                           }, t -> view.displayError(t.getMessage(), ErrorViewHelper.ErrorType.NETWORK))
            );
         } else {
             //load by letter
@@ -80,7 +81,7 @@ public class PersonsPresenter extends MasterFlowSelectablePresenterHelper<String
                                     CommonPersonsResponse::new)
                             .subscribe(commonPersonsResponse -> {
                                 view.displayPersons(prepareDataHolders(commonPersonsResponse, needClear), needClear);
-                            })
+                            }, t -> view.displayError(t.getMessage(), ErrorViewHelper.ErrorType.NETWORK))
             );
         }
     }

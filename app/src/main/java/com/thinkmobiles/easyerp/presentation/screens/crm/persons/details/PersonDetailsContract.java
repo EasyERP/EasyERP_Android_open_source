@@ -5,7 +5,7 @@ import com.thinkmobiles.easyerp.presentation.base.BaseModel;
 import com.thinkmobiles.easyerp.presentation.base.BasePresenter;
 import com.thinkmobiles.easyerp.presentation.base.BaseView;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.HistoryDH;
-import com.thinkmobiles.easyerp.presentation.holders.data.crm.OpportunityDH;
+import com.thinkmobiles.easyerp.presentation.holders.data.crm.OpportunityPreviewDH;
 
 import java.util.ArrayList;
 
@@ -21,6 +21,8 @@ public interface PersonDetailsContract {
         void showHistory(boolean isShow);
         void showCompanyInfo(boolean isShow);
         void showSalesPurchasesInfo(boolean isShow);
+        void displayError(final String msg);
+        void showMessage(String message);
 
         void displayPersonAboutName(String name);
         void displayPersonAvatar(String base64Avatar);
@@ -72,7 +74,7 @@ public interface PersonDetailsContract {
         void displayCompanyPhone(String companyPhone);
         void displayCompanyEmail(String companyEmail);
 
-        void displayOpportunities(ArrayList<OpportunityDH> opportunityDHs);
+        void displayOpportunities(ArrayList<OpportunityPreviewDH> opportunityPreviewDHs);
         void displayAttachments(String attachments);
         void displayHistory(ArrayList<HistoryDH> historyDHs);
     }
