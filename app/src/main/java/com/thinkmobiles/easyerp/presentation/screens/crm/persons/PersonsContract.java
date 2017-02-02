@@ -1,8 +1,8 @@
 package com.thinkmobiles.easyerp.presentation.screens.crm.persons;
 
 import com.thinkmobiles.easyerp.data.model.crm.persons.ResponseGetPersons;
-import com.thinkmobiles.easyerp.data.model.crm.persons.alphabet.AlphabetItem;
-import com.thinkmobiles.easyerp.data.model.crm.persons.alphabet.ResponseGetPersonsAlphabet;
+import com.thinkmobiles.easyerp.data.model.crm.common.alphabet.AlphabetItem;
+import com.thinkmobiles.easyerp.data.model.crm.common.alphabet.ResponseGetAlphabet;
 import com.thinkmobiles.easyerp.data.model.crm.persons.images.ResponseGetCustomersImages;
 import com.thinkmobiles.easyerp.presentation.base.BaseModel;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
@@ -31,8 +31,8 @@ public interface PersonsContract {
         void loadMore(int page);
     }
     interface PersonsModel extends BaseModel {
-        Observable<ResponseGetPersonsAlphabet> getPersonsAlphabet();
-        Observable<ResponseGetCustomersImages> getCustomerImages(ArrayList<String> customerIdList);
+        Observable<ResponseGetAlphabet> getPersonsAlphabet();
+        Observable<ResponseGetCustomersImages> getPersonImages(ArrayList<String> customerIdList);
         Observable<ResponseGetPersons> getAllPersons(int page);
         Observable<ResponseGetPersons> getPersonsByLetter(String letter, int page);
     }

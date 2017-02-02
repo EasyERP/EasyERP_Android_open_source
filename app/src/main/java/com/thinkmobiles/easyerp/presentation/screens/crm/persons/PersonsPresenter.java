@@ -66,7 +66,7 @@ public class PersonsPresenter extends MasterFlowSelectablePresenterHelper<String
             //load all
            compositeSubscription.add(
                    personsModel.getAllPersons(page)
-                           .flatMap(responseGetPersons -> personsModel.getCustomerImages(prepareIDsForImagesRequest(responseGetPersons)),
+                           .flatMap(responseGetPersons -> personsModel.getPersonImages(prepareIDsForImagesRequest(responseGetPersons)),
                                    CommonPersonsResponse::new)
                            .subscribe(commonPersonsResponse -> {
                                view.displayPersons(prepareDataHolders(commonPersonsResponse, needClear), needClear);
@@ -76,7 +76,7 @@ public class PersonsPresenter extends MasterFlowSelectablePresenterHelper<String
             //load by letter
             compositeSubscription.add(
                     personsModel.getPersonsByLetter(selectedLetter, page)
-                            .flatMap(responseGetPersons -> personsModel.getCustomerImages(prepareIDsForImagesRequest(responseGetPersons)),
+                            .flatMap(responseGetPersons -> personsModel.getPersonImages(prepareIDsForImagesRequest(responseGetPersons)),
                                     CommonPersonsResponse::new)
                             .subscribe(commonPersonsResponse -> {
                                 view.displayPersons(prepareDataHolders(commonPersonsResponse, needClear), needClear);

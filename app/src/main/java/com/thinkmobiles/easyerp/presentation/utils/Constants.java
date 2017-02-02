@@ -30,6 +30,9 @@ public abstract class Constants {
 
     public static final String GET_OPPORTUNITIES            = "opportunities";
     public static final String GET_OPPORTUNITY_DETAILS      = "opportunities/{OpportunityID}";
+
+    public static final String GET_COMPANIES_ALPHABET       = "customers/getCompaniesAlphabet";
+    public static final String GET_COMPANAIES               = "companies";
     // End CRM
 
     //Invoice

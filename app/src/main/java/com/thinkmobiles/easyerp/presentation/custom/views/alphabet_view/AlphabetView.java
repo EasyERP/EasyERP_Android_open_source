@@ -7,7 +7,7 @@ import android.util.AttributeSet;
 import android.widget.FrameLayout;
 
 import com.thinkmobiles.easyerp.R;
-import com.thinkmobiles.easyerp.data.model.crm.persons.alphabet.AlphabetItem;
+import com.thinkmobiles.easyerp.data.model.crm.common.alphabet.AlphabetItem;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Bean;
