@@ -10,7 +10,8 @@ import android.widget.TextView;
 import com.michenko.simpleadapter.OnCardClickListener;
 import com.michenko.simpleadapter.RecyclerVH;
 import com.thinkmobiles.easyerp.R;
-import com.thinkmobiles.easyerp.data.model.crm.orders.detail.OrderProduct;
+import com.thinkmobiles.easyerp.data.model.crm.order.detail.OrderProduct;
+import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectableVHHelper;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.OrderProductDH;
 import com.thinkmobiles.easyerp.presentation.screens.crm.dashboard.detail.charts.DollarFormatter;
 import com.thinkmobiles.easyerp.presentation.utils.StringUtil;
@@ -23,20 +24,20 @@ import java.text.DecimalFormat;
  *         Email: alex.michenko@thinkmobiles.com
  */
 
-public class OrderProductVH extends RecyclerVH<OrderProductDH> {
+public final class OrderProductVH extends RecyclerVH<OrderProductDH> {
 
-    private TextView tvNumber_LIOP;
-    private TextView tvSku_LIOP;
-    private TextView tvInfo_LIOP;
-    private TextView tvQty_LIOP;
-    private TextView tvUnitPrice_LIOP;
-    private TextView tvTaxes_LIOP;
-    private TextView tvAmount_LIOP;
+    private final TextView tvNumber_LIOP;
+    private final TextView tvSku_LIOP;
+    private final TextView tvInfo_LIOP;
+    private final TextView tvQty_LIOP;
+    private final TextView tvUnitPrice_LIOP;
+    private final TextView tvTaxes_LIOP;
+    private final TextView tvAmount_LIOP;
 
-    private Resources res;
-    private DecimalFormat formatter;
-    private int colorWhite;
-    private int colorBlack;
+    private final Resources res;
+    private final DecimalFormat formatter;
+    private final int colorWhite;
+    private final int colorBlack;
 
     public OrderProductVH(View itemView, @Nullable OnCardClickListener listener, int viewType) {
         super(itemView, listener, viewType);
@@ -75,11 +76,12 @@ public class OrderProductVH extends RecyclerVH<OrderProductDH> {
             tvInfo_LIOP.setText(model.description);
             tvQty_LIOP.setText(String.valueOf(model.quantity.floatValue()));
 
-            tvUnitPrice_LIOP.setText(StringUtil.getFormattedPrice(formatter, model.unitPrice / 100));
-            tvTaxes_LIOP.setText(StringUtil.getFormattedPrice(formatter, model.totalTaxes / 100));
-            tvAmount_LIOP.setText(StringUtil.getFormattedPrice(formatter, model.subTotal / 100));
+            tvUnitPrice_LIOP.setText(StringUtil.getFormattedPriceFromCent(formatter, model.unitPrice));
+            tvTaxes_LIOP.setText(StringUtil.getFormattedPriceFromCent(formatter, model.totalTaxes));
+            tvAmount_LIOP.setText(StringUtil.getFormattedPriceFromCent(formatter, model.subTotal));
         } else {
             Typeface typeface = Typeface.create("sans-serif-condensed", Typeface.BOLD);
+            int colorWhite = ContextCompat.getColor(itemView.getContext(), android.R.color.white);
 
             tvNumber_LIOP.setTextColor(colorWhite);
             tvSku_LIOP.setTextColor(colorWhite);

@@ -15,6 +15,7 @@ import com.thinkmobiles.easyerp.presentation.holders.data.crm.PaymentDH;
 import com.thinkmobiles.easyerp.presentation.managers.DateManager;
 import com.thinkmobiles.easyerp.presentation.managers.TagHelper;
 import com.thinkmobiles.easyerp.presentation.screens.crm.dashboard.detail.charts.DollarFormatter;
+import com.thinkmobiles.easyerp.presentation.utils.StringUtil;
 
 /**
  * @author Michael Soyma (Created on 2/2/2017).
@@ -52,9 +53,9 @@ public final class PaymentVH extends MasterFlowSelectableVHHelper<PaymentDH> {
         tvPaymentCompany_VLIP.setText(data.getPayment().supplier == null ? no_data : data.getPayment().supplier.name.getFullName());
         tvPaymentDate_VLIP.setText(new DateManager.DateConverter(data.getPayment().date).setDstPattern(DateManager.PATTERN_DATE_SIMPLE_PREVIEW).toString());
         tvAssignTo_VLIP.setText(data.getPayment().assigned == null ? not_assigned : data.getPayment().assigned.name.getFullName());
-        tvPaid_VLIP.setText(String.format("%s %s",
-                data.getPayment().currency != null ? data.getPayment().currency.symbol : "$",
-                new DollarFormatter().getFormat().format((data.getPayment().refund ? -1 : 1) * data.getPayment().paidAmount / 100)));
+        tvPaid_VLIP.setText(StringUtil.getFormattedPriceFromCent(new DollarFormatter().getFormat(),
+                (data.getPayment().refund ? -1 : 1) * data.getPayment().paidAmount,
+                data.getPayment().currency.id != null ? data.getPayment().currency.symbol : "$"));
         tvPaymentType_VLIP.setText(buildStatusTag(data.getPayment().refund ? "Refund" : "Payment", TagHelper.getColorResIdByName("")));
 
         tvPaymentCompany_VLIP.requestLayout();

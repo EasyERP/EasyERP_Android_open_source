@@ -9,6 +9,7 @@ import com.thinkmobiles.easyerp.data.model.crm.invoice.ResponseGetInvoice;
 import com.thinkmobiles.easyerp.presentation.custom.views.charts.TableDataView;
 import com.thinkmobiles.easyerp.presentation.managers.ColorGenerateManager;
 import com.thinkmobiles.easyerp.presentation.managers.DateManager;
+import com.thinkmobiles.easyerp.presentation.utils.StringUtil;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -48,7 +49,7 @@ public class TableChartViewImpl implements IChartView<List<TableDataView.TableIt
                             new DateManager.DateConverter(invoice.invoiceDate).setDstPattern(DateManager.PATTERN_DASHBOARD_PREVIEW).toString(),
                             new DateManager.DateConverter(invoice.invoiceDate).setDstPattern(DateManager.PATTERN_DASHBOARD_DAY_VIEW).toString()),
                     TextUtils.isEmpty(invoice.supplier.name) ? "Not Assigned" : invoice.supplier.name,
-                    String.format("%s %s", invoice.currency.id.symbol, sumFormat.format(invoice.paymentInfo.total / 100d))));
+                    StringUtil.getFormattedPriceFromCent(sumFormat, invoice.paymentInfo.total, invoice.currency.id.symbol)));
 
         return dataList;
     }

@@ -61,8 +61,8 @@ public final class OrderVH extends MasterFlowSelectableVHHelper<OrderDH> {
         tvOrderStatus_VLIO.setText(buildStatusTag(data.getOrder().workflow.name, TagHelper.getColorResIdByName(data.getOrder().workflow.status)));
         tvCustomer_VLIO.setText(TextUtils.isEmpty(data.getOrder().supplier.name) ? not_assigned : data.getOrder().supplier.name);
         tvCreatedDate_VLIO.setText(new DateManager.DateConverter(data.getOrder().orderDate).setDstPattern(DateManager.PATTERN_DATE_SIMPLE_PREVIEW).toString());
-        tvTotalPrice_VLIO.setText(StringUtil.getFormattedPrice(new DollarFormatter().getFormat(),
-                data.getOrder().paymentInfo.total / 100,
+        tvTotalPrice_VLIO.setText(StringUtil.getFormattedPriceFromCent(new DollarFormatter().getFormat(),
+                data.getOrder().paymentInfo.total,
                 data.getOrder().currency.id != null ? data.getOrder().currency.id.symbol : "$"));
 
         tvOrderName_VLIO.requestLayout();

@@ -1,7 +1,7 @@
 package com.thinkmobiles.easyerp.presentation.holders.data.crm;
 
 import com.michenko.simpleadapter.RecyclerDH;
-import com.thinkmobiles.easyerp.data.model.crm.orders.detail.OrderProduct;
+import com.thinkmobiles.easyerp.data.model.crm.order.detail.OrderProduct;
 
 /**
  * @author Alex Michenko (Created on 01.02.17).
@@ -9,9 +9,9 @@ import com.thinkmobiles.easyerp.data.model.crm.orders.detail.OrderProduct;
  *         Email: alex.michenko@thinkmobiles.com
  */
 
-public class OrderProductDH extends RecyclerDH {
+public final class OrderProductDH extends RecyclerDH {
 
-    private OrderProduct model;
+    private final OrderProduct model;
 
     public OrderProductDH(OrderProduct model) {
         this.model = model;

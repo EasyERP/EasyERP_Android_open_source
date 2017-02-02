@@ -1,19 +1,16 @@
-package com.thinkmobiles.easyerp.data.model.crm.orders.detail;
+package com.thinkmobiles.easyerp.data.model.crm.order.detail;
 
 
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.thinkmobiles.easyerp.data.model.crm.dashboard.detail.invoice.Currency;
-import com.thinkmobiles.easyerp.data.model.crm.dashboard.detail.invoice.InvoiceItem;
-import com.thinkmobiles.easyerp.data.model.crm.dashboard.detail.invoice.PaymentInfo;
 import com.thinkmobiles.easyerp.data.model.crm.dashboard.detail.order.OrderStatus;
-import com.thinkmobiles.easyerp.data.model.crm.leads.EditedBy;
+import com.thinkmobiles.easyerp.data.model.crm.invoice.Currency;
+import com.thinkmobiles.easyerp.data.model.crm.invoice.PaymentInfo;
 import com.thinkmobiles.easyerp.data.model.crm.leads.Workflow;
 import com.thinkmobiles.easyerp.data.model.crm.leads.detail.AttachmentItem;
 import com.thinkmobiles.easyerp.data.model.crm.leads.detail.CreatedEditedBy;
 import com.thinkmobiles.easyerp.data.model.crm.leads.detail.Groups;
-import com.thinkmobiles.easyerp.data.model.crm.leads.detail.Name;
 import com.thinkmobiles.easyerp.data.model.crm.leads.detail.NoteItem;
 import com.thinkmobiles.easyerp.data.model.crm.leads.detail.SalesPerson;
 import com.thinkmobiles.easyerp.data.model.crm.leads.filter.FilterItem;

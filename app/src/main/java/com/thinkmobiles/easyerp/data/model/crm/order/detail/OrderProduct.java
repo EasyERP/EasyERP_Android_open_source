@@ -1,4 +1,4 @@
-package com.thinkmobiles.easyerp.data.model.crm.orders.detail;
+package com.thinkmobiles.easyerp.data.model.crm.order.detail;
 
 
 import android.os.Parcel;

@@ -13,6 +13,7 @@ import com.thinkmobiles.easyerp.data.model.crm.dashboard.detail.order.OrderItem;
 import com.thinkmobiles.easyerp.data.model.crm.dashboard.detail.order.OrderStatus;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.DashboardOverviewChartAdapter;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.DashboardOverviewChartDH;
+import com.thinkmobiles.easyerp.presentation.utils.StringUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,7 +39,7 @@ public class OverViewChartViewImpl implements IChartView<List<OrderItem>> {
 
         displayAFS(targetView.findViewById(R.id.llHeaderInfo_VCO));
         ((TextView) targetView.findViewById(R.id.tvTotalCountValue_VCO)).setText(String.valueOf(totalCount));
-        ((TextView) targetView.findViewById(R.id.tvTotalRevenue_VCO )).setText(String.format("$ %s", new DollarFormatter().getFormat().format(totalRevenue)));
+        ((TextView) targetView.findViewById(R.id.tvTotalRevenue_VCO )).setText(StringUtil.getFormattedPrice(new DollarFormatter().getFormat(), totalRevenue));
 
         final RecyclerView workflowsRecycler = (RecyclerView) targetView.findViewById(R.id.rvWorkflows_VCO);
         final DashboardOverviewChartAdapter adapter = new DashboardOverviewChartAdapter();

@@ -16,6 +16,7 @@ import com.thinkmobiles.easyerp.presentation.holders.data.crm.InvoiceDH;
 import com.thinkmobiles.easyerp.presentation.managers.DateManager;
 import com.thinkmobiles.easyerp.presentation.managers.TagHelper;
 import com.thinkmobiles.easyerp.presentation.screens.crm.dashboard.detail.charts.DollarFormatter;
+import com.thinkmobiles.easyerp.presentation.utils.StringUtil;
 
 /**
  * @author Michael Soyma (Created on 2/2/2017).
@@ -51,9 +52,9 @@ public final class InvoiceVH extends MasterFlowSelectableVHHelper<InvoiceDH> {
         tvInvoiceCustomer_VLII.setText(TextUtils.isEmpty(data.getInvoice().supplier.name) ? not_assigned : data.getInvoice().supplier.name);
         tvInvoiceDate_VLII.setText(new DateManager.DateConverter(data.getInvoice().invoiceDate).setDstPattern(DateManager.PATTERN_DATE_SIMPLE_PREVIEW).toString());
         tvAssignTo_VLII.setText(TextUtils.isEmpty(data.getInvoice().salesPerson.name) ? not_assigned : data.getInvoice().salesPerson.name);
-        tvTotalPrice_VLII.setText(String.format("%s %s",
-                data.getInvoice().currency.id != null ? data.getInvoice().currency.id.symbol : "$",
-                new DollarFormatter().getFormat().format(data.getInvoice().paymentInfo.total)));
+        tvTotalPrice_VLII.setText(StringUtil.getFormattedPriceFromCent(new DollarFormatter().getFormat(),
+                data.getInvoice().paymentInfo.total,
+                data.getInvoice().currency.id != null ? data.getInvoice().currency.id.symbol : "$"));
         tvInvoiceStatus_VLII.setText(buildStatusTag(data.getInvoice().workflow.name, TagHelper.getColorResIdByName(data.getInvoice().workflow.name)));
 
         tvInvoiceCustomer_VLII.requestLayout();

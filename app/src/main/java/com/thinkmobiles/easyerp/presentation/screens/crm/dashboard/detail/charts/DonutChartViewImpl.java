@@ -21,6 +21,7 @@ import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.data.model.crm.invoice.Invoice;
+import com.thinkmobiles.easyerp.presentation.utils.StringUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -125,7 +126,10 @@ public final class DonutChartViewImpl implements IChartView<PieData> {
     }
 
     private SpannableString generateCenterSpannableText() {
-        SpannableString s = new SpannableString(String.format("Total\n$ %s", new DollarFormatter().getFormat().format(totalRevenue)));
+        SpannableString s = new SpannableString(StringUtil.getFormattedPrice(new DollarFormatter().getFormat(),
+                totalRevenue,
+                "Total\n$")
+        );
         s.setSpan(new StyleSpan(Typeface.BOLD), 6, s.length(), 0);
         return s;
     }

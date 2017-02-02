@@ -166,8 +166,19 @@ public abstract class StringUtil {
         return stringBuilder;
     }
 
+    public static String getFormattedPriceFromCent(Format formatter, Double price) {
+        return getFormattedPriceFromCent(formatter, price, "$");
+    }
+
+    public static String getFormattedPriceFromCent(Format formatter, Double price, String prefix) {
+        if (price == null) {
+            price = 0d;
+        }
+        return String.format("%s %s", prefix, formatter.format(price / 100));
+    }
+
     public static String getFormattedPrice(Format formatter, Double price) {
-        return getFormattedPrice(formatter, price, "$ ");
+        return getFormattedPriceFromCent(formatter, price, "$");
     }
 
     public static String getFormattedPrice(Format formatter, Double price, String prefix) {

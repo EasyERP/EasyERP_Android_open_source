@@ -4,8 +4,8 @@ package com.thinkmobiles.easyerp.presentation.screens.crm.orders.details;
 import android.content.res.Resources;
 
 import com.thinkmobiles.easyerp.R;
-import com.thinkmobiles.easyerp.data.model.crm.orders.detail.OrderProduct;
-import com.thinkmobiles.easyerp.data.model.crm.orders.detail.ResponseGerOrderDetails;
+import com.thinkmobiles.easyerp.data.model.crm.order.detail.OrderProduct;
+import com.thinkmobiles.easyerp.data.model.crm.order.detail.ResponseGerOrderDetails;
 import com.thinkmobiles.easyerp.data.model.user.organization.OrganizationSettings;
 import com.thinkmobiles.easyerp.presentation.EasyErpApplication;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
@@ -93,20 +93,20 @@ public class OrderDetailsPresenter implements OrderDetailsContract.OrderDetailsP
 
         view.setOrderStatus(response.workflow.name);
         view.setOrderName(response.name);
-        view.setExpectedDate(DateManager.convert(response.expectedDate).setDstPattern(DateManager.PATTERN_OUT_PERSON_DOB).toString());
-        view.setOrderDate(DateManager.convert(response.orderDate).setDstPattern(DateManager.PATTERN_OUT_PERSON_DOB).toString());
+        view.setExpectedDate(DateManager.convert(response.expectedDate).setDstPattern(DateManager.PATTERN_DATE_SIMPLE_PREVIEW).toString());
+        view.setOrderDate(DateManager.convert(response.orderDate).setDstPattern(DateManager.PATTERN_DATE_SIMPLE_PREVIEW).toString());
         view.setSupplierName(response.supplier.fullName);
         view.setSupplierAddress(StringUtil.getAddress(response.supplier.address));
         String prefix = response.currency.id != null ? response.currency.id.symbol : "$";
         if (response.paymentInfo != null) {
-            view.setSubTotal(StringUtil.getFormattedPrice(formatter, response.paymentInfo.unTaxed / 100, prefix));
+            view.setSubTotal(StringUtil.getFormattedPriceFromCent(formatter, response.paymentInfo.unTaxed, prefix));
             if (response.paymentInfo.discount > 0)
-                view.setDiscount(StringUtil.getFormattedPrice(formatter, - response.paymentInfo.discount / 100, prefix));
-            view.setTaxes(StringUtil.getFormattedPrice(formatter, response.paymentInfo.taxes / 100, prefix));
-            view.setTotal(StringUtil.getFormattedPrice(formatter, response.paymentInfo.total / 100, prefix));
+                view.setDiscount(StringUtil.getFormattedPriceFromCent(formatter, - response.paymentInfo.discount, prefix));
+            view.setTaxes(StringUtil.getFormattedPriceFromCent(formatter, response.paymentInfo.taxes, prefix));
+            view.setTotal(StringUtil.getFormattedPriceFromCent(formatter, response.paymentInfo.total, prefix));
         }
         if (response.prepayment != null && response.prepayment.sum != null)
-            view.setPrepaid(StringUtil.getFormattedPrice(formatter, response.prepayment.sum / 100, prefix));
+            view.setPrepaid(StringUtil.getFormattedPriceFromCent(formatter, response.prepayment.sum, prefix));
         if (response.paymentMethod != null) {
             view.setNameBeneficiary(response.paymentMethod.owner);
             view.setBank(response.paymentMethod.bank);
