@@ -20,7 +20,7 @@ public class Prepayment implements Parcelable {
      */
 
     public String _id;
-    public Long sum;
+    public Double sum;
     public ArrayList<String> names;
     public String date;
 
@@ -43,7 +43,7 @@ public class Prepayment implements Parcelable {
 
     protected Prepayment(Parcel in) {
         this._id = in.readString();
-        this.sum = (Long) in.readValue(Long.class.getClassLoader());
+        this.sum = (Double) in.readValue(Double.class.getClassLoader());
         this.names = in.createStringArrayList();
         this.date = in.readString();
     }

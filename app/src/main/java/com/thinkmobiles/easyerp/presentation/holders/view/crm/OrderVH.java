@@ -16,6 +16,7 @@ import com.thinkmobiles.easyerp.presentation.holders.data.crm.OrderDH;
 import com.thinkmobiles.easyerp.presentation.managers.DateManager;
 import com.thinkmobiles.easyerp.presentation.managers.TagHelper;
 import com.thinkmobiles.easyerp.presentation.screens.crm.dashboard.detail.charts.DollarFormatter;
+import com.thinkmobiles.easyerp.presentation.utils.StringUtil;
 
 /**
  * Created by Lynx on 1/16/2017.
@@ -58,9 +59,9 @@ public class OrderVH extends RecyclerVH<OrderDH> {
         tvOrderStatus_VLIO.setText(buildStatusTag(data.getOrder().workflow.name, TagHelper.getColorResIdByName(data.getOrder().workflow.status)));
         tvCustomer_VLIO.setText(data.getOrder().supplier.name);
         tvCreatedDate_VLIO.setText(new DateManager.DateConverter(data.getOrder().orderDate).setDstPattern(DateManager.PATTERN_OUT_PERSON_DOB).toString());
-        tvTotalPrice_VLIO.setText(String.format("%s %s",
-                data.getOrder().currency.id != null ? data.getOrder().currency.id.symbol : "$",
-                new DollarFormatter().getFormat().format(data.getOrder().paymentInfo.total)));
+        tvTotalPrice_VLIO.setText(StringUtil.getFormattedPrice(new DollarFormatter().getFormat(),
+                data.getOrder().paymentInfo.total / 100,
+                data.getOrder().currency.id != null ? data.getOrder().currency.id.symbol : "$"));
 
         switch (data.getOrder().status.allocateStatus) {
             case "NOT":

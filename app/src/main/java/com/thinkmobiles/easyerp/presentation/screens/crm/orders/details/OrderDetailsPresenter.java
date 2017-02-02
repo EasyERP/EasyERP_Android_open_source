@@ -4,12 +4,19 @@ package com.thinkmobiles.easyerp.presentation.screens.crm.orders.details;
 import android.content.res.Resources;
 
 import com.thinkmobiles.easyerp.R;
+import com.thinkmobiles.easyerp.data.model.crm.orders.detail.OrderProduct;
 import com.thinkmobiles.easyerp.data.model.crm.orders.detail.ResponseGerOrderDetails;
 import com.thinkmobiles.easyerp.data.model.user.organization.OrganizationSettings;
 import com.thinkmobiles.easyerp.presentation.EasyErpApplication;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
+import com.thinkmobiles.easyerp.presentation.holders.data.crm.HistoryDH;
+import com.thinkmobiles.easyerp.presentation.holders.data.crm.OrderProductDH;
 import com.thinkmobiles.easyerp.presentation.managers.DateManager;
+import com.thinkmobiles.easyerp.presentation.screens.crm.dashboard.detail.charts.DollarFormatter;
 import com.thinkmobiles.easyerp.presentation.utils.StringUtil;
+
+import java.text.DecimalFormat;
+import java.util.ArrayList;
 
 import rx.subscriptions.CompositeSubscription;
 
@@ -25,6 +32,7 @@ public class OrderDetailsPresenter implements OrderDetailsContract.OrderDetailsP
     private boolean isVisibleHistory;
     private String notSpecified;
     private Resources res;
+    private DecimalFormat formatter;
 
     public OrderDetailsPresenter(OrderDetailsContract.OrderDetailsView view, OrderDetailsContract.OrderDetailsModel model, String orderId) {
         this.view = view;
@@ -35,6 +43,7 @@ public class OrderDetailsPresenter implements OrderDetailsContract.OrderDetailsP
         compositeSubscription = new CompositeSubscription();
         notSpecified = EasyErpApplication.getInstance().getString(R.string.err_not_specified);
         res = EasyErpApplication.getInstance().getResources();
+        formatter = new DollarFormatter().getFormat();
     }
 
     @Override
@@ -53,9 +62,9 @@ public class OrderDetailsPresenter implements OrderDetailsContract.OrderDetailsP
                     view.showProgress(false);
                     t.printStackTrace();
                     if (currentOrder == null) {
-                        view.showErrorState(t.getMessage(), ErrorViewHelper.ErrorType.NETWORK);
+                        view.showError(t.getMessage(), ErrorViewHelper.ErrorType.NETWORK);
                     } else {
-                        view.showErrorToast(t.getMessage());
+                        view.showMessage(t.getMessage());
                     }
                 }));
     }
@@ -82,18 +91,22 @@ public class OrderDetailsPresenter implements OrderDetailsContract.OrderDetailsP
     private void setData(ResponseGerOrderDetails response) {
         currentOrder = response;
 
-        view.setOrderStatus(response.workflow.status);
+        view.setOrderStatus(response.workflow.name);
         view.setOrderName(response.name);
-        view.setExpectedDate(DateManager.convert(response.expectedDate).setDstPattern(DateManager.PATTERN_SIMPLE_DATE_SHORT).toString());
-        view.setExpectedDate(DateManager.convert(response.orderDate).setDstPattern(DateManager.PATTERN_SIMPLE_DATE_SHORT).toString());
+        view.setExpectedDate(DateManager.convert(response.expectedDate).setDstPattern(DateManager.PATTERN_OUT_PERSON_DOB).toString());
+        view.setOrderDate(DateManager.convert(response.orderDate).setDstPattern(DateManager.PATTERN_OUT_PERSON_DOB).toString());
         view.setSupplierName(response.supplier.fullName);
         view.setSupplierAddress(StringUtil.getAddress(response.supplier.address));
-        view.setSubTotal("Sub Total" + String.format("%1$20s", "$" + response.paymentInfo.unTaxed.longValue() / 100));
-        view.setDiscount("Discount" + String.format("%1$20s", "$(-)" + response.paymentInfo.discount.longValue() / 100));
-        view.setTaxes("Taxes" + String.format("%1$20s", "$" + response.paymentInfo.taxes.longValue() / 100));
-        view.setTotal("Total" + String.format("%1$20s", "$" + response.paymentInfo.total.longValue() / 100));
-        if (response.prepayment != null)
-            view.setPrepaid("Prepaid" + String.format("%1$20s", "$" + response.prepayment.sum));
+        String prefix = response.currency.id != null ? response.currency.id.symbol : "$";
+        if (response.paymentInfo != null) {
+            view.setSubTotal(StringUtil.getFormattedPrice(formatter, response.paymentInfo.unTaxed / 100, prefix));
+            if (response.paymentInfo.discount > 0)
+                view.setDiscount(StringUtil.getFormattedPrice(formatter, - response.paymentInfo.discount / 100, prefix));
+            view.setTaxes(StringUtil.getFormattedPrice(formatter, response.paymentInfo.taxes / 100, prefix));
+            view.setTotal(StringUtil.getFormattedPrice(formatter, response.paymentInfo.total / 100, prefix));
+        }
+        if (response.prepayment != null && response.prepayment.sum != null)
+            view.setPrepaid(StringUtil.getFormattedPrice(formatter, response.prepayment.sum / 100, prefix));
         if (response.paymentMethod != null) {
             view.setNameBeneficiary(response.paymentMethod.owner);
             view.setBank(response.paymentMethod.bank);
@@ -117,7 +130,20 @@ public class OrderDetailsPresenter implements OrderDetailsContract.OrderDetailsP
         if (response.attachments != null && !response.attachments.isEmpty()) {
             view.setAttachments(StringUtil.getAttachments(response.attachments));
         }
+
+        view.setProducts(prepareProductList(response.products));
+        view.setHistory(HistoryDH.convert(response.notes));
+
         view.showHistory(isVisibleHistory);
+    }
+
+    private ArrayList<OrderProductDH> prepareProductList(ArrayList<OrderProduct> products) {
+        ArrayList<OrderProductDH> list = new ArrayList<>();
+        list.add(null);
+        for (OrderProduct product : products){
+            list.add(new OrderProductDH(product));
+        }
+        return list;
     }
 
     @Override

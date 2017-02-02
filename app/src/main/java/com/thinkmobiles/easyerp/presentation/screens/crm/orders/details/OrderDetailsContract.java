@@ -6,7 +6,11 @@ import com.thinkmobiles.easyerp.presentation.base.BaseModel;
 import com.thinkmobiles.easyerp.presentation.base.BasePresenter;
 import com.thinkmobiles.easyerp.presentation.base.BaseView;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
+import com.thinkmobiles.easyerp.presentation.holders.data.crm.HistoryDH;
+import com.thinkmobiles.easyerp.presentation.holders.data.crm.OrderProductDH;
 
+
+import java.util.ArrayList;
 
 import rx.Observable;
 
@@ -40,9 +44,11 @@ public interface OrderDetailsContract {
         void setOwnerEmail(String ownerEmail);
         void setAttachments(String attachments);
         void setAdvice(String advice);
+        void setHistory(ArrayList<HistoryDH> history);
+        void setProducts(ArrayList<OrderProductDH> products);
 
-        void showErrorState(String errorMessage, ErrorViewHelper.ErrorType errorType);
-        void showErrorToast(String errorMessage);
+        void showError(String errorMessage, ErrorViewHelper.ErrorType errorType);
+        void showMessage(String errorMessage);
     }
 
     interface OrderDetailsPresenter extends BasePresenter {

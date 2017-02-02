@@ -18,6 +18,7 @@ import com.thinkmobiles.easyerp.presentation.custom.RoundedBackgroundSpan;
 import com.thinkmobiles.easyerp.presentation.managers.DateManager;
 import com.thinkmobiles.easyerp.presentation.managers.TagHelper;
 
+import java.text.Format;
 import java.util.ArrayList;
 import java.util.Locale;
 
@@ -36,16 +37,16 @@ public abstract class StringUtil {
 
     public static String getAddress(Address address) {
         StringBuilder builder = new StringBuilder();
+        if (!TextUtils.isEmpty(address.street))
+            builder.append(address.street).append(", ");
+        if (!TextUtils.isEmpty(address.city))
+            builder.append(address.city).append(", ");
+        if (!TextUtils.isEmpty(address.state))
+            builder.append(address.state).append(", ");
         if (!TextUtils.isEmpty(address.zip))
             builder.append(address.zip).append(", ");
         if (!TextUtils.isEmpty(address.country))
             builder.append(address.country).append(", ");
-        if (!TextUtils.isEmpty(address.state))
-            builder.append(address.state).append(", ");
-        if (!TextUtils.isEmpty(address.city))
-            builder.append(address.city).append(", ");
-        if (!TextUtils.isEmpty(address.street))
-            builder.append(address.street).append(", ");
         int length = builder.length();
         if (length > 2) builder.replace(length - 3, length - 1, ", ");
         return  builder.toString();
@@ -163,5 +164,16 @@ public abstract class StringUtil {
         stringBuilder.setSpan(boldSpan, 3, stringBuilder.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 
         return stringBuilder;
+    }
+
+    public static String getFormattedPrice(Format formatter, Double price) {
+        return getFormattedPrice(formatter, price, "$ ");
+    }
+
+    public static String getFormattedPrice(Format formatter, Double price, String prefix) {
+        if (price == null) {
+            price = 0d;
+        }
+        return String.format("%s %s", prefix, formatter.format(price));
     }
 }

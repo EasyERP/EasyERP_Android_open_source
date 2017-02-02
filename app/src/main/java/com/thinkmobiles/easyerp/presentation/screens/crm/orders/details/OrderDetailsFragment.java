@@ -4,19 +4,28 @@ import android.graphics.drawable.Drawable;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.jakewharton.rxbinding.view.RxView;
 import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.domain.crm.OrderRepository;
+import com.thinkmobiles.easyerp.presentation.adapters.crm.HistoryAdapter;
+import com.thinkmobiles.easyerp.presentation.adapters.crm.OrderProductAdapter;
 import com.thinkmobiles.easyerp.presentation.base.BaseFragment;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
+import com.thinkmobiles.easyerp.presentation.holders.data.crm.HistoryDH;
+import com.thinkmobiles.easyerp.presentation.holders.data.crm.OrderProductDH;
 import com.thinkmobiles.easyerp.presentation.screens.home.HomeActivity;
+import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterViews;
@@ -25,6 +34,9 @@ import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.FragmentArg;
 import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.res.DrawableRes;
+
+import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
 
 @EFragment(R.layout.fragment_order_details)
@@ -60,11 +72,15 @@ public class OrderDetailsFragment extends BaseFragment<HomeActivity> implements 
     @ViewById
     protected TextView tvDiscount_FOD;
     @ViewById
+    protected TextView tvDiscountTitle_FOD;
+    @ViewById
     protected TextView tvTaxes_FOD;
     @ViewById
     protected TextView tvTotal_FOD;
     @ViewById
     protected TextView tvPrepaid_FOD;
+    @ViewById
+    protected TextView tvPrepaidTitle_FOD;
     @ViewById
     protected TextView tvNameBeneficiary_FOD;
     @ViewById
@@ -86,13 +102,15 @@ public class OrderDetailsFragment extends BaseFragment<HomeActivity> implements 
     @ViewById
     protected TextView tvAttachments_FOD;
     @ViewById
-    protected RelativeLayout btnHistory_FOD;
+    protected FrameLayout btnHistory_FOD;
     @ViewById
     protected ImageView ivIconArrow_FOD;
     @ViewById
     protected View viewHistoryDivider_FOD;
     @ViewById
     protected RecyclerView rvHistory_FOD;
+    @ViewById
+    protected LinearLayout llErrorLayout;
 
     @DrawableRes(R.drawable.ic_arrow_up)
     protected Drawable icArrowUp;
@@ -101,6 +119,12 @@ public class OrderDetailsFragment extends BaseFragment<HomeActivity> implements 
 
     @Bean
     protected OrderRepository orderRepository;
+    @Bean
+    protected HistoryAdapter historyAdapter;
+    @Bean
+    protected OrderProductAdapter productAdapter;
+    @Bean
+    protected ErrorViewHelper errorViewHelper;
 
     private OrderDetailsContract.OrderDetailsPresenter presenter;
 
@@ -112,7 +136,21 @@ public class OrderDetailsFragment extends BaseFragment<HomeActivity> implements 
 
     @AfterViews
     protected void initUI() {
+        errorViewHelper.init(llErrorLayout, v -> presenter.subscribe());
+
+        rvHistory_FOD.setAdapter(historyAdapter);
+        rvHistory_FOD.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+        rvProductList_FOD.setAdapter(productAdapter);
+        rvProductList_FOD.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+
+        RxView.clicks(btnHistory_FOD)
+                .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
+                .subscribe(aVoid -> presenter.changeNotesVisibility());
+
         srlRefresh_FOD.setOnRefreshListener(() -> presenter.refresh());
+
         presenter.subscribe();
     }
 
@@ -129,6 +167,7 @@ public class OrderDetailsFragment extends BaseFragment<HomeActivity> implements 
     @Override
     public void showProgress(boolean enable) {
         if (enable) {
+            errorViewHelper.hideError();
             displayProgress(true);
             srlRefresh_FOD.setVisibility(View.GONE);
             srlRefresh_FOD.setRefreshing(false);
@@ -203,6 +242,8 @@ public class OrderDetailsFragment extends BaseFragment<HomeActivity> implements 
 
     @Override
     public void setDiscount(String discount) {
+        tvDiscountTitle_FOD.setVisibility(View.VISIBLE);
+        tvDiscount_FOD.setVisibility(View.VISIBLE);
         tvDiscount_FOD.setText(discount);
     }
 
@@ -218,6 +259,8 @@ public class OrderDetailsFragment extends BaseFragment<HomeActivity> implements 
 
     @Override
     public void setPrepaid(String prepaid) {
+        tvPrepaidTitle_FOD.setVisibility(View.VISIBLE);
+        tvPrepaid_FOD.setVisibility(View.VISIBLE);
         tvPrepaid_FOD.setText(prepaid);
     }
 
@@ -272,12 +315,22 @@ public class OrderDetailsFragment extends BaseFragment<HomeActivity> implements 
     }
 
     @Override
-    public void showErrorState(String errorMessage, ErrorViewHelper.ErrorType errorType) {
-
+    public void setHistory(ArrayList<HistoryDH> history) {
+        historyAdapter.setListDH(history);
     }
 
     @Override
-    public void showErrorToast(String errorMessage) {
+    public void setProducts(ArrayList<OrderProductDH> products) {
+        productAdapter.setListDH(products);
+    }
+
+    @Override
+    public void showError(String errorMessage, ErrorViewHelper.ErrorType errorType) {
+        errorViewHelper.showErrorMsg(errorMessage, errorType);
+    }
+
+    @Override
+    public void showMessage(String errorMessage) {
         Toast.makeText(getActivity(), errorMessage, Toast.LENGTH_SHORT).show();
     }
 }

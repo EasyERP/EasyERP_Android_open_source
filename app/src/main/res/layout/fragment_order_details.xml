@@ -28,14 +28,20 @@
                     android:layout_height="wrap_content"
                     android:background="@android:color/white">
 
-                    <TextView
-                        android:id="@+id/tvOrderStatus_FOD"
-                        android:layout_width="120dp"
-                        android:layout_height="120dp"
-                        android:elevation="3dp"
-                        android:gravity="center"
-                        android:rotation="-45"
-                        tools:text="Draft/ Quotation" />
+
+                        <TextView
+                            android:id="@+id/tvOrderStatus_FOD"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="50dp"
+                            android:layout_marginStart="@dimen/default_padding"
+                            android:elevation="3dp"
+                            android:minWidth="120dp"
+                            android:padding="@dimen/default_padding_small"
+                            android:background="@drawable/bg_order_status"
+                            android:gravity="center"
+                            tools:text="Draft/ Quotation" />
+
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -57,7 +63,8 @@
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="80dp">
+                                android:layout_marginTop="80dp"
+                                android:baselineAligned="false">
 
                                 <LinearLayout
                                     android:layout_width="0dp"
@@ -69,6 +76,7 @@
                                         android:id="@+id/tvCompanyName_FOD"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
+                                        android:textStyle="bold"
                                         tools:text="EasyERP Inc" />
 
                                     <TextView
@@ -92,7 +100,7 @@
                                         android:layout_height="wrap_content"
                                         android:textAllCaps="true"
                                         android:textSize="26sp"
-                                        android:text="Order" />
+                                        android:text="@string/order_details_order" />
 
                                     <TextView
                                         android:id="@+id/tvOrderName_FOD"
@@ -107,7 +115,8 @@
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/default_dimen_32">
+                                android:layout_marginTop="@dimen/default_dimen_32"
+                                android:baselineAligned="false">
 
                                 <LinearLayout
                                     android:layout_width="0dp"
@@ -118,12 +127,13 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="Bill to" />
+                                        android:text="@string/order_details_bill_to" />
 
                                     <TextView
                                         android:id="@+id/tvSupplierName_FOD"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
+                                        android:fontFamily="sans-serif-medium"
                                         tools:text="Adrian Trif" />
 
                                     <TextView
@@ -138,7 +148,6 @@
                                 <LinearLayout
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_weight="1"
                                     android:layout_gravity="center_vertical"
                                     android:gravity="end"
                                     android:orientation="vertical">
@@ -150,7 +159,7 @@
                                         <TextView
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
-                                            android:text="Expected Date :" />
+                                            android:text="@string/order_details_expected_date" />
 
                                         <TextView
                                             android:id="@+id/tvExpectedDate_FOD"
@@ -167,7 +176,7 @@
                                         <TextView
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
-                                            android:text="Order Date :" />
+                                            android:text="@string/order_details_order_date" />
 
                                         <TextView
                                             android:id="@+id/tvOrderDate_FOD"
@@ -187,55 +196,113 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="@dimen/default_padding" />
 
-                                <TextView
-                                    android:id="@+id/tvSubTotal_FOD"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="end"
-                                    android:layout_marginTop="@dimen/default_padding"
-                                    android:gravity="end"
-                                    android:minWidth="100dp"
-                                    tools:text="Sub Total 10058620.00" />
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="end">
 
-                                <TextView
-                                    android:id="@+id/tvDiscount_FOD"
+                                <LinearLayout
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_gravity="end"
-                                    android:layout_marginTop="@dimen/default_padding"
-                                    android:gravity="end"
-                                    android:minWidth="100dp"
-                                    tools:text="Discount 10058620.00" />
+                                    android:orientation="vertical"
+                                    android:gravity="end">
 
-                                <TextView
-                                    android:id="@+id/tvTaxes_FOD"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="end"
-                                    android:layout_marginTop="@dimen/default_padding"
-                                    android:gravity="end"
-                                    android:minWidth="100dp"
-                                    tools:text="Taxes 10058620.00" />
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:gravity="end"
+                                        android:layout_marginTop="@dimen/default_padding"
+                                        android:text="@string/order_details_sub_total" />
 
-                                <TextView
-                                    android:id="@+id/tvTotal_FOD"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="end"
-                                    android:layout_marginTop="@dimen/default_padding"
-                                    android:gravity="end"
-                                    android:minWidth="100dp"
-                                    tools:text="Total 10058620.00" />
+                                    <TextView
+                                        android:id="@+id/tvDiscountTitle_FOD"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:gravity="end"
+                                        android:layout_marginTop="@dimen/default_padding"
+                                        android:visibility="gone"
+                                        android:text="@string/order_details_discount" />
 
-                                <TextView
-                                    android:id="@+id/tvPrepaid_FOD"
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:gravity="end"
+                                        android:layout_marginTop="@dimen/default_padding"
+                                        android:text="@string/order_details_taxes" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:gravity="end"
+                                        android:layout_marginTop="@dimen/default_padding"
+                                        android:text="@string/order_details_total" />
+
+                                    <TextView
+                                        android:id="@+id/tvPrepaidTitle_FOD"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:gravity="end"
+                                        android:layout_marginTop="@dimen/default_padding"
+                                        android:visibility="gone"
+                                        android:text="@string/order_details_prepaid" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_gravity="end"
-                                    android:layout_marginTop="@dimen/default_padding"
-                                    android:gravity="end"
-                                    android:minWidth="100dp"
-                                    tools:text="Prepaid 10058620.00" />
+                                    android:layout_marginStart="@dimen/default_padding"
+                                    android:minWidth="50dp"
+                                    android:orientation="vertical"
+                                    android:gravity="end">
+
+                                    <TextView
+                                        android:id="@+id/tvSubTotal_FOD"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:gravity="end"
+                                        android:layout_marginTop="@dimen/default_padding"
+                                        tools:text="10058620.00" />
+
+                                    <TextView
+                                        android:id="@+id/tvDiscount_FOD"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:gravity="end"
+                                        android:layout_marginTop="@dimen/default_padding"
+                                        android:visibility="gone"
+                                        tools:text="10058620.00" />
+
+                                    <TextView
+                                        android:id="@+id/tvTaxes_FOD"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:gravity="end"
+                                        android:layout_marginTop="@dimen/default_padding"
+                                        tools:text="10058620.00" />
+
+                                    <TextView
+                                        android:id="@+id/tvTotal_FOD"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:gravity="end"
+                                        android:layout_marginTop="@dimen/default_padding"
+                                        tools:text="10058620.00" />
+
+                                    <TextView
+                                        android:id="@+id/tvPrepaid_FOD"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:gravity="end"
+                                        android:layout_marginTop="@dimen/default_padding"
+                                        android:visibility="gone"
+                                        tools:text="10058620.00" />
+
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+
 
 
                             <View
@@ -248,7 +315,8 @@
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/default_dimen_32">
+                                android:layout_marginTop="@dimen/default_dimen_32"
+                                android:baselineAligned="false">
 
                                 <LinearLayout
                                     android:layout_width="0dp"
@@ -259,7 +327,8 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="Payment details" />
+                                        android:layout_marginBottom="@dimen/default_padding_half"
+                                        android:text="@string/order_details_payment_details" />
 
                                     <LinearLayout
                                         android:layout_width="match_parent"
@@ -269,7 +338,7 @@
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:minWidth="140dp"
-                                            android:text="Name of Beneficiary" />
+                                            android:text="@string/order_details_name_of_beneficiary" />
                                         <TextView
                                             android:id="@+id/tvNameBeneficiary_FOD"
                                             android:layout_width="wrap_content"
@@ -287,7 +356,7 @@
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:minWidth="140dp"
-                                            android:text="Bank" />
+                                            android:text="@string/order_details_bank" />
                                         <TextView
                                             android:id="@+id/tvBank_FOD"
                                             android:layout_width="wrap_content"
@@ -305,7 +374,7 @@
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:minWidth="140dp"
-                                            android:text="Bank address" />
+                                            android:text="@string/order_details_bank_address" />
                                         <TextView
                                             android:id="@+id/tvBankAddress_FOD"
                                             android:layout_width="wrap_content"
@@ -323,7 +392,7 @@
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:minWidth="140dp"
-                                            android:text="IBAN" />
+                                            android:text="@string/order_details_iban" />
                                         <TextView
                                             android:id="@+id/tvBankIBAN_FOD"
                                             android:layout_width="wrap_content"
@@ -341,7 +410,7 @@
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:minWidth="140dp"
-                                            android:text="SWIFT code" />
+                                            android:text="@string/order_details_swift_code" />
                                         <TextView
                                             android:id="@+id/tvSwiftCode_FOD"
                                             android:layout_width="wrap_content"
@@ -356,7 +425,6 @@
                                 <LinearLayout
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_gravity="center_vertical"
                                     android:layout_marginStart="@dimen/default_padding"
                                     android:gravity="end"
                                     android:orientation="vertical">
@@ -364,7 +432,8 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="Other information" />
+                                        android:layout_marginBottom="@dimen/default_padding_half"
+                                        android:text="@string/order_details_other_information" />
 
                                     <TextView
                                         android:id="@+id/tvOwnerName_FOD"
@@ -392,7 +461,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="@dimen/default_padding"
-                                android:text="Dear Customer, be informed that total amount for services do not include bank fee.Please pay attention for it when you make your payment"
+                                android:text="@string/order_details_message"
                                 android:textColor="@android:color/holo_red_light" />
 
                             <View
@@ -406,18 +475,14 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="@dimen/default_padding"
-                                android:text="Payment should be made by bank transfer or check made payable to TEST."
+                                android:textStyle="bold"
+                                android:text="@string/order_details_advice"
                                 android:textColor="@android:color/black" />
 
 
                         </LinearLayout>
 
                     </android.support.v7.widget.CardView>
-
-                        <android.support.v7.widget.CardView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="@dimen/default_padding">
 
                             <LinearLayout
                                 android:layout_width="match_parent"
@@ -427,6 +492,7 @@
                                 android:padding="@dimen/default_padding">
 
                                 <TextView
+                                    style="@style/ContentTitleStyle"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="@string/attachments" />
@@ -444,19 +510,16 @@
                             </LinearLayout>
 
 
-                        </android.support.v7.widget.CardView>
-
                     </LinearLayout>
 
                 </FrameLayout>
 
             </android.support.v4.widget.NestedScrollView>
 
-            <RelativeLayout
+            <FrameLayout
                 android:id="@+id/btnHistory_FOD"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/color_grey_transparent"
                 android:padding="@dimen/default_padding">
 
 
@@ -464,7 +527,7 @@
                     style="@style/RobotoMedium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
+                    android:layout_gravity="start"
                     android:text="@string/notes_amp_timeline"
                     android:textColor="@color/color_text_black"
                     android:textSize="@dimen/text_list_item_large_20" />
@@ -473,18 +536,18 @@
                     android:id="@+id/ivIconArrow_FOD"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:layout_alignParentEnd="true"
+                    android:layout_gravity="end"
                     android:tint="@android:color/black"
-                    android:visibility="invisible"
                     app:srcCompat="@drawable/ic_arrow_up" />
 
-            </RelativeLayout>
+            </FrameLayout>
 
             <View
                 android:id="@+id/viewHistoryDivider_FOD"
                 android:layout_width="match_parent"
-                android:layout_height="3dp"
-                android:background="@drawable/bg_line_of_shadow" />
+                android:layout_height="1dp"
+                android:visibility="gone"
+                android:background="@android:color/black" />
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/rvHistory_FOD"
@@ -496,5 +559,8 @@
         </LinearLayout>
 
     </android.support.v4.widget.SwipeRefreshLayout>
+
+    <include layout="@layout/view_error_with_holder_icon"
+        android:visibility="gone"/>
 
 </FrameLayout>
