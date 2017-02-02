@@ -25,7 +25,7 @@ public class ResponseGetLeadDetails implements Parcelable {
         {
             "_id": "587dd80fc6a640eb205e8ca2",
                 "name": "2017-calendar-template-05.jpg",
-                "shortPas": "uploads%2Fopportunities%2F587dd7a923ddd08c2030f0e8%2F2017-calendar-template-05.jpg",
+                "shortPath": "uploads%2Fopportunities%2F587dd7a923ddd08c2030f0e8%2F2017-calendar-template-05.jpg",
                 "size": "0.534&nbsp;Mb",
                 "uploadDate": "2017-01-17T08:38:39.219Z",
                 "uploaderName": "testAdmin"
@@ -33,7 +33,7 @@ public class ResponseGetLeadDetails implements Parcelable {
         {
             "_id": "587dd82bab1707af208fdb9a",
                 "name": "2017-calendar-template-05(1).jpg",
-                "shortPas": "uploads%2Fopportunities%2F587dd7a923ddd08c2030f0e8%2F2017-calendar-template-05(1).jpg",
+                "shortPath": "uploads%2Fopportunities%2F587dd7a923ddd08c2030f0e8%2F2017-calendar-template-05(1).jpg",
                 "size": "0.534&nbsp;Mb",
                 "uploadDate": "2017-01-17T08:39:07.026Z",
                 "uploaderName": "testAdmin"

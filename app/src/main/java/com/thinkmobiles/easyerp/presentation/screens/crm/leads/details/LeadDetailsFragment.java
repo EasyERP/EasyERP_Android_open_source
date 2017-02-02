@@ -111,8 +111,6 @@ public class LeadDetailsFragment extends BaseFragment<HomeActivity> implements L
     @ViewById
     protected View viewHistoryDivider_FLD;
     @ViewById
-    protected LinearLayout llAttachmentsContainer_FLD;
-    @ViewById
     protected TextView tvAttachments_FLD;
     @ViewById
     protected RelativeLayout btnHistory_FLD;
