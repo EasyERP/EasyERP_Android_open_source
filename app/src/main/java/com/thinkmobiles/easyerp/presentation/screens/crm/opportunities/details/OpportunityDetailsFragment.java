@@ -65,8 +65,6 @@ public class OpportunityDetailsFragment extends BaseFragment<HomeActivity> imple
     protected LinearLayout llContactInfo_FOD;
     @ViewById
     protected LinearLayout llCompanyInfo_FOD;
-    @ViewById
-    protected LinearLayout llAttachmentsContainer_FLD;
 
     @ViewById
     protected TextView tvNameOpportunity_FOD;

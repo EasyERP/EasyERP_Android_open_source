@@ -28,7 +28,7 @@ public class NoteItem implements Parcelable {
         "_id": "",
         "task": null,
         "attachment": {
-            "shortPas": "uploads%2Fopportunities%2F583da46aed5a2cbf0db9f537%2Feye_line.png",
+            "shortPath": "uploads%2Fopportunities%2F583da46aed5a2cbf0db9f537%2Feye_line.png",
             "name": "eye_line.png"
         },
     }

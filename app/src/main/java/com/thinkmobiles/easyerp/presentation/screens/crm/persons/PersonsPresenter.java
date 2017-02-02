@@ -36,9 +36,10 @@ public class PersonsPresenter extends MasterFlowSelectablePresenterHelper<String
 
     @Override
     public boolean selectItem(PersonDH personDH, int position) {
+        final int oldPosition = getSelectedItemPosition();
         boolean isSelected = super.selectItem(personDH, position);
         if (isSelected) {
-            view.changeSelectedItem(getSelectedItemPosition(), position);
+            view.changeSelectedItem(oldPosition, position);
             view.openPersonDetailsScreen(personDH.getId());
         }
         return isSelected;
