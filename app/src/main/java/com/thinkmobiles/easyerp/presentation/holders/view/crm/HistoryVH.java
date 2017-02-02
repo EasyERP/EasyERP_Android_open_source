@@ -16,14 +16,14 @@ import com.thinkmobiles.easyerp.presentation.managers.DateManager;
 import com.thinkmobiles.easyerp.presentation.utils.StringUtil;
 
 
-public class HistoryVH extends RecyclerVH<HistoryDH> {
+public final class HistoryVH extends RecyclerVH<HistoryDH> {
 
-    private ImageView ivIconType_LILH;
-    private TextView tvPersonName_LILH;
-    private TextView tvAction_LILH;
-    private TextView tvMessage_LILH;
-    private TextView tvNoteTime_LILH;
-    private TextView tvNoteDateDate_LILH;
+    private final ImageView ivIconType_LILH;
+    private final TextView tvPersonName_LILH;
+    private final TextView tvAction_LILH;
+    private final TextView tvMessage_LILH;
+    private final TextView tvNoteTime_LILH;
+    private final TextView tvNoteDateDate_LILH;
 
     public HistoryVH(View itemView, @Nullable OnCardClickListener listener, int viewType) {
         super(itemView, listener, viewType);
@@ -65,5 +65,4 @@ public class HistoryVH extends RecyclerVH<HistoryDH> {
             ivIconType_LILH.setImageResource(R.drawable.ic_calendar);
         }
     }
-
 }

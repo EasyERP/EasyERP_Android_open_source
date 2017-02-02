@@ -35,7 +35,7 @@
     <dimen name="list_item_height">130dp</dimen>
 
     <!--text-->
-    <dimen name="text_list_item_extra_large_24">24sp</dimen>
+    <dimen name="text_list_item_extra_large_22">22sp</dimen>
     <dimen name="text_list_item_large_20">20sp</dimen>
     <dimen name="text_list_item_medium_16">16sp</dimen>
     <dimen name="text_size_small">14sp</dimen>

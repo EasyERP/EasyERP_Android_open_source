@@ -15,12 +15,12 @@ import com.thinkmobiles.easyerp.presentation.holders.data.crm.OpportunityPreview
  * Created by Lynx on 1/25/2017.
  */
 
-public class OpportunityPreviewVH extends RecyclerVH<OpportunityPreviewDH> {
+public final class OpportunityPreviewVH extends RecyclerVH<OpportunityPreviewDH> {
 
-    private TextView tvOpportunityCost_VLIOP;
-    private TextView tvOpportunityName_VLIOP;
-    private TextView tvOpportunityAssignedTo_VLIOP;
-    private TextView tvOpportunityStatus_VLIOP;
+    private final TextView tvOpportunityCost_VLIOP;
+    private final TextView tvOpportunityName_VLIOP;
+    private final TextView tvOpportunityAssignedTo_VLIOP;
+    private final TextView tvOpportunityStatus_VLIOP;
 
     public OpportunityPreviewVH(View itemView, @Nullable OnCardClickListener listener, int viewType) {
         super(itemView, listener, viewType);

@@ -17,15 +17,15 @@ import com.thinkmobiles.easyerp.presentation.managers.ImageHelper;
  * Created by Lynx on 1/23/2017.
  */
 
-public class PersonVH extends MasterFlowSelectableVHHelper<PersonDH> {
+public final class PersonVH extends MasterFlowSelectableVHHelper<PersonDH> {
 
-    private ImageView ivPersonImage_VLIP;
-    private TextView tvPersonName_VLIP;
-    private TextView tvPersonCountry_VLIP;
-    private TextView tvPersonEmail_VLIP;
-    private TextView tvPersonPhone_VLIP;
+    private final ImageView ivPersonImage_VLIP;
+    private final TextView tvPersonName_VLIP;
+    private final TextView tvPersonCountry_VLIP;
+    private final TextView tvPersonEmail_VLIP;
+    private final TextView tvPersonPhone_VLIP;
 
-    private String noData;
+    private final String noData;
 
     public PersonVH(View itemView, @Nullable OnCardClickListener listener, int viewType) {
         super(itemView, listener, viewType);

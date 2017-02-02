@@ -13,9 +13,9 @@ import com.thinkmobiles.easyerp.presentation.holders.data.crm.DashboardOverviewC
  * @author michael.soyma@thinkmobiles.com (Created on 1/26/2017.)
  */
 
-public class DashboardOverviewChartVH extends RecyclerVH<DashboardOverviewChartDH> {
+public final class DashboardOverviewChartVH extends RecyclerVH<DashboardOverviewChartDH> {
 
-    private TextView labelView, countView;
+    private final TextView labelView, countView;
 
     public DashboardOverviewChartVH(View itemView, @Nullable OnCardClickListener listener, int viewType) {
         super(itemView, listener, viewType);
@@ -28,5 +28,4 @@ public class DashboardOverviewChartVH extends RecyclerVH<DashboardOverviewChartD
         labelView.setText(data.getLabelWorkflow());
         countView.setText(String.valueOf(data.getValueCount()));
     }
-
 }
