@@ -40,7 +40,8 @@ public abstract class Constants {
 
     //Companies
     public static final String GET_COMPANIES_ALPHABET       = "customers/getCompaniesAlphabet";
-    public static final String GET_COMPANAIES               = "companies";
+    public static final String GET_COMPANIES                = "companies";
+    public static final String GET_COMPANY_DETAILS          = "companies/{companyID}";
     //End Companies
 
     //Invoice

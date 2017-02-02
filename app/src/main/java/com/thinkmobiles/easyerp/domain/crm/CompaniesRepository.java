@@ -3,7 +3,8 @@ package com.thinkmobiles.easyerp.domain.crm;
 import com.thinkmobiles.easyerp.data.api.Rest;
 import com.thinkmobiles.easyerp.data.model.crm.common.alphabet.ResponseGetAlphabet;
 import com.thinkmobiles.easyerp.data.model.crm.companies.ResponseGetCompanies;
-import com.thinkmobiles.easyerp.data.model.crm.persons.images.ResponseGetCustomersImages;
+import com.thinkmobiles.easyerp.data.model.crm.common.images.ResponseGetCustomersImages;
+import com.thinkmobiles.easyerp.data.model.crm.companies.detail.ResponseGetCompanyDetails;
 import com.thinkmobiles.easyerp.data.services.CompaniesService;
 import com.thinkmobiles.easyerp.data.services.CustomerService;
 import com.thinkmobiles.easyerp.presentation.base.NetworkRepository;
@@ -30,10 +31,6 @@ public class CompaniesRepository extends NetworkRepository implements CompaniesC
         customerService = Rest.getInstance().getCustomerService();
     }
 
-    public Observable<ResponseGetAlphabet> getCompaniesAlphabeet() {
-        return getNetworkObservable(companiesService.getCompaniesAlphabet("Companies"));
-    }
-
     @Override
     public Observable<ResponseGetAlphabet> getCompaniesAlphabet() {
         return getNetworkObservable(companiesService.getCompaniesAlphabet("Companies"));
@@ -44,12 +41,17 @@ public class CompaniesRepository extends NetworkRepository implements CompaniesC
         return getNetworkObservable(customerService.getCustomerImages(companyIdList));
     }
 
+    @Override
     public Observable<ResponseGetCompanies> getAllCompanies(int page) {
         return getNetworkObservable(companiesService.getCompanies("list", "Companies", 50, page));
     }
 
+    @Override
     public Observable<ResponseGetCompanies> getCompaniesByLetter(String letter, int page) {
         return getNetworkObservable(companiesService.getCompaniesByLetter("list", "Companies", "name.first", letter, "letter", 50, page));
     }
 
+    public Observable<ResponseGetCompanyDetails> getCompanyDetails(String companyID) {
+        return getNetworkObservable(companiesService.getCompanyDetails(companyID));
+    }
 }
