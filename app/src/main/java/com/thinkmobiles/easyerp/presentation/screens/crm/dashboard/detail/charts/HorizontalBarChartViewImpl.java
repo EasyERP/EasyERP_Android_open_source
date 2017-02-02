@@ -16,7 +16,7 @@ import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.utils.Utils;
 import com.thinkmobiles.easyerp.R;
-import com.thinkmobiles.easyerp.data.model.crm.dashboard.detail.invoice.InvoiceItem;
+import com.thinkmobiles.easyerp.data.model.crm.invoice.Invoice;
 import com.thinkmobiles.easyerp.presentation.managers.ColorGenerateManager;
 
 import java.util.ArrayList;
@@ -91,22 +91,22 @@ public final class HorizontalBarChartViewImpl implements IChartView<BarData> {
     @SuppressWarnings("unchecked")
     @Override
     public BarData prepareData(Object data) {
-        final List<InvoiceItem> invoiceItems = (List<InvoiceItem>) data;
+        final List<Invoice> invoices = (List<Invoice>) data;
         final List<BarEntry> barEntries = new ArrayList<>();
 
-        Collections.sort(invoiceItems);
+        Collections.sort(invoices);
 
         int x = 0;
-        for (InvoiceItem invoiceItem: invoiceItems) {
-            barEntries.add(new BarEntry(x++, (float) (invoiceItem.sum / 100d)));
-            xLabels.add(TextUtils.isEmpty(invoiceItem.id) ? "Not Assigned" : invoiceItem.id);
+        for (Invoice invoice : invoices) {
+            barEntries.add(new BarEntry(x++, (float) (invoice.sum / 100d)));
+            xLabels.add(TextUtils.isEmpty(invoice.id) ? "Not Assigned" : invoice.id);
         }
 
         final BarDataSet barDataSet = new BarDataSet(barEntries, "Sales Managers");
         barDataSet.setValueFormatter(new DollarFormatter());
         barDataSet.setValueTextSize(10);
         barDataSet.setDrawValues(true);
-        barDataSet.setColors(ColorGenerateManager.generateGradientBetweenColors(invoiceItems.size(), Color.parseColor("#99D6EA"), Color.parseColor("#1082a7")));
+        barDataSet.setColors(ColorGenerateManager.generateGradientBetweenColors(invoices.size(), Color.parseColor("#99D6EA"), Color.parseColor("#1082a7")));
         barDataSet.setForm(Legend.LegendForm.CIRCLE);
         barDataSet.setFormSize(12);
 

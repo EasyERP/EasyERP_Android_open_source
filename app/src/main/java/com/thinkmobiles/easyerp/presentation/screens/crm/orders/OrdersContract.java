@@ -1,6 +1,6 @@
 package com.thinkmobiles.easyerp.presentation.screens.crm.orders;
 
-import com.thinkmobiles.easyerp.data.model.crm.orders.ResponseGetOrders;
+import com.thinkmobiles.easyerp.data.model.crm.order.ResponseGetOrders;
 import com.thinkmobiles.easyerp.presentation.base.BaseModel;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectableBasePresenter;

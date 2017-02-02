@@ -1,6 +1,6 @@
 package com.thinkmobiles.easyerp.presentation.screens.crm.orders;
 
-import com.thinkmobiles.easyerp.data.model.crm.orders.Order;
+import com.thinkmobiles.easyerp.data.model.crm.order.Order;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectablePresenterHelper;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.OrderDH;
@@ -58,7 +58,6 @@ public class OrdersPresenter extends MasterFlowSelectablePresenterHelper<String,
             setSelectedInfo(position, dh.getId());
             view.openOrderDetailsScreen(dh.getId());
         }
-
     }
 
     private ArrayList<OrderDH> prepareOrderDHs(final List<Order> orders) {

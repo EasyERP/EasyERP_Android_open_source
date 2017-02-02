@@ -9,8 +9,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.michenko.simpleadapter.OnCardClickListener;
-import com.michenko.simpleadapter.RecyclerVH;
 import com.thinkmobiles.easyerp.R;
+import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectableVHHelper;
 import com.thinkmobiles.easyerp.presentation.custom.RoundedBackgroundSpan;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.OrderDH;
 import com.thinkmobiles.easyerp.presentation.managers.DateManager;
@@ -21,7 +21,7 @@ import com.thinkmobiles.easyerp.presentation.screens.crm.dashboard.detail.charts
  * Created by Lynx on 1/16/2017.
  */
 
-public class OrderVH extends RecyclerVH<OrderDH> {
+public class OrderVH extends MasterFlowSelectableVHHelper<OrderDH> {
 
     private TextView tvOrderName_VLIO;
     private TextView tvOrderStatus_VLIO;
@@ -31,12 +31,9 @@ public class OrderVH extends RecyclerVH<OrderDH> {
     private ImageView ivAllocated_VLIO;
     private ImageView ivFulfilled_VLIO;
     private ImageView ivShipped_VLIO;
-    private View containerItemLayout;
 
     public OrderVH(View itemView, @Nullable OnCardClickListener listener, int viewType) {
         super(itemView, listener, viewType);
-
-        containerItemLayout = itemView;
 
         tvOrderName_VLIO = findView(R.id.tvOrderName_VLIO);
         tvOrderStatus_VLIO = findView(R.id.tvOrderStatus_VLIO);
@@ -51,8 +48,7 @@ public class OrderVH extends RecyclerVH<OrderDH> {
 
     @Override
     public void bindData(OrderDH data) {
-
-        containerItemLayout.setSelected(data.isSelected());
+        super.bindData(data);
 
         tvOrderName_VLIO.setText(data.getOrder().name);
         tvOrderStatus_VLIO.setText(buildStatusTag(data.getOrder().workflow.name, TagHelper.getColorResIdByName(data.getOrder().workflow.status)));
@@ -61,6 +57,8 @@ public class OrderVH extends RecyclerVH<OrderDH> {
         tvTotalPrice_VLIO.setText(String.format("%s %s",
                 data.getOrder().currency.id != null ? data.getOrder().currency.id.symbol : "$",
                 new DollarFormatter().getFormat().format(data.getOrder().paymentInfo.total)));
+
+        tvOrderName_VLIO.requestLayout();
 
         switch (data.getOrder().status.allocateStatus) {
             case "NOT":
