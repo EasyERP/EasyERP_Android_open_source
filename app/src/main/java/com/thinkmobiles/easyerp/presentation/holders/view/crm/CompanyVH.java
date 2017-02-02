@@ -11,6 +11,7 @@ import com.michenko.simpleadapter.OnCardClickListener;
 import com.michenko.simpleadapter.RecyclerVH;
 import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.data.model.crm.companies.CompanyListItem;
+import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectableVHHelper;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.CompanyDH;
 import com.thinkmobiles.easyerp.presentation.managers.ImageHelper;
 
@@ -18,21 +19,19 @@ import com.thinkmobiles.easyerp.presentation.managers.ImageHelper;
  * Created by Lynx on 2/2/2017.
  */
 
-public class CompanyVH extends RecyclerVH<CompanyDH> {
+public final class CompanyVH extends MasterFlowSelectableVHHelper<CompanyDH> {
 
-    private RelativeLayout rlCompanyItemContainer_VLIC;
-    private ImageView ivCompanyImage_VLIC;
-    private TextView tvCompanyName_VLIC;
-    private TextView tvCompanyCountry_VLIC;
-    private TextView tvCompanyEmail_VLIC;
-    private TextView tvCompanyPhone_VLIC;
+    private final ImageView ivCompanyImage_VLIC;
+    private final TextView tvCompanyName_VLIC;
+    private final TextView tvCompanyCountry_VLIC;
+    private final TextView tvCompanyEmail_VLIC;
+    private final TextView tvCompanyPhone_VLIC;
 
-    private String noData;
+    private final String noData;
 
     public CompanyVH(View itemView, @Nullable OnCardClickListener listener, int viewType) {
         super(itemView, listener, viewType);
 
-        rlCompanyItemContainer_VLIC = findView(R.id.rlCompanyItemContainer_VLIC);
         ivCompanyImage_VLIC = findView(R.id.ivCompanyImage_VLIC);
         tvCompanyName_VLIC = findView(R.id.tvCompanyName_VLIC);
         tvCompanyCountry_VLIC = findView(R.id.tvCompanyCountry_VLIC);
@@ -44,6 +43,8 @@ public class CompanyVH extends RecyclerVH<CompanyDH> {
 
     @Override
     public void bindData(CompanyDH data) {
+        super.bindData(data);
+
         CompanyListItem personModel = data.getData();
         ImageHelper.getBitmapFromBase64(data.getCompanyImageBase64())
                 .subscribe(bitmap -> {
@@ -64,6 +65,5 @@ public class CompanyVH extends RecyclerVH<CompanyDH> {
         } else {
             tvCompanyPhone_VLIC.setText(noData);
         }
-        rlCompanyItemContainer_VLIC.setSelected(data.isSelected());
     }
 }

@@ -7,10 +7,10 @@ import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectableDHHe
  * Created by Lynx on 2/2/2017.
  */
 
-public class CompanyDH extends MasterFlowSelectableDHHelper<String> {
+public final class CompanyDH extends MasterFlowSelectableDHHelper<String> {
 
-    private CompanyListItem data;
-    private String companyImageBase64;
+    private final CompanyListItem data;
+    private final String companyImageBase64;
 
     public CompanyDH(CompanyListItem data, String companyImageBase64) {
         this.data = data;
