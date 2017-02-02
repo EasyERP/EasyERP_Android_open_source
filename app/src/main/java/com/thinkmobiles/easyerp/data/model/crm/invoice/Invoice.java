@@ -1,4 +1,4 @@
-package com.thinkmobiles.easyerp.data.model.crm.dashboard.detail.invoice;
+package com.thinkmobiles.easyerp.data.model.crm.invoice;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -13,7 +13,7 @@ import com.thinkmobiles.easyerp.data.model.crm.leads.Workflow;
  * @author michael.soyma@thinkmobiles.com (Created on 1/19/2017.)
  */
 
-public class InvoiceItem implements Parcelable, IChartModel, Comparable<InvoiceItem> {
+public class Invoice implements Parcelable, IChartModel, Comparable<Invoice> {
 
     @SerializedName("_id")
     public String id;
@@ -35,7 +35,7 @@ public class InvoiceItem implements Parcelable, IChartModel, Comparable<InvoiceI
     public Integer count;
     public Double sum;
 
-    public InvoiceItem() {
+    public Invoice() {
     }
 
     @Override
@@ -64,7 +64,7 @@ public class InvoiceItem implements Parcelable, IChartModel, Comparable<InvoiceI
         dest.writeValue(this.sum);
     }
 
-    protected InvoiceItem(Parcel in) {
+    protected Invoice(Parcel in) {
         this.id = in.readString();
         this.salesPerson = in.readParcelable(com.thinkmobiles.easyerp.data.model.crm.leads.detail.SalesPerson.class.getClassLoader());
         this.workflow = in.readParcelable(Workflow.class.getClassLoader());
@@ -84,21 +84,21 @@ public class InvoiceItem implements Parcelable, IChartModel, Comparable<InvoiceI
         this.sum = (Double) in.readValue(Double.class.getClassLoader());
     }
 
-    public static final Creator<InvoiceItem> CREATOR = new Creator<InvoiceItem>() {
+    public static final Creator<Invoice> CREATOR = new Creator<Invoice>() {
         @Override
-        public InvoiceItem createFromParcel(Parcel source) {
-            return new InvoiceItem(source);
+        public Invoice createFromParcel(Parcel source) {
+            return new Invoice(source);
         }
 
         @Override
-        public InvoiceItem[] newArray(int size) {
-            return new InvoiceItem[size];
+        public Invoice[] newArray(int size) {
+            return new Invoice[size];
         }
     };
 
     @Override
-    public int compareTo(@NonNull InvoiceItem invoiceItem) {
-        return sum > invoiceItem.sum ? 1 : (sum < invoiceItem.sum ? -1 : 0);
+    public int compareTo(@NonNull Invoice invoice) {
+        return sum > invoice.sum ? 1 : (sum < invoice.sum ? -1 : 0);
     }
 
 }

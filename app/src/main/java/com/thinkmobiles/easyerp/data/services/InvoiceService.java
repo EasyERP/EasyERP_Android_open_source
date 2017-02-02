@@ -1,8 +1,8 @@
 package com.thinkmobiles.easyerp.data.services;
 
-import com.thinkmobiles.easyerp.data.model.crm.dashboard.detail.invoice.GetInvoiceResponse;
-import com.thinkmobiles.easyerp.data.model.crm.dashboard.detail.invoice.InvoiceItem;
 import com.thinkmobiles.easyerp.data.model.crm.dashboard.detail.order.OrderItem;
+import com.thinkmobiles.easyerp.data.model.crm.invoice.Invoice;
+import com.thinkmobiles.easyerp.data.model.crm.invoice.ResponseGetInvoice;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
 import java.util.List;
@@ -18,13 +18,13 @@ import rx.Observable;
 public interface InvoiceService {
 
     @GET(Constants.GET_INVOICE)
-    Observable<GetInvoiceResponse> getInvoice(
+    Observable<ResponseGetInvoice> getInvoice(
             @Query("filter[date][value][0]") final String filterDateValueFrom,
             @Query("filter[date][value][1]") final String filterDateValueTo,
             @Query("forSales") final boolean forSales,
             @Query("viewType") final String viewType,
             @Query("count") final int count,
-            @Query("sort[invoiceDate]") final int sort,
+            @Query("sort[invoiceDate]") final Integer sort,
             @Query("contentType") final String contentType);
 
     @GET(Constants.GET_INVOICE_BY_WORKFLOWS)
@@ -38,19 +38,19 @@ public interface InvoiceService {
             @Query("contentType") final String contentType);
 
     @GET(Constants.GET_REVENUE_BY_SALES)
-    Observable<List<InvoiceItem>> getInvoiceBySales(
+    Observable<List<Invoice>> getInvoiceBySales(
             @Query("filter[date][value][0]") final String filterDateValueFrom,
             @Query("filter[date][value][1]") final String filterDateValueTo,
             @Query("forSales") final boolean forSales);
 
     @GET(Constants.GET_REVENUE_BY_CUSTOMER)
-    Observable<List<InvoiceItem>> getInvoiceByCustomer(
+    Observable<List<Invoice>> getInvoiceByCustomer(
             @Query("filter[date][value][0]") final String filterDateValueFrom,
             @Query("filter[date][value][1]") final String filterDateValueTo,
             @Query("forSales") final boolean forSales);
 
     @GET(Constants.GET_REVENUE_BY_COUNTRY)
-    Observable<List<InvoiceItem>> getInvoiceByCountry(
+    Observable<List<Invoice>> getInvoiceByCountry(
             @Query("filter[date][value][0]") final String filterDateValueFrom,
             @Query("filter[date][value][1]") final String filterDateValueTo,
             @Query("forSales") final boolean forSales);

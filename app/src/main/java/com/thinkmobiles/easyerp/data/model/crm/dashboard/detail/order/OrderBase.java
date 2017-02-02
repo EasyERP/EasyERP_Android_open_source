@@ -18,7 +18,6 @@ public class OrderBase implements Parcelable {
     public Integer count;
     public String name;
 
-
     @Override
     public int describeContents() {
         return 0;

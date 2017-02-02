@@ -3,7 +3,7 @@ package com.thinkmobiles.easyerp.data.model.crm.opportunities.list_item;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.thinkmobiles.easyerp.data.model.crm.dashboard.detail.invoice.SalesPerson;
+import com.thinkmobiles.easyerp.data.model.crm.invoice.SalesPerson;
 import com.thinkmobiles.easyerp.data.model.crm.leads.EditedBy;
 import com.thinkmobiles.easyerp.data.model.crm.leads.Workflow;
 import com.thinkmobiles.easyerp.data.model.crm.leads.detail.Customer;

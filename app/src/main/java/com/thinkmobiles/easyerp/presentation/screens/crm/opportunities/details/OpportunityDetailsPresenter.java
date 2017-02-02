@@ -82,7 +82,7 @@ public class OpportunityDetailsPresenter implements OpportunityDetailsContract.O
         }
         if(!TextUtils.isEmpty(data.expectedClosing))
             view.displayCloseDate(DateManager.convert(data.expectedClosing)
-                    .setDstPattern(DateManager.PATTERN_OUT_PERSON_DOB)
+                    .setDstPattern(DateManager.PATTERN_DATE_SIMPLE_PREVIEW)
                     .toString());
         if(data.salesPerson != null && !TextUtils.isEmpty(data.salesPerson.fullName)) view.displayAssignedTo(data.salesPerson.fullName);
         view.displayContactInfo(data.customer != null && !TextUtils.isEmpty(data.customer.fullName));

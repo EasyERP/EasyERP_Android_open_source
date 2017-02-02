@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_with_bottom_divider_line_selector"
+    android:orientation="vertical"
+    android:padding="@dimen/default_padding">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvInvoiceCustomer_VLII"
+                    style="@style/RobotoMedium"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="@string/no_data"
+                    android:textColor="@color/color_text_black"
+                    android:textSize="@dimen/text_list_item_extra_large_22"
+                    tools:text="Web development" />
+
+                <TextView
+                    android:id="@+id/tvInvoiceStatus_VLII"
+                    style="@style/RobotoMedium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/default_padding_small"
+                    android:textSize="@dimen/middle_text_size"
+                    tools:text="Medium" />
+
+            </LinearLayout>
+
+        </FrameLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvAssignTo_VLII"
+        style="@style/RobotoRegular"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_padding_small"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:text="@string/not_assigned"
+        android:textColor="@color/color_text_black"
+        android:textSize="@dimen/text_list_item_medium_16"
+        tools:text="Alex Hoshylyk" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_padding_small"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tvInvoiceDate_VLII"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="@color/color_text_gray"
+            android:textSize="@dimen/text_list_item_medium_16"
+            tools:text="30 Jan, 2017" />
+
+        <TextView
+            android:id="@+id/tvTotalPrice_VLII"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_list_item_medium_16"
+            tools:text="$ 200.12" />
+
+    </LinearLayout>
+
+</LinearLayout>
+

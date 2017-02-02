@@ -4,13 +4,12 @@ import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.michenko.simpleadapter.OnCardClickListener;
-import com.michenko.simpleadapter.RecyclerVH;
 import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.data.model.crm.persons.person_item.PersonModel;
+import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectableVHHelper;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.PersonDH;
 import com.thinkmobiles.easyerp.presentation.managers.ImageHelper;
 
@@ -18,21 +17,19 @@ import com.thinkmobiles.easyerp.presentation.managers.ImageHelper;
  * Created by Lynx on 1/23/2017.
  */
 
-public class PersonVH extends RecyclerVH<PersonDH> {
+public final class PersonVH extends MasterFlowSelectableVHHelper<PersonDH> {
 
-    private RelativeLayout flPersonItemContainer_VLIP;
-    private ImageView ivPersonImage_VLIP;
-    private TextView tvPersonName_VLIP;
-    private TextView tvPersonCountry_VLIP;
-    private TextView tvPersonEmail_VLIP;
-    private TextView tvPersonPhone_VLIP;
+    private final ImageView ivPersonImage_VLIP;
+    private final TextView tvPersonName_VLIP;
+    private final TextView tvPersonCountry_VLIP;
+    private final TextView tvPersonEmail_VLIP;
+    private final TextView tvPersonPhone_VLIP;
 
-    private String noData;
+    private final String noData;
 
     public PersonVH(View itemView, @Nullable OnCardClickListener listener, int viewType) {
         super(itemView, listener, viewType);
 
-        flPersonItemContainer_VLIP = findView(R.id.flPersonItemContainer_VLIP);
         ivPersonImage_VLIP = findView(R.id.ivPersonImage_VLIP);
         tvPersonName_VLIP = findView(R.id.tvPersonName_VLIP);
         tvPersonCountry_VLIP = findView(R.id.tvPersonCountry_VLIP);
@@ -44,6 +41,8 @@ public class PersonVH extends RecyclerVH<PersonDH> {
 
     @Override
     public void bindData(PersonDH data) {
+        super.bindData(data);
+
         PersonModel personModel = data.getPersonModel();
         ImageHelper.getBitmapFromBase64(data.getBase64Image())
                 .subscribe(bitmap -> {
@@ -64,6 +63,5 @@ public class PersonVH extends RecyclerVH<PersonDH> {
         } else {
             tvPersonPhone_VLIP.setText(noData);
         }
-        flPersonItemContainer_VLIP.setSelected(data.isSelected());
     }
 }

@@ -4,8 +4,8 @@ import android.graphics.Color;
 import android.text.TextUtils;
 import android.widget.FrameLayout;
 
-import com.thinkmobiles.easyerp.data.model.crm.dashboard.detail.invoice.GetInvoiceResponse;
-import com.thinkmobiles.easyerp.data.model.crm.dashboard.detail.invoice.InvoiceItem;
+import com.thinkmobiles.easyerp.data.model.crm.invoice.Invoice;
+import com.thinkmobiles.easyerp.data.model.crm.invoice.ResponseGetInvoice;
 import com.thinkmobiles.easyerp.presentation.custom.views.charts.TableDataView;
 import com.thinkmobiles.easyerp.presentation.managers.ColorGenerateManager;
 import com.thinkmobiles.easyerp.presentation.managers.DateManager;
@@ -38,17 +38,17 @@ public class TableChartViewImpl implements IChartView<List<TableDataView.TableIt
 
     @Override
     public List<TableDataView.TableItemData> prepareData(Object data) {
-        final GetInvoiceResponse getInvoiceResponse = (GetInvoiceResponse) data;
+        final ResponseGetInvoice responseGetInvoice = (ResponseGetInvoice) data;
         final List<TableDataView.TableItemData> dataList = new ArrayList<>();
 
         final DecimalFormat sumFormat = new DollarFormatter().getFormat();
-        for (InvoiceItem invoiceItem: getInvoiceResponse.data)
+        for (Invoice invoice : responseGetInvoice.data)
             dataList.add(new TableDataView.TableItemData(
                     String.format("%s\n%s",
-                            new DateManager.DateConverter(invoiceItem.invoiceDate).setDstPattern(DateManager.PATTERN_DASHBOARD_PREVIEW).toString(),
-                            new DateManager.DateConverter(invoiceItem.invoiceDate).setDstPattern(DateManager.PATTERN_DASHBOARD_DAY_VIEW).toString()),
-                    TextUtils.isEmpty(invoiceItem.supplier.name) ? "Not Assigned" : invoiceItem.supplier.name,
-                    String.format("%s %s", invoiceItem.currency.id.symbol, sumFormat.format(invoiceItem.paymentInfo.total / 100d))));
+                            new DateManager.DateConverter(invoice.invoiceDate).setDstPattern(DateManager.PATTERN_DASHBOARD_PREVIEW).toString(),
+                            new DateManager.DateConverter(invoice.invoiceDate).setDstPattern(DateManager.PATTERN_DASHBOARD_DAY_VIEW).toString()),
+                    TextUtils.isEmpty(invoice.supplier.name) ? "Not Assigned" : invoice.supplier.name,
+                    String.format("%s %s", invoice.currency.id.symbol, sumFormat.format(invoice.paymentInfo.total / 100d))));
 
         return dataList;
     }

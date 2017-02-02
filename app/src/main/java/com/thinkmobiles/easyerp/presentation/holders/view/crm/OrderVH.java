@@ -4,13 +4,14 @@ import android.graphics.Color;
 import android.support.annotation.Nullable;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.michenko.simpleadapter.OnCardClickListener;
-import com.michenko.simpleadapter.RecyclerVH;
 import com.thinkmobiles.easyerp.R;
+import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectableVHHelper;
 import com.thinkmobiles.easyerp.presentation.custom.RoundedBackgroundSpan;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.OrderDH;
 import com.thinkmobiles.easyerp.presentation.managers.DateManager;
@@ -18,25 +19,25 @@ import com.thinkmobiles.easyerp.presentation.managers.TagHelper;
 import com.thinkmobiles.easyerp.presentation.screens.crm.dashboard.detail.charts.DollarFormatter;
 
 /**
- * Created by Lynx on 1/16/2017.
+ * @author Michael Soyma (Created on 1/31/2017).
+ *         Company: Thinkmobiles
+ *         Email: michael.soyma@thinkmobiles.com
  */
+public final class OrderVH extends MasterFlowSelectableVHHelper<OrderDH> {
 
-public class OrderVH extends RecyclerVH<OrderDH> {
+    private final TextView tvOrderName_VLIO;
+    private final TextView tvOrderStatus_VLIO;
+    private final TextView tvCustomer_VLIO;
+    private final TextView tvCreatedDate_VLIO;
+    private final TextView tvTotalPrice_VLIO;
+    private final ImageView ivAllocated_VLIO;
+    private final ImageView ivFulfilled_VLIO;
+    private final ImageView ivShipped_VLIO;
 
-    private TextView tvOrderName_VLIO;
-    private TextView tvOrderStatus_VLIO;
-    private TextView tvCustomer_VLIO;
-    private TextView tvCreatedDate_VLIO;
-    private TextView tvTotalPrice_VLIO;
-    private ImageView ivAllocated_VLIO;
-    private ImageView ivFulfilled_VLIO;
-    private ImageView ivShipped_VLIO;
-    private View containerItemLayout;
+    private final String not_assigned;
 
     public OrderVH(View itemView, @Nullable OnCardClickListener listener, int viewType) {
         super(itemView, listener, viewType);
-
-        containerItemLayout = itemView;
 
         tvOrderName_VLIO = findView(R.id.tvOrderName_VLIO);
         tvOrderStatus_VLIO = findView(R.id.tvOrderStatus_VLIO);
@@ -47,20 +48,23 @@ public class OrderVH extends RecyclerVH<OrderDH> {
         ivAllocated_VLIO = findView(R.id.ivAllocated_VLIO);
         ivFulfilled_VLIO = findView(R.id.ivFulfilled_VLIO);
         ivShipped_VLIO = findView(R.id.ivShipped_VLIO);
+
+        not_assigned = itemView.getContext().getString(R.string.not_assigned);
     }
 
     @Override
     public void bindData(OrderDH data) {
-
-        containerItemLayout.setSelected(data.isSelected());
+        super.bindData(data);
 
         tvOrderName_VLIO.setText(data.getOrder().name);
         tvOrderStatus_VLIO.setText(buildStatusTag(data.getOrder().workflow.name, TagHelper.getColorResIdByName(data.getOrder().workflow.status)));
-        tvCustomer_VLIO.setText(data.getOrder().supplier.name);
-        tvCreatedDate_VLIO.setText(new DateManager.DateConverter(data.getOrder().orderDate).setDstPattern(DateManager.PATTERN_OUT_PERSON_DOB).toString());
+        tvCustomer_VLIO.setText(TextUtils.isEmpty(data.getOrder().supplier.name) ? not_assigned : data.getOrder().supplier.name);
+        tvCreatedDate_VLIO.setText(new DateManager.DateConverter(data.getOrder().orderDate).setDstPattern(DateManager.PATTERN_DATE_SIMPLE_PREVIEW).toString());
         tvTotalPrice_VLIO.setText(String.format("%s %s",
                 data.getOrder().currency.id != null ? data.getOrder().currency.id.symbol : "$",
                 new DollarFormatter().getFormat().format(data.getOrder().paymentInfo.total)));
+
+        tvOrderName_VLIO.requestLayout();
 
         switch (data.getOrder().status.allocateStatus) {
             case "NOT":
@@ -108,5 +112,4 @@ public class OrderVH extends RecyclerVH<OrderDH> {
         stringBuilder.setSpan(tagSpan, 0, stringBuilder.length() - 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         return stringBuilder;
     }
-
 }

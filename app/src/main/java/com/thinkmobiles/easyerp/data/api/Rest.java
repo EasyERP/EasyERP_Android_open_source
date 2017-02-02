@@ -17,6 +17,7 @@ import com.thinkmobiles.easyerp.data.services.LeadService;
 import com.thinkmobiles.easyerp.data.services.LoginService;
 import com.thinkmobiles.easyerp.data.services.OpportunityService;
 import com.thinkmobiles.easyerp.data.services.OrderService;
+import com.thinkmobiles.easyerp.data.services.PaymentsService;
 import com.thinkmobiles.easyerp.data.services.PersonsService;
 import com.thinkmobiles.easyerp.data.services.UserService;
 import com.thinkmobiles.easyerp.presentation.managers.CookieManager;
@@ -51,6 +52,7 @@ public class Rest {
     private DashboardService dashboardService;
     private InvoiceService invoiceService;
     private OrderService orderService;
+    private PaymentsService paymentsService;
     private PersonsService personsService;
     private OpportunityService opportunityService;
     private FilterService filterService;
@@ -90,6 +92,10 @@ public class Rest {
 
     public OrderService getOrderService() {
         return orderService == null ? createService(OrderService.class) : orderService;
+    }
+
+    public PaymentsService getPaymentService() {
+        return paymentsService == null ? createService(PaymentsService.class) : paymentsService;
     }
 
     public PersonsService getPersonsService() {

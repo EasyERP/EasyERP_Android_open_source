@@ -6,8 +6,7 @@ import com.michenko.simpleadapter.RecyclerDH;
  * @author michael.soyma@thinkmobiles.com (Created on 1/26/2017.)
  */
 
-public class DashboardOverviewChartDH extends RecyclerDH {
-
+public final class DashboardOverviewChartDH extends RecyclerDH {
     private final String labelWorkflow;
     private final int valueCount;
 
@@ -23,5 +22,4 @@ public class DashboardOverviewChartDH extends RecyclerDH {
     public int getValueCount() {
         return valueCount;
     }
-
 }

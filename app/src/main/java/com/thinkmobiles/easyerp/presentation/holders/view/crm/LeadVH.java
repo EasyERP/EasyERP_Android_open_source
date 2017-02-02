@@ -10,8 +10,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.michenko.simpleadapter.OnCardClickListener;
-import com.michenko.simpleadapter.RecyclerVH;
 import com.thinkmobiles.easyerp.R;
+import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectableVHHelper;
 import com.thinkmobiles.easyerp.presentation.custom.RoundedBackgroundSpan;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.LeadDH;
 import com.thinkmobiles.easyerp.presentation.managers.DateManager;
@@ -21,23 +21,21 @@ import com.thinkmobiles.easyerp.presentation.managers.TagHelper;
  * Created by Lynx on 1/16/2017.
  */
 
-public class LeadVH extends RecyclerVH<LeadDH> {
+public final class LeadVH extends MasterFlowSelectableVHHelper<LeadDH> {
 
-    private View flLeadItemContainer_LIL;
-    private TextView tvLeadName_LIL;
-    private TextView tvStage_LIL;
-    private TextView tvPriority_LIL;
-    private TextView tvSource_LIL;
-    private TextView tvAssignedTo_LIL;
-    private TextView tvEditedBy_VLIL;
-    private LinearLayout llFirstLine_VLIL;
+    private final TextView tvLeadName_LIL;
+    private final TextView tvStage_LIL;
+    private final TextView tvPriority_LIL;
+    private final TextView tvSource_LIL;
+    private final TextView tvAssignedTo_LIL;
+    private final TextView tvEditedBy_VLIL;
+    private final LinearLayout llFirstLine_VLIL;
 
-    private String noData;
+    private final String noData;
 
     public LeadVH(View itemView, @Nullable OnCardClickListener listener, int viewType) {
         super(itemView, listener, viewType);
 
-        flLeadItemContainer_LIL = findView(R.id.flLeadItemContainer_LIL);
         tvLeadName_LIL = findView(R.id.tvLeadName_LIL);
         tvStage_LIL = findView(R.id.tvStage_LIL);
         tvPriority_LIL = findView(R.id.tvPriority_LIL);
@@ -51,6 +49,8 @@ public class LeadVH extends RecyclerVH<LeadDH> {
 
     @Override
     public void bindData(LeadDH data) {
+        super.bindData(data);
+
         if(!TextUtils.isEmpty(data.getLeadItem().name))
             tvLeadName_LIL.setText(data.getLeadItem().name);
         else
@@ -82,7 +82,6 @@ public class LeadVH extends RecyclerVH<LeadDH> {
         } else
             tvEditedBy_VLIL.setText(noData);
 
-        flLeadItemContainer_LIL.setSelected(data.isSelected());
         tvLeadName_LIL.requestLayout();
     }
 

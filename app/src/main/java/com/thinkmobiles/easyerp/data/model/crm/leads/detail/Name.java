@@ -19,6 +19,9 @@ public class Name implements Parcelable {
     public String first;
     public String last;
 
+    public String getFullName() {
+        return String.format("%s %s", first, last);
+    }
 
     @Override
     public int describeContents() {

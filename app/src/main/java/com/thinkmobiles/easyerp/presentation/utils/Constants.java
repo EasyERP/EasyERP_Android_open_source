@@ -17,23 +17,31 @@ public abstract class Constants {
     public static final String GET_CURRENT_USER             = "users/current";
     //End User
 
-    //CRM
-    public static final String CRM_DASHBOARD_BASE_ID        = "582bfabf5a43a4bc2524bf09";
+    //------------------------------------------------------ CRM
 
-    public static final String GET_LEADS                    = "leads";
+    public static final String CRM_DASHBOARD_BASE_ID        = "582bfabf5a43a4bc2524bf09";
     public static final String GET_DASHBOARD_CHARTS         = "customDashboard/{dashboardId}";
 
+    //Leads
+    public static final String GET_LEADS                    = "leads";
+    //End Leads
+
+    //Persons
     public static final String GET_PERSONS_ALPHABET         = "persons/getPersonAlphabet";
     public static final String GET_CUSTOMER_IMAGES          = "customers/getCustomersImages";
     public static final String GET_PERSONS                  = "persons";
     public static final String GET_PERSON_DETAILS           = "persons/{PersonId}";
+    //End Persons
 
+    //Opportunities
     public static final String GET_OPPORTUNITIES            = "opportunities";
     public static final String GET_OPPORTUNITY_DETAILS      = "opportunities/{OpportunityID}";
+    //End Opportunities
 
+    //Companies
     public static final String GET_COMPANIES_ALPHABET       = "customers/getCompaniesAlphabet";
     public static final String GET_COMPANAIES               = "companies";
-    // End CRM
+    //End Companies
 
     //Invoice
     public static final String GET_INVOICE                  = "invoice";
@@ -48,9 +56,15 @@ public abstract class Constants {
     public static final String GET_ORDER_BY_WORKFLOWS       = "order/getByWorkflows";
     //End Order
 
+    //Payments
+    public static final String GET_PAYMENTS                 = "payments";
+    //End Payments
+
     //Filters
     public static final String GET_FILTER                   = "filter";
     //End Filters
+
+    //------------------------------------------------------ END CRM
 
     public static final int DELAY_CLICK                     = 600;
 

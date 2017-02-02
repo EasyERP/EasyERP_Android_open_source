@@ -4,9 +4,11 @@ import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.presentation.base.BaseFragment;
 import com.thinkmobiles.easyerp.presentation.screens.crm.companies.CompaniesFragment_;
 import com.thinkmobiles.easyerp.presentation.screens.crm.dashboard.DashboardListFragment_;
+import com.thinkmobiles.easyerp.presentation.screens.crm.invoices.InvoicesFragment_;
 import com.thinkmobiles.easyerp.presentation.screens.crm.leads.LeadsFragment_;
 import com.thinkmobiles.easyerp.presentation.screens.crm.opportunities.OpportunitiesFragment_;
 import com.thinkmobiles.easyerp.presentation.screens.crm.orders.OrdersFragment_;
+import com.thinkmobiles.easyerp.presentation.screens.crm.payments.PaymentsFragment_;
 import com.thinkmobiles.easyerp.presentation.screens.crm.persons.PersonsFragment_;
 
 import java.util.ArrayList;
@@ -62,7 +64,7 @@ public abstract class MenuConfigs {
         menuItems.add(new MenuItem(3, R.drawable.ic_menu_item_placeholder, "Opportunities", true));
         menuItems.add(new MenuItem(4, R.drawable.ic_menu_item_placeholder, "Persons", true));
         menuItems.add(new MenuItem(5, R.drawable.ic_menu_item_placeholder, "Companies", true));
-        menuItems.add(new MenuItem(6, R.drawable.ic_menu_item_placeholder, "Reports", true));
+        menuItems.add(new MenuItem(6, R.drawable.ic_menu_item_placeholder, "Reports", false));
         menuItems.add(new MenuItem(7, R.drawable.ic_menu_item_placeholder, "Orders", true));
         menuItems.add(new MenuItem(8, R.drawable.ic_menu_item_placeholder, "Invoices", true));
         menuItems.add(new MenuItem(9, R.drawable.ic_menu_item_placeholder, "Payments", true));
@@ -184,8 +186,8 @@ public abstract class MenuConfigs {
            case 5: return CompaniesFragment_.builder().build();
            case 6: return null;
            case 7: return OrdersFragment_.builder().build();
-           case 8: return null;
-           case 9: return null;
+           case 8: return InvoicesFragment_.builder().build();
+           case 9: return PaymentsFragment_.builder().build();
            case 10: return null;
            case 11: return null;
         }
