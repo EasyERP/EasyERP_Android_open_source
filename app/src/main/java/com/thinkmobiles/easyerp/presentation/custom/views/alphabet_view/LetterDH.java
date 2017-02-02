@@ -21,7 +21,7 @@ public class LetterDH extends RecyclerDH {
     }
 
     public String getLetter() {
-        return letter;
+        return letter.trim();
     }
 
     public void setLetter(String letter) {
