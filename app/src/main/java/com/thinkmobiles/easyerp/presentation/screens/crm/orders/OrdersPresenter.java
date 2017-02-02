@@ -52,12 +52,13 @@ public class OrdersPresenter extends MasterFlowSelectablePresenterHelper<String,
     }
 
     @Override
-    public void selectItem(OrderDH dh, int position) {
-        if (position != getSelectedItemPosition()) {
+    public boolean selectItem(OrderDH dh, int position) {
+        boolean isSelected = super.selectItem(dh, position);
+        if (isSelected) {
             view.changeSelectedItem(getSelectedItemPosition(), position);
-            setSelectedInfo(position, dh.getId());
             view.openOrderDetailsScreen(dh.getId());
         }
+        return isSelected;
     }
 
     private ArrayList<OrderDH> prepareOrderDHs(final List<Order> orders) {

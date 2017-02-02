@@ -52,12 +52,13 @@ public class InvoicesPresenter extends MasterFlowSelectablePresenterHelper<Strin
     }
 
     @Override
-    public void selectItem(InvoiceDH dh, int position) {
-        if (position != getSelectedItemPosition()) {
+    public boolean selectItem(InvoiceDH dh, int position) {
+        boolean isSelected = super.selectItem(dh, position);
+        if (isSelected) {
             view.changeSelectedItem(getSelectedItemPosition(), position);
-            setSelectedInfo(position, dh.getId());
             view.openInvoiceDetailsScreen(dh.getId());
         }
+        return isSelected;
     }
 
     private ArrayList<InvoiceDH> prepareInvoiceDHs(final List<Invoice> invoices) {

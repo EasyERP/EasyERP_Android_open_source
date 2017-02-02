@@ -49,12 +49,13 @@ public class DashboardListPresenter extends MasterFlowSelectablePresenterHelper<
     }
 
     @Override
-    public void selectItem(DashboardListDH dashboardListDH, int position) {
-        if (position != getSelectedItemPosition()) {
+    public boolean selectItem(DashboardListDH dashboardListDH, int position) {
+        boolean isSelected = super.selectItem(dashboardListDH, position);
+        if (isSelected) {
             view.changeSelectedItem(getSelectedItemPosition(), position);
-            setSelectedInfo(position, dashboardListDH.getId());
             view.displayDashboardsDetail(dashboardListDH.getDashboardListItem());
         }
+        return isSelected;
     }
 
     private ArrayList<DashboardListDH> prepareDashboardDHs(final List<DashboardListItem> dashboardListItems) {

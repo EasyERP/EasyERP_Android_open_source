@@ -35,12 +35,13 @@ public class PersonsPresenter extends MasterFlowSelectablePresenterHelper<String
     }
 
     @Override
-    public void selectItem(PersonDH personDH, int position) {
-        if (position != getSelectedItemPosition()) {
+    public boolean selectItem(PersonDH personDH, int position) {
+        boolean isSelected = super.selectItem(personDH, position);
+        if (isSelected) {
             view.changeSelectedItem(getSelectedItemPosition(), position);
-            setSelectedInfo(position, personDH.getId());
             view.openPersonDetailsScreen(personDH.getId());
         }
+        return isSelected;
     }
 
     @Override
