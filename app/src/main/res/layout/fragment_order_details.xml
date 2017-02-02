@@ -14,7 +14,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:animateLayoutChanges="true"
+            android:animateLayoutChanges="false"
             android:orientation="vertical">
 
             <android.support.v4.widget.NestedScrollView
@@ -516,37 +516,43 @@
 
             </android.support.v4.widget.NestedScrollView>
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/black" />
+
             <FrameLayout
                 android:id="@+id/btnHistory_FOD"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/default_padding">
+                android:background="?android:attr/selectableItemBackground"
+                android:padding="@dimen/list_item_line_12">
 
 
                 <TextView
                     style="@style/RobotoMedium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="start"
+                    android:layout_gravity="start|center_vertical"
                     android:text="@string/notes_amp_timeline"
                     android:textColor="@color/color_text_black"
-                    android:textSize="@dimen/text_list_item_large_20" />
+                    android:textSize="@dimen/text_list_item_medium_16" />
 
                 <ImageView
                     android:id="@+id/ivIconArrow_FOD"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="end"
                     android:tint="@android:color/black"
                     app:srcCompat="@drawable/ic_arrow_up" />
 
             </FrameLayout>
 
+
             <View
                 android:id="@+id/viewHistoryDivider_FOD"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:visibility="gone"
                 android:background="@android:color/black" />
 
             <android.support.v7.widget.RecyclerView

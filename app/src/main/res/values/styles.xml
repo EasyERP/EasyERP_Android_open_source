@@ -14,6 +14,8 @@
         <item name="editTextStyle">@style/AppTheme.DefaultBlackEditTextTheme</item>
 
         <item name="colorButtonNormal">@color/colorPrimary</item>
+
+        <item name="android:colorControlHighlight">#1b81ff</item>
     </style>
 
     <style name="AppTheme.DefaultBlackTextTheme">
