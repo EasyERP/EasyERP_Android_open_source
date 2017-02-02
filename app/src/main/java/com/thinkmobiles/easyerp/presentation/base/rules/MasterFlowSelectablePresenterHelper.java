@@ -32,4 +32,11 @@ public abstract class MasterFlowSelectablePresenterHelper<ID_TYPE, DH_TYPE exten
         }
     }
 
+    @Override
+    public boolean selectItem(DH_TYPE dh, int position) {
+        if (position != getSelectedItemPosition() || !dh.getId().equals(getSelectedItemId())) {
+            setSelectedInfo(position, dh.getId());
+            return true;
+        } else return false;
+    }
 }

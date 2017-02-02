@@ -13,6 +13,7 @@ import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.base.rules.SimpleListWithRefreshFragment;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.OpportunityDH;
 import com.thinkmobiles.easyerp.presentation.listeners.EndlessRecyclerViewScrollListener;
+import com.thinkmobiles.easyerp.presentation.screens.crm.opportunities.details.OpportunityDetailsFragment_;
 
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterViews;
@@ -85,7 +86,6 @@ public class OpportunitiesFragment extends SimpleListWithRefreshFragment impleme
     public void onRefresh() {
         errorViewHelper.hideError();
         scrollListener.resetState();
-        presenter.setSelectedInfo(-1, presenter.getSelectedItemId());
         presenter.subscribe();
     }
 
@@ -123,6 +123,13 @@ public class OpportunitiesFragment extends SimpleListWithRefreshFragment impleme
     @Override
     public void openOpportunityDetailsScreen(String opportunityID) {
         Log.d("myLogs", "Open opportunity details. ID = " + opportunityID);
+        if (opportunityID != null) {
+            mActivity.replaceFragmentContentDetail(OpportunityDetailsFragment_.builder()
+                    .opportunityID(opportunityID)
+                    .build());
+        } else {
+            mActivity.replaceFragmentContentDetail(null);
+        }
     }
 
     @Override

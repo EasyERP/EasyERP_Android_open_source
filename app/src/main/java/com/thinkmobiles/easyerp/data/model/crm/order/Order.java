@@ -1,13 +1,13 @@
-package com.thinkmobiles.easyerp.data.model.crm.orders;
+package com.thinkmobiles.easyerp.data.model.crm.order;
 
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.thinkmobiles.easyerp.data.model.crm.dashboard.detail.invoice.Currency;
-import com.thinkmobiles.easyerp.data.model.crm.dashboard.detail.invoice.PaymentInfo;
-import com.thinkmobiles.easyerp.data.model.crm.dashboard.detail.invoice.SalesPerson;
 import com.thinkmobiles.easyerp.data.model.crm.dashboard.detail.order.OrderBase;
 import com.thinkmobiles.easyerp.data.model.crm.dashboard.detail.order.OrderStatus;
+import com.thinkmobiles.easyerp.data.model.crm.invoice.Currency;
+import com.thinkmobiles.easyerp.data.model.crm.invoice.PaymentInfo;
+import com.thinkmobiles.easyerp.data.model.crm.invoice.SalesPerson;
 import com.thinkmobiles.easyerp.data.model.crm.leads.Workflow;
 
 /**

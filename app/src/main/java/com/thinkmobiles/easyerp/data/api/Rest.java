@@ -8,6 +8,8 @@ import com.thinkmobiles.easyerp.data.api.interceptors.AddCookieInterceptor;
 import com.thinkmobiles.easyerp.data.api.interceptors.BadCookieInterceptor;
 import com.thinkmobiles.easyerp.data.api.interceptors.ReceiveCookieInterceptor;
 import com.thinkmobiles.easyerp.data.model.ResponseError;
+import com.thinkmobiles.easyerp.data.services.CompaniesService;
+import com.thinkmobiles.easyerp.data.services.CustomerService;
 import com.thinkmobiles.easyerp.data.services.DashboardService;
 import com.thinkmobiles.easyerp.data.services.FilterService;
 import com.thinkmobiles.easyerp.data.services.InvoiceService;
@@ -15,6 +17,7 @@ import com.thinkmobiles.easyerp.data.services.LeadService;
 import com.thinkmobiles.easyerp.data.services.LoginService;
 import com.thinkmobiles.easyerp.data.services.OpportunityService;
 import com.thinkmobiles.easyerp.data.services.OrderService;
+import com.thinkmobiles.easyerp.data.services.PaymentsService;
 import com.thinkmobiles.easyerp.data.services.PersonsService;
 import com.thinkmobiles.easyerp.data.services.UserService;
 import com.thinkmobiles.easyerp.presentation.managers.CookieManager;
@@ -50,9 +53,12 @@ public class Rest {
     private DashboardService dashboardService;
     private InvoiceService invoiceService;
     private OrderService orderService;
+    private PaymentsService paymentsService;
     private PersonsService personsService;
     private OpportunityService opportunityService;
     private FilterService filterService;
+    private CompaniesService companiesService;
+    private CustomerService customerService;
 
     private Converter<ResponseBody, ResponseError> converter;
 
@@ -119,12 +125,24 @@ public class Rest {
         return orderService == null ? createService(OrderService.class) : orderService;
     }
 
+    public PaymentsService getPaymentService() {
+        return paymentsService == null ? createService(PaymentsService.class) : paymentsService;
+    }
+
     public PersonsService getPersonsService() {
         return personsService == null ? createService(PersonsService.class) : personsService;
     }
 
     public OpportunityService getOpportunityService() {
         return opportunityService == null ? createService(OpportunityService.class) : opportunityService;
+    }
+
+    public CompaniesService getCompaniesService() {
+        return companiesService == null ? createService(CompaniesService.class) : companiesService;
+    }
+
+    public CustomerService getCustomerService() {
+        return customerService == null ? createService(CustomerService.class) : customerService;
     }
 
     public FilterService getFilterService() {

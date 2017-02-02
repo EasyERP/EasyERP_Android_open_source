@@ -3,8 +3,9 @@ package com.thinkmobiles.easyerp.data.model.crm.leads.detail;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.thinkmobiles.easyerp.data.model.crm.leads.LeadTag;
+import com.thinkmobiles.easyerp.data.model.crm.leads.TagItem;
 import com.thinkmobiles.easyerp.data.model.crm.leads.Workflow;
+import com.thinkmobiles.easyerp.data.model.crm.opportunities.list_item.ExpectedRevenue;
 
 import java.util.ArrayList;
 
@@ -404,7 +405,7 @@ public class ResponseGetLeadDetails implements Parcelable {
     public String email;
     public Name contactName;
     public Address address;
-    public ArrayList<LeadTag> tags;
+    public ArrayList<TagItem> tags;
     public Customer customer;
     public LeadCompany company;
     public String tempCompanyField;
@@ -417,6 +418,9 @@ public class ResponseGetLeadDetails implements Parcelable {
     //for combine in Observable
     public ResponseGetLeadWorkflow leadWorkflow;
 
+
+    public ResponseGetLeadDetails() {
+    }
 
     @Override
     public int describeContents() {
@@ -459,9 +463,6 @@ public class ResponseGetLeadDetails implements Parcelable {
         dest.writeParcelable(this.leadWorkflow, flags);
     }
 
-    public ResponseGetLeadDetails() {
-    }
-
     protected ResponseGetLeadDetails(Parcel in) {
         this._id = in.readString();
         this.dateBirth = in.readString();
@@ -485,7 +486,7 @@ public class ResponseGetLeadDetails implements Parcelable {
         this.email = in.readString();
         this.contactName = in.readParcelable(Name.class.getClassLoader());
         this.address = in.readParcelable(Address.class.getClassLoader());
-        this.tags = in.createTypedArrayList(LeadTag.CREATOR);
+        this.tags = in.createTypedArrayList(TagItem.CREATOR);
         this.customer = in.readParcelable(Customer.class.getClassLoader());
         this.company = in.readParcelable(LeadCompany.class.getClassLoader());
         this.tempCompanyField = in.readString();

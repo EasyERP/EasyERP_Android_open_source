@@ -10,12 +10,10 @@ import com.thinkmobiles.easyerp.data.model.crm.leads.filter.FilterItem;
  * Created by samson on 26.01.17.
  */
 
-public class FilterDH extends RecyclerDH implements Parcelable {
-
-    public String id;
-    public String name;
+public final class FilterDH extends RecyclerDH implements Parcelable {
+    public final String id;
+    public final String name;
     public boolean selected;
-
 
     public FilterDH(FilterItem item, boolean selected) {
         this(item);
@@ -26,7 +24,6 @@ public class FilterDH extends RecyclerDH implements Parcelable {
         this.id = item.id;
         this.name = item.name;
     }
-
 
     @Override
     public int describeContents() {

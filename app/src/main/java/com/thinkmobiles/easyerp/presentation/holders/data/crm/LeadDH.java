@@ -7,8 +7,8 @@ import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectableDHHe
  * Created by Lynx on 1/16/2017.
  */
 
-public class LeadDH extends MasterFlowSelectableDHHelper<String> {
-    private LeadItem leadItem;
+public final class LeadDH extends MasterFlowSelectableDHHelper<String> {
+    private final LeadItem leadItem;
 
     public LeadDH(LeadItem leadItem) {
         this.leadItem = leadItem;
@@ -22,5 +22,4 @@ public class LeadDH extends MasterFlowSelectableDHHelper<String> {
     public String getId() {
         return leadItem.id;
     }
-
 }

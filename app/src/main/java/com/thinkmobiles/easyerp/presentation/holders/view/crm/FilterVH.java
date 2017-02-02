@@ -9,9 +9,9 @@ import com.michenko.simpleadapter.RecyclerVH;
 import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.FilterDH;
 
-public class FilterVH extends RecyclerVH<FilterDH> {
+public final class FilterVH extends RecyclerVH<FilterDH> {
 
-    private CheckBox cbItem;
+    private final CheckBox cbItem;
 
     public FilterVH(View itemView, @Nullable OnCardClickListener listener, int viewType) {
         super(itemView, listener, viewType);

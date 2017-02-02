@@ -6,7 +6,7 @@ import com.thinkmobiles.easyerp.data.model.crm.leads.detail.NoteItem;
 import java.util.ArrayList;
 
 
-public class HistoryDH extends RecyclerDH {
+public final class HistoryDH extends RecyclerDH {
 
     public static ArrayList<HistoryDH> convert(ArrayList<NoteItem> list) {
         ArrayList<HistoryDH> historyDHs = new ArrayList<>();
@@ -16,7 +16,7 @@ public class HistoryDH extends RecyclerDH {
         return historyDHs;
     }
 
-    private NoteItem model;
+    private final NoteItem model;
 
     public HistoryDH(NoteItem model) {
         this.model = model;
@@ -24,9 +24,5 @@ public class HistoryDH extends RecyclerDH {
 
     public NoteItem getModel() {
         return model;
-    }
-
-    public void setModel(NoteItem model) {
-        this.model = model;
     }
 }

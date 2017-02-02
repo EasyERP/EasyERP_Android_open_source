@@ -1,7 +1,7 @@
 package com.thinkmobiles.easyerp.data.services;
 
 import com.thinkmobiles.easyerp.data.model.crm.persons.ResponseGetPersons;
-import com.thinkmobiles.easyerp.data.model.crm.persons.alphabet.ResponseGetPersonsAlphabet;
+import com.thinkmobiles.easyerp.data.model.crm.common.alphabet.ResponseGetAlphabet;
 import com.thinkmobiles.easyerp.data.model.crm.persons.details.ResponseGetPersonDetails;
 import com.thinkmobiles.easyerp.data.model.crm.persons.images.ResponseGetCustomersImages;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
@@ -20,10 +20,7 @@ import rx.Observable;
 public interface PersonsService {
 
     @GET(Constants.GET_PERSONS_ALPHABET)
-    Observable<ResponseGetPersonsAlphabet> getPersonsAlphabet(@Query("contentType") String contentType);
-
-    @GET(Constants.GET_CUSTOMER_IMAGES)
-    Observable<ResponseGetCustomersImages> getCustomerImages(@Query("ids[]") ArrayList<String> listOfIDs);
+    Observable<ResponseGetAlphabet> getPersonsAlphabet(@Query("contentType") String contentType);
 
     @GET(Constants.GET_PERSONS)
     Observable<ResponseGetPersons> getAllPersons(@Query("viewType") String viewType,

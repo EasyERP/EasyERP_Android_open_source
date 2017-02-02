@@ -1,8 +1,8 @@
 package com.thinkmobiles.easyerp.domain.crm;
 
 import com.thinkmobiles.easyerp.data.api.Rest;
+import com.thinkmobiles.easyerp.data.model.crm.order.ResponseGetOrders;
 import com.thinkmobiles.easyerp.data.model.crm.orders.detail.ResponseGerOrderDetails;
-import com.thinkmobiles.easyerp.data.model.crm.orders.ResponseGetOrders;
 import com.thinkmobiles.easyerp.data.model.user.organization.ResponseGetOrganizationSettings;
 import com.thinkmobiles.easyerp.data.services.OrderService;
 import com.thinkmobiles.easyerp.data.services.UserService;

@@ -7,7 +7,7 @@ import android.os.Parcelable;
  * Created by Lynx on 1/16/2017.
  */
 
-public class LeadTag implements Parcelable {
+public class TagItem implements Parcelable {
     /**
      * {id:"57a0448f0c873fdf1c596058",
      color:"bgBlueLight",
@@ -29,24 +29,24 @@ public class LeadTag implements Parcelable {
         dest.writeString(this.name);
     }
 
-    public LeadTag() {
+    public TagItem() {
     }
 
-    protected LeadTag(Parcel in) {
+    protected TagItem(Parcel in) {
         this._id = in.readString();
         this.color = in.readString();
         this.name = in.readString();
     }
 
-    public static final Parcelable.Creator<LeadTag> CREATOR = new Parcelable.Creator<LeadTag>() {
+    public static final Parcelable.Creator<TagItem> CREATOR = new Parcelable.Creator<TagItem>() {
         @Override
-        public LeadTag createFromParcel(Parcel source) {
-            return new LeadTag(source);
+        public TagItem createFromParcel(Parcel source) {
+            return new TagItem(source);
         }
 
         @Override
-        public LeadTag[] newArray(int size) {
-            return new LeadTag[size];
+        public TagItem[] newArray(int size) {
+            return new TagItem[size];
         }
     };
 }

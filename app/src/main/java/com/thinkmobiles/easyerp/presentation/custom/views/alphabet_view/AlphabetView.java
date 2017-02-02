@@ -7,7 +7,7 @@ import android.util.AttributeSet;
 import android.widget.FrameLayout;
 
 import com.thinkmobiles.easyerp.R;
-import com.thinkmobiles.easyerp.data.model.crm.persons.alphabet.AlphabetItem;
+import com.thinkmobiles.easyerp.data.model.crm.common.alphabet.AlphabetItem;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Bean;
@@ -84,34 +84,12 @@ public class AlphabetView extends FrameLayout {
 
     private void initBaseLetters() {
         ArrayList<LetterDH> allLetters = new ArrayList<>();
-        allLetters.add(new LetterDH(LetterState.SELECTED, "All"));
-        allLetters.add(new LetterDH("0-9"));
-        allLetters.add(new LetterDH("A"));
-        allLetters.add(new LetterDH("B"));
-        allLetters.add(new LetterDH("C"));
-        allLetters.add(new LetterDH("D"));
-        allLetters.add(new LetterDH("E"));
-        allLetters.add(new LetterDH("F"));
-        allLetters.add(new LetterDH("G"));
-        allLetters.add(new LetterDH("H"));
-        allLetters.add(new LetterDH("I"));
-        allLetters.add(new LetterDH("J"));
-        allLetters.add(new LetterDH("K"));
-        allLetters.add(new LetterDH("L"));
-        allLetters.add(new LetterDH("M"));
-        allLetters.add(new LetterDH("N"));
-        allLetters.add(new LetterDH("O"));
-        allLetters.add(new LetterDH("P"));
-        allLetters.add(new LetterDH("Q"));
-        allLetters.add(new LetterDH("R"));
-        allLetters.add(new LetterDH("S"));
-        allLetters.add(new LetterDH("T"));
-        allLetters.add(new LetterDH("U"));
-        allLetters.add(new LetterDH("V"));
-        allLetters.add(new LetterDH("W"));
-        allLetters.add(new LetterDH("X"));
-        allLetters.add(new LetterDH("Y"));
-        allLetters.add(new LetterDH("Z"));
+        allLetters.add(new LetterDH(LetterState.SELECTED, "All  "));
+        allLetters.add(new LetterDH("0-9  "));
+
+        for (char c = 'A'; c <= 'Z'; c++){
+            allLetters.add(new LetterDH(String.valueOf(c)));
+        }
         alphabetListAdapter.setListDH(allLetters);
     }
 }

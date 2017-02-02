@@ -1,4 +1,4 @@
-package com.thinkmobiles.easyerp.data.model.crm.dashboard.detail.invoice;
+package com.thinkmobiles.easyerp.data.model.crm.invoice;
 
 import android.os.Parcel;
 import android.os.Parcelable;

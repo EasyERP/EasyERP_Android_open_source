@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.thinkmobiles.easyerp.R;
-import com.thinkmobiles.easyerp.data.model.crm.persons.alphabet.AlphabetItem;
+import com.thinkmobiles.easyerp.data.model.crm.common.alphabet.AlphabetItem;
 import com.thinkmobiles.easyerp.domain.crm.PersonsRepository;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.PersonsAdapter;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;

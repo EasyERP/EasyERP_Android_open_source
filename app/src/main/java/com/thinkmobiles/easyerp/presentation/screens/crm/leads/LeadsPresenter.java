@@ -91,12 +91,13 @@ public class LeadsPresenter extends MasterFlowSelectablePresenterHelper<String, 
     }
 
     @Override
-    public void selectItem(LeadDH leadDh, int position) {
-        if (position != getSelectedItemPosition()) {
+    public boolean selectItem(LeadDH leadDh, int position) {
+        boolean isSelected = super.selectItem(leadDh, position);
+        if (isSelected) {
             view.changeSelectedItem(getSelectedItemPosition(), position);
-            setSelectedInfo(position, leadDh.getId());
             view.openLeadDetailsScreen(leadDh.getId());
         }
+        return isSelected;
     }
 
     @Override

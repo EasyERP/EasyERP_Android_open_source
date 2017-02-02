@@ -20,7 +20,7 @@ import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.thinkmobiles.easyerp.R;
-import com.thinkmobiles.easyerp.data.model.crm.dashboard.detail.invoice.InvoiceItem;
+import com.thinkmobiles.easyerp.data.model.crm.invoice.Invoice;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -97,14 +97,14 @@ public final class DonutChartViewImpl implements IChartView<PieData> {
     @SuppressWarnings("unchecked")
     @Override
     public PieData prepareData(Object data) {
-        final List<InvoiceItem> invoiceItems = (List<InvoiceItem>) data;
+        final List<Invoice> invoices = (List<Invoice>) data;
         final List<PieEntry> pieEntries = new ArrayList<>();
 
         totalRevenue = 0d;
-        for (InvoiceItem invoiceItem: invoiceItems) {
-            final Double sum = invoiceItem.sum / 100d;
+        for (Invoice invoice : invoices) {
+            final Double sum = invoice.sum / 100d;
             totalRevenue += sum;
-            pieEntries.add(new PieEntry(sum.floatValue(), TextUtils.isEmpty(invoiceItem.id) ? "Not Assigned" : invoiceItem.id));
+            pieEntries.add(new PieEntry(sum.floatValue(), TextUtils.isEmpty(invoice.id) ? "Not Assigned" : invoice.id));
         }
 
         final PieDataSet pieDataSet = new PieDataSet(pieEntries, null);
