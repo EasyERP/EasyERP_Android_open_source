@@ -7,9 +7,8 @@ import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectableDHHe
  * Created by Lynx on 1/30/2017.
  */
 
-public class OpportunityDH extends MasterFlowSelectableDHHelper<String> {
-
-    private OpportunityListItem opportunityListItem;
+public final class OpportunityDH extends MasterFlowSelectableDHHelper<String> {
+    private final OpportunityListItem opportunityListItem;
 
     public OpportunityDH(OpportunityListItem opportunityListItem) {
         this.opportunityListItem = opportunityListItem;

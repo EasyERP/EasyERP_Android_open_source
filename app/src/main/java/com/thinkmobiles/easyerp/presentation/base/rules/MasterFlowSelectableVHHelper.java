@@ -11,9 +11,9 @@ import com.michenko.simpleadapter.RecyclerVH;
  *         Company: Thinkmobiles
  *         Email: michael.soyma@thinkmobiles.com
  */
-public class MasterFlowSelectableVHHelper<DH extends MasterFlowSelectableDHHelper> extends RecyclerVH<DH> {
+public abstract class MasterFlowSelectableVHHelper<DH extends MasterFlowSelectableDHHelper> extends RecyclerVH<DH> {
 
-    private View rootView;
+    private final View rootView;
 
     public MasterFlowSelectableVHHelper(View itemView, @Nullable OnCardClickListener listener, int viewType) {
         super(itemView, listener, viewType);
@@ -24,5 +24,4 @@ public class MasterFlowSelectableVHHelper<DH extends MasterFlowSelectableDHHelpe
     public void bindData(DH data) {
         rootView.setSelected(data.isSelected());
     }
-
 }

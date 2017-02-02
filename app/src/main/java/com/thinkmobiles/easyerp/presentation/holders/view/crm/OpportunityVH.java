@@ -17,14 +17,14 @@ import java.util.Locale;
  * Created by Lynx on 1/30/2017.
  */
 
-public class OpportunityVH extends MasterFlowSelectableVHHelper<OpportunityDH> {
+public final class OpportunityVH extends MasterFlowSelectableVHHelper<OpportunityDH> {
 
-    private TextView tvOpportunityName_VLIO;
-    private TextView tvStage_LIL;
-    private TextView tvAssignedTo_VLIO;
-    private TextView tvRevenue_VLIO;
+    private final TextView tvOpportunityName_VLIO;
+    private final TextView tvStage_LIL;
+    private final TextView tvAssignedTo_VLIO;
+    private final TextView tvRevenue_VLIO;
 
-    private String noData;
+    private final String noData;
 
     public OpportunityVH(View itemView, @Nullable OnCardClickListener listener, int viewType) {
         super(itemView, listener, viewType);
@@ -54,5 +54,4 @@ public class OpportunityVH extends MasterFlowSelectableVHHelper<OpportunityDH> {
                     TextUtils.isEmpty(item.expectedRevenue.currency) ? "$" : item.expectedRevenue.currency));
         }
     }
-
 }

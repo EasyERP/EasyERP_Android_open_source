@@ -21,17 +21,17 @@ import com.thinkmobiles.easyerp.presentation.managers.TagHelper;
  * Created by Lynx on 1/16/2017.
  */
 
-public class LeadVH extends MasterFlowSelectableVHHelper<LeadDH> {
+public final class LeadVH extends MasterFlowSelectableVHHelper<LeadDH> {
 
-    private TextView tvLeadName_LIL;
-    private TextView tvStage_LIL;
-    private TextView tvPriority_LIL;
-    private TextView tvSource_LIL;
-    private TextView tvAssignedTo_LIL;
-    private TextView tvEditedBy_VLIL;
-    private LinearLayout llFirstLine_VLIL;
+    private final TextView tvLeadName_LIL;
+    private final TextView tvStage_LIL;
+    private final TextView tvPriority_LIL;
+    private final TextView tvSource_LIL;
+    private final TextView tvAssignedTo_LIL;
+    private final TextView tvEditedBy_VLIL;
+    private final LinearLayout llFirstLine_VLIL;
 
-    private String noData;
+    private final String noData;
 
     public LeadVH(View itemView, @Nullable OnCardClickListener listener, int viewType) {
         super(itemView, listener, viewType);

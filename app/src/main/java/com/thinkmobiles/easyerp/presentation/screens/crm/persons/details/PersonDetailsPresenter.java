@@ -107,7 +107,7 @@ public class PersonDetailsPresenter implements PersonDetailsContract.PersonDetai
         }
         if(!TextUtils.isEmpty(data.dateBirth)) {
             view.displayDateOfBirth(DateManager.convert(data.dateBirth)
-                    .setDstPattern(DateManager.PATTERN_OUT_PERSON_DOB)
+                    .setDstPattern(DateManager.PATTERN_DATE_SIMPLE_PREVIEW)
                     .toString());
         }
         if(!TextUtils.isEmpty(data.skype)) view.enableSkypeIcon(data.skype);

@@ -22,15 +22,15 @@ import com.thinkmobiles.easyerp.presentation.screens.crm.dashboard.detail.charts
  *         Company: Thinkmobiles
  *         Email: michael.soyma@thinkmobiles.com
  */
-public class InvoiceVH extends MasterFlowSelectableVHHelper<InvoiceDH> {
+public final class InvoiceVH extends MasterFlowSelectableVHHelper<InvoiceDH> {
 
-    private TextView tvInvoiceCustomer_VLII;
-    private TextView tvInvoiceStatus_VLII;
-    private TextView tvAssignTo_VLII;
-    private TextView tvInvoiceDate_VLII;
-    private TextView tvTotalPrice_VLII;
+    private final TextView tvInvoiceCustomer_VLII;
+    private final TextView tvInvoiceStatus_VLII;
+    private final TextView tvAssignTo_VLII;
+    private final TextView tvInvoiceDate_VLII;
+    private final TextView tvTotalPrice_VLII;
 
-    private String noData;
+    private final String not_assigned;
 
     public InvoiceVH(View itemView, @Nullable OnCardClickListener listener, int viewType) {
         super(itemView, listener, viewType);
@@ -41,16 +41,16 @@ public class InvoiceVH extends MasterFlowSelectableVHHelper<InvoiceDH> {
         tvInvoiceDate_VLII = findView(R.id.tvInvoiceDate_VLII);
         tvTotalPrice_VLII = findView(R.id.tvTotalPrice_VLII);
 
-        noData = itemView.getContext().getString(R.string.no_data);
+        not_assigned = itemView.getContext().getString(R.string.not_assigned);
     }
 
     @Override
     public void bindData(InvoiceDH data) {
         super.bindData(data);
 
-        tvInvoiceCustomer_VLII.setText(TextUtils.isEmpty(data.getInvoice().supplier.name) ? noData : data.getInvoice().supplier.name);
-        tvInvoiceDate_VLII.setText(new DateManager.DateConverter(data.getInvoice().invoiceDate).setDstPattern(DateManager.PATTERN_OUT_PERSON_DOB).toString());
-        tvAssignTo_VLII.setText(TextUtils.isEmpty(data.getInvoice().salesPerson.name) ? noData : data.getInvoice().salesPerson.name);
+        tvInvoiceCustomer_VLII.setText(TextUtils.isEmpty(data.getInvoice().supplier.name) ? not_assigned : data.getInvoice().supplier.name);
+        tvInvoiceDate_VLII.setText(new DateManager.DateConverter(data.getInvoice().invoiceDate).setDstPattern(DateManager.PATTERN_DATE_SIMPLE_PREVIEW).toString());
+        tvAssignTo_VLII.setText(TextUtils.isEmpty(data.getInvoice().salesPerson.name) ? not_assigned : data.getInvoice().salesPerson.name);
         tvTotalPrice_VLII.setText(String.format("%s %s",
                 data.getInvoice().currency.id != null ? data.getInvoice().currency.id.symbol : "$",
                 new DollarFormatter().getFormat().format(data.getInvoice().paymentInfo.total)));
@@ -68,5 +68,4 @@ public class InvoiceVH extends MasterFlowSelectableVHHelper<InvoiceDH> {
         stringBuilder.setSpan(tagSpan, 0, stringBuilder.length() - 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         return stringBuilder;
     }
-
 }

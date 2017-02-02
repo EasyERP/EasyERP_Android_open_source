@@ -13,10 +13,10 @@ import com.thinkmobiles.easyerp.presentation.holders.data.crm.DashboardListDH;
  * @author michael.soyma@thinkmobiles.com (Created on 1/18/2017.)
  */
 
-public class DashboardVH extends MasterFlowSelectableVHHelper<DashboardListDH> {
+public final class DashboardVH extends MasterFlowSelectableVHHelper<DashboardListDH> {
 
-    private TextView tvDashboardName_VLICD;
-    private TextView tvTypeChart_VLICD;
+    private final TextView tvDashboardName_VLICD;
+    private final TextView tvTypeChart_VLICD;
 
     public DashboardVH(View itemView, @Nullable OnCardClickListener listener, int viewType) {
         super(itemView, listener, viewType);
@@ -32,5 +32,4 @@ public class DashboardVH extends MasterFlowSelectableVHHelper<DashboardListDH> {
         tvDashboardName_VLICD.setText(data.getDashboardListItem().name);
         tvTypeChart_VLICD.setText(data.getDashboardListItem().type);
     }
-
 }

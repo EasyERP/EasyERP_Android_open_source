@@ -1,6 +1,6 @@
 package com.thinkmobiles.easyerp.presentation.holders.data.crm;
 
-import com.thinkmobiles.easyerp.data.model.crm.invoice.Invoice;
+import com.thinkmobiles.easyerp.data.model.crm.payments.Payment;
 import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectableDHHelper;
 
 /**
@@ -8,19 +8,19 @@ import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectableDHHe
  *         Company: Thinkmobiles
  *         Email: michael.soyma@thinkmobiles.com
  */
-public final class InvoiceDH extends MasterFlowSelectableDHHelper<String> {
-    private final Invoice invoice;
+public final class PaymentDH extends MasterFlowSelectableDHHelper<String> {
+    private final Payment payment;
 
-    public InvoiceDH(Invoice invoice) {
-        this.invoice = invoice;
+    public PaymentDH(Payment payment) {
+        this.payment = payment;
     }
 
-    public Invoice getInvoice() {
-        return invoice;
+    public Payment getPayment() {
+        return payment;
     }
 
     @Override
     public String getId() {
-        return invoice.id;
+        return payment.id;
     }
 }

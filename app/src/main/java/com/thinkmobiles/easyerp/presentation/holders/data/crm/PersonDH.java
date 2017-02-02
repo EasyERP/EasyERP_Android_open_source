@@ -7,9 +7,9 @@ import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectableDHHe
  * Created by Lynx on 1/23/2017.
  */
 
-public class PersonDH extends MasterFlowSelectableDHHelper<String> {
-    private String base64Image;
-    private PersonModel personModel;
+public final class PersonDH extends MasterFlowSelectableDHHelper<String> {
+    private final String base64Image;
+    private final PersonModel personModel;
 
     public PersonDH(String base64Image, PersonModel personModel) {
         this.base64Image = base64Image;
