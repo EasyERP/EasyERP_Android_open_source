@@ -1,6 +1,6 @@
 package com.thinkmobiles.easyerp.presentation.holders.data.crm;
 
-import com.thinkmobiles.easyerp.data.model.crm.orders.Order;
+import com.thinkmobiles.easyerp.data.model.crm.order.Order;
 import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectableDHHelper;
 
 /**

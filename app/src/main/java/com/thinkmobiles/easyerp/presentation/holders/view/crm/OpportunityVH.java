@@ -6,9 +6,9 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.michenko.simpleadapter.OnCardClickListener;
-import com.michenko.simpleadapter.RecyclerVH;
 import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.data.model.crm.opportunities.list_item.OpportunityListItem;
+import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectableVHHelper;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.OpportunityDH;
 
 import java.util.Locale;
@@ -17,9 +17,8 @@ import java.util.Locale;
  * Created by Lynx on 1/30/2017.
  */
 
-public class OpportunityVH extends RecyclerVH<OpportunityDH> {
+public class OpportunityVH extends MasterFlowSelectableVHHelper<OpportunityDH> {
 
-    private View flOpportunityItemContainer_VLIO;
     private TextView tvOpportunityName_VLIO;
     private TextView tvStage_LIL;
     private TextView tvAssignedTo_VLIO;
@@ -30,7 +29,6 @@ public class OpportunityVH extends RecyclerVH<OpportunityDH> {
     public OpportunityVH(View itemView, @Nullable OnCardClickListener listener, int viewType) {
         super(itemView, listener, viewType);
 
-        flOpportunityItemContainer_VLIO = findView(R.id.flOpportunityItemContainer_VLIO);
         tvOpportunityName_VLIO = findView(R.id.tvOpportunityName_VLIO);
         tvStage_LIL = findView(R.id.tvStage_LIL);
         tvAssignedTo_VLIO = findView(R.id.tvAssignedTo_VLIO);
@@ -41,6 +39,8 @@ public class OpportunityVH extends RecyclerVH<OpportunityDH> {
 
     @Override
     public void bindData(OpportunityDH data) {
+        super.bindData(data);
+
         OpportunityListItem item = data.getOpportunityListItem();
 
         tvOpportunityName_VLIO.setText(TextUtils.isEmpty(item.name) ? "Unknown" : item.name);
@@ -53,7 +53,6 @@ public class OpportunityVH extends RecyclerVH<OpportunityDH> {
                     item.expectedRevenue.value,
                     TextUtils.isEmpty(item.expectedRevenue.currency) ? "$" : item.expectedRevenue.currency));
         }
-        flOpportunityItemContainer_VLIO.setSelected(data.isSelected());
     }
 
 }

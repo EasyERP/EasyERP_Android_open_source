@@ -43,6 +43,9 @@ public abstract class TagHelper {
     public static final String CANCELLED            = "Cancelled";
     public static final String DONE                 = "Done";
 
+    public static final String PAID                 = "Paid";
+    public static final String UNPAID               = "Unpaid";
+
     public static int getColorResIdByName(String colorName) {
         switch (colorName) {
             case COLOR_RED:
@@ -75,14 +78,14 @@ public abstract class TagHelper {
             case HOT:
                 return R.color.color_chips_red;
 
+            case UNPAID:
             case PENDING:
-                return R.color.color_chips_grey;
             case NEW:
+            case CANCELLED:
                 return R.color.color_chips_grey;
             case IN_PROGRESS:
                 return R.color.color_chips_light_blue;
-            case CANCELLED:
-                return R.color.color_chips_grey;
+            case PAID:
             case DONE:
                 return R.color.color_chips_green;
             default:

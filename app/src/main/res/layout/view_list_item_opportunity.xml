@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:tools="http://schemas.android.com/tools"
-              android:id="@+id/flOpportunityItemContainer_VLIO"
               android:layout_width="match_parent"
               android:layout_height="@dimen/list_item_height"
               android:background="@drawable/bg_with_bottom_divider_line_selector"

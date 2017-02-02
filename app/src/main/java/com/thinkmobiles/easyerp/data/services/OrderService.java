@@ -1,7 +1,7 @@
 package com.thinkmobiles.easyerp.data.services;
 
 import com.thinkmobiles.easyerp.data.model.crm.dashboard.detail.order.OrderItem;
-import com.thinkmobiles.easyerp.data.model.crm.orders.ResponseGetOrders;
+import com.thinkmobiles.easyerp.data.model.crm.order.ResponseGetOrders;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
 import java.util.List;

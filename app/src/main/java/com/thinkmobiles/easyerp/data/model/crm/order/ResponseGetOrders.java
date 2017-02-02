@@ -1,4 +1,4 @@
-package com.thinkmobiles.easyerp.data.model.crm.orders;
+package com.thinkmobiles.easyerp.data.model.crm.order;
 
 import android.os.Parcel;
 import android.os.Parcelable;

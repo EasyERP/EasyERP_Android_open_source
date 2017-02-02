@@ -4,13 +4,12 @@ import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.michenko.simpleadapter.OnCardClickListener;
-import com.michenko.simpleadapter.RecyclerVH;
 import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.data.model.crm.persons.person_item.PersonModel;
+import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectableVHHelper;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.PersonDH;
 import com.thinkmobiles.easyerp.presentation.managers.ImageHelper;
 
@@ -18,9 +17,8 @@ import com.thinkmobiles.easyerp.presentation.managers.ImageHelper;
  * Created by Lynx on 1/23/2017.
  */
 
-public class PersonVH extends RecyclerVH<PersonDH> {
+public class PersonVH extends MasterFlowSelectableVHHelper<PersonDH> {
 
-    private RelativeLayout flPersonItemContainer_VLIP;
     private ImageView ivPersonImage_VLIP;
     private TextView tvPersonName_VLIP;
     private TextView tvPersonCountry_VLIP;
@@ -32,7 +30,6 @@ public class PersonVH extends RecyclerVH<PersonDH> {
     public PersonVH(View itemView, @Nullable OnCardClickListener listener, int viewType) {
         super(itemView, listener, viewType);
 
-        flPersonItemContainer_VLIP = findView(R.id.flPersonItemContainer_VLIP);
         ivPersonImage_VLIP = findView(R.id.ivPersonImage_VLIP);
         tvPersonName_VLIP = findView(R.id.tvPersonName_VLIP);
         tvPersonCountry_VLIP = findView(R.id.tvPersonCountry_VLIP);
@@ -44,6 +41,8 @@ public class PersonVH extends RecyclerVH<PersonDH> {
 
     @Override
     public void bindData(PersonDH data) {
+        super.bindData(data);
+
         PersonModel personModel = data.getPersonModel();
         ImageHelper.getBitmapFromBase64(data.getBase64Image())
                 .subscribe(bitmap -> {
@@ -64,6 +63,5 @@ public class PersonVH extends RecyclerVH<PersonDH> {
         } else {
             tvPersonPhone_VLIP.setText(noData);
         }
-        flPersonItemContainer_VLIP.setSelected(data.isSelected());
     }
 }
