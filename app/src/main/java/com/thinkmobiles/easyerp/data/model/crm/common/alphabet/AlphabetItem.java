@@ -1,4 +1,4 @@
-package com.thinkmobiles.easyerp.data.model.crm.persons.alphabet;
+package com.thinkmobiles.easyerp.data.model.crm.common.alphabet;
 
 import android.os.Parcel;
 import android.os.Parcelable;

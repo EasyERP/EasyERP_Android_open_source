@@ -35,12 +35,13 @@ public class PersonsPresenter extends MasterFlowSelectablePresenterHelper<String
     }
 
     @Override
-    public void selectItem(PersonDH personDH, int position) {
-        if (position != getSelectedItemPosition()) {
+    public boolean selectItem(PersonDH personDH, int position) {
+        boolean isSelected = super.selectItem(personDH, position);
+        if (isSelected) {
             view.changeSelectedItem(getSelectedItemPosition(), position);
-            setSelectedInfo(position, personDH.getId());
             view.openPersonDetailsScreen(personDH.getId());
         }
+        return isSelected;
     }
 
     @Override
@@ -66,7 +67,7 @@ public class PersonsPresenter extends MasterFlowSelectablePresenterHelper<String
             //load all
            compositeSubscription.add(
                    personsModel.getAllPersons(page)
-                           .flatMap(responseGetPersons -> personsModel.getCustomerImages(prepareIDsForImagesRequest(responseGetPersons)),
+                           .flatMap(responseGetPersons -> personsModel.getPersonImages(prepareIDsForImagesRequest(responseGetPersons)),
                                    CommonPersonsResponse::new)
                            .subscribe(commonPersonsResponse -> {
                                view.displayPersons(prepareDataHolders(commonPersonsResponse, needClear), needClear);
@@ -76,7 +77,7 @@ public class PersonsPresenter extends MasterFlowSelectablePresenterHelper<String
             //load by letter
             compositeSubscription.add(
                     personsModel.getPersonsByLetter(selectedLetter, page)
-                            .flatMap(responseGetPersons -> personsModel.getCustomerImages(prepareIDsForImagesRequest(responseGetPersons)),
+                            .flatMap(responseGetPersons -> personsModel.getPersonImages(prepareIDsForImagesRequest(responseGetPersons)),
                                     CommonPersonsResponse::new)
                             .subscribe(commonPersonsResponse -> {
                                 view.displayPersons(prepareDataHolders(commonPersonsResponse, needClear), needClear);

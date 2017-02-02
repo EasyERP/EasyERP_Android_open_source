@@ -52,12 +52,13 @@ public class PaymentsPresenter extends MasterFlowSelectablePresenterHelper<Strin
     }
 
     @Override
-    public void selectItem(PaymentDH dh, int position) {
-        if (position != getSelectedItemPosition()) {
+    public boolean selectItem(PaymentDH dh, int position) {
+        boolean isSelected = super.selectItem(dh, position);
+        if (isSelected) {
             view.changeSelectedItem(getSelectedItemPosition(), position);
-            setSelectedInfo(position, dh.getId());
             view.openPaymentDetailsScreen(dh.getPayment());
         }
+        return isSelected;
     }
 
     private ArrayList<PaymentDH> prepareOrderDHs(final List<Payment> payments) {

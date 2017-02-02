@@ -8,6 +8,8 @@ import com.thinkmobiles.easyerp.data.api.interceptors.AddCookieInterceptor;
 import com.thinkmobiles.easyerp.data.api.interceptors.BadCookieInterceptor;
 import com.thinkmobiles.easyerp.data.api.interceptors.ReceiveCookieInterceptor;
 import com.thinkmobiles.easyerp.data.model.ResponseError;
+import com.thinkmobiles.easyerp.data.services.CompaniesService;
+import com.thinkmobiles.easyerp.data.services.CustomerService;
 import com.thinkmobiles.easyerp.data.services.DashboardService;
 import com.thinkmobiles.easyerp.data.services.FilterService;
 import com.thinkmobiles.easyerp.data.services.InvoiceService;
@@ -54,6 +56,8 @@ public class Rest {
     private PersonsService personsService;
     private OpportunityService opportunityService;
     private FilterService filterService;
+    private CompaniesService companiesService;
+    private CustomerService customerService;
 
     private Converter<ResponseBody, ResponseError> converter;
 
@@ -100,6 +104,14 @@ public class Rest {
 
     public OpportunityService getOpportunityService() {
         return opportunityService == null ? createService(OpportunityService.class) : opportunityService;
+    }
+
+    public CompaniesService getCompaniesService() {
+        return companiesService == null ? createService(CompaniesService.class) : companiesService;
+    }
+
+    public CustomerService getCustomerService() {
+        return customerService == null ? createService(CustomerService.class) : customerService;
     }
 
     public FilterService getFilterService() {

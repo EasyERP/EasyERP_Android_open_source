@@ -2,6 +2,7 @@ package com.thinkmobiles.easyerp.presentation.custom.views.drawer_menu.models;
 
 import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.presentation.base.BaseFragment;
+import com.thinkmobiles.easyerp.presentation.screens.crm.companies.CompaniesFragment_;
 import com.thinkmobiles.easyerp.presentation.screens.crm.dashboard.DashboardListFragment_;
 import com.thinkmobiles.easyerp.presentation.screens.crm.invoices.InvoicesFragment_;
 import com.thinkmobiles.easyerp.presentation.screens.crm.leads.LeadsFragment_;
@@ -182,7 +183,7 @@ public abstract class MenuConfigs {
            case 2: return LeadsFragment_.builder().build();
            case 3: return OpportunitiesFragment_.builder().build();
            case 4: return PersonsFragment_.builder().build();
-           case 5: return null;
+           case 5: return CompaniesFragment_.builder().build();
            case 6: return null;
            case 7: return OrdersFragment_.builder().build();
            case 8: return InvoicesFragment_.builder().build();

@@ -1,4 +1,4 @@
-package com.thinkmobiles.easyerp.presentation.screens.crm.persons;
+package com.thinkmobiles.easyerp.presentation.screens.crm.companies;
 
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -7,15 +7,14 @@ import android.widget.Toast;
 
 import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.data.model.crm.common.alphabet.AlphabetItem;
-import com.thinkmobiles.easyerp.domain.crm.PersonsRepository;
-import com.thinkmobiles.easyerp.presentation.adapters.crm.PersonsAdapter;
+import com.thinkmobiles.easyerp.domain.crm.CompaniesRepository;
+import com.thinkmobiles.easyerp.presentation.adapters.crm.CompaniesAdapter;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.base.rules.SimpleListWithRefreshFragment;
 import com.thinkmobiles.easyerp.presentation.custom.views.alphabet_view.AlphabetListAdapter;
 import com.thinkmobiles.easyerp.presentation.custom.views.alphabet_view.AlphabetView;
-import com.thinkmobiles.easyerp.presentation.holders.data.crm.PersonDH;
+import com.thinkmobiles.easyerp.presentation.holders.data.crm.CompanyDH;
 import com.thinkmobiles.easyerp.presentation.listeners.EndlessRecyclerViewScrollListener;
-import com.thinkmobiles.easyerp.presentation.screens.crm.persons.details.PersonDetailsFragment_;
 
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterViews;
@@ -27,41 +26,41 @@ import org.androidannotations.annotations.res.StringRes;
 import java.util.ArrayList;
 
 /**
- * Created by Lynx on 1/20/2017.
+ * Created by Lynx on 2/2/2017.
  */
 
-@EFragment(R.layout.fragment_persons)
-public class PersonsFragment extends SimpleListWithRefreshFragment implements PersonsContract.PersonsView {
+@EFragment(R.layout.fragment_companies)
+public class CompaniesFragment extends SimpleListWithRefreshFragment implements CompaniesContract.CompaniesView {
 
-    private PersonsContract.PersonsPresenter presenter;
+    private CompaniesContract.CompaniesPresenter presenter;
     private EndlessRecyclerViewScrollListener scrollListener;
 
     @ViewById
-    protected AlphabetView alphabetView_FP;
-    @StringRes(R.string.list_is_empty)
-    protected String string_list_is_empty;
-
+    protected AlphabetView alphabetView_FC;
     @ViewById(R.id.llErrorLayout)
     protected View errorLayout;
+
+    @StringRes(R.string.list_is_empty)
+    protected String string_list_is_empty;
 
     @Bean
     protected AlphabetListAdapter alphabetListAdapter;
     @Bean
-    protected PersonsAdapter personsAdapter;
+    protected CompaniesAdapter companiesAdapter;
     @Bean
-    protected PersonsRepository personsRepository;
+    protected CompaniesRepository companiesRepository;
     @Bean
     protected ErrorViewHelper errorViewHelper;
 
     @AfterInject
     @Override
     public void initPresenter() {
-        new PersonsPresenter(this, personsRepository);
+        new CompaniesPresenter(this, companiesRepository);
     }
 
     @AfterViews
     protected void initUI() {
-        alphabetView_FP.setListener(letter -> {
+        alphabetView_FC.setListener(letter -> {
             presenter.setLetter(letter);
             presenter.loadMore(1);
         });
@@ -80,17 +79,11 @@ public class PersonsFragment extends SimpleListWithRefreshFragment implements Pe
             }
         };
         listRecycler.setLayoutManager(llm);
-        listRecycler.setAdapter(personsAdapter);
+        listRecycler.setAdapter(companiesAdapter);
         listRecycler.addOnScrollListener(scrollListener);
-        personsAdapter.setOnCardClickListener((view, position, viewType) -> presenter.selectItem(personsAdapter.getItem(position), position));
+        companiesAdapter.setOnCardClickListener((view, position, viewType) -> presenter.selectItem(companiesAdapter.getItem(position), position));
 
         loadWithProgressBar();
-    }
-
-    private void loadWithProgressBar() {
-        errorViewHelper.hideError();
-        displayProgress(true);
-        presenter.subscribe();
     }
 
     @Override
@@ -107,19 +100,19 @@ public class PersonsFragment extends SimpleListWithRefreshFragment implements Pe
 
     @Override
     public void displayEnabledLetters(ArrayList<AlphabetItem> enabledAlphabetItems) {
-        alphabetView_FP.setEnabledLetters(enabledAlphabetItems);
+        alphabetView_FC.setEnabledLetters(enabledAlphabetItems);
     }
 
     @Override
-    public void displayPersons(ArrayList<PersonDH> personDHs, boolean needClear) {
+    public void displayCompanies(ArrayList<CompanyDH> companyDHs, boolean needClear) {
         errorViewHelper.hideError();
-        alphabetView_FP.setVisibility(View.VISIBLE);
+        alphabetView_FC.setVisibility(View.VISIBLE);
         displayProgress(false);
         swipeContainer.setRefreshing(false);
 
         if (needClear)
-            personsAdapter.setListDH(personDHs);
-        else personsAdapter.addListDH(personDHs);
+            companiesAdapter.setListDH(companyDHs);
+        else companiesAdapter.addListDH(companyDHs);
 
         if (getCountItemsNow() == 0)
             displayError(null, ErrorViewHelper.ErrorType.LIST_EMPTY);
@@ -132,38 +125,41 @@ public class PersonsFragment extends SimpleListWithRefreshFragment implements Pe
 
         final String resultMsg = errorType.equals(ErrorViewHelper.ErrorType.LIST_EMPTY) ? string_list_is_empty : msg;
         if (getCountItemsNow() == 0) {
-            alphabetView_FP.setVisibility(View.GONE);
+            alphabetView_FC.setVisibility(View.GONE);
             errorViewHelper.showErrorMsg(resultMsg, errorType);
         } else
             Toast.makeText(mActivity, resultMsg, Toast.LENGTH_LONG).show();
     }
 
     @Override
-    public void openPersonDetailsScreen(String personID) {
-        mActivity.replaceFragmentContentDetail(PersonDetailsFragment_.builder()
-                .personID(personID)
-                .build());
-    }
-
-    @Override
-    public void setPresenter(PersonsContract.PersonsPresenter presenter) {
-        this.presenter = presenter;
+    public void openCompanyDetailsScreen(String companyID) {
+        Toast.makeText(getActivity(), "Start company details ID = " + companyID, Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public int getCountItemsNow() {
-        return personsAdapter.getItemCount();
+        return companiesAdapter.getItemCount();
     }
 
     @Override
     public void changeSelectedItem(int oldPosition, int newPosition) {
-        personsAdapter.replaceSelectedItem(oldPosition, newPosition);
+        companiesAdapter.replaceSelectedItem(oldPosition, newPosition);
+    }
+
+    @Override
+    public void setPresenter(CompaniesContract.CompaniesPresenter presenter) {
+        this.presenter = presenter;
+    }
+
+    private void loadWithProgressBar() {
+        errorViewHelper.hideError();
+        displayProgress(true);
+        presenter.subscribe();
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        if (presenter != null) presenter.unsubscribe();
+        if(presenter != null) presenter.unsubscribe();
     }
-
 }

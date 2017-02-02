@@ -38,6 +38,11 @@ public abstract class Constants {
     public static final String GET_OPPORTUNITY_DETAILS      = "opportunities/{OpportunityID}";
     //End Opportunities
 
+    //Companies
+    public static final String GET_COMPANIES_ALPHABET       = "customers/getCompaniesAlphabet";
+    public static final String GET_COMPANAIES               = "companies";
+    //End Companies
+
     //Invoice
     public static final String GET_INVOICE                  = "invoice";
     public static final String GET_INVOICE_BY_WORKFLOWS     = "invoice/getInvoiceByWorkflows";
