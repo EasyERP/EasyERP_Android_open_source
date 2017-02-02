@@ -70,14 +70,7 @@ public class OpportunitiesFragment extends SimpleListWithRefreshFragment impleme
         listRecycler.setLayoutManager(llm);
         listRecycler.setAdapter(opportunitiesAdapter);
         listRecycler.addOnScrollListener(scrollListener);
-        opportunitiesAdapter.setOnCardClickListener((view, position, viewType) -> {
-            final OpportunityDH itemDH = opportunitiesAdapter.getItem(position);
-            opportunitiesAdapter.replaceSelectedItem(presenter.getSelectedItemPosition(), position);
-            if (position != presenter.getSelectedItemPosition())
-                presenter.displayOpportunityDetails(itemDH.getOpportunityListItem()._id);
-            presenter.setSelectedInfo(position, itemDH.getId());
-
-        });
+        opportunitiesAdapter.setOnCardClickListener((view, position, viewType) -> presenter.selectItem(opportunitiesAdapter.getItem(position), position));
 
         loadWithProgressBar();
     }

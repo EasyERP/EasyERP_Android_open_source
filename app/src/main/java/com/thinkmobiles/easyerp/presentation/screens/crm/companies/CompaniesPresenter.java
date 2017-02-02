@@ -36,9 +36,10 @@ public class CompaniesPresenter extends MasterFlowSelectablePresenterHelper<Stri
 
     @Override
     public boolean selectItem(CompanyDH dh, int position) {
+        final int oldPosition = getSelectedItemPosition();
         boolean isSelected = super.selectItem(dh, position);
         if (isSelected) {
-            view.changeSelectedItem(getSelectedItemPosition(), position);
+            view.changeSelectedItem(oldPosition, position);
             view.openCompanyDetailsScreen(dh.getId());
         }
         return isSelected;

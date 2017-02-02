@@ -53,9 +53,10 @@ public class PaymentsPresenter extends MasterFlowSelectablePresenterHelper<Strin
 
     @Override
     public boolean selectItem(PaymentDH dh, int position) {
+        final int oldPosition = getSelectedItemPosition();
         boolean isSelected = super.selectItem(dh, position);
         if (isSelected) {
-            view.changeSelectedItem(getSelectedItemPosition(), position);
+            view.changeSelectedItem(oldPosition, position);
             view.openPaymentDetailsScreen(dh.getPayment());
         }
         return isSelected;

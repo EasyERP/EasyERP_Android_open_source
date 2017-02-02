@@ -66,9 +66,10 @@ public class OpportunitiesPresenter extends MasterFlowSelectablePresenterHelper<
 
     @Override
     public boolean selectItem(OpportunityDH dh, int position) {
+        final int oldPosition = getSelectedItemPosition();
         boolean isSelected = super.selectItem(dh, position);
         if (isSelected) {
-            view.changeSelectedItem(getSelectedItemPosition(), position);
+            view.changeSelectedItem(oldPosition, position);
             view.openOpportunityDetailsScreen(dh.getId());
         }
         return isSelected;
