@@ -5,7 +5,7 @@ import android.text.TextUtils;
 import com.thinkmobiles.easyerp.data.model.crm.companies.CommonCompaniesResponse;
 import com.thinkmobiles.easyerp.data.model.crm.companies.CompanyListItem;
 import com.thinkmobiles.easyerp.data.model.crm.companies.ResponseGetCompanies;
-import com.thinkmobiles.easyerp.data.model.crm.persons.images.CustomerImageItem;
+import com.thinkmobiles.easyerp.data.model.crm.common.images.CustomerImageItem;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectablePresenterHelper;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.CompanyDH;

@@ -1,4 +1,4 @@
-package com.thinkmobiles.easyerp.data.model.crm.persons.images;
+package com.thinkmobiles.easyerp.data.model.crm.common.images;
 
 import android.os.Parcel;
 import android.os.Parcelable;
