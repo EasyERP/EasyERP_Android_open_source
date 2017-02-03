@@ -91,14 +91,9 @@ public class LeadsPresenter extends MasterFlowSelectablePresenterHelper<String, 
     }
 
     @Override
-    public boolean selectItem(LeadDH leadDh, int position) {
-        final int oldPosition = getSelectedItemPosition();
-        boolean isSelected = super.selectItem(leadDh, position);
-        if (isSelected) {
-            view.changeSelectedItem(oldPosition, position);
-            view.openLeadDetailsScreen(leadDh.getId());
-        }
-        return isSelected;
+    public void selectItem(LeadDH dh, int position) {
+        if (super.selectItem(dh, position, view))
+            view.openLeadDetailsScreen(dh.getId());
     }
 
     @Override
@@ -109,13 +104,13 @@ public class LeadsPresenter extends MasterFlowSelectablePresenterHelper<String, 
 
     @Override
     public void refresh() {
-        setSelectedInfo(-1, getSelectedItemId());
         loadLeads(1);
     }
 
     @Override
     public void unsubscribe() {
-        if(compositeSubscription.hasSubscriptions()) compositeSubscription.clear();
+        if (compositeSubscription.hasSubscriptions())
+            compositeSubscription.clear();
     }
 
     private ArrayList<LeadDH> prepareLeadDHs(ResponseGetLeads responseGetLeads, boolean isFirstPage) {

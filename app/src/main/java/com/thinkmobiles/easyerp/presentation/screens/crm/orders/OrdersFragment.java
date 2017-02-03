@@ -9,7 +9,7 @@ import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.domain.crm.OrderRepository;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.OrdersAdapter;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
-import com.thinkmobiles.easyerp.presentation.base.rules.SimpleListWithRefreshFragment;
+import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowListFragment;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.OrderDH;
 import com.thinkmobiles.easyerp.presentation.listeners.EndlessRecyclerViewScrollListener;
 import com.thinkmobiles.easyerp.presentation.screens.crm.orders.details.OrderDetailsFragment_;
@@ -29,7 +29,7 @@ import java.util.ArrayList;
  *         Email: michael.soyma@thinkmobiles.com
  */
 @EFragment(R.layout.fragment_simple_list_with_swipe_refresh)
-public class OrdersFragment extends SimpleListWithRefreshFragment implements OrdersContract.OrdersView {
+public class OrdersFragment extends MasterFlowListFragment implements OrdersContract.OrdersView {
 
     private OrdersContract.OrdersPresenter presenter;
     private EndlessRecyclerViewScrollListener scrollListener;

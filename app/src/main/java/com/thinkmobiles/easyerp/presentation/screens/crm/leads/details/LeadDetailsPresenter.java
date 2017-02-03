@@ -114,6 +114,7 @@ public class LeadDetailsPresenter implements LeadDetailsContract.LeadDetailsPres
 
     @Override
     public void unsubscribe() {
-        compositeSubscription.clear();
+        if (compositeSubscription.hasSubscriptions())
+            compositeSubscription.clear();
     }
 }

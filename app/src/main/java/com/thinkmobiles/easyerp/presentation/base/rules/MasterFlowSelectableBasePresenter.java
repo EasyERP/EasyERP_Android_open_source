@@ -1,5 +1,7 @@
 package com.thinkmobiles.easyerp.presentation.base.rules;
 
+import android.os.Bundle;
+
 import com.thinkmobiles.easyerp.presentation.base.BasePresenter;
 
 /**
@@ -11,7 +13,8 @@ public interface MasterFlowSelectableBasePresenter<ID_TYPE, DH_TYPE extends Mast
     void setSelectedInfo(final int position, final ID_TYPE id);
     Integer getSelectedItemPosition();
     ID_TYPE getSelectedItemId();
-    void makeSelectedDHIfNeed(final MasterFlowSelectableDHHelper<ID_TYPE> dhHelper, final MasterFlowSelectableBaseView baseViewWithCountItemsLeft, final int currentPositionInData, final boolean isRefresh);
-    boolean selectItem(DH_TYPE dh, int position);
+    void makeSelectedDHIfNeed(final MasterFlowSelectableDHHelper<ID_TYPE> dhHelper, final MasterFlowSelectableBaseView selectableBaseView, final int currentPositionInData, final boolean isRefresh);
+    void selectItem(final DH_TYPE dh, final int position);
+    boolean selectItem(final DH_TYPE dh, final int position, final MasterFlowSelectableBaseView selectableBaseView);
 
 }

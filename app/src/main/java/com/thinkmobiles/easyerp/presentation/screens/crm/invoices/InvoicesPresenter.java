@@ -37,7 +37,8 @@ public class InvoicesPresenter extends MasterFlowSelectablePresenterHelper<Strin
 
     @Override
     public void unsubscribe() {
-        if (compositeSubscription.hasSubscriptions()) compositeSubscription.clear();
+        if (compositeSubscription.hasSubscriptions())
+            compositeSubscription.clear();
     }
 
     @Override
@@ -52,14 +53,9 @@ public class InvoicesPresenter extends MasterFlowSelectablePresenterHelper<Strin
     }
 
     @Override
-    public boolean selectItem(InvoiceDH dh, int position) {
-        final int oldPosition = getSelectedItemPosition();
-        boolean isSelected = super.selectItem(dh, position);
-        if (isSelected) {
-            view.changeSelectedItem(oldPosition, position);
+    public void selectItem(InvoiceDH dh, int position) {
+        if (super.selectItem(dh, position, view))
             view.openInvoiceDetailsScreen(dh.getId());
-        }
-        return isSelected;
     }
 
     private ArrayList<InvoiceDH> prepareInvoiceDHs(final List<Invoice> invoices) {

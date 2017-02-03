@@ -50,7 +50,8 @@ public class OpportunitiesPresenter extends MasterFlowSelectablePresenterHelper<
 
     @Override
     public void unsubscribe() {
-        if(compositeSubscription.hasSubscriptions()) compositeSubscription.clear();
+        if (compositeSubscription.hasSubscriptions())
+            compositeSubscription.clear();
     }
 
     private ArrayList<OpportunityDH> prepareOpportunitiesDHs(ResponseGetOpportunities responseGetOpportunities, boolean isFirstPage) {
@@ -65,13 +66,8 @@ public class OpportunitiesPresenter extends MasterFlowSelectablePresenterHelper<
     }
 
     @Override
-    public boolean selectItem(OpportunityDH dh, int position) {
-        final int oldPosition = getSelectedItemPosition();
-        boolean isSelected = super.selectItem(dh, position);
-        if (isSelected) {
-            view.changeSelectedItem(oldPosition, position);
+    public void selectItem(OpportunityDH dh, int position) {
+        if (super.selectItem(dh, position, view))
             view.openOpportunityDetailsScreen(dh.getId());
-        }
-        return isSelected;
     }
 }

@@ -77,7 +77,8 @@ public class PersonDetailsPresenter implements PersonDetailsContract.PersonDetai
 
     @Override
     public void unsubscribe() {
-        if(compositeSubscription.hasSubscriptions()) compositeSubscription.clear();
+        if (compositeSubscription.hasSubscriptions())
+            compositeSubscription.clear();
     }
 
     private void setData(ResponseGetPersonDetails data) {

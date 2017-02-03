@@ -10,7 +10,7 @@ import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.domain.crm.OpportunitiesRepository;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.OpportunitiesAdapter;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
-import com.thinkmobiles.easyerp.presentation.base.rules.SimpleListWithRefreshFragment;
+import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowListFragment;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.OpportunityDH;
 import com.thinkmobiles.easyerp.presentation.listeners.EndlessRecyclerViewScrollListener;
 import com.thinkmobiles.easyerp.presentation.screens.crm.opportunities.details.OpportunityDetailsFragment_;
@@ -29,7 +29,7 @@ import java.util.ArrayList;
  */
 
 @EFragment(R.layout.fragment_simple_list_with_swipe_refresh)
-public class OpportunitiesFragment extends SimpleListWithRefreshFragment implements OpportunitiesContract.OpportunitiesView {
+public class OpportunitiesFragment extends MasterFlowListFragment implements OpportunitiesContract.OpportunitiesView {
 
     private OpportunitiesContract.OpportunitiesPresenter presenter;
     private EndlessRecyclerViewScrollListener scrollListener;

@@ -18,7 +18,7 @@ import com.thinkmobiles.easyerp.domain.crm.LeadsRepository;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.LeadsAdapter;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.SearchAdapter;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
-import com.thinkmobiles.easyerp.presentation.base.rules.SimpleListWithRefreshFragment;
+import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowListFragment;
 import com.thinkmobiles.easyerp.presentation.dialogs.FilterDialogFragment;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.FilterDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.LeadDH;
@@ -41,7 +41,7 @@ import java.util.ArrayList;
  * Created by Lynx on 1/16/2017.
  */
 @EFragment(R.layout.fragment_simple_list_with_swipe_refresh)
-public class LeadsFragment extends SimpleListWithRefreshFragment implements LeadsContract.LeadsView {
+public class LeadsFragment extends MasterFlowListFragment implements LeadsContract.LeadsView {
 
     private LeadsContract.LeadsPresenter presenter;
     private EndlessRecyclerViewScrollListener scrollListener;
