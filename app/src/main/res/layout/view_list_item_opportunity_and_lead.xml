@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="@dimen/default_padding"
+    app:cardBackgroundColor="@android:color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_margin="@dimen/default_padding_half">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tvName_VLIOAL"
+                        style="@style/RobotoCondensedBold"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:textColor="@color/color_text_black"
+                        android:textSize="@dimen/text_list_item_medium_16"
+                        tools:text="Android, iOS Development"/>
+
+                    <TextView
+                        android:id="@+id/tvPriority_VLIOAL"
+                        style="@style/RobotoMedium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/default_padding"
+                        android:padding="@dimen/default_padding_small"
+                        android:textSize="@dimen/text_size_small"
+                        tools:text="COLD"/>
+
+                </LinearLayout>
+
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/tvStatus_VLIOAL"
+                style="@style/RobotoRegular"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:maxLines="1"
+                android:textSize="@dimen/text_size_small"
+                tools:text="Sent"/>
+
+        </LinearLayout>
+
+        <TextView
+            style="@style/RobotoRegular"
+            android:id="@+id/tvAssignedTo_VLIOAL"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_list_item_medium_16"
+            tools:text="Andriy Matviychuk"
+            android:layout_marginTop="@dimen/default_padding_half"
+            android:textColor="@color/color_text_black"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/default_padding_half">
+
+            <TextView
+                android:id="@+id/tvCreatedEditedBy_VLIOAL"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textColor="@color/color_text_gray"
+                android:textSize="@dimen/text_list_item_medium_16"
+                tools:text="Last Edited: Today, at 2:45 PM by Test Admin_item_medium"
+                android:layout_weight="1"/>
+
+            <TextView
+                style="@style/RobotoCondensedBold"
+                android:id="@+id/tvRevenue_VLIOAL"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_size_small"
+                tools:text="4500 $"
+                android:gravity="end"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>

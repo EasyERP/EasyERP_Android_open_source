@@ -9,6 +9,7 @@ import com.thinkmobiles.easyerp.data.services.CompaniesService;
 import com.thinkmobiles.easyerp.data.services.CustomerService;
 import com.thinkmobiles.easyerp.presentation.base.NetworkRepository;
 import com.thinkmobiles.easyerp.presentation.screens.crm.companies.CompaniesContract;
+import com.thinkmobiles.easyerp.presentation.screens.crm.companies.details.CompanyDetailsContract;
 
 import org.androidannotations.annotations.EBean;
 
@@ -21,7 +22,7 @@ import rx.Observable;
  */
 
 @EBean(scope = EBean.Scope.Singleton)
-public class CompaniesRepository extends NetworkRepository implements CompaniesContract.CompaniesModel {
+public class CompaniesRepository extends NetworkRepository implements CompaniesContract.CompaniesModel, CompanyDetailsContract.CompanyDetailsModel {
 
     private CompaniesService companiesService;
     private CustomerService customerService;

@@ -15,6 +15,7 @@ import com.thinkmobiles.easyerp.presentation.custom.views.alphabet_view.Alphabet
 import com.thinkmobiles.easyerp.presentation.custom.views.alphabet_view.AlphabetView;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.CompanyDH;
 import com.thinkmobiles.easyerp.presentation.listeners.EndlessRecyclerViewScrollListener;
+import com.thinkmobiles.easyerp.presentation.screens.crm.companies.details.CompanyDetailsFragment_;
 
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterViews;
@@ -133,7 +134,13 @@ public class CompaniesFragment extends SimpleListWithRefreshFragment implements 
 
     @Override
     public void openCompanyDetailsScreen(String companyID) {
-        Toast.makeText(getActivity(), "Start company details ID = " + companyID, Toast.LENGTH_SHORT).show();
+        if (companyID != null) {
+            mActivity.replaceFragmentContentDetail(CompanyDetailsFragment_.builder()
+                    .companyID(companyID)
+                    .build());
+        } else {
+            mActivity.replaceFragmentContentDetail(null);
+        }
     }
 
     @Override
