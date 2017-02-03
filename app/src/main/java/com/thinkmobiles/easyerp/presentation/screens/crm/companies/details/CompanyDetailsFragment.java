@@ -15,6 +15,7 @@ import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -32,6 +33,7 @@ import com.thinkmobiles.easyerp.presentation.custom.transformations.CropCircleTr
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.ContactDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.HistoryDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.OpportunityAndLeadDH;
+import com.thinkmobiles.easyerp.presentation.managers.HistoryAnimationHelper;
 import com.thinkmobiles.easyerp.presentation.managers.ImageHelper;
 import com.thinkmobiles.easyerp.presentation.screens.home.HomeActivity;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
@@ -133,13 +135,11 @@ public class CompanyDetailsFragment extends BaseFragment<HomeActivity> implement
     @ViewById
     protected TextView tvAttachments_FCD;
     @ViewById
-    protected RelativeLayout btnHistory_FLD;
+    protected FrameLayout btnHistory;
     @ViewById
-    protected ImageView ivIconArrow_FCD;
+    protected ImageView ivIconArrow;
     @ViewById
-    protected View viewHistoryDivider_FCD;
-    @ViewById
-    protected RecyclerView rvHistory_FCD;
+    protected RecyclerView rvHistory;
     //endregion
 
     @DrawableRes(R.drawable.ic_arrow_up)
@@ -157,6 +157,8 @@ public class CompanyDetailsFragment extends BaseFragment<HomeActivity> implement
     protected OpportunityAndLeadsAdapter opportunityAndLeadsAdapter;
     @Bean
     protected CompaniesRepository companiesRepository;
+    @Bean
+    protected HistoryAnimationHelper animationHelper;
 
     @AfterInject
     @Override
@@ -169,8 +171,8 @@ public class CompanyDetailsFragment extends BaseFragment<HomeActivity> implement
         errorViewHelper.init(errorLayout, v -> presenter.refresh());
 
         srlRefresh_FCD.setOnRefreshListener(() -> presenter.refresh());
-        rvHistory_FCD.setLayoutManager(new LinearLayoutManager(getActivity()));
-        rvHistory_FCD.setAdapter(historyAdapter);
+        rvHistory.setLayoutManager(new LinearLayoutManager(getActivity()));
+        rvHistory.setAdapter(historyAdapter);
 
         rvContacts_FCD.setLayoutManager(new LinearLayoutManager(getActivity()));
         rvContacts_FCD.setAdapter(contactsAdapter);
@@ -178,9 +180,11 @@ public class CompanyDetailsFragment extends BaseFragment<HomeActivity> implement
         rvLeadsAndOpportunities_FCD.setLayoutManager(new GridLayoutManager(getActivity(), 2));
         rvLeadsAndOpportunities_FCD.setAdapter(opportunityAndLeadsAdapter);
 
-        RxView.clicks(btnHistory_FLD)
+        RxView.clicks(btnHistory)
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
                 .subscribe(aVoid -> presenter.changeNotesVisibility());
+
+        animationHelper.init(ivIconArrow, rvHistory);
 
         presenter.subscribe();
     }
@@ -205,20 +209,12 @@ public class CompanyDetailsFragment extends BaseFragment<HomeActivity> implement
     }
 
     @Override
-    public void showHistory(boolean isShow) {
-        if(isShow) {
-            btnHistory_FLD.setBackgroundColor(ContextCompat.getColor(getActivity(), (android.R.color.white)));
-            nsvContent_FCD.setVisibility(View.GONE);
-            rvHistory_FCD.setVisibility(View.VISIBLE);
-            viewHistoryDivider_FCD.setVisibility(View.VISIBLE);
-            ivIconArrow_FCD.setImageDrawable(icArrowDown);
-        } else {
-            btnHistory_FLD.setBackgroundColor(ContextCompat.getColor(getActivity(), (R.color.color_grey_transparent)));
-            rvHistory_FCD.setVisibility(View.GONE);
-            nsvContent_FCD.setVisibility(View.VISIBLE);
-            viewHistoryDivider_FCD.setVisibility(View.GONE);
-            ivIconArrow_FCD.setImageDrawable(icArrowUp);
+    public void showHistory(boolean enable) {
+        if (enable && rvHistory.getVisibility() == View.GONE) {
+            animationHelper.forward(nsvContent_FCD.getHeight());
         }
+        if (!enable && rvHistory.getVisibility() == View.VISIBLE)
+            animationHelper.backward(rvHistory.getHeight());
     }
 
     @Override
@@ -442,7 +438,8 @@ public class CompanyDetailsFragment extends BaseFragment<HomeActivity> implement
 
     @Override
     public void onDestroyView() {
+        animationHelper.cancel();
+        presenter.unsubscribe();
         super.onDestroyView();
-        if(presenter != null) presenter.unsubscribe();
     }
 }
