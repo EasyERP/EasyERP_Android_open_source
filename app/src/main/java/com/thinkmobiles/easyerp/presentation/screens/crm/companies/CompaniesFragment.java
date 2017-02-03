@@ -10,7 +10,7 @@ import com.thinkmobiles.easyerp.data.model.crm.common.alphabet.AlphabetItem;
 import com.thinkmobiles.easyerp.domain.crm.CompaniesRepository;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.CompaniesAdapter;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
-import com.thinkmobiles.easyerp.presentation.base.rules.SimpleListWithRefreshFragment;
+import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowListFragment;
 import com.thinkmobiles.easyerp.presentation.custom.views.alphabet_view.AlphabetListAdapter;
 import com.thinkmobiles.easyerp.presentation.custom.views.alphabet_view.AlphabetView;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.CompanyDH;
@@ -30,7 +30,7 @@ import java.util.ArrayList;
  */
 
 @EFragment(R.layout.fragment_companies)
-public class CompaniesFragment extends SimpleListWithRefreshFragment implements CompaniesContract.CompaniesView {
+public class CompaniesFragment extends MasterFlowListFragment implements CompaniesContract.CompaniesView {
 
     private CompaniesContract.CompaniesPresenter presenter;
     private EndlessRecyclerViewScrollListener scrollListener;

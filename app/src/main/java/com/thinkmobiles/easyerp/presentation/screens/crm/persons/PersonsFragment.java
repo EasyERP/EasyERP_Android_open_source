@@ -10,7 +10,7 @@ import com.thinkmobiles.easyerp.data.model.crm.common.alphabet.AlphabetItem;
 import com.thinkmobiles.easyerp.domain.crm.PersonsRepository;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.PersonsAdapter;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
-import com.thinkmobiles.easyerp.presentation.base.rules.SimpleListWithRefreshFragment;
+import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowListFragment;
 import com.thinkmobiles.easyerp.presentation.custom.views.alphabet_view.AlphabetListAdapter;
 import com.thinkmobiles.easyerp.presentation.custom.views.alphabet_view.AlphabetView;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.PersonDH;
@@ -31,7 +31,7 @@ import java.util.ArrayList;
  */
 
 @EFragment(R.layout.fragment_persons)
-public class PersonsFragment extends SimpleListWithRefreshFragment implements PersonsContract.PersonsView {
+public class PersonsFragment extends MasterFlowListFragment implements PersonsContract.PersonsView {
 
     private PersonsContract.PersonsPresenter presenter;
     private EndlessRecyclerViewScrollListener scrollListener;
@@ -165,5 +165,4 @@ public class PersonsFragment extends SimpleListWithRefreshFragment implements Pe
         super.onDestroyView();
         if (presenter != null) presenter.unsubscribe();
     }
-
 }

@@ -25,16 +25,18 @@ public abstract class MasterFlowSelectablePresenterHelper<ID_TYPE, DH_TYPE exten
     }
 
     @Override
-    public void makeSelectedDHIfNeed(final MasterFlowSelectableDHHelper<ID_TYPE> dhHelper, final MasterFlowSelectableBaseView baseViewWithCountItemsLeft, final int currentPositionInData, boolean isRefresh) {
-        if (dhHelper.getId().equals(getSelectedItemId())) {
+    public void makeSelectedDHIfNeed(final MasterFlowSelectableDHHelper<ID_TYPE> dhHelper, final MasterFlowSelectableBaseView selectableBaseView, final int currentPositionInData, boolean isRefresh) {
+        if (dhHelper.getId().equals(getSelectedItemId()) && selectableBaseView.withItemSelecting()) {
             dhHelper.setSelected(true);
-            setSelectedInfo((isRefresh ? 0 : baseViewWithCountItemsLeft.getCountItemsNow()) + currentPositionInData, getSelectedItemId());
+            setSelectedInfo((isRefresh ? 0 : selectableBaseView.getCountItemsNow()) + currentPositionInData, getSelectedItemId());
         }
     }
 
     @Override
-    public boolean selectItem(DH_TYPE dh, int position) {
-        if (position != getSelectedItemPosition() || !dh.getId().equals(getSelectedItemId())) {
+    public boolean selectItem(final DH_TYPE dh, final int position, final MasterFlowSelectableBaseView selectableBaseView) {
+        if (!selectableBaseView.withItemSelecting() || position != getSelectedItemPosition() || !dh.getId().equals(getSelectedItemId())) {
+            if (selectableBaseView.withItemSelecting())
+                selectableBaseView.changeSelectedItem(getSelectedItemPosition(), position);
             setSelectedInfo(position, dh.getId());
             return true;
         } else return false;

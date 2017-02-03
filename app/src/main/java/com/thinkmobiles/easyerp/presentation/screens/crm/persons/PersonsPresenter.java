@@ -35,14 +35,9 @@ public class PersonsPresenter extends MasterFlowSelectablePresenterHelper<String
     }
 
     @Override
-    public boolean selectItem(PersonDH personDH, int position) {
-        final int oldPosition = getSelectedItemPosition();
-        boolean isSelected = super.selectItem(personDH, position);
-        if (isSelected) {
-            view.changeSelectedItem(oldPosition, position);
-            view.openPersonDetailsScreen(personDH.getId());
-        }
-        return isSelected;
+    public void selectItem(PersonDH dh, int position) {
+        if (super.selectItem(dh, position, view))
+            view.openPersonDetailsScreen(dh.getId());
     }
 
     @Override
@@ -121,7 +116,7 @@ public class PersonsPresenter extends MasterFlowSelectablePresenterHelper<String
 
     @Override
     public void unsubscribe() {
-        if(compositeSubscription.hasSubscriptions())
+        if (compositeSubscription.hasSubscriptions())
             compositeSubscription.clear();
     }
 }

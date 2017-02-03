@@ -19,12 +19,13 @@ import rx.Observable;
 
 public interface DashboardListContract {
     interface DashboardListView extends MasterFlowSelectableBaseView<DashboardListPresenter> {
-        void displayDashboardsList(ArrayList<DashboardListDH> listDashboards);
-        void displayDashboardsDetail(final DashboardListItem itemChartDashboard);
+        void displayDashboardChartsList(ArrayList<DashboardListDH> listDashboards);
+        void openDashboardChartDetail(final DashboardListItem itemChartDashboard);
         void displayError(final String msg, final ErrorViewHelper.ErrorType errorType);
+        void showProgress(final boolean isShow);
     }
     interface DashboardListPresenter extends MasterFlowSelectableBasePresenter<String, DashboardListDH> {
-        void prepareDashboardList();
+        void loadDashboardChartsList();
     }
     interface DashboardListModel extends BaseModel {
         Observable<List<ResponseGetCRMDashboardCharts>> getDashboardListCharts();

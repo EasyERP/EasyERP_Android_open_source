@@ -25,6 +25,7 @@ public class DashboardDetailChartPresenter implements DashboardDetailChartContra
     private AppDefaultStatesPreferences_ defaultStatesPreferences;
 
     private long customDateFrom, customDateTo;
+    private Object chartData;
 
     private CompositeSubscription compositeSubscription;
 
@@ -52,11 +53,19 @@ public class DashboardDetailChartPresenter implements DashboardDetailChartContra
 
         view.displayDateFilterFromTo(getDateFromToString(getFromToFilterDate()));
         view.displayHeader(workDashboardInfoForChart.name);
+
+        if (chartData == null) {
+            view.changeProgressVisibilityState(true);
+            loadChartInfo();
+        } else {
+            view.displayChart(chartData, workDashboardInfoForChart.getChartType());
+        }
     }
 
     @Override
     public void unsubscribe() {
-        compositeSubscription.unsubscribe();
+        if (compositeSubscription.hasSubscriptions())
+            compositeSubscription.clear();
     }
 
     @Override
@@ -69,7 +78,7 @@ public class DashboardDetailChartPresenter implements DashboardDetailChartContra
                             new DateManager.DateConverter(fromToFilter.first).setDstPattern(DateManager.PATTERN_DASHBOARD_BACKEND).toString(),
                             new DateManager.DateConverter(fromToFilter.second).setDstPattern(DateManager.PATTERN_DASHBOARD_BACKEND).toString())
                             .subscribe(
-                                    result -> view.displayChart(result, workDashboardInfoForChart.getChartType()),
+                                    result -> view.displayChart(chartData = result, workDashboardInfoForChart.getChartType()),
                                     throwable -> view.displayError(throwable.getMessage())));
     }
 
@@ -86,9 +95,9 @@ public class DashboardDetailChartPresenter implements DashboardDetailChartContra
         final Pair<Calendar, Calendar> fromToPair = getFromToFilterDate();
         view.displayDateFilterFromTo(getDateFromToString(fromToPair));
 
-        if (this.dateFilterType.equals(DateFilterType.CUSTOM_DATES)) view.chooseCustomDateRangeFromTo(fromToPair.first, fromToPair.second);
-
-        view.reloadData();
+        if (this.dateFilterType.equals(DateFilterType.CUSTOM_DATES))
+            view.chooseCustomDateRangeFromTo(fromToPair.first, fromToPair.second);
+        else view.reloadData();
     }
 
     @Override

@@ -22,6 +22,7 @@ public interface DashboardDetailChartContract {
         void displayDateFilterFromTo(final String fromToDate);
         void chooseCustomDateRangeFromTo(final Calendar dateFrom, final Calendar dateTo);
         void reloadData();
+        void changeProgressVisibilityState(final boolean isShow);
     }
     interface DashboardDetailChartPresenter extends BasePresenter {
         void chooseFilterType(final DateFilterType dateFilterType);

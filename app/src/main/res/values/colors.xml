@@ -38,6 +38,7 @@
     <color name="color_divider">#bbbbbb</color>
     <color name="color_grey_transparent">#eeeeee</color>
     <color name="color_bg_selected_item">#0e00c2e0</color>
+    <color name="color_bg_pressed_item">#0500c2e0</color>
 
     <color name="color_text_black">#2b2b2b</color>
     <color name="color_text_gray">#737373</color>
