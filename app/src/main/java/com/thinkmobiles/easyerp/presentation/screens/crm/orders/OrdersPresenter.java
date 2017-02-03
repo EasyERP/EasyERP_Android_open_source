@@ -53,9 +53,10 @@ public class OrdersPresenter extends MasterFlowSelectablePresenterHelper<String,
 
     @Override
     public boolean selectItem(OrderDH dh, int position) {
+        final int oldPosition = getSelectedItemPosition();
         boolean isSelected = super.selectItem(dh, position);
         if (isSelected) {
-            view.changeSelectedItem(getSelectedItemPosition(), position);
+            view.changeSelectedItem(oldPosition, position);
             view.openOrderDetailsScreen(dh.getId());
         }
         return isSelected;

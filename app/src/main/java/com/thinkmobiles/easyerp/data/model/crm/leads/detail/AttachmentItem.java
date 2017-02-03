@@ -15,7 +15,7 @@ public class AttachmentItem implements Parcelable {
      * {
      "_id": "587cd2eb377e64887cbbad91",
      "name": "eye_line.png",
-     "shortPas": "uploads%2Fopportunities%2F583da46aed5a2cbf0db9f537%2Feye_line.png",
+     "shortPath": "uploads%2Fopportunities%2F583da46aed5a2cbf0db9f537%2Feye_line.png",
      "size": "0.002&nbsp;Mb",
      "uploadDate": "2017-01-16T14:04:27.306Z",
      "uploaderName": "testAdmin"
@@ -25,7 +25,8 @@ public class AttachmentItem implements Parcelable {
     @SerializedName("_id")
     public String id;
     public String name;
-    public String shortPas;
+    @SerializedName("shortPath")
+    public String shortPath;
     public String size;
     public String uploadDate;
     public String uploaderName;
@@ -39,7 +40,7 @@ public class AttachmentItem implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(this.id);
         dest.writeString(this.name);
-        dest.writeString(this.shortPas);
+        dest.writeString(this.shortPath);
         dest.writeString(this.size);
         dest.writeString(this.uploadDate);
         dest.writeString(this.uploaderName);
@@ -51,7 +52,7 @@ public class AttachmentItem implements Parcelable {
     protected AttachmentItem(Parcel in) {
         this.id = in.readString();
         this.name = in.readString();
-        this.shortPas = in.readString();
+        this.shortPath = in.readString();
         this.size = in.readString();
         this.uploadDate = in.readString();
         this.uploaderName = in.readString();

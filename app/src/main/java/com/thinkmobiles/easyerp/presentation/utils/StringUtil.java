@@ -58,7 +58,7 @@ public abstract class StringUtil {
     public static String getAttachments(ArrayList<AttachmentItem> attachments) {
         StringBuilder builder = new StringBuilder();
         for (AttachmentItem attachment : attachments) {
-            builder.append(getAttachmentURL(attachment.shortPas, attachment.name))
+            builder.append(getAttachmentURL(attachment.shortPath, attachment.name))
                     .append("<br>");
         }
         int length = builder.length();
@@ -125,7 +125,7 @@ public abstract class StringUtil {
         }
         if (note.attachment != null) {
             builder.append(builder.length() > 0 ? "<p>" : "")
-                    .append(StringUtil.getAttachmentURL(note.attachment.shortPas, note.attachment.name));
+                    .append(StringUtil.getAttachmentURL(note.attachment.shortPath, note.attachment.name));
         }
 
         return Html.fromHtml(builder.toString()).toString();

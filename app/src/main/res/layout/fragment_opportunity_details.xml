@@ -367,12 +367,12 @@
                                     android:layout_height="wrap_content"
                                     android:text="@string/attachments"/>
 
-                                <LinearLayout
-                                    android:id="@+id/llAttachmentsContainer_FLD"
+                                <FrameLayout
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_marginBottom="@dimen/default_padding"
-                                    android:orientation="vertical">
+                                    android:paddingEnd="@dimen/default_padding_3dp"
+                                    android:paddingStart="@dimen/default_padding_3dp">
 
                                     <TextView
                                         android:id="@+id/tvAttachments_FLD"
@@ -384,7 +384,7 @@
                                         android:lineSpacingExtra="@dimen/default_padding_3dp"
                                         android:text="@string/no_attachments"/>
 
-                                </LinearLayout>
+                                </FrameLayout>
 
                             </LinearLayout>
 
