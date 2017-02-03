@@ -16,8 +16,6 @@ import java.util.Locale;
 
 public abstract class DateManager {
 
-    //2017-01-31T13:09:42.476Z  =>> Today, at 2:00 PM
-
     private static final String PATTERN_DATE                = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'";
     private static final String PATTERN_OUTPUT              = "dd MMM, yyyy, HH:mm:ss";
     private static final String PATTERN_COOKIE_EXPIRED      = "E, dd MMM yyyy HH:mm:ss z"; //Expires=Wed, 18 Jan 2017 08:58:07 GMT
