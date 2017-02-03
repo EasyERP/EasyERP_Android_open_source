@@ -293,7 +293,11 @@ public class MenuDrawerView extends FrameLayout implements IMenuProviderFunction
         SavedState ss = (SavedState)state;
         super.onRestoreInstanceState(ss.getSuperState());
 
-        selectItem(ss.selectedModule, ss.selectedItem, false);
+        if (ss.selectedModule >= 0) {
+            if (ss.selectedItem >= 0)
+                selectItem(ss.selectedModule, ss.selectedItem, false);
+            else selectModule(ss.selectedModule);
+        }
     }
 
     private static class SavedState extends BaseSavedState {
