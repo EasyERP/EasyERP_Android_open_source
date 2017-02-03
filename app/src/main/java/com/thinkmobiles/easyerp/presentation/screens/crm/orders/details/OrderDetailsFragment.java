@@ -139,7 +139,7 @@ public class OrderDetailsFragment extends BaseFragment<HomeActivity> implements 
 
     private AnimatorSet set;
     private ObjectAnimator rotate;
-    private ValueAnimator.AnimatorUpdateListener scaleListener;
+    private ValueAnimator scale;
 
     @AfterInject
     @Override
@@ -164,21 +164,22 @@ public class OrderDetailsFragment extends BaseFragment<HomeActivity> implements 
 
         srlRefresh_FOD.setOnRefreshListener(() -> presenter.refresh());
 
-        set = new AnimatorSet();
-        set.setInterpolator(new FastOutSlowInInterpolator());
-        set.setDuration(animDuration);
-
         rotate = ObjectAnimator.ofFloat(ivIconArrow_FOD, View.ROTATION, 0, 0);
 
-        scaleListener = animation -> {
+        scale = new ValueAnimator();
+        scale.addUpdateListener(animation -> {
             int height = (int) animation.getAnimatedValue();
-            int visibility = height == 0 ? View.GONE : View.VISIBLE;
-            rvHistory_FOD.setVisibility(visibility);
+            rvHistory_FOD.setVisibility(height == 0 ? View.GONE : View.VISIBLE);
             ViewGroup.LayoutParams params = rvHistory_FOD.getLayoutParams();
             params.height = height;
             rvHistory_FOD.setLayoutParams(params);
-        };
+        });
 
+
+        set = new AnimatorSet();
+        set.setInterpolator(new FastOutSlowInInterpolator());
+        set.setDuration(animDuration);
+        set.playTogether(rotate, scale);
 
         presenter.subscribe();
     }
@@ -209,8 +210,6 @@ public class OrderDetailsFragment extends BaseFragment<HomeActivity> implements 
 
     @Override
     public void showHistory(boolean enable) {
-        ValueAnimator scale = new ValueAnimator();
-        scale.addUpdateListener(scaleListener);
         if (enable) {
             scale.setIntValues(0, nsvContent_FOD.getHeight());
             rotate.setFloatValues((float)rotate.getAnimatedValue(), 180);
@@ -218,7 +217,6 @@ public class OrderDetailsFragment extends BaseFragment<HomeActivity> implements 
             scale.setIntValues(rvHistory_FOD.getHeight(), 0);
             rotate.setFloatValues((float)rotate.getAnimatedValue(), 0);
         }
-        set.playTogether(scale, rotate);
         if (enable && rvHistory_FOD.getVisibility() == View.GONE
                 || !enable && rvHistory_FOD.getVisibility() == View.VISIBLE)
             set.start();

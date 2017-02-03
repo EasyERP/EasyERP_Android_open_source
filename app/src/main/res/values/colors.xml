@@ -36,6 +36,7 @@
     <color name="tag_bg_grey">#b6bbbf</color>
     
     <!--//////////////////////// DESIGN ////////////////////////-->
+    <color name="color_ripple">#1b81ff</color>
     <color name="color_blue">#427ede</color>
     <color name="color_divider">#bbbbbb</color>
     <color name="color_grey_transparent">#eeeeee</color>

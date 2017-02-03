@@ -15,7 +15,6 @@
             android:id="@+id/llMainContent_FOD"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:animateLayoutChanges="true"
             android:orientation="vertical">
 
             <android.support.v4.widget.NestedScrollView
@@ -396,11 +395,16 @@
 
             </android.support.v4.widget.NestedScrollView>
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/color_divider"/>
+
             <RelativeLayout
                 android:id="@+id/btnHistory_FOD"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/color_grey_transparent"
+                android:background="?android:attr/selectableItemBackground"
                 android:padding="@dimen/default_padding">
 
 

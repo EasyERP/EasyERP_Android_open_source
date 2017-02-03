@@ -15,7 +15,7 @@
 
         <item name="colorButtonNormal">@color/colorPrimary</item>
 
-        <item name="android:colorControlHighlight">#1b81ff</item>
+        <item name="android:colorControlHighlight">@color/color_ripple</item>
     </style>
 
     <style name="AppTheme.DefaultBlackTextTheme">
@@ -88,8 +88,6 @@
         <item name="android:textColor">@color/textColorPrimary</item>
         <item name="android:textColorHint">@color/textColorHint</item>
         <item name="backgroundTint">@color/colorPrimary</item>
-        <item name="colorControlActivated">@color/colorAccent</item>
-        <item name="colorControlHighlight">@color/colorAccent</item>
     </style>
 
 </resources>

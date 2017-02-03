@@ -14,7 +14,6 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:animateLayoutChanges="true"
             android:orientation="vertical">
 
             <android.support.v4.widget.NestedScrollView
@@ -733,7 +732,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Attachments"
+                            android:text="@string/attachments"
                             android:textColor="#757575"
                             android:textSize="16sp"
                             android:textStyle="bold"/>
@@ -751,7 +750,7 @@
                                 android:layout_marginTop="@dimen/default_padding_half"
                                 android:alpha="0.83"
                                 android:drawablePadding="@dimen/default_padding_half"
-                                android:text="No attachments"/>
+                                android:text="@string/no_attachments"/>
 
                         </LinearLayout>
 
@@ -762,12 +761,16 @@
 
             </android.support.v4.widget.NestedScrollView>
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/color_divider" />
+
             <RelativeLayout
                 android:id="@+id/btnHistory_FPD"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#eeeeee"
-                android:elevation="3dp"
+                android:background="?android:attr/selectableItemBackground"
                 android:padding="@dimen/default_padding">
 
 
@@ -775,9 +778,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:text="History"
+                    android:text="@string/notes_amp_timeline"
                     android:textColor="#757575"
-                    android:textSize="16sp"
+                    android:textSize="@dimen/big_text_size"
                     android:textStyle="bold"/>
 
                 <ImageView
@@ -789,6 +792,11 @@
                     app:srcCompat="@drawable/ic_arrow_up"/>
 
             </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/color_divider" />
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/rvHistory_FPD"

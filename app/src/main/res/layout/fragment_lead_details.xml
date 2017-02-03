@@ -15,7 +15,6 @@
             android:id="@+id/llMainContent_FLD"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:animateLayoutChanges="true"
             android:orientation="vertical">
 
             <android.support.v4.widget.NestedScrollView
@@ -23,13 +22,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@android:color/white"
-                    android:orientation="vertical">
-
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -44,18 +36,15 @@
                             android:layout_height="wrap_content"
                             android:ellipsize="end"
                             android:maxLines="1"
-                            android:paddingEnd="@dimen/default_padding"
-                            android:paddingStart="@dimen/default_padding"
-                            android:paddingTop="@dimen/default_padding"
+                            android:layout_margin="@dimen/default_padding"
                             android:text="@string/no_data"
                             android:textColor="@color/color_text_black"
-                            android:textSize="@dimen/text_list_item_extra_large_22"
+                            android:textSize="@dimen/text_list_item_large_20"
                             tools:text="Web development" />
 
                         <View
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
-                            android:layout_marginTop="@dimen/default_padding"
                             android:background="@color/color_divider" />
 
                         <LinearLayout
@@ -417,16 +406,21 @@
 
                     </LinearLayout>
 
-                </LinearLayout>
 
             </android.support.v4.widget.NestedScrollView>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/color_divider" />
 
             <RelativeLayout
                 android:id="@+id/btnHistory_FLD"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/color_grey_transparent"
-                android:padding="@dimen/default_padding">
+                android:background="?android:attr/selectableItemBackground"
+                android:padding="@dimen/default_padding"
+                >
 
 
                 <TextView
@@ -457,9 +451,8 @@
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/rvHistory_FLD"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@android:color/white"
-                android:visibility="gone" />
+                android:layout_height="0dp"
+                android:background="@android:color/white" />
 
         </LinearLayout>
 
