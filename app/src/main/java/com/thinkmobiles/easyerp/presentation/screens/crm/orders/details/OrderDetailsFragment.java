@@ -186,6 +186,7 @@ public class OrderDetailsFragment extends BaseFragment<HomeActivity> implements 
 
     @Override
     public void onDestroyView() {
+        set.cancel();
         presenter.unsubscribe();
         super.onDestroyView();
     }
