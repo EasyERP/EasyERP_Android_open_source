@@ -68,10 +68,6 @@ public class DashboardDetailChartFragment extends BaseFragment<HomeActivity> imp
     @Pref
     protected AppDefaultStatesPreferences_ appDefaultStatesPreferences;
 
-    @Override
-    protected boolean needProgress() {
-        return true;
-    }
 
     @AfterInject
     @Override

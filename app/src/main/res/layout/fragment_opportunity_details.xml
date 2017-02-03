@@ -395,50 +395,7 @@
 
             </android.support.v4.widget.NestedScrollView>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/color_divider"/>
-
-            <RelativeLayout
-                android:id="@+id/btnHistory_FOD"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="?android:attr/selectableItemBackground"
-                android:padding="@dimen/default_padding">
-
-
-                <TextView
-                    style="@style/RobotoMedium"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:text="@string/notes_amp_timeline"
-                    android:textColor="@color/color_text_black"
-                    android:textSize="@dimen/text_list_item_large_20"/>
-
-                <ImageView
-                    android:id="@+id/ivIconArrow_FOD"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_alignParentEnd="true"
-                    android:tint="@android:color/black"
-                    app:srcCompat="@drawable/ic_arrow_up"/>
-
-            </RelativeLayout>
-
-            <View
-                android:id="@+id/viewHistoryDivider_FOD"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/color_divider"/>
-
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/rvHistory_FOD"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@android:color/white"
-                android:visibility="gone"/>
+            <include layout="@layout/view_bottom_history"/>
 
         </LinearLayout>
 

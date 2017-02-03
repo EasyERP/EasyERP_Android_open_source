@@ -135,11 +135,6 @@ public class InvoicesFragment  extends SimpleListWithRefreshFragment implements 
     }
 
     @Override
-    protected boolean needProgress() {
-        return true;
-    }
-
-    @Override
     public void onDestroyView() {
         super.onDestroyView();
         presenter.unsubscribe();

@@ -83,11 +83,6 @@ public class OpportunitiesFragment extends SimpleListWithRefreshFragment impleme
     }
 
     @Override
-    protected boolean needProgress() {
-        return true;
-    }
-
-    @Override
     public void displayOpportunities(ArrayList<OpportunityDH> opportunityDHs, boolean needClear) {
         errorViewHelper.hideError();
         displayProgress(false);

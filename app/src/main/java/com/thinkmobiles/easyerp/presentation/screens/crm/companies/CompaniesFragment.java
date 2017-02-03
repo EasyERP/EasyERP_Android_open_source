@@ -93,10 +93,6 @@ public class CompaniesFragment extends SimpleListWithRefreshFragment implements 
         presenter.subscribe();
     }
 
-    @Override
-    protected boolean needProgress() {
-        return true;
-    }
 
     @Override
     public void displayEnabledLetters(ArrayList<AlphabetItem> enabledAlphabetItems) {

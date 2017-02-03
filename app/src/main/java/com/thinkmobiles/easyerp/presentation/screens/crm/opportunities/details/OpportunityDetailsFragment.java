@@ -4,7 +4,6 @@ import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.graphics.drawable.Drawable;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.view.animation.FastOutSlowInInterpolator;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -16,6 +15,7 @@ import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -30,6 +30,7 @@ import com.thinkmobiles.easyerp.presentation.base.BaseFragment;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.custom.transformations.CropCircleTransformation;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.HistoryDH;
+import com.thinkmobiles.easyerp.presentation.managers.HistoryAnimationHelper;
 import com.thinkmobiles.easyerp.presentation.managers.ImageHelper;
 import com.thinkmobiles.easyerp.presentation.screens.home.HomeActivity;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
@@ -116,13 +117,11 @@ public class OpportunityDetailsFragment extends BaseFragment<HomeActivity> imple
     protected TextView tvAttachments_FLD;
 
     @ViewById
-    protected RelativeLayout btnHistory_FOD;
+    protected FrameLayout btnHistory;
     @ViewById
-    protected ImageView ivIconArrow_FOD;
+    protected ImageView ivIconArrow;
     @ViewById
-    protected View viewHistoryDivider_FOD;
-    @ViewById
-    protected RecyclerView rvHistory_FOD;
+    protected RecyclerView rvHistory;
     //endregion
 
     @Bean
@@ -131,17 +130,13 @@ public class OpportunityDetailsFragment extends BaseFragment<HomeActivity> imple
     protected HistoryAdapter historyAdapter;
     @Bean
     protected OpportunitiesRepository opportunitiesRepository;
+    @Bean
+    protected HistoryAnimationHelper animationHelper;
 
     @DrawableRes(R.drawable.ic_arrow_up)
     protected Drawable icArrowUp;
     @DrawableRes(R.drawable.ic_arrow_down)
     protected Drawable icArrowDown;
-    @IntegerRes(android.R.integer.config_longAnimTime)
-    protected int animDuration;
-
-    private AnimatorSet set;
-    private ObjectAnimator rotate;
-    private ValueAnimator scale;
 
     @AfterInject
     @Override
@@ -154,36 +149,17 @@ public class OpportunityDetailsFragment extends BaseFragment<HomeActivity> imple
         errorViewHelper.init(errorLayout, v -> presenter.refresh());
 
         srlRefresh_FOD.setOnRefreshListener(() -> presenter.refresh());
-        rvHistory_FOD.setLayoutManager(new LinearLayoutManager(getActivity()));
-        rvHistory_FOD.setAdapter(historyAdapter);
+        rvHistory.setLayoutManager(new LinearLayoutManager(getActivity()));
+        rvHistory.setAdapter(historyAdapter);
         tvAttachments_FLD.setMovementMethod(LinkMovementMethod.getInstance());
 
-        RxView.clicks(btnHistory_FOD)
+        RxView.clicks(btnHistory)
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
                 .subscribe(aVoid -> presenter.changeNotesVisibility());
-        rotate = ObjectAnimator.ofFloat(ivIconArrow_FOD, View.ROTATION, 0, 0);
 
-        scale = new ValueAnimator();
-        scale.addUpdateListener(animation -> {
-            int height = (int) animation.getAnimatedValue();
-            rvHistory_FOD.setVisibility(height == 0 ? View.GONE : View.VISIBLE);
-            ViewGroup.LayoutParams params = rvHistory_FOD.getLayoutParams();
-            params.height = height;
-            rvHistory_FOD.setLayoutParams(params);
-        });
-
-
-        set = new AnimatorSet();
-        set.setInterpolator(new FastOutSlowInInterpolator());
-        set.setDuration(animDuration);
-        set.playTogether(rotate, scale);
+        animationHelper.init(ivIconArrow, rvHistory);
 
         presenter.subscribe();
-    }
-
-    @Override
-    protected boolean needProgress() {
-        return true;
     }
 
     @Override
@@ -201,16 +177,11 @@ public class OpportunityDetailsFragment extends BaseFragment<HomeActivity> imple
 
     @Override
     public void showHistory(boolean enable) {
-        if (enable) {
-            scale.setIntValues(0, nsvContent_FOD.getHeight());
-            rotate.setFloatValues((float)rotate.getAnimatedValue(), 180);
-        } else {
-            scale.setIntValues(rvHistory_FOD.getHeight(), 0);
-            rotate.setFloatValues((float)rotate.getAnimatedValue(), 0);
+        if (enable && rvHistory.getVisibility() == View.GONE) {
+            animationHelper.forward(nsvContent_FOD.getHeight());
         }
-        if (enable && rvHistory_FOD.getVisibility() == View.GONE
-                || !enable && rvHistory_FOD.getVisibility() == View.VISIBLE)
-            set.start();
+        if (!enable && rvHistory.getVisibility() == View.VISIBLE)
+            animationHelper.backward(rvHistory.getHeight());
     }
 
     @Override
@@ -358,7 +329,7 @@ public class OpportunityDetailsFragment extends BaseFragment<HomeActivity> imple
 
     @Override
     public void onDestroyView() {
-        set.cancel();
+        animationHelper.cancel();
         presenter.unsubscribe();
         super.onDestroyView();
     }

@@ -136,11 +136,6 @@ public class PaymentsFragment extends SimpleListWithRefreshFragment implements P
     }
 
     @Override
-    protected boolean needProgress() {
-        return true;
-    }
-
-    @Override
     public void onDestroyView() {
         super.onDestroyView();
         presenter.unsubscribe();

@@ -4,7 +4,6 @@ import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.graphics.drawable.Drawable;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.view.animation.FastOutSlowInInterpolator;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -13,11 +12,9 @@ import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,6 +27,7 @@ import com.thinkmobiles.easyerp.presentation.base.BaseFragment;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.HistoryDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.OrderProductDH;
+import com.thinkmobiles.easyerp.presentation.managers.HistoryAnimationHelper;
 import com.thinkmobiles.easyerp.presentation.screens.home.HomeActivity;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
@@ -109,13 +107,11 @@ public class OrderDetailsFragment extends BaseFragment<HomeActivity> implements 
     @ViewById
     protected TextView tvAttachments_FOD;
     @ViewById
-    protected FrameLayout btnHistory_FOD;
+    protected FrameLayout btnHistory;
     @ViewById
-    protected ImageView ivIconArrow_FOD;
+    protected ImageView ivIconArrow;
     @ViewById
-    protected View viewHistoryDivider_FOD;
-    @ViewById
-    protected RecyclerView rvHistory_FOD;
+    protected RecyclerView rvHistory;
     @ViewById
     protected LinearLayout llErrorLayout;
 
@@ -123,8 +119,6 @@ public class OrderDetailsFragment extends BaseFragment<HomeActivity> implements 
     protected Drawable icArrowUp;
     @DrawableRes(R.drawable.ic_arrow_down)
     protected Drawable icArrowDown;
-    @IntegerRes(android.R.integer.config_longAnimTime)
-    protected int animDuration;
 
     @Bean
     protected OrderRepository orderRepository;
@@ -134,12 +128,10 @@ public class OrderDetailsFragment extends BaseFragment<HomeActivity> implements 
     protected OrderProductAdapter productAdapter;
     @Bean
     protected ErrorViewHelper errorViewHelper;
+    @Bean
+    protected HistoryAnimationHelper animationHelper;
 
     private OrderDetailsContract.OrderDetailsPresenter presenter;
-
-    private AnimatorSet set;
-    private ObjectAnimator rotate;
-    private ValueAnimator scale;
 
     @AfterInject
     @Override
@@ -151,42 +143,27 @@ public class OrderDetailsFragment extends BaseFragment<HomeActivity> implements 
     protected void initUI() {
         errorViewHelper.init(llErrorLayout, v -> presenter.subscribe());
 
-        rvHistory_FOD.setAdapter(historyAdapter);
-        rvHistory_FOD.setLayoutManager(new LinearLayoutManager(getActivity()));
+        rvHistory.setAdapter(historyAdapter);
+        rvHistory.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         rvProductList_FOD.setAdapter(productAdapter);
         rvProductList_FOD.setLayoutManager(new LinearLayoutManager(getActivity()));
 
 
-        RxView.clicks(btnHistory_FOD)
+        RxView.clicks(btnHistory)
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
                 .subscribe(aVoid -> presenter.changeNotesVisibility());
 
         srlRefresh_FOD.setOnRefreshListener(() -> presenter.refresh());
 
-        rotate = ObjectAnimator.ofFloat(ivIconArrow_FOD, View.ROTATION, 0, 0);
-
-        scale = new ValueAnimator();
-        scale.addUpdateListener(animation -> {
-            int height = (int) animation.getAnimatedValue();
-            rvHistory_FOD.setVisibility(height == 0 ? View.GONE : View.VISIBLE);
-            ViewGroup.LayoutParams params = rvHistory_FOD.getLayoutParams();
-            params.height = height;
-            rvHistory_FOD.setLayoutParams(params);
-        });
-
-
-        set = new AnimatorSet();
-        set.setInterpolator(new FastOutSlowInInterpolator());
-        set.setDuration(animDuration);
-        set.playTogether(rotate, scale);
+        animationHelper.init(ivIconArrow, rvHistory);
 
         presenter.subscribe();
     }
 
     @Override
     public void onDestroyView() {
-        set.cancel();
+        animationHelper.cancel();
         presenter.unsubscribe();
         super.onDestroyView();
     }
@@ -211,16 +188,11 @@ public class OrderDetailsFragment extends BaseFragment<HomeActivity> implements 
 
     @Override
     public void showHistory(boolean enable) {
-        if (enable) {
-            scale.setIntValues(0, nsvContent_FOD.getHeight());
-            rotate.setFloatValues((float)rotate.getAnimatedValue(), 180);
-        } else {
-            scale.setIntValues(rvHistory_FOD.getHeight(), 0);
-            rotate.setFloatValues((float)rotate.getAnimatedValue(), 0);
+        if (enable && rvHistory.getVisibility() == View.GONE) {
+            animationHelper.forward(nsvContent_FOD.getHeight());
         }
-        if (enable && rvHistory_FOD.getVisibility() == View.GONE
-                || !enable && rvHistory_FOD.getVisibility() == View.VISIBLE)
-            set.start();
+        if (!enable && rvHistory.getVisibility() == View.VISIBLE)
+            animationHelper.backward(rvHistory.getHeight());
     }
 
     @Override

@@ -138,11 +138,6 @@ public class OrdersFragment extends SimpleListWithRefreshFragment implements Ord
     }
 
     @Override
-    protected boolean needProgress() {
-        return true;
-    }
-
-    @Override
     public void onDestroyView() {
         super.onDestroyView();
         presenter.unsubscribe();

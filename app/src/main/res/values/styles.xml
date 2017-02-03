@@ -15,6 +15,9 @@
 
         <item name="colorButtonNormal">@color/colorPrimary</item>
 
+    </style>
+
+    <style name="AppTheme.ThemeHistory" parent="AppTheme">
         <item name="android:colorControlHighlight">@color/color_ripple</item>
     </style>
 

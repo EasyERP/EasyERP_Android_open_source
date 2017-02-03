@@ -86,11 +86,6 @@ public class DashboardListFragment extends SimpleListWithRefreshFragment impleme
     }
 
     @Override
-    protected boolean needProgress() {
-        return true;
-    }
-
-    @Override
     public void displayDashboardsList(ArrayList<DashboardListDH> listDashboards) {
         errorViewHelper.hideError();
         displayProgress(false);

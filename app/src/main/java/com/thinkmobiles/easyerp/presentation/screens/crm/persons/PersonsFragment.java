@@ -101,11 +101,6 @@ public class PersonsFragment extends SimpleListWithRefreshFragment implements Pe
     }
 
     @Override
-    protected boolean needProgress() {
-        return true;
-    }
-
-    @Override
     public void displayEnabledLetters(ArrayList<AlphabetItem> enabledAlphabetItems) {
         alphabetView_FP.setEnabledLetters(enabledAlphabetItems);
     }

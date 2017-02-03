@@ -186,11 +186,6 @@ public class LeadsFragment extends SimpleListWithRefreshFragment implements Lead
     }
 
     @Override
-    protected boolean needProgress() {
-        return true;
-    }
-
-    @Override
     public void onRefresh() {
         scrollListener.resetState();
         presenter.subscribe();

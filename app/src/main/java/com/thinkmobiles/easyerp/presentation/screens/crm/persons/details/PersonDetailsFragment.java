@@ -18,6 +18,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -33,6 +34,7 @@ import com.thinkmobiles.easyerp.presentation.base.BaseFragment;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.HistoryDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.OpportunityPreviewDH;
+import com.thinkmobiles.easyerp.presentation.managers.HistoryAnimationHelper;
 import com.thinkmobiles.easyerp.presentation.managers.ImageHelper;
 import com.thinkmobiles.easyerp.presentation.screens.home.HomeActivity;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
@@ -44,7 +46,6 @@ import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.FragmentArg;
 import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.res.DrawableRes;
-import org.androidannotations.annotations.res.IntegerRes;
 
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
@@ -167,23 +168,17 @@ public class PersonDetailsFragment extends BaseFragment<HomeActivity> implements
     @ViewById
     protected TextView tvAttachments_FPD;
     @ViewById
-    protected RelativeLayout btnHistory_FPD;
+    protected FrameLayout btnHistory;
     @ViewById
-    protected ImageView ivIconArrow_FPD;
+    protected ImageView ivIconArrow;
     @ViewById
-    protected RecyclerView rvHistory_FPD;
+    protected RecyclerView rvHistory;
     //endregion
 
     @DrawableRes(R.drawable.ic_arrow_up)
     protected Drawable icArrowUp;
     @DrawableRes(R.drawable.ic_arrow_down)
     protected Drawable icArrowDown;
-    @IntegerRes(android.R.integer.config_longAnimTime)
-    protected int animDuration;
-
-    private AnimatorSet set;
-    private ObjectAnimator rotate;
-    private ValueAnimator scale;
 
     @Bean
     protected PersonsRepository personsRepository;
@@ -193,51 +188,33 @@ public class PersonDetailsFragment extends BaseFragment<HomeActivity> implements
     protected OpportunityPreviewAdapter opportunityPreviewAdapter;
     @Bean
     protected ErrorViewHelper errorViewHelper;
+    @Bean
+    protected HistoryAnimationHelper animationHelper;
 
     @AfterViews
     protected void initUI() {
         errorViewHelper.init(errorLayout, v -> presenter.refresh());
 
         srlRefresh_FPD.setOnRefreshListener(() -> presenter.refresh());
-        rvHistory_FPD.setLayoutManager(new LinearLayoutManager(getActivity()));
-        rvHistory_FPD.setAdapter(historyAdapter);
+        rvHistory.setLayoutManager(new LinearLayoutManager(getActivity()));
+        rvHistory.setAdapter(historyAdapter);
         rvOpportunities_FPD.setLayoutManager(new LinearLayoutManager(getActivity()));
         rvOpportunities_FPD.setAdapter(opportunityPreviewAdapter);
 
-        RxView.clicks(btnHistory_FPD)
+        RxView.clicks(btnHistory)
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
                 .subscribe(aVoid -> presenter.changeNotesVisibility());
 
-        rotate = ObjectAnimator.ofFloat(ivIconArrow_FPD, View.ROTATION, 0, 0);
-
-        scale = new ValueAnimator();
-        scale.addUpdateListener(animation -> {
-            int height = (int) animation.getAnimatedValue();
-            rvHistory_FPD.setVisibility(height == 0 ? View.GONE : View.VISIBLE);
-            ViewGroup.LayoutParams params = rvHistory_FPD.getLayoutParams();
-            params.height = height;
-            rvHistory_FPD.setLayoutParams(params);
-        });
-
-
-        set = new AnimatorSet();
-        set.setInterpolator(new FastOutSlowInInterpolator());
-        set.setDuration(animDuration);
-        set.playTogether(rotate, scale);
+        animationHelper.init(ivIconArrow, rvHistory);
 
         presenter.subscribe();
     }
 
     @Override
     public void onDestroyView() {
-        set.cancel();
+        animationHelper.cancel();
         presenter.unsubscribe();
         super.onDestroyView();
-    }
-
-    @Override
-    protected boolean needProgress() {
-        return true;
     }
 
     @Override
@@ -537,17 +514,12 @@ public class PersonDetailsFragment extends BaseFragment<HomeActivity> implements
     }
 
     @Override
-    public void showHistory(boolean isShow) {
-        if (isShow) {
-            scale.setIntValues(0, nsvContent_FPD.getHeight());
-            rotate.setFloatValues((float) rotate.getAnimatedValue(), 180);
-        } else {
-            scale.setIntValues(rvHistory_FPD.getHeight(), 0);
-            rotate.setFloatValues((float) rotate.getAnimatedValue(), 0);
+    public void showHistory(boolean enable) {
+        if (enable && rvHistory.getVisibility() == View.GONE) {
+            animationHelper.forward(nsvContent_FPD.getHeight());
         }
-        if (isShow && rvHistory_FPD.getVisibility() == View.GONE
-                || !isShow && rvHistory_FPD.getVisibility() == View.VISIBLE)
-            set.start();
+        if (!enable && rvHistory.getVisibility() == View.VISIBLE)
+            animationHelper.backward(rvHistory.getHeight());
     }
 
     @Override

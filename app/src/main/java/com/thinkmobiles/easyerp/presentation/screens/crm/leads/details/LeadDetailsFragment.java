@@ -14,10 +14,9 @@ import android.text.SpannableStringBuilder;
 import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.LinearInterpolator;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,6 +27,7 @@ import com.thinkmobiles.easyerp.presentation.adapters.crm.HistoryAdapter;
 import com.thinkmobiles.easyerp.presentation.base.BaseFragment;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.HistoryDH;
+import com.thinkmobiles.easyerp.presentation.managers.HistoryAnimationHelper;
 import com.thinkmobiles.easyerp.presentation.screens.home.HomeActivity;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
@@ -38,7 +38,6 @@ import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.FragmentArg;
 import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.res.DrawableRes;
-import org.androidannotations.annotations.res.IntegerRes;
 
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
@@ -55,6 +54,8 @@ public class LeadDetailsFragment extends BaseFragment<HomeActivity> implements L
     protected HistoryAdapter historyAdapter;
     @Bean
     protected ErrorViewHelper errorViewHelper;
+    @Bean
+    protected HistoryAnimationHelper animationHelper;
 
     @FragmentArg
     protected String leadId;
@@ -115,57 +116,35 @@ public class LeadDetailsFragment extends BaseFragment<HomeActivity> implements L
     @ViewById
     protected TextView tvCompanyCountry_FLD;
     @ViewById
-    protected View viewHistoryDivider_FLD;
-    @ViewById
     protected TextView tvAttachments_FLD;
     @ViewById
-    protected RelativeLayout btnHistory_FLD;
+    protected FrameLayout btnHistory;
     @ViewById
-    protected ImageView ivIconArrow_FLD;
+    protected ImageView ivIconArrow;
     @ViewById
-    protected RecyclerView rvHistory_FLD;
+    protected RecyclerView rvHistory;
     //endregion
 
     @DrawableRes(R.drawable.ic_arrow_up)
     protected Drawable icArrowUp;
     @DrawableRes(R.drawable.ic_arrow_down)
     protected Drawable icArrowDown;
-    @IntegerRes(android.R.integer.config_longAnimTime)
-    protected int animDuration;
-
-    private AnimatorSet set;
-    private ObjectAnimator rotate;
-    private ValueAnimator scale;
 
     @AfterViews
     protected void initUI() {
         errorViewHelper.init(errorLayout, v -> presenter.refresh());
 
         srlRefresh_FLD.setOnRefreshListener(() -> presenter.refresh());
-        rvHistory_FLD.setLayoutManager(new LinearLayoutManager(getActivity()));
-        rvHistory_FLD.setAdapter(historyAdapter);
+        rvHistory.setLayoutManager(new LinearLayoutManager(getActivity()));
+        rvHistory.setAdapter(historyAdapter);
         tvAttachments_FLD.setMovementMethod(LinkMovementMethod.getInstance());
 
-        RxView.clicks(btnHistory_FLD)
+        RxView.clicks(btnHistory)
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
                 .subscribe(aVoid -> presenter.changeNotesVisibility());
 
-        rotate = ObjectAnimator.ofFloat(ivIconArrow_FLD, View.ROTATION, 0, 0);
+        animationHelper.init(ivIconArrow, rvHistory);
 
-        scale = new ValueAnimator();
-        scale.addUpdateListener(animation -> {
-            int height = (int) animation.getAnimatedValue();
-            rvHistory_FLD.setVisibility(height == 0 ? View.GONE : View.VISIBLE);
-            ViewGroup.LayoutParams params = rvHistory_FLD.getLayoutParams();
-            params.height = height;
-            rvHistory_FLD.setLayoutParams(params);
-        });
-
-
-        set = new AnimatorSet();
-        set.setInterpolator(new FastOutSlowInInterpolator());
-        set.setDuration(animDuration);
-        set.playTogether(rotate, scale);
         presenter.subscribe();
     }
 
@@ -175,14 +154,9 @@ public class LeadDetailsFragment extends BaseFragment<HomeActivity> implements L
 
     @Override
     public void onDestroyView() {
-        set.cancel();
+        animationHelper.cancel();
         presenter.unsubscribe();
         super.onDestroyView();
-    }
-
-    @Override
-    protected boolean needProgress() {
-        return true;
     }
 
     @AfterInject
@@ -322,16 +296,12 @@ public class LeadDetailsFragment extends BaseFragment<HomeActivity> implements L
 
     @Override
     public void showHistory(boolean enable) {
-        if (enable) {
-            scale.setIntValues(0, nsvContent_FLD.getHeight());
-            rotate.setFloatValues((float)rotate.getAnimatedValue(), 180);
-        } else {
-            scale.setIntValues(rvHistory_FLD.getHeight(), 0);
-            rotate.setFloatValues((float)rotate.getAnimatedValue(), 360);
+
+        if (enable && rvHistory.getVisibility() == View.GONE) {
+            animationHelper.forward(nsvContent_FLD.getHeight());
         }
-        if (enable && rvHistory_FLD.getVisibility() == View.GONE
-                || !enable && rvHistory_FLD.getVisibility() == View.VISIBLE)
-            set.start();
+        if (!enable && rvHistory.getVisibility() == View.VISIBLE)
+            animationHelper.backward(rvHistory.getHeight());
     }
 
     @Override
