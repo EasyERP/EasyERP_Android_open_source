@@ -52,7 +52,7 @@ public class OpportunityAndLeadVH extends RecyclerVH<OpportunityAndLeadDH> {
         if(item.salesPerson != null && !TextUtils.isEmpty(item.salesPerson.fullName)) tvAssignedTo_VLIOAL.setText(item.salesPerson.fullName);
         if(item.expectedRevenue != null) {
             tvRevenue_VLIOAL.setText(String.format(Locale.US, "%d %s", item.expectedRevenue.value,
-                    item.expectedRevenue.currency == null ? "$" : item.expectedRevenue.currency));
+                    TextUtils.isEmpty(item.expectedRevenue.currency) ? "$" : item.expectedRevenue.currency));
         }
         if(item.editedBy != null && !TextUtils.isEmpty(item.editedBy.date)) {
             String str = "Last Edited: " + DateManager.getTime(item.editedBy.date);
