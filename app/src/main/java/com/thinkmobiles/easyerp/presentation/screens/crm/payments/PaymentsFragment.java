@@ -10,7 +10,7 @@ import com.thinkmobiles.easyerp.data.model.crm.payments.Payment;
 import com.thinkmobiles.easyerp.domain.crm.PaymentsRepository;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.PaymentsAdapter;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
-import com.thinkmobiles.easyerp.presentation.base.rules.SimpleListWithRefreshFragment;
+import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowListFragment;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.PaymentDH;
 import com.thinkmobiles.easyerp.presentation.listeners.EndlessRecyclerViewScrollListener;
 
@@ -29,7 +29,7 @@ import java.util.ArrayList;
  *         Email: michael.soyma@thinkmobiles.com
  */
 @EFragment(R.layout.fragment_simple_list_with_swipe_refresh)
-public class PaymentsFragment extends SimpleListWithRefreshFragment implements PaymentsContract.PaymentsView {
+public class PaymentsFragment extends MasterFlowListFragment implements PaymentsContract.PaymentsView {
 
     private PaymentsContract.PaymentsPresenter presenter;
     private EndlessRecyclerViewScrollListener scrollListener;
@@ -133,11 +133,6 @@ public class PaymentsFragment extends SimpleListWithRefreshFragment implements P
         } else {
             mActivity.replaceFragmentContentDetail(null);
         }
-    }
-
-    @Override
-    protected boolean needProgress() {
-        return true;
     }
 
     @Override

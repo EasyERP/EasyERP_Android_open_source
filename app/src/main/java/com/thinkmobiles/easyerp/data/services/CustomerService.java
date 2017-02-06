@@ -1,6 +1,6 @@
 package com.thinkmobiles.easyerp.data.services;
 
-import com.thinkmobiles.easyerp.data.model.crm.persons.images.ResponseGetCustomersImages;
+import com.thinkmobiles.easyerp.data.model.crm.common.images.ResponseGetCustomersImages;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
 import java.util.ArrayList;

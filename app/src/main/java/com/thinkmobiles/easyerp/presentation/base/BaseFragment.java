@@ -17,6 +17,7 @@ import android.widget.RelativeLayout;
 
 import com.thinkmobiles.easyerp.R;
 
+import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.SystemService;
 
@@ -43,9 +44,9 @@ public abstract class BaseFragment<T extends BaseMasterFlowActivity> extends Fra
         }
     }
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    @AfterInject
+    protected void initFragmentConfigs() {
+        setRetainInstance(true);
         setHasOptionsMenu(true);
     }
 
@@ -71,7 +72,7 @@ public abstract class BaseFragment<T extends BaseMasterFlowActivity> extends Fra
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         if (optionsMenuRes() != 0) {
-            if (mActivity.isTablet && optionsMenuForDetail()) {
+            if (mActivity.isTablet && !mActivity.isPortrait && optionsMenuForDetail()) {
                 mActivity.getToolbarDetail().inflateMenu(optionsMenuRes());
                 mActivity.getToolbarDetail().setOnMenuItemClickListener(this::onOptionsItemSelected);
                 optionsMenuInitialized(mActivity.getToolbarDetail().getMenu());
@@ -79,28 +80,36 @@ public abstract class BaseFragment<T extends BaseMasterFlowActivity> extends Fra
                 inflater.inflate(optionsMenuRes(), menu);
                 optionsMenuInitialized(menu);
             }
+        } else {
+            if (mActivity.isPortrait) {
+                mActivity.resetToolbar(menu);
+            }
         }
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (mActivity.isTablet && optionsMenuForDetail())
+        if (mActivity.isTablet && !mActivity.isPortrait && optionsMenuForDetail()) {
             mActivity.onOptionsItemSelected(item);
-        return true;
+            return true;
+        } else return super.onOptionsItemSelected(item);
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        if (mActivity.isTablet && optionsMenuForDetail())
+        if (mActivity.isTablet && !mActivity.isPortrait && optionsMenuForDetail()) {
             mActivity.resetDetailToolbarToBase();
+        }
     }
 
     public boolean optionsMenuForDetail() { return false; }
     public @MenuRes int optionsMenuRes() { return 0; }
     public void optionsMenuInitialized(final Menu menu) {}
 
-    protected abstract boolean needProgress();
+    protected boolean needProgress() {
+        return true;
+    }
 
     protected void hideKeyboard() {
         if(getView() != null) {

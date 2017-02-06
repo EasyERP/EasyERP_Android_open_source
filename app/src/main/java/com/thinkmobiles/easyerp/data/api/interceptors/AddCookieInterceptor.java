@@ -21,6 +21,12 @@ public class AddCookieInterceptor implements Interceptor {
         this.cookieManager = cookieManager;
     }
 
+    public AddCookieInterceptor() {
+    }
+
+    public void setCookieManager(CookieManager cookieManager) {
+        this.cookieManager = cookieManager;
+    }
     @Override
     public Response intercept(Chain chain) throws IOException {
         String cookie = cookieManager.getCookie();

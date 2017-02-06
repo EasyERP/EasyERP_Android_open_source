@@ -9,7 +9,7 @@ import com.thinkmobiles.easyerp.data.model.crm.dashboard.DashboardListItem;
 import com.thinkmobiles.easyerp.domain.crm.DashboardRepository;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.DashboardListAdapter;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
-import com.thinkmobiles.easyerp.presentation.base.rules.SimpleListWithRefreshFragment;
+import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowListFragment;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.DashboardListDH;
 import com.thinkmobiles.easyerp.presentation.screens.crm.dashboard.detail.DashboardDetailChartFragment_;
 
@@ -26,7 +26,7 @@ import java.util.ArrayList;
  * @author michael.soyma@thinkmobiles.com (Created on 1/18/2017.)
  */
 @EFragment(R.layout.fragment_simple_list_with_swipe_refresh)
-public class DashboardListFragment extends SimpleListWithRefreshFragment implements DashboardListContract.DashboardListView {
+public class DashboardListFragment extends MasterFlowListFragment implements DashboardListContract.DashboardListView {
 
     private DashboardListContract.DashboardListPresenter presenter;
 
@@ -60,13 +60,14 @@ public class DashboardListFragment extends SimpleListWithRefreshFragment impleme
         listRecycler.setLayoutManager(new LinearLayoutManager(mActivity, LinearLayoutManager.VERTICAL, false));
         listRecycler.setAdapter(dashboardListAdapter);
         dashboardListAdapter.setOnCardClickListener((view, position, viewType) -> presenter.selectItem(dashboardListAdapter.getItem(position), position));
-        loadWithProgressBar();
+
+        presenter.subscribe();
     }
 
     private void loadWithProgressBar() {
         errorViewHelper.hideError();
         displayProgress(true);
-        presenter.subscribe();
+        presenter.loadDashboardChartsList();
     }
 
     @Override
@@ -82,16 +83,11 @@ public class DashboardListFragment extends SimpleListWithRefreshFragment impleme
     @Override
     public void onRefresh() {
         errorViewHelper.hideError();
-        presenter.subscribe();
+        presenter.loadDashboardChartsList();
     }
 
     @Override
-    protected boolean needProgress() {
-        return true;
-    }
-
-    @Override
-    public void displayDashboardsList(ArrayList<DashboardListDH> listDashboards) {
+    public void displayDashboardChartsList(ArrayList<DashboardListDH> listDashboards) {
         errorViewHelper.hideError();
         displayProgress(false);
         swipeContainer.setRefreshing(false);
@@ -102,7 +98,7 @@ public class DashboardListFragment extends SimpleListWithRefreshFragment impleme
     }
 
     @Override
-    public void displayDashboardsDetail(DashboardListItem itemChartDashboard) {
+    public void openDashboardChartDetail(DashboardListItem itemChartDashboard) {
         mActivity.replaceFragmentContentDetail(DashboardDetailChartFragment_.builder().dashboardConfigsForChart(itemChartDashboard).build());
     }
 
@@ -115,6 +111,11 @@ public class DashboardListFragment extends SimpleListWithRefreshFragment impleme
         if (getCountItemsNow() == 0)
             errorViewHelper.showErrorMsg(resultMsg, errorType);
         else Toast.makeText(mActivity, resultMsg, Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void showProgress(boolean isShow) {
+        displayProgress(isShow);
     }
 
     @Override

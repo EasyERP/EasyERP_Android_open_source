@@ -21,6 +21,8 @@
     <color name="chart_workflow_item_bg_color">#F7F7F7</color>
     <color name="chart_workflow_item_text_color">#7F7F80</color>
 
+    <color name="bg_header_table_order_product">#454545</color>
+
     <color name="tag_bg_red">#eb5a46</color>
     <color name="tag_bg_pink">#ff80ce</color>
     <color name="tag_bg_orange">#ffab4a</color>
@@ -34,10 +36,12 @@
     <color name="tag_bg_grey">#b6bbbf</color>
     
     <!--//////////////////////// DESIGN ////////////////////////-->
+    <color name="color_ripple">#1b81ff</color>
     <color name="color_blue">#427ede</color>
     <color name="color_divider">#bbbbbb</color>
     <color name="color_grey_transparent">#eeeeee</color>
     <color name="color_bg_selected_item">#0e00c2e0</color>
+    <color name="color_bg_pressed_item">#0500c2e0</color>
 
     <color name="color_text_black">#2b2b2b</color>
     <color name="color_text_gray">#737373</color>

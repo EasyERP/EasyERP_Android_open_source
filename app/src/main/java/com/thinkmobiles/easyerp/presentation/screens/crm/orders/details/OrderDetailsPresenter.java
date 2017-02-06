@@ -1,0 +1,153 @@
+package com.thinkmobiles.easyerp.presentation.screens.crm.orders.details;
+
+
+import android.content.res.Resources;
+
+import com.thinkmobiles.easyerp.R;
+import com.thinkmobiles.easyerp.data.model.crm.order.detail.OrderProduct;
+import com.thinkmobiles.easyerp.data.model.crm.order.detail.ResponseGerOrderDetails;
+import com.thinkmobiles.easyerp.data.model.user.organization.OrganizationSettings;
+import com.thinkmobiles.easyerp.presentation.EasyErpApplication;
+import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
+import com.thinkmobiles.easyerp.presentation.holders.data.crm.HistoryDH;
+import com.thinkmobiles.easyerp.presentation.holders.data.crm.OrderProductDH;
+import com.thinkmobiles.easyerp.presentation.managers.DateManager;
+import com.thinkmobiles.easyerp.presentation.screens.crm.dashboard.detail.charts.DollarFormatter;
+import com.thinkmobiles.easyerp.presentation.utils.StringUtil;
+
+import java.text.DecimalFormat;
+import java.util.ArrayList;
+
+import rx.subscriptions.CompositeSubscription;
+
+public class OrderDetailsPresenter implements OrderDetailsContract.OrderDetailsPresenter {
+
+    private OrderDetailsContract.OrderDetailsView view;
+    private OrderDetailsContract.OrderDetailsModel model;
+    private String orderId;
+    private CompositeSubscription compositeSubscription;
+
+    private ResponseGerOrderDetails currentOrder;
+    private OrganizationSettings organizationSettings;
+    private boolean isVisibleHistory;
+    private String notSpecified;
+    private Resources res;
+    private DecimalFormat formatter;
+
+    public OrderDetailsPresenter(OrderDetailsContract.OrderDetailsView view, OrderDetailsContract.OrderDetailsModel model, String orderId) {
+        this.view = view;
+        this.model = model;
+        this.orderId = orderId;
+        view.setPresenter(this);
+
+        compositeSubscription = new CompositeSubscription();
+        notSpecified = EasyErpApplication.getInstance().getString(R.string.err_not_specified);
+        res = EasyErpApplication.getInstance().getResources();
+        formatter = new DollarFormatter().getFormat();
+    }
+
+    @Override
+    public void changeNotesVisibility() {
+        isVisibleHistory = !isVisibleHistory;
+        view.showHistory(isVisibleHistory);
+    }
+
+    @Override
+    public void refresh() {
+        compositeSubscription.add(model.getOrderDetails(orderId)
+                .subscribe(responseGerOrderDetails -> {
+                    view.showProgress(false);
+                    setData(responseGerOrderDetails);
+                }, t -> {
+                    view.showProgress(false);
+                    t.printStackTrace();
+                    if (currentOrder == null) {
+                        view.showError(t.getMessage(), ErrorViewHelper.ErrorType.NETWORK);
+                    } else {
+                        view.showMessage(t.getMessage());
+                    }
+                }));
+    }
+
+    private void getOrganizationSettings() {
+        compositeSubscription.add(model.getOrganizationSettings()
+                .subscribe(responseGetOrganizationSettings -> {
+                    organizationSettings = responseGetOrganizationSettings.data;
+
+                }, Throwable::printStackTrace));
+    }
+
+    @Override
+    public void subscribe() {
+        if (currentOrder == null) {
+            view.showProgress(true);
+            refresh();
+            getOrganizationSettings();
+        } else {
+            setData(currentOrder);
+        }
+    }
+
+    private void setData(ResponseGerOrderDetails response) {
+        currentOrder = response;
+
+        view.setOrderStatus(response.workflow.name);
+        view.setOrderName(response.name);
+        view.setExpectedDate(DateManager.convert(response.expectedDate).setDstPattern(DateManager.PATTERN_DATE_SIMPLE_PREVIEW).toString());
+        view.setOrderDate(DateManager.convert(response.orderDate).setDstPattern(DateManager.PATTERN_DATE_SIMPLE_PREVIEW).toString());
+        view.setSupplierName(response.supplier.fullName);
+        view.setSupplierAddress(StringUtil.getAddress(response.supplier.address));
+        String prefix = response.currency.id != null ? response.currency.id.symbol : "$";
+        if (response.paymentInfo != null) {
+            view.setSubTotal(StringUtil.getFormattedPriceFromCent(formatter, response.paymentInfo.unTaxed, prefix));
+            if (response.paymentInfo.discount > 0)
+                view.setDiscount(StringUtil.getFormattedPriceFromCent(formatter, - response.paymentInfo.discount, prefix));
+            view.setTaxes(StringUtil.getFormattedPriceFromCent(formatter, response.paymentInfo.taxes, prefix));
+            view.setTotal(StringUtil.getFormattedPriceFromCent(formatter, response.paymentInfo.total, prefix));
+        }
+        if (response.prepayment != null && response.prepayment.sum != null)
+            view.setPrepaid(StringUtil.getFormattedPriceFromCent(formatter, response.prepayment.sum, prefix));
+        if (response.paymentMethod != null) {
+            view.setNameBeneficiary(response.paymentMethod.owner);
+            view.setBank(response.paymentMethod.bank);
+            view.setBankAddress(response.paymentMethod.address);
+            view.setBankIBAN(response.paymentMethod.account);
+            view.setSwiftCode(response.paymentMethod.swiftCode);
+        }
+
+        if (organizationSettings != null) {
+            view.setCompanyName(organizationSettings.name);
+            if (organizationSettings.address != null)
+                view.setCompanyAddress(StringUtil.getAddress(organizationSettings.address));
+
+            view.setOwnerName(organizationSettings.contactName);
+            view.setOwnerSite(organizationSettings.website);
+            if (organizationSettings.contact != null)
+                view.setOwnerEmail(organizationSettings.contact.email);
+            view.setAdvice(String.format("Payment should be made by bank transfer or check made payable to %s", organizationSettings.contactName.toUpperCase()));
+        }
+
+        if (response.attachments != null && !response.attachments.isEmpty()) {
+            view.setAttachments(StringUtil.getAttachments(response.attachments));
+        }
+
+        view.setProducts(prepareProductList(response.products));
+        view.setHistory(HistoryDH.convert(response.notes));
+
+        view.showHistory(isVisibleHistory);
+    }
+
+    private ArrayList<OrderProductDH> prepareProductList(ArrayList<OrderProduct> products) {
+        ArrayList<OrderProductDH> list = new ArrayList<>();
+        list.add(null);
+        for (OrderProduct product : products){
+            list.add(new OrderProductDH(product));
+        }
+        return list;
+    }
+
+    @Override
+    public void unsubscribe() {
+        compositeSubscription.clear();
+    }
+}

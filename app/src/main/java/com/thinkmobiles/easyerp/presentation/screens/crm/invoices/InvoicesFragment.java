@@ -9,7 +9,7 @@ import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.domain.crm.InvoiceRepository;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.InvoicesAdapter;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
-import com.thinkmobiles.easyerp.presentation.base.rules.SimpleListWithRefreshFragment;
+import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowListFragment;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.InvoiceDH;
 import com.thinkmobiles.easyerp.presentation.listeners.EndlessRecyclerViewScrollListener;
 
@@ -28,7 +28,7 @@ import java.util.ArrayList;
  *         Email: michael.soyma@thinkmobiles.com
  */
 @EFragment(R.layout.fragment_simple_list_with_swipe_refresh)
-public class InvoicesFragment  extends SimpleListWithRefreshFragment implements InvoicesContract.InvoicesView {
+public class InvoicesFragment extends MasterFlowListFragment implements InvoicesContract.InvoicesView {
 
     private InvoicesContract.InvoicesPresenter presenter;
     private EndlessRecyclerViewScrollListener scrollListener;
@@ -132,11 +132,6 @@ public class InvoicesFragment  extends SimpleListWithRefreshFragment implements 
         } else {
             mActivity.replaceFragmentContentDetail(null);
         }
-    }
-
-    @Override
-    protected boolean needProgress() {
-        return true;
     }
 
     @Override

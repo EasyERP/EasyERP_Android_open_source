@@ -3,9 +3,6 @@ package com.thinkmobiles.easyerp.data.model.crm.leads.detail;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-/**
- * Created by samson on 17.01.17.
- */
 
 public class SalesPerson implements Parcelable {
 
@@ -26,6 +23,18 @@ public class SalesPerson implements Parcelable {
     public Name name;
     public String fullName;
 
+
+    public static final Creator<SalesPerson> CREATOR = new Creator<SalesPerson>() {
+        @Override
+        public SalesPerson createFromParcel(Parcel in) {
+            return new SalesPerson(in);
+        }
+
+        @Override
+        public SalesPerson[] newArray(int size) {
+            return new SalesPerson[size];
+        }
+    };
 
     @Override
     public int describeContents() {
@@ -50,15 +59,4 @@ public class SalesPerson implements Parcelable {
         this.fullName = in.readString();
     }
 
-    public static final Parcelable.Creator<SalesPerson> CREATOR = new Parcelable.Creator<SalesPerson>() {
-        @Override
-        public SalesPerson createFromParcel(Parcel source) {
-            return new SalesPerson(source);
-        }
-
-        @Override
-        public SalesPerson[] newArray(int size) {
-            return new SalesPerson[size];
-        }
-    };
 }

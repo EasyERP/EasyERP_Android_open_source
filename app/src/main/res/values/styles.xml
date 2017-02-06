@@ -14,6 +14,11 @@
         <item name="editTextStyle">@style/AppTheme.DefaultBlackEditTextTheme</item>
 
         <item name="colorButtonNormal">@color/colorPrimary</item>
+
+    </style>
+
+    <style name="AppTheme.ThemeHistory" parent="AppTheme">
+        <item name="android:colorControlHighlight">@color/color_ripple</item>
     </style>
 
     <style name="AppTheme.DefaultBlackTextTheme">
@@ -74,6 +79,15 @@
         <item name="android:fontFamily">sans-serif-light</item>
         <item name="android:textStyle">bold</item>
     </style>
+    <style name="RobotoCondensedBold">
+        <item name="android:fontFamily">sans-serif-condensed</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="RobotoCondensedRegular">
+        <item name="android:fontFamily">sans-serif-condensed</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
 
     <style name="AppTheme.FilterDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
         <item name="colorAccent">@color/colorAccent</item>
@@ -86,8 +100,6 @@
         <item name="android:textColor">@color/textColorPrimary</item>
         <item name="android:textColorHint">@color/textColorHint</item>
         <item name="backgroundTint">@color/colorPrimary</item>
-        <item name="colorControlActivated">@color/colorAccent</item>
-        <item name="colorControlHighlight">@color/colorAccent</item>
     </style>
 
 </resources>

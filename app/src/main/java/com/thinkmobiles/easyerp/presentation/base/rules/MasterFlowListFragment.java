@@ -15,7 +15,7 @@ import org.androidannotations.annotations.res.ColorRes;
  * @author michael.soyma@thinkmobiles.com (Created on 1/18/2017.)
  */
 @EFragment
-public abstract class SimpleListWithRefreshFragment extends BaseFragment<HomeActivity> implements SwipeRefreshLayout.OnRefreshListener {
+public abstract class MasterFlowListFragment extends BaseFragment<HomeActivity> implements SwipeRefreshLayout.OnRefreshListener {
 
     @ViewById
     protected SwipeRefreshLayout swipeContainer;
@@ -31,6 +31,10 @@ public abstract class SimpleListWithRefreshFragment extends BaseFragment<HomeAct
     protected void defaultInit() {
         swipeContainer.setColorSchemeColors(colorPrimary, colorPrimaryDark);
         swipeContainer.setOnRefreshListener(this);
+    }
+
+    public boolean withItemSelecting() {
+        return mActivity.isTablet && !mActivity.isPortrait;
     }
 
 }

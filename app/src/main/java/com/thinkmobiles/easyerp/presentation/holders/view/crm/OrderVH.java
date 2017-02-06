@@ -17,6 +17,7 @@ import com.thinkmobiles.easyerp.presentation.holders.data.crm.OrderDH;
 import com.thinkmobiles.easyerp.presentation.managers.DateManager;
 import com.thinkmobiles.easyerp.presentation.managers.TagHelper;
 import com.thinkmobiles.easyerp.presentation.screens.crm.dashboard.detail.charts.DollarFormatter;
+import com.thinkmobiles.easyerp.presentation.utils.StringUtil;
 
 /**
  * @author Michael Soyma (Created on 1/31/2017).
@@ -60,9 +61,9 @@ public final class OrderVH extends MasterFlowSelectableVHHelper<OrderDH> {
         tvOrderStatus_VLIO.setText(buildStatusTag(data.getOrder().workflow.name, TagHelper.getColorResIdByName(data.getOrder().workflow.status)));
         tvCustomer_VLIO.setText(TextUtils.isEmpty(data.getOrder().supplier.name) ? not_assigned : data.getOrder().supplier.name);
         tvCreatedDate_VLIO.setText(new DateManager.DateConverter(data.getOrder().orderDate).setDstPattern(DateManager.PATTERN_DATE_SIMPLE_PREVIEW).toString());
-        tvTotalPrice_VLIO.setText(String.format("%s %s",
-                data.getOrder().currency.id != null ? data.getOrder().currency.id.symbol : "$",
-                new DollarFormatter().getFormat().format(data.getOrder().paymentInfo.total)));
+        tvTotalPrice_VLIO.setText(StringUtil.getFormattedPriceFromCent(new DollarFormatter().getFormat(),
+                data.getOrder().paymentInfo.total,
+                data.getOrder().currency.id != null ? data.getOrder().currency.id.symbol : "$"));
 
         tvOrderName_VLIO.requestLayout();
 

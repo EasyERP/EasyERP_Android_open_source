@@ -1,6 +1,7 @@
 package com.thinkmobiles.easyerp.presentation.screens.crm.dashboard;
 
 import com.thinkmobiles.easyerp.data.model.crm.dashboard.DashboardListItem;
+import com.thinkmobiles.easyerp.data.model.crm.dashboard.ResponseGetCRMDashboardCharts;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectablePresenterHelper;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.DashboardListDH;
@@ -20,6 +21,8 @@ public class DashboardListPresenter extends MasterFlowSelectablePresenterHelper<
     private DashboardListContract.DashboardListModel model;
     private CompositeSubscription compositeSubscription;
 
+    private ResponseGetCRMDashboardCharts responseGetCRMDashboardCharts;
+
     public DashboardListPresenter(DashboardListContract.DashboardListView view, DashboardListContract.DashboardListModel model) {
         this.view = view;
         this.model = model;
@@ -30,33 +33,32 @@ public class DashboardListPresenter extends MasterFlowSelectablePresenterHelper<
 
     @Override
     public void subscribe() {
-        prepareDashboardList();
+        if (responseGetCRMDashboardCharts == null) {
+            view.showProgress(true);
+            loadDashboardChartsList();
+        } else view.displayDashboardChartsList(prepareDashboardDHs(responseGetCRMDashboardCharts.charts));
     }
 
     @Override
     public void unsubscribe() {
-        if (compositeSubscription.hasSubscriptions()) compositeSubscription.clear();
+        if (compositeSubscription.hasSubscriptions())
+            compositeSubscription.clear();
     }
 
     @Override
-    public void prepareDashboardList() {
+    public void loadDashboardChartsList() {
         compositeSubscription.add(
                 model.getDashboardListCharts()
                         .subscribe(
-                                getCRMDashboardCharts -> view.displayDashboardsList(prepareDashboardDHs(getCRMDashboardCharts.get(0).charts)),
+                                getCRMDashboardCharts -> view.displayDashboardChartsList(prepareDashboardDHs((responseGetCRMDashboardCharts = getCRMDashboardCharts.get(0)).charts)),
                                 t -> view.displayError(t.getMessage(), ErrorViewHelper.ErrorType.NETWORK))
         );
     }
 
     @Override
-    public boolean selectItem(DashboardListDH dashboardListDH, int position) {
-        final int oldPosition = getSelectedItemPosition();
-        boolean isSelected = super.selectItem(dashboardListDH, position);
-        if (isSelected) {
-            view.changeSelectedItem(oldPosition, position);
-            view.displayDashboardsDetail(dashboardListDH.getDashboardListItem());
-        }
-        return isSelected;
+    public void selectItem(DashboardListDH dh, int position) {
+        if (super.selectItem(dh, position, view))
+            view.openDashboardChartDetail(dh.getDashboardListItem());
     }
 
     private ArrayList<DashboardListDH> prepareDashboardDHs(final List<DashboardListItem> dashboardListItems) {

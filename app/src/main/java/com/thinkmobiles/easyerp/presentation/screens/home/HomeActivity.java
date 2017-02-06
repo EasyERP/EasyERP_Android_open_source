@@ -11,7 +11,6 @@ import com.thinkmobiles.easyerp.presentation.custom.views.drawer_menu.models.Men
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.Extra;
-import org.androidannotations.annotations.OptionsItem;
 import org.androidannotations.annotations.ViewById;
 
 /**
@@ -37,6 +36,13 @@ public class HomeActivity extends BaseMasterFlowActivity {
     }
 
     @Override
+    protected void onHomeMenuSelect(boolean isHamburger) {
+        if (isHamburger)
+            changeStateMenu();
+        else onBackPressed();
+    }
+
+    @Override
     protected int contentIdLayout() {
         return R.id.flContentContainer;
     }
@@ -44,11 +50,6 @@ public class HomeActivity extends BaseMasterFlowActivity {
     @Override
     protected int contentDetailIdLayout() {
         return R.id.flContentDetailContainer;
-    }
-
-    @OptionsItem(android.R.id.home)
-    void homeMenuSelect() {
-        changeStateMenu();
     }
 
     private void changeStateMenu() {
@@ -63,4 +64,7 @@ public class HomeActivity extends BaseMasterFlowActivity {
         menuDrawerContainer.initStateMenu();
     }
 
+    public UserInfo getUserInfo() {
+        return userInfo;
+    }
 }

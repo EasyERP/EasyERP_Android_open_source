@@ -99,6 +99,7 @@ public class LoginPresenter implements LoginContract.LoginPresenter {
 
     @Override
     public void unsubscribe() {
-        if(compositeSubscription.hasSubscriptions()) compositeSubscription.clear();
+        if (compositeSubscription.hasSubscriptions())
+            compositeSubscription.clear();
     }
 }

@@ -1,6 +1,8 @@
 package com.thinkmobiles.easyerp.presentation.custom.views.drawer_menu;
 
 import android.content.Context;
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.support.annotation.AttrRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -9,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.data.model.user.UserInfo;
@@ -270,5 +273,64 @@ public class MenuDrawerView extends FrameLayout implements IMenuProviderFunction
         menuItemsLayout.setTranslationY(translationY);
         bottomDividerView.setTranslationY(translationY);
     };
+
+    @Override
+    protected Parcelable onSaveInstanceState() {
+        Parcelable superState = super.onSaveInstanceState();
+        SavedState ss = new SavedState(superState);
+        ss.selectedModule = menuHeaderViewHolder.getCurrentChosenItemForModuleId();
+        ss.selectedItem = menuHeaderViewHolder.getCurrentChosenItemId();
+        return ss;
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Parcelable state) {
+        if(!(state instanceof SavedState)) {
+            super.onRestoreInstanceState(state);
+            return;
+        }
+
+        SavedState ss = (SavedState)state;
+        super.onRestoreInstanceState(ss.getSuperState());
+
+        if (ss.selectedModule >= 0) {
+            if (ss.selectedItem >= 0)
+                selectItem(ss.selectedModule, ss.selectedItem, false);
+            else selectModule(ss.selectedModule);
+        }
+    }
+
+    private static class SavedState extends BaseSavedState {
+
+        int selectedModule;
+        int selectedItem;
+
+        SavedState(Parcelable superState) {
+            super(superState);
+        }
+
+        private SavedState(Parcel in) {
+            super(in);
+            this.selectedModule = in.readInt();
+            this.selectedItem = in.readInt();
+        }
+
+        @Override
+        public void writeToParcel(Parcel out, int flags) {
+            super.writeToParcel(out, flags);
+            out.writeInt(this.selectedModule);
+            out.writeInt(this.selectedItem);
+        }
+
+        public static final Parcelable.Creator<SavedState> CREATOR =
+                new Parcelable.Creator<SavedState>() {
+                    public SavedState createFromParcel(Parcel in) {
+                        return new SavedState(in);
+                    }
+                    public SavedState[] newArray(int size) {
+                        return new SavedState[size];
+                    }
+                };
+    }
 
 }

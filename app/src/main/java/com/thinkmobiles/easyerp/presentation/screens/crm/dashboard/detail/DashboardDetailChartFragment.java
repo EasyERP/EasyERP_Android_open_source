@@ -68,10 +68,6 @@ public class DashboardDetailChartFragment extends BaseFragment<HomeActivity> imp
     @Pref
     protected AppDefaultStatesPreferences_ appDefaultStatesPreferences;
 
-    @Override
-    protected boolean needProgress() {
-        return true;
-    }
 
     @AfterInject
     @Override
@@ -81,22 +77,28 @@ public class DashboardDetailChartFragment extends BaseFragment<HomeActivity> imp
 
     @AfterViews
     protected void initUI() {
-        presenter.subscribe();
-
         swipeContainer.setColorSchemeColors(colorPrimary, colorPrimaryDark);
         swipeContainer.setOnRefreshListener(() -> loadChartInfo(false));
         errorViewHelper.init(errorLayout, view -> loadChartInfo(true));
 
-        loadChartInfo(true);
+        presenter.subscribe();
     }
 
     private void loadChartInfo(boolean withProgress) {
+        changeProgressVisibilityState(withProgress);
+        presenter.loadChartInfo();
+    }
+
+    @Override
+    public void changeProgressVisibilityState(final boolean isShow) {
         errorViewHelper.hideError();
-        if (withProgress) {
+        if (isShow) {
             containerChart.setVisibility(View.INVISIBLE);
             displayProgress(true);
+        } else {
+            displayProgress(false);
+            containerChart.setVisibility(View.VISIBLE);
         }
-        presenter.loadChartInfo();
     }
 
     @Override
@@ -112,8 +114,7 @@ public class DashboardDetailChartFragment extends BaseFragment<HomeActivity> imp
     @Override
     public void displayChart(Object data, DashboardChartType chartType) {
         swipeContainer.setRefreshing(false);
-        displayProgress(false);
-        containerChart.setVisibility(View.VISIBLE);
+        changeProgressVisibilityState(false);
 
         IChartView chartView = ChartViewFabric.implementByChartType(chartType);
         if (chartView != null)

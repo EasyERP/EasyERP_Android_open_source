@@ -3,7 +3,7 @@ package com.thinkmobiles.easyerp.data.model.crm.companies;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.thinkmobiles.easyerp.data.model.crm.persons.images.ResponseGetCustomersImages;
+import com.thinkmobiles.easyerp.data.model.crm.common.images.ResponseGetCustomersImages;
 
 /**
  * Created by Lynx on 2/2/2017.

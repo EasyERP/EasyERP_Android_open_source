@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <include layout="@layout/view_include_split_toolbar" />
+    <include layout="@layout/view_include_master_flow_toolbar" />
 
     <com.thinkmobiles.easyerp.presentation.custom.views.drawer_menu.MenuDrawerContainer_
         android:id="@+id/mdvMenuContainer_AH"

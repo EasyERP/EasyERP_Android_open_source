@@ -14,7 +14,6 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:animateLayoutChanges="true"
             android:orientation="vertical">
 
             <android.support.v4.widget.NestedScrollView
@@ -733,7 +732,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Attachments"
+                            android:text="@string/attachments"
                             android:textColor="#757575"
                             android:textSize="16sp"
                             android:textStyle="bold"/>
@@ -751,7 +750,7 @@
                                 android:layout_marginTop="@dimen/default_padding_half"
                                 android:alpha="0.83"
                                 android:drawablePadding="@dimen/default_padding_half"
-                                android:text="No attachments"/>
+                                android:text="@string/no_attachments"/>
 
                         </LinearLayout>
 
@@ -762,40 +761,7 @@
 
             </android.support.v4.widget.NestedScrollView>
 
-            <RelativeLayout
-                android:id="@+id/btnHistory_FPD"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#eeeeee"
-                android:elevation="3dp"
-                android:padding="@dimen/default_padding">
-
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:text="History"
-                    android:textColor="#757575"
-                    android:textSize="16sp"
-                    android:textStyle="bold"/>
-
-                <ImageView
-                    android:id="@+id/ivIconArrow_FPD"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_alignParentEnd="true"
-                    android:tint="@android:color/black"
-                    app:srcCompat="@drawable/ic_arrow_up"/>
-
-            </RelativeLayout>
-
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/rvHistory_FPD"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@android:color/white"
-                android:visibility="gone"/>
+            <include layout="@layout/view_bottom_history"/>
 
         </LinearLayout>
 

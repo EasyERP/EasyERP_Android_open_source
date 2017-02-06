@@ -1,9 +1,13 @@
 package com.thinkmobiles.easyerp.presentation.screens.crm.persons.details;
 
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.support.v4.view.animation.FastOutSlowInInterpolator;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -11,8 +15,10 @@ import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -28,6 +34,7 @@ import com.thinkmobiles.easyerp.presentation.base.BaseFragment;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.HistoryDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.OpportunityPreviewDH;
+import com.thinkmobiles.easyerp.presentation.managers.HistoryAnimationHelper;
 import com.thinkmobiles.easyerp.presentation.managers.ImageHelper;
 import com.thinkmobiles.easyerp.presentation.screens.home.HomeActivity;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
@@ -161,11 +168,11 @@ public class PersonDetailsFragment extends BaseFragment<HomeActivity> implements
     @ViewById
     protected TextView tvAttachments_FPD;
     @ViewById
-    protected RelativeLayout btnHistory_FPD;
+    protected FrameLayout btnHistory;
     @ViewById
-    protected ImageView ivIconArrow_FPD;
+    protected ImageView ivIconArrow;
     @ViewById
-    protected RecyclerView rvHistory_FPD;
+    protected RecyclerView rvHistory;
     //endregion
 
     @DrawableRes(R.drawable.ic_arrow_up)
@@ -181,27 +188,33 @@ public class PersonDetailsFragment extends BaseFragment<HomeActivity> implements
     protected OpportunityPreviewAdapter opportunityPreviewAdapter;
     @Bean
     protected ErrorViewHelper errorViewHelper;
+    @Bean
+    protected HistoryAnimationHelper animationHelper;
 
     @AfterViews
     protected void initUI() {
         errorViewHelper.init(errorLayout, v -> presenter.refresh());
 
         srlRefresh_FPD.setOnRefreshListener(() -> presenter.refresh());
-        rvHistory_FPD.setLayoutManager(new LinearLayoutManager(getActivity()));
-        rvHistory_FPD.setAdapter(historyAdapter);
+        rvHistory.setLayoutManager(new LinearLayoutManager(getActivity()));
+        rvHistory.setAdapter(historyAdapter);
         rvOpportunities_FPD.setLayoutManager(new LinearLayoutManager(getActivity()));
         rvOpportunities_FPD.setAdapter(opportunityPreviewAdapter);
 
-        RxView.clicks(btnHistory_FPD)
+        RxView.clicks(btnHistory)
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
                 .subscribe(aVoid -> presenter.changeNotesVisibility());
+
+        animationHelper.init(ivIconArrow, rvHistory);
 
         presenter.subscribe();
     }
 
     @Override
-    protected boolean needProgress() {
-        return true;
+    public void onDestroyView() {
+        animationHelper.cancel();
+        presenter.unsubscribe();
+        super.onDestroyView();
     }
 
     @Override
@@ -360,7 +373,7 @@ public class PersonDetailsFragment extends BaseFragment<HomeActivity> implements
 
     @Override
     public void displayError(String msg) {
-        if(msg == null) errorViewHelper.hideError();
+        if (msg == null) errorViewHelper.hideError();
         else {
             srlRefresh_FPD.setRefreshing(false);
             displayProgress(false);
@@ -501,16 +514,12 @@ public class PersonDetailsFragment extends BaseFragment<HomeActivity> implements
     }
 
     @Override
-    public void showHistory(boolean isShow) {
-        if (isShow) {
-            rvHistory_FPD.setVisibility(View.VISIBLE);
-            nsvContent_FPD.setVisibility(View.GONE);
-            ivIconArrow_FPD.setImageDrawable(icArrowDown);
-        } else {
-            nsvContent_FPD.setVisibility(View.VISIBLE);
-            rvHistory_FPD.setVisibility(View.GONE);
-            ivIconArrow_FPD.setImageDrawable(icArrowUp);
+    public void showHistory(boolean enable) {
+        if (enable && rvHistory.getVisibility() == View.GONE) {
+            animationHelper.forward(nsvContent_FPD.getHeight());
         }
+        if (!enable && rvHistory.getVisibility() == View.VISIBLE)
+            animationHelper.backward(rvHistory.getHeight());
     }
 
     @Override

@@ -23,6 +23,12 @@ public class BadCookieInterceptor implements Interceptor {
         this.cookieManager = cookieManager;
     }
 
+    public BadCookieInterceptor() {
+    }
+
+    public void setCookieManager(CookieManager cookieManager) {
+        this.cookieManager = cookieManager;
+    }
     @Override
     public Response intercept(Chain chain) throws IOException {
         Response originalResponse = chain.proceed(chain.request());

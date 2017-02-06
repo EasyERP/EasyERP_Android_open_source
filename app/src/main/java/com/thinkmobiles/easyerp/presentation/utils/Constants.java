@@ -15,6 +15,7 @@ public abstract class Constants {
 
     //User
     public static final String GET_CURRENT_USER             = "users/current";
+    public static final String GET_ORGANIZATION_SETTINGS    = "organizationSettings";
     //End User
 
     //------------------------------------------------------ CRM
@@ -40,7 +41,8 @@ public abstract class Constants {
 
     //Companies
     public static final String GET_COMPANIES_ALPHABET       = "customers/getCompaniesAlphabet";
-    public static final String GET_COMPANAIES               = "companies";
+    public static final String GET_COMPANIES                = "companies";
+    public static final String GET_COMPANY_DETAILS          = "companies/{companyID}";
     //End Companies
 
     //Invoice

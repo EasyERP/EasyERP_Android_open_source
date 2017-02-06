@@ -4,7 +4,7 @@ import com.thinkmobiles.easyerp.data.api.Rest;
 import com.thinkmobiles.easyerp.data.model.crm.persons.ResponseGetPersons;
 import com.thinkmobiles.easyerp.data.model.crm.common.alphabet.ResponseGetAlphabet;
 import com.thinkmobiles.easyerp.data.model.crm.persons.details.ResponseGetPersonDetails;
-import com.thinkmobiles.easyerp.data.model.crm.persons.images.ResponseGetCustomersImages;
+import com.thinkmobiles.easyerp.data.model.crm.common.images.ResponseGetCustomersImages;
 import com.thinkmobiles.easyerp.data.services.CustomerService;
 import com.thinkmobiles.easyerp.data.services.PersonsService;
 import com.thinkmobiles.easyerp.presentation.screens.crm.persons.PersonsContract;

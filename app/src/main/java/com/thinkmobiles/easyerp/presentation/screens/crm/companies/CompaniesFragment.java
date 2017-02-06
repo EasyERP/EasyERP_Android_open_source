@@ -10,11 +10,12 @@ import com.thinkmobiles.easyerp.data.model.crm.common.alphabet.AlphabetItem;
 import com.thinkmobiles.easyerp.domain.crm.CompaniesRepository;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.CompaniesAdapter;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
-import com.thinkmobiles.easyerp.presentation.base.rules.SimpleListWithRefreshFragment;
+import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowListFragment;
 import com.thinkmobiles.easyerp.presentation.custom.views.alphabet_view.AlphabetListAdapter;
 import com.thinkmobiles.easyerp.presentation.custom.views.alphabet_view.AlphabetView;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.CompanyDH;
 import com.thinkmobiles.easyerp.presentation.listeners.EndlessRecyclerViewScrollListener;
+import com.thinkmobiles.easyerp.presentation.screens.crm.companies.details.CompanyDetailsFragment_;
 
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterViews;
@@ -30,7 +31,7 @@ import java.util.ArrayList;
  */
 
 @EFragment(R.layout.fragment_companies)
-public class CompaniesFragment extends SimpleListWithRefreshFragment implements CompaniesContract.CompaniesView {
+public class CompaniesFragment extends MasterFlowListFragment implements CompaniesContract.CompaniesView {
 
     private CompaniesContract.CompaniesPresenter presenter;
     private EndlessRecyclerViewScrollListener scrollListener;
@@ -93,10 +94,6 @@ public class CompaniesFragment extends SimpleListWithRefreshFragment implements 
         presenter.subscribe();
     }
 
-    @Override
-    protected boolean needProgress() {
-        return true;
-    }
 
     @Override
     public void displayEnabledLetters(ArrayList<AlphabetItem> enabledAlphabetItems) {
@@ -133,7 +130,13 @@ public class CompaniesFragment extends SimpleListWithRefreshFragment implements 
 
     @Override
     public void openCompanyDetailsScreen(String companyID) {
-        Toast.makeText(getActivity(), "Start company details ID = " + companyID, Toast.LENGTH_SHORT).show();
+        if (companyID != null) {
+            mActivity.replaceFragmentContentDetail(CompanyDetailsFragment_.builder()
+                    .companyID(companyID)
+                    .build());
+        } else {
+            mActivity.replaceFragmentContentDetail(null);
+        }
     }
 
     @Override

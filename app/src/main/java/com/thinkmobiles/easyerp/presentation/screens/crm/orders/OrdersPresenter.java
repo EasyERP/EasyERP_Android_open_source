@@ -37,7 +37,8 @@ public class OrdersPresenter extends MasterFlowSelectablePresenterHelper<String,
 
     @Override
     public void unsubscribe() {
-        if (compositeSubscription.hasSubscriptions()) compositeSubscription.clear();
+        if (compositeSubscription.hasSubscriptions())
+            compositeSubscription.clear();
     }
 
     @Override
@@ -52,14 +53,9 @@ public class OrdersPresenter extends MasterFlowSelectablePresenterHelper<String,
     }
 
     @Override
-    public boolean selectItem(OrderDH dh, int position) {
-        final int oldPosition = getSelectedItemPosition();
-        boolean isSelected = super.selectItem(dh, position);
-        if (isSelected) {
-            view.changeSelectedItem(oldPosition, position);
+    public void selectItem(OrderDH dh, int position) {
+        if (super.selectItem(dh, position, view))
             view.openOrderDetailsScreen(dh.getId());
-        }
-        return isSelected;
     }
 
     private ArrayList<OrderDH> prepareOrderDHs(final List<Order> orders) {

@@ -1,7 +1,10 @@
 package com.thinkmobiles.easyerp.presentation.screens.crm.opportunities.details;
 
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 import android.graphics.drawable.Drawable;
-import android.support.v4.content.ContextCompat;
+import android.support.v4.view.animation.FastOutSlowInInterpolator;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -10,7 +13,9 @@ import android.text.Html;
 import android.text.SpannableStringBuilder;
 import android.text.method.LinkMovementMethod;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -25,6 +30,7 @@ import com.thinkmobiles.easyerp.presentation.base.BaseFragment;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.custom.transformations.CropCircleTransformation;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.HistoryDH;
+import com.thinkmobiles.easyerp.presentation.managers.HistoryAnimationHelper;
 import com.thinkmobiles.easyerp.presentation.managers.ImageHelper;
 import com.thinkmobiles.easyerp.presentation.screens.home.HomeActivity;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
@@ -36,6 +42,7 @@ import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.FragmentArg;
 import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.res.DrawableRes;
+import org.androidannotations.annotations.res.IntegerRes;
 
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
@@ -110,13 +117,11 @@ public class OpportunityDetailsFragment extends BaseFragment<HomeActivity> imple
     protected TextView tvAttachments_FLD;
 
     @ViewById
-    protected RelativeLayout btnHistory_FOD;
+    protected FrameLayout btnHistory;
     @ViewById
-    protected ImageView ivIconArrow_FOD;
+    protected ImageView ivIconArrow;
     @ViewById
-    protected View viewHistoryDivider_FOD;
-    @ViewById
-    protected RecyclerView rvHistory_FOD;
+    protected RecyclerView rvHistory;
     //endregion
 
     @Bean
@@ -125,6 +130,8 @@ public class OpportunityDetailsFragment extends BaseFragment<HomeActivity> imple
     protected HistoryAdapter historyAdapter;
     @Bean
     protected OpportunitiesRepository opportunitiesRepository;
+    @Bean
+    protected HistoryAnimationHelper animationHelper;
 
     @DrawableRes(R.drawable.ic_arrow_up)
     protected Drawable icArrowUp;
@@ -142,20 +149,17 @@ public class OpportunityDetailsFragment extends BaseFragment<HomeActivity> imple
         errorViewHelper.init(errorLayout, v -> presenter.refresh());
 
         srlRefresh_FOD.setOnRefreshListener(() -> presenter.refresh());
-        rvHistory_FOD.setLayoutManager(new LinearLayoutManager(getActivity()));
-        rvHistory_FOD.setAdapter(historyAdapter);
+        rvHistory.setLayoutManager(new LinearLayoutManager(getActivity()));
+        rvHistory.setAdapter(historyAdapter);
         tvAttachments_FLD.setMovementMethod(LinkMovementMethod.getInstance());
 
-        RxView.clicks(btnHistory_FOD)
+        RxView.clicks(btnHistory)
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
                 .subscribe(aVoid -> presenter.changeNotesVisibility());
 
-        presenter.subscribe();
-    }
+        animationHelper.init(ivIconArrow, rvHistory);
 
-    @Override
-    protected boolean needProgress() {
-        return true;
+        presenter.subscribe();
     }
 
     @Override
@@ -173,19 +177,11 @@ public class OpportunityDetailsFragment extends BaseFragment<HomeActivity> imple
 
     @Override
     public void showHistory(boolean enable) {
-        if(enable) {
-            btnHistory_FOD.setBackgroundColor(ContextCompat.getColor(getActivity(), (android.R.color.white)));
-            nsvContent_FOD.setVisibility(View.GONE);
-            rvHistory_FOD.setVisibility(View.VISIBLE);
-            viewHistoryDivider_FOD.setVisibility(View.VISIBLE);
-            ivIconArrow_FOD.setImageDrawable(icArrowDown);
-        } else {
-            btnHistory_FOD.setBackgroundColor(ContextCompat.getColor(getActivity(), (R.color.color_grey_transparent)));
-            rvHistory_FOD.setVisibility(View.GONE);
-            nsvContent_FOD.setVisibility(View.VISIBLE);
-            viewHistoryDivider_FOD.setVisibility(View.GONE);
-            ivIconArrow_FOD.setImageDrawable(icArrowUp);
+        if (enable && rvHistory.getVisibility() == View.GONE) {
+            animationHelper.forward(nsvContent_FOD.getHeight());
         }
+        if (!enable && rvHistory.getVisibility() == View.VISIBLE)
+            animationHelper.backward(rvHistory.getHeight());
     }
 
     @Override
@@ -333,7 +329,8 @@ public class OpportunityDetailsFragment extends BaseFragment<HomeActivity> imple
 
     @Override
     public void onDestroyView() {
+        animationHelper.cancel();
+        presenter.unsubscribe();
         super.onDestroyView();
-        if(presenter != null) presenter.unsubscribe();
     }
 }
