@@ -87,6 +87,16 @@
         <item name="android:fontFamily">sans-serif-condensed</item>
         <item name="android:textStyle">normal</item>
     </style>
+    <style name="TextHeaderTableProductStyle" parent="RobotoBold">
+        <item name="android:textSize">@dimen/text_size_table_12</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:padding">@dimen/default_padding_quart</item>
+    </style>
+    <style name="TextTableProductStyle" parent="RobotoBold">
+        <item name="android:textSize">@dimen/text_size_table_12</item>
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:padding">@dimen/default_padding_quart</item>
+    </style>
 
 
     <style name="AppTheme.FilterDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">

@@ -12,6 +12,8 @@ import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowListFragment;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.InvoiceDH;
 import com.thinkmobiles.easyerp.presentation.listeners.EndlessRecyclerViewScrollListener;
+import com.thinkmobiles.easyerp.presentation.screens.crm.invoices.details.InvoiceDetailsFragment;
+import com.thinkmobiles.easyerp.presentation.screens.crm.invoices.details.InvoiceDetailsFragment_;
 
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterViews;
@@ -126,9 +128,11 @@ public class InvoicesFragment extends MasterFlowListFragment implements Invoices
     }
 
     @Override
-    public void openInvoiceDetailsScreen(String orderID) {
-        if (orderID != null) {
-            //TODO open invoice detail
+    public void openInvoiceDetailsScreen(String invoiceID) {
+        if (invoiceID != null) {
+            mActivity.replaceFragmentContentDetail(InvoiceDetailsFragment_.builder()
+                    .invoiceId(invoiceID)
+                    .build());
         } else {
             mActivity.replaceFragmentContentDetail(null);
         }

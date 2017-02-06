@@ -9,15 +9,21 @@ import com.thinkmobiles.easyerp.data.model.crm.order.detail.OrderProduct;
  *         Email: alex.michenko@thinkmobiles.com
  */
 
-public final class OrderProductDH extends RecyclerDH {
+public final class ProductDH extends RecyclerDH {
 
     private final OrderProduct model;
+    private final String symbol;
 
-    public OrderProductDH(OrderProduct model) {
+    public ProductDH(OrderProduct model, String symbol) {
         this.model = model;
+        this.symbol = symbol;
     }
 
     public OrderProduct getModel() {
         return model;
+    }
+
+    public String getSymbol() {
+        return symbol;
     }
 }

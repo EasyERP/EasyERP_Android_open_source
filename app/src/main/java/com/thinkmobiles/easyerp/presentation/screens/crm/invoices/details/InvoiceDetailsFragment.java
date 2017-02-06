@@ -1,4 +1,4 @@
-package com.thinkmobiles.easyerp.presentation.screens.crm.orders.details;
+package com.thinkmobiles.easyerp.presentation.screens.crm.invoices.details;
 
 import android.graphics.drawable.Drawable;
 import android.support.v4.widget.NestedScrollView;
@@ -15,7 +15,7 @@ import android.widget.Toast;
 
 import com.jakewharton.rxbinding.view.RxView;
 import com.thinkmobiles.easyerp.R;
-import com.thinkmobiles.easyerp.domain.crm.OrderRepository;
+import com.thinkmobiles.easyerp.domain.crm.InvoiceRepository;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.HistoryAdapter;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.ProductAdapter;
 import com.thinkmobiles.easyerp.presentation.base.BaseFragment;
@@ -38,69 +38,63 @@ import org.androidannotations.annotations.res.DrawableRes;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * @author Alex Michenko (Created on 06.02.17).
+ *         Company: Thinkmobiles
+ *         Email: alex.michenko@thinkmobiles.com
+ */
 
-@EFragment(R.layout.fragment_order_details)
-public class OrderDetailsFragment extends BaseFragment<HomeActivity> implements OrderDetailsContract.OrderDetailsView {
+@EFragment(R.layout.fragment_invoice_details)
+public class InvoiceDetailsFragment extends BaseFragment<HomeActivity> implements InvoiceDetailsContract.InvoiceDetailsView {
+
 
     @FragmentArg
-    protected String orderId;
+    protected String invoiceId;
 
     @ViewById
-    protected SwipeRefreshLayout srlRefresh_FOD;
+    protected SwipeRefreshLayout srlRefresh_FID;
     @ViewById
-    protected NestedScrollView nsvContent_FOD;
+    protected NestedScrollView nsvContent_FID;
     @ViewById
-    protected TextView tvOrderStatus_FOD;
+    protected TextView tvInvoiceStatus_FID;
     @ViewById
-    protected TextView tvCompanyName_FOD;
+    protected TextView tvCompanyName_FID;
     @ViewById
-    protected TextView tvCompanyAddress_FOD;
+    protected TextView tvCompanyAddress_FID;
     @ViewById
-    protected TextView tvOrderName_FOD;
+    protected TextView tvInvoiceName_FID;
     @ViewById
-    protected TextView tvSupplierName_FOD;
+    protected TextView tvBalanceHead_FID;
     @ViewById
-    protected TextView tvSupplierAddress_FOD;
+    protected TextView tvSupplierName_FID;
     @ViewById
-    protected TextView tvExpectedDate_FOD;
+    protected TextView tvInvoiceDate_FID;
     @ViewById
-    protected TextView tvOrderDate_FOD;
+    protected TextView tvDueDateTitle_FID;
     @ViewById
-    protected RecyclerView rvProductList_FOD;
+    protected TextView tvDueDate_FID;
     @ViewById
-    protected TextView tvSubTotal_FOD;
+    protected TextView tvOrderNumber_FID;
     @ViewById
-    protected TextView tvDiscount_FOD;
+    protected RecyclerView rvProductList_FID;
     @ViewById
-    protected TextView tvDiscountTitle_FOD;
+    protected TextView tvSubTotal_FID;
     @ViewById
-    protected TextView tvTaxes_FOD;
+    protected TextView tvDiscount_FID;
     @ViewById
-    protected TextView tvTotal_FOD;
+    protected TextView tvDiscountTitle_FID;
     @ViewById
-    protected TextView tvPrepaid_FOD;
+    protected TextView tvTaxes_FID;
     @ViewById
-    protected TextView tvPrepaidTitle_FOD;
+    protected TextView tvTotal_FID;
     @ViewById
-    protected TextView tvNameBeneficiary_FOD;
+    protected TextView tvPaymentMade_FID;
     @ViewById
-    protected TextView tvBank_FOD;
+    protected TextView tvPaymentMadeTitle_FID;
     @ViewById
-    protected TextView tvBankAddress_FOD;
+    protected TextView tvBalanceDue_FID;
     @ViewById
-    protected TextView tvBankIBAN_FOD;
-    @ViewById
-    protected TextView tvSwiftCode_FOD;
-    @ViewById
-    protected TextView tvOwnerName_FOD;
-    @ViewById
-    protected TextView tvOwnerSite_FOD;
-    @ViewById
-    protected TextView tvOwnerEmail_FOD;
-    @ViewById
-    protected TextView tvAdvice_FOD;
-    @ViewById
-    protected TextView tvAttachments_FOD;
+    protected TextView tvAttachments_FID;
     @ViewById
     protected FrameLayout btnHistory;
     @ViewById
@@ -116,7 +110,7 @@ public class OrderDetailsFragment extends BaseFragment<HomeActivity> implements 
     protected Drawable icArrowDown;
 
     @Bean
-    protected OrderRepository orderRepository;
+    protected InvoiceRepository invoiceRepository;
     @Bean
     protected HistoryAdapter historyAdapter;
     @Bean
@@ -126,12 +120,12 @@ public class OrderDetailsFragment extends BaseFragment<HomeActivity> implements 
     @Bean
     protected HistoryAnimationHelper animationHelper;
 
-    private OrderDetailsContract.OrderDetailsPresenter presenter;
+    private InvoiceDetailsContract.InvoiceDetailsPresenter presenter;
 
     @AfterInject
     @Override
     public void initPresenter() {
-        new OrderDetailsPresenter(this, orderRepository, orderId);
+        new InvoiceDetailsPresenter(this, invoiceRepository, invoiceId);
     }
 
     @AfterViews
@@ -141,19 +135,24 @@ public class OrderDetailsFragment extends BaseFragment<HomeActivity> implements 
         rvHistory.setAdapter(historyAdapter);
         rvHistory.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        rvProductList_FOD.setAdapter(productAdapter);
-        rvProductList_FOD.setLayoutManager(new LinearLayoutManager(getActivity()));
+        rvProductList_FID.setAdapter(productAdapter);
+        rvProductList_FID.setLayoutManager(new LinearLayoutManager(getActivity()));
 
 
         RxView.clicks(btnHistory)
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
                 .subscribe(aVoid -> presenter.changeNotesVisibility());
 
-        srlRefresh_FOD.setOnRefreshListener(() -> presenter.refresh());
+        srlRefresh_FID.setOnRefreshListener(() -> presenter.refresh());
 
         animationHelper.init(ivIconArrow, rvHistory);
 
         presenter.subscribe();
+    }
+
+    @Override
+    public void setPresenter(InvoiceDetailsContract.InvoiceDetailsPresenter presenter) {
+        this.presenter = presenter;
     }
 
     @Override
@@ -163,155 +162,114 @@ public class OrderDetailsFragment extends BaseFragment<HomeActivity> implements 
         super.onDestroyView();
     }
 
-    public void setPresenter(OrderDetailsContract.OrderDetailsPresenter presenter) {
-        this.presenter = presenter;
-    }
-
     @Override
     public void showProgress(boolean enable) {
         if (enable) {
             errorViewHelper.hideError();
             displayProgress(true);
-            srlRefresh_FOD.setVisibility(View.GONE);
-            srlRefresh_FOD.setRefreshing(false);
+            srlRefresh_FID.setVisibility(View.GONE);
+            srlRefresh_FID.setRefreshing(false);
         } else {
             displayProgress(false);
-            srlRefresh_FOD.setVisibility(View.VISIBLE);
-            srlRefresh_FOD.setRefreshing(false);
+            srlRefresh_FID.setVisibility(View.VISIBLE);
+            srlRefresh_FID.setRefreshing(false);
         }
     }
 
     @Override
     public void showHistory(boolean enable) {
         if (enable && rvHistory.getVisibility() == View.GONE) {
-            animationHelper.forward(nsvContent_FOD.getHeight());
+            animationHelper.forward(nsvContent_FID.getHeight());
         }
         if (!enable && rvHistory.getVisibility() == View.VISIBLE)
             animationHelper.backward(rvHistory.getHeight());
     }
 
     @Override
-    public void setOrderStatusName(String orderStatus) {
-        tvOrderStatus_FOD.setText(orderStatus);
+    public void setInvoiceStatusName(String orderStatus) {
+        tvInvoiceStatus_FID.setText(orderStatus);
     }
 
     @Override
-    public void setOrderStatus(String orderStatus) {
-        tvOrderStatus_FOD.setBackgroundResource(TagHelper.getColorResIdByName(orderStatus));
+    public void setInvoiceStatus(String orderStatus) {
+        tvInvoiceStatus_FID.setBackgroundResource(TagHelper.getColorResIdByName(orderStatus));
     }
 
     @Override
     public void setCompanyName(String companyName) {
-        tvCompanyName_FOD.setText(companyName);
+        tvCompanyName_FID.setText(companyName);
     }
 
     @Override
     public void setCompanyAddress(String companyAddress) {
-        tvCompanyAddress_FOD.setText(companyAddress);
+        tvCompanyAddress_FID.setText(companyAddress);
     }
 
     @Override
-    public void setOrderName(String orderName) {
-        tvOrderName_FOD.setText(orderName);
+    public void setInvoiceName(String orderName) {
+        tvInvoiceName_FID.setText(orderName);
     }
 
     @Override
     public void setSupplierName(String supplierName) {
-        tvSupplierName_FOD.setText(supplierName);
+        tvSupplierName_FID.setText(supplierName);
     }
 
     @Override
-    public void setSupplierAddress(String supplierAddress) {
-        tvSupplierAddress_FOD.setText(supplierAddress);
+    public void setInvoiceDate(String orderDate) {
+        tvInvoiceDate_FID.setText(orderDate);
     }
 
     @Override
-    public void setExpectedDate(String expectedDate) {
-        tvExpectedDate_FOD.setText(expectedDate);
+    public void setDueDate(String dueDate) {
+        tvDueDate_FID.setVisibility(View.VISIBLE);
+        tvDueDateTitle_FID.setVisibility(View.VISIBLE);
+        tvDueDate_FID.setText(dueDate);
     }
 
     @Override
-    public void setOrderDate(String orderDate) {
-        tvOrderDate_FOD.setText(orderDate);
+    public void setOrderNumber(String orderNumber) {
+        tvOrderNumber_FID.setText(orderNumber);
     }
 
     @Override
     public void setSubTotal(String subTotal) {
-        tvSubTotal_FOD.setText(subTotal);
+        tvSubTotal_FID.setText(subTotal);
     }
 
     @Override
     public void setDiscount(String discount) {
-        tvDiscountTitle_FOD.setVisibility(View.VISIBLE);
-        tvDiscount_FOD.setVisibility(View.VISIBLE);
-        tvDiscount_FOD.setText(discount);
+        tvDiscount_FID.setVisibility(View.VISIBLE);
+        tvDiscountTitle_FID.setVisibility(View.VISIBLE);
+        tvDiscount_FID.setText(discount);
     }
 
     @Override
     public void setTaxes(String taxes) {
-        tvTaxes_FOD.setText(taxes);
+        tvTaxes_FID.setText(taxes);
     }
 
     @Override
     public void setTotal(String total) {
-        tvTotal_FOD.setText(total);
+        tvTotal_FID.setText(total);
     }
 
     @Override
-    public void setPrepaid(String prepaid) {
-        tvPrepaidTitle_FOD.setVisibility(View.VISIBLE);
-        tvPrepaid_FOD.setVisibility(View.VISIBLE);
-        tvPrepaid_FOD.setText(prepaid);
+    public void setPaymentMade(String paymentMade) {
+        tvPaymentMade_FID.setVisibility(View.VISIBLE);
+        tvPaymentMadeTitle_FID.setVisibility(View.VISIBLE);
+        tvPaymentMade_FID.setText(paymentMade);
     }
 
     @Override
-    public void setNameBeneficiary(String nameBeneficiary) {
-        tvNameBeneficiary_FOD.setText(nameBeneficiary);
-    }
-
-    @Override
-    public void setBank(String bank) {
-        tvBank_FOD.setText(bank);
-    }
-
-    @Override
-    public void setBankAddress(String bankAddress) {
-        tvBankAddress_FOD.setText(bankAddress);
-    }
-
-    @Override
-    public void setBankIBAN(String bankIBAN) {
-        tvBankIBAN_FOD.setText(bankIBAN);
-    }
-
-    @Override
-    public void setSwiftCode(String swiftCode) {
-        tvSwiftCode_FOD.setText(swiftCode);
-    }
-
-    @Override
-    public void setOwnerName(String ownerName) {
-        tvOwnerName_FOD.setText(ownerName);
-    }
-
-    @Override
-    public void setOwnerSite(String ownerSite) {
-        tvOwnerSite_FOD.setText(ownerSite);
-    }
-
-    @Override
-    public void setOwnerEmail(String ownerEmail) {
-        tvOwnerEmail_FOD.setText(ownerEmail);
+    public void setBalanceDue(String balanceDue) {
+        tvBalanceDue_FID.setText(balanceDue);
+        tvBalanceHead_FID.setText(balanceDue);
     }
 
     @Override
     public void setAttachments(String attachments) {
-        tvAttachments_FOD.setText(Html.fromHtml(attachments));
-    }
-
-    @Override
-    public void setAdvice(String advice) {
-        tvAdvice_FOD.setText(advice);
+        tvAttachments_FID.setText(Html.fromHtml(attachments));
     }
 
     @Override
