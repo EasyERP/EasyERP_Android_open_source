@@ -1,0 +1,56 @@
+allprojects {
+    ext {
+        // App config
+        androidApplicationId = 'com.thinkmobiles.easyerp'
+        androidVersionCode = 1
+        androidVersionName = '1.0.0'
+
+        // Android config
+        androidBuildToolsVersion = '25.0.2'
+        androidMinSdkVersion = 19
+        androidTargetSdkVersion = 24
+        androidCompileSdkVersion = 25
+
+        // Library versions
+        androidSupportVersion = '25.0.1'
+        androidAnnotationVersion = '4.2.0'
+        recyclerAdaptersVersion = '0.2.6'
+        rxJavaVersion = '1.1.3'
+        rxBindingVersion = '0.4.0'
+        retrofitVersion = '2.1.0'
+        loggingInterceptorVersion = '3.4.1'
+        picassoVersion = '2.5.2'
+        mpAndroidChartVersion = 'v3.0.1'
+
+        // Development
+        stethoVersion = '1.4.2'
+
+        devDependencies = [
+                stetho:                     "com.facebook.stetho:stetho-okhttp3:${stethoVersion}"
+        ]
+
+        appDependencies = [
+                androidSupportDesign:       "com.android.support:design:${androidSupportVersion}",
+                androidSupportCardView:     "com.android.support:cardview-v7:${androidSupportVersion}",
+                androidAnnotations:         "org.androidannotations:androidannotations:${androidAnnotationVersion}",
+                androidAnnotationsApi:      "org.androidannotations:androidannotations-api:${androidAnnotationVersion}",
+                recyclerAdaptersMichenko:   "com.github.alex-michenko:recycleradapters:${recyclerAdaptersVersion}",
+                rxJava:                     "io.reactivex:rxjava:${rxJavaVersion}",
+                rxBinding:                  "com.jakewharton.rxbinding:rxbinding:${rxBindingVersion}",
+                retrofitGson:               "com.squareup.retrofit2:converter-gson:${retrofitVersion}",
+                retrofitAdapterRx:          "com.squareup.retrofit2:adapter-rxjava:${retrofitVersion}",
+                retrofitLogInterceptor:     "com.squareup.okhttp3:logging-interceptor:${loggingInterceptorVersion}",
+                picasso:                    "com.squareup.picasso:picasso:${picassoVersion}",
+                mpAndroidChart:             "com.github.PhilJay:MPAndroidChart:${mpAndroidChartVersion}"
+        ]
+    }
+
+    repositories {
+        maven { url "https://jitpack.io" }
+        jcenter()
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
