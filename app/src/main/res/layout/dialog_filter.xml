@@ -10,7 +10,7 @@
         android:background="@color/colorPrimaryDark"/>
 
     <EditText
-        style="@style/AppTheme.FilterDialog.SearchFieldStyle"
+        style="@style/DefaultTheme.FilterDialog.SearchFieldStyle"
         android:id="@+id/etSearch_DF"
         android:hint="@string/list_searchview_hint"
         android:imeOptions="flagNoExtractUi|actionDone"

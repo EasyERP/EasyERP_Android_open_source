@@ -1,7 +1,7 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
+    <style name="DefaultTheme" parent="Theme.AppCompat.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
@@ -10,28 +10,28 @@
 
         <item name="android:windowBackground">@color/colorPrimary</item>
 
-        <item name="android:textViewStyle">@style/AppTheme.DefaultBlackTextTheme</item>
-        <item name="editTextStyle">@style/AppTheme.DefaultBlackEditTextTheme</item>
+        <item name="android:textViewStyle">@style/DefaultTheme.DefaultBlackTextTheme</item>
+        <item name="editTextStyle">@style/DefaultTheme.DefaultBlackEditTextTheme</item>
 
         <item name="colorButtonNormal">@color/colorPrimary</item>
 
     </style>
 
-    <style name="AppTheme.ThemeHistory" parent="AppTheme">
-        <item name="android:colorControlHighlight">@color/color_ripple</item>
+    <style name="DefaultTheme.ThemeHistory" parent="DefaultTheme">
+        <item name="colorControlHighlight">@color/color_ripple</item>
     </style>
 
-    <style name="AppTheme.DefaultBlackTextTheme">
+    <style name="DefaultTheme.DefaultBlackTextTheme">
         <item name="android:textColor">@android:color/black</item>
     </style>
 
-    <style name="AppTheme.DefaultBlackEditTextTheme" parent="@style/Widget.AppCompat.EditText">
+    <style name="DefaultTheme.DefaultBlackEditTextTheme" parent="@style/Widget.AppCompat.EditText">
         <item name="android:textColor">@android:color/black</item>
         <item name="android:textColorHint">@color/text_grey_hint_color</item>
         <item name="backgroundTint">@color/colorPrimaryDark</item>
     </style>
 
-    <style name="AppTheme.InputFields">
+    <style name="DefaultTheme.InputFields">
         <item name="android:textColor">@color/colorPrimaryDark</item>
         <item name="android:textColorHint">@color/colorPrimary</item>
         <item name="colorControlNormal">@color/text_grey_hint_color</item>
@@ -40,10 +40,10 @@
     </style>
 
     <style name="TextInputLayoutStyle">
-        <item name="theme">@style/AppTheme.InputFields</item>
+        <item name="theme">@style/DefaultTheme.InputFields</item>
     </style>
 
-    <style name="AppTheme.LeadTextInputLayoutStyle" parent="TextInputLayoutStyle">
+    <style name="DefaultTheme.LeadTextInputLayoutStyle" parent="TextInputLayoutStyle">
         <item name="hintAnimationEnabled">false</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">0dp</item>
@@ -51,7 +51,7 @@
         <item name="android:textColorHint">@color/color_text_gray</item>
     </style>
 
-    <style name="AppTheme.LeadInputFieldStyle" parent="AppTheme.DefaultBlackEditTextTheme">
+    <style name="DefaultTheme.LeadInputFieldStyle" parent="DefaultTheme.DefaultBlackEditTextTheme">
         <item name="android:focusable">false</item>
         <item name="android:maxLines">1</item>
         <item name="android:lines">1</item>
@@ -89,13 +89,13 @@
     </style>
 
 
-    <style name="AppTheme.FilterDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
+    <style name="DefaultTheme.FilterDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
         <item name="colorAccent">@color/colorAccent</item>
         <item name="windowNoTitle">true</item>
-        <item name="editTextStyle">@style/AppTheme.FilterDialog.SearchFieldStyle</item>
+        <item name="editTextStyle">@style/DefaultTheme.FilterDialog.SearchFieldStyle</item>
     </style>
 
-    <style name="AppTheme.FilterDialog.SearchFieldStyle" parent="AppTheme.LeadInputFieldStyle">
+    <style name="DefaultTheme.FilterDialog.SearchFieldStyle" parent="DefaultTheme.LeadInputFieldStyle">
         <item name="android:focusable">true</item>
         <item name="android:textColor">@color/textColorPrimary</item>
         <item name="android:textColorHint">@color/textColorHint</item>
