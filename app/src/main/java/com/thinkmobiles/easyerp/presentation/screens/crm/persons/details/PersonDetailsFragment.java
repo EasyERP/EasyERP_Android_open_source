@@ -1,27 +1,22 @@
 package com.thinkmobiles.easyerp.presentation.screens.crm.persons.details;
 
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
-import android.animation.ValueAnimator;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import android.support.v4.view.animation.FastOutSlowInInterpolator;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,10 +24,13 @@ import com.jakewharton.rxbinding.view.RxView;
 import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.domain.crm.PersonsRepository;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.HistoryAdapter;
+import com.thinkmobiles.easyerp.presentation.adapters.crm.OpportunityAndLeadsAdapter;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.OpportunityPreviewAdapter;
 import com.thinkmobiles.easyerp.presentation.base.BaseFragment;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
+import com.thinkmobiles.easyerp.presentation.custom.transformations.CropCircleTransformation;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.HistoryDH;
+import com.thinkmobiles.easyerp.presentation.holders.data.crm.OpportunityAndLeadDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.OpportunityPreviewDH;
 import com.thinkmobiles.easyerp.presentation.managers.HistoryAnimationHelper;
 import com.thinkmobiles.easyerp.presentation.managers.ImageHelper;
@@ -70,15 +68,11 @@ public class PersonDetailsFragment extends BaseFragment<HomeActivity> implements
     @ViewById
     protected NestedScrollView nsvContent_FPD;
     @ViewById
-    protected TextView tvAboutName_FPD;
-    @ViewById
     protected ImageView ivPersonAvatar_FPD;
     @ViewById
-    protected EditText etFirstName_FPD;
+    protected TextView tvPersonName_FPD;
     @ViewById
-    protected EditText etLastName_FPD;
-    @ViewById
-    protected EditText etJobPosition_FPD;
+    protected TextView tvJobPosition_FPD;
     @ViewById
     protected EditText etEmail_FPD;
     @ViewById
@@ -142,9 +136,9 @@ public class PersonDetailsFragment extends BaseFragment<HomeActivity> implements
     @ViewById
     protected ImageView ivCompanyImage_FPD;
     @ViewById
-    protected TextView tvCompanyTitleName_FPD;
-    @ViewById
     protected TextView tvCompanyTitleUrl_FPD;
+    @ViewById
+    protected TextView tvCompanyName_FPD;
     @ViewById
     protected EditText etCompanyName_FPD;
     @ViewById
@@ -162,8 +156,6 @@ public class PersonDetailsFragment extends BaseFragment<HomeActivity> implements
     @ViewById
     protected EditText etCompanyEmail_FPD;
     @ViewById
-    protected RecyclerView rvOpportunities_FPD;
-    @ViewById
     protected LinearLayout llAttachmentsContainer_FPD;
     @ViewById
     protected TextView tvAttachments_FPD;
@@ -171,6 +163,8 @@ public class PersonDetailsFragment extends BaseFragment<HomeActivity> implements
     protected FrameLayout btnHistory;
     @ViewById
     protected ImageView ivIconArrow;
+    @ViewById
+    protected RecyclerView rvLeadsAndOpportunities_FPD;
     @ViewById
     protected RecyclerView rvHistory;
     //endregion
@@ -185,11 +179,11 @@ public class PersonDetailsFragment extends BaseFragment<HomeActivity> implements
     @Bean
     protected HistoryAdapter historyAdapter;
     @Bean
-    protected OpportunityPreviewAdapter opportunityPreviewAdapter;
-    @Bean
     protected ErrorViewHelper errorViewHelper;
     @Bean
     protected HistoryAnimationHelper animationHelper;
+    @Bean
+    protected OpportunityAndLeadsAdapter opportunityAndLeadsAdapter;
 
     @AfterViews
     protected void initUI() {
@@ -198,8 +192,9 @@ public class PersonDetailsFragment extends BaseFragment<HomeActivity> implements
         srlRefresh_FPD.setOnRefreshListener(() -> presenter.refresh());
         rvHistory.setLayoutManager(new LinearLayoutManager(getActivity()));
         rvHistory.setAdapter(historyAdapter);
-        rvOpportunities_FPD.setLayoutManager(new LinearLayoutManager(getActivity()));
-        rvOpportunities_FPD.setAdapter(opportunityPreviewAdapter);
+
+        rvLeadsAndOpportunities_FPD.setLayoutManager(new GridLayoutManager(getActivity(), 2));
+        rvLeadsAndOpportunities_FPD.setAdapter(opportunityAndLeadsAdapter);
 
         RxView.clicks(btnHistory)
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
@@ -219,23 +214,18 @@ public class PersonDetailsFragment extends BaseFragment<HomeActivity> implements
 
     @Override
     public void displayPersonAvatar(String base64Avatar) {
-        ImageHelper.getBitmapFromBase64(base64Avatar)
+        ImageHelper.getBitmapFromBase64(base64Avatar, new CropCircleTransformation())
                 .subscribe(ivPersonAvatar_FPD::setImageBitmap);
     }
 
     @Override
-    public void displayFirstName(String firstName) {
-        etFirstName_FPD.setText(firstName);
-    }
-
-    @Override
-    public void displayLastName(String lastName) {
-        etLastName_FPD.setText(lastName);
+    public void displayPersonName(String personName) {
+        tvPersonName_FPD.setText(personName);
     }
 
     @Override
     public void displayJobPosition(String jobPosition) {
-        etJobPosition_FPD.setText(jobPosition);
+        tvJobPosition_FPD.setText(jobPosition);
     }
 
     @Override
@@ -388,8 +378,13 @@ public class PersonDetailsFragment extends BaseFragment<HomeActivity> implements
     }
 
     @Override
-    public void displayPersonAboutName(String name) {
-        tvAboutName_FPD.setText(name);
+    public void showJobPosition(boolean isShown) {
+        tvJobPosition_FPD.setVisibility(isShown ? View.VISIBLE : View.GONE);
+    }
+
+    @Override
+    public void showCompany(boolean isShown) {
+        tvCompanyName_FPD.setVisibility(isShown ? View.VISIBLE : View.GONE);
     }
 
     @Override
@@ -439,11 +434,6 @@ public class PersonDetailsFragment extends BaseFragment<HomeActivity> implements
     }
 
     @Override
-    public void displayCompanyNameTitle(String companyName) {
-        tvCompanyTitleName_FPD.setText(companyName);
-    }
-
-    @Override
     public void displayCompanyUrl(String companyUrl) {
         tvCompanyTitleUrl_FPD.setMovementMethod(LinkMovementMethod.getInstance());
         tvCompanyTitleUrl_FPD.setText(Html.fromHtml(companyUrl));
@@ -451,6 +441,7 @@ public class PersonDetailsFragment extends BaseFragment<HomeActivity> implements
 
     @Override
     public void displayCompanyName(String companyName) {
+        tvCompanyName_FPD.setText(companyName);
         etCompanyName_FPD.setText(companyName);
     }
 
@@ -490,8 +481,8 @@ public class PersonDetailsFragment extends BaseFragment<HomeActivity> implements
     }
 
     @Override
-    public void displayOpportunities(ArrayList<OpportunityPreviewDH> opportunityPreviewDHs) {
-        opportunityPreviewAdapter.setListDH(opportunityPreviewDHs);
+    public void displayLeadAndOpportunity(ArrayList<OpportunityAndLeadDH> opportunityAndLeadDHs) {
+        opportunityAndLeadsAdapter.setListDH(opportunityAndLeadDHs);
     }
 
     @Override

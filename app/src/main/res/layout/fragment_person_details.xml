@@ -26,29 +26,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="15dp">
+                    android:paddingTop="@dimen/default_padding"
+                    android:paddingBottom="@dimen/default_padding">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="About "
-                            android:textColor="@color/colorPrimary"
-                            android:textSize="24sp"/>
-
-                        <TextView
-                            android:id="@+id/tvAboutName_FPD"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="@color/colorPrimary"
-                            android:textSize="24sp"
-                            tools:text="Basim"/>
-
-                    </LinearLayout>
+                        android:orientation="vertical"
+                        android:paddingStart="@dimen/default_padding"
+                        android:paddingEnd="@dimen/default_padding">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -57,58 +43,77 @@
 
                         <ImageView
                             android:id="@+id/ivPersonAvatar_FPD"
-                            android:layout_width="130dp"
-                            android:layout_height="130dp"
+                            android:layout_width="@dimen/image_large"
+                            android:layout_height="@dimen/image_large"
                             android:scaleType="centerCrop"/>
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="15dp"
+                            android:layout_marginStart="@dimen/default_padding"
                             android:gravity="center_vertical"
                             android:orientation="vertical">
 
+                            <TextView
+                                android:id="@+id/tvPersonName_FPD"
+                                style="@style/RobotoCondensedBold"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/color_text_black"
+                                android:textSize="@dimen/text_size_title_large"
+                                tools:text="Bradley	Douglas"/>
+
+                            <TextView
+                                android:id="@+id/tvJobPosition_FPD"
+                                style="@style/RobotoCondensedRegular"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/default_padding_small"
+                                android:textColor="@color/color_text_black"
+                                android:textSize="@dimen/text_size_big_24"
+                                tools:text="Program Leader"/>
+
+                            <TextView
+                                android:id="@+id/tvCompanyName_FPD"
+                                style="@style/RobotoCondensedRegular"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/default_padding_quart"
+                                android:textColor="@color/color_text_black"
+                                android:textSize="@dimen/text_size_big_24"
+                                tools:text="PricewaterhouseCoopers Corp."/>
+
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:orientation="horizontal">
 
-                                <android.support.design.widget.TextInputLayout
-                                    style="@style/AppTheme.LeadTextInputLayoutStyle">
-
-                                    <EditText
-                                        android:id="@+id/etFirstName_FPD"
-                                        style="@style/AppTheme.LeadInputFieldStyle"
-                                        android:hint="First Name"/>
-
-                                </android.support.design.widget.TextInputLayout>
-
-                                <View
-                                    android:layout_width="0dp"
+                                <ImageView
+                                    android:id="@+id/ivFacebook_FPD"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_weight="1"/>
+                                    android:padding="@dimen/default_padding_half"
+                                    android:visibility="gone"
+                                    app:srcCompat="@drawable/icon_fb"
+                                    tools:visibility="visible"/>
 
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal">
-
-                                <android.support.design.widget.TextInputLayout
-                                    style="@style/AppTheme.LeadTextInputLayoutStyle">
-
-                                    <EditText
-                                        android:id="@+id/etLastName_FPD"
-                                        style="@style/AppTheme.LeadInputFieldStyle"
-                                        android:hint="Last Name"/>
-
-                                </android.support.design.widget.TextInputLayout>
-
-                                <View
-                                    android:layout_width="0dp"
+                                <ImageView
+                                    android:id="@+id/ivLinkedIn_FPD"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_weight="1"/>
+                                    android:padding="@dimen/default_padding_half"
+                                    android:visibility="gone"
+                                    app:srcCompat="@drawable/icon_linkedin"
+                                    tools:visibility="visible"/>
+
+                                <ImageView
+                                    android:id="@+id/ivSkype_FPD"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:padding="@dimen/default_padding_half"
+                                    android:visibility="gone"
+                                    app:srcCompat="@drawable/icon_skype"
+                                    tools:visibility="visible"/>
 
                             </LinearLayout>
 
@@ -116,56 +121,39 @@
 
                     </LinearLayout>
 
+                    <TextView
+                        style="@style/RobotoCondensedBold"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/default_padding_big"
+                        android:text="@string/general_information"
+                        android:textSize="@dimen/text_list_item_medium_16"/>
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:layout_marginTop="20dp">
+                        android:layout_marginTop="20dp"
+                        android:orientation="horizontal">
 
                         <android.support.design.widget.TextInputLayout
-                            style="@style/AppTheme.LeadTextInputLayoutStyle">
-
-                            <EditText
-                                android:id="@+id/etJobPosition_FPD"
-                                style="@style/AppTheme.LeadInputFieldStyle"
-                                android:hint="Job position"/>
-
-                        </android.support.design.widget.TextInputLayout>
-
-                        <android.support.design.widget.TextInputLayout
-                            style="@style/AppTheme.LeadTextInputLayoutStyle">
+                            style="@style/AppTheme.LeadTextInputLayoutStyle"
+                            android:layout_marginRight="@dimen/default_padding_half">
 
                             <EditText
                                 android:id="@+id/etEmail_FPD"
                                 style="@style/AppTheme.LeadInputFieldStyle"
-                                android:hint="Email"/>
+                                android:hint="@string/email"/>
 
                         </android.support.design.widget.TextInputLayout>
 
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
                         <android.support.design.widget.TextInputLayout
-                            style="@style/AppTheme.LeadTextInputLayoutStyle">
+                            style="@style/AppTheme.LeadTextInputLayoutStyle"
+                            android:layout_marginLeft="@dimen/default_padding_half">
 
                             <EditText
                                 android:id="@+id/etSkype_FPD"
                                 style="@style/AppTheme.LeadInputFieldStyle"
-                                android:hint="Skype"/>
-
-                        </android.support.design.widget.TextInputLayout>
-
-                        <android.support.design.widget.TextInputLayout
-                            style="@style/AppTheme.LeadTextInputLayoutStyle">
-
-                            <EditText
-                                android:id="@+id/etPhone_FPD"
-                                style="@style/AppTheme.LeadInputFieldStyle"
-                                android:hint="Phone"/>
+                                android:hint="@string/skype"/>
 
                         </android.support.design.widget.TextInputLayout>
 
@@ -177,146 +165,116 @@
                         android:orientation="horizontal">
 
                         <android.support.design.widget.TextInputLayout
-                            style="@style/AppTheme.LeadTextInputLayoutStyle">
+                            style="@style/AppTheme.LeadTextInputLayoutStyle"
+                            android:layout_marginRight="@dimen/default_padding_half">
 
                             <EditText
                                 android:id="@+id/etLinkedIn_FPD"
                                 style="@style/AppTheme.LeadInputFieldStyle"
-                                android:hint="Linked In"/>
+                                android:hint="@string/linkedin"/>
 
                         </android.support.design.widget.TextInputLayout>
 
                         <android.support.design.widget.TextInputLayout
-                            style="@style/AppTheme.LeadTextInputLayoutStyle">
-
-                            <EditText
-                                android:id="@+id/etMobile_FPD"
-                                style="@style/AppTheme.LeadInputFieldStyle"
-                                android:hint="Mobile"/>
-
-                        </android.support.design.widget.TextInputLayout>
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <android.support.design.widget.TextInputLayout
-                            style="@style/AppTheme.LeadTextInputLayoutStyle">
+                            style="@style/AppTheme.LeadTextInputLayoutStyle"
+                            android:layout_marginLeft="@dimen/default_padding_half">
 
                             <EditText
                                 android:id="@+id/etFacebook_FPD"
                                 style="@style/AppTheme.LeadInputFieldStyle"
-                                android:hint="Facebook"/>
+                                android:hint="@string/facebook"/>
+
+                        </android.support.design.widget.TextInputLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <android.support.design.widget.TextInputLayout
+                            style="@style/AppTheme.LeadTextInputLayoutStyle"
+                            android:layout_marginRight="@dimen/default_padding_half">
+
+                            <EditText
+                                android:id="@+id/etPhone_FPD"
+                                style="@style/AppTheme.LeadInputFieldStyle"
+                                android:hint="@string/phone"/>
 
                         </android.support.design.widget.TextInputLayout>
 
                         <android.support.design.widget.TextInputLayout
-                            style="@style/AppTheme.LeadTextInputLayoutStyle">
+                            style="@style/AppTheme.LeadTextInputLayoutStyle"
+                            android:layout_marginLeft="@dimen/default_padding_half">
+
+                            <EditText
+                                android:id="@+id/etMobile_FPD"
+                                style="@style/AppTheme.LeadInputFieldStyle"
+                                android:hint="@string/mobile"/>
+
+                        </android.support.design.widget.TextInputLayout>
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <android.support.design.widget.TextInputLayout
+                            style="@style/AppTheme.LeadTextInputLayoutStyle"
+                            android:layout_marginRight="@dimen/default_padding_half">
 
                             <EditText
                                 android:id="@+id/etDateOfBirth_FPD"
                                 style="@style/AppTheme.LeadInputFieldStyle"
-                                android:hint="Date of Birth"/>
+                                android:hint="@string/date_of_birth"/>
 
                         </android.support.design.widget.TextInputLayout>
 
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <ImageView
-                            android:id="@+id/ivSkype_FPD"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:paddingLeft="10dp"
-                            android:paddingRight="10dp"
-                            android:visibility="gone"
-                            app:srcCompat="@drawable/ic_skype"/>
-
-                        <ImageView
-                            android:id="@+id/ivLinkedIn_FPD"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:paddingLeft="10dp"
-                            android:paddingRight="10dp"
-                            android:visibility="gone"
-                            app:srcCompat="@drawable/ic_linkedin"/>
-
-                        <ImageView
-                            android:id="@+id/ivFacebook_FPD"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:paddingLeft="10dp"
-                            android:paddingRight="10dp"
-                            android:visibility="gone"
-                            app:srcCompat="@drawable/ic_facebook"/>
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:layout_marginLeft="@dimen/default_padding_half"/>
 
                     </LinearLayout>
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        style="@style/RobotoCondensedBold"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="@dimen/default_padding"
-                        android:text="Billing address"
-                        android:textColor="#bdbdbd"
-                        android:textSize="15sp"
-                        android:textStyle="bold"/>
+                        android:layout_marginTop="@dimen/default_padding_big"
+                        android:text="@string/billing_address"
+                        android:textSize="@dimen/text_list_item_medium_16"/>
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
                         android:orientation="horizontal">
 
                         <android.support.design.widget.TextInputLayout
-                            style="@style/AppTheme.LeadTextInputLayoutStyle">
+                            style="@style/AppTheme.LeadTextInputLayoutStyle"
+                            android:layout_marginRight="@dimen/default_padding_half">
 
                             <EditText
                                 android:id="@+id/etBillingStreet_FPD"
                                 style="@style/AppTheme.LeadInputFieldStyle"
-                                android:hint="Street"/>
+                                android:hint="@string/street"/>
 
                         </android.support.design.widget.TextInputLayout>
 
                         <android.support.design.widget.TextInputLayout
-                            style="@style/AppTheme.LeadTextInputLayoutStyle">
-
-                            <EditText
-                                android:id="@+id/etBillingState_FPD"
-                                style="@style/AppTheme.LeadInputFieldStyle"
-                                android:hint="State"/>
-
-                        </android.support.design.widget.TextInputLayout>
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <android.support.design.widget.TextInputLayout
-                            style="@style/AppTheme.LeadTextInputLayoutStyle">
+                            style="@style/AppTheme.LeadTextInputLayoutStyle"
+                            android:layout_marginLeft="@dimen/default_padding_half">
 
                             <EditText
                                 android:id="@+id/etBillingCity_FPD"
                                 style="@style/AppTheme.LeadInputFieldStyle"
-                                android:hint="City"/>
-
-                        </android.support.design.widget.TextInputLayout>
-
-                        <android.support.design.widget.TextInputLayout
-                            style="@style/AppTheme.LeadTextInputLayoutStyle">
-
-                            <EditText
-                                android:id="@+id/etBillingCountry_FPD"
-                                style="@style/AppTheme.LeadInputFieldStyle"
-                                android:hint="Country"/>
+                                android:hint="@string/hint_city"/>
 
                         </android.support.design.widget.TextInputLayout>
 
@@ -327,148 +285,164 @@
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
 
-                        <View
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"/>
+                        <android.support.design.widget.TextInputLayout
+                            style="@style/AppTheme.LeadTextInputLayoutStyle"
+                            android:layout_marginRight="@dimen/default_padding_half">
+
+                            <EditText
+                                android:id="@+id/etBillingState_FPD"
+                                style="@style/AppTheme.LeadInputFieldStyle"
+                                android:hint="@string/state"/>
+
+                        </android.support.design.widget.TextInputLayout>
 
                         <android.support.design.widget.TextInputLayout
-                            style="@style/AppTheme.LeadTextInputLayoutStyle">
+                            style="@style/AppTheme.LeadTextInputLayoutStyle"
+                            android:layout_marginLeft="@dimen/default_padding_half">
 
                             <EditText
                                 android:id="@+id/etBillingZipcode_FPD"
                                 style="@style/AppTheme.LeadInputFieldStyle"
-                                android:hint="Zip code"/>
+                                android:hint="@string/zip"/>
+
+                        </android.support.design.widget.TextInputLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <android.support.design.widget.TextInputLayout
+                            style="@style/AppTheme.LeadTextInputLayoutStyle"
+                            android:layout_marginRight="@dimen/default_padding_half">
+
+                            <EditText
+                                android:id="@+id/etBillingCountry_FPD"
+                                style="@style/AppTheme.LeadInputFieldStyle"
+                                android:hint="@string/country"/>
+
+                        </android.support.design.widget.TextInputLayout>
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginLeft="@dimen/default_padding_half"/>
+
+                    </LinearLayout>
+
+                    <TextView
+                        style="@style/RobotoCondensedBold"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/default_padding_big"
+                        android:text="@string/shipping_address"
+                        android:textSize="@dimen/text_list_item_medium_16"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:orientation="horizontal">
+
+                        <android.support.design.widget.TextInputLayout
+                            style="@style/AppTheme.LeadTextInputLayoutStyle"
+                            android:layout_marginRight="@dimen/default_padding_half">
+
+                            <EditText
+                                android:id="@+id/etShippingFullName_FPD"
+                                style="@style/AppTheme.LeadInputFieldStyle"
+                                android:hint="@string/full_name"/>
+
+                        </android.support.design.widget.TextInputLayout>
+
+                        <android.support.design.widget.TextInputLayout
+                            style="@style/AppTheme.LeadTextInputLayoutStyle"
+                            android:layout_marginLeft="@dimen/default_padding_half">
+
+                            <EditText
+                                android:id="@+id/etShippingStreet_FPD"
+                                style="@style/AppTheme.LeadInputFieldStyle"
+                                android:hint="@string/street"/>
+
+                        </android.support.design.widget.TextInputLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <android.support.design.widget.TextInputLayout
+                            style="@style/AppTheme.LeadTextInputLayoutStyle"
+                            android:layout_marginRight="@dimen/default_padding_half">
+
+                            <EditText
+                                android:id="@+id/etShippingCity_FPD"
+                                style="@style/AppTheme.LeadInputFieldStyle"
+                                android:hint="@string/hint_city"/>
+
+                        </android.support.design.widget.TextInputLayout>
+
+                        <android.support.design.widget.TextInputLayout
+                            style="@style/AppTheme.LeadTextInputLayoutStyle"
+                            android:layout_marginLeft="@dimen/default_padding_half">
+
+                            <EditText
+                                android:id="@+id/etShippingState_FPD"
+                                style="@style/AppTheme.LeadInputFieldStyle"
+                                android:hint="@string/state"/>
+
+                        </android.support.design.widget.TextInputLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <android.support.design.widget.TextInputLayout
+                            style="@style/AppTheme.LeadTextInputLayoutStyle"
+                            android:layout_marginRight="@dimen/default_padding_half">
+
+                            <EditText
+                                android:id="@+id/etShippingZipcode_FPD"
+                                style="@style/AppTheme.LeadInputFieldStyle"
+                                android:hint="@string/zip"/>
+
+                        </android.support.design.widget.TextInputLayout>
+
+                        <android.support.design.widget.TextInputLayout
+                            style="@style/AppTheme.LeadTextInputLayoutStyle"
+                            android:layout_marginLeft="@dimen/default_padding_half">
+
+                            <EditText
+                                android:id="@+id/etShippingCountry_FPD"
+                                style="@style/AppTheme.LeadInputFieldStyle"
+                                android:hint="@string/country"/>
 
                         </android.support.design.widget.TextInputLayout>
 
                     </LinearLayout>
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="@dimen/default_padding"
-                        android:text="Shipping address"
-                        android:textColor="#bdbdbd"
-                        android:textSize="15sp"
-                        android:textStyle="bold"/>
-
-                    <LinearLayout
+                        style="@style/RobotoCondensedBold"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <android.support.design.widget.TextInputLayout
-                            style="@style/AppTheme.LeadTextInputLayoutStyle">
-
-                            <EditText
-                                android:id="@+id/etShippingFullName_FPD"
-                                style="@style/AppTheme.LeadInputFieldStyle"
-                                android:hint="Full Name"/>
-
-                        </android.support.design.widget.TextInputLayout>
-
-                        <android.support.design.widget.TextInputLayout
-                            style="@style/AppTheme.LeadTextInputLayoutStyle">
-
-                            <EditText
-                                android:id="@+id/etShippingState_FPD"
-                                style="@style/AppTheme.LeadInputFieldStyle"
-                                android:hint="State"/>
-
-                        </android.support.design.widget.TextInputLayout>
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <android.support.design.widget.TextInputLayout
-                            style="@style/AppTheme.LeadTextInputLayoutStyle">
-
-                            <EditText
-                                android:id="@+id/etShippingStreet_FPD"
-                                style="@style/AppTheme.LeadInputFieldStyle"
-                                android:hint="Street"/>
-
-                        </android.support.design.widget.TextInputLayout>
-
-                        <android.support.design.widget.TextInputLayout
-                            style="@style/AppTheme.LeadTextInputLayoutStyle">
-
-                            <EditText
-                                android:id="@+id/etShippingCity_FPD"
-                                style="@style/AppTheme.LeadInputFieldStyle"
-                                android:hint="City"/>
-
-                        </android.support.design.widget.TextInputLayout>
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <android.support.design.widget.TextInputLayout
-                            style="@style/AppTheme.LeadTextInputLayoutStyle">
-
-                            <EditText
-                                android:id="@+id/etShippingCountry_FPD"
-                                style="@style/AppTheme.LeadInputFieldStyle"
-                                android:hint="Country"/>
-
-                        </android.support.design.widget.TextInputLayout>
-
-                        <android.support.design.widget.TextInputLayout
-                            style="@style/AppTheme.LeadTextInputLayoutStyle">
-
-                            <EditText
-                                android:id="@+id/etShippingZipcode_FPD"
-                                style="@style/AppTheme.LeadInputFieldStyle"
-                                android:hint="Zip code"/>
-
-                        </android.support.design.widget.TextInputLayout>
-
-                    </LinearLayout>
+                        android:layout_marginTop="@dimen/default_padding_big"
+                        android:text="@string/sales_amp_purchases"
+                        android:textSize="@dimen/text_list_item_medium_16"/>
 
                     <LinearLayout
                         android:id="@+id/llContainerSalesPurchases_FPD"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:padding="20dp">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal">
-
-                            <CheckBox
-                                android:id="@+id/cbIsCustomer_FPD"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:clickable="false"
-                                android:text="Is Customer"
-                                android:textColor="@color/text_grey_hint_color"
-                                android:theme="@android:style/Theme.Holo.Light"
-                                tools:checked="true"/>
-
-                            <CheckBox
-                                android:id="@+id/cbIsSupplier_FPD"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:clickable="false"
-                                android:text="Is Supplier"
-                                android:textColor="@color/text_grey_hint_color"
-                                android:theme="@android:style/Theme.Holo.Light"
-                                tools:checked="false"/>
-
-                        </LinearLayout>
+                        android:layout_marginTop="20dp"
+                        android:orientation="vertical">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -476,24 +450,59 @@
                             android:orientation="horizontal">
 
                             <android.support.design.widget.TextInputLayout
-                                style="@style/AppTheme.LeadTextInputLayoutStyle">
-
-                                <EditText
-                                    android:id="@+id/etSalesTeam_FPD"
-                                    style="@style/AppTheme.LeadInputFieldStyle"
-                                    android:hint="Sales Team"/>
-
-                            </android.support.design.widget.TextInputLayout>
-
-                            <android.support.design.widget.TextInputLayout
-                                style="@style/AppTheme.LeadTextInputLayoutStyle">
+                                style="@style/AppTheme.LeadTextInputLayoutStyle"
+                                android:layout_marginRight="@dimen/default_padding_half">
 
                                 <EditText
                                     android:id="@+id/etSalesReference_FPD"
                                     style="@style/AppTheme.LeadInputFieldStyle"
-                                    android:hint="Reference"/>
+                                    android:hint="@string/reference"/>
 
                             </android.support.design.widget.TextInputLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:layout_marginLeft="@dimen/default_padding_half">
+
+                                <TextView
+                                    style="@style/RobotoRegular"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/contractor_type"
+                                    android:textColor="@color/color_text_gray"
+                                    android:textSize="12sp"/>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                    <CheckBox
+                                        android:theme="@style/CustomCheckBox"
+                                        android:id="@+id/cbIsCustomer_FPD"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:clickable="false"
+                                        android:text="@string/customer"
+                                        android:textColor="@color/text_grey_hint_color"
+                                        tools:checked="true"/>
+
+                                    <CheckBox
+                                        android:theme="@style/CustomCheckBox"
+                                        android:id="@+id/cbIsSupplier_FPD"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:clickable="false"
+                                        android:text="@string/supplier"
+                                        android:textColor="@color/text_grey_hint_color"
+                                        tools:checked="false"/>
+
+                                </LinearLayout>
+
+                            </LinearLayout>
 
                         </LinearLayout>
 
@@ -503,22 +512,24 @@
                             android:orientation="horizontal">
 
                             <android.support.design.widget.TextInputLayout
-                                style="@style/AppTheme.LeadTextInputLayoutStyle">
+                                style="@style/AppTheme.LeadTextInputLayoutStyle"
+                                android:layout_marginRight="@dimen/default_padding_half">
+
+                                <EditText
+                                    android:id="@+id/etSalesTeam_FPD"
+                                    style="@style/AppTheme.LeadInputFieldStyle"
+                                    android:hint="@string/sales_team"/>
+
+                            </android.support.design.widget.TextInputLayout>
+
+                            <android.support.design.widget.TextInputLayout
+                                style="@style/AppTheme.LeadTextInputLayoutStyle"
+                                android:layout_marginLeft="@dimen/default_padding_half">
 
                                 <EditText
                                     android:id="@+id/etSalesPerson_FPD"
                                     style="@style/AppTheme.LeadInputFieldStyle"
-                                    android:hint="Sales Person"/>
-
-                            </android.support.design.widget.TextInputLayout>
-
-                            <android.support.design.widget.TextInputLayout
-                                style="@style/AppTheme.LeadTextInputLayoutStyle">
-
-                                <EditText
-                                    android:id="@+id/etSalesLanguage_FPD"
-                                    style="@style/AppTheme.LeadInputFieldStyle"
-                                    android:hint="Language"/>
+                                    android:hint="@string/sales_person"/>
 
                             </android.support.design.widget.TextInputLayout>
 
@@ -530,23 +541,38 @@
                             android:orientation="horizontal">
 
                             <android.support.design.widget.TextInputLayout
-                                style="@style/AppTheme.LeadTextInputLayoutStyle">
+                                style="@style/AppTheme.LeadTextInputLayoutStyle"
+                                android:layout_marginRight="@dimen/default_padding_half">
 
                                 <EditText
                                     android:id="@+id/etSalesImplementedBy_FPD"
                                     style="@style/AppTheme.LeadInputFieldStyle"
-                                    android:hint="Implemented By"/>
+                                    android:hint="@string/implemented_by"/>
 
                             </android.support.design.widget.TextInputLayout>
 
-                            <View
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"/>
+                            <android.support.design.widget.TextInputLayout
+                                style="@style/AppTheme.LeadTextInputLayoutStyle"
+                                android:layout_marginLeft="@dimen/default_padding_half">
+
+                                <EditText
+                                    android:id="@+id/etSalesLanguage_FPD"
+                                    style="@style/AppTheme.LeadInputFieldStyle"
+                                    android:hint="@string/language"/>
+
+                            </android.support.design.widget.TextInputLayout>
 
                         </LinearLayout>
 
                     </LinearLayout>
+
+                    <TextView
+                        style="@style/RobotoCondensedBold"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/default_padding_big"
+                        android:text="@string/company"
+                        android:textSize="@dimen/text_list_item_medium_16"/>
 
                     <LinearLayout
                         android:id="@+id/llCompanyContainer_FPD"
@@ -554,98 +580,118 @@
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="@dimen/default_padding"
-                            android:text="Company"
-                            android:textColor="#bdbdbd"
-                            android:textSize="15sp"
-                            android:textStyle="bold"/>
-
-                        <RelativeLayout
+                        <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal">
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal"
+                            android:paddingTop="@dimen/default_padding">
 
-                            <ImageView
-                                android:id="@+id/ivCompanyImage_FPD"
-                                android:layout_width="80dp"
-                                android:layout_height="80dp"
-                                android:layout_marginRight="20dp"
-                                android:scaleType="centerCrop"/>
-
-                            <TextView
-                                android:id="@+id/tvCompanyTitleName_FPD"
+                            <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_alignTop="@id/ivCompanyImage_FPD"
-                                android:layout_toRightOf="@id/ivCompanyImage_FPD"
-                                android:textColor="@android:color/primary_text_light"
-                                android:textSize="16sp"/>
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:layout_marginRight="@dimen/default_padding_half">
 
-                            <TextView
-                                android:id="@+id/tvCompanyTitleUrl_FPD"
+                                <android.support.v7.widget.CardView
+                                    android:layout_width="140dp"
+                                    android:layout_height="140dp">
+
+                                    <ImageView
+                                        android:id="@+id/ivCompanyImage_FPD"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:scaleType="centerCrop"/>
+
+                                </android.support.v7.widget.CardView>
+
+                                <TextView
+                                    android:id="@+id/tvCompanyTitleUrl_FPD"
+                                    style="@style/RobotoMedium"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="@dimen/default_padding_half"
+                                    android:textColor="@color/color_blue"
+                                    android:textSize="@dimen/text_size_small_14"
+                                    tools:text="PricewaterhouseCoopers.com"/>
+
+                            </LinearLayout>
+
+                            <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_alignStart="@id/tvCompanyTitleName_FPD"
-                                android:layout_below="@id/tvCompanyTitleName_FPD"
-                                android:layout_marginTop="10dp"
-                                android:textColor="@color/colorPrimary"
-                                android:textSize="16sp"/>
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:layout_marginLeft="@dimen/default_padding_half">
 
-                        </RelativeLayout>
+                                <android.support.design.widget.TextInputLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:textColorHint="@color/color_text_gray"
+                                    app:hintAnimationEnabled="false">
+
+                                    <EditText
+                                        android:id="@+id/etCompanyName_FPD"
+                                        style="@style/AppTheme.LeadInputFieldStyle"
+                                        android:hint="@string/name"/>
+
+                                </android.support.design.widget.TextInputLayout>
+
+                                <android.support.design.widget.TextInputLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:textColorHint="@color/color_text_gray"
+                                    app:hintAnimationEnabled="false">
+
+                                    <EditText
+                                        android:id="@+id/etCompanyStreet_FPD"
+                                        style="@style/AppTheme.LeadInputFieldStyle"
+                                        android:hint="@string/street"/>
+
+                                </android.support.design.widget.TextInputLayout>
+
+                                <android.support.design.widget.TextInputLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:textColorHint="@color/color_text_gray"
+                                    app:hintAnimationEnabled="false">
+
+                                    <EditText
+                                        android:id="@+id/etCompanyCity_FPD"
+                                        style="@style/AppTheme.LeadInputFieldStyle"
+                                        android:hint="@string/hint_city"/>
+
+                                </android.support.design.widget.TextInputLayout>
+
+                            </LinearLayout>
+
+                        </LinearLayout>
 
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:layout_marginTop="20dp">
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="20dp"
+                            android:orientation="horizontal">
 
                             <android.support.design.widget.TextInputLayout
-                                style="@style/AppTheme.LeadTextInputLayoutStyle">
-
-                                <EditText
-                                    android:id="@+id/etCompanyName_FPD"
-                                    style="@style/AppTheme.LeadInputFieldStyle"
-                                    android:hint="Name"/>
-
-                            </android.support.design.widget.TextInputLayout>
-
-                            <android.support.design.widget.TextInputLayout
-                                style="@style/AppTheme.LeadTextInputLayoutStyle">
+                                style="@style/AppTheme.LeadTextInputLayoutStyle"
+                                android:layout_marginRight="@dimen/default_padding_half">
 
                                 <EditText
                                     android:id="@+id/etCompanyState_FPD"
                                     style="@style/AppTheme.LeadInputFieldStyle"
-                                    android:hint="State"/>
-
-                            </android.support.design.widget.TextInputLayout>
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal">
-
-                            <android.support.design.widget.TextInputLayout
-                                style="@style/AppTheme.LeadTextInputLayoutStyle">
-
-                                <EditText
-                                    android:id="@+id/etCompanyStreet_FPD"
-                                    style="@style/AppTheme.LeadInputFieldStyle"
-                                    android:hint="Street"/>
+                                    android:hint="@string/state"/>
 
                             </android.support.design.widget.TextInputLayout>
 
                             <android.support.design.widget.TextInputLayout
-                                style="@style/AppTheme.LeadTextInputLayoutStyle">
+                                style="@style/AppTheme.LeadTextInputLayoutStyle"
+                                android:layout_marginLeft="@dimen/default_padding_half">
 
                                 <EditText
                                     android:id="@+id/etCompanyZipcode_FPD"
                                     style="@style/AppTheme.LeadInputFieldStyle"
-                                    android:hint="Zip code"/>
+                                    android:hint="@string/zip"/>
 
                             </android.support.design.widget.TextInputLayout>
 
@@ -657,105 +703,102 @@
                             android:orientation="horizontal">
 
                             <android.support.design.widget.TextInputLayout
-                                style="@style/AppTheme.LeadTextInputLayoutStyle">
-
-                                <EditText
-                                    android:id="@+id/etCompanyCity_FPD"
-                                    style="@style/AppTheme.LeadInputFieldStyle"
-                                    android:hint="City"/>
-
-                            </android.support.design.widget.TextInputLayout>
-
-                            <android.support.design.widget.TextInputLayout
-                                style="@style/AppTheme.LeadTextInputLayoutStyle">
-
-                                <EditText
-                                    android:id="@+id/etCompanyCountry_FPD"
-                                    style="@style/AppTheme.LeadInputFieldStyle"
-                                    android:hint="Country"/>
-
-                            </android.support.design.widget.TextInputLayout>
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal">
-
-                            <android.support.design.widget.TextInputLayout
-                                style="@style/AppTheme.LeadTextInputLayoutStyle">
+                                style="@style/AppTheme.LeadTextInputLayoutStyle"
+                                android:layout_marginRight="@dimen/default_padding_half">
 
                                 <EditText
                                     android:id="@+id/etCompanyPhone_FPD"
                                     style="@style/AppTheme.LeadInputFieldStyle"
-                                    android:hint="Phone"/>
+                                    android:hint="@string/phone"/>
 
                             </android.support.design.widget.TextInputLayout>
 
                             <android.support.design.widget.TextInputLayout
-                                style="@style/AppTheme.LeadTextInputLayoutStyle">
+                                style="@style/AppTheme.LeadTextInputLayoutStyle"
+                                android:layout_marginLeft="@dimen/default_padding_half">
+
+                                <EditText
+                                    android:id="@+id/etCompanyCountry_FPD"
+                                    style="@style/AppTheme.LeadInputFieldStyle"
+                                    android:hint="@string/country"/>
+
+                            </android.support.design.widget.TextInputLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <android.support.design.widget.TextInputLayout
+                                style="@style/AppTheme.LeadTextInputLayoutStyle"
+                                android:layout_marginRight="@dimen/default_padding_half">
 
                                 <EditText
                                     android:id="@+id/etCompanyEmail_FPD"
                                     style="@style/AppTheme.LeadInputFieldStyle"
-                                    android:hint="Email"/>
+                                    android:hint="@string/email"/>
 
                             </android.support.design.widget.TextInputLayout>
+
+                            <View
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:layout_marginLeft="@dimen/default_padding_half"/>
 
                         </LinearLayout>
 
                     </LinearLayout>
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="@dimen/default_padding"
-                        android:text="Opportunities"
-                        android:textColor="#bdbdbd"
-                        android:textSize="15sp"
-                        android:textStyle="bold"/>
-
-                    <android.support.v7.widget.RecyclerView
-                        android:id="@+id/rvOpportunities_FPD"
+                        style="@style/RobotoCondensedBold"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:overScrollMode="never"/>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@android:color/white"
-                        android:orientation="vertical"
-                        android:padding="@dimen/default_padding">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/attachments"
-                            android:textColor="#757575"
-                            android:textSize="16sp"
-                            android:textStyle="bold"/>
-
-                        <LinearLayout
-                            android:id="@+id/llAttachmentsContainer_FPD"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:id="@+id/tvAttachments_FPD"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/default_padding_half"
-                                android:alpha="0.83"
-                                android:drawablePadding="@dimen/default_padding_half"
-                                android:text="@string/no_attachments"/>
-
-                        </LinearLayout>
+                        android:layout_marginTop="@dimen/default_padding_big"
+                        android:text="@string/leads_amp_opportunities"
+                        android:textSize="@dimen/text_list_item_medium_16"/>
 
                     </LinearLayout>
 
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/rvLeadsAndOpportunities_FPD"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/default_padding_half"
+                        android:overScrollMode="never"
+                        android:paddingStart="@dimen/default_padding_half"
+                        android:paddingEnd="@dimen/default_padding_half"/>
+
+                    <TextView
+                        style="@style/RobotoCondensedBold"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/default_padding_big"
+                        android:text="@string/attachments"
+                        android:textSize="@dimen/text_list_item_medium_16"
+                        android:paddingStart="@dimen/default_padding"
+                        android:paddingEnd="@dimen/default_padding"/>
+
+                    <LinearLayout
+                        android:id="@+id/llAttachmentsContainer_FPD"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tvAttachments_FPD"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/default_padding_half"
+                            android:alpha="0.83"
+                            android:drawablePadding="@dimen/default_padding_half"
+                            android:text="@string/no_attachments"
+                            android:paddingStart="@dimen/default_padding"
+                            android:paddingEnd="@dimen/default_padding"/>
+
+                    </LinearLayout>
 
                 </LinearLayout>
 
@@ -767,7 +810,8 @@
 
     </android.support.v4.widget.SwipeRefreshLayout>
 
-    <include layout="@layout/view_error_with_holder_icon"
+    <include
+        layout="@layout/view_error_with_holder_icon"
         tools:visibility="gone"/>
 
 </FrameLayout>

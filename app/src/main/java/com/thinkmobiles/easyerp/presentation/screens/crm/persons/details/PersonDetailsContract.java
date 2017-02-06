@@ -5,6 +5,7 @@ import com.thinkmobiles.easyerp.presentation.base.BaseModel;
 import com.thinkmobiles.easyerp.presentation.base.BasePresenter;
 import com.thinkmobiles.easyerp.presentation.base.BaseView;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.HistoryDH;
+import com.thinkmobiles.easyerp.presentation.holders.data.crm.OpportunityAndLeadDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.OpportunityPreviewDH;
 
 import java.util.ArrayList;
@@ -24,10 +25,11 @@ public interface PersonDetailsContract {
         void displayError(final String msg);
         void showMessage(String message);
 
-        void displayPersonAboutName(String name);
+        void showJobPosition(boolean isShown);
+        void showCompany(boolean isShown);
+
         void displayPersonAvatar(String base64Avatar);
-        void displayFirstName(String firstName);
-        void displayLastName(String lastName);
+        void displayPersonName(String personName);
         void displayJobPosition(String jobPosition);
         void displayEmail(String email);
         void displaySkype(String skype);
@@ -63,7 +65,6 @@ public interface PersonDetailsContract {
         void displaySalesLanguage(String language);
 
         void displayCompanyImage(String base64CompanyImage);
-        void displayCompanyNameTitle(String companyName);
         void displayCompanyUrl(String companyUrl);
         void displayCompanyName(String companyName);
         void displayCompanyStreet(String companyStreet);
@@ -74,7 +75,7 @@ public interface PersonDetailsContract {
         void displayCompanyPhone(String companyPhone);
         void displayCompanyEmail(String companyEmail);
 
-        void displayOpportunities(ArrayList<OpportunityPreviewDH> opportunityPreviewDHs);
+        void displayLeadAndOpportunity(ArrayList<OpportunityAndLeadDH> opportunityAndLeadDHs);
         void displayAttachments(String attachments);
         void displayHistory(ArrayList<HistoryDH> historyDHs);
     }

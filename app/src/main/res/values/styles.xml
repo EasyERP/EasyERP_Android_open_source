@@ -59,6 +59,13 @@
         <item name="android:inputType">text</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">match_parent</item>
+        <item name="backgroundTint">@color/color_divider</item>
+    </style>
+
+    <style name="CustomCheckBox" parent="Widget.AppCompat.CompoundButton.CheckBox">
+        <item name="colorControlNormal">@color/colorPrimary</item>
+        <item name="colorControlActivated">@color/colorPrimary</item>
+        <item name="android:textSize">@dimen/text_size_small_14</item>
     </style>
 
     <style name="ContentTitleStyle" parent="@style/RobotoMedium">
