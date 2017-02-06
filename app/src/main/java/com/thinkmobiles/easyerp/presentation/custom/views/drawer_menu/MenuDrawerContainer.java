@@ -97,18 +97,20 @@ public class MenuDrawerContainer extends SlidingPaneMenuLayout {
         super.onFinishInflate();
         super.setPanelSlideListener(slideMenuPanelListener);
         checkAndPreparingChilds();
-        initStateMenu();
+        initStateMenu(true);
     }
 
-    public void initStateMenu() {
+    public void initStateMenu(final boolean forceEmitListener) {
         switch (stateMenu) {
             case OPEN:
                 openPane();
-                slideMenuPanelListener.onPanelOpened(this);
+                if (forceEmitListener)
+                    slideMenuPanelListener.onPanelOpened(this);
                 break;
             case CLOSE:
                 closePane();
-                slideMenuPanelListener.onPanelClosed(this);
+                if (forceEmitListener)
+                    slideMenuPanelListener.onPanelClosed(this);
                 break;
         }
     }
