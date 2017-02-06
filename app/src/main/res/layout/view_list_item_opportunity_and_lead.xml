@@ -49,7 +49,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="@dimen/default_padding"
                         android:padding="@dimen/default_padding_small"
-                        android:textSize="@dimen/text_size_small"
+                        android:textSize="@dimen/text_size_small_14"
                         tools:text="COLD"/>
 
                 </LinearLayout>
@@ -65,7 +65,7 @@
                 android:ellipsize="end"
                 android:gravity="center"
                 android:maxLines="1"
-                android:textSize="@dimen/text_size_small"
+                android:textSize="@dimen/text_size_small_14"
                 tools:text="Sent"/>
 
         </LinearLayout>
@@ -100,7 +100,7 @@
                 android:id="@+id/tvRevenue_VLIOAL"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/text_size_small"
+                android:textSize="@dimen/text_size_small_14"
                 tools:text="4500 $"
                 android:gravity="end"/>
 

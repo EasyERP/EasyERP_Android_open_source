@@ -31,7 +31,7 @@
             tools:text="10:35 AM"
             android:textColor="@color/color_text_black"
             android:gravity="center"
-            android:textSize="@dimen/text_size_small"/>
+            android:textSize="@dimen/text_size_small_14"/>
 
     </LinearLayout>
 
@@ -90,7 +90,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="end"
-                android:textSize="@dimen/text_size_small"
+                android:textSize="@dimen/text_size_small_14"
                 tools:text="by Elizabeth Beaver"
                 android:textColor="@color/color_text_gray"
                 android:layout_weight="1"

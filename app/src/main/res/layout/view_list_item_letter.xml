@@ -4,11 +4,12 @@
              android:layout_height="wrap_content">
 
     <TextView
+        style="@style/RobotoMedium"
         android:id="@+id/tvLetter_LIL"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="16sp"
-        android:padding="10dp">
+        android:textSize="@dimen/text_list_item_medium_16"
+        android:padding="@dimen/default_padding_half">
 
     </TextView>
 
