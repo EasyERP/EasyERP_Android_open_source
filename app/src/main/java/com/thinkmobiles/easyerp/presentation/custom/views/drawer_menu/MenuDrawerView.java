@@ -7,6 +7,7 @@ import android.support.annotation.AttrRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -108,11 +109,8 @@ public class MenuDrawerView extends FrameLayout implements IMenuProviderFunction
         if (contentMenuState.equals(ContentMenuState.FULL_MODULES) || menuHeaderViewHolder.getCurrentChosenModuleId() != moduleId) {
             menuHeaderViewHolder.setCurrentChosenModuleId(moduleId);
 
-            if (contentMenuState.equals(ContentMenuState.MINI)) {
-                buildMenuItems(MenuConfigs.menuModuleItems.get(moduleId));
-                buildMiniMenuItems(MenuConfigs.menuModuleItems.get(moduleId));
-            } else buildMenuItems(MenuConfigs.menuModuleItems.get(moduleId));
-
+            buildMenuItems(MenuConfigs.menuModuleItems.get(moduleId));
+            buildMiniMenuItems(MenuConfigs.menuModuleItems.get(moduleId));
             return true;
         }
         return false;
@@ -123,8 +121,7 @@ public class MenuDrawerView extends FrameLayout implements IMenuProviderFunction
         if (selectModule(moduleId) || moduleId != menuHeaderViewHolder.getCurrentChosenItemForModuleId() || menuHeaderViewHolder.getCurrentChosenItemId() != itemId) {
             menuHeaderViewHolder.setCurrentChosenItemId(moduleId, itemId);
             selectItemWithId(itemId);
-            if (contentMenuState.equals(ContentMenuState.MINI))
-                selectMiniItemWithId(itemId);
+            selectMiniItemWithId(itemId);
             if (menuClickListener != null && withUI)
                 menuClickListener.chooseItem(moduleId, itemId);
         }
@@ -173,15 +170,19 @@ public class MenuDrawerView extends FrameLayout implements IMenuProviderFunction
     @Override
     public void setSlideOffset(float slideOffset) {
         if (slideOffset <= 0f) {
-            buildMiniMenuItems(MenuConfigs.menuModuleItems.get(menuHeaderViewHolder.getCurrentChosenModuleId()));
-            containerExpandedLayout.setVisibility(GONE);
             containerCollapsedLayout.scrollTo(0, 0);
             transformViews(slideOffset);
             containerCollapsedLayout.setVisibility(VISIBLE);
+            containerExpandedLayout.setVisibility(INVISIBLE);
+
+            contentMenuState = ContentMenuState.MINI;
         } else {
-            containerCollapsedLayout.setVisibility(GONE);
             transformViews(slideOffset);
             containerExpandedLayout.setVisibility(VISIBLE);
+            containerCollapsedLayout.setVisibility(INVISIBLE);
+
+            if (slideOffset == 1f)
+                contentMenuState = ContentMenuState.FULL_MODULE_ITEMS;
         }
     }
 
@@ -280,6 +281,7 @@ public class MenuDrawerView extends FrameLayout implements IMenuProviderFunction
         SavedState ss = new SavedState(superState);
         ss.selectedModule = menuHeaderViewHolder.getCurrentChosenItemForModuleId();
         ss.selectedItem = menuHeaderViewHolder.getCurrentChosenItemId();
+        ss.contentMenuState = contentMenuState;
         return ss;
     }
 
@@ -298,12 +300,30 @@ public class MenuDrawerView extends FrameLayout implements IMenuProviderFunction
                 selectItem(ss.selectedModule, ss.selectedItem, false);
             else selectModule(ss.selectedModule);
         }
+
+        if (ss.contentMenuState != null) {
+            contentMenuState = ss.contentMenuState;
+            if (getParent() instanceof MenuDrawerContainer) {
+                MenuDrawerContainer parent = (MenuDrawerContainer) getParent();
+                switch (contentMenuState) {
+                    case MINI:
+                        parent.setStateMenu(MenuDrawerState.CLOSE);
+                        break;
+                    case FULL_MODULE_ITEMS:
+                    case FULL_MODULES:
+                        parent.setStateMenu(MenuDrawerState.OPEN);
+                        break;
+                }
+                parent.initStateMenu(true);
+            }
+        }
     }
 
     private static class SavedState extends BaseSavedState {
 
         int selectedModule;
         int selectedItem;
+        ContentMenuState contentMenuState;
 
         SavedState(Parcelable superState) {
             super(superState);
@@ -313,6 +333,7 @@ public class MenuDrawerView extends FrameLayout implements IMenuProviderFunction
             super(in);
             this.selectedModule = in.readInt();
             this.selectedItem = in.readInt();
+            this.contentMenuState = (ContentMenuState) in.readSerializable();
         }
 
         @Override
@@ -320,6 +341,7 @@ public class MenuDrawerView extends FrameLayout implements IMenuProviderFunction
             super.writeToParcel(out, flags);
             out.writeInt(this.selectedModule);
             out.writeInt(this.selectedItem);
+            out.writeSerializable(this.contentMenuState);
         }
 
         public static final Parcelable.Creator<SavedState> CREATOR =

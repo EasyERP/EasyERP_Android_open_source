@@ -61,7 +61,7 @@ public class HomeActivity extends BaseMasterFlowActivity {
                 menuDrawerContainer.setStateMenu(MenuDrawerState.OPEN);
                 break;
         }
-        menuDrawerContainer.initStateMenu();
+        menuDrawerContainer.initStateMenu(false);
     }
 
 }
