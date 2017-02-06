@@ -23,12 +23,14 @@ import android.widget.Toast;
 import com.jakewharton.rxbinding.view.RxView;
 import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.domain.crm.PersonsRepository;
+import com.thinkmobiles.easyerp.presentation.adapters.crm.AttachmentAdapter;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.HistoryAdapter;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.OpportunityAndLeadsAdapter;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.OpportunityPreviewAdapter;
 import com.thinkmobiles.easyerp.presentation.base.BaseFragment;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.custom.transformations.CropCircleTransformation;
+import com.thinkmobiles.easyerp.presentation.holders.data.crm.AttachmentDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.HistoryDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.OpportunityAndLeadDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.OpportunityPreviewDH;
@@ -158,7 +160,7 @@ public class PersonDetailsFragment extends BaseFragment<HomeActivity> implements
     @ViewById
     protected LinearLayout llAttachmentsContainer_FPD;
     @ViewById
-    protected TextView tvAttachments_FPD;
+    protected RecyclerView rvAttachments_FPD;
     @ViewById
     protected FrameLayout btnHistory;
     @ViewById
@@ -167,6 +169,15 @@ public class PersonDetailsFragment extends BaseFragment<HomeActivity> implements
     protected RecyclerView rvLeadsAndOpportunities_FPD;
     @ViewById
     protected RecyclerView rvHistory;
+
+    @ViewById
+    protected TextView tvEmptySalesANdPurchases_FPD;
+    @ViewById
+    protected TextView tvEmptyLeadsAndOpportunities_FPD;
+    @ViewById
+    protected TextView tvEmptyCompany_FPD;
+    @ViewById
+    protected TextView tvEmptyAttachments_FPD;
     //endregion
 
     @DrawableRes(R.drawable.ic_arrow_up)
@@ -184,6 +195,8 @@ public class PersonDetailsFragment extends BaseFragment<HomeActivity> implements
     protected HistoryAnimationHelper animationHelper;
     @Bean
     protected OpportunityAndLeadsAdapter opportunityAndLeadsAdapter;
+    @Bean
+    protected AttachmentAdapter attachmentAdapter;
 
     @AfterViews
     protected void initUI() {
@@ -195,6 +208,10 @@ public class PersonDetailsFragment extends BaseFragment<HomeActivity> implements
 
         rvLeadsAndOpportunities_FPD.setLayoutManager(new GridLayoutManager(getActivity(), 2));
         rvLeadsAndOpportunities_FPD.setAdapter(opportunityAndLeadsAdapter);
+
+        rvAttachments_FPD.setLayoutManager(new GridLayoutManager(getActivity(), 2));
+        rvAttachments_FPD.setAdapter(attachmentAdapter);
+        attachmentAdapter.setOnCardClickListener((view, position, viewType) -> presenter.startAttachment(position));
 
         RxView.clicks(btnHistory)
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
@@ -359,6 +376,17 @@ public class PersonDetailsFragment extends BaseFragment<HomeActivity> implements
     @Override
     public void showSalesPurchasesInfo(boolean isShow) {
         llContainerSalesPurchases_FPD.setVisibility(isShow ? View.VISIBLE : View.GONE);
+        if(!isShow) tvEmptySalesANdPurchases_FPD.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void showLeadsAndOpportunities(boolean isShown) {
+        if(!isShown) tvEmptyLeadsAndOpportunities_FPD.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void showAttachments(boolean isShown) {
+        if(!isShown) tvEmptyAttachments_FPD.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -425,6 +453,7 @@ public class PersonDetailsFragment extends BaseFragment<HomeActivity> implements
     @Override
     public void showCompanyInfo(boolean isShow) {
         llCompanyContainer_FPD.setVisibility(isShow ? View.VISIBLE : View.GONE);
+        if(!isShow) tvEmptyCompany_FPD.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -486,9 +515,8 @@ public class PersonDetailsFragment extends BaseFragment<HomeActivity> implements
     }
 
     @Override
-    public void displayAttachments(String attachments) {
-        tvAttachments_FPD.setMovementMethod(LinkMovementMethod.getInstance());
-        tvAttachments_FPD.setText(Html.fromHtml(attachments));
+    public void displayAttachments(ArrayList<AttachmentDH> attachmentDHs) {
+        attachmentAdapter.setListDH(attachmentDHs);
     }
 
     @Override
@@ -516,6 +544,13 @@ public class PersonDetailsFragment extends BaseFragment<HomeActivity> implements
     @Override
     public void displayHistory(ArrayList<HistoryDH> historyDHs) {
         historyAdapter.setListDH(historyDHs);
+    }
+
+    @Override
+    public void startAttachmentIntent(String url) {
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(Uri.parse(url));
+        startActivity(intent);
     }
 
     @AfterInject

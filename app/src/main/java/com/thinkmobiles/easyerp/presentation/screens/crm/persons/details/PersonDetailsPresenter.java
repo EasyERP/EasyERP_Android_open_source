@@ -4,13 +4,16 @@ import android.text.TextUtils;
 
 import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.data.model.crm.companies.detail.ResponseGetCompanyDetails;
+import com.thinkmobiles.easyerp.data.model.crm.leads.detail.AttachmentItem;
 import com.thinkmobiles.easyerp.data.model.crm.persons.details.OpportunityItem;
 import com.thinkmobiles.easyerp.data.model.crm.persons.details.ResponseGetPersonDetails;
 import com.thinkmobiles.easyerp.presentation.EasyErpApplication;
+import com.thinkmobiles.easyerp.presentation.holders.data.crm.AttachmentDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.HistoryDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.OpportunityAndLeadDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.OpportunityPreviewDH;
 import com.thinkmobiles.easyerp.presentation.managers.DateManager;
+import com.thinkmobiles.easyerp.presentation.utils.Constants;
 import com.thinkmobiles.easyerp.presentation.utils.StringUtil;
 
 import java.util.ArrayList;
@@ -65,6 +68,12 @@ public class PersonDetailsPresenter implements PersonDetailsContract.PersonDetai
                     else
                         view.displayError(throwable.getMessage());
                 }));
+    }
+
+    @Override
+    public void startAttachment(int pos) {
+        String url = Constants.BASE_URL + "download/" + currentPerson.attachments.get(pos).shortPath;
+        view.startAttachmentIntent(url);
     }
 
     @Override
@@ -203,12 +212,17 @@ public class PersonDetailsPresenter implements PersonDetailsContract.PersonDetai
             }
             view.displayLeadAndOpportunity(result);
         }
+        else
+            view.showLeadsAndOpportunities(false);
     }
 
     private void setAttachments(ResponseGetPersonDetails data) {
+        ArrayList<AttachmentDH> result = new ArrayList<>();
         if(data.attachments != null && !data.attachments.isEmpty()) {
-            view.displayAttachments(StringUtil.getAttachments(data.attachments));
-        }
+            for(AttachmentItem item : data.attachments) result.add(new AttachmentDH(item));
+            view.displayAttachments(result);
+        } else
+            view.showAttachments(false);
     }
 
     private void setHistory(ResponseGetPersonDetails data) {

@@ -48,21 +48,28 @@ public final class PersonVH extends MasterFlowSelectableVHHelper<PersonDH> {
                     else
                         ivPersonImage_VLIP.setImageResource(R.drawable.ic_avatar_placeholder_with_padding);
                 });
-        if(!TextUtils.isEmpty(personModel.fullName)) tvPersonName_VLIP.setText(personModel.fullName);
+        if(!TextUtils.isEmpty(personModel.fullName))
+            tvPersonName_VLIP.setText(personModel.fullName);
+        else tvPersonName_VLIP.setText(null);
         if(!TextUtils.isEmpty(personModel.email)) {
             tvPersonEmail_VLIP.setText(personModel.email);
             tvPersonEmail_VLIP.setVisibility(View.VISIBLE);
         } else {
+            tvPersonEmail_VLIP.setText(null);
             tvPersonEmail_VLIP.setVisibility(View.GONE);
         }
         if(personModel.address != null && !TextUtils.isEmpty(personModel.address.country)) {
             tvPersonCountry_VLIP.setText(personModel.address.country);
+        } else {
+            tvPersonCountry_VLIP.setText(null);
         }
         if(personModel.phones != null && !TextUtils.isEmpty(personModel.phones.phone)) {
             tvPersonPhone_VLIP.setText(personModel.phones.phone);
             tvPersonPhone_VLIP.setVisibility(View.VISIBLE);
         } else {
+            tvPersonPhone_VLIP.setText(null);
             tvPersonPhone_VLIP.setVisibility(View.GONE);
         }
+        tvPersonName_VLIP.requestLayout();
     }
 }

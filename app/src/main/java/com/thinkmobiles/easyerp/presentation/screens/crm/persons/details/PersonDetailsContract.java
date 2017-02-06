@@ -4,6 +4,7 @@ import com.thinkmobiles.easyerp.data.model.crm.persons.details.ResponseGetPerson
 import com.thinkmobiles.easyerp.presentation.base.BaseModel;
 import com.thinkmobiles.easyerp.presentation.base.BasePresenter;
 import com.thinkmobiles.easyerp.presentation.base.BaseView;
+import com.thinkmobiles.easyerp.presentation.holders.data.crm.AttachmentDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.HistoryDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.OpportunityAndLeadDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.OpportunityPreviewDH;
@@ -20,8 +21,11 @@ public interface PersonDetailsContract {
     interface PersonDetailsView extends BaseView<PersonDetailsPresenter> {
         void showProgress(boolean enable);
         void showHistory(boolean isShow);
+
         void showCompanyInfo(boolean isShow);
         void showSalesPurchasesInfo(boolean isShow);
+        void showLeadsAndOpportunities(boolean isShown);
+        void showAttachments(boolean isShown);
         void displayError(final String msg);
         void showMessage(String message);
 
@@ -76,12 +80,15 @@ public interface PersonDetailsContract {
         void displayCompanyEmail(String companyEmail);
 
         void displayLeadAndOpportunity(ArrayList<OpportunityAndLeadDH> opportunityAndLeadDHs);
-        void displayAttachments(String attachments);
+        void displayAttachments(ArrayList<AttachmentDH> attachmentDHs);
         void displayHistory(ArrayList<HistoryDH> historyDHs);
+        void startAttachmentIntent(String url);
+
     }
     interface PersonDetailsPresenter extends BasePresenter {
         void changeNotesVisibility();
         void refresh();
+        void startAttachment(int pos);
     }
     interface PersonDetailsModel extends BaseModel {
         Observable<ResponseGetPersonDetails> getPersonDetails(String personID);
