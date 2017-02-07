@@ -26,15 +26,14 @@
 
                 <TextView
                     android:id="@+id/tvOrderName_VLIO"
-                    style="@style/RobotoMedium"
+                    style="@style/RobotoCondensedBold"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:ellipsize="end"
                     android:maxLines="1"
-                    android:text="@string/no_data"
                     android:textColor="@color/color_text_black"
-                    android:textSize="@dimen/text_list_item_extra_large_22"
+                    android:textSize="@dimen/text_list_item_medium_16"
                     tools:text="Web development" />
 
                 <TextView
@@ -42,8 +41,13 @@
                     style="@style/RobotoMedium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="@dimen/default_padding_small"
-                    android:textSize="@dimen/middle_text_size"
+                    android:layout_marginStart="@dimen/default_padding_middle"
+                    android:paddingStart="@dimen/tag_line_spacing_default"
+                    android:paddingEnd="@dimen/tag_line_spacing_default"
+                    android:paddingTop="@dimen/default_padding_quart"
+                    android:paddingBottom="@dimen/default_padding_quart"
+                    android:textSize="@dimen/text_size_small_for_tag"
+                    android:textColor="@color/white_main_text_color"
                     tools:text="Medium" />
 
             </LinearLayout>
@@ -55,7 +59,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/default_padding_small"
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
@@ -67,9 +70,6 @@
             android:layout_weight="1"
             android:ellipsize="end"
             android:maxLines="1"
-            android:text="@string/not_assigned"
-            android:textColor="@color/color_text_black"
-            android:textSize="@dimen/text_list_item_medium_16"
             tools:text="Alex Hoshylyk" />
 
         <ImageView
@@ -103,20 +103,20 @@
 
         <TextView
             android:id="@+id/tvCreatedDate_VLIO"
+            style="@style/RobotoRegular"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:maxLines="1"
             android:ellipsize="end"
+            android:maxLines="1"
             android:textColor="@color/color_text_gray"
-            android:textSize="@dimen/text_list_item_medium_16"
             tools:text="30 Jan, 2017" />
 
         <TextView
             android:id="@+id/tvTotalPrice_VLIO"
+            style="@style/RobotoCondensedBold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/text_list_item_medium_16"
             tools:text="$ 200.12" />
 
     </LinearLayout>
