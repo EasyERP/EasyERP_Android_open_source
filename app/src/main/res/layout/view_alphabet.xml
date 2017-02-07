@@ -4,4 +4,6 @@
     android:id="@+id/rvAlphabet_VA"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:overScrollMode="never"/>
+    android:background="@drawable/bg_with_bottom_divider_line"
+    android:overScrollMode="never"
+    android:scrollbars="none"/>

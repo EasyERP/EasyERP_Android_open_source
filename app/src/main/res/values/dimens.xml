@@ -19,7 +19,9 @@
 
     <dimen name="collapsed_menu_width">74dp</dimen>
     <dimen name="expanded_menu_width">260dp</dimen>
-    
+
+    <dimen name="divider_height">1dp</dimen>
+
     <dimen name="login_min_width_form_credentials">300dp</dimen>
 
     <!--/////////////////////// DESIGN ///////////////////////-->
@@ -30,17 +32,25 @@
     <dimen name="list_item_line_12">12dp</dimen>
     <dimen name="list_item_side_8">8dp</dimen>
     <dimen name="default_padding_half">8dp</dimen>
+    <dimen name="default_padding_medium_small">10dp</dimen>
+    <dimen name="default_padding_medium">14dp</dimen>
     <dimen name="default_padding_3dp">3dp</dimen>
+    <dimen name="padding_very_minimum">2dp</dimen>
     <dimen name="padding_large_45">45dp</dimen>
     <dimen name="list_item_height">130dp</dimen>
 
     <!--text-->
+    <dimen name="text_size_title_large">34sp</dimen>
+    <dimen name="text_size_big_24">24sp</dimen>
     <dimen name="text_list_item_extra_large_22">22sp</dimen>
     <dimen name="text_list_item_large_20">20sp</dimen>
     <dimen name="text_list_item_medium_16">16sp</dimen>
-    <dimen name="text_size_small">14sp</dimen>
+    <dimen name="text_size_small_14">14sp</dimen>
     <dimen name="text_size_small_for_tag">11sp</dimen>
     <dimen name="tag_line_spacing_default">8dp</dimen>
+
+    <dimen name="image_size_small">48dp</dimen>
+    <dimen name="image_size_large">144dp</dimen>
 
 
 </resources>

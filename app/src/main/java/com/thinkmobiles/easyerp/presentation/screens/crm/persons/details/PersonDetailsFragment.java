@@ -6,6 +6,7 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
@@ -22,11 +23,16 @@ import android.widget.Toast;
 import com.jakewharton.rxbinding.view.RxView;
 import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.domain.crm.PersonsRepository;
+import com.thinkmobiles.easyerp.presentation.adapters.crm.AttachmentAdapter;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.HistoryAdapter;
+import com.thinkmobiles.easyerp.presentation.adapters.crm.OpportunityAndLeadsAdapter;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.OpportunityPreviewAdapter;
 import com.thinkmobiles.easyerp.presentation.base.BaseFragment;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
+import com.thinkmobiles.easyerp.presentation.custom.transformations.CropCircleTransformation;
+import com.thinkmobiles.easyerp.presentation.holders.data.crm.AttachmentDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.HistoryDH;
+import com.thinkmobiles.easyerp.presentation.holders.data.crm.OpportunityAndLeadDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.OpportunityPreviewDH;
 import com.thinkmobiles.easyerp.presentation.managers.HistoryAnimationHelper;
 import com.thinkmobiles.easyerp.presentation.managers.ImageHelper;
@@ -40,6 +46,7 @@ import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.FragmentArg;
 import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.res.DrawableRes;
+import org.androidannotations.annotations.res.StringRes;
 
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
@@ -64,15 +71,11 @@ public class PersonDetailsFragment extends BaseFragment<HomeActivity> implements
     @ViewById
     protected NestedScrollView nsvContent_FPD;
     @ViewById
-    protected TextView tvAboutName_FPD;
-    @ViewById
     protected ImageView ivPersonAvatar_FPD;
     @ViewById
-    protected EditText etFirstName_FPD;
+    protected TextView tvPersonName_FPD;
     @ViewById
-    protected EditText etLastName_FPD;
-    @ViewById
-    protected EditText etJobPosition_FPD;
+    protected TextView tvJobPosition_FPD;
     @ViewById
     protected EditText etEmail_FPD;
     @ViewById
@@ -136,9 +139,9 @@ public class PersonDetailsFragment extends BaseFragment<HomeActivity> implements
     @ViewById
     protected ImageView ivCompanyImage_FPD;
     @ViewById
-    protected TextView tvCompanyTitleName_FPD;
-    @ViewById
     protected TextView tvCompanyTitleUrl_FPD;
+    @ViewById
+    protected TextView tvCompanyName_FPD;
     @ViewById
     protected EditText etCompanyName_FPD;
     @ViewById
@@ -156,17 +159,26 @@ public class PersonDetailsFragment extends BaseFragment<HomeActivity> implements
     @ViewById
     protected EditText etCompanyEmail_FPD;
     @ViewById
-    protected RecyclerView rvOpportunities_FPD;
-    @ViewById
     protected LinearLayout llAttachmentsContainer_FPD;
     @ViewById
-    protected TextView tvAttachments_FPD;
+    protected RecyclerView rvAttachments_FPD;
     @ViewById
     protected FrameLayout btnHistory;
     @ViewById
     protected ImageView ivIconArrow;
     @ViewById
+    protected RecyclerView rvLeadsAndOpportunities_FPD;
+    @ViewById
     protected RecyclerView rvHistory;
+
+    @ViewById
+    protected TextView tvEmptySalesANdPurchases_FPD;
+    @ViewById
+    protected TextView tvEmptyLeadsAndOpportunities_FPD;
+    @ViewById
+    protected TextView tvEmptyCompany_FPD;
+    @ViewById
+    protected TextView tvEmptyAttachments_FPD;
     //endregion
 
     @DrawableRes(R.drawable.ic_arrow_up)
@@ -174,26 +186,37 @@ public class PersonDetailsFragment extends BaseFragment<HomeActivity> implements
     @DrawableRes(R.drawable.ic_arrow_down)
     protected Drawable icArrowDown;
 
+    @StringRes(R.string.err_not_specified)
+    protected String notSpecified;
+
     @Bean
     protected PersonsRepository personsRepository;
     @Bean
     protected HistoryAdapter historyAdapter;
     @Bean
-    protected OpportunityPreviewAdapter opportunityPreviewAdapter;
-    @Bean
     protected ErrorViewHelper errorViewHelper;
     @Bean
     protected HistoryAnimationHelper animationHelper;
+    @Bean
+    protected OpportunityAndLeadsAdapter opportunityAndLeadsAdapter;
+    @Bean
+    protected AttachmentAdapter attachmentAdapter;
 
     @AfterViews
     protected void initUI() {
+        setEmptyData();
         errorViewHelper.init(errorLayout, v -> presenter.refresh());
 
         srlRefresh_FPD.setOnRefreshListener(() -> presenter.refresh());
         rvHistory.setLayoutManager(new LinearLayoutManager(getActivity()));
         rvHistory.setAdapter(historyAdapter);
-        rvOpportunities_FPD.setLayoutManager(new LinearLayoutManager(getActivity()));
-        rvOpportunities_FPD.setAdapter(opportunityPreviewAdapter);
+
+        rvLeadsAndOpportunities_FPD.setLayoutManager(new GridLayoutManager(getActivity(), 2));
+        rvLeadsAndOpportunities_FPD.setAdapter(opportunityAndLeadsAdapter);
+
+        rvAttachments_FPD.setLayoutManager(new GridLayoutManager(getActivity(), 2));
+        rvAttachments_FPD.setAdapter(attachmentAdapter);
+        attachmentAdapter.setOnCardClickListener((view, position, viewType) -> presenter.startAttachment(position));
 
         RxView.clicks(btnHistory)
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
@@ -213,23 +236,18 @@ public class PersonDetailsFragment extends BaseFragment<HomeActivity> implements
 
     @Override
     public void displayPersonAvatar(String base64Avatar) {
-        ImageHelper.getBitmapFromBase64(base64Avatar)
+        ImageHelper.getBitmapFromBase64(base64Avatar, new CropCircleTransformation())
                 .subscribe(ivPersonAvatar_FPD::setImageBitmap);
     }
 
     @Override
-    public void displayFirstName(String firstName) {
-        etFirstName_FPD.setText(firstName);
-    }
-
-    @Override
-    public void displayLastName(String lastName) {
-        etLastName_FPD.setText(lastName);
+    public void displayPersonName(String personName) {
+        tvPersonName_FPD.setText(personName);
     }
 
     @Override
     public void displayJobPosition(String jobPosition) {
-        etJobPosition_FPD.setText(jobPosition);
+        tvJobPosition_FPD.setText(jobPosition);
     }
 
     @Override
@@ -363,6 +381,17 @@ public class PersonDetailsFragment extends BaseFragment<HomeActivity> implements
     @Override
     public void showSalesPurchasesInfo(boolean isShow) {
         llContainerSalesPurchases_FPD.setVisibility(isShow ? View.VISIBLE : View.GONE);
+        if(!isShow) tvEmptySalesANdPurchases_FPD.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void showLeadsAndOpportunities(boolean isShown) {
+        if(!isShown) tvEmptyLeadsAndOpportunities_FPD.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void showAttachments(boolean isShown) {
+        if(!isShown) tvEmptyAttachments_FPD.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -382,8 +411,13 @@ public class PersonDetailsFragment extends BaseFragment<HomeActivity> implements
     }
 
     @Override
-    public void displayPersonAboutName(String name) {
-        tvAboutName_FPD.setText(name);
+    public void showJobPosition(boolean isShown) {
+        tvJobPosition_FPD.setVisibility(isShown ? View.VISIBLE : View.GONE);
+    }
+
+    @Override
+    public void showCompany(boolean isShown) {
+        tvCompanyName_FPD.setVisibility(isShown ? View.VISIBLE : View.GONE);
     }
 
     @Override
@@ -424,6 +458,7 @@ public class PersonDetailsFragment extends BaseFragment<HomeActivity> implements
     @Override
     public void showCompanyInfo(boolean isShow) {
         llCompanyContainer_FPD.setVisibility(isShow ? View.VISIBLE : View.GONE);
+        if(!isShow) tvEmptyCompany_FPD.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -433,18 +468,19 @@ public class PersonDetailsFragment extends BaseFragment<HomeActivity> implements
     }
 
     @Override
-    public void displayCompanyNameTitle(String companyName) {
-        tvCompanyTitleName_FPD.setText(companyName);
-    }
-
-    @Override
     public void displayCompanyUrl(String companyUrl) {
-        tvCompanyTitleUrl_FPD.setMovementMethod(LinkMovementMethod.getInstance());
-        tvCompanyTitleUrl_FPD.setText(Html.fromHtml(companyUrl));
+        tvCompanyTitleUrl_FPD.setText(companyUrl);
+        String url;
+        if(!companyUrl.startsWith("http://")) url = "http://" + companyUrl;
+        else url = companyUrl;
+        RxView.clicks(tvCompanyTitleUrl_FPD)
+                .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
+                .subscribe(aVoid -> startUrlIntent(url));
     }
 
     @Override
     public void displayCompanyName(String companyName) {
+        tvCompanyName_FPD.setText(companyName);
         etCompanyName_FPD.setText(companyName);
     }
 
@@ -484,14 +520,13 @@ public class PersonDetailsFragment extends BaseFragment<HomeActivity> implements
     }
 
     @Override
-    public void displayOpportunities(ArrayList<OpportunityPreviewDH> opportunityPreviewDHs) {
-        opportunityPreviewAdapter.setListDH(opportunityPreviewDHs);
+    public void displayLeadAndOpportunity(ArrayList<OpportunityAndLeadDH> opportunityAndLeadDHs) {
+        opportunityAndLeadsAdapter.setListDH(opportunityAndLeadDHs);
     }
 
     @Override
-    public void displayAttachments(String attachments) {
-        tvAttachments_FPD.setMovementMethod(LinkMovementMethod.getInstance());
-        tvAttachments_FPD.setText(Html.fromHtml(attachments));
+    public void displayAttachments(ArrayList<AttachmentDH> attachmentDHs) {
+        attachmentAdapter.setListDH(attachmentDHs);
     }
 
     @Override
@@ -522,6 +557,13 @@ public class PersonDetailsFragment extends BaseFragment<HomeActivity> implements
     }
 
     @Override
+    public void startUrlIntent(String url) {
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(Uri.parse(url));
+        startActivity(intent);
+    }
+
+    @Override
     public boolean optionsMenuForDetail() {
         return true;
     }
@@ -535,5 +577,41 @@ public class PersonDetailsFragment extends BaseFragment<HomeActivity> implements
     @Override
     public void setPresenter(PersonDetailsContract.PersonDetailsPresenter presenter) {
         this.presenter = presenter;
+    }
+
+    private void setEmptyData() {
+        displayPersonName(notSpecified);
+        displayJobPosition(notSpecified);
+        displayEmail(notSpecified);
+        displaySkype(notSpecified);
+        displayLinkedIn(notSpecified);
+        displayFacebook(notSpecified);
+        displayPhone(notSpecified);
+        displayMobile(notSpecified);
+        displayDateOfBirth(notSpecified);
+        displayBillingStreet(notSpecified);
+        displayBillingCity(notSpecified);
+        displayBillingState(notSpecified);
+        displayBillingZipcode(notSpecified);
+        displayBillingCountry(notSpecified);
+        displayShippingFullName(notSpecified);
+        displayShippingStreet(notSpecified);
+        displayShippingCity(notSpecified);
+        displayShippingState(notSpecified);
+        displayShippingZipcode(notSpecified);
+        displayShippingCountry(notSpecified);
+        displaySalesTeam(notSpecified);
+        displaySalesPerson(notSpecified);
+        displaySalesImplementedBy(notSpecified);
+        displaySalesReference(notSpecified);
+        displaySalesLanguage(notSpecified);
+        displayCompanyName(notSpecified);
+        displayCompanyStreet(notSpecified);
+        displayCompanyCity(notSpecified);
+        displayCompanyState(notSpecified);
+        displayCompanyZipcode(notSpecified);
+        displayCompanyCountry(notSpecified);
+        displayCompanyPhone(notSpecified);
+        displayCompanyEmail(notSpecified);
     }
 }

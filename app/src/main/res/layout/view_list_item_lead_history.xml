@@ -7,21 +7,21 @@
               android:background="@android:color/white">
 
     <LinearLayout
-        android:layout_width="100dp"
+        android:layout_width="130dp"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_marginStart="@dimen/default_padding_big"
+        android:layout_marginStart="@dimen/default_padding"
         android:paddingTop="@dimen/default_padding_big">
 
         <TextView
-            style="@style/RobotoMedium"
+            style="@style/RobotoCondensedRegular"
             android:id="@+id/tvNoteDateDate_LILH"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:text="24 Jan, 17"
             android:gravity="center"
             android:textColor="@color/color_text_black"
-            android:textSize="@dimen/text_list_item_medium_16"/>
+            android:textSize="@dimen/text_list_item_large_20"/>
 
         <TextView
             style="@style/RobotoRegular"
@@ -31,7 +31,8 @@
             tools:text="10:35 AM"
             android:textColor="@color/color_text_black"
             android:gravity="center"
-            android:textSize="@dimen/text_size_small"/>
+            android:layout_marginTop="@dimen/default_padding_half"
+            android:textSize="@dimen/text_list_item_medium_16"/>
 
     </LinearLayout>
 
@@ -64,7 +65,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_marginRight="@dimen/default_padding_big"
+        android:layout_marginRight="@dimen/default_padding"
         android:paddingTop="@dimen/default_padding_big"
         android:paddingBottom="@dimen/default_padding_half">
 
@@ -74,7 +75,7 @@
             android:orientation="horizontal">
 
             <TextView
-                style="@style/RobotoMedium"
+                style="@style/RobotoCondensedBold"
                 android:id="@+id/tvAction_LILH"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -90,7 +91,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="end"
-                android:textSize="@dimen/text_size_small"
+                android:textSize="@dimen/text_size_small_14"
                 tools:text="by Elizabeth Beaver"
                 android:textColor="@color/color_text_gray"
                 android:layout_weight="1"
