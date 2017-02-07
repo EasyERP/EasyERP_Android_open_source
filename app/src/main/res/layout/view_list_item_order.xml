@@ -13,92 +13,86 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <FrameLayout
-            android:layout_width="0dp"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1">
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
-            <LinearLayout
+            <TextView
+                android:id="@+id/tvOrderName_VLIO"
+                style="@style/RobotoCondensedBold"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textColor="@color/color_text_black"
+                android:textSize="@dimen/text_list_item_large_20"
+                tools:text="Web development" />
+
+            <TextView
+                android:id="@+id/tvOrderStatus_VLIO"
+                style="@style/RobotoMedium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
+                android:layout_marginStart="@dimen/default_padding_middle"
+                android:paddingBottom="@dimen/default_padding_quart"
+                android:paddingEnd="@dimen/tag_line_spacing_default"
+                android:paddingStart="@dimen/tag_line_spacing_default"
+                android:paddingTop="@dimen/default_padding_quart"
+                android:textColor="@color/white_main_text_color"
+                android:textSize="@dimen/text_size_small_for_tag"
+                tools:text="Medium" />
 
-                <TextView
-                    android:id="@+id/tvOrderName_VLIO"
-                    style="@style/RobotoCondensedBold"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:ellipsize="end"
-                    android:maxLines="1"
-                    android:textColor="@color/color_text_black"
-                    android:textSize="@dimen/text_list_item_medium_16"
-                    tools:text="Web development" />
-
-                <TextView
-                    android:id="@+id/tvOrderStatus_VLIO"
-                    style="@style/RobotoMedium"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/default_padding_middle"
-                    android:paddingStart="@dimen/tag_line_spacing_default"
-                    android:paddingEnd="@dimen/tag_line_spacing_default"
-                    android:paddingTop="@dimen/default_padding_quart"
-                    android:paddingBottom="@dimen/default_padding_quart"
-                    android:textSize="@dimen/text_size_small_for_tag"
-                    android:textColor="@color/white_main_text_color"
-                    tools:text="Medium" />
-
-            </LinearLayout>
-
-        </FrameLayout>
+        </LinearLayout>
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/default_padding_small"
+        android:layout_marginTop="@dimen/default_padding_small"
         android:gravity="center_vertical"
         android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/tvCustomer_VLIO"
-            style="@style/RobotoRegular"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ellipsize="end"
-            android:maxLines="1"
-            tools:text="Alex Hoshylyk" />
 
         <ImageView
             android:id="@+id/ivAllocated_VLIO"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/default_padding_small"
             app:srcCompat="@drawable/ic_allocated" />
 
         <ImageView
             android:id="@+id/ivFulfilled_VLIO"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/default_padding_small"
+            android:layout_marginEnd="@dimen/default_padding_small"
+            android:layout_marginStart="@dimen/default_padding_small"
             app:srcCompat="@drawable/ic_fulfilled" />
 
         <ImageView
             android:id="@+id/ivShipped_VLIO"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/default_padding_small"
             app:srcCompat="@drawable/ic_shipped" />
 
     </LinearLayout>
 
+    <TextView
+        android:id="@+id/tvCustomer_VLIO"
+        style="@style/RobotoRegular"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textColor="@color/color_text_black"
+        android:textSize="@dimen/text_list_item_medium_16"
+        tools:text="Alex Hoshylyk" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/default_padding_small"
         android:orientation="horizontal">
 
         <TextView
@@ -106,17 +100,21 @@
             style="@style/RobotoRegular"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/default_padding_middle"
             android:layout_weight="1"
             android:ellipsize="end"
             android:maxLines="1"
-            android:textColor="@color/color_text_gray"
-            tools:text="30 Jan, 2017" />
+            android:textColor="@color/color_text_black"
+            android:textSize="@dimen/text_list_item_medium_16"
+            tools:text="Expected Date: 02 Feb, 2017" />
 
         <TextView
             android:id="@+id/tvTotalPrice_VLIO"
             style="@style/RobotoCondensedBold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/color_text_black"
+            android:textSize="@dimen/text_list_item_medium_16"
             tools:text="$ 200.12" />
 
     </LinearLayout>
