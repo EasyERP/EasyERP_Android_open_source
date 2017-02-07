@@ -8,11 +8,11 @@
         </shape>
     </item>
 
-    <item>
-        <bitmap android:src="@drawable/bg_toolbar_neon_lines_start" android:gravity="start"/>
-    </item>
+    <item
+        android:drawable="@drawable/bg_toolbar_neon_lines_start"
+        android:gravity="start" />
 
-    <item>
-        <bitmap android:src="@drawable/bg_toolbar_neon_lines_end" android:gravity="end" />
-    </item>
+    <item
+        android:drawable="@drawable/bg_toolbar_neon_lines_end"
+        android:gravity="end" />
 </layer-list>
