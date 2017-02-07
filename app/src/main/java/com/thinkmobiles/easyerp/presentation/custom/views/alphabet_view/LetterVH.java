@@ -28,7 +28,7 @@ public class LetterVH extends RecyclerVH<LetterDH> {
         tvLetter_LIL.setText(data.getLetter());
         switch (data.getLetterState()) {
             case ENABLED:
-                tvLetter_LIL.setTextColor(ContextCompat.getColor(itemView.getContext(), R.color.colorPrimary));
+                tvLetter_LIL.setTextColor(ContextCompat.getColor(itemView.getContext(), R.color.color_text_black));
                 break;
             case DISABLED:
                 tvLetter_LIL.setTextColor(ContextCompat.getColor(itemView.getContext(), android.R.color.darker_gray));

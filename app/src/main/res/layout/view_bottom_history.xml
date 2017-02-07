@@ -5,7 +5,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@android:color/black" />
+        android:background="@color/color_divider" />
 
     <FrameLayout
         android:theme="@style/DefaultTheme.ThemeHistory"
@@ -22,7 +22,7 @@
             android:layout_gravity="start|center_vertical"
             android:text="@string/notes_amp_timeline"
             android:textColor="@color/color_text_black"
-            android:textSize="@dimen/text_list_item_medium_16" />
+            android:textSize="@dimen/text_list_item_large_20" />
 
         <ImageView
             android:id="@+id/ivIconArrow"

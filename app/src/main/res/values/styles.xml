@@ -49,6 +49,7 @@
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_weight">1</item>
         <item name="android:textColorHint">@color/color_text_gray</item>
+        <item name="android:layout_marginTop">16dp</item>
     </style>
 
     <style name="DefaultTheme.LeadInputFieldStyle" parent="DefaultTheme.DefaultBlackEditTextTheme">
@@ -59,6 +60,8 @@
         <item name="android:inputType">text</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">match_parent</item>
+        <item name="backgroundTint">@color/color_divider</item>
+        <item name="android:textSize">@dimen/text_list_item_medium_16</item>
     </style>
 
     <style name="ContentTitleStyle" parent="@style/RobotoMedium">
@@ -110,6 +113,59 @@
         <item name="android:textColor">@color/textColorPrimary</item>
         <item name="android:textColorHint">@color/textColorHint</item>
         <item name="backgroundTint">@color/colorPrimary</item>
+    </style>
+
+    <!--My the best of the best styles-->
+    <style name="TextListTitleStyle" parent="RobotoCondensedBold">
+        <item name="android:textSize">@dimen/text_list_item_large_20</item>
+        <item name="android:maxLines">2</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:textColor">@color/color_text_black</item>
+    </style>
+
+    <style name="TextListInfoStyle" parent="RobotoRegular">
+        <item name="android:textSize">@dimen/text_list_item_medium_16</item>
+        <item name="android:textColor">@color/color_text_black</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <style name="TextLargeTitleStyle" parent="RobotoCondensedBold">
+        <item name="android:textSize">@dimen/text_size_title_large</item>
+        <item name="android:textColor">@color/color_text_black</item>
+    </style>
+
+    <style name="TextLargeInfoStyle" parent="RobotoCondensedRegular">
+        <item name="android:textSize">@dimen/text_size_big_24</item>
+        <item name="android:textColor">@color/color_text_black</item>
+    </style>
+
+    <style name="TextContentTitle" parent="RobotoCondensedBold">
+        <item name="android:textSize">@dimen/text_list_item_large_20</item>
+        <item name="android:textColor">@color/color_text_black</item>
+        <item name="android:paddingStart">@dimen/default_padding_3dp</item>
+        <item name="android:paddingTop">@dimen/default_padding_big</item>
+    </style>
+
+    <style name="TextUrlStyle" parent="RobotoMedium">
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:textSize">@dimen/text_size_small_14</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <style name="TextNoDataStyle" parent="RobotoMedium">
+        <item name="android:text">@string/no_data</item>
+        <item name="android:textColor">@color/color_text_gray</item>
+        <item name="android:textSize">@dimen/text_list_item_medium_16</item>
+        <item name="android:visibility">gone</item>
+    </style>
+
+    <style name="CustomCheckBox" parent="Widget.AppCompat.CompoundButton.CheckBox">
+        <item name="colorControlNormal">@color/colorPrimary</item>
+        <item name="colorControlActivated">@color/colorPrimary</item>
+        <item name="android:textSize">@dimen/text_size_small_14</item>
+        <item name="android:clickable">false</item>
     </style>
 
 </resources>

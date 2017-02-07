@@ -10,6 +10,7 @@ import com.michenko.simpleadapter.OnCardClickListener;
 import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.data.model.crm.persons.person_item.PersonModel;
 import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectableVHHelper;
+import com.thinkmobiles.easyerp.presentation.custom.transformations.CropCircleTransformation;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.PersonDH;
 import com.thinkmobiles.easyerp.presentation.managers.ImageHelper;
 
@@ -25,8 +26,6 @@ public final class PersonVH extends MasterFlowSelectableVHHelper<PersonDH> {
     private final TextView tvPersonEmail_VLIP;
     private final TextView tvPersonPhone_VLIP;
 
-    private final String noData;
-
     public PersonVH(View itemView, @Nullable OnCardClickListener listener, int viewType) {
         super(itemView, listener, viewType);
 
@@ -35,8 +34,6 @@ public final class PersonVH extends MasterFlowSelectableVHHelper<PersonDH> {
         tvPersonCountry_VLIP = findView(R.id.tvPersonCountry_VLIP);
         tvPersonEmail_VLIP = findView(R.id.tvPersonEmail_VLIP);
         tvPersonPhone_VLIP = findView(R.id.tvPersonPhone_VLIP);
-
-        noData = itemView.getContext().getString(R.string.no_data);
     }
 
     @Override
@@ -44,24 +41,35 @@ public final class PersonVH extends MasterFlowSelectableVHHelper<PersonDH> {
         super.bindData(data);
 
         PersonModel personModel = data.getPersonModel();
-        ImageHelper.getBitmapFromBase64(data.getBase64Image())
+        ImageHelper.getBitmapFromBase64(data.getBase64Image(), new CropCircleTransformation())
                 .subscribe(bitmap -> {
                     if(bitmap != null)
                         ivPersonImage_VLIP.setImageBitmap(bitmap);
                     else
                         ivPersonImage_VLIP.setImageResource(R.drawable.ic_avatar_placeholder_with_padding);
                 });
-        tvPersonName_VLIP.setText(TextUtils.isEmpty(personModel.fullName) ? noData : personModel.fullName);
-        tvPersonEmail_VLIP.setText(TextUtils.isEmpty(personModel.email) ? noData : personModel.email);
+        if(!TextUtils.isEmpty(personModel.fullName))
+            tvPersonName_VLIP.setText(personModel.fullName);
+        else tvPersonName_VLIP.setText(null);
+        if(!TextUtils.isEmpty(personModel.email)) {
+            tvPersonEmail_VLIP.setText(personModel.email);
+            tvPersonEmail_VLIP.setVisibility(View.VISIBLE);
+        } else {
+            tvPersonEmail_VLIP.setText(null);
+            tvPersonEmail_VLIP.setVisibility(View.GONE);
+        }
         if(personModel.address != null && !TextUtils.isEmpty(personModel.address.country)) {
             tvPersonCountry_VLIP.setText(personModel.address.country);
         } else {
-            tvPersonCountry_VLIP.setText(noData);
+            tvPersonCountry_VLIP.setText(null);
         }
         if(personModel.phones != null && !TextUtils.isEmpty(personModel.phones.phone)) {
             tvPersonPhone_VLIP.setText(personModel.phones.phone);
+            tvPersonPhone_VLIP.setVisibility(View.VISIBLE);
         } else {
-            tvPersonPhone_VLIP.setText(noData);
+            tvPersonPhone_VLIP.setText(null);
+            tvPersonPhone_VLIP.setVisibility(View.GONE);
         }
+        tvPersonName_VLIP.requestLayout();
     }
 }
