@@ -1,16 +1,20 @@
+def appDependencies = rootProject.ext.appDependencies
+def devDependencies = rootProject.ext.devDependencies
+
 apply plugin: 'com.android.application'
 apply plugin: 'android-apt'
 apply plugin: 'me.tatarka.retrolambda'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.2"
+    compileSdkVersion rootProject.ext.androidCompileSdkVersion
+    buildToolsVersion rootProject.ext.androidBuildToolsVersion
+
     defaultConfig {
-        applicationId "com.thinkmobiles.easyerp"
-        minSdkVersion 19
-        targetSdkVersion 25
-        versionCode 1
-        versionName "1.0"
+        applicationId rootProject.ext.androidApplicationId
+        minSdkVersion rootProject.ext.androidMinSdkVersion
+        targetSdkVersion rootProject.ext.androidTargetSdkVersion
+        versionCode rootProject.ext.androidVersionCode
+        versionName rootProject.ext.androidVersionName
         vectorDrawables.useSupportLibrary = true
     }
 
@@ -49,33 +53,26 @@ android {
 
 }
 
-def ASVersion = '25.1.0'
-def AAVersion = '4.2.0'
-
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-
-    //Android Support
-    compile "com.android.support:design:$ASVersion"
-    compile "com.android.support:cardview-v7:$ASVersion"
-
-    apt "org.androidannotations:androidannotations:$AAVersion"
-    compile "org.androidannotations:androidannotations-api:$AAVersion"
-
-    compile 'com.github.alex-michenko:recycleradapters:0.2.6'
-
-    //Rx
-    compile 'io.reactivex:rxjava:1.1.3'
-    compile 'com.jakewharton.rxbinding:rxbinding:0.4.0'
-
-    //Networking
-    compile 'com.squareup.retrofit2:converter-gson:2.1.0'
-    compile 'com.squareup.retrofit2:adapter-rxjava:2.1.0'
-    compile 'com.squareup.picasso:picasso:2.5.2'
-    compile 'com.facebook.stetho:stetho-okhttp3:1.4.2'
-    compile 'com.squareup.okhttp3:logging-interceptor:3.4.1'
-
     compile project(path: ':rangepickerdialog')
-    compile 'com.github.PhilJay:MPAndroidChart:v3.0.1'
 
+    compile devDependencies.stetho
+
+    compile appDependencies.androidSupportDesign
+    compile appDependencies.androidSupportCardView
+
+    apt appDependencies.androidAnnotations
+    compile appDependencies.androidAnnotationsApi
+
+    compile appDependencies.recyclerAdaptersMichenko
+    compile appDependencies.picasso
+
+    compile appDependencies.rxJava
+    compile appDependencies.rxBinding
+
+    compile appDependencies.retrofitGson
+    compile appDependencies.retrofitAdapterRx
+    compile appDependencies.retrofitLogInterceptor
+
+    compile appDependencies.mpAndroidChart
 }

@@ -8,7 +8,7 @@
         android:background="@color/color_divider" />
 
     <FrameLayout
-        android:theme="@style/AppTheme.ThemeHistory"
+        android:theme="@style/DefaultTheme.ThemeHistory"
         android:id="@+id/btnHistory"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
