@@ -14,8 +14,8 @@
 
         <ImageView
             android:id="@+id/ivPersonImage_VLIP"
-            android:layout_width="@dimen/image_small"
-            android:layout_height="@dimen/image_small"
+            android:layout_width="@dimen/image_size_small"
+            android:layout_height="@dimen/image_size_small"
             android:scaleType="centerCrop"/>
 
         <LinearLayout

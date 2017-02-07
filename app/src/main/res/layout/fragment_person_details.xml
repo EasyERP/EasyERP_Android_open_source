@@ -47,8 +47,8 @@
 
                             <ImageView
                                 android:id="@+id/ivPersonAvatar_FPD"
-                                android:layout_width="@dimen/image_large"
-                                android:layout_height="@dimen/image_large"
+                                android:layout_width="@dimen/image_size_large"
+                                android:layout_height="@dimen/image_size_large"
                                 android:scaleType="centerCrop"/>
 
                             <LinearLayout
@@ -606,8 +606,8 @@
                                         android:orientation="vertical">
 
                                         <android.support.v7.widget.CardView
-                                            android:layout_width="@dimen/image_large"
-                                            android:layout_height="@dimen/image_large">
+                                            android:layout_width="@dimen/image_size_large"
+                                            android:layout_height="@dimen/image_size_large">
 
                                             <ImageView
                                                 android:id="@+id/ivCompanyImage_FPD"

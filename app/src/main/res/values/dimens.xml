@@ -49,8 +49,8 @@
     <dimen name="text_size_small_for_tag">11sp</dimen>
     <dimen name="tag_line_spacing_default">8dp</dimen>
 
-    <dimen name="image_small">48dp</dimen>
-    <dimen name="image_large">144dp</dimen>
+    <dimen name="image_size_small">48dp</dimen>
+    <dimen name="image_size_large">144dp</dimen>
 
 
 </resources>

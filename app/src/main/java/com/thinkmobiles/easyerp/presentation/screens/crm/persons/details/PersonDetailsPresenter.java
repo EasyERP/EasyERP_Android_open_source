@@ -69,7 +69,7 @@ public class PersonDetailsPresenter implements PersonDetailsContract.PersonDetai
 
     @Override
     public void startAttachment(int pos) {
-        String url = Constants.BASE_URL + "download/" + currentPerson.attachments.get(pos).shortPath;
+        String url = String.format("%sdownload/%s", Constants.BASE_URL, currentPerson.attachments.get(pos).shortPath);
         view.startUrlIntent(url);
     }
 

@@ -17,5 +17,4 @@ public class AttachmentAdapter extends SimpleRecyclerAdapter<AttachmentDH, Attac
     protected int getItemLayout() {
         return R.layout.view_list_item_attachment;
     }
-    //Constants.BASE_URL + "download/" + shortPas
 }
