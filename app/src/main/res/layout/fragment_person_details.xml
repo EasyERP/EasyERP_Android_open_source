@@ -6,6 +6,10 @@
              android:layout_height="match_parent"
              android:background="@android:color/white">
 
+    <include
+        layout="@layout/view_error_with_holder_icon"
+        tools:visibility="gone"/>
+
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/srlRefresh_FPD"
         android:layout_width="match_parent"
@@ -56,31 +60,25 @@
 
                                 <TextView
                                     android:id="@+id/tvPersonName_FPD"
-                                    style="@style/RobotoCondensedBold"
+                                    style="@style/TextLargeTitleStyle"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:textColor="@color/color_text_black"
-                                    android:textSize="@dimen/text_size_title_large"
                                     tools:text="Bradley	Douglas"/>
 
                                 <TextView
                                     android:id="@+id/tvJobPosition_FPD"
-                                    style="@style/RobotoCondensedRegular"
+                                    style="@style/TextLargeInfoStyle"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="@dimen/default_padding_small"
-                                    android:textColor="@color/color_text_black"
-                                    android:textSize="@dimen/text_size_big_24"
                                     tools:text="Program Leader"/>
 
                                 <TextView
                                     android:id="@+id/tvCompanyName_FPD"
-                                    style="@style/RobotoCondensedRegular"
+                                    style="@style/TextLargeInfoStyle"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="@dimen/default_padding_quart"
-                                    android:textColor="@color/color_text_black"
-                                    android:textSize="@dimen/text_size_big_24"
                                     tools:text="PricewaterhouseCoopers Corp."/>
 
                                 <LinearLayout
@@ -122,13 +120,10 @@
                         </LinearLayout>
 
                         <TextView
-                            style="@style/RobotoCondensedBold"
+                            style="@style/TextContentTitle"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/default_padding_big"
-                            android:text="@string/general_information"
-                            android:textSize="@dimen/text_list_item_large_20"
-                            android:layout_marginStart="@dimen/default_padding_3dp"/>
+                            android:text="@string/general_information"/>
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -243,13 +238,10 @@
                         </LinearLayout>
 
                         <TextView
-                            style="@style/RobotoCondensedBold"
+                            style="@style/TextContentTitle"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/default_padding_big"
-                            android:text="@string/billing_address"
-                            android:textSize="@dimen/text_list_item_large_20"
-                            android:layout_marginStart="@dimen/default_padding_3dp"/>
+                            android:text="@string/billing_address"/>
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -334,13 +326,10 @@
                         </LinearLayout>
 
                         <TextView
-                            style="@style/RobotoCondensedBold"
+                            style="@style/TextContentTitle"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/default_padding_big"
-                            android:text="@string/shipping_address"
-                            android:textSize="@dimen/text_list_item_large_20"
-                            android:layout_marginStart="@dimen/default_padding_3dp"/>
+                            android:text="@string/shipping_address"/>
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -430,26 +419,20 @@
                         </LinearLayout>
 
                         <TextView
-                            style="@style/RobotoCondensedBold"
+                            style="@style/TextContentTitle"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/default_padding_big"
-                            android:text="@string/sales_amp_purchases"
-                            android:textSize="@dimen/text_list_item_large_20"
-                            android:layout_marginStart="@dimen/default_padding_3dp"/>
+                            android:text="@string/sales_amp_purchases"/>
 
                         <FrameLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content">
 
                             <TextView
+                                style="@style/TextNoDataStyle"
                                 android:id="@+id/tvEmptySalesANdPurchases_FPD"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="@string/no_data"
-                                android:textColor="@color/color_text_gray"
-                                android:textSize="@dimen/text_list_item_medium_16"
-                                android:visibility="gone"
                                 android:layout_marginTop="@dimen/default_padding"
                                 android:layout_marginStart="@dimen/default_padding_3dp"/>
 
@@ -486,33 +469,34 @@
                                             style="@style/RobotoRegular"
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
+                                            android:layout_marginTop="@dimen/default_padding_medium"
                                             android:text="@string/contractor_type"
                                             android:textColor="@color/color_text_gray"
-                                            android:textSize="12sp"/>
+                                            android:textSize="@dimen/small_text_size"/>
 
                                         <LinearLayout
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
+                                            android:layout_marginTop="@dimen/default_padding_quart"
                                             android:orientation="horizontal">
 
                                             <CheckBox
+                                                android:theme="@style/CustomCheckBox"
                                                 android:id="@+id/cbIsCustomer_FPD"
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
-                                                android:clickable="false"
-                                                android:text="@string/customer"
                                                 android:textColor="@color/text_grey_hint_color"
-                                                android:theme="@style/CustomCheckBox"
+                                                android:text="@string/customer"
                                                 tools:checked="true"/>
 
                                             <CheckBox
+                                                android:theme="@style/CustomCheckBox"
                                                 android:id="@+id/cbIsSupplier_FPD"
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
-                                                android:clickable="false"
-                                                android:text="@string/supplier"
                                                 android:textColor="@color/text_grey_hint_color"
-                                                android:theme="@style/CustomCheckBox"
+                                                android:layout_marginStart="@dimen/default_padding_half"
+                                                android:text="@string/supplier"
                                                 tools:checked="false"/>
 
                                         </LinearLayout>
@@ -584,26 +568,20 @@
                         </FrameLayout>
 
                         <TextView
-                            style="@style/RobotoCondensedBold"
+                            style="@style/TextContentTitle"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/default_padding_big"
-                            android:text="@string/company"
-                            android:textSize="@dimen/text_list_item_large_20"
-                            android:layout_marginStart="@dimen/default_padding_3dp"/>
+                            android:text="@string/company"/>
 
                         <FrameLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content">
 
                             <TextView
+                                style="@style/TextNoDataStyle"
                                 android:id="@+id/tvEmptyCompany_FPD"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="@string/no_data"
-                                android:textColor="@color/color_text_gray"
-                                android:textSize="@dimen/text_list_item_medium_16"
-                                android:visibility="gone"
                                 android:layout_marginTop="@dimen/default_padding"
                                 android:layout_marginStart="@dimen/default_padding_3dp"/>
 
@@ -623,13 +601,13 @@
                                         android:layout_width="0dp"
                                         android:layout_height="wrap_content"
                                         android:layout_marginEnd="@dimen/default_padding_half"
+                                        android:layout_marginStart="@dimen/default_padding_3dp"
                                         android:layout_weight="1"
-                                        android:orientation="vertical"
-                                        android:layout_marginStart="@dimen/default_padding_3dp">
+                                        android:orientation="vertical">
 
                                         <android.support.v7.widget.CardView
-                                            android:layout_width="140dp"
-                                            android:layout_height="140dp">
+                                            android:layout_width="@dimen/image_large"
+                                            android:layout_height="@dimen/image_large">
 
                                             <ImageView
                                                 android:id="@+id/ivCompanyImage_FPD"
@@ -640,16 +618,12 @@
                                         </android.support.v7.widget.CardView>
 
                                         <TextView
+                                            style="@style/TextUrlStyle"
                                             android:id="@+id/tvCompanyTitleUrl_FPD"
-                                            style="@style/RobotoMedium"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
-                                            android:ellipsize="end"
-                                            android:maxLines="1"
-                                            android:textColor="@color/color_blue"
-                                            android:textSize="@dimen/text_size_small_14"
                                             android:layout_marginTop="@dimen/default_padding_small"
-                                            tools:text="DocumtDnumenrstDocument FirstDocumenumennt First"/>
+                                            tools:text="www.google.com"/>
 
                                     </LinearLayout>
 
@@ -676,8 +650,8 @@
                                         <android.support.design.widget.TextInputLayout
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
-                                            android:textColorHint="@color/color_text_gray"
                                             android:layout_marginTop="@dimen/default_padding"
+                                            android:textColorHint="@color/color_text_gray"
                                             app:hintAnimationEnabled="false">
 
                                             <EditText
@@ -690,8 +664,8 @@
                                         <android.support.design.widget.TextInputLayout
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
-                                            android:textColorHint="@color/color_text_gray"
                                             android:layout_marginTop="@dimen/default_padding"
+                                            android:textColorHint="@color/color_text_gray"
                                             app:hintAnimationEnabled="false">
 
                                             <EditText
@@ -792,37 +766,31 @@
                         </FrameLayout>
 
                         <TextView
-                            style="@style/RobotoCondensedBold"
+                            style="@style/TextContentTitle"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/default_padding_big"
-                            android:text="@string/leads_amp_opportunities"
-                            android:textSize="@dimen/text_list_item_large_20"
-                            android:layout_marginStart="@dimen/default_padding_3dp"/>
+                            android:text="@string/leads_amp_opportunities"/>
 
                     </LinearLayout>
 
                     <FrameLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:paddingEnd="@dimen/default_padding_half"
+                        android:paddingStart="@dimen/default_padding_half">
 
                         <android.support.v7.widget.RecyclerView
                             android:id="@+id/rvLeadsAndOpportunities_FPD"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/default_padding_half"
-                            android:overScrollMode="never"
-                            android:paddingEnd="@dimen/default_padding_half"
-                            android:paddingStart="@dimen/default_padding_half"/>
+                            android:overScrollMode="never"/>
 
                         <TextView
+                            style="@style/TextNoDataStyle"
                             android:id="@+id/tvEmptyLeadsAndOpportunities_FPD"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@string/no_data"
-                            android:textColor="@color/color_text_gray"
-                            android:textSize="@dimen/text_list_item_medium_16"
-                            android:visibility="gone"
                             android:paddingRight="@dimen/default_padding"
                             android:paddingLeft="@dimen/default_padding"
                             android:paddingTop="@dimen/default_padding"
@@ -831,45 +799,39 @@
                     </FrameLayout>
 
                     <TextView
-                        style="@style/RobotoCondensedBold"
+                        style="@style/TextContentTitle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/default_padding_big"
                         android:paddingEnd="@dimen/default_padding"
                         android:paddingStart="@dimen/default_padding"
-                        android:text="@string/attachments"
-                        android:textSize="@dimen/text_list_item_large_20"
-                        android:layout_marginStart="@dimen/default_padding_3dp"/>
+                        android:text="@string/attachments"/>
 
                     <FrameLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
                         <TextView
+                            style="@style/TextNoDataStyle"
                             android:id="@+id/tvEmptyAttachments_FPD"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@string/no_data"
-                            android:textColor="@color/color_text_gray"
-                            android:textSize="@dimen/text_list_item_medium_16"
-                            android:visibility="gone"
                             android:padding="@dimen/default_padding"
                             android:layout_marginStart="@dimen/default_padding_3dp"/>
 
-                    <LinearLayout
-                        android:id="@+id/llAttachmentsContainer_FPD"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-                        <android.support.v7.widget.RecyclerView
-                            android:id="@+id/rvAttachments_FPD"
+                        <LinearLayout
+                            android:id="@+id/llAttachmentsContainer_FPD"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/default_padding_half"
-                            android:overScrollMode="never"/>
+                            android:orientation="vertical">
 
-                    </LinearLayout>
+                            <android.support.v7.widget.RecyclerView
+                                android:id="@+id/rvAttachments_FPD"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/default_padding_half"
+                                android:overScrollMode="never"/>
+
+                        </LinearLayout>
 
                     </FrameLayout>
 
@@ -882,9 +844,5 @@
         </LinearLayout>
 
     </android.support.v4.widget.SwipeRefreshLayout>
-
-    <include
-        layout="@layout/view_error_with_holder_icon"
-        tools:visibility="gone"/>
 
 </FrameLayout>
