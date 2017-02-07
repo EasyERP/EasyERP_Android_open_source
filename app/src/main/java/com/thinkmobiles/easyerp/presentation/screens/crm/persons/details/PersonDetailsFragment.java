@@ -46,6 +46,7 @@ import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.FragmentArg;
 import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.res.DrawableRes;
+import org.androidannotations.annotations.res.StringRes;
 
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
@@ -185,6 +186,9 @@ public class PersonDetailsFragment extends BaseFragment<HomeActivity> implements
     @DrawableRes(R.drawable.ic_arrow_down)
     protected Drawable icArrowDown;
 
+    @StringRes(R.string.err_not_specified)
+    protected String notSpecified;
+
     @Bean
     protected PersonsRepository personsRepository;
     @Bean
@@ -200,6 +204,7 @@ public class PersonDetailsFragment extends BaseFragment<HomeActivity> implements
 
     @AfterViews
     protected void initUI() {
+        setEmptyData();
         errorViewHelper.init(errorLayout, v -> presenter.refresh());
 
         srlRefresh_FPD.setOnRefreshListener(() -> presenter.refresh());
@@ -464,8 +469,13 @@ public class PersonDetailsFragment extends BaseFragment<HomeActivity> implements
 
     @Override
     public void displayCompanyUrl(String companyUrl) {
-        tvCompanyTitleUrl_FPD.setMovementMethod(LinkMovementMethod.getInstance());
-        tvCompanyTitleUrl_FPD.setText(Html.fromHtml(companyUrl));
+        tvCompanyTitleUrl_FPD.setText(companyUrl);
+        String url;
+        if(!companyUrl.startsWith("http://")) url = "http://" + companyUrl;
+        else url = companyUrl;
+        RxView.clicks(tvCompanyTitleUrl_FPD)
+                .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
+                .subscribe(aVoid -> startUrlIntent(url));
     }
 
     @Override
@@ -547,7 +557,7 @@ public class PersonDetailsFragment extends BaseFragment<HomeActivity> implements
     }
 
     @Override
-    public void startAttachmentIntent(String url) {
+    public void startUrlIntent(String url) {
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setData(Uri.parse(url));
         startActivity(intent);
@@ -562,5 +572,41 @@ public class PersonDetailsFragment extends BaseFragment<HomeActivity> implements
     @Override
     public void setPresenter(PersonDetailsContract.PersonDetailsPresenter presenter) {
         this.presenter = presenter;
+    }
+
+    private void setEmptyData() {
+        displayPersonName(notSpecified);
+        displayJobPosition(notSpecified);
+        displayEmail(notSpecified);
+        displaySkype(notSpecified);
+        displayLinkedIn(notSpecified);
+        displayFacebook(notSpecified);
+        displayPhone(notSpecified);
+        displayMobile(notSpecified);
+        displayDateOfBirth(notSpecified);
+        displayBillingStreet(notSpecified);
+        displayBillingCity(notSpecified);
+        displayBillingState(notSpecified);
+        displayBillingZipcode(notSpecified);
+        displayBillingCountry(notSpecified);
+        displayShippingFullName(notSpecified);
+        displayShippingStreet(notSpecified);
+        displayShippingCity(notSpecified);
+        displayShippingState(notSpecified);
+        displayShippingZipcode(notSpecified);
+        displayShippingCountry(notSpecified);
+        displaySalesTeam(notSpecified);
+        displaySalesPerson(notSpecified);
+        displaySalesImplementedBy(notSpecified);
+        displaySalesReference(notSpecified);
+        displaySalesLanguage(notSpecified);
+        displayCompanyName(notSpecified);
+        displayCompanyStreet(notSpecified);
+        displayCompanyCity(notSpecified);
+        displayCompanyState(notSpecified);
+        displayCompanyZipcode(notSpecified);
+        displayCompanyCountry(notSpecified);
+        displayCompanyPhone(notSpecified);
+        displayCompanyEmail(notSpecified);
     }
 }

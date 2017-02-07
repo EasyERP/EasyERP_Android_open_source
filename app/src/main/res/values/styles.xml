@@ -49,6 +49,7 @@
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_weight">1</item>
         <item name="android:textColorHint">@color/color_text_gray</item>
+        <item name="android:layout_marginTop">16dp</item>
     </style>
 
     <style name="AppTheme.LeadInputFieldStyle" parent="AppTheme.DefaultBlackEditTextTheme">
@@ -60,6 +61,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">match_parent</item>
         <item name="backgroundTint">@color/color_divider</item>
+        <item name="android:textSize">16sp</item>
     </style>
 
     <style name="CustomCheckBox" parent="Widget.AppCompat.CompoundButton.CheckBox">

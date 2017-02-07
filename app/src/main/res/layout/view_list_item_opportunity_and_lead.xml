@@ -5,14 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_margin="@dimen/default_padding_half"
+    android:layout_margin="@dimen/default_padding_medium_small"
     app:cardBackgroundColor="@android:color/white">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_margin="@dimen/default_padding_half">
+        android:layout_margin="@dimen/default_padding">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -77,14 +77,14 @@
             android:layout_height="wrap_content"
             android:textSize="@dimen/text_list_item_medium_16"
             tools:text="Andriy Matviychuk"
-            android:layout_marginTop="@dimen/default_padding_half"
+            android:layout_marginTop="@dimen/padding_very_small"
             android:textColor="@color/color_text_black"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginTop="@dimen/default_padding_half">
+            android:layout_marginTop="@dimen/padding_very_small">
 
             <TextView
                 android:id="@+id/tvCreatedEditedBy_VLIOAL"

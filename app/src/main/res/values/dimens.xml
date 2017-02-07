@@ -32,7 +32,9 @@
     <dimen name="list_item_line_12">12dp</dimen>
     <dimen name="list_item_side_8">8dp</dimen>
     <dimen name="default_padding_half">8dp</dimen>
+    <dimen name="default_padding_medium_small">10dp</dimen>
     <dimen name="default_padding_3dp">3dp</dimen>
+    <dimen name="padding_very_small">2dp</dimen>
     <dimen name="padding_large_45">45dp</dimen>
     <dimen name="list_item_height">130dp</dimen>
 

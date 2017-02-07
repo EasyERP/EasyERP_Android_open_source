@@ -82,7 +82,7 @@ public interface PersonDetailsContract {
         void displayLeadAndOpportunity(ArrayList<OpportunityAndLeadDH> opportunityAndLeadDHs);
         void displayAttachments(ArrayList<AttachmentDH> attachmentDHs);
         void displayHistory(ArrayList<HistoryDH> historyDHs);
-        void startAttachmentIntent(String url);
+        void startUrlIntent(String url);
 
     }
     interface PersonDetailsPresenter extends BasePresenter {

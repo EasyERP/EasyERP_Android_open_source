@@ -127,17 +127,17 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/default_padding_big"
                             android:text="@string/general_information"
-                            android:textSize="@dimen/text_list_item_medium_16"/>
+                            android:textSize="@dimen/text_list_item_large_20"
+                            android:layout_marginStart="@dimen/default_padding_3dp"/>
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="20dp"
                             android:orientation="horizontal">
 
                             <android.support.design.widget.TextInputLayout
                                 style="@style/AppTheme.LeadTextInputLayoutStyle"
-                                android:layout_marginRight="@dimen/default_padding_half">
+                                android:layout_marginEnd="@dimen/default_padding_half">
 
                                 <EditText
                                     android:id="@+id/etEmail_FPD"
@@ -148,7 +148,7 @@
 
                             <android.support.design.widget.TextInputLayout
                                 style="@style/AppTheme.LeadTextInputLayoutStyle"
-                                android:layout_marginLeft="@dimen/default_padding_half">
+                                android:layout_marginStart="@dimen/default_padding_half">
 
                                 <EditText
                                     android:id="@+id/etSkype_FPD"
@@ -166,7 +166,7 @@
 
                             <android.support.design.widget.TextInputLayout
                                 style="@style/AppTheme.LeadTextInputLayoutStyle"
-                                android:layout_marginRight="@dimen/default_padding_half">
+                                android:layout_marginEnd="@dimen/default_padding_half">
 
                                 <EditText
                                     android:id="@+id/etLinkedIn_FPD"
@@ -177,7 +177,7 @@
 
                             <android.support.design.widget.TextInputLayout
                                 style="@style/AppTheme.LeadTextInputLayoutStyle"
-                                android:layout_marginLeft="@dimen/default_padding_half">
+                                android:layout_marginStart="@dimen/default_padding_half">
 
                                 <EditText
                                     android:id="@+id/etFacebook_FPD"
@@ -195,7 +195,7 @@
 
                             <android.support.design.widget.TextInputLayout
                                 style="@style/AppTheme.LeadTextInputLayoutStyle"
-                                android:layout_marginRight="@dimen/default_padding_half">
+                                android:layout_marginEnd="@dimen/default_padding_half">
 
                                 <EditText
                                     android:id="@+id/etPhone_FPD"
@@ -206,7 +206,7 @@
 
                             <android.support.design.widget.TextInputLayout
                                 style="@style/AppTheme.LeadTextInputLayoutStyle"
-                                android:layout_marginLeft="@dimen/default_padding_half">
+                                android:layout_marginStart="@dimen/default_padding_half">
 
                                 <EditText
                                     android:id="@+id/etMobile_FPD"
@@ -225,7 +225,7 @@
 
                             <android.support.design.widget.TextInputLayout
                                 style="@style/AppTheme.LeadTextInputLayoutStyle"
-                                android:layout_marginRight="@dimen/default_padding_half">
+                                android:layout_marginEnd="@dimen/default_padding_half">
 
                                 <EditText
                                     android:id="@+id/etDateOfBirth_FPD"
@@ -237,7 +237,7 @@
                             <View
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
-                                android:layout_marginLeft="@dimen/default_padding_half"
+                                android:layout_marginStart="@dimen/default_padding_half"
                                 android:layout_weight="1"/>
 
                         </LinearLayout>
@@ -248,17 +248,17 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/default_padding_big"
                             android:text="@string/billing_address"
-                            android:textSize="@dimen/text_list_item_medium_16"/>
+                            android:textSize="@dimen/text_list_item_large_20"
+                            android:layout_marginStart="@dimen/default_padding_3dp"/>
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="20dp"
                             android:orientation="horizontal">
 
                             <android.support.design.widget.TextInputLayout
                                 style="@style/AppTheme.LeadTextInputLayoutStyle"
-                                android:layout_marginRight="@dimen/default_padding_half">
+                                android:layout_marginEnd="@dimen/default_padding_half">
 
                                 <EditText
                                     android:id="@+id/etBillingStreet_FPD"
@@ -269,7 +269,7 @@
 
                             <android.support.design.widget.TextInputLayout
                                 style="@style/AppTheme.LeadTextInputLayoutStyle"
-                                android:layout_marginLeft="@dimen/default_padding_half">
+                                android:layout_marginStart="@dimen/default_padding_half">
 
                                 <EditText
                                     android:id="@+id/etBillingCity_FPD"
@@ -287,7 +287,7 @@
 
                             <android.support.design.widget.TextInputLayout
                                 style="@style/AppTheme.LeadTextInputLayoutStyle"
-                                android:layout_marginRight="@dimen/default_padding_half">
+                                android:layout_marginEnd="@dimen/default_padding_half">
 
                                 <EditText
                                     android:id="@+id/etBillingState_FPD"
@@ -298,7 +298,7 @@
 
                             <android.support.design.widget.TextInputLayout
                                 style="@style/AppTheme.LeadTextInputLayoutStyle"
-                                android:layout_marginLeft="@dimen/default_padding_half">
+                                android:layout_marginStart="@dimen/default_padding_half">
 
                                 <EditText
                                     android:id="@+id/etBillingZipcode_FPD"
@@ -316,7 +316,7 @@
 
                             <android.support.design.widget.TextInputLayout
                                 style="@style/AppTheme.LeadTextInputLayoutStyle"
-                                android:layout_marginRight="@dimen/default_padding_half">
+                                android:layout_marginEnd="@dimen/default_padding_half">
 
                                 <EditText
                                     android:id="@+id/etBillingCountry_FPD"
@@ -328,7 +328,7 @@
                             <View
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
-                                android:layout_marginLeft="@dimen/default_padding_half"
+                                android:layout_marginStart="@dimen/default_padding_half"
                                 android:layout_weight="1"/>
 
                         </LinearLayout>
@@ -339,17 +339,17 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/default_padding_big"
                             android:text="@string/shipping_address"
-                            android:textSize="@dimen/text_list_item_medium_16"/>
+                            android:textSize="@dimen/text_list_item_large_20"
+                            android:layout_marginStart="@dimen/default_padding_3dp"/>
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="20dp"
                             android:orientation="horizontal">
 
                             <android.support.design.widget.TextInputLayout
                                 style="@style/AppTheme.LeadTextInputLayoutStyle"
-                                android:layout_marginRight="@dimen/default_padding_half">
+                                android:layout_marginEnd="@dimen/default_padding_half">
 
                                 <EditText
                                     android:id="@+id/etShippingFullName_FPD"
@@ -360,7 +360,7 @@
 
                             <android.support.design.widget.TextInputLayout
                                 style="@style/AppTheme.LeadTextInputLayoutStyle"
-                                android:layout_marginLeft="@dimen/default_padding_half">
+                                android:layout_marginStart="@dimen/default_padding_half">
 
                                 <EditText
                                     android:id="@+id/etShippingStreet_FPD"
@@ -378,7 +378,7 @@
 
                             <android.support.design.widget.TextInputLayout
                                 style="@style/AppTheme.LeadTextInputLayoutStyle"
-                                android:layout_marginRight="@dimen/default_padding_half">
+                                android:layout_marginEnd="@dimen/default_padding_half">
 
                                 <EditText
                                     android:id="@+id/etShippingCity_FPD"
@@ -389,7 +389,7 @@
 
                             <android.support.design.widget.TextInputLayout
                                 style="@style/AppTheme.LeadTextInputLayoutStyle"
-                                android:layout_marginLeft="@dimen/default_padding_half">
+                                android:layout_marginStart="@dimen/default_padding_half">
 
                                 <EditText
                                     android:id="@+id/etShippingState_FPD"
@@ -407,7 +407,7 @@
 
                             <android.support.design.widget.TextInputLayout
                                 style="@style/AppTheme.LeadTextInputLayoutStyle"
-                                android:layout_marginRight="@dimen/default_padding_half">
+                                android:layout_marginEnd="@dimen/default_padding_half">
 
                                 <EditText
                                     android:id="@+id/etShippingZipcode_FPD"
@@ -418,7 +418,7 @@
 
                             <android.support.design.widget.TextInputLayout
                                 style="@style/AppTheme.LeadTextInputLayoutStyle"
-                                android:layout_marginLeft="@dimen/default_padding_half">
+                                android:layout_marginStart="@dimen/default_padding_half">
 
                                 <EditText
                                     android:id="@+id/etShippingCountry_FPD"
@@ -435,7 +435,8 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/default_padding_big"
                             android:text="@string/sales_amp_purchases"
-                            android:textSize="@dimen/text_list_item_medium_16"/>
+                            android:textSize="@dimen/text_list_item_large_20"
+                            android:layout_marginStart="@dimen/default_padding_3dp"/>
 
                         <FrameLayout
                             android:layout_width="match_parent"
@@ -449,13 +450,13 @@
                                 android:textColor="@color/color_text_gray"
                                 android:textSize="@dimen/text_list_item_medium_16"
                                 android:visibility="gone"
-                                android:layout_marginTop="@dimen/default_padding"/>
+                                android:layout_marginTop="@dimen/default_padding"
+                                android:layout_marginStart="@dimen/default_padding_3dp"/>
 
                             <LinearLayout
                                 android:id="@+id/llContainerSalesPurchases_FPD"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="20dp"
                                 android:orientation="vertical">
 
                                 <LinearLayout
@@ -465,7 +466,7 @@
 
                                     <android.support.design.widget.TextInputLayout
                                         style="@style/AppTheme.LeadTextInputLayoutStyle"
-                                        android:layout_marginRight="@dimen/default_padding_half">
+                                        android:layout_marginEnd="@dimen/default_padding_half">
 
                                         <EditText
                                             android:id="@+id/etSalesReference_FPD"
@@ -477,7 +478,7 @@
                                     <LinearLayout
                                         android:layout_width="0dp"
                                         android:layout_height="wrap_content"
-                                        android:layout_marginLeft="@dimen/default_padding_half"
+                                        android:layout_marginStart="@dimen/default_padding_half"
                                         android:layout_weight="1"
                                         android:orientation="vertical">
 
@@ -527,7 +528,7 @@
 
                                     <android.support.design.widget.TextInputLayout
                                         style="@style/AppTheme.LeadTextInputLayoutStyle"
-                                        android:layout_marginRight="@dimen/default_padding_half">
+                                        android:layout_marginEnd="@dimen/default_padding_half">
 
                                         <EditText
                                             android:id="@+id/etSalesTeam_FPD"
@@ -538,7 +539,7 @@
 
                                     <android.support.design.widget.TextInputLayout
                                         style="@style/AppTheme.LeadTextInputLayoutStyle"
-                                        android:layout_marginLeft="@dimen/default_padding_half">
+                                        android:layout_marginStart="@dimen/default_padding_half">
 
                                         <EditText
                                             android:id="@+id/etSalesPerson_FPD"
@@ -556,7 +557,7 @@
 
                                     <android.support.design.widget.TextInputLayout
                                         style="@style/AppTheme.LeadTextInputLayoutStyle"
-                                        android:layout_marginRight="@dimen/default_padding_half">
+                                        android:layout_marginEnd="@dimen/default_padding_half">
 
                                         <EditText
                                             android:id="@+id/etSalesImplementedBy_FPD"
@@ -567,7 +568,7 @@
 
                                     <android.support.design.widget.TextInputLayout
                                         style="@style/AppTheme.LeadTextInputLayoutStyle"
-                                        android:layout_marginLeft="@dimen/default_padding_half">
+                                        android:layout_marginStart="@dimen/default_padding_half">
 
                                         <EditText
                                             android:id="@+id/etSalesLanguage_FPD"
@@ -588,7 +589,8 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/default_padding_big"
                             android:text="@string/company"
-                            android:textSize="@dimen/text_list_item_medium_16"/>
+                            android:textSize="@dimen/text_list_item_large_20"
+                            android:layout_marginStart="@dimen/default_padding_3dp"/>
 
                         <FrameLayout
                             android:layout_width="match_parent"
@@ -602,7 +604,8 @@
                                 android:textColor="@color/color_text_gray"
                                 android:textSize="@dimen/text_list_item_medium_16"
                                 android:visibility="gone"
-                                android:layout_marginTop="@dimen/default_padding"/>
+                                android:layout_marginTop="@dimen/default_padding"
+                                android:layout_marginStart="@dimen/default_padding_3dp"/>
 
                             <LinearLayout
                                 android:id="@+id/llCompanyContainer_FPD"
@@ -617,11 +620,12 @@
                                     android:paddingTop="@dimen/default_padding">
 
                                     <LinearLayout
-                                        android:layout_width="match_parent"
+                                        android:layout_width="0dp"
                                         android:layout_height="wrap_content"
-                                        android:layout_marginRight="@dimen/default_padding_half"
+                                        android:layout_marginEnd="@dimen/default_padding_half"
                                         android:layout_weight="1"
-                                        android:orientation="vertical">
+                                        android:orientation="vertical"
+                                        android:layout_marginStart="@dimen/default_padding_3dp">
 
                                         <android.support.v7.widget.CardView
                                             android:layout_width="140dp"
@@ -638,19 +642,21 @@
                                         <TextView
                                             android:id="@+id/tvCompanyTitleUrl_FPD"
                                             style="@style/RobotoMedium"
-                                            android:layout_width="match_parent"
+                                            android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
-                                            android:layout_marginTop="@dimen/default_padding_half"
+                                            android:ellipsize="end"
+                                            android:maxLines="1"
                                             android:textColor="@color/color_blue"
                                             android:textSize="@dimen/text_size_small_14"
-                                            tools:text="PricewaterhouseCoopers.com"/>
+                                            android:layout_marginTop="@dimen/default_padding_small"
+                                            tools:text="DocumtDnumenrstDocument FirstDocumenumennt First"/>
 
                                     </LinearLayout>
 
                                     <LinearLayout
-                                        android:layout_width="match_parent"
+                                        android:layout_width="0dp"
                                         android:layout_height="wrap_content"
-                                        android:layout_marginLeft="@dimen/default_padding_half"
+                                        android:layout_marginStart="@dimen/default_padding_half"
                                         android:layout_weight="1"
                                         android:orientation="vertical">
 
@@ -671,6 +677,7 @@
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
                                             android:textColorHint="@color/color_text_gray"
+                                            android:layout_marginTop="@dimen/default_padding"
                                             app:hintAnimationEnabled="false">
 
                                             <EditText
@@ -684,6 +691,7 @@
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
                                             android:textColorHint="@color/color_text_gray"
+                                            android:layout_marginTop="@dimen/default_padding"
                                             app:hintAnimationEnabled="false">
 
                                             <EditText
@@ -700,12 +708,11 @@
                                 <LinearLayout
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:layout_marginTop="20dp"
                                     android:orientation="horizontal">
 
                                     <android.support.design.widget.TextInputLayout
                                         style="@style/AppTheme.LeadTextInputLayoutStyle"
-                                        android:layout_marginRight="@dimen/default_padding_half">
+                                        android:layout_marginEnd="@dimen/default_padding_half">
 
                                         <EditText
                                             android:id="@+id/etCompanyState_FPD"
@@ -716,7 +723,7 @@
 
                                     <android.support.design.widget.TextInputLayout
                                         style="@style/AppTheme.LeadTextInputLayoutStyle"
-                                        android:layout_marginLeft="@dimen/default_padding_half">
+                                        android:layout_marginStart="@dimen/default_padding_half">
 
                                         <EditText
                                             android:id="@+id/etCompanyZipcode_FPD"
@@ -734,7 +741,7 @@
 
                                     <android.support.design.widget.TextInputLayout
                                         style="@style/AppTheme.LeadTextInputLayoutStyle"
-                                        android:layout_marginRight="@dimen/default_padding_half">
+                                        android:layout_marginEnd="@dimen/default_padding_half">
 
                                         <EditText
                                             android:id="@+id/etCompanyPhone_FPD"
@@ -745,7 +752,7 @@
 
                                     <android.support.design.widget.TextInputLayout
                                         style="@style/AppTheme.LeadTextInputLayoutStyle"
-                                        android:layout_marginLeft="@dimen/default_padding_half">
+                                        android:layout_marginStart="@dimen/default_padding_half">
 
                                         <EditText
                                             android:id="@+id/etCompanyCountry_FPD"
@@ -763,7 +770,7 @@
 
                                     <android.support.design.widget.TextInputLayout
                                         style="@style/AppTheme.LeadTextInputLayoutStyle"
-                                        android:layout_marginRight="@dimen/default_padding_half">
+                                        android:layout_marginEnd="@dimen/default_padding_half">
 
                                         <EditText
                                             android:id="@+id/etCompanyEmail_FPD"
@@ -775,7 +782,7 @@
                                     <View
                                         android:layout_width="0dp"
                                         android:layout_height="match_parent"
-                                        android:layout_marginLeft="@dimen/default_padding_half"
+                                        android:layout_marginStart="@dimen/default_padding_half"
                                         android:layout_weight="1"/>
 
                                 </LinearLayout>
@@ -790,7 +797,8 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/default_padding_big"
                             android:text="@string/leads_amp_opportunities"
-                            android:textSize="@dimen/text_list_item_medium_16"/>
+                            android:textSize="@dimen/text_list_item_large_20"
+                            android:layout_marginStart="@dimen/default_padding_3dp"/>
 
                     </LinearLayout>
 
@@ -815,7 +823,10 @@
                             android:textColor="@color/color_text_gray"
                             android:textSize="@dimen/text_list_item_medium_16"
                             android:visibility="gone"
-                            android:padding="@dimen/default_padding"/>
+                            android:paddingRight="@dimen/default_padding"
+                            android:paddingLeft="@dimen/default_padding"
+                            android:paddingTop="@dimen/default_padding"
+                            android:layout_marginStart="@dimen/default_padding_3dp"/>
 
                     </FrameLayout>
 
@@ -827,7 +838,8 @@
                         android:paddingEnd="@dimen/default_padding"
                         android:paddingStart="@dimen/default_padding"
                         android:text="@string/attachments"
-                        android:textSize="@dimen/text_list_item_medium_16"/>
+                        android:textSize="@dimen/text_list_item_large_20"
+                        android:layout_marginStart="@dimen/default_padding_3dp"/>
 
                     <FrameLayout
                         android:layout_width="match_parent"
@@ -841,7 +853,8 @@
                             android:textColor="@color/color_text_gray"
                             android:textSize="@dimen/text_list_item_medium_16"
                             android:visibility="gone"
-                            android:padding="@dimen/default_padding"/>
+                            android:padding="@dimen/default_padding"
+                            android:layout_marginStart="@dimen/default_padding_3dp"/>
 
                     <LinearLayout
                         android:id="@+id/llAttachmentsContainer_FPD"

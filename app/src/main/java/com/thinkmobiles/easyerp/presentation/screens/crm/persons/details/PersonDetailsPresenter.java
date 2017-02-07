@@ -3,7 +3,6 @@ package com.thinkmobiles.easyerp.presentation.screens.crm.persons.details;
 import android.text.TextUtils;
 
 import com.thinkmobiles.easyerp.R;
-import com.thinkmobiles.easyerp.data.model.crm.companies.detail.ResponseGetCompanyDetails;
 import com.thinkmobiles.easyerp.data.model.crm.leads.detail.AttachmentItem;
 import com.thinkmobiles.easyerp.data.model.crm.persons.details.OpportunityItem;
 import com.thinkmobiles.easyerp.data.model.crm.persons.details.ResponseGetPersonDetails;
@@ -11,10 +10,8 @@ import com.thinkmobiles.easyerp.presentation.EasyErpApplication;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.AttachmentDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.HistoryDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.OpportunityAndLeadDH;
-import com.thinkmobiles.easyerp.presentation.holders.data.crm.OpportunityPreviewDH;
 import com.thinkmobiles.easyerp.presentation.managers.DateManager;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
-import com.thinkmobiles.easyerp.presentation.utils.StringUtil;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -73,7 +70,7 @@ public class PersonDetailsPresenter implements PersonDetailsContract.PersonDetai
     @Override
     public void startAttachment(int pos) {
         String url = Constants.BASE_URL + "download/" + currentPerson.attachments.get(pos).shortPath;
-        view.startAttachmentIntent(url);
+        view.startUrlIntent(url);
     }
 
     @Override
@@ -184,7 +181,7 @@ public class PersonDetailsPresenter implements PersonDetailsContract.PersonDetai
             view.showCompany(true);
             view.displayCompanyName(data.company.fullName);
             if(!TextUtils.isEmpty(data.company.imageSrc)) view.displayCompanyImage(data.company.imageSrc);
-            if(!TextUtils.isEmpty(data.company.website)) view.displayCompanyUrl(StringUtil.getClickableUrl(data.company.website, data.company.website));
+            if(!TextUtils.isEmpty(data.company.website)) view.displayCompanyUrl(data.company.website);
             if(data.company.address != null) {
                 if(!TextUtils.isEmpty(data.company.address.street)) view.displayCompanyStreet(data.company.address.street);
                 if(!TextUtils.isEmpty(data.company.address.city)) view.displayCompanyCity(data.company.address.city);
@@ -194,7 +191,7 @@ public class PersonDetailsPresenter implements PersonDetailsContract.PersonDetai
             }
             if(data.company.phones != null) {
                 if(!TextUtils.isEmpty(data.company.phones.phone)) view.displayCompanyPhone(data.company.phones.phone);
-                else if(!TextUtils.isEmpty(data.company.phones.mobile)) view.displayCompanyPhone(data.company.phones.phone);
+                else if(!TextUtils.isEmpty(data.company.phones.mobile)) view.displayCompanyPhone(data.company.phones.mobile);
                 else if(!TextUtils.isEmpty(data.company.phones.fax)) view.displayCompanyPhone(data.company.phones.fax);
             }
             if(!TextUtils.isEmpty(data.company.email)) view.displayCompanyEmail(data.company.email);
