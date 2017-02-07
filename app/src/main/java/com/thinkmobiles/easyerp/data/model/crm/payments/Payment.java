@@ -9,6 +9,8 @@ import com.thinkmobiles.easyerp.data.model.crm.invoice.Invoice;
 import com.thinkmobiles.easyerp.data.model.crm.leads.detail.SalesPerson;
 import com.thinkmobiles.easyerp.data.model.crm.leads.filter.FilterItem;
 import com.thinkmobiles.easyerp.data.model.crm.order.Order;
+import com.thinkmobiles.easyerp.data.model.crm.order.detail.PaymentMethod;
+import com.thinkmobiles.easyerp.data.model.crm.order.detail.Supplier;
 
 /**
  * @author Michael Soyma (Created on 2/2/2017).
@@ -33,11 +35,15 @@ public final class Payment implements Parcelable {
     public Order order;
     public Double paidAmount;
     public String paymentRef;
+    public PaymentMethod paymentMethod;
     public boolean refund;
     public boolean removable;
-    public SalesPerson supplier;
+    public Supplier supplier;
     public int total;
     public String workflow;
+
+    public Payment() {
+    }
 
     @Override
     public int describeContents() {
@@ -48,6 +54,7 @@ public final class Payment implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(this.id);
         dest.writeString(this.type);
+        dest.writeParcelable(this.assigned, flags);
         dest.writeParcelable(this.bankAccount, flags);
         dest.writeParcelable(this.bankExpenses, flags);
         dest.writeParcelable(this.currency, flags);
@@ -59,6 +66,7 @@ public final class Payment implements Parcelable {
         dest.writeParcelable(this.order, flags);
         dest.writeValue(this.paidAmount);
         dest.writeString(this.paymentRef);
+        dest.writeParcelable(this.paymentMethod, flags);
         dest.writeByte(this.refund ? (byte) 1 : (byte) 0);
         dest.writeByte(this.removable ? (byte) 1 : (byte) 0);
         dest.writeParcelable(this.supplier, flags);
@@ -66,12 +74,10 @@ public final class Payment implements Parcelable {
         dest.writeString(this.workflow);
     }
 
-    public Payment() {
-    }
-
     protected Payment(Parcel in) {
         this.id = in.readString();
         this.type = in.readString();
+        this.assigned = in.readParcelable(SalesPerson.class.getClassLoader());
         this.bankAccount = in.readParcelable(FilterItem.class.getClassLoader());
         this.bankExpenses = in.readParcelable(FilterItem.class.getClassLoader());
         this.currency = in.readParcelable(CurrencyID.class.getClassLoader());
@@ -83,6 +89,7 @@ public final class Payment implements Parcelable {
         this.order = in.readParcelable(Order.class.getClassLoader());
         this.paidAmount = (Double) in.readValue(Double.class.getClassLoader());
         this.paymentRef = in.readString();
+        this.paymentMethod = in.readParcelable(PaymentMethod.class.getClassLoader());
         this.refund = in.readByte() != 0;
         this.removable = in.readByte() != 0;
         this.supplier = in.readParcelable(SalesPerson.class.getClassLoader());

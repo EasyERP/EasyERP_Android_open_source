@@ -13,6 +13,7 @@ import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowListFragment;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.PaymentDH;
 import com.thinkmobiles.easyerp.presentation.listeners.EndlessRecyclerViewScrollListener;
+import com.thinkmobiles.easyerp.presentation.screens.crm.payments.details.PaymentDetailsFragment_;
 
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterViews;
@@ -129,7 +130,9 @@ public class PaymentsFragment extends MasterFlowListFragment implements Payments
     @Override
     public void openPaymentDetailsScreen(Payment payment) {
         if (payment != null) {
-            //TODO open payment detail. Need send via arguments, because request for detail not need call.
+            mActivity.replaceFragmentContentDetail(PaymentDetailsFragment_.builder()
+                    .payment(payment)
+                    .build());
         } else {
             mActivity.replaceFragmentContentDetail(null);
         }

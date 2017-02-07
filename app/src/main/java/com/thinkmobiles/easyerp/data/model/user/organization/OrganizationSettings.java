@@ -162,7 +162,7 @@ public class OrganizationSettings implements Parcelable {
     public String _id;
     public String startDate;
     public String name;
-    public Double discount;
+//    public Double discount;
 //    public Double shipping;
     public OrganizationTax carriedTax;
     public OrganizationTax payableTax;
@@ -194,7 +194,6 @@ public class OrganizationSettings implements Parcelable {
         dest.writeString(this._id);
         dest.writeString(this.startDate);
         dest.writeString(this.name);
-        dest.writeValue(this.discount);
         dest.writeParcelable(this.carriedTax, flags);
         dest.writeParcelable(this.payableTax, flags);
         dest.writeParcelable(this.purchaseTax, flags);
@@ -214,7 +213,6 @@ public class OrganizationSettings implements Parcelable {
         this._id = in.readString();
         this.startDate = in.readString();
         this.name = in.readString();
-        this.discount = (Double) in.readValue(Double.class.getClassLoader());
         this.carriedTax = in.readParcelable(OrganizationTax.class.getClassLoader());
         this.payableTax = in.readParcelable(OrganizationTax.class.getClassLoader());
         this.purchaseTax = in.readParcelable(OrganizationTax.class.getClassLoader());
