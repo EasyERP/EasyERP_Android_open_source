@@ -15,6 +15,11 @@ public abstract class MasterFlowSelectablePresenterHelper<ID_TYPE, DH_TYPE exten
     }
 
     @Override
+    public void clearSelectedInfo() {
+        selectedInfo = null;
+    }
+
+    @Override
     public Integer getSelectedItemPosition() {
         return selectedInfo != null ? selectedInfo.first : -1;
     }

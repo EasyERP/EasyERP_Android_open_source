@@ -1,17 +1,12 @@
 package com.thinkmobiles.easyerp.presentation.screens.crm.orders.details;
 
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
-import android.animation.ValueAnimator;
 import android.graphics.drawable.Drawable;
-import android.support.v4.view.animation.FastOutSlowInInterpolator;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -38,7 +33,6 @@ import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.FragmentArg;
 import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.res.DrawableRes;
-import org.androidannotations.annotations.res.IntegerRes;
 
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
@@ -333,4 +327,10 @@ public class OrderDetailsFragment extends BaseFragment<HomeActivity> implements 
     public void showMessage(String errorMessage) {
         Toast.makeText(getActivity(), errorMessage, Toast.LENGTH_SHORT).show();
     }
+
+    @Override
+    public boolean optionsMenuForDetail() {
+        return true;
+    }
+
 }

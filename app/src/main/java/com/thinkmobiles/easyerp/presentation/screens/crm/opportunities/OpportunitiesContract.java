@@ -25,7 +25,6 @@ public interface OpportunitiesContract {
 
     interface OpportunitiesPresenter extends MasterFlowSelectableBasePresenter<String, OpportunityDH> {
         void loadOpportunities(int page);
-        void displayOpportunityDetails(String opportunityID);
     }
 
     interface OpportunitiesModel extends BaseModel {

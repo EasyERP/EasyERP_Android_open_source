@@ -160,4 +160,9 @@ public class PersonsFragment extends MasterFlowListFragment implements PersonsCo
         super.onDestroyView();
         if (presenter != null) presenter.unsubscribe();
     }
+
+    @Override
+    public void clearSelectedItem() {
+        presenter.clearSelectedInfo();
+    }
 }

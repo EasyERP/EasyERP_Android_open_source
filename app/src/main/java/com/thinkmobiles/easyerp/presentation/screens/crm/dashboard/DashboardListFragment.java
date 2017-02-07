@@ -65,8 +65,7 @@ public class DashboardListFragment extends MasterFlowListFragment implements Das
     }
 
     private void loadWithProgressBar() {
-        errorViewHelper.hideError();
-        displayProgress(true);
+        showProgress(true);
         presenter.loadDashboardChartsList();
     }
 
@@ -88,8 +87,7 @@ public class DashboardListFragment extends MasterFlowListFragment implements Das
 
     @Override
     public void displayDashboardChartsList(ArrayList<DashboardListDH> listDashboards) {
-        errorViewHelper.hideError();
-        displayProgress(false);
+        showProgress(false);
         swipeContainer.setRefreshing(false);
         dashboardListAdapter.setListDH(listDashboards);
 
@@ -99,7 +97,13 @@ public class DashboardListFragment extends MasterFlowListFragment implements Das
 
     @Override
     public void openDashboardChartDetail(DashboardListItem itemChartDashboard) {
-        mActivity.replaceFragmentContentDetail(DashboardDetailChartFragment_.builder().dashboardConfigsForChart(itemChartDashboard).build());
+        if (itemChartDashboard != null) {
+            mActivity.replaceFragmentContentDetail(DashboardDetailChartFragment_.builder()
+                            .dashboardConfigsForChart(itemChartDashboard)
+                            .build());
+        } else {
+            mActivity.replaceFragmentContentDetail(null);
+        }
     }
 
     @Override
@@ -115,6 +119,7 @@ public class DashboardListFragment extends MasterFlowListFragment implements Das
 
     @Override
     public void showProgress(boolean isShow) {
+        errorViewHelper.hideError();
         displayProgress(isShow);
     }
 
@@ -124,4 +129,8 @@ public class DashboardListFragment extends MasterFlowListFragment implements Das
         presenter.unsubscribe();
     }
 
+    @Override
+    public void clearSelectedItem() {
+        presenter.clearSelectedInfo();
+    }
 }

@@ -1,10 +1,6 @@
 package com.thinkmobiles.easyerp.presentation.screens.crm.opportunities.details;
 
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
-import android.animation.ValueAnimator;
 import android.graphics.drawable.Drawable;
-import android.support.v4.view.animation.FastOutSlowInInterpolator;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -13,12 +9,10 @@ import android.text.Html;
 import android.text.SpannableStringBuilder;
 import android.text.method.LinkMovementMethod;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,7 +36,6 @@ import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.FragmentArg;
 import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.res.DrawableRes;
-import org.androidannotations.annotations.res.IntegerRes;
 
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
@@ -320,6 +313,11 @@ public class OpportunityDetailsFragment extends BaseFragment<HomeActivity> imple
     @Override
     public void displayHistory(ArrayList<HistoryDH> history) {
         historyAdapter.setListDH(history);
+    }
+
+    @Override
+    public boolean optionsMenuForDetail() {
+        return true;
     }
 
     @Override

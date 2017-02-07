@@ -176,6 +176,10 @@ public abstract class MenuConfigs {
         return null;
     }
 
+    public static String getLabel(final int moduleId, final int itemId) {
+        return menuModuleItems.get(moduleId).get(itemId).getLabel();
+    }
+
     private static BaseFragment getFragmentByIdWithCRMModule(final int itemId) {
         switch (itemId) {
            case 0: return DashboardListFragment_.builder().build();

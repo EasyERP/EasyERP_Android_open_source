@@ -291,6 +291,7 @@ public class LeadsFragment extends MasterFlowListFragment implements LeadsContra
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == Activity.RESULT_OK) {
             ArrayList<FilterDH> filterDHs = data.getParcelableArrayListExtra(Constants.KEY_FILTER_LIST);
             presenter.filterByList(filterDHs, requestCode);
@@ -314,4 +315,8 @@ public class LeadsFragment extends MasterFlowListFragment implements LeadsContra
         this.menuWorkflow = menu.findItem(R.id.menuFilterStage);
     }
 
+    @Override
+    public void clearSelectedItem() {
+        presenter.clearSelectedInfo();
+    }
 }

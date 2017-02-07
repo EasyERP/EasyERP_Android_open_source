@@ -1,18 +1,15 @@
 package com.thinkmobiles.easyerp.presentation.holders.view.crm;
 
-import android.graphics.Color;
 import android.support.annotation.Nullable;
-import android.text.SpannableStringBuilder;
-import android.text.Spanned;
+import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.michenko.simpleadapter.OnCardClickListener;
 import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectableVHHelper;
-import com.thinkmobiles.easyerp.presentation.custom.RoundedBackgroundSpan;
+import com.thinkmobiles.easyerp.presentation.custom.RoundRectDrawable;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.LeadDH;
 import com.thinkmobiles.easyerp.presentation.managers.DateManager;
 import com.thinkmobiles.easyerp.presentation.managers.TagHelper;
@@ -29,7 +26,6 @@ public final class LeadVH extends MasterFlowSelectableVHHelper<LeadDH> {
     private final TextView tvSource_LIL;
     private final TextView tvAssignedTo_LIL;
     private final TextView tvEditedBy_VLIL;
-    private final LinearLayout llFirstLine_VLIL;
 
     private final String noData;
 
@@ -41,7 +37,6 @@ public final class LeadVH extends MasterFlowSelectableVHHelper<LeadDH> {
         tvPriority_LIL = findView(R.id.tvPriority_LIL);
         tvSource_LIL = findView(R.id.tvSource_LIL);
         tvAssignedTo_LIL = findView(R.id.tvAssignedTo_LIL);
-        llFirstLine_VLIL = findView(R.id.llFirstLine_VLIL);
         tvEditedBy_VLIL = findView(R.id.tvEditedBy_VLIL);
 
         noData = itemView.getContext().getString(R.string.no_data);
@@ -60,10 +55,14 @@ public final class LeadVH extends MasterFlowSelectableVHHelper<LeadDH> {
         else
             tvStage_LIL.setText(noData);
         if(!TextUtils.isEmpty(data.getLeadItem().priority)) {
+            tvPriority_LIL.setText(data.getLeadItem().priority.toUpperCase());
+            tvPriority_LIL.setBackgroundDrawable(
+                    new RoundRectDrawable(ContextCompat.getColor(itemView.getContext(), TagHelper.getColorResIdByName(data.getLeadItem().priority))));
             tvPriority_LIL.setVisibility(View.VISIBLE);
-            tvPriority_LIL.setText(buildPriorityTag(data.getLeadItem().priority));
-        } else
+        } else {
+            tvPriority_LIL.setText(null);
             tvPriority_LIL.setVisibility(View.GONE);
+        }
         if(!TextUtils.isEmpty(data.getLeadItem().source))
             tvSource_LIL.setText(data.getLeadItem().source);
         else
@@ -85,14 +84,4 @@ public final class LeadVH extends MasterFlowSelectableVHHelper<LeadDH> {
         tvLeadName_LIL.requestLayout();
     }
 
-    private SpannableStringBuilder buildPriorityTag(String priority) {
-        SpannableStringBuilder stringBuilder = new SpannableStringBuilder();
-        stringBuilder.append(" ");
-        if(priority.startsWith(TagHelper.MEDIUM)) priority = priority.substring(0,3);
-        stringBuilder.append(priority.toUpperCase());
-        stringBuilder.append("  ");
-        RoundedBackgroundSpan tagSpan = new RoundedBackgroundSpan(itemView.getContext(), TagHelper.getColorResIdByName(priority), Color.WHITE);
-        stringBuilder.setSpan(tagSpan, 0, stringBuilder.length() - 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        return stringBuilder;
-    }
 }
