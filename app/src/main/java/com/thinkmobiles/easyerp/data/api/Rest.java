@@ -3,7 +3,6 @@ package com.thinkmobiles.easyerp.data.api;
 import com.facebook.stetho.okhttp3.StethoInterceptor;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.thinkmobiles.easyerp.BuildConfig;
 import com.thinkmobiles.easyerp.data.api.interceptors.AddCookieInterceptor;
 import com.thinkmobiles.easyerp.data.api.interceptors.BadCookieInterceptor;
 import com.thinkmobiles.easyerp.data.api.interceptors.ReceiveCookieInterceptor;

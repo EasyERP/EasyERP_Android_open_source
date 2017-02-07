@@ -2,7 +2,6 @@ package com.thinkmobiles.easyerp.presentation.screens.crm.orders;
 
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -146,5 +145,10 @@ public class OrdersFragment extends MasterFlowListFragment implements OrdersCont
     public void onDestroyView() {
         super.onDestroyView();
         presenter.unsubscribe();
+    }
+
+    @Override
+    public void clearSelectedItem() {
+        presenter.clearSelectedInfo();
     }
 }
