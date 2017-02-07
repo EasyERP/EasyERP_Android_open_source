@@ -1,9 +1,7 @@
 package com.thinkmobiles.easyerp.presentation.holders.view.crm;
 
-import android.graphics.Color;
 import android.support.annotation.Nullable;
-import android.text.SpannableStringBuilder;
-import android.text.Spanned;
+import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
@@ -12,7 +10,7 @@ import android.widget.TextView;
 import com.michenko.simpleadapter.OnCardClickListener;
 import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectableVHHelper;
-import com.thinkmobiles.easyerp.presentation.custom.RoundedBackgroundSpan;
+import com.thinkmobiles.easyerp.presentation.custom.RoundRectDrawable;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.OrderDH;
 import com.thinkmobiles.easyerp.presentation.managers.DateManager;
 import com.thinkmobiles.easyerp.presentation.managers.TagHelper;
@@ -58,59 +56,51 @@ public final class OrderVH extends MasterFlowSelectableVHHelper<OrderDH> {
         super.bindData(data);
 
         tvOrderName_VLIO.setText(data.getOrder().name);
-        tvOrderStatus_VLIO.setText(buildStatusTag(data.getOrder().workflow.name, TagHelper.getColorResIdByName(data.getOrder().workflow.status)));
+        tvOrderStatus_VLIO.setText(data.getOrder().workflow.name.toUpperCase());
+        tvOrderStatus_VLIO.setBackgroundDrawable(
+                new RoundRectDrawable(ContextCompat.getColor(itemView.getContext(), TagHelper.getColorResIdByName(data.getOrder().workflow.status))));
         tvCustomer_VLIO.setText(TextUtils.isEmpty(data.getOrder().supplier.name) ? not_assigned : data.getOrder().supplier.name);
-        tvCreatedDate_VLIO.setText(new DateManager.DateConverter(data.getOrder().orderDate).setDstPattern(DateManager.PATTERN_DATE_SIMPLE_PREVIEW).toString());
+
+        tvCreatedDate_VLIO.setText(String.format("Order Date: %s", new DateManager.DateConverter(data.getOrder().orderDate).setDstPattern(DateManager.PATTERN_DATE_SIMPLE_PREVIEW).toString()));
+
         tvTotalPrice_VLIO.setText(StringUtil.getFormattedPriceFromCent(new DollarFormatter().getFormat(),
                 data.getOrder().paymentInfo.total,
                 data.getOrder().currency.id != null ? data.getOrder().currency.id.symbol : "$"));
 
-        tvOrderName_VLIO.requestLayout();
-
         switch (data.getOrder().status.allocateStatus) {
             case "NOT":
-                ivAllocated_VLIO.setImageResource( R.drawable.ic_allocated_off);
+                ivAllocated_VLIO.setImageResource(R.drawable.ic_allocated_off);
                 break;
             case "NOR":
-                ivAllocated_VLIO.setImageResource( R.drawable.ic_allocated_middle_on);
+                ivAllocated_VLIO.setImageResource(R.drawable.ic_allocated_middle_on);
                 break;
             case "ALL":
-                ivAllocated_VLIO.setImageResource( R.drawable.ic_allocated);
+                ivAllocated_VLIO.setImageResource(R.drawable.ic_allocated);
                 break;
         }
 
         switch (data.getOrder().status.fulfillStatus) {
             case "NOT":
-                ivFulfilled_VLIO.setImageResource( R.drawable.ic_fulfilled_off);
+                ivFulfilled_VLIO.setImageResource(R.drawable.ic_fulfilled_off);
                 break;
             case "NOR":
-                ivFulfilled_VLIO.setImageResource( R.drawable.ic_fulfilled_middle_on);
+                ivFulfilled_VLIO.setImageResource(R.drawable.ic_fulfilled_middle_on);
                 break;
             case "ALL":
-                ivFulfilled_VLIO.setImageResource( R.drawable.ic_fulfilled);
+                ivFulfilled_VLIO.setImageResource(R.drawable.ic_fulfilled);
                 break;
         }
 
         switch (data.getOrder().status.shippingStatus) {
             case "NOT":
-                ivShipped_VLIO.setImageResource( R.drawable.ic_shipped_off);
+                ivShipped_VLIO.setImageResource(R.drawable.ic_shipped_off);
                 break;
             case "NOR":
-                ivShipped_VLIO.setImageResource( R.drawable.ic_shipped_middle_on);
+                ivShipped_VLIO.setImageResource(R.drawable.ic_shipped_middle_on);
                 break;
             case "ALL":
-                ivShipped_VLIO.setImageResource( R.drawable.ic_shipped);
+                ivShipped_VLIO.setImageResource(R.drawable.ic_shipped);
                 break;
         }
-    }
-
-    private SpannableStringBuilder buildStatusTag(String status, int bgColor) {
-        SpannableStringBuilder stringBuilder = new SpannableStringBuilder();
-        stringBuilder.append(" ");
-        stringBuilder.append(status.toUpperCase());
-        stringBuilder.append("  ");
-        RoundedBackgroundSpan tagSpan = new RoundedBackgroundSpan(itemView.getContext(), bgColor, Color.WHITE);
-        stringBuilder.setSpan(tagSpan, 0, stringBuilder.length() - 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        return stringBuilder;
     }
 }

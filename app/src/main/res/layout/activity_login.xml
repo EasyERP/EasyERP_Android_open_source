@@ -28,7 +28,7 @@
         android:layout_gravity="center"
         android:minWidth="@dimen/login_min_width_form_credentials"
         android:orientation="vertical"
-        android:paddingTop="15dp"
+        android:paddingTop="150dp"
         android:visibility="invisible">
 
         <android.support.design.widget.TextInputLayout

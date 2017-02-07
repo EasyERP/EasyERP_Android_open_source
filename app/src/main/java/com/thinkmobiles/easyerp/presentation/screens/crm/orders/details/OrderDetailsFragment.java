@@ -333,4 +333,10 @@ public class OrderDetailsFragment extends BaseFragment<HomeActivity> implements 
     public void showMessage(String errorMessage) {
         Toast.makeText(getActivity(), errorMessage, Toast.LENGTH_SHORT).show();
     }
+
+    @Override
+    public boolean optionsMenuForDetail() {
+        return true;
+    }
+
 }

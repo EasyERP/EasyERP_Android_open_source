@@ -89,7 +89,7 @@ public class FilterDialogFragment extends DialogFragment implements DialogInterf
         rvList.setLayoutManager(new LinearLayoutManager(getActivity()));
         rvList.setAdapter(searchAdapter);
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(), R.style.AppTheme_FilterDialogStyle)
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(), R.style.DefaultTheme_FilterDialogStyle)
                 .setView(parent)
                 .setTitle(String.format("%s : %s", getString(R.string.menu_filter), filterName))
                 .setPositiveButton(R.string.dialog_btn_apply, this)

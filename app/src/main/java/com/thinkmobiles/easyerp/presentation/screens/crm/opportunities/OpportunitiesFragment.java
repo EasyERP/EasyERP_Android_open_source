@@ -2,7 +2,6 @@ package com.thinkmobiles.easyerp.presentation.screens.crm.opportunities;
 
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -110,7 +109,6 @@ public class OpportunitiesFragment extends MasterFlowListFragment implements Opp
 
     @Override
     public void openOpportunityDetailsScreen(String opportunityID) {
-        Log.d("myLogs", "Open opportunity details. ID = " + opportunityID);
         if (opportunityID != null) {
             mActivity.replaceFragmentContentDetail(OpportunityDetailsFragment_.builder()
                     .opportunityID(opportunityID)
@@ -145,5 +143,10 @@ public class OpportunitiesFragment extends MasterFlowListFragment implements Opp
     public void onDestroyView() {
         super.onDestroyView();
         if(presenter != null) presenter.unsubscribe();
+    }
+
+    @Override
+    public void clearSelectedItem() {
+        presenter.clearSelectedInfo();
     }
 }

@@ -34,7 +34,7 @@
             android:layout_height="wrap_content"
             tools:text="abigler@hashtag-recruitment.ch"
             android:textSize="@dimen/text_list_item_medium_16"
-            android:textColor="@color/color_blue"
+            android:textColor="@color/colorAccent"
             android:layout_marginTop="@dimen/default_padding_half"/>
 
     </LinearLayout>

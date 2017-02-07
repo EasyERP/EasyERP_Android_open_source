@@ -2,7 +2,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimaryDark">
+    android:background="@color/colorPrimary">
 
     <ScrollView
         android:id="@+id/svContainerExpandedLayout_VDM"
@@ -43,7 +43,7 @@
         android:id="@+id/svContainerCollapsedLayout_VDM"
         android:layout_width="@dimen/collapsed_menu_width"
         android:layout_height="match_parent"
-        android:background="@color/colorPrimaryDark"
+        android:background="@color/colorPrimary"
         android:overScrollMode="never"
         android:scrollbars="none"
         android:visibility="visible">

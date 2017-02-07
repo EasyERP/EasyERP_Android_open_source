@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="statusBarHeight">24dp</dimen>
+    <dimen name="appBarHeight">88dp</dimen>
+
+    <style name="AppTheme" parent="DefaultTheme">
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@color/colorPrimaryDark</item>
+        <item name="android:windowTranslucentStatus">true</item>
+    </style>
+</resources>
