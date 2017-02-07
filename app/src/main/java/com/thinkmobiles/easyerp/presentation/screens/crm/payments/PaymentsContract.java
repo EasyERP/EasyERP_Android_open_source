@@ -21,7 +21,7 @@ public interface PaymentsContract {
     interface PaymentsView extends MasterFlowSelectableBaseView<PaymentsPresenter> {
         void displayPayments(ArrayList<PaymentDH> paymentDHs, boolean needClear);
         void displayError(final String msg, final ErrorViewHelper.ErrorType errorType);
-        void openPaymentDetailsScreen(Payment payment);
+        void openPaymentDetailsScreen(final Payment payment);
     }
     interface PaymentsPresenter extends MasterFlowSelectableBasePresenter<String, PaymentDH> {
         void loadPayments(final int page);

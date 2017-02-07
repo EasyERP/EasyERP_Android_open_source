@@ -139,4 +139,9 @@ public class InvoicesFragment extends MasterFlowListFragment implements Invoices
         super.onDestroyView();
         presenter.unsubscribe();
     }
+
+    @Override
+    public void clearSelectedItem() {
+        presenter.clearSelectedInfo();
+    }
 }

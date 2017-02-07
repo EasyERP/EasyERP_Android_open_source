@@ -1,9 +1,9 @@
 package com.thinkmobiles.easyerp.presentation.screens.crm.persons;
 
-import com.thinkmobiles.easyerp.data.model.crm.persons.ResponseGetPersons;
 import com.thinkmobiles.easyerp.data.model.crm.common.alphabet.AlphabetItem;
 import com.thinkmobiles.easyerp.data.model.crm.common.alphabet.ResponseGetAlphabet;
 import com.thinkmobiles.easyerp.data.model.crm.common.images.ResponseGetCustomersImages;
+import com.thinkmobiles.easyerp.data.model.crm.persons.ResponseGetPersons;
 import com.thinkmobiles.easyerp.presentation.base.BaseModel;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectableBasePresenter;

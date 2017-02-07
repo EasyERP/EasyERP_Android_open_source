@@ -11,7 +11,6 @@ import com.michenko.simpleadapter.OnCardClickListener;
 import com.michenko.simpleadapter.RecyclerVH;
 import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.data.model.crm.order.detail.OrderProduct;
-import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectableVHHelper;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.OrderProductDH;
 import com.thinkmobiles.easyerp.presentation.screens.crm.dashboard.detail.charts.DollarFormatter;
 import com.thinkmobiles.easyerp.presentation.utils.StringUtil;

@@ -10,10 +10,6 @@ import android.view.ViewGroup;
 import org.androidannotations.annotations.EBean;
 import org.androidannotations.annotations.res.IntegerRes;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.stream.Collectors;
-
 /**
  * @author Alex Michenko (Created on 03.02.17).
  *         Company: Thinkmobiles

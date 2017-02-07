@@ -143,4 +143,9 @@ public class PaymentsFragment extends MasterFlowListFragment implements Payments
         super.onDestroyView();
         presenter.unsubscribe();
     }
+
+    @Override
+    public void clearSelectedItem() {
+        presenter.clearSelectedInfo();
+    }
 }

@@ -4,7 +4,6 @@ import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
@@ -17,7 +16,6 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -430,6 +428,10 @@ public class CompanyDetailsFragment extends BaseFragment<HomeActivity> implement
     }
     //endregion
 
+    @Override
+    public boolean optionsMenuForDetail() {
+        return true;
+    }
 
     @Override
     public void setPresenter(CompanyDetailsContract.CompanyDetailsPresenter presenter) {

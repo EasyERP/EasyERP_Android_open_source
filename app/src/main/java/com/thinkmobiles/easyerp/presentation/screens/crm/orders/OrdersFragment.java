@@ -33,6 +33,7 @@ public class OrdersFragment extends MasterFlowListFragment implements OrdersCont
 
     private OrdersContract.OrdersPresenter presenter;
     private EndlessRecyclerViewScrollListener scrollListener;
+    private LinearLayoutManager recyclerLayoutManager;
 
     @Bean
     protected OrderRepository orderRepository;
@@ -60,28 +61,26 @@ public class OrdersFragment extends MasterFlowListFragment implements OrdersCont
 
     @AfterViews
     protected void initUI() {
-        errorViewHelper.init(errorLayout, view -> loadWithProgressBar());
-
-        LinearLayoutManager llm = new LinearLayoutManager(mActivity, LinearLayoutManager.VERTICAL, false);
-        scrollListener = new EndlessRecyclerViewScrollListener(llm) {
+        errorViewHelper.init(errorLayout, view -> retryLoadWithProgressBar());
+        recyclerLayoutManager = new LinearLayoutManager(mActivity);
+        scrollListener = new EndlessRecyclerViewScrollListener(recyclerLayoutManager, presenter.getCurrentPage()) {
             @Override
             public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
                 displayProgress(true);
                 presenter.loadOrders(page);
             }
         };
-        listRecycler.setLayoutManager(llm);
+        listRecycler.setLayoutManager(recyclerLayoutManager);
         listRecycler.setAdapter(ordersAdapter);
         listRecycler.addOnScrollListener(scrollListener);
         ordersAdapter.setOnCardClickListener((view, position, viewType) -> presenter.selectItem(ordersAdapter.getItem(position), position));
 
-        loadWithProgressBar();
+        presenter.subscribe();
     }
 
-    private void loadWithProgressBar() {
-        errorViewHelper.hideError();
-        displayProgress(true);
-        presenter.subscribe();
+    private void retryLoadWithProgressBar() {
+        showProgress(true);
+        presenter.loadOrders(1);
     }
 
     @Override
@@ -103,8 +102,7 @@ public class OrdersFragment extends MasterFlowListFragment implements OrdersCont
 
     @Override
     public void displayOrders(ArrayList<OrderDH> orderDHs, boolean needClear) {
-        errorViewHelper.hideError();
-        displayProgress(false);
+        showProgress(false);
         swipeContainer.setRefreshing(false);
 
         if (needClear)
@@ -138,8 +136,19 @@ public class OrdersFragment extends MasterFlowListFragment implements OrdersCont
     }
 
     @Override
+    public void showProgress(boolean isShow) {
+        errorViewHelper.hideError();
+        displayProgress(isShow);
+    }
+
+    @Override
     public void onDestroyView() {
         super.onDestroyView();
         presenter.unsubscribe();
+    }
+
+    @Override
+    public void clearSelectedItem() {
+        presenter.clearSelectedInfo();
     }
 }

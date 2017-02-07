@@ -31,7 +31,7 @@ public class HomeActivity extends BaseMasterFlowActivity {
 
     @AfterViews
     protected void initMenu() {
-        menuDrawerView.setMenuClickListener((moduleId, itemId) -> replaceFragmentContent(MenuConfigs.getFragmentByMenuId(moduleId, itemId)));
+        menuDrawerView.setMenuClickListener((moduleId, itemId) -> replaceFragmentContent(MenuConfigs.getFragmentByMenuId(moduleId, itemId), MenuConfigs.getLabel(moduleId, itemId)));
         menuDrawerView.setHeaderUserData(userInfo);
     }
 

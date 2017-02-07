@@ -1,7 +1,7 @@
 package com.thinkmobiles.easyerp.data.services;
 
-import com.thinkmobiles.easyerp.data.model.crm.persons.ResponseGetPersons;
 import com.thinkmobiles.easyerp.data.model.crm.common.alphabet.ResponseGetAlphabet;
+import com.thinkmobiles.easyerp.data.model.crm.persons.ResponseGetPersons;
 import com.thinkmobiles.easyerp.data.model.crm.persons.details.ResponseGetPersonDetails;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
