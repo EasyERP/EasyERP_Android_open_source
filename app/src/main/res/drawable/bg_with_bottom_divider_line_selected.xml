@@ -8,7 +8,7 @@
             <solid android:color="@color/color_bg_selected_item" />
             <stroke
                 android:width="4dp"
-                android:color="@color/color_blue" />
+                android:color="@color/colorAccent" />
         </shape>
     </item>
 </layer-list>

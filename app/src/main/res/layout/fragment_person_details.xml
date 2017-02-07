@@ -74,11 +74,11 @@
                                 android:orientation="horizontal">
 
                                 <android.support.design.widget.TextInputLayout
-                                    style="@style/AppTheme.LeadTextInputLayoutStyle">
+                                    style="@style/DefaultTheme.LeadTextInputLayoutStyle">
 
                                     <EditText
                                         android:id="@+id/etFirstName_FPD"
-                                        style="@style/AppTheme.LeadInputFieldStyle"
+                                        style="@style/DefaultTheme.LeadInputFieldStyle"
                                         android:hint="First Name"/>
 
                                 </android.support.design.widget.TextInputLayout>
@@ -96,11 +96,11 @@
                                 android:orientation="horizontal">
 
                                 <android.support.design.widget.TextInputLayout
-                                    style="@style/AppTheme.LeadTextInputLayoutStyle">
+                                    style="@style/DefaultTheme.LeadTextInputLayoutStyle">
 
                                     <EditText
                                         android:id="@+id/etLastName_FPD"
-                                        style="@style/AppTheme.LeadInputFieldStyle"
+                                        style="@style/DefaultTheme.LeadInputFieldStyle"
                                         android:hint="Last Name"/>
 
                                 </android.support.design.widget.TextInputLayout>
@@ -123,21 +123,21 @@
                         android:layout_marginTop="20dp">
 
                         <android.support.design.widget.TextInputLayout
-                            style="@style/AppTheme.LeadTextInputLayoutStyle">
+                            style="@style/DefaultTheme.LeadTextInputLayoutStyle">
 
                             <EditText
                                 android:id="@+id/etJobPosition_FPD"
-                                style="@style/AppTheme.LeadInputFieldStyle"
+                                style="@style/DefaultTheme.LeadInputFieldStyle"
                                 android:hint="Job position"/>
 
                         </android.support.design.widget.TextInputLayout>
 
                         <android.support.design.widget.TextInputLayout
-                            style="@style/AppTheme.LeadTextInputLayoutStyle">
+                            style="@style/DefaultTheme.LeadTextInputLayoutStyle">
 
                             <EditText
                                 android:id="@+id/etEmail_FPD"
-                                style="@style/AppTheme.LeadInputFieldStyle"
+                                style="@style/DefaultTheme.LeadInputFieldStyle"
                                 android:hint="Email"/>
 
                         </android.support.design.widget.TextInputLayout>
@@ -150,21 +150,21 @@
                         android:orientation="horizontal">
 
                         <android.support.design.widget.TextInputLayout
-                            style="@style/AppTheme.LeadTextInputLayoutStyle">
+                            style="@style/DefaultTheme.LeadTextInputLayoutStyle">
 
                             <EditText
                                 android:id="@+id/etSkype_FPD"
-                                style="@style/AppTheme.LeadInputFieldStyle"
+                                style="@style/DefaultTheme.LeadInputFieldStyle"
                                 android:hint="Skype"/>
 
                         </android.support.design.widget.TextInputLayout>
 
                         <android.support.design.widget.TextInputLayout
-                            style="@style/AppTheme.LeadTextInputLayoutStyle">
+                            style="@style/DefaultTheme.LeadTextInputLayoutStyle">
 
                             <EditText
                                 android:id="@+id/etPhone_FPD"
-                                style="@style/AppTheme.LeadInputFieldStyle"
+                                style="@style/DefaultTheme.LeadInputFieldStyle"
                                 android:hint="Phone"/>
 
                         </android.support.design.widget.TextInputLayout>
@@ -177,21 +177,21 @@
                         android:orientation="horizontal">
 
                         <android.support.design.widget.TextInputLayout
-                            style="@style/AppTheme.LeadTextInputLayoutStyle">
+                            style="@style/DefaultTheme.LeadTextInputLayoutStyle">
 
                             <EditText
                                 android:id="@+id/etLinkedIn_FPD"
-                                style="@style/AppTheme.LeadInputFieldStyle"
+                                style="@style/DefaultTheme.LeadInputFieldStyle"
                                 android:hint="Linked In"/>
 
                         </android.support.design.widget.TextInputLayout>
 
                         <android.support.design.widget.TextInputLayout
-                            style="@style/AppTheme.LeadTextInputLayoutStyle">
+                            style="@style/DefaultTheme.LeadTextInputLayoutStyle">
 
                             <EditText
                                 android:id="@+id/etMobile_FPD"
-                                style="@style/AppTheme.LeadInputFieldStyle"
+                                style="@style/DefaultTheme.LeadInputFieldStyle"
                                 android:hint="Mobile"/>
 
                         </android.support.design.widget.TextInputLayout>
@@ -204,21 +204,21 @@
                         android:orientation="horizontal">
 
                         <android.support.design.widget.TextInputLayout
-                            style="@style/AppTheme.LeadTextInputLayoutStyle">
+                            style="@style/DefaultTheme.LeadTextInputLayoutStyle">
 
                             <EditText
                                 android:id="@+id/etFacebook_FPD"
-                                style="@style/AppTheme.LeadInputFieldStyle"
+                                style="@style/DefaultTheme.LeadInputFieldStyle"
                                 android:hint="Facebook"/>
 
                         </android.support.design.widget.TextInputLayout>
 
                         <android.support.design.widget.TextInputLayout
-                            style="@style/AppTheme.LeadTextInputLayoutStyle">
+                            style="@style/DefaultTheme.LeadTextInputLayoutStyle">
 
                             <EditText
                                 android:id="@+id/etDateOfBirth_FPD"
-                                style="@style/AppTheme.LeadInputFieldStyle"
+                                style="@style/DefaultTheme.LeadInputFieldStyle"
                                 android:hint="Date of Birth"/>
 
                         </android.support.design.widget.TextInputLayout>
@@ -274,21 +274,21 @@
                         android:orientation="horizontal">
 
                         <android.support.design.widget.TextInputLayout
-                            style="@style/AppTheme.LeadTextInputLayoutStyle">
+                            style="@style/DefaultTheme.LeadTextInputLayoutStyle">
 
                             <EditText
                                 android:id="@+id/etBillingStreet_FPD"
-                                style="@style/AppTheme.LeadInputFieldStyle"
+                                style="@style/DefaultTheme.LeadInputFieldStyle"
                                 android:hint="Street"/>
 
                         </android.support.design.widget.TextInputLayout>
 
                         <android.support.design.widget.TextInputLayout
-                            style="@style/AppTheme.LeadTextInputLayoutStyle">
+                            style="@style/DefaultTheme.LeadTextInputLayoutStyle">
 
                             <EditText
                                 android:id="@+id/etBillingState_FPD"
-                                style="@style/AppTheme.LeadInputFieldStyle"
+                                style="@style/DefaultTheme.LeadInputFieldStyle"
                                 android:hint="State"/>
 
                         </android.support.design.widget.TextInputLayout>
@@ -301,21 +301,21 @@
                         android:orientation="horizontal">
 
                         <android.support.design.widget.TextInputLayout
-                            style="@style/AppTheme.LeadTextInputLayoutStyle">
+                            style="@style/DefaultTheme.LeadTextInputLayoutStyle">
 
                             <EditText
                                 android:id="@+id/etBillingCity_FPD"
-                                style="@style/AppTheme.LeadInputFieldStyle"
+                                style="@style/DefaultTheme.LeadInputFieldStyle"
                                 android:hint="City"/>
 
                         </android.support.design.widget.TextInputLayout>
 
                         <android.support.design.widget.TextInputLayout
-                            style="@style/AppTheme.LeadTextInputLayoutStyle">
+                            style="@style/DefaultTheme.LeadTextInputLayoutStyle">
 
                             <EditText
                                 android:id="@+id/etBillingCountry_FPD"
-                                style="@style/AppTheme.LeadInputFieldStyle"
+                                style="@style/DefaultTheme.LeadInputFieldStyle"
                                 android:hint="Country"/>
 
                         </android.support.design.widget.TextInputLayout>
@@ -333,11 +333,11 @@
                             android:layout_weight="1"/>
 
                         <android.support.design.widget.TextInputLayout
-                            style="@style/AppTheme.LeadTextInputLayoutStyle">
+                            style="@style/DefaultTheme.LeadTextInputLayoutStyle">
 
                             <EditText
                                 android:id="@+id/etBillingZipcode_FPD"
-                                style="@style/AppTheme.LeadInputFieldStyle"
+                                style="@style/DefaultTheme.LeadInputFieldStyle"
                                 android:hint="Zip code"/>
 
                         </android.support.design.widget.TextInputLayout>
@@ -359,21 +359,21 @@
                         android:orientation="horizontal">
 
                         <android.support.design.widget.TextInputLayout
-                            style="@style/AppTheme.LeadTextInputLayoutStyle">
+                            style="@style/DefaultTheme.LeadTextInputLayoutStyle">
 
                             <EditText
                                 android:id="@+id/etShippingFullName_FPD"
-                                style="@style/AppTheme.LeadInputFieldStyle"
+                                style="@style/DefaultTheme.LeadInputFieldStyle"
                                 android:hint="Full Name"/>
 
                         </android.support.design.widget.TextInputLayout>
 
                         <android.support.design.widget.TextInputLayout
-                            style="@style/AppTheme.LeadTextInputLayoutStyle">
+                            style="@style/DefaultTheme.LeadTextInputLayoutStyle">
 
                             <EditText
                                 android:id="@+id/etShippingState_FPD"
-                                style="@style/AppTheme.LeadInputFieldStyle"
+                                style="@style/DefaultTheme.LeadInputFieldStyle"
                                 android:hint="State"/>
 
                         </android.support.design.widget.TextInputLayout>
@@ -386,21 +386,21 @@
                         android:orientation="horizontal">
 
                         <android.support.design.widget.TextInputLayout
-                            style="@style/AppTheme.LeadTextInputLayoutStyle">
+                            style="@style/DefaultTheme.LeadTextInputLayoutStyle">
 
                             <EditText
                                 android:id="@+id/etShippingStreet_FPD"
-                                style="@style/AppTheme.LeadInputFieldStyle"
+                                style="@style/DefaultTheme.LeadInputFieldStyle"
                                 android:hint="Street"/>
 
                         </android.support.design.widget.TextInputLayout>
 
                         <android.support.design.widget.TextInputLayout
-                            style="@style/AppTheme.LeadTextInputLayoutStyle">
+                            style="@style/DefaultTheme.LeadTextInputLayoutStyle">
 
                             <EditText
                                 android:id="@+id/etShippingCity_FPD"
-                                style="@style/AppTheme.LeadInputFieldStyle"
+                                style="@style/DefaultTheme.LeadInputFieldStyle"
                                 android:hint="City"/>
 
                         </android.support.design.widget.TextInputLayout>
@@ -413,21 +413,21 @@
                         android:orientation="horizontal">
 
                         <android.support.design.widget.TextInputLayout
-                            style="@style/AppTheme.LeadTextInputLayoutStyle">
+                            style="@style/DefaultTheme.LeadTextInputLayoutStyle">
 
                             <EditText
                                 android:id="@+id/etShippingCountry_FPD"
-                                style="@style/AppTheme.LeadInputFieldStyle"
+                                style="@style/DefaultTheme.LeadInputFieldStyle"
                                 android:hint="Country"/>
 
                         </android.support.design.widget.TextInputLayout>
 
                         <android.support.design.widget.TextInputLayout
-                            style="@style/AppTheme.LeadTextInputLayoutStyle">
+                            style="@style/DefaultTheme.LeadTextInputLayoutStyle">
 
                             <EditText
                                 android:id="@+id/etShippingZipcode_FPD"
-                                style="@style/AppTheme.LeadInputFieldStyle"
+                                style="@style/DefaultTheme.LeadInputFieldStyle"
                                 android:hint="Zip code"/>
 
                         </android.support.design.widget.TextInputLayout>
@@ -476,21 +476,21 @@
                             android:orientation="horizontal">
 
                             <android.support.design.widget.TextInputLayout
-                                style="@style/AppTheme.LeadTextInputLayoutStyle">
+                                style="@style/DefaultTheme.LeadTextInputLayoutStyle">
 
                                 <EditText
                                     android:id="@+id/etSalesTeam_FPD"
-                                    style="@style/AppTheme.LeadInputFieldStyle"
+                                    style="@style/DefaultTheme.LeadInputFieldStyle"
                                     android:hint="Sales Team"/>
 
                             </android.support.design.widget.TextInputLayout>
 
                             <android.support.design.widget.TextInputLayout
-                                style="@style/AppTheme.LeadTextInputLayoutStyle">
+                                style="@style/DefaultTheme.LeadTextInputLayoutStyle">
 
                                 <EditText
                                     android:id="@+id/etSalesReference_FPD"
-                                    style="@style/AppTheme.LeadInputFieldStyle"
+                                    style="@style/DefaultTheme.LeadInputFieldStyle"
                                     android:hint="Reference"/>
 
                             </android.support.design.widget.TextInputLayout>
@@ -503,21 +503,21 @@
                             android:orientation="horizontal">
 
                             <android.support.design.widget.TextInputLayout
-                                style="@style/AppTheme.LeadTextInputLayoutStyle">
+                                style="@style/DefaultTheme.LeadTextInputLayoutStyle">
 
                                 <EditText
                                     android:id="@+id/etSalesPerson_FPD"
-                                    style="@style/AppTheme.LeadInputFieldStyle"
+                                    style="@style/DefaultTheme.LeadInputFieldStyle"
                                     android:hint="Sales Person"/>
 
                             </android.support.design.widget.TextInputLayout>
 
                             <android.support.design.widget.TextInputLayout
-                                style="@style/AppTheme.LeadTextInputLayoutStyle">
+                                style="@style/DefaultTheme.LeadTextInputLayoutStyle">
 
                                 <EditText
                                     android:id="@+id/etSalesLanguage_FPD"
-                                    style="@style/AppTheme.LeadInputFieldStyle"
+                                    style="@style/DefaultTheme.LeadInputFieldStyle"
                                     android:hint="Language"/>
 
                             </android.support.design.widget.TextInputLayout>
@@ -530,11 +530,11 @@
                             android:orientation="horizontal">
 
                             <android.support.design.widget.TextInputLayout
-                                style="@style/AppTheme.LeadTextInputLayoutStyle">
+                                style="@style/DefaultTheme.LeadTextInputLayoutStyle">
 
                                 <EditText
                                     android:id="@+id/etSalesImplementedBy_FPD"
-                                    style="@style/AppTheme.LeadInputFieldStyle"
+                                    style="@style/DefaultTheme.LeadInputFieldStyle"
                                     android:hint="Implemented By"/>
 
                             </android.support.design.widget.TextInputLayout>
@@ -603,21 +603,21 @@
                             android:layout_marginTop="20dp">
 
                             <android.support.design.widget.TextInputLayout
-                                style="@style/AppTheme.LeadTextInputLayoutStyle">
+                                style="@style/DefaultTheme.LeadTextInputLayoutStyle">
 
                                 <EditText
                                     android:id="@+id/etCompanyName_FPD"
-                                    style="@style/AppTheme.LeadInputFieldStyle"
+                                    style="@style/DefaultTheme.LeadInputFieldStyle"
                                     android:hint="Name"/>
 
                             </android.support.design.widget.TextInputLayout>
 
                             <android.support.design.widget.TextInputLayout
-                                style="@style/AppTheme.LeadTextInputLayoutStyle">
+                                style="@style/DefaultTheme.LeadTextInputLayoutStyle">
 
                                 <EditText
                                     android:id="@+id/etCompanyState_FPD"
-                                    style="@style/AppTheme.LeadInputFieldStyle"
+                                    style="@style/DefaultTheme.LeadInputFieldStyle"
                                     android:hint="State"/>
 
                             </android.support.design.widget.TextInputLayout>
@@ -630,21 +630,21 @@
                             android:orientation="horizontal">
 
                             <android.support.design.widget.TextInputLayout
-                                style="@style/AppTheme.LeadTextInputLayoutStyle">
+                                style="@style/DefaultTheme.LeadTextInputLayoutStyle">
 
                                 <EditText
                                     android:id="@+id/etCompanyStreet_FPD"
-                                    style="@style/AppTheme.LeadInputFieldStyle"
+                                    style="@style/DefaultTheme.LeadInputFieldStyle"
                                     android:hint="Street"/>
 
                             </android.support.design.widget.TextInputLayout>
 
                             <android.support.design.widget.TextInputLayout
-                                style="@style/AppTheme.LeadTextInputLayoutStyle">
+                                style="@style/DefaultTheme.LeadTextInputLayoutStyle">
 
                                 <EditText
                                     android:id="@+id/etCompanyZipcode_FPD"
-                                    style="@style/AppTheme.LeadInputFieldStyle"
+                                    style="@style/DefaultTheme.LeadInputFieldStyle"
                                     android:hint="Zip code"/>
 
                             </android.support.design.widget.TextInputLayout>
@@ -657,21 +657,21 @@
                             android:orientation="horizontal">
 
                             <android.support.design.widget.TextInputLayout
-                                style="@style/AppTheme.LeadTextInputLayoutStyle">
+                                style="@style/DefaultTheme.LeadTextInputLayoutStyle">
 
                                 <EditText
                                     android:id="@+id/etCompanyCity_FPD"
-                                    style="@style/AppTheme.LeadInputFieldStyle"
+                                    style="@style/DefaultTheme.LeadInputFieldStyle"
                                     android:hint="City"/>
 
                             </android.support.design.widget.TextInputLayout>
 
                             <android.support.design.widget.TextInputLayout
-                                style="@style/AppTheme.LeadTextInputLayoutStyle">
+                                style="@style/DefaultTheme.LeadTextInputLayoutStyle">
 
                                 <EditText
                                     android:id="@+id/etCompanyCountry_FPD"
-                                    style="@style/AppTheme.LeadInputFieldStyle"
+                                    style="@style/DefaultTheme.LeadInputFieldStyle"
                                     android:hint="Country"/>
 
                             </android.support.design.widget.TextInputLayout>
@@ -684,21 +684,21 @@
                             android:orientation="horizontal">
 
                             <android.support.design.widget.TextInputLayout
-                                style="@style/AppTheme.LeadTextInputLayoutStyle">
+                                style="@style/DefaultTheme.LeadTextInputLayoutStyle">
 
                                 <EditText
                                     android:id="@+id/etCompanyPhone_FPD"
-                                    style="@style/AppTheme.LeadInputFieldStyle"
+                                    style="@style/DefaultTheme.LeadInputFieldStyle"
                                     android:hint="Phone"/>
 
                             </android.support.design.widget.TextInputLayout>
 
                             <android.support.design.widget.TextInputLayout
-                                style="@style/AppTheme.LeadTextInputLayoutStyle">
+                                style="@style/DefaultTheme.LeadTextInputLayoutStyle">
 
                                 <EditText
                                     android:id="@+id/etCompanyEmail_FPD"
-                                    style="@style/AppTheme.LeadInputFieldStyle"
+                                    style="@style/DefaultTheme.LeadInputFieldStyle"
                                     android:hint="Email"/>
 
                             </android.support.design.widget.TextInputLayout>
