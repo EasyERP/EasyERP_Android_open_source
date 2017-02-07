@@ -211,6 +211,7 @@ public class ResponseGetInvoiceDetails implements Parcelable {
     public String dueDate;
     public String paymentReference;
     public String name;
+    public ArrayList<InvoicePayment> payments;
     //    public Object sourceDocument;
     public Supplier supplier;
     public boolean forSales;
@@ -256,6 +257,7 @@ public class ResponseGetInvoiceDetails implements Parcelable {
         dest.writeString(this.dueDate);
         dest.writeString(this.paymentReference);
         dest.writeString(this.name);
+        dest.writeTypedList(this.payments);
         dest.writeParcelable(this.supplier, flags);
         dest.writeByte(this.forSales ? (byte) 1 : (byte) 0);
         dest.writeTypedList(this.products);
@@ -290,6 +292,7 @@ public class ResponseGetInvoiceDetails implements Parcelable {
         this.dueDate = in.readString();
         this.paymentReference = in.readString();
         this.name = in.readString();
+        this.payments = in.createTypedArrayList(InvoicePayment.CREATOR);
         this.supplier = in.readParcelable(Supplier.class.getClassLoader());
         this.forSales = in.readByte() != 0;
         this.products = in.createTypedArrayList(OrderProduct.CREATOR);
