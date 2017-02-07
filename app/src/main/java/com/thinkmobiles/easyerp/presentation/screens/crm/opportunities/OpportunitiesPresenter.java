@@ -39,11 +39,6 @@ public class OpportunitiesPresenter extends MasterFlowSelectablePresenterHelper<
     }
 
     @Override
-    public void displayOpportunityDetails(String opportunityID) {
-        view.openOpportunityDetailsScreen(opportunityID);
-    }
-
-    @Override
     public void subscribe() {
         loadOpportunities(1);
     }

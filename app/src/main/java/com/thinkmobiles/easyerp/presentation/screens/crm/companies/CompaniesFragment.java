@@ -165,4 +165,9 @@ public class CompaniesFragment extends MasterFlowListFragment implements Compani
         super.onDestroyView();
         if(presenter != null) presenter.unsubscribe();
     }
+
+    @Override
+    public void clearSelectedItem() {
+        presenter.clearSelectedInfo();
+    }
 }

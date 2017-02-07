@@ -20,9 +20,11 @@ public interface OrdersContract {
         void displayOrders(ArrayList<OrderDH> orderDHs, boolean needClear);
         void displayError(final String msg, final ErrorViewHelper.ErrorType errorType);
         void openOrderDetailsScreen(String orderID);
+        void showProgress(final boolean isShow);
     }
     interface OrdersPresenter extends MasterFlowSelectableBasePresenter<String, OrderDH> {
         void loadOrders(int page);
+        int getCurrentPage();
     }
     interface OrdersModel extends BaseModel {
         Observable<ResponseGetOrders> getOrders(final int page);

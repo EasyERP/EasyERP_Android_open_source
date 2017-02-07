@@ -36,5 +36,5 @@ public abstract class MasterFlowListFragment extends BaseFragment<HomeActivity> 
     public boolean withItemSelecting() {
         return mActivity.isTablet && !mActivity.isPortrait;
     }
-
+    public abstract void clearSelectedItem();
 }

@@ -72,7 +72,6 @@ dependencies {
 
     compile appDependencies.retrofitGson
     compile appDependencies.retrofitAdapterRx
-    compile appDependencies.retrofitLogInterceptor
 
     compile appDependencies.mpAndroidChart
 }

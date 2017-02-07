@@ -4,11 +4,9 @@ import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.michenko.simpleadapter.OnCardClickListener;
-import com.michenko.simpleadapter.RecyclerVH;
 import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.data.model.crm.companies.CompanyListItem;
 import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectableVHHelper;
@@ -45,7 +43,7 @@ public final class CompanyVH extends MasterFlowSelectableVHHelper<CompanyDH> {
     public void bindData(CompanyDH data) {
         super.bindData(data);
 
-        CompanyListItem personModel = data.getData();
+        CompanyListItem company = data.getData();
         ImageHelper.getBitmapFromBase64(data.getCompanyImageBase64())
                 .subscribe(bitmap -> {
                     if(bitmap != null)
@@ -53,15 +51,15 @@ public final class CompanyVH extends MasterFlowSelectableVHHelper<CompanyDH> {
                     else
                         ivCompanyImage_VLIC.setImageResource(R.drawable.ic_avatar_placeholder_with_padding);
                 });
-        tvCompanyName_VLIC.setText(TextUtils.isEmpty(personModel.fullName) ? noData : personModel.fullName);
-        tvCompanyEmail_VLIC.setText(TextUtils.isEmpty(personModel.email) ? noData : personModel.email);
-        if(personModel.address != null && !TextUtils.isEmpty(personModel.address.country)) {
-            tvCompanyCountry_VLIC.setText(personModel.address.country);
+        tvCompanyName_VLIC.setText(TextUtils.isEmpty(company.fullName) ? noData : company.fullName);
+        tvCompanyEmail_VLIC.setText(TextUtils.isEmpty(company.email) ? noData : company.email);
+        if(company.address != null && !TextUtils.isEmpty(company.address.country)) {
+            tvCompanyCountry_VLIC.setText(company.address.country);
         } else {
             tvCompanyCountry_VLIC.setText(noData);
         }
-        if(personModel.phones != null && !TextUtils.isEmpty(personModel.phones.phone)) {
-            tvCompanyPhone_VLIC.setText(personModel.phones.phone);
+        if(company.phones != null && !TextUtils.isEmpty(company.phones.phone)) {
+            tvCompanyPhone_VLIC.setText(company.phones.phone);
         } else {
             tvCompanyPhone_VLIC.setText(noData);
         }

@@ -1,28 +1,29 @@
 package com.thinkmobiles.easyerp.presentation.base;
 
 import android.app.Fragment;
-import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.IdRes;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.Menu;
-import android.view.MenuInflater;
 
 import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.presentation.EasyErpApplication;
+import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowListFragment;
 import com.thinkmobiles.easyerp.presentation.managers.CookieManager;
-import com.thinkmobiles.easyerp.presentation.screens.crm.orders.details.OrderDetailsFragment_;
 
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.InstanceState;
 import org.androidannotations.annotations.OptionsItem;
 import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.res.BooleanRes;
+import org.androidannotations.annotations.res.StringRes;
 
 /**
  * @author michael.soyma@thinkmobiles.com (Created on 1/17/2017.)
@@ -41,9 +42,13 @@ public abstract class BaseMasterFlowActivity extends AppCompatActivity {
 
     @BooleanRes
     public boolean isTablet;
-
     @BooleanRes
     public boolean isPortrait;
+    @StringRes
+    protected String app_name;
+
+    @InstanceState
+    protected String title;
 
     @AfterInject
     protected void listenFragmentBackStack() {
@@ -59,7 +64,9 @@ public abstract class BaseMasterFlowActivity extends AppCompatActivity {
             syncHomeActionState();
             actionBar.setDisplayHomeAsUpEnabled(true);
             actionBar.setHomeButtonEnabled(true);
+            actionBar.setDisplayShowTitleEnabled(true);
         }
+        setToolbarTitle(title);
     }
 
     private void syncHomeActionState() {
@@ -92,6 +99,11 @@ public abstract class BaseMasterFlowActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_base, menu);
     }
 
+    private void setToolbarTitle(final String title) {
+        this.title = title;
+        setTitle(TextUtils.isEmpty(this.title) ? app_name : this.title);
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         if (isTablet && !isPortrait) {
@@ -109,7 +121,8 @@ public abstract class BaseMasterFlowActivity extends AppCompatActivity {
         EasyErpApplication.getInstance().restartApp();
     }
 
-    public void replaceFragmentContent(final BaseFragment fragment) {
+    public void replaceFragmentContent(final BaseFragment fragment, final String title) {
+        setToolbarTitle(title);
         replaceFragmentContentDetail(null);
         replaceFragment(fragment, contentIdLayout(), false);
     }
@@ -140,7 +153,16 @@ public abstract class BaseMasterFlowActivity extends AppCompatActivity {
     public void onBackPressed() {
         if (isTablet && !isPortrait && getFragmentManager().getBackStackEntryCount() > 0)
             finish();
-        else super.onBackPressed();
+        else {
+            super.onBackPressed();
+            sendEventClearSelectedItem();
+        }
+    }
+
+    private void sendEventClearSelectedItem() {
+        final Fragment fragment = getFragmentManager().findFragmentById(contentIdLayout());
+        if (fragment != null && fragment instanceof MasterFlowListFragment)
+            ((MasterFlowListFragment) fragment).clearSelectedItem();
     }
 
     @OptionsItem(android.R.id.home)

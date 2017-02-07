@@ -563,6 +563,11 @@ public class PersonDetailsFragment extends BaseFragment<HomeActivity> implements
         startActivity(intent);
     }
 
+    @Override
+    public boolean optionsMenuForDetail() {
+        return true;
+    }
+
     @AfterInject
     @Override
     public void initPresenter() {
