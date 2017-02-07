@@ -4,7 +4,9 @@ import com.thinkmobiles.easyerp.data.model.crm.persons.details.ResponseGetPerson
 import com.thinkmobiles.easyerp.presentation.base.BaseModel;
 import com.thinkmobiles.easyerp.presentation.base.BasePresenter;
 import com.thinkmobiles.easyerp.presentation.base.BaseView;
+import com.thinkmobiles.easyerp.presentation.holders.data.crm.AttachmentDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.HistoryDH;
+import com.thinkmobiles.easyerp.presentation.holders.data.crm.OpportunityAndLeadDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.OpportunityPreviewDH;
 
 import java.util.ArrayList;
@@ -19,15 +21,19 @@ public interface PersonDetailsContract {
     interface PersonDetailsView extends BaseView<PersonDetailsPresenter> {
         void showProgress(boolean enable);
         void showHistory(boolean isShow);
+
         void showCompanyInfo(boolean isShow);
         void showSalesPurchasesInfo(boolean isShow);
+        void showLeadsAndOpportunities(boolean isShown);
+        void showAttachments(boolean isShown);
         void displayError(final String msg);
         void showMessage(String message);
 
-        void displayPersonAboutName(String name);
+        void showJobPosition(boolean isShown);
+        void showCompany(boolean isShown);
+
         void displayPersonAvatar(String base64Avatar);
-        void displayFirstName(String firstName);
-        void displayLastName(String lastName);
+        void displayPersonName(String personName);
         void displayJobPosition(String jobPosition);
         void displayEmail(String email);
         void displaySkype(String skype);
@@ -63,7 +69,6 @@ public interface PersonDetailsContract {
         void displaySalesLanguage(String language);
 
         void displayCompanyImage(String base64CompanyImage);
-        void displayCompanyNameTitle(String companyName);
         void displayCompanyUrl(String companyUrl);
         void displayCompanyName(String companyName);
         void displayCompanyStreet(String companyStreet);
@@ -74,13 +79,16 @@ public interface PersonDetailsContract {
         void displayCompanyPhone(String companyPhone);
         void displayCompanyEmail(String companyEmail);
 
-        void displayOpportunities(ArrayList<OpportunityPreviewDH> opportunityPreviewDHs);
-        void displayAttachments(String attachments);
+        void displayLeadAndOpportunity(ArrayList<OpportunityAndLeadDH> opportunityAndLeadDHs);
+        void displayAttachments(ArrayList<AttachmentDH> attachmentDHs);
         void displayHistory(ArrayList<HistoryDH> historyDHs);
+        void startUrlIntent(String url);
+
     }
     interface PersonDetailsPresenter extends BasePresenter {
         void changeNotesVisibility();
         void refresh();
+        void startAttachment(int pos);
     }
     interface PersonDetailsModel extends BaseModel {
         Observable<ResponseGetPersonDetails> getPersonDetails(String personID);

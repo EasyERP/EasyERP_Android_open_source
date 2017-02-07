@@ -3,13 +3,15 @@ package com.thinkmobiles.easyerp.presentation.screens.crm.persons.details;
 import android.text.TextUtils;
 
 import com.thinkmobiles.easyerp.R;
+import com.thinkmobiles.easyerp.data.model.crm.leads.detail.AttachmentItem;
 import com.thinkmobiles.easyerp.data.model.crm.persons.details.OpportunityItem;
 import com.thinkmobiles.easyerp.data.model.crm.persons.details.ResponseGetPersonDetails;
 import com.thinkmobiles.easyerp.presentation.EasyErpApplication;
+import com.thinkmobiles.easyerp.presentation.holders.data.crm.AttachmentDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.HistoryDH;
-import com.thinkmobiles.easyerp.presentation.holders.data.crm.OpportunityPreviewDH;
+import com.thinkmobiles.easyerp.presentation.holders.data.crm.OpportunityAndLeadDH;
 import com.thinkmobiles.easyerp.presentation.managers.DateManager;
-import com.thinkmobiles.easyerp.presentation.utils.StringUtil;
+import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -66,6 +68,12 @@ public class PersonDetailsPresenter implements PersonDetailsContract.PersonDetai
     }
 
     @Override
+    public void startAttachment(int pos) {
+        String url = String.format("%sdownload/%s", Constants.BASE_URL, currentPerson.attachments.get(pos).shortPath);
+        view.startUrlIntent(url);
+    }
+
+    @Override
     public void subscribe() {
         if (currentPerson == null || !currentPerson.id.equalsIgnoreCase(personID)) {
             view.showProgress(true);
@@ -87,19 +95,21 @@ public class PersonDetailsPresenter implements PersonDetailsContract.PersonDetai
         setAddress(data);
         setSalesPurchasesInfo(data);
         setCompanyInfo(data);
-        setOpportunities(data);
+        setLeadsAndOpportunities(data);
         setAttachments(data);
         setHistory(data);
     }
 
     private void setBasicInfo(ResponseGetPersonDetails data) {
-        if(data.name != null) {
-            if(!TextUtils.isEmpty(data.name.first)) view.displayPersonAboutName(data.name.first);
-            if(!TextUtils.isEmpty(data.name.first)) view.displayFirstName(data.name.first);
-            if(!TextUtils.isEmpty(data.name.last)) view.displayLastName(data.name.last);
-        }
+        if(!TextUtils.isEmpty(data.fullName)) view.displayPersonName(data.fullName);
         if(!TextUtils.isEmpty(data.imageSrc)) view.displayPersonAvatar(data.imageSrc);
-        if(!TextUtils.isEmpty(data.jobPosition)) view.displayJobPosition(data.jobPosition);
+
+        if(!TextUtils.isEmpty(data.jobPosition)) {
+            view.showJobPosition(true);
+            view.displayJobPosition(data.jobPosition);
+        } else
+            view.showJobPosition(false);
+
         if(!TextUtils.isEmpty(data.email)) view.displayEmail(data.email);
         if(!TextUtils.isEmpty(data.skype)) view.displaySkype(data.skype);
         if(data.phones != null) {
@@ -168,10 +178,10 @@ public class PersonDetailsPresenter implements PersonDetailsContract.PersonDetai
     private void setCompanyInfo(ResponseGetPersonDetails data) {
         if(data.company != null && !TextUtils.isEmpty(data.company.fullName)) {
             view.showCompanyInfo(true);
-            view.displayCompanyNameTitle(data.company.fullName);
+            view.showCompany(true);
             view.displayCompanyName(data.company.fullName);
             if(!TextUtils.isEmpty(data.company.imageSrc)) view.displayCompanyImage(data.company.imageSrc);
-            if(!TextUtils.isEmpty(data.company.website)) view.displayCompanyUrl(StringUtil.getClickableUrl(data.company.website, data.company.website));
+            if(!TextUtils.isEmpty(data.company.website)) view.displayCompanyUrl(data.company.website);
             if(data.company.address != null) {
                 if(!TextUtils.isEmpty(data.company.address.street)) view.displayCompanyStreet(data.company.address.street);
                 if(!TextUtils.isEmpty(data.company.address.city)) view.displayCompanyCity(data.company.address.city);
@@ -181,27 +191,35 @@ public class PersonDetailsPresenter implements PersonDetailsContract.PersonDetai
             }
             if(data.company.phones != null) {
                 if(!TextUtils.isEmpty(data.company.phones.phone)) view.displayCompanyPhone(data.company.phones.phone);
-                else if(!TextUtils.isEmpty(data.company.phones.mobile)) view.displayCompanyPhone(data.company.phones.phone);
+                else if(!TextUtils.isEmpty(data.company.phones.mobile)) view.displayCompanyPhone(data.company.phones.mobile);
                 else if(!TextUtils.isEmpty(data.company.phones.fax)) view.displayCompanyPhone(data.company.phones.fax);
             }
             if(!TextUtils.isEmpty(data.company.email)) view.displayCompanyEmail(data.company.email);
-        } else
+        } else {
+            view.showCompany(false);
             view.showCompanyInfo(false);
+        }
     }
 
-    private void setOpportunities(ResponseGetPersonDetails data) {
+    private void setLeadsAndOpportunities(ResponseGetPersonDetails data) {
         if(data.opportunities != null && !data.opportunities.isEmpty()) {
-            ArrayList<OpportunityPreviewDH> opportunityPreviewDHs = new ArrayList<>();
-            for(OpportunityItem item : data.opportunities)
-                opportunityPreviewDHs.add(new OpportunityPreviewDH(item));
-            view.displayOpportunities(opportunityPreviewDHs);
+            ArrayList<OpportunityAndLeadDH> result = new ArrayList<>();
+            for(OpportunityItem opportunityItem : data.opportunities) {
+                result.add(new OpportunityAndLeadDH(opportunityItem));
+            }
+            view.displayLeadAndOpportunity(result);
         }
+        else
+            view.showLeadsAndOpportunities(false);
     }
 
     private void setAttachments(ResponseGetPersonDetails data) {
+        ArrayList<AttachmentDH> result = new ArrayList<>();
         if(data.attachments != null && !data.attachments.isEmpty()) {
-            view.displayAttachments(StringUtil.getAttachments(data.attachments));
-        }
+            for(AttachmentItem item : data.attachments) result.add(new AttachmentDH(item));
+            view.displayAttachments(result);
+        } else
+            view.showAttachments(false);
     }
 
     private void setHistory(ResponseGetPersonDetails data) {
