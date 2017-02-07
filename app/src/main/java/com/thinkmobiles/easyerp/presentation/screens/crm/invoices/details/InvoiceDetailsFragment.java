@@ -17,10 +17,12 @@ import com.jakewharton.rxbinding.view.RxView;
 import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.domain.crm.InvoiceRepository;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.HistoryAdapter;
+import com.thinkmobiles.easyerp.presentation.adapters.crm.InvoicePaymentAdapter;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.ProductAdapter;
 import com.thinkmobiles.easyerp.presentation.base.BaseFragment;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.HistoryDH;
+import com.thinkmobiles.easyerp.presentation.holders.data.crm.InvoicePaymentDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.ProductDH;
 import com.thinkmobiles.easyerp.presentation.managers.HistoryAnimationHelper;
 import com.thinkmobiles.easyerp.presentation.managers.TagHelper;
@@ -96,6 +98,10 @@ public class InvoiceDetailsFragment extends BaseFragment<HomeActivity> implement
     @ViewById
     protected TextView tvAttachments_FID;
     @ViewById
+    protected TextView tvPaymentsTitle_FID;
+    @ViewById
+    protected RecyclerView rvPayments_FID;
+    @ViewById
     protected FrameLayout btnHistory;
     @ViewById
     protected ImageView ivIconArrow;
@@ -115,6 +121,8 @@ public class InvoiceDetailsFragment extends BaseFragment<HomeActivity> implement
     protected HistoryAdapter historyAdapter;
     @Bean
     protected ProductAdapter productAdapter;
+    @Bean
+    protected InvoicePaymentAdapter paymentAdapter;
     @Bean
     protected ErrorViewHelper errorViewHelper;
     @Bean
@@ -137,6 +145,9 @@ public class InvoiceDetailsFragment extends BaseFragment<HomeActivity> implement
 
         rvProductList_FID.setAdapter(productAdapter);
         rvProductList_FID.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+        rvPayments_FID.setAdapter(paymentAdapter);
+        rvPayments_FID.setLayoutManager(new LinearLayoutManager(getActivity()));
 
 
         RxView.clicks(btnHistory)
@@ -270,6 +281,13 @@ public class InvoiceDetailsFragment extends BaseFragment<HomeActivity> implement
     @Override
     public void setAttachments(String attachments) {
         tvAttachments_FID.setText(Html.fromHtml(attachments));
+    }
+
+    @Override
+    public void setPayments(ArrayList<InvoicePaymentDH> payments) {
+        tvPaymentsTitle_FID.setVisibility(View.VISIBLE);
+        rvPayments_FID.setVisibility(View.VISIBLE);
+        paymentAdapter.setListDH(payments);
     }
 
     @Override

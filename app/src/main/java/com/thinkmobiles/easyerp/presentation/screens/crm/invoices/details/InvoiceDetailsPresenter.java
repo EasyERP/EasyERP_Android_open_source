@@ -3,12 +3,14 @@ package com.thinkmobiles.easyerp.presentation.screens.crm.invoices.details;
 import android.content.res.Resources;
 
 import com.thinkmobiles.easyerp.R;
+import com.thinkmobiles.easyerp.data.model.crm.invoice.detail.InvoicePayment;
 import com.thinkmobiles.easyerp.data.model.crm.invoice.detail.ResponseGetInvoiceDetails;
 import com.thinkmobiles.easyerp.data.model.crm.order.detail.OrderProduct;
 import com.thinkmobiles.easyerp.data.model.user.organization.OrganizationSettings;
 import com.thinkmobiles.easyerp.presentation.EasyErpApplication;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.HistoryDH;
+import com.thinkmobiles.easyerp.presentation.holders.data.crm.InvoicePaymentDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.ProductDH;
 import com.thinkmobiles.easyerp.presentation.managers.DateManager;
 import com.thinkmobiles.easyerp.presentation.screens.crm.dashboard.detail.charts.DollarFormatter;
@@ -128,6 +130,10 @@ public class InvoiceDetailsPresenter implements InvoiceDetailsContract.InvoiceDe
             view.setAttachments(StringUtil.getAttachments(response.attachments));
         }
 
+        if (response.payments != null && !response.payments.isEmpty()) {
+            view.setPayments(preparePaymentsList(response.payments));
+        }
+
         if (response.products != null) {
             view.setProducts(prepareProductList(response.products, symbol));
         }
@@ -140,6 +146,14 @@ public class InvoiceDetailsPresenter implements InvoiceDetailsContract.InvoiceDe
         ArrayList<ProductDH> list = new ArrayList<>();
         for (OrderProduct product : products){
             list.add(new ProductDH(product, symbol));
+        }
+        return list;
+    }
+
+    private ArrayList<InvoicePaymentDH> preparePaymentsList(ArrayList<InvoicePayment> products) {
+        ArrayList<InvoicePaymentDH> list = new ArrayList<>();
+        for (InvoicePayment product : products){
+            list.add(new InvoicePaymentDH(product));
         }
         return list;
     }

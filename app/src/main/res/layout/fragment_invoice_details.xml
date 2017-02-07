@@ -399,32 +399,45 @@
 
                         </android.support.v7.widget.CardView>
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:background="@android:color/white"
-                            android:paddingStart="@dimen/default_padding"
-                            android:paddingEnd="@dimen/default_padding"
-                            android:paddingBottom="@dimen/default_padding"
-                            >
+                            <TextView
+                                android:id="@+id/tvPaymentsTitle_FID"
+                                style="@style/ContentTitleStyle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingStart="@dimen/default_padding"
+                                android:paddingEnd="@dimen/default_padding"
+                                android:visibility="gone"
+                                android:text="Payments" />
+
+                            <android.support.v7.widget.RecyclerView
+                                android:id="@+id/rvPayments_FID"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:paddingStart="@dimen/default_padding_half"
+                                android:paddingEnd="@dimen/default_padding_half"
+                                android:visibility="gone"
+                                android:layout_marginTop="@dimen/default_padding_half"/>
 
                             <TextView
                                 style="@style/ContentTitleStyle"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:paddingStart="@dimen/default_padding"
+                                android:paddingEnd="@dimen/default_padding"
                                 android:text="@string/attachments" />
 
                             <TextView
                                 android:id="@+id/tvAttachments_FID"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:paddingStart="@dimen/default_padding"
+                                android:paddingEnd="@dimen/default_padding"
                                 android:layout_marginTop="@dimen/default_padding_half"
+                                android:paddingBottom="@dimen/default_padding"
                                 android:alpha="0.83"
                                 android:lineSpacingExtra="@dimen/default_padding_3dp"
                                 android:text="@string/no_attachments"/>
 
-                        </LinearLayout>
 
                     </LinearLayout>
 
