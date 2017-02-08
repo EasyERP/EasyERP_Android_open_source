@@ -7,7 +7,6 @@ import com.thinkmobiles.easyerp.presentation.base.BaseView;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.AttachmentDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.HistoryDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.OpportunityAndLeadDH;
-import com.thinkmobiles.easyerp.presentation.holders.data.crm.OpportunityPreviewDH;
 
 import java.util.ArrayList;
 
