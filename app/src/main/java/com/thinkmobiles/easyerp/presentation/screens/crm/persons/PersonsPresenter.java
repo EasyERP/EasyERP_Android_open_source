@@ -63,7 +63,6 @@ public class PersonsPresenter extends MasterFlowSelectablePresenterHelper<String
 
     @Override
     public void loadMore(int page) {
-        this.page = page;
         final boolean needClear = page == 1;
         if(selectedLetter.equalsIgnoreCase("All")) {
             //load all
@@ -73,6 +72,7 @@ public class PersonsPresenter extends MasterFlowSelectablePresenterHelper<String
                                    CommonPersonsResponse::new)
                            .subscribe(commonPersonsResponse -> {
 
+                               this.page = page;
                                if(needClear) personsResponse = commonPersonsResponse;
                                else if(personsResponse != null) {
                                    personsResponse.responseGetCustomersImages.data.addAll(commonPersonsResponse.responseGetCustomersImages.data);
@@ -90,6 +90,7 @@ public class PersonsPresenter extends MasterFlowSelectablePresenterHelper<String
                                     CommonPersonsResponse::new)
                             .subscribe(commonPersonsResponse -> {
 
+                                this.page = page;
                                 if(needClear) personsResponse = commonPersonsResponse;
                                 else if(personsResponse != null) {
                                     personsResponse.responseGetCustomersImages.data.addAll(commonPersonsResponse.responseGetCustomersImages.data);

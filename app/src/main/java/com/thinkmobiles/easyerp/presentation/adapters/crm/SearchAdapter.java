@@ -25,6 +25,7 @@ public class SearchAdapter extends BaseAdapter implements Filterable {
     private ArrayList<FilterDH> temp = new ArrayList<>();
 
     public void setItems(ArrayList<FilterDH> items) {
+        this.items.clear();
         this.items.addAll(items);
     }
 

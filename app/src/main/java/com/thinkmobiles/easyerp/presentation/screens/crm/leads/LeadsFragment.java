@@ -2,6 +2,7 @@ package com.thinkmobiles.easyerp.presentation.screens.crm.leads;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v7.widget.AppCompatAutoCompleteTextView;
 import android.support.v7.widget.LinearLayoutManager;
@@ -88,7 +89,7 @@ public class LeadsFragment extends MasterFlowListFragment implements LeadsContra
         errorViewHelper.init(errorLayout, view -> presenter.subscribe());
 
         LinearLayoutManager llm = new LinearLayoutManager(mActivity);
-        scrollListener = new EndlessRecyclerViewScrollListener(llm) {
+        scrollListener = new EndlessRecyclerViewScrollListener(llm, presenter.getCurrentPage()) {
             @Override
             public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
                 presenter.loadNextPage(page);
@@ -120,7 +121,6 @@ public class LeadsFragment extends MasterFlowListFragment implements LeadsContra
             }
             return false;
         });
-
         presenter.subscribe();
     }
 
@@ -188,7 +188,6 @@ public class LeadsFragment extends MasterFlowListFragment implements LeadsContra
     @Override
     public void onRefresh() {
         scrollListener.resetState();
-        presenter.subscribe();
         presenter.refresh();
     }
 
@@ -307,12 +306,14 @@ public class LeadsFragment extends MasterFlowListFragment implements LeadsContra
 
     @Override
     public void optionsMenuInitialized(Menu menu) {
+        actSearch.dismissDropDown();
         this.menuFilter = menu.findItem(R.id.menuFilter_MB);
         this.menuContactName = menu.findItem(R.id.menuFilterContactName);
         this.menuAssignedTo = menu.findItem(R.id.menuFilterAssignedTo);
         this.menuCreatedBy = menu.findItem(R.id.menuFilterCreatedBy);
         this.menuSource = menu.findItem(R.id.menuFilterSource);
         this.menuWorkflow = menu.findItem(R.id.menuFilterStage);
+        presenter.refreshOptionMenu();
     }
 
     @Override
