@@ -7,9 +7,9 @@ import com.thinkmobiles.easyerp.data.model.crm.persons.details.OpportunityItem;
  * Created by Lynx on 2/3/2017.
  */
 
-public class OpportunityAndLeadDH extends RecyclerDH {
+public final class OpportunityAndLeadDH extends RecyclerDH {
 
-    private OpportunityItem item;
+    private final OpportunityItem item;
 
     public OpportunityAndLeadDH(OpportunityItem item) {
         this.item = item;

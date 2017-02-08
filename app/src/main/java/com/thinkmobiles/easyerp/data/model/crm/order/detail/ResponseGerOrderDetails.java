@@ -4,6 +4,7 @@ package com.thinkmobiles.easyerp.data.model.crm.order.detail;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.google.gson.annotations.SerializedName;
 import com.thinkmobiles.easyerp.data.model.crm.dashboard.detail.order.OrderStatus;
 import com.thinkmobiles.easyerp.data.model.crm.invoice.Currency;
 import com.thinkmobiles.easyerp.data.model.crm.invoice.PaymentInfo;
@@ -22,14 +23,14 @@ public class ResponseGerOrderDetails implements Parcelable {
 
     /**
      * {
-     "_id": "5890560b3743284b65d83f15",
+     "id": "5890560b3743284b65d83f15",
      "_type": "Order",
      "__v": 0,
      "conflictTypes": [],
      "editedBy": {
      "date": "2017-01-31T10:57:19.927Z",
      "user": {
-     "_id": "585cdc6ed210f7ec05c45f1f",
+     "id": "585cdc6ed210f7ec05c45f1f",
      "login": "testAdmin"
      }
      },
@@ -123,25 +124,25 @@ public class ResponseGerOrderDetails implements Parcelable {
      }
      },
      {
-     "_id": "58907e69c6eaaa0a4b797045",
+     "id": "58907e69c6eaaa0a4b797045",
      "attachment": {
      "name": "26995-37240-20.jpg",
      "shortPas": "uploads%2Forder%2F5890560b3743284b65d83f15%2F26995-37240-20.jpg"
      },
      "user": {
-     "_id": "585cdc6ed210f7ec05c45f1f",
+     "id": "585cdc6ed210f7ec05c45f1f",
      "login": "testAdmin"
      },
      "date": "2017-01-31T12:09:13.498Z"
      },
      {
-     "_id": "58907e836f8cd71e4bf06a8c",
+     "id": "58907e836f8cd71e4bf06a8c",
      "attachment": {
      "name": "Chocolate_chip_cookie.jpg",
      "shortPas": "uploads%2Forder%2F5890560b3743284b65d83f15%2FChocolate_chip_cookie.jpg"
      },
      "user": {
-     "_id": "585cdc6ed210f7ec05c45f1f",
+     "id": "585cdc6ed210f7ec05c45f1f",
      "login": "testAdmin"
      },
      "date": "2017-01-31T12:09:39.788Z"
@@ -149,7 +150,7 @@ public class ResponseGerOrderDetails implements Parcelable {
      ],
      "attachments": [
      {
-     "_id": "58907e69c6eaaa0a4b797044",
+     "id": "58907e69c6eaaa0a4b797044",
      "name": "26995-37240-20.jpg",
      "shortPas": "uploads%2Forder%2F5890560b3743284b65d83f15%2F26995-37240-20.jpg",
      "size": "0.157&nbsp;Mb",
@@ -157,7 +158,7 @@ public class ResponseGerOrderDetails implements Parcelable {
      "uploaderName": "testAdmin"
      },
      {
-     "_id": "58907e836f8cd71e4bf06a8b",
+     "id": "58907e836f8cd71e4bf06a8b",
      "name": "Chocolate_chip_cookie.jpg",
      "shortPas": "uploads%2Forder%2F5890560b3743284b65d83f15%2FChocolate_chip_cookie.jpg",
      "size": "0.279&nbsp;Mb",
@@ -167,12 +168,12 @@ public class ResponseGerOrderDetails implements Parcelable {
      ],
      "whoCanRW": "everyOne",
      "warehouse": {
-     "_id": "57dfc6ea6066337b771e99e2",
+     "id": "57dfc6ea6066337b771e99e2",
      "name": "Main Warehouse"
      },
      "tempWorkflow": null,
      "workflow": {
-     "_id": "57f4bce848c62c5c68690dbb",
+     "id": "57f4bce848c62c5c68690dbb",
      "status": "New",
      "name": "New Order"
      },
@@ -187,12 +188,12 @@ public class ResponseGerOrderDetails implements Parcelable {
      "total": 2914188180
      },
      "priceList": {
-     "_id": "58109ae869b3249417f74baf",
+     "id": "58109ae869b3249417f74baf",
      "name": "Sale Prices"
      },
      "costList": null,
      "salesPerson": {
-     "_id": "55b92ad221e4b7c40f00009e",
+     "id": "55b92ad221e4b7c40f00009e",
      "name": {
      "last": "Michenko",
      "first": "Alex"
@@ -204,7 +205,7 @@ public class ResponseGerOrderDetails implements Parcelable {
      "destination": null,
      "name": "SO_35",
      "paymentMethod": {
-     "_id": "565f2e05ab70d49024242e0f",
+     "id": "565f2e05ab70d49024242e0f",
      "name": "CASH USD",
      "account": "CASH USD",
      "bank": "CASH USD",
@@ -221,7 +222,7 @@ public class ResponseGerOrderDetails implements Parcelable {
      "expectedDate": "2017-01-31T00:00:00.000Z",
      "orderDate": "2017-01-31T00:00:00.000Z",
      "supplier": {
-     "_id": "57a8a926c2bdd8bf07e54a3c",
+     "id": "57a8a926c2bdd8bf07e54a3c",
      "address": {
      "country": "",
      "zip": "",
@@ -240,8 +241,8 @@ public class ResponseGerOrderDetails implements Parcelable {
      "forSales": true,
      "currency": {
      "rate": 1,
-     "_id": {
-     "_id": "USD",
+     "id": {
+     "id": "USD",
      "active": true,
      "decPlace": 2,
      "symbol": "$",
@@ -250,12 +251,12 @@ public class ResponseGerOrderDetails implements Parcelable {
      },
      "products": [
      {
-     "_id": "5890560b3743284b65d83f1b",
+     "id": "5890560b3743284b65d83f1b",
      "description": "ASUS Transformer Book",
      "totalTaxes": 2340,
      "channel": null,
      "creditAccount": {
-     "_id": "565eb53a6aa50532e5df0bd6",
+     "id": "565eb53a6aa50532e5df0bd6",
      "name": "101401 Erste EUR"
      },
      "debitAccount": null,
@@ -268,7 +269,7 @@ public class ResponseGerOrderDetails implements Parcelable {
      {
      "tax": 2340,
      "taxCode": {
-     "_id": "585a5ed1b17bbb2c276244fd",
+     "id": "585a5ed1b17bbb2c276244fd",
      "rate": 0.1,
      "fullName": "T1 tax 1 10.00%"
      }
@@ -276,12 +277,12 @@ public class ResponseGerOrderDetails implements Parcelable {
      ],
      "quantity": 3,
      "warehouse": {
-     "_id": "57dfc6ea6066337b771e99e2",
+     "id": "57dfc6ea6066337b771e99e2",
      "name": "Main Warehouse"
      },
      "order": "5890560b3743284b65d83f15",
      "product": {
-     "_id": "58873d77de350f8f3e25b0bd",
+     "id": "58873d77de350f8f3e25b0bd",
      "info": {
      "EAN": "",
      "ISBN": "",
@@ -303,12 +304,12 @@ public class ResponseGerOrderDetails implements Parcelable {
      "fulfilled": 0
      },
      {
-     "_id": "5890560b3743284b65d83f1c",
+     "id": "5890560b3743284b65d83f1c",
      "description": "Samsung Chromebook",
      "totalTaxes": 15,
      "channel": null,
      "creditAccount": {
-     "_id": "5788b4be52adaf4c49e4b51c",
+     "id": "5788b4be52adaf4c49e4b51c",
      "name": "104002 Inventory"
      },
      "debitAccount": null,
@@ -321,7 +322,7 @@ public class ResponseGerOrderDetails implements Parcelable {
      {
      "tax": 396962440,
      "taxCode": {
-     "_id": "5889f706a83fa1b318c61fee",
+     "id": "5889f706a83fa1b318c61fee",
      "rate": 0.1577,
      "fullName": "TST Test Demo tax 15.77%"
      }
@@ -329,12 +330,12 @@ public class ResponseGerOrderDetails implements Parcelable {
      ],
      "quantity": 2,
      "warehouse": {
-     "_id": "57dfc6ea6066337b771e99e2",
+     "id": "57dfc6ea6066337b771e99e2",
      "name": "Main Warehouse"
      },
      "order": "5890560b3743284b65d83f15",
      "product": {
-     "_id": "586cd2fb037ea6d05621ba6e",
+     "id": "586cd2fb037ea6d05621ba6e",
      "info": {
      "EAN": "",
      "ISBN": "",
@@ -364,7 +365,8 @@ public class ResponseGerOrderDetails implements Parcelable {
      }
      */
 
-    public String _id;
+    @SerializedName("_id")
+    public String id;
     public String _type;
     public int _v;
 //    public ArrayList conflictTypes;
@@ -411,7 +413,7 @@ public class ResponseGerOrderDetails implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(this._id);
+        dest.writeString(this.id);
         dest.writeString(this._type);
         dest.writeInt(this._v);
         dest.writeParcelable(this.editedBy, flags);
@@ -445,7 +447,7 @@ public class ResponseGerOrderDetails implements Parcelable {
     }
 
     protected ResponseGerOrderDetails(Parcel in) {
-        this._id = in.readString();
+        this.id = in.readString();
         this._type = in.readString();
         this._v = in.readInt();
         this.editedBy = in.readParcelable(CreatedEditedBy.class.getClassLoader());

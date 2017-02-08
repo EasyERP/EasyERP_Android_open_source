@@ -48,7 +48,7 @@ public abstract class StringUtil {
         if (!TextUtils.isEmpty(address.country))
             builder.append(address.country).append(", ");
         int length = builder.length();
-        if (length > 2) builder.replace(length - 3, length - 1, ", ");
+        if (length > 2) builder.replace(length - 2, length - 1, "");
         return  builder.toString();
     }
 

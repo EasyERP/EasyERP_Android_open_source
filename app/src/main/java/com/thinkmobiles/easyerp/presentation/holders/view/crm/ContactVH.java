@@ -18,11 +18,11 @@ import com.thinkmobiles.easyerp.presentation.managers.ImageHelper;
  * Created by Lynx on 2/3/2017.
  */
 
-public class ContactVH extends RecyclerVH<ContactDH> {
+public final class ContactVH extends RecyclerVH<ContactDH> {
 
-    private ImageView ivContactImage_VLIC;
-    private TextView tvContactName_VLIC;
-    private TextView tvContactEmail_VLIC;
+    private final ImageView ivContactImage_VLIC;
+    private final TextView tvContactName_VLIC;
+    private final TextView tvContactEmail_VLIC;
 
     public ContactVH(View itemView, @Nullable OnCardClickListener listener, int viewType) {
         super(itemView, listener, viewType);

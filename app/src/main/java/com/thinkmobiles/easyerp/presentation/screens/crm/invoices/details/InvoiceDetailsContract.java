@@ -1,49 +1,49 @@
-package com.thinkmobiles.easyerp.presentation.screens.crm.orders.details;
+package com.thinkmobiles.easyerp.presentation.screens.crm.invoices.details;
 
-import com.thinkmobiles.easyerp.data.model.crm.order.detail.ResponseGerOrderDetails;
+import com.thinkmobiles.easyerp.data.model.crm.invoice.detail.ResponseGetInvoiceDetails;
 import com.thinkmobiles.easyerp.data.model.user.organization.ResponseGetOrganizationSettings;
 import com.thinkmobiles.easyerp.presentation.base.BaseModel;
 import com.thinkmobiles.easyerp.presentation.base.BasePresenter;
 import com.thinkmobiles.easyerp.presentation.base.BaseView;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.HistoryDH;
+import com.thinkmobiles.easyerp.presentation.holders.data.crm.InvoicePaymentDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.ProductDH;
 
 import java.util.ArrayList;
 
 import rx.Observable;
 
+/**
+ * @author Alex Michenko (Created on 06.02.17).
+ *         Company: Thinkmobiles
+ *         Email: alex.michenko@thinkmobiles.com
+ */
 
-public interface OrderDetailsContract {
+public interface InvoiceDetailsContract {
 
-    interface OrderDetailsView extends BaseView<OrderDetailsPresenter> {
+
+    interface InvoiceDetailsView extends BaseView<InvoiceDetailsPresenter> {
         void showProgress(boolean enable);
         void showHistory(boolean enable);
 
-        void setOrderStatusName(String orderStatus);
-        void setOrderStatus(String orderStatus);
+        void setInvoiceStatusName(String orderStatus);
+        void setInvoiceStatus(String orderStatus);
         void setCompanyName(String companyName);
         void setCompanyAddress(String companyAddress);
-        void setOrderName(String orderName);
+        void setInvoiceName(String orderName);
         void setSupplierName(String supplierName);
-        void setSupplierAddress(String supplierAddress);
-        void setExpectedDate(String expectedDate);
-        void setOrderDate(String orderDate);
+        void setInvoiceDate(String orderDate);
+        void setDueDate(String dueDate);
+        void setOrderNumber(String orderNumber);
         void setSubTotal(String subTotal);
         void setDiscount(String discount);
         void setTaxes(String taxes);
         void setTotal(String total);
-        void setPrepaid(String prepaid);
-        void setNameBeneficiary(String nameBeneficiary);
-        void setBank(String bank);
-        void setBankAddress(String bankAddress);
-        void setBankIBAN(String bankIBAN);
-        void setSwiftCode(String swiftCode);
-        void setOwnerName(String ownerName);
-        void setOwnerSite(String ownerSite);
-        void setOwnerEmail(String ownerEmail);
+        void setPaymentMade(String paymentMade);
+        void setBalanceDue(String balanceDue);
         void setAttachments(String attachments);
-        void setAdvice(String advice);
+        void setPayments(ArrayList<InvoicePaymentDH> payments);
         void setHistory(ArrayList<HistoryDH> history);
         void setProducts(ArrayList<ProductDH> products);
 
@@ -51,13 +51,13 @@ public interface OrderDetailsContract {
         void showMessage(String errorMessage);
     }
 
-    interface OrderDetailsPresenter extends BasePresenter {
+    interface InvoiceDetailsPresenter extends BasePresenter {
         void changeNotesVisibility();
         void refresh();
     }
 
-    interface OrderDetailsModel extends BaseModel {
-        Observable<ResponseGerOrderDetails> getOrderDetails(String orderId);
+    interface InvoiceDetailsModel extends BaseModel {
+        Observable<ResponseGetInvoiceDetails> getInvoiceDetails(String invoiceId);
         Observable<ResponseGetOrganizationSettings> getOrganizationSettings();
     }
 }
