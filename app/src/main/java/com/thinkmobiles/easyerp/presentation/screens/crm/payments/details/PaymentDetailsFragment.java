@@ -195,9 +195,4 @@ public class PaymentDetailsFragment extends BaseFragment<HomeActivity> implement
     public void showError(String errorMessage, ErrorViewHelper.ErrorType errorType) {
         errorViewHelper.showErrorMsg(errorMessage, errorType);
     }
-
-    @Override
-    public void showMessage(String errorMessage) {
-        Toast.makeText(getActivity(), errorMessage, Toast.LENGTH_SHORT).show();
-    }
 }

@@ -95,7 +95,7 @@ public class PaymentDetailsPresenter implements PaymentDetailsContract.PaymentDe
             view.setOwnerSite(organizationSettings.website);
             if (organizationSettings.contact != null)
                 view.setOwnerEmail(organizationSettings.contact.email);
-            view.setAdvice(String.format("Payment should be made by bank transfer or check made payable to %s", organizationSettings.contactName.toUpperCase()));
+            view.setAdvice(String.format("Payment should be made by bank transfer or check made payable to %s.", organizationSettings.contactName.toUpperCase()));
         }
     }
 

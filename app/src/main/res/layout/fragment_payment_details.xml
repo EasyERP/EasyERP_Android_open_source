@@ -142,17 +142,17 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="Payment Date:" />
+                                    android:text="@string/payment_details_payment_date" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="Bank Account:" />
+                                    android:text="@string/payment_details_bank_account" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="Account:" />
+                                    android:text="@string/payment_details_account" />
 
                             </LinearLayout>
 
@@ -198,7 +198,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:padding="@dimen/default_padding_small"
-                                android:text="#"
+                                android:text="@string/item_product_number"
                                 android:textColor="@android:color/white"
                                 android:textSize="12sp" />
 
@@ -207,7 +207,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
                                 android:padding="@dimen/default_padding_small"
-                                android:text="Type"
+                                android:text="@string/payment_details_type"
                                 android:textColor="@android:color/white"
                                 android:textSize="12sp" />
 
@@ -216,7 +216,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
                                 android:padding="@dimen/default_padding_quart"
-                                android:text="Account"
+                                android:text="@string/payment_details_table_account"
                                 android:textColor="@android:color/white"
                                 android:textSize="12sp" />
 
@@ -226,7 +226,7 @@
                                 android:layout_weight="1"
                                 android:gravity="center_vertical|end"
                                 android:padding="@dimen/default_padding_quart"
-                                android:text="@string/item_order_product_amount"
+                                android:text="@string/item_product_amount"
                                 android:textColor="@android:color/white"
                                 android:textSize="12sp" />
 
@@ -269,7 +269,6 @@
                                 android:layout_weight="1"
                                 android:gravity="center_vertical|end"
                                 android:padding="@dimen/default_padding_quart"
-                                android:text="@string/item_order_product_amount"
                                 android:textSize="12sp" />
 
                         </LinearLayout>
@@ -450,7 +449,6 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/default_padding"
-                            android:text="@string/order_details_advice"
                             android:textColor="@android:color/black"
                             android:textStyle="bold" />
 
