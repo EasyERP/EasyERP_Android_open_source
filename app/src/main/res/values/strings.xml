@@ -123,4 +123,9 @@
     <string name="invoice_details_due_date">Due Date:</string>
     <string name="invoice_details_invoice">Invoice</string>
     <string name="Invoice_detailsinvoice_date">Invoice Date</string>
+    <string name="payment_details_payment_date">Payment Date:</string>
+    <string name="payment_details_bank_account">Bank Account:</string>
+    <string name="payment_details_account">Account:</string>
+    <string name="payment_details_type">Type</string>
+    <string name="payment_details_table_account">Account</string>
 </resources>
