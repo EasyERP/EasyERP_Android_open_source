@@ -54,6 +54,8 @@ public class OrdersPresenter extends MasterFlowSelectablePresenterHelper<String,
                 model.getOrders(page).subscribe(
                         responseGetOrders -> {
                             currentPage = page;
+                            if (needClear)
+                                orders.clear();
                             orders.addAll(responseGetOrders.data);
                             view.displayOrders(prepareOrderDHs(responseGetOrders.data), needClear);
                         },

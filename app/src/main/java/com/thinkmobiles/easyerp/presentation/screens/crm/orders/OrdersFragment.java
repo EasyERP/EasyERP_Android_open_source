@@ -61,7 +61,7 @@ public class OrdersFragment extends MasterFlowListFragment implements OrdersCont
 
     @AfterViews
     protected void initUI() {
-        errorViewHelper.init(errorLayout, view -> retryLoadWithProgressBar());
+        errorViewHelper.init(errorLayout, view -> presenter.subscribe());
         recyclerLayoutManager = new LinearLayoutManager(mActivity);
         scrollListener = new EndlessRecyclerViewScrollListener(recyclerLayoutManager, presenter.getCurrentPage()) {
             @Override
@@ -78,16 +78,11 @@ public class OrdersFragment extends MasterFlowListFragment implements OrdersCont
         presenter.subscribe();
     }
 
-    private void retryLoadWithProgressBar() {
-        showProgress(true);
-        presenter.loadOrders(1);
-    }
-
     @Override
     public void onRefresh() {
         errorViewHelper.hideError();
         scrollListener.resetState();
-        presenter.subscribe();
+        presenter.loadOrders(1);
     }
 
     @Override

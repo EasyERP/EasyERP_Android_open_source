@@ -12,7 +12,6 @@ import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowListFragment;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.InvoiceDH;
 import com.thinkmobiles.easyerp.presentation.listeners.EndlessRecyclerViewScrollListener;
-import com.thinkmobiles.easyerp.presentation.screens.crm.invoices.details.InvoiceDetailsFragment;
 import com.thinkmobiles.easyerp.presentation.screens.crm.invoices.details.InvoiceDetailsFragment_;
 
 import org.androidannotations.annotations.AfterInject;
@@ -34,6 +33,7 @@ public class InvoicesFragment extends MasterFlowListFragment implements Invoices
 
     private InvoicesContract.InvoicesPresenter presenter;
     private EndlessRecyclerViewScrollListener scrollListener;
+    private LinearLayoutManager recyclerLayoutManager;
 
     @Bean
     protected InvoiceRepository invoiceRepository;
@@ -61,27 +61,20 @@ public class InvoicesFragment extends MasterFlowListFragment implements Invoices
 
     @AfterViews
     protected void initUI() {
-        errorViewHelper.init(errorLayout, view -> loadWithProgressBar());
-
-        LinearLayoutManager llm = new LinearLayoutManager(mActivity, LinearLayoutManager.VERTICAL, false);
-        scrollListener = new EndlessRecyclerViewScrollListener(llm) {
+        errorViewHelper.init(errorLayout, view -> presenter.subscribe());
+        recyclerLayoutManager = new LinearLayoutManager(mActivity);
+        scrollListener = new EndlessRecyclerViewScrollListener(recyclerLayoutManager, presenter.getCurrentPage()) {
             @Override
             public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
                 displayProgress(true);
                 presenter.loadInvoices(page);
             }
         };
-        listRecycler.setLayoutManager(llm);
+        listRecycler.setLayoutManager(recyclerLayoutManager);
         listRecycler.setAdapter(invoicesAdapter);
         listRecycler.addOnScrollListener(scrollListener);
         invoicesAdapter.setOnCardClickListener((view, position, viewType) -> presenter.selectItem(invoicesAdapter.getItem(position), position));
 
-        loadWithProgressBar();
-    }
-
-    private void loadWithProgressBar() {
-        errorViewHelper.hideError();
-        displayProgress(true);
         presenter.subscribe();
     }
 
@@ -104,8 +97,7 @@ public class InvoicesFragment extends MasterFlowListFragment implements Invoices
 
     @Override
     public void displayInvoices(ArrayList<InvoiceDH> invoiceHs, boolean needClear) {
-        errorViewHelper.hideError();
-        displayProgress(false);
+        showProgress(false);
         swipeContainer.setRefreshing(false);
 
         if (needClear)
@@ -136,6 +128,12 @@ public class InvoicesFragment extends MasterFlowListFragment implements Invoices
         } else {
             mActivity.replaceFragmentContentDetail(null);
         }
+    }
+
+    @Override
+    public void showProgress(boolean isShow) {
+        errorViewHelper.hideError();
+        displayProgress(isShow);
     }
 
     @Override
