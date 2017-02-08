@@ -82,7 +82,7 @@ public class InvoicesFragment extends MasterFlowListFragment implements Invoices
     public void onRefresh() {
         errorViewHelper.hideError();
         scrollListener.resetState();
-        presenter.subscribe();
+        presenter.loadInvoices(1);
     }
 
     @Override
