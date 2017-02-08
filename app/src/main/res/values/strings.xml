@@ -89,12 +89,16 @@
     <string name="customer">Customer</string>
     <string name="supplier">Supplier</string>
     <string name="leads_amp_opportunities"><![CDATA[Leads & Opportunities]]></string>
-    <string name="item_order_product_sku">SKU</string>
-    <string name="item_order_product_info">Info</string>
-    <string name="item_order_product_qty">Qty</string>
-    <string name="item_order_product_unit_price">Unit Price</string>
-    <string name="item_order_product_taxes">Taxes</string>
-    <string name="item_order_product_amount">Amount</string>
+
+    <!--order & invoice details-->
+    <string name="item_product_number">#</string>
+    <string name="item_product_sku">SKU</string>
+    <string name="item_product_info">Info</string>
+    <string name="item_product_qty">Qty</string>
+    <string name="item_product_unit_price">Unit Price</string>
+    <string name="item_product_taxes">Taxes</string>
+    <string name="item_product_amount">Amount</string>
+
     <string name="order_details_order">Order</string>
     <string name="order_details_bill_to">Bill to</string>
     <string name="order_details_expected_date">Expected Date :</string>
@@ -113,4 +117,10 @@
     <string name="order_details_iban">IBAN</string>
     <string name="order_details_swift_code">SWIFT code</string>
     <string name="order_details_advice">Payment should be made by bank transfer or check made payable to TEST.</string>
+    <string name="invoice_details_balance_due">Balance Due</string>
+    <string name="invoice_details_payment_made">Payment Made</string>
+    <string name="invoice_details_order_number">Order Number:</string>
+    <string name="invoice_details_due_date">Due Date:</string>
+    <string name="invoice_details_invoice">Invoice</string>
+    <string name="Invoice_detailsinvoice_date">Invoice Date</string>
 </resources>
