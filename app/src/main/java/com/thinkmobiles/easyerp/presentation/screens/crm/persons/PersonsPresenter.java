@@ -2,6 +2,7 @@ package com.thinkmobiles.easyerp.presentation.screens.crm.persons;
 
 import android.text.TextUtils;
 
+import com.thinkmobiles.easyerp.data.model.crm.common.alphabet.AlphabetItem;
 import com.thinkmobiles.easyerp.data.model.crm.common.images.CustomerImageItem;
 import com.thinkmobiles.easyerp.data.model.crm.persons.CommonPersonsResponse;
 import com.thinkmobiles.easyerp.data.model.crm.persons.ResponseGetPersons;
@@ -24,7 +25,11 @@ public class PersonsPresenter extends MasterFlowSelectablePresenterHelper<String
     private PersonsContract.PersonsModel personsModel;
     private CompositeSubscription compositeSubscription;
 
-    private String selectedLetter;
+    private String selectedLetter = "All";
+    private int page = 1;
+
+    private ArrayList<AlphabetItem> enabledAlphabetItems = new ArrayList<>();
+    private CommonPersonsResponse personsResponse = null;
 
     public PersonsPresenter(PersonsContract.PersonsView view, PersonsContract.PersonsModel personsModel) {
         this.view = view;
@@ -43,7 +48,6 @@ public class PersonsPresenter extends MasterFlowSelectablePresenterHelper<String
     @Override
     public void setLetter(String letter) {
         selectedLetter = letter;
-        if(selectedLetter.equalsIgnoreCase("All")) selectedLetter = "";
     }
 
     @Override
@@ -51,6 +55,7 @@ public class PersonsPresenter extends MasterFlowSelectablePresenterHelper<String
         compositeSubscription.add(
                 personsModel.getPersonsAlphabet()
                 .subscribe(responseGetPersonsAlphabet -> {
+                    enabledAlphabetItems = responseGetPersonsAlphabet.data;
                     view.displayEnabledLetters(responseGetPersonsAlphabet.data);
                 }, t -> {})
         );
@@ -58,15 +63,23 @@ public class PersonsPresenter extends MasterFlowSelectablePresenterHelper<String
 
     @Override
     public void loadMore(int page) {
+        this.page = page;
         final boolean needClear = page == 1;
-        if(TextUtils.isEmpty(selectedLetter)) {
+        if(selectedLetter.equalsIgnoreCase("All")) {
             //load all
            compositeSubscription.add(
                    personsModel.getAllPersons(page)
                            .flatMap(responseGetPersons -> personsModel.getPersonImages(prepareIDsForImagesRequest(responseGetPersons)),
                                    CommonPersonsResponse::new)
                            .subscribe(commonPersonsResponse -> {
-                               view.displayPersons(prepareDataHolders(commonPersonsResponse, needClear), needClear);
+
+                               if(needClear) personsResponse = commonPersonsResponse;
+                               else if(personsResponse != null) {
+                                   personsResponse.responseGetCustomersImages.data.addAll(commonPersonsResponse.responseGetCustomersImages.data);
+                                   personsResponse.responseGetPersons.data.addAll(commonPersonsResponse.responseGetPersons.data);
+                               }
+
+                               view.displayPersons(prepareDataHolders(commonPersonsResponse), needClear);
                            }, t -> view.displayError(t.getMessage(), ErrorViewHelper.ErrorType.NETWORK))
            );
         } else {
@@ -76,20 +89,38 @@ public class PersonsPresenter extends MasterFlowSelectablePresenterHelper<String
                             .flatMap(responseGetPersons -> personsModel.getPersonImages(prepareIDsForImagesRequest(responseGetPersons)),
                                     CommonPersonsResponse::new)
                             .subscribe(commonPersonsResponse -> {
-                                view.displayPersons(prepareDataHolders(commonPersonsResponse, needClear), needClear);
+
+                                if(needClear) personsResponse = commonPersonsResponse;
+                                else if(personsResponse != null) {
+                                    personsResponse.responseGetCustomersImages.data.addAll(commonPersonsResponse.responseGetCustomersImages.data);
+                                    personsResponse.responseGetPersons.data.addAll(commonPersonsResponse.responseGetPersons.data);
+                                }
+
+                                view.displayPersons(prepareDataHolders(commonPersonsResponse), needClear);
                             }, t -> view.displayError(t.getMessage(), ErrorViewHelper.ErrorType.NETWORK))
             );
         }
     }
 
-    private ArrayList<PersonDH> prepareDataHolders(CommonPersonsResponse commonPersonsResponse, boolean isFirstPage) {
+    @Override
+    public void refresh() {
+        loadAlphabet();
+        loadMore(page);
+    }
+
+    @Override
+    public int getCurrentPage() {
+        return page;
+    }
+
+    private ArrayList<PersonDH> prepareDataHolders(CommonPersonsResponse commonPersonsResponse) {
         int position = 0;
         ArrayList<PersonDH> result = new ArrayList<>();
         for(PersonModel personModel : commonPersonsResponse.responseGetPersons.data) {
             for(CustomerImageItem imageItem : commonPersonsResponse.responseGetCustomersImages.data) {
                 if(personModel.id.equalsIgnoreCase(imageItem.id)) {
                     final PersonDH personDH = new PersonDH(imageItem.imageSrc, personModel);
-                    makeSelectedDHIfNeed(personDH, view, position++, isFirstPage);
+                    makeSelectedDHIfNeed(personDH, view, position++, true);
                     result.add(personDH);
                 }
             }
@@ -109,9 +140,19 @@ public class PersonsPresenter extends MasterFlowSelectablePresenterHelper<String
 
     @Override
     public void subscribe() {
-        if(TextUtils.isEmpty(selectedLetter))
+        if(enabledAlphabetItems.isEmpty()) {
             loadAlphabet();
-        loadMore(1);
+        } else {
+            view.displayEnabledLetters(enabledAlphabetItems);
+            if(!TextUtils.isEmpty(selectedLetter)) view.displaySelectedLetter(selectedLetter);
+        }
+
+        if(personsResponse == null) {
+            view.showProgress(true);
+            loadMore(1);
+        } else {
+            view.displayPersons(prepareDataHolders(personsResponse), true);
+        }
     }
 
     @Override

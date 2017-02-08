@@ -45,8 +45,6 @@ public class PersonsFragment extends MasterFlowListFragment implements PersonsCo
     protected View errorLayout;
 
     @Bean
-    protected AlphabetListAdapter alphabetListAdapter;
-    @Bean
     protected PersonsAdapter personsAdapter;
     @Bean
     protected PersonsRepository personsRepository;
@@ -61,27 +59,27 @@ public class PersonsFragment extends MasterFlowListFragment implements PersonsCo
 
     @AfterViews
     protected void initUI() {
-        alphabetView_FP.setListener(letter -> {
-            presenter.setLetter(letter);
-            presenter.loadMore(1);
-        });
-        listRecycler.setAdapter(alphabetListAdapter);
-        listRecycler.setLayoutManager(new LinearLayoutManager(mActivity, LinearLayoutManager.VERTICAL, false));
-
         errorViewHelper.init(errorLayout, view -> loadWithProgressBar());
+        LinearLayoutManager llm = new LinearLayoutManager(mActivity);
 
-        LinearLayoutManager llm = new LinearLayoutManager(mActivity, LinearLayoutManager.VERTICAL, false);
-        scrollListener = new EndlessRecyclerViewScrollListener(llm) {
+        scrollListener = new EndlessRecyclerViewScrollListener(llm, presenter.getCurrentPage()) {
             @Override
             public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
-
                 displayProgress(true);
                 presenter.loadMore(page);
             }
         };
+
         listRecycler.setLayoutManager(llm);
         listRecycler.setAdapter(personsAdapter);
         listRecycler.addOnScrollListener(scrollListener);
+
+        alphabetView_FP.setListener(letter -> {
+            presenter.setLetter(letter);
+            presenter.loadMore(1);
+        });
+
+
         personsAdapter.setOnCardClickListener((view, position, viewType) -> presenter.selectItem(personsAdapter.getItem(position), position));
 
         loadWithProgressBar();
@@ -89,7 +87,7 @@ public class PersonsFragment extends MasterFlowListFragment implements PersonsCo
 
     private void loadWithProgressBar() {
         errorViewHelper.hideError();
-        displayProgress(true);
+        showProgress(true);
         presenter.subscribe();
     }
 
@@ -97,7 +95,7 @@ public class PersonsFragment extends MasterFlowListFragment implements PersonsCo
     public void onRefresh() {
         errorViewHelper.hideError();
         scrollListener.resetState();
-        presenter.subscribe();
+        presenter.refresh();
     }
 
     @Override
@@ -106,15 +104,20 @@ public class PersonsFragment extends MasterFlowListFragment implements PersonsCo
     }
 
     @Override
+    public void displaySelectedLetter(String selectedLetter) {
+        alphabetView_FP.selectLetterWithoutListener(selectedLetter);
+    }
+
+    @Override
     public void displayPersons(ArrayList<PersonDH> personDHs, boolean needClear) {
-        errorViewHelper.hideError();
+        showProgress(false);
         alphabetView_FP.setVisibility(View.VISIBLE);
-        displayProgress(false);
         swipeContainer.setRefreshing(false);
 
         if (needClear)
             personsAdapter.setListDH(personDHs);
-        else personsAdapter.addListDH(personDHs);
+        else
+            personsAdapter.addListDH(personDHs);
 
         if (getCountItemsNow() == 0)
             displayError(null, ErrorViewHelper.ErrorType.LIST_EMPTY);
@@ -138,6 +141,12 @@ public class PersonsFragment extends MasterFlowListFragment implements PersonsCo
         mActivity.replaceFragmentContentDetail(PersonDetailsFragment_.builder()
                 .personID(personID)
                 .build());
+    }
+
+    @Override
+    public void showProgress(boolean isShow) {
+        errorViewHelper.hideError();
+        displayProgress(isShow);
     }
 
     @Override

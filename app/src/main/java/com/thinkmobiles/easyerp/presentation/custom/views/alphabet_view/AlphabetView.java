@@ -71,6 +71,16 @@ public class AlphabetView extends FrameLayout {
         }
     }
 
+    public void selectLetterWithoutListener(String letter) {
+        if(!letter.trim().equalsIgnoreCase("All")) {
+            alphabetListAdapter.getItem(0).setLetterState(LetterState.ENABLED);
+            for (LetterDH dh : alphabetListAdapter.getListDH())
+                if(letter.equalsIgnoreCase(dh.getLetter()))
+                    dh.setLetterState(LetterState.SELECTED);
+            alphabetListAdapter.notifyDataSetChanged();
+        }
+    }
+
     private void enableItem(int position) {
         for(int i = 0; i < alphabetListAdapter.getItemCount(); i++) {
             if(alphabetListAdapter.getItem(i).getLetterState() == LetterState.SELECTED) {

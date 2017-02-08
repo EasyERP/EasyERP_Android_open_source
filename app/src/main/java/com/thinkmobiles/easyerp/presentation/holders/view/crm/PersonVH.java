@@ -40,13 +40,14 @@ public final class PersonVH extends MasterFlowSelectableVHHelper<PersonDH> {
     public void bindData(PersonDH data) {
         super.bindData(data);
 
+        ivPersonImage_VLIP.setImageResource(R.drawable.ic_avatar_placeholder_with_padding);
+
         PersonModel personModel = data.getPersonModel();
         ImageHelper.getBitmapFromBase64(data.getBase64Image(), new CropCircleTransformation())
                 .subscribe(bitmap -> {
                     if(bitmap != null)
                         ivPersonImage_VLIP.setImageBitmap(bitmap);
-                    else
-                        ivPersonImage_VLIP.setImageResource(R.drawable.ic_avatar_placeholder_with_padding);
+
                 });
         if(!TextUtils.isEmpty(personModel.fullName))
             tvPersonName_VLIP.setText(personModel.fullName);
