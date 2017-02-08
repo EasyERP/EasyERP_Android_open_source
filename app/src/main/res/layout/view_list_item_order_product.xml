@@ -10,8 +10,7 @@
         android:id="@+id/tvNumber_LIOP"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="@dimen/default_padding_small"
-        android:textSize="12sp"
+        style="@style/TextTableProductStyle"
         android:text="#" />
 
     <TextView
@@ -19,18 +18,16 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:padding="@dimen/default_padding_small"
-        android:textSize="12sp"
-        android:text="@string/item_order_product_sku" />
+        style="@style/TextTableProductStyle"
+        android:text="@string/item_product_sku" />
 
     <TextView
         android:id="@+id/tvInfo_LIOP"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:padding="@dimen/default_padding_quart"
-        android:textSize="12sp"
-        android:text="@string/item_order_product_info" />
+        style="@style/TextTableProductStyle"
+        android:text="@string/item_product_info" />
 
     <TextView
         android:id="@+id/tvQty_LIOP"
@@ -38,9 +35,8 @@
         android:layout_height="wrap_content"
         android:layout_weight="0.5"
         android:gravity="center"
-        android:padding="@dimen/default_padding_quart"
-        android:textSize="12sp"
-        android:text="@string/item_order_product_qty" />
+        style="@style/TextTableProductStyle"
+        android:text="@string/item_product_qty" />
 
     <TextView
         android:id="@+id/tvUnitPrice_LIOP"
@@ -48,9 +44,8 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:gravity="center_vertical|end"
-        android:padding="@dimen/default_padding_quart"
-        android:textSize="12sp"
-        android:text="@string/item_order_product_unit_price" />
+        style="@style/TextTableProductStyle"
+        android:text="@string/item_product_unit_price" />
 
     <TextView
         android:id="@+id/tvTaxes_LIOP"
@@ -58,9 +53,8 @@
         android:layout_height="wrap_content"
         android:layout_weight="0.7"
         android:gravity="center_vertical|end"
-        android:padding="@dimen/default_padding_quart"
-        android:textSize="12sp"
-        android:text="@string/item_order_product_taxes" />
+        style="@style/TextTableProductStyle"
+        android:text="@string/item_product_taxes" />
 
     <TextView
         android:id="@+id/tvAmount_LIOP"
@@ -68,9 +62,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:gravity="center_vertical|end"
-        android:padding="@dimen/default_padding_quart"
-        android:textSize="12sp"
-        android:text="@string/item_order_product_amount" />
-
+        style="@style/TextTableProductStyle"
+        android:text="@string/item_product_amount" />
 
 </LinearLayout>

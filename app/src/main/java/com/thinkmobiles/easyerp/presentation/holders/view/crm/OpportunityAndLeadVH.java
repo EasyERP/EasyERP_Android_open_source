@@ -23,14 +23,14 @@ import java.util.Locale;
  * Created by Lynx on 2/3/2017.
  */
 
-public class OpportunityAndLeadVH extends RecyclerVH<OpportunityAndLeadDH> {
+public final class OpportunityAndLeadVH extends RecyclerVH<OpportunityAndLeadDH> {
 
-    private TextView tvName_VLIOAL;
-    private TextView tvPriority_VLIOAL;
-    private TextView tvStatus_VLIOAL;
-    private TextView tvAssignedTo_VLIOAL;
-    private TextView tvCreatedEditedBy_VLIOAL;
-    private TextView tvRevenue_VLIOAL;
+    private final TextView tvName_VLIOAL;
+    private final TextView tvPriority_VLIOAL;
+    private final TextView tvStatus_VLIOAL;
+    private final TextView tvAssignedTo_VLIOAL;
+    private final TextView tvCreatedEditedBy_VLIOAL;
+    private final TextView tvRevenue_VLIOAL;
 
     public OpportunityAndLeadVH(View itemView, @Nullable OnCardClickListener listener, int viewType) {
         super(itemView, listener, viewType);

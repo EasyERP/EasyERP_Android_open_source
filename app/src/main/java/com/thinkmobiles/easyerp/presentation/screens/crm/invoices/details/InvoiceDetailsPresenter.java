@@ -1,15 +1,14 @@
-package com.thinkmobiles.easyerp.presentation.screens.crm.orders.details;
-
-
-import android.content.res.Resources;
+package com.thinkmobiles.easyerp.presentation.screens.crm.invoices.details;
 
 import com.thinkmobiles.easyerp.R;
+import com.thinkmobiles.easyerp.data.model.crm.invoice.detail.InvoicePayment;
+import com.thinkmobiles.easyerp.data.model.crm.invoice.detail.ResponseGetInvoiceDetails;
 import com.thinkmobiles.easyerp.data.model.crm.order.detail.OrderProduct;
-import com.thinkmobiles.easyerp.data.model.crm.order.detail.ResponseGerOrderDetails;
 import com.thinkmobiles.easyerp.data.model.user.organization.OrganizationSettings;
 import com.thinkmobiles.easyerp.presentation.EasyErpApplication;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.HistoryDH;
+import com.thinkmobiles.easyerp.presentation.holders.data.crm.InvoicePaymentDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.ProductDH;
 import com.thinkmobiles.easyerp.presentation.managers.DateManager;
 import com.thinkmobiles.easyerp.presentation.screens.crm.dashboard.detail.charts.DollarFormatter;
@@ -20,29 +19,35 @@ import java.util.ArrayList;
 
 import rx.subscriptions.CompositeSubscription;
 
-public class OrderDetailsPresenter implements OrderDetailsContract.OrderDetailsPresenter {
+/**
+ * @author Alex Michenko (Created on 06.02.17).
+ *         Company: Thinkmobiles
+ *         Email: alex.michenko@thinkmobiles.com
+ */
 
-    private OrderDetailsContract.OrderDetailsView view;
-    private OrderDetailsContract.OrderDetailsModel model;
-    private String orderId;
+public class InvoiceDetailsPresenter implements InvoiceDetailsContract.InvoiceDetailsPresenter {
+
+
+    private InvoiceDetailsContract.InvoiceDetailsView view;
+    private InvoiceDetailsContract.InvoiceDetailsModel model;
+    private String invoiceId;
     private CompositeSubscription compositeSubscription;
 
-    private ResponseGerOrderDetails currentOrder;
+    private ResponseGetInvoiceDetails currentInvoice;
     private OrganizationSettings organizationSettings;
     private boolean isVisibleHistory;
     private String notSpecified;
-    private Resources res;
     private DecimalFormat formatter;
 
-    public OrderDetailsPresenter(OrderDetailsContract.OrderDetailsView view, OrderDetailsContract.OrderDetailsModel model, String orderId) {
+
+    public InvoiceDetailsPresenter(InvoiceDetailsContract.InvoiceDetailsView view, InvoiceDetailsContract.InvoiceDetailsModel model, String invoiceId) {
         this.view = view;
         this.model = model;
-        this.orderId = orderId;
+        this.invoiceId = invoiceId;
         view.setPresenter(this);
 
         compositeSubscription = new CompositeSubscription();
         notSpecified = EasyErpApplication.getInstance().getString(R.string.err_not_specified);
-        res = EasyErpApplication.getInstance().getResources();
         formatter = new DollarFormatter().getFormat();
     }
 
@@ -54,14 +59,14 @@ public class OrderDetailsPresenter implements OrderDetailsContract.OrderDetailsP
 
     @Override
     public void refresh() {
-        compositeSubscription.add(model.getOrderDetails(orderId)
+        compositeSubscription.add(model.getInvoiceDetails(invoiceId)
                 .subscribe(responseGerOrderDetails -> {
                     view.showProgress(false);
                     setData(responseGerOrderDetails);
                 }, t -> {
                     view.showProgress(false);
                     t.printStackTrace();
-                    if (currentOrder == null) {
+                    if (currentInvoice == null) {
                         view.showError(t.getMessage(), ErrorViewHelper.ErrorType.NETWORK);
                     } else {
                         view.showMessage(t.getMessage());
@@ -79,61 +84,57 @@ public class OrderDetailsPresenter implements OrderDetailsContract.OrderDetailsP
 
     @Override
     public void subscribe() {
-        if (currentOrder == null) {
+        if (currentInvoice == null) {
             view.showProgress(true);
             refresh();
             getOrganizationSettings();
         } else {
-            setData(currentOrder);
+            setData(currentInvoice);
         }
     }
 
-    private void setData(ResponseGerOrderDetails response) {
-        currentOrder = response;
+    private void setData(ResponseGetInvoiceDetails response) {
+        currentInvoice = response;
 
-        view.setOrderStatusName(response.workflow.name);
-        view.setOrderStatus(response.workflow.status);
-        view.setOrderName(response.name);
-        view.setExpectedDate(DateManager.convert(response.expectedDate).setDstPattern(DateManager.PATTERN_DATE_SIMPLE_PREVIEW).toString());
-        view.setOrderDate(DateManager.convert(response.orderDate).setDstPattern(DateManager.PATTERN_DATE_SIMPLE_PREVIEW).toString());
+        view.setInvoiceStatusName(response.workflow.name);
+        view.setInvoiceStatus(response.workflow.status);
+        view.setInvoiceName(response.name);
+        view.setInvoiceDate(DateManager.convert(response.invoiceDate).setDstPattern(DateManager.PATTERN_DATE_SIMPLE_PREVIEW).toString());
+        if (response.dueDate != null) {
+            view.setDueDate(DateManager.convert(response.dueDate).setDstPattern(DateManager.PATTERN_DATE_SIMPLE_PREVIEW).toString());
+        }
+        view.setOrderNumber(response.paymentReference);
         view.setSupplierName(response.supplier.fullName);
-        view.setSupplierAddress(StringUtil.getAddress(response.supplier.address));
-        String prefix = response.currency.id != null ? response.currency.id.symbol : "$";
+        String symbol = response.currency.id != null ? response.currency.id.symbol : "$";
         if (response.paymentInfo != null) {
-            view.setSubTotal(StringUtil.getFormattedPriceFromCent(formatter, response.paymentInfo.unTaxed, prefix));
+            view.setSubTotal(StringUtil.getFormattedPriceFromCent(formatter, response.paymentInfo.unTaxed, symbol));
             if (response.paymentInfo.discount > 0)
-                view.setDiscount(StringUtil.getFormattedPriceFromCent(formatter, - response.paymentInfo.discount, prefix));
-            view.setTaxes(StringUtil.getFormattedPriceFromCent(formatter, response.paymentInfo.taxes, prefix));
-            view.setTotal(StringUtil.getFormattedPriceFromCent(formatter, response.paymentInfo.total, prefix));
+                view.setDiscount(StringUtil.getFormattedPriceFromCent(formatter, - response.paymentInfo.discount, symbol));
+            view.setTaxes(StringUtil.getFormattedPriceFromCent(formatter, response.paymentInfo.taxes, symbol));
+            view.setTotal(StringUtil.getFormattedPriceFromCent(formatter, response.paymentInfo.total, symbol));
+            Double paymentMade = response.paymentInfo.balance - response.paymentInfo.total;
+            if (paymentMade != 0) {
+                view.setPaymentMade(StringUtil.getFormattedPriceFromCent(formatter, paymentMade, symbol));
+            }
+            view.setBalanceDue(StringUtil.getFormattedPriceFromCent(formatter, response.paymentInfo.balance, symbol));
         }
-        if (response.prepayment != null && response.prepayment.sum != null)
-            view.setPrepaid(StringUtil.getFormattedPriceFromCent(formatter, response.prepayment.sum, prefix));
-        if (response.paymentMethod != null) {
-            view.setNameBeneficiary(response.paymentMethod.owner);
-            view.setBank(response.paymentMethod.bank);
-            view.setBankAddress(response.paymentMethod.address);
-            view.setBankIBAN(response.paymentMethod.account);
-            view.setSwiftCode(response.paymentMethod.swiftCode);
-        }
-
         if (organizationSettings != null) {
             view.setCompanyName(organizationSettings.name);
             if (organizationSettings.address != null)
                 view.setCompanyAddress(StringUtil.getAddress(organizationSettings.address));
-
-            view.setOwnerName(organizationSettings.contactName);
-            view.setOwnerSite(organizationSettings.website);
-            if (organizationSettings.contact != null)
-                view.setOwnerEmail(organizationSettings.contact.email);
-            view.setAdvice(String.format("Payment should be made by bank transfer or check made payable to %s", organizationSettings.contactName.toUpperCase()));
         }
 
         if (response.attachments != null && !response.attachments.isEmpty()) {
             view.setAttachments(StringUtil.getAttachments(response.attachments));
         }
 
-        String symbol = response.currency.id != null ? response.currency.id.symbol : "$";
-        view.setProducts(prepareProductList(response.products, symbol));
+        if (response.payments != null && !response.payments.isEmpty()) {
+            view.setPayments(preparePaymentsList(response.payments));
+        }
+
+        if (response.products != null) {
+            view.setProducts(prepareProductList(response.products, symbol));
+        }
         view.setHistory(HistoryDH.convert(response.notes));
 
         view.showHistory(isVisibleHistory);
@@ -143,6 +144,14 @@ public class OrderDetailsPresenter implements OrderDetailsContract.OrderDetailsP
         ArrayList<ProductDH> list = new ArrayList<>();
         for (OrderProduct product : products){
             list.add(new ProductDH(product, symbol));
+        }
+        return list;
+    }
+
+    private ArrayList<InvoicePaymentDH> preparePaymentsList(ArrayList<InvoicePayment> products) {
+        ArrayList<InvoicePaymentDH> list = new ArrayList<>();
+        for (InvoicePayment product : products){
+            list.add(new InvoicePaymentDH(product));
         }
         return list;
     }

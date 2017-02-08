@@ -1,7 +1,6 @@
 package com.thinkmobiles.easyerp.presentation.screens.crm.dashboard;
 
 import com.thinkmobiles.easyerp.data.model.crm.dashboard.DashboardListItem;
-import com.thinkmobiles.easyerp.data.model.crm.dashboard.ResponseGetCRMDashboardCharts;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectablePresenterHelper;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.DashboardListDH;
@@ -21,7 +20,7 @@ public class DashboardListPresenter extends MasterFlowSelectablePresenterHelper<
     private DashboardListContract.DashboardListModel model;
     private CompositeSubscription compositeSubscription;
 
-    private ResponseGetCRMDashboardCharts responseGetCRMDashboardCharts;
+    private ArrayList<DashboardListItem> charts = new ArrayList<>();
 
     public DashboardListPresenter(DashboardListContract.DashboardListView view, DashboardListContract.DashboardListModel model) {
         this.view = view;
@@ -33,10 +32,10 @@ public class DashboardListPresenter extends MasterFlowSelectablePresenterHelper<
 
     @Override
     public void subscribe() {
-        if (responseGetCRMDashboardCharts == null) {
+        if (charts.size() == 0) {
             view.showProgress(true);
             loadDashboardChartsList();
-        } else view.displayDashboardChartsList(prepareDashboardDHs(responseGetCRMDashboardCharts.charts));
+        } else view.displayDashboardChartsList(prepareDashboardDHs(charts));
     }
 
     @Override
@@ -50,7 +49,7 @@ public class DashboardListPresenter extends MasterFlowSelectablePresenterHelper<
         compositeSubscription.add(
                 model.getDashboardListCharts()
                         .subscribe(
-                                getCRMDashboardCharts -> view.displayDashboardChartsList(prepareDashboardDHs((responseGetCRMDashboardCharts = getCRMDashboardCharts.get(0)).charts)),
+                                getCRMDashboardCharts -> view.displayDashboardChartsList(prepareDashboardDHs(charts = getCRMDashboardCharts.get(0).charts)),
                                 t -> view.displayError(t.getMessage(), ErrorViewHelper.ErrorType.NETWORK))
         );
     }
@@ -71,5 +70,4 @@ public class DashboardListPresenter extends MasterFlowSelectablePresenterHelper<
         }
         return result;
     }
-
 }

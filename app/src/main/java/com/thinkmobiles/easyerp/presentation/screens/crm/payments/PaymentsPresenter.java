@@ -22,6 +22,9 @@ public class PaymentsPresenter extends MasterFlowSelectablePresenterHelper<Strin
 
     private CompositeSubscription compositeSubscription;
 
+    private int currentPage = 1;
+    private ArrayList<Payment> payments = new ArrayList<>();
+
     public PaymentsPresenter(PaymentsContract.PaymentsView view, PaymentsContract.PaymentsModel model) {
         this.view = view;
         this.model = model;
@@ -32,7 +35,10 @@ public class PaymentsPresenter extends MasterFlowSelectablePresenterHelper<Strin
 
     @Override
     public void subscribe() {
-        loadPayments(1);
+        if (payments.size() == 0) {
+            view.showProgress(true);
+            loadPayments(1);
+        } else view.displayPayments(prepareOrderDHs(payments), true);
     }
 
     @Override
@@ -46,10 +52,21 @@ public class PaymentsPresenter extends MasterFlowSelectablePresenterHelper<Strin
         final boolean needClear = page == 1;
         compositeSubscription.add(
                 model.getPayments(page).subscribe(
-                        responseGetPayments -> view.displayPayments(prepareOrderDHs(responseGetPayments.data), needClear),
+                        responseGetPayments -> {
+                            currentPage = page;
+                            if (needClear)
+                                payments.clear();
+                            payments.addAll(responseGetPayments.data);
+                            view.displayPayments(prepareOrderDHs(responseGetPayments.data), needClear);
+                        },
                         throwable -> view.displayError(throwable.getMessage(), ErrorViewHelper.ErrorType.NETWORK)
                 )
         );
+    }
+
+    @Override
+    public int getCurrentPage() {
+        return currentPage;
     }
 
     @Override

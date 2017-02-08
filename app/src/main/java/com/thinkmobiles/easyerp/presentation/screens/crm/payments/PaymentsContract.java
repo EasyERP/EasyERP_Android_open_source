@@ -22,9 +22,11 @@ public interface PaymentsContract {
         void displayPayments(ArrayList<PaymentDH> paymentDHs, boolean needClear);
         void displayError(final String msg, final ErrorViewHelper.ErrorType errorType);
         void openPaymentDetailsScreen(final Payment payment);
+        void showProgress(final boolean isShow);
     }
     interface PaymentsPresenter extends MasterFlowSelectableBasePresenter<String, PaymentDH> {
         void loadPayments(final int page);
+        int getCurrentPage();
     }
     interface PaymentsModel extends BaseModel {
         Observable<ResponseGetPayments> getPayments(final int page);
