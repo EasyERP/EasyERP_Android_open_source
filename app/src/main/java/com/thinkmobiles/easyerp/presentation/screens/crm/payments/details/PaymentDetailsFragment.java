@@ -4,7 +4,6 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.data.model.crm.payments.Payment;
@@ -19,8 +18,6 @@ import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.FragmentArg;
 import org.androidannotations.annotations.ViewById;
-
-import rx.annotations.Beta;
 
 /**
  * @author Alex Michenko (Created on 07.02.17).

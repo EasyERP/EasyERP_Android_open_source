@@ -77,18 +77,21 @@
             android:layout_height="wrap_content"
             app:srcCompat="@drawable/ic_shipped" />
 
-    </LinearLayout>
+        <TextView
+            android:id="@+id/tvCustomer_VLIO"
+            style="@style/RobotoRegular"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/default_padding_middle"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:gravity="end"
+            android:maxLines="1"
+            android:textColor="@color/color_text_black"
+            android:textSize="@dimen/text_list_item_medium_16"
+            tools:text="Alex Hoshylyk" />
 
-    <TextView
-        android:id="@+id/tvCustomer_VLIO"
-        style="@style/RobotoRegular"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ellipsize="end"
-        android:maxLines="1"
-        android:textColor="@color/color_text_black"
-        android:textSize="@dimen/text_list_item_medium_16"
-        tools:text="Alex Hoshylyk" />
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"

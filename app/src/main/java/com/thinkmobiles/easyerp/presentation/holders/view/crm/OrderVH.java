@@ -71,6 +71,7 @@ public final class OrderVH extends MasterFlowSelectableVHHelper<OrderDH> {
             case "NOT":
                 ivAllocated_VLIO.setImageResource(R.drawable.ic_allocated_off);
                 break;
+            case "NOA":
             case "NOR":
                 ivAllocated_VLIO.setImageResource(R.drawable.ic_allocated_middle_on);
                 break;
@@ -83,6 +84,7 @@ public final class OrderVH extends MasterFlowSelectableVHHelper<OrderDH> {
             case "NOT":
                 ivFulfilled_VLIO.setImageResource(R.drawable.ic_fulfilled_off);
                 break;
+            case "NOA":
             case "NOR":
                 ivFulfilled_VLIO.setImageResource(R.drawable.ic_fulfilled_middle_on);
                 break;
@@ -95,6 +97,7 @@ public final class OrderVH extends MasterFlowSelectableVHHelper<OrderDH> {
             case "NOT":
                 ivShipped_VLIO.setImageResource(R.drawable.ic_shipped_off);
                 break;
+            case "NOA":
             case "NOR":
                 ivShipped_VLIO.setImageResource(R.drawable.ic_shipped_middle_on);
                 break;

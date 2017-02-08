@@ -21,9 +21,11 @@ public interface InvoicesContract {
         void displayInvoices(ArrayList<InvoiceDH> invoiceDHs, boolean needClear);
         void displayError(final String msg, final ErrorViewHelper.ErrorType errorType);
         void openInvoiceDetailsScreen(String invoiceID);
+        void showProgress(final boolean isShow);
     }
     interface InvoicesPresenter extends MasterFlowSelectableBasePresenter<String, InvoiceDH> {
         void loadInvoices(int page);
+        int getCurrentPage();
     }
     interface InvoicesModel extends BaseModel {
         Observable<ResponseGetInvoice> getInvoices(final int page);

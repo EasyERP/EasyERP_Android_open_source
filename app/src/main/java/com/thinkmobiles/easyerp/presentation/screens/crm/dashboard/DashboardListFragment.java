@@ -56,17 +56,12 @@ public class DashboardListFragment extends MasterFlowListFragment implements Das
 
     @AfterViews
     protected void initUI() {
-        errorViewHelper.init(errorLayout, view -> loadWithProgressBar());
+        errorViewHelper.init(errorLayout, view -> presenter.subscribe());
         listRecycler.setLayoutManager(new LinearLayoutManager(mActivity, LinearLayoutManager.VERTICAL, false));
         listRecycler.setAdapter(dashboardListAdapter);
         dashboardListAdapter.setOnCardClickListener((view, position, viewType) -> presenter.selectItem(dashboardListAdapter.getItem(position), position));
 
         presenter.subscribe();
-    }
-
-    private void loadWithProgressBar() {
-        showProgress(true);
-        presenter.loadDashboardChartsList();
     }
 
     @Override
