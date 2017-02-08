@@ -79,7 +79,7 @@ public class PersonsPresenter extends MasterFlowSelectablePresenterHelper<String
                                    personsResponse.responseGetPersons.data.addAll(commonPersonsResponse.responseGetPersons.data);
                                }
 
-                               view.displayPersons(prepareDataHolders(commonPersonsResponse), needClear);
+                               view.displayPersons(prepareDataHolders(commonPersonsResponse, needClear), needClear);
                            }, t -> view.displayError(t.getMessage(), ErrorViewHelper.ErrorType.NETWORK))
            );
         } else {
@@ -97,7 +97,7 @@ public class PersonsPresenter extends MasterFlowSelectablePresenterHelper<String
                                     personsResponse.responseGetPersons.data.addAll(commonPersonsResponse.responseGetPersons.data);
                                 }
 
-                                view.displayPersons(prepareDataHolders(commonPersonsResponse), needClear);
+                                view.displayPersons(prepareDataHolders(commonPersonsResponse, needClear), needClear);
                             }, t -> view.displayError(t.getMessage(), ErrorViewHelper.ErrorType.NETWORK))
             );
         }
@@ -114,14 +114,14 @@ public class PersonsPresenter extends MasterFlowSelectablePresenterHelper<String
         return page;
     }
 
-    private ArrayList<PersonDH> prepareDataHolders(CommonPersonsResponse commonPersonsResponse) {
+    private ArrayList<PersonDH> prepareDataHolders(CommonPersonsResponse commonPersonsResponse, boolean needClear) {
         int position = 0;
         ArrayList<PersonDH> result = new ArrayList<>();
         for(PersonModel personModel : commonPersonsResponse.responseGetPersons.data) {
             for(CustomerImageItem imageItem : commonPersonsResponse.responseGetCustomersImages.data) {
                 if(personModel.id.equalsIgnoreCase(imageItem.id)) {
                     final PersonDH personDH = new PersonDH(imageItem.imageSrc, personModel);
-                    makeSelectedDHIfNeed(personDH, view, position++, true);
+                    makeSelectedDHIfNeed(personDH, view, position++, needClear);
                     result.add(personDH);
                 }
             }
@@ -152,7 +152,7 @@ public class PersonsPresenter extends MasterFlowSelectablePresenterHelper<String
             view.showProgress(true);
             loadMore(1);
         } else {
-            view.displayPersons(prepareDataHolders(personsResponse), true);
+            view.displayPersons(prepareDataHolders(personsResponse, true), true);
         }
     }
 

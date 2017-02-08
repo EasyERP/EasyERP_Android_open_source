@@ -10,7 +10,7 @@ import com.thinkmobiles.easyerp.data.model.crm.common.images.ResponseGetCustomer
  */
 
 public class CommonPersonsResponse implements Parcelable {
-    public ResponseGetPersons responseGetPersons ;
+    public ResponseGetPersons responseGetPersons;
     public ResponseGetCustomersImages responseGetCustomersImages;
 
     public CommonPersonsResponse(ResponseGetPersons responseGetPersons, ResponseGetCustomersImages responseGetCustomersImages) {

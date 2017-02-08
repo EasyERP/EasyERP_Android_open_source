@@ -7,8 +7,8 @@
           android:textColor="@android:color/white"
           android:paddingTop="@dimen/default_padding_quart"
           android:paddingBottom="@dimen/default_padding_quart"
-          android:paddingRight="@dimen/default_padding_half"
-          android:paddingLeft="@dimen/default_padding_half"
+          android:paddingStart="@dimen/default_padding_half"
+          android:paddingEnd="@dimen/default_padding_half"
           android:gravity="center"
           tools:text="text"
           android:textSize="@dimen/text_size_small_14"/>

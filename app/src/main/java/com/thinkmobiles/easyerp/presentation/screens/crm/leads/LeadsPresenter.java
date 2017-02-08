@@ -76,7 +76,7 @@ public class LeadsPresenter extends MasterFlowSelectablePresenterHelper<String, 
                                     if(isFirst && responseGetLeads.data.isEmpty()) {
                                         view.showEmptyState();
                                     } else {
-                                        view.displayLeads(prepareLeadDHs(responseGetLeads.data), isFirst);
+                                        view.displayLeads(prepareLeadDHs(responseGetLeads.data, isFirst), isFirst);
                                     }
                                 }, t -> {
                                     view.showProgress(false);
@@ -109,7 +109,7 @@ public class LeadsPresenter extends MasterFlowSelectablePresenterHelper<String, 
             getFirstPage();
             loadLeadsFilters();
         } else {
-            view.displayLeads(prepareLeadDHs(leadItems), true);
+            view.displayLeads(prepareLeadDHs(leadItems, true), true);
             view.showFilters(true);
             view.setContactNames(contactName);
         }
@@ -135,12 +135,12 @@ public class LeadsPresenter extends MasterFlowSelectablePresenterHelper<String, 
             compositeSubscription.clear();
     }
 
-    private ArrayList<LeadDH> prepareLeadDHs(ArrayList<LeadItem> leadItems) {
+    private ArrayList<LeadDH> prepareLeadDHs(ArrayList<LeadItem> leadItems, boolean needClear) {
         int position = 0;
         final ArrayList<LeadDH> result = new ArrayList<>();
         for (LeadItem leadItem : leadItems) {
             final LeadDH leadDH = new LeadDH(leadItem);
-            makeSelectedDHIfNeed(leadDH, view, position++, true);
+            makeSelectedDHIfNeed(leadDH, view, position++, needClear);
             result.add(leadDH);
         }
         return result;

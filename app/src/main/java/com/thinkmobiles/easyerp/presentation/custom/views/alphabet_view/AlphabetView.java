@@ -75,8 +75,10 @@ public class AlphabetView extends FrameLayout {
         if(!letter.trim().equalsIgnoreCase("All")) {
             alphabetListAdapter.getItem(0).setLetterState(LetterState.ENABLED);
             for (LetterDH dh : alphabetListAdapter.getListDH())
-                if(letter.equalsIgnoreCase(dh.getLetter()))
+                if(letter.equalsIgnoreCase(dh.getLetter())) {
                     dh.setLetterState(LetterState.SELECTED);
+                    break;
+                }
             alphabetListAdapter.notifyDataSetChanged();
         }
     }
