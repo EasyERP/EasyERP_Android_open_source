@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+          xmlns:tools="http://schemas.android.com/tools"
+          style="@style/RobotoRegular"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:textColor="@android:color/white"
+          android:paddingTop="@dimen/default_padding_quart"
+          android:paddingBottom="@dimen/default_padding_quart"
+          android:paddingRight="@dimen/default_padding_half"
+          android:paddingLeft="@dimen/default_padding_half"
+          android:gravity="center"
+          tools:text="text"
+          android:textSize="@dimen/text_size_small_14"/>

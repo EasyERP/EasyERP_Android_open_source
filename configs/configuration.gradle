@@ -21,6 +21,7 @@ allprojects {
         loggingInterceptorVersion = '3.4.1'
         picassoVersion = '2.5.2'
         mpAndroidChartVersion = 'v3.0.1'
+        flowLayoutVersion = '1.0'
 
         // Development
         stethoVersion = '1.4.2'
@@ -41,7 +42,8 @@ allprojects {
                 retrofitAdapterRx:          "com.squareup.retrofit2:adapter-rxjava:${retrofitVersion}",
                 retrofitLogInterceptor:     "com.squareup.okhttp3:logging-interceptor:${loggingInterceptorVersion}",
                 picasso:                    "com.squareup.picasso:picasso:${picassoVersion}",
-                mpAndroidChart:             "com.github.PhilJay:MPAndroidChart:${mpAndroidChartVersion}"
+                mpAndroidChart:             "com.github.PhilJay:MPAndroidChart:${mpAndroidChartVersion}",
+                flowLayout:                 "com.github.ismaeltoe:flowlayout:${flowLayoutVersion}"
         ]
     }
 

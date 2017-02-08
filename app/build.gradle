@@ -56,22 +56,30 @@ android {
 dependencies {
     compile project(path: ':rangepickerdialog')
 
+    /*Debug*/
     compile devDependencies.stetho
 
+    /*Android support*/
     compile appDependencies.androidSupportDesign
     compile appDependencies.androidSupportCardView
 
+    /*Android annotations*/
     apt appDependencies.androidAnnotations
     compile appDependencies.androidAnnotationsApi
 
+    /*Utilities*/
     compile appDependencies.recyclerAdaptersMichenko
     compile appDependencies.picasso
 
+    /*Reactive*/
     compile appDependencies.rxJava
     compile appDependencies.rxBinding
 
+    /*Networking*/
     compile appDependencies.retrofitGson
     compile appDependencies.retrofitAdapterRx
 
+    /*UI*/
     compile appDependencies.mpAndroidChart
+    compile appDependencies.flowLayout
 }
