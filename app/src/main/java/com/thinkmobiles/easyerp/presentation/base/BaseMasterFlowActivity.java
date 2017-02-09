@@ -29,7 +29,8 @@ import org.androidannotations.annotations.res.StringRes;
  * @author michael.soyma@thinkmobiles.com (Created on 1/17/2017.)
  */
 @EActivity
-public abstract class BaseMasterFlowActivity extends AppCompatActivity {
+public abstract class
+BaseMasterFlowActivity extends AppCompatActivity {
 
     @Bean
     protected CookieManager cookieManager;

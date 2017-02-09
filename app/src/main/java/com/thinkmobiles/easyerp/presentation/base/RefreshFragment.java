@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.jakewharton.rxbinding.view.RxView;
 import com.thinkmobiles.easyerp.R;
@@ -51,6 +52,8 @@ public abstract class RefreshFragment<T extends BaseMasterFlowActivity> extends 
 
     protected FrameLayout flContent;
 
+    private Toast toast;
+
     @ColorRes
     protected int colorPrimary;
     @ColorRes
@@ -60,11 +63,12 @@ public abstract class RefreshFragment<T extends BaseMasterFlowActivity> extends 
 
     protected abstract void onRetry();
 
-    protected abstract void onRefreshSwipe();
+    protected abstract void onRefreshData();
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        toast = Toast.makeText(getActivity(), null, Toast.LENGTH_SHORT);
         View parent = inflater.inflate(R.layout.view_parent, container, false);
         flContent = (FrameLayout) parent.findViewById(R.id.flContent);
         View.inflate(getActivity(), getLayoutRes(), flContent);
@@ -79,16 +83,10 @@ public abstract class RefreshFragment<T extends BaseMasterFlowActivity> extends 
     @AfterViews
     protected void initHolderUI() {
         srlHolderRefresh.setColorSchemeColors(colorPrimary, colorPrimaryDark);
-        srlHolderRefresh.setOnRefreshListener(this::onRefreshSwipe);
+        srlHolderRefresh.setOnRefreshListener(this::onRefreshData);
         RxView.clicks(btnHolderTry)
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
                 .subscribe(aVoid -> onRetry());
-    }
-
-    @Override
-    public void onDestroyView() {
-        srlHolderRefresh.setRefreshing(false);
-        super.onDestroyView();
     }
 
     protected void showProgressBar(Constants.ProgressType type) {
@@ -112,18 +110,25 @@ public abstract class RefreshFragment<T extends BaseMasterFlowActivity> extends 
         }
     }
 
-    public void showErrorState(final String msg, final ErrorViewHelper.ErrorType errorType) {
+    protected void showErrorState(final String msg, final ErrorViewHelper.ErrorType errorType) {
         showProgressBar(Constants.ProgressType.NONE);
-        ivHolderIcon.setImageResource(getPlaceholderIcon(errorType));
-        tvHolderMessage.setText(msg);
         llHolderError.setVisibility(View.VISIBLE);
+        ivHolderIcon.setImageResource(getPlaceholderIcon(errorType));
         if (errorType == ErrorViewHelper.ErrorType.LIST_EMPTY) {
             btnHolderTry.setVisibility(View.GONE);
             srlHolderRefresh.setEnabled(true);
+            tvHolderMessage.setText(R.string.list_is_empty);
         } else {
             btnHolderTry.setVisibility(View.VISIBLE);
             srlHolderRefresh.setEnabled(false);
+            tvHolderMessage.setText(msg);
         }
+    }
+
+    protected void showErrorToast(String message) {
+        showProgressBar(Constants.ProgressType.NONE);
+        toast.setText(message);
+        toast.show();
     }
 
     private

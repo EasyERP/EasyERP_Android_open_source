@@ -83,8 +83,10 @@ public class PaymentDetailsPresenter implements PaymentDetailsContract.PaymentDe
         view.setPaymentDate(DateManager.convert(currentPayment.date).setDstPattern(DateManager.PATTERN_DATE_SIMPLE_PREVIEW).toString());
         view.setBankAccount(currentPayment.paymentMethod.name);
         view.setAccount(currentPayment.bankAccount.name);
-        view.setSupplierName(currentPayment.supplier.fullName);
-        view.setSupplierAddress(StringUtil.getAddress(currentPayment.supplier.address));
+        if (currentPayment.supplier != null) {
+            view.setSupplierName(currentPayment.supplier.fullName);
+            view.setSupplierAddress(StringUtil.getAddress(currentPayment.supplier.address));
+        }
 
         if (organizationSettings != null) {
             view.setCompanyName(organizationSettings.name);

@@ -7,6 +7,7 @@ import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectableBasePresenter;
 import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectableBaseView;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.PaymentDH;
+import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
 import java.util.ArrayList;
 
@@ -21,11 +22,13 @@ public interface PaymentsContract {
     interface PaymentsView extends MasterFlowSelectableBaseView<PaymentsPresenter> {
         void displayPayments(ArrayList<PaymentDH> paymentDHs, boolean needClear);
         void displayError(final String msg, final ErrorViewHelper.ErrorType errorType);
+        void displayErrorMessage(final String msg);
         void openPaymentDetailsScreen(final Payment payment);
-        void showProgress(final boolean isShow);
+        void showProgress(Constants.ProgressType type);
     }
     interface PaymentsPresenter extends MasterFlowSelectableBasePresenter<String, PaymentDH> {
-        void loadPayments(final int page);
+        void refresh();
+        void loadNextPage();
         int getCurrentPage();
     }
     interface PaymentsModel extends BaseModel {

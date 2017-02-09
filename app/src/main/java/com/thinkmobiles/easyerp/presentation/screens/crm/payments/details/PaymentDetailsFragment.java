@@ -87,7 +87,7 @@ public class PaymentDetailsFragment extends RefreshFragment<HomeActivity> implem
     }
 
     @Override
-    public void onRefreshSwipe() {
+    public void onRefreshData() {
         presenter.refresh();
     }
 
