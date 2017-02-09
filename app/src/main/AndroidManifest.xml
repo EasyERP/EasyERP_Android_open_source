@@ -31,7 +31,7 @@
         <activity
             android:name=".presentation.screens.home.HomeActivity_"
             android:screenOrientation="sensor"
-            android:windowSoftInputMode="adjustUnspecified"/>
+            android:windowSoftInputMode="stateHidden"/>
 
     </application>
 
