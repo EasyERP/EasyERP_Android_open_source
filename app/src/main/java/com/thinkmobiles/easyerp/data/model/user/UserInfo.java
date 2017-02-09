@@ -15,6 +15,7 @@ public class UserInfo implements Parcelable {
     public String imageSrc; //base64
     public String login;
     public String email;
+    public String lastAccess;
     public UserProfile profile;
 
     @Override
@@ -28,6 +29,7 @@ public class UserInfo implements Parcelable {
         dest.writeString(this.imageSrc);
         dest.writeString(this.login);
         dest.writeString(this.email);
+        dest.writeString(this.lastAccess);
         dest.writeParcelable(this.profile, flags);
     }
 
@@ -39,10 +41,11 @@ public class UserInfo implements Parcelable {
         this.imageSrc = in.readString();
         this.login = in.readString();
         this.email = in.readString();
+        this.lastAccess = in.readString();
         this.profile = in.readParcelable(UserProfile.class.getClassLoader());
     }
 
-    public static final Parcelable.Creator<UserInfo> CREATOR = new Parcelable.Creator<UserInfo>() {
+    public static final Creator<UserInfo> CREATOR = new Creator<UserInfo>() {
         @Override
         public UserInfo createFromParcel(Parcel source) {
             return new UserInfo(source);

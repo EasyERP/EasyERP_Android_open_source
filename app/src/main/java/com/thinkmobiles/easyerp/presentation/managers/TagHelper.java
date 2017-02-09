@@ -76,6 +76,9 @@ public abstract class TagHelper {
         }
     }
 
+    public static final String PAYMENT              = "Payment";
+    public static final String REFUND               = "Refund";
+
     public static int getColorResIdByName(String colorName) {
         switch (colorName) {
             case COLOR_RED:
@@ -116,9 +119,11 @@ public abstract class TagHelper {
             case NEW:
             case CANCELLED:
                 return R.color.color_chips_grey;
+            case REFUND:
             case PARTIALLY_PAID:
             case IN_PROGRESS:
                 return R.color.color_chips_light_blue;
+            case PAYMENT:
             case PAID:
             case DONE:
                 return R.color.color_chips_green;

@@ -69,6 +69,7 @@
     <string name="menu_filter_assigned_to">Assigned to</string>
     <string name="menu_filter_created_by">Created by</string>
     <string name="menu_filter_remove_all">Remove all</string>
+    <string name="dialog_btn_close">Close</string>
     <string name="dialog_btn_apply">Apply</string>
     <string name="dialog_btn_cancel">Cancel</string>
     <string name="dialog_btn_remove">Remove</string>
@@ -128,4 +129,11 @@
     <string name="payment_details_account">Account:</string>
     <string name="payment_details_type">Type</string>
     <string name="payment_details_table_account">Account</string>
+
+    <string name="payment_date">Payment Date: %s</string>
+    <string name="invoiced_date">Invoiced Date: %s</string>
+    <string name="order_date">Order Date: %s</string>
+
+    <string name="profile">Profile:</string>
+    <string name="last_access">Last Access:</string>
 </resources>
