@@ -5,7 +5,8 @@
     android:layout_height="wrap_content"
     android:background="@drawable/bg_with_bottom_divider_line_selector"
     android:orientation="vertical"
-    android:padding="@dimen/default_padding">
+    android:padding="@dimen/default_padding"
+    tools:background="@android:color/white">
 
     <LinearLayout
         android:id="@+id/llFirstLine_VLIL"
@@ -21,49 +22,45 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center_vertical"
                 android:orientation="horizontal">
 
+                <ImageView
+                    android:id="@+id/ivPriority_LIL"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:src="@drawable/ic_low_priority_20"
+                    android:layout_gravity="top"
+                    android:layout_marginEnd="@dimen/default_padding_quart"
+                    android:layout_marginTop="@dimen/default_padding_3dp"
+                    android:paddingTop="@dimen/padding_very_minimum"/>
+
                 <TextView
+                    style="@style/TextListTitleStyle"
                     android:id="@+id/tvLeadName_LIL"
-                    style="@style/RobotoCondensedBold"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:ellipsize="end"
-                    android:maxLines="1"
-                    android:textColor="@color/color_text_black"
-                    android:textSize="@dimen/text_list_item_medium_16"
                     tools:text="Web development" />
-
-                <TextView
-                    android:id="@+id/tvPriority_LIL"
-                    style="@style/RobotoMedium"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/default_padding_middle"
-                    android:paddingStart="@dimen/tag_line_spacing_default"
-                    android:paddingEnd="@dimen/tag_line_spacing_default"
-                    android:paddingTop="@dimen/default_padding_quart"
-                    android:paddingBottom="@dimen/default_padding_quart"
-                    android:textSize="@dimen/text_size_small_for_tag"
-                    android:textColor="@color/white_main_text_color"
-                    tools:text="Medium" />
 
             </LinearLayout>
 
         </FrameLayout>
 
         <TextView
+            style="@style/RobotoMedium"
             android:id="@+id/tvStage_LIL"
-            style="@style/RobotoRegular"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:ellipsize="end"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_size_extra_small"
+            android:textColor="@android:color/white"
+            android:textAllCaps="true"
+            android:paddingRight="@dimen/default_padding_half"
+            android:paddingLeft="@dimen/default_padding_half"
+            android:paddingTop="@dimen/default_padding_quart"
+            android:paddingBottom="@dimen/default_padding_quart"
+            android:layout_marginTop="@dimen/default_padding_3dp"
+            android:layout_gravity="top"
             android:gravity="center"
-            android:maxLines="1"
-            android:text="@string/no_data"
             tools:text="Not Interested" />
 
     </LinearLayout>
@@ -72,40 +69,32 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="@dimen/default_padding_half">
+        android:layout_marginTop="@dimen/default_padding_quart">
 
         <TextView
+            style="@style/TextListInfoStyle"
             android:id="@+id/tvAssignedTo_LIL"
-            style="@style/RobotoRegular"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:ellipsize="end"
-            android:maxLines="1"
-            android:text="@string/no_data"
-            android:textColor="@color/color_text_black"
             tools:text="Alex Hoshylyk"/>
 
         <TextView
+            style="@style/TextListInfoStyle"
             android:id="@+id/tvSource_LIL"
-            style="@style/RobotoRegular"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:ellipsize="end"
-            android:gravity="right"
-            android:maxLines="1"
-            android:text="@string/no_data"
-            android:textColor="@color/color_text_black"
+            android:gravity="end"
             tools:text="ThinkMobiles" />
 
     </LinearLayout>
 
     <TextView
+        style="@style/TextListInfoGreyStyle"
         android:id="@+id/tvEditedBy_VLIL"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/default_padding"
-        android:textColor="@color/color_text_gray"
+        android:layout_marginTop="@dimen/default_padding_half"
         tools:text="Last Edited: Today, at 2:45 PM by Test Admin" />
 
 </LinearLayout>

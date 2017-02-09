@@ -112,7 +112,7 @@
         <item name="android:focusable">true</item>
         <item name="android:textColor">@color/textColorPrimary</item>
         <item name="android:textColorHint">@color/textColorHint</item>
-        <item name="backgroundTint">@color/colorPrimary</item>
+        <item name="backgroundTint">@color/dividerColor</item>
     </style>
 
     <!--My the best of the best styles-->
@@ -127,6 +127,13 @@
         <item name="android:textSize">@dimen/text_list_item_medium_16</item>
         <item name="android:textColor">@color/color_text_black</item>
         <item name="android:maxLines">1</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <style name="TextListInfoGreyStyle" parent="RobotoRegular">
+        <item name="android:textSize">@dimen/text_list_item_medium_16</item>
+        <item name="android:textColor">@color/color_text_gray</item>
+        <item name="android:maxLines">2</item>
         <item name="android:ellipsize">end</item>
     </style>
 
