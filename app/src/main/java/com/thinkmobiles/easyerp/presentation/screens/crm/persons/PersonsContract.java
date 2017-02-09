@@ -21,14 +21,18 @@ import rx.Observable;
 public interface PersonsContract {
     interface PersonsView extends MasterFlowSelectableBaseView<PersonsPresenter> {
         void displayEnabledLetters(ArrayList<AlphabetItem> enabledAlphabetItems);
+        void displaySelectedLetter(String selectedLetter);
         void displayPersons(ArrayList<PersonDH> personDHs, boolean needClear);
         void displayError(final String msg, final ErrorViewHelper.ErrorType errorType);
         void openPersonDetailsScreen(String personID);
+        void showProgress(final boolean isShow);
     }
     interface PersonsPresenter extends MasterFlowSelectableBasePresenter<String, PersonDH> {
         void setLetter(String letter);
         void loadAlphabet();
         void loadMore(int page);
+        void refresh();
+        int getCurrentPage();
     }
     interface PersonsModel extends BaseModel {
         Observable<ResponseGetAlphabet> getPersonsAlphabet();

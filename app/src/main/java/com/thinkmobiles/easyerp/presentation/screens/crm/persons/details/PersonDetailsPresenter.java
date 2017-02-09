@@ -31,7 +31,6 @@ public class PersonDetailsPresenter implements PersonDetailsContract.PersonDetai
 
     private ResponseGetPersonDetails currentPerson;
     private boolean isVisibleHistory;
-    private String notSpecified;
 
     public PersonDetailsPresenter(PersonDetailsContract.PersonDetailsView view, PersonDetailsContract.PersonDetailsModel model, String personID) {
         this.view = view;
@@ -40,8 +39,6 @@ public class PersonDetailsPresenter implements PersonDetailsContract.PersonDetai
         compositeSubscription = new CompositeSubscription();
 
         view.setPresenter(this);
-
-        notSpecified = EasyErpApplication.getInstance().getString(R.string.err_not_specified);
     }
 
     @Override

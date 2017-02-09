@@ -49,12 +49,12 @@ public class OpportunitiesPresenter extends MasterFlowSelectablePresenterHelper<
             compositeSubscription.clear();
     }
 
-    private ArrayList<OpportunityDH> prepareOpportunitiesDHs(ResponseGetOpportunities responseGetOpportunities, boolean isFirstPage) {
+    private ArrayList<OpportunityDH> prepareOpportunitiesDHs(ResponseGetOpportunities responseGetOpportunities, boolean needClear) {
         int position = 0;
         final ArrayList<OpportunityDH> result = new ArrayList<>();
         for (OpportunityListItem opportunityItem : responseGetOpportunities.data) {
             final OpportunityDH opportunityDH = new OpportunityDH(opportunityItem);
-            makeSelectedDHIfNeed(opportunityDH, view, position++, isFirstPage);
+            makeSelectedDHIfNeed(opportunityDH, view, position++, needClear);
             result.add(opportunityDH);
         }
         return result;

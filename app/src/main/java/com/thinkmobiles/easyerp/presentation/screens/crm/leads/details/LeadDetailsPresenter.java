@@ -67,7 +67,7 @@ public class LeadDetailsPresenter implements LeadDetailsContract.LeadDetailsPres
         view.setPriority(StringUtil.getField(response.priority, notSpecified));
         view.setSource(StringUtil.getField(response.source, notSpecified));
         if (!response.tags.isEmpty())
-            view.setTags(StringUtil.prepareTags(response.tags));
+            view.setTags(response.tags);
         view.setPersonName(StringUtil.getFullName(response.contactName.first, response.contactName.last));
         view.setFirstName(StringUtil.getField(response.contactName.first, notSpecified));
         view.setLastName(StringUtil.getField(response.contactName.last, notSpecified));

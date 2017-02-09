@@ -43,13 +43,12 @@ public final class CompanyVH extends MasterFlowSelectableVHHelper<CompanyDH> {
     public void bindData(CompanyDH data) {
         super.bindData(data);
 
+        ivCompanyImage_VLIC.setImageResource(R.drawable.ic_avatar_placeholder_with_padding);
         CompanyListItem company = data.getData();
         ImageHelper.getBitmapFromBase64(data.getCompanyImageBase64())
                 .subscribe(bitmap -> {
                     if(bitmap != null)
                         ivCompanyImage_VLIC.setImageBitmap(bitmap);
-                    else
-                        ivCompanyImage_VLIC.setImageResource(R.drawable.ic_avatar_placeholder_with_padding);
                 });
         tvCompanyName_VLIC.setText(TextUtils.isEmpty(company.fullName) ? noData : company.fullName);
         tvCompanyEmail_VLIC.setText(TextUtils.isEmpty(company.email) ? noData : company.email);

@@ -38,7 +38,7 @@ public class PaymentsPresenter extends MasterFlowSelectablePresenterHelper<Strin
         if (payments.size() == 0) {
             view.showProgress(true);
             loadPayments(1);
-        } else view.displayPayments(prepareOrderDHs(payments), true);
+        } else view.displayPayments(prepareOrderDHs(payments, true), true);
     }
 
     @Override
@@ -57,7 +57,7 @@ public class PaymentsPresenter extends MasterFlowSelectablePresenterHelper<Strin
                             if (needClear)
                                 payments.clear();
                             payments.addAll(responseGetPayments.data);
-                            view.displayPayments(prepareOrderDHs(responseGetPayments.data), needClear);
+                            view.displayPayments(prepareOrderDHs(responseGetPayments.data, needClear), needClear);
                         },
                         throwable -> view.displayError(throwable.getMessage(), ErrorViewHelper.ErrorType.NETWORK)
                 )
@@ -75,12 +75,12 @@ public class PaymentsPresenter extends MasterFlowSelectablePresenterHelper<Strin
             view.openPaymentDetailsScreen(dh.getPayment());
     }
 
-    private ArrayList<PaymentDH> prepareOrderDHs(final List<Payment> payments) {
+    private ArrayList<PaymentDH> prepareOrderDHs(final List<Payment> payments, boolean needClear) {
         int position = 0;
         final ArrayList<PaymentDH> result = new ArrayList<>();
         for (Payment payment : payments) {
             final PaymentDH paymentDH = new PaymentDH(payment);
-            makeSelectedDHIfNeed(paymentDH, view, position++, true);
+            makeSelectedDHIfNeed(paymentDH, view, position++, needClear);
             result.add(paymentDH);
         }
         return result;

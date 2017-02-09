@@ -1,13 +1,15 @@
 package com.thinkmobiles.easyerp.presentation.screens.crm.leads.details;
 
 import android.graphics.drawable.Drawable;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.graphics.ColorUtils;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
-import android.text.SpannableStringBuilder;
 import android.text.method.LinkMovementMethod;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -15,14 +17,18 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.ismaeltoe.FlowLayout;
 import com.jakewharton.rxbinding.view.RxView;
 import com.thinkmobiles.easyerp.R;
+import com.thinkmobiles.easyerp.data.model.crm.leads.TagItem;
 import com.thinkmobiles.easyerp.domain.crm.LeadsRepository;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.HistoryAdapter;
 import com.thinkmobiles.easyerp.presentation.base.BaseFragment;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
+import com.thinkmobiles.easyerp.presentation.custom.RoundRectDrawable;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.HistoryDH;
 import com.thinkmobiles.easyerp.presentation.managers.HistoryAnimationHelper;
+import com.thinkmobiles.easyerp.presentation.managers.TagHelper;
 import com.thinkmobiles.easyerp.presentation.screens.home.HomeActivity;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
@@ -77,7 +83,7 @@ public class LeadDetailsFragment extends BaseFragment<HomeActivity> implements L
     @ViewById
     protected TextView tvSource_FLD;
     @ViewById
-    protected TextView tvTags_FLD;
+    protected FlowLayout flowLayoutTags_FLD;
     @ViewById
     protected TextView tvPersonName_FLD;
     @ViewById
@@ -199,9 +205,15 @@ public class LeadDetailsFragment extends BaseFragment<HomeActivity> implements L
     }
 
     @Override
-    public void setTags(SpannableStringBuilder tags) {
-        tvTags_FLD.setVisibility(View.VISIBLE);
-        tvTags_FLD.setText(tags);
+    public void setTags(ArrayList<TagItem> tags) {
+        flowLayoutTags_FLD.removeAllViews();
+        LayoutInflater inflater = LayoutInflater.from(getActivity());
+        for(TagItem tagItem : tags) {
+            TextView tvTag = (TextView) inflater.inflate(R.layout.text_view_tag, flowLayoutTags_FLD, false);
+            tvTag.setBackground(new RoundRectDrawable(ColorUtils.setAlphaComponent(ContextCompat.getColor(getActivity(), TagHelper.getColorResIdByName(tagItem.color)), 200)));
+            tvTag.setText(tagItem.name);
+            flowLayoutTags_FLD.addView(tvTag);
+        }
     }
 
     @Override
