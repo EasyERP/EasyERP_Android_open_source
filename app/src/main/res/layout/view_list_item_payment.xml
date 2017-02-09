@@ -99,7 +99,7 @@
             android:maxLines="1"
             android:textColor="@color/color_text_black"
             android:textSize="@dimen/text_list_item_medium_16"
-            tools:text="Invoiced Date: 02 Feb, 2017" />
+            tools:text="Payment Date: 02 Feb, 2017" />
 
         <TextView
             android:id="@+id/tvPaid_VLIP"
