@@ -51,6 +51,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/default_padding_3dp"
+            android:layout_marginStart="@dimen/default_padding_middle"
             android:layout_gravity="top"
             tools:text="Not Interested" />
 

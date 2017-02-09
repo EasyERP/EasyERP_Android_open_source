@@ -3,10 +3,12 @@ package com.thinkmobiles.easyerp.presentation.screens.home;
 import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.data.model.user.UserInfo;
 import com.thinkmobiles.easyerp.presentation.base.BaseMasterFlowActivity;
+import com.thinkmobiles.easyerp.presentation.custom.views.drawer_menu.IMenuClickListener;
 import com.thinkmobiles.easyerp.presentation.custom.views.drawer_menu.MenuDrawerContainer;
 import com.thinkmobiles.easyerp.presentation.custom.views.drawer_menu.MenuDrawerState;
 import com.thinkmobiles.easyerp.presentation.custom.views.drawer_menu.MenuDrawerView;
 import com.thinkmobiles.easyerp.presentation.custom.views.drawer_menu.models.MenuConfigs;
+import com.thinkmobiles.easyerp.presentation.dialogs.UserProfileDialogFragment_;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EActivity;
@@ -18,7 +20,7 @@ import org.androidannotations.annotations.ViewById;
  */
 
 @EActivity(R.layout.activity_home)
-public class HomeActivity extends BaseMasterFlowActivity {
+public class HomeActivity extends BaseMasterFlowActivity implements IMenuClickListener {
 
     @Extra
     protected UserInfo userInfo;
@@ -31,7 +33,7 @@ public class HomeActivity extends BaseMasterFlowActivity {
 
     @AfterViews
     protected void initMenu() {
-        menuDrawerView.setMenuClickListener((moduleId, itemId) -> replaceFragmentContent(MenuConfigs.getFragmentByMenuId(moduleId, itemId), MenuConfigs.getLabel(moduleId, itemId)));
+        menuDrawerView.setMenuClickListener(this);
         menuDrawerView.setHeaderUserData(userInfo);
     }
 
@@ -66,5 +68,15 @@ public class HomeActivity extends BaseMasterFlowActivity {
 
     public UserInfo getUserInfo() {
         return userInfo;
+    }
+
+    @Override
+    public void chooseItem(int moduleId, int itemId) {
+        replaceFragmentContent(MenuConfigs.getFragmentByMenuId(moduleId, itemId), MenuConfigs.getLabel(moduleId, itemId));
+    }
+
+    @Override
+    public void onClickUser() {
+        UserProfileDialogFragment_.builder().userInfo(userInfo).build().show(getFragmentManager(), null);
     }
 }

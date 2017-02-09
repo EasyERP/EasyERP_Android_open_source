@@ -19,29 +19,19 @@
             android:orientation="horizontal">
 
             <TextView
+                style="@style/TextListTitleStyle"
                 android:id="@+id/tvInvoiceNumber_VLII"
-                style="@style/RobotoCondensedBold"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:ellipsize="end"
-                android:maxLines="1"
-                android:textColor="@color/color_text_black"
-                android:textSize="@dimen/text_list_item_large_20"
                 tools:text="Web development" />
 
             <TextView
+                style="@style/SmallChipsStyle"
                 android:id="@+id/tvInvoiceStatus_VLII"
-                style="@style/RobotoMedium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/default_padding_middle"
-                android:paddingBottom="@dimen/default_padding_quart"
-                android:paddingEnd="@dimen/tag_line_spacing_default"
-                android:paddingStart="@dimen/tag_line_spacing_default"
-                android:paddingTop="@dimen/default_padding_quart"
-                android:textColor="@color/white_main_text_color"
-                android:textSize="@dimen/text_size_small_for_tag"
                 tools:text="Medium" />
 
         </LinearLayout>

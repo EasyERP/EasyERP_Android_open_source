@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:background="@android:color/white"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <android.support.v7.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/default_padding"
+            card_view:cardElevation="5dp"
+            card_view:cardCornerRadius="5dp">
+
+            <ImageView
+                android:id="@+id/ivAvatar_DMP"
+                android:layout_width="@dimen/image_size_large"
+                android:layout_height="@dimen/image_size_large" />
+
+        </android.support.v7.widget.CardView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/default_padding"
+            android:layout_marginEnd="@dimen/default_padding"
+            android:layout_marginTop="@dimen/default_padding"
+            android:minWidth="300dp"
+            android:orientation="vertical">
+
+            <android.support.design.widget.TextInputLayout
+                style="@style/DefaultTheme.LeadTextInputLayoutStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp">
+
+                <EditText
+                    android:id="@+id/etUserName_DMP"
+                    style="@style/DefaultTheme.LeadInputFieldStyle"
+                    android:hint="@string/hint_username" />
+
+            </android.support.design.widget.TextInputLayout>
+
+
+            <android.support.design.widget.TextInputLayout
+                style="@style/DefaultTheme.LeadTextInputLayoutStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp">
+
+                <EditText
+                    android:id="@+id/etEmail_DMP"
+                    style="@style/DefaultTheme.LeadInputFieldStyle"
+                    android:hint="@string/email"
+                    android:inputType="textEmailAddress" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <TextView
+                style="@style/RobotoRegular"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/default_padding_quart"
+                android:layout_marginTop="@dimen/default_padding_small"
+                android:text="@string/profile"
+                android:textColor="@color/color_text_gray"
+                android:textSize="@dimen/small_text_size" />
+
+            <TextView
+                android:id="@+id/tvProfile_DMP"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/default_padding_quart"
+                android:layout_marginTop="@dimen/default_padding_quart"
+                android:textColor="@color/color_text_black"
+                android:textSize="@dimen/text_list_item_medium_16"
+                tools:text="admin" />
+
+            <TextView
+                style="@style/RobotoRegular"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/default_padding_quart"
+                android:layout_marginTop="@dimen/default_padding_small"
+                android:text="@string/last_access"
+                android:textColor="@color/color_text_gray"
+                android:textSize="@dimen/small_text_size" />
+
+            <TextView
+                android:id="@+id/tvLastAccess_DMP"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/default_padding_quart"
+                android:layout_marginTop="@dimen/default_padding_quart"
+                android:textColor="@color/color_text_black"
+                android:textSize="@dimen/text_list_item_medium_16"
+                tools:text="16 Feb, 2017" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

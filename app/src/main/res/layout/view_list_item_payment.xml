@@ -12,79 +12,91 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <FrameLayout
-            android:layout_width="0dp"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1">
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
-            <LinearLayout
+            <TextView
+                style="@style/TextListTitleStyle"
+                android:id="@+id/tvSourceDocument_VLIP"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                tools:text="Web development" />
+
+            <TextView
+                style="@style/SmallChipsStyle"
+                android:id="@+id/tvPaymentType_VLIP"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
+                android:layout_marginStart="@dimen/default_padding_middle"
+                tools:text="Medium" />
 
-                <TextView
-                    android:id="@+id/tvPaymentCompany_VLIP"
-                    style="@style/RobotoMedium"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:ellipsize="end"
-                    android:maxLines="1"
-                    android:text="@string/no_data"
-                    android:textColor="@color/color_text_black"
-                    android:textSize="@dimen/text_list_item_extra_large_22"
-                    tools:text="Adam Ali" />
-
-                <TextView
-                    android:id="@+id/tvPaymentType_VLIP"
-                    style="@style/RobotoMedium"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="@dimen/default_padding_small"
-                    android:textSize="@dimen/middle_text_size"
-                    tools:text="Refund" />
-
-            </LinearLayout>
-
-        </FrameLayout>
+        </LinearLayout>
 
     </LinearLayout>
-
-    <TextView
-        android:id="@+id/tvAssignTo_VLIP"
-        style="@style/RobotoRegular"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/default_padding_small"
-        android:ellipsize="end"
-        android:maxLines="1"
-        android:text="@string/not_assigned"
-        android:textColor="@color/color_text_black"
-        android:textSize="@dimen/text_list_item_medium_16"
-        tools:text="Alex Hoshylyk" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/default_padding_small"
+        android:layout_marginBottom="@dimen/default_padding_quart"
+        android:layout_marginTop="@dimen/default_padding_quart"
+        android:gravity="center_vertical"
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/tvPaymentDate_VLIP"
+            android:id="@+id/tvPaymentCompany_VLIP"
+            style="@style/RobotoRegular"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ellipsize="end"
             android:maxLines="1"
-            android:textColor="@color/color_text_gray"
+            android:text="@string/not_assigned"
+            android:textColor="@color/color_text_black"
             android:textSize="@dimen/text_list_item_medium_16"
-            tools:text="30 Jan, 2017" />
+            tools:text="Alex Hoshylyk" />
+
+        <TextView
+            android:id="@+id/tvAssignTo_VLIP"
+            style="@style/RobotoRegular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/default_padding_middle"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="@color/color_text_black"
+            android:textSize="@dimen/text_list_item_medium_16"
+            tools:text="Alex Hoshylyk" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tvPaymentDate_VLIP"
+            style="@style/RobotoRegular"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/default_padding_middle"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="@color/color_text_black"
+            android:textSize="@dimen/text_list_item_medium_16"
+            tools:text="Payment Date: 02 Feb, 2017" />
 
         <TextView
             android:id="@+id/tvPaid_VLIP"
+            style="@style/RobotoCondensedBold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/color_text_black"
             android:textSize="@dimen/text_list_item_medium_16"
             tools:text="$ 200.12" />
 
