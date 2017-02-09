@@ -31,6 +31,7 @@ public final class InvoiceVH extends MasterFlowSelectableVHHelper<InvoiceDH> {
     private final TextView tvTotalPrice_VLII;
 
     private final String not_assigned;
+    private final String invoicedDateFormatter;
 
     public InvoiceVH(View itemView, @Nullable OnCardClickListener listener, int viewType) {
         super(itemView, listener, viewType);
@@ -43,6 +44,7 @@ public final class InvoiceVH extends MasterFlowSelectableVHHelper<InvoiceDH> {
         tvTotalPrice_VLII = findView(R.id.tvTotalPrice_VLII);
 
         not_assigned = itemView.getContext().getString(R.string.not_assigned);
+        invoicedDateFormatter = itemView.getContext().getString(R.string.invoiced_date);
     }
 
     @Override
@@ -51,7 +53,7 @@ public final class InvoiceVH extends MasterFlowSelectableVHHelper<InvoiceDH> {
 
         tvInvoiceNumber_VLII.setText(data.getInvoice().name);
         tvInvoiceCustomer_VLII.setText(TextUtils.isEmpty(data.getInvoice().supplier.name) ? not_assigned : data.getInvoice().supplier.name);
-        tvInvoiceDate_VLII.setText(String.format("Invoiced Date: %s", new DateManager.DateConverter(data.getInvoice().invoiceDate).setDstPattern(DateManager.PATTERN_DATE_SIMPLE_PREVIEW).toString()));
+        tvInvoiceDate_VLII.setText(String.format(invoicedDateFormatter, new DateManager.DateConverter(data.getInvoice().invoiceDate).setDstPattern(DateManager.PATTERN_DATE_SIMPLE_PREVIEW).toString()));
         tvAssignTo_VLII.setText(TextUtils.isEmpty(data.getInvoice().salesPerson.name) ? not_assigned : data.getInvoice().salesPerson.name);
         tvTotalPrice_VLII.setText(StringUtil.getFormattedPriceFromCent(new DollarFormatter().getFormat(),
                 data.getInvoice().paymentInfo.total,
@@ -60,7 +62,5 @@ public final class InvoiceVH extends MasterFlowSelectableVHHelper<InvoiceDH> {
         final String workflowName = data.getInvoice().workflow.name + ((!data.getInvoice().approved && data.getInvoice().workflow.name.equals("Unpaid")) ? " / Not Approved" : "");
         tvInvoiceStatus_VLII.setText(workflowName.toUpperCase());
         tvInvoiceStatus_VLII.setBackgroundDrawable(new RoundRectDrawable(ContextCompat.getColor(itemView.getContext(), TagHelper.getColorResIdByName(workflowName))));
-
-        tvInvoiceCustomer_VLII.requestLayout();
     }
 }
