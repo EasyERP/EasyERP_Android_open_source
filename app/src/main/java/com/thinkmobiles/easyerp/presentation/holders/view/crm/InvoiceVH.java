@@ -44,7 +44,7 @@ public final class InvoiceVH extends MasterFlowSelectableVHHelper<InvoiceDH> {
         tvTotalPrice_VLII = findView(R.id.tvTotalPrice_VLII);
 
         not_assigned = itemView.getContext().getString(R.string.not_assigned);
-        invoicedDateFormatter = itemView.getContext().getString(R.string.invoiced_date);
+        invoicedDateFormatter = itemView.getContext().getString(R.string.pattern_invoiced_date);
     }
 
     @Override
@@ -60,7 +60,7 @@ public final class InvoiceVH extends MasterFlowSelectableVHHelper<InvoiceDH> {
                 data.getInvoice().currency.id != null ? data.getInvoice().currency.id.symbol : "$"));
 
         final String workflowName = data.getInvoice().workflow.name + ((!data.getInvoice().approved && data.getInvoice().workflow.name.equals("Unpaid")) ? " / Not Approved" : "");
-        tvInvoiceStatus_VLII.setText(workflowName.toUpperCase());
+        tvInvoiceStatus_VLII.setText(workflowName);
         tvInvoiceStatus_VLII.setBackgroundDrawable(new RoundRectDrawable(ContextCompat.getColor(itemView.getContext(), TagHelper.getColorResIdByName(workflowName))));
     }
 }

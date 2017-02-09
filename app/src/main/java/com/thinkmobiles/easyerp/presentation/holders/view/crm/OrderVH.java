@@ -50,7 +50,7 @@ public final class OrderVH extends MasterFlowSelectableVHHelper<OrderDH> {
         ivShipped_VLIO = findView(R.id.ivShipped_VLIO);
 
         not_assigned = itemView.getContext().getString(R.string.not_assigned);
-        orderDateFormatter = itemView.getContext().getString(R.string.order_date);
+        orderDateFormatter = itemView.getContext().getString(R.string.pattern_order_date);
     }
 
     @Override
@@ -58,7 +58,7 @@ public final class OrderVH extends MasterFlowSelectableVHHelper<OrderDH> {
         super.bindData(data);
 
         tvOrderName_VLIO.setText(data.getOrder().name);
-        tvOrderStatus_VLIO.setText(data.getOrder().workflow.name.toUpperCase());
+        tvOrderStatus_VLIO.setText(data.getOrder().workflow.name);
         tvOrderStatus_VLIO.setBackgroundDrawable(new RoundRectDrawable(ContextCompat.getColor(itemView.getContext(), TagHelper.getColorResIdByName(data.getOrder().workflow.status))));
         tvCustomer_VLIO.setText(TextUtils.isEmpty(data.getOrder().supplier.name) ? not_assigned : data.getOrder().supplier.name);
         tvCreatedDate_VLIO.setText(String.format(orderDateFormatter, new DateManager.DateConverter(data.getOrder().orderDate).setDstPattern(DateManager.PATTERN_DATE_SIMPLE_PREVIEW).toString()));

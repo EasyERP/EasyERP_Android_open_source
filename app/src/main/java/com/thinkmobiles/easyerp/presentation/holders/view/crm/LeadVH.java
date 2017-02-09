@@ -28,6 +28,8 @@ public final class LeadVH extends MasterFlowSelectableVHHelper<LeadDH> {
     private final TextView tvAssignedTo_LIL;
     private final TextView tvEditedBy_VLIL;
 
+    private String patternEditedBy;
+
     public LeadVH(View itemView, @Nullable OnCardClickListener listener, int viewType) {
         super(itemView, listener, viewType);
 
@@ -37,6 +39,8 @@ public final class LeadVH extends MasterFlowSelectableVHHelper<LeadDH> {
         tvSource_LIL = findView(R.id.tvSource_LIL);
         tvAssignedTo_LIL = findView(R.id.tvAssignedTo_LIL);
         tvEditedBy_VLIL = findView(R.id.tvEditedBy_VLIL);
+
+        patternEditedBy = itemView.getContext().getString(R.string.pattern_last_edited);
     }
 
     @Override
@@ -82,7 +86,7 @@ public final class LeadVH extends MasterFlowSelectableVHHelper<LeadDH> {
         if(data.getLeadItem().editedBy != null && !TextUtils.isEmpty(data.getLeadItem().editedBy.date)) {
             //Last Edited: Today, at 2:45 PM by Test Admin
             String strDate = data.getLeadItem().editedBy.date;
-            String out = String.format("Last edited: %s at %s", DateManager.getDateToNow(strDate), DateManager.getTime(strDate));
+            String out = String.format(patternEditedBy, DateManager.getDateToNow(strDate), DateManager.getTime(strDate));
             if(!TextUtils.isEmpty(data.getLeadItem().editedBy.user))
                 out = out + " by " + data.getLeadItem().editedBy.user;
             tvEditedBy_VLIL.setText(out);
