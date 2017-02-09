@@ -460,39 +460,35 @@
 
                         </com.ismaeltoe.FlowLayout>
 
-                    </LinearLayout>
-
-                    <TextView
-                        style="@style/TextContentTitle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingEnd="@dimen/default_padding"
-                        android:paddingStart="@dimen/default_padding"
-                        android:text="@string/attachments"/>
-
-                    <FrameLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:paddingBottom="@dimen/default_padding_half"
-                        android:paddingTop="@dimen/default_padding_half">
-
                         <TextView
-                            android:id="@+id/tvEmptyAttachments_FLD"
-                            style="@style/TextNoDataStyle"
+                            style="@style/TextContentTitle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/attachments"/>
+
+                        <FrameLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:paddingBottom="@dimen/default_padding_half"
-                            android:paddingLeft="@dimen/default_padding"
-                            android:paddingStart="@dimen/default_padding"
-                            android:paddingTop="@dimen/default_padding_half"/>
+                            android:paddingTop="@dimen/default_padding_half">
 
-                        <android.support.v7.widget.RecyclerView
-                            android:id="@+id/rvAttachments_FLD"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:overScrollMode="never"/>
+                            <TextView
+                                android:id="@+id/tvEmptyAttachments_FLD"
+                                style="@style/TextNoDataStyle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:paddingBottom="@dimen/default_padding_half"
+                                android:paddingTop="@dimen/default_padding_half"/>
 
-                    </FrameLayout>
+                            <android.support.v7.widget.RecyclerView
+                                android:id="@+id/rvAttachments_FLD"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:overScrollMode="never"/>
+
+                        </FrameLayout>
+
+                    </LinearLayout>
 
 
                 </LinearLayout>

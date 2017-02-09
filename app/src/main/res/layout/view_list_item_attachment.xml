@@ -7,7 +7,6 @@
               android:orientation="horizontal"
               android:paddingBottom="@dimen/default_padding_3dp"
               android:paddingEnd="@dimen/default_padding"
-              android:paddingStart="@dimen/default_padding"
               android:paddingTop="@dimen/default_padding_3dp">
 
     <ImageView

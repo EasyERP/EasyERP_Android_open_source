@@ -61,13 +61,13 @@ public final class LeadVH extends MasterFlowSelectableVHHelper<LeadDH> {
         if(!TextUtils.isEmpty(data.getLeadItem().priority)) {
             switch (data.getLeadItem().priority) {
                 case "Hot":
-                    ivPriority_LIL.setImageDrawable(ContextCompat.getDrawable(itemView.getContext(), R.drawable.ic_high_priority_20));
+                    ivPriority_LIL.setImageDrawable(ContextCompat.getDrawable(itemView.getContext(), R.drawable.ic_hot));
                     break;
                 case "Medium":
-                    ivPriority_LIL.setImageDrawable(ContextCompat.getDrawable(itemView.getContext(), R.drawable.ic_medium_priority_20));
+                    ivPriority_LIL.setImageDrawable(ContextCompat.getDrawable(itemView.getContext(), R.drawable.ic_medium));
                     break;
                 case "Cold":
-                    ivPriority_LIL.setImageDrawable(ContextCompat.getDrawable(itemView.getContext(), R.drawable.ic_low_priority_20));
+                    ivPriority_LIL.setImageDrawable(ContextCompat.getDrawable(itemView.getContext(), R.drawable.ic_cold));
                     break;
             }
             ivPriority_LIL.setVisibility(View.VISIBLE);
