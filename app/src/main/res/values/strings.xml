@@ -128,4 +128,8 @@
     <string name="payment_details_account">Account:</string>
     <string name="payment_details_type">Type</string>
     <string name="payment_details_table_account">Account</string>
+
+    <string name="payment_date">Payment Date: %s</string>
+    <string name="invoiced_date">Invoiced Date: %s</string>
+    <string name="order_date">Order Date: %s</string>
 </resources>
