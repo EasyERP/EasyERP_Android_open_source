@@ -34,6 +34,7 @@ public class PaymentsFragment extends MasterFlowListFragment implements Payments
 
     private PaymentsContract.PaymentsPresenter presenter;
     private EndlessRecyclerViewScrollListener scrollListener;
+    private LinearLayoutManager recyclerLayoutManager;
 
     @Bean
     protected PaymentsRepository paymentsRepository;
@@ -61,27 +62,21 @@ public class PaymentsFragment extends MasterFlowListFragment implements Payments
 
     @AfterViews
     protected void initUI() {
-        errorViewHelper.init(errorLayout, view -> loadWithProgressBar());
+        errorViewHelper.init(errorLayout, view -> presenter.subscribe());
 
-        LinearLayoutManager llm = new LinearLayoutManager(mActivity, LinearLayoutManager.VERTICAL, false);
-        scrollListener = new EndlessRecyclerViewScrollListener(llm) {
+        recyclerLayoutManager = new LinearLayoutManager(mActivity);
+        scrollListener = new EndlessRecyclerViewScrollListener(recyclerLayoutManager) {
             @Override
             public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
                 displayProgress(true);
                 presenter.loadPayments(page);
             }
         };
-        listRecycler.setLayoutManager(llm);
+        listRecycler.setLayoutManager(recyclerLayoutManager);
         listRecycler.setAdapter(paymentsAdapter);
         listRecycler.addOnScrollListener(scrollListener);
         paymentsAdapter.setOnCardClickListener((view, position, viewType) -> presenter.selectItem(paymentsAdapter.getItem(position), position));
 
-        loadWithProgressBar();
-    }
-
-    private void loadWithProgressBar() {
-        errorViewHelper.hideError();
-        displayProgress(true);
         presenter.subscribe();
     }
 
@@ -104,8 +99,7 @@ public class PaymentsFragment extends MasterFlowListFragment implements Payments
 
     @Override
     public void displayPayments(ArrayList<PaymentDH> paymentDHs, boolean needClear) {
-        errorViewHelper.hideError();
-        displayProgress(false);
+        showProgress(false);
         swipeContainer.setRefreshing(false);
 
         if (needClear)
@@ -136,6 +130,12 @@ public class PaymentsFragment extends MasterFlowListFragment implements Payments
         } else {
             mActivity.replaceFragmentContentDetail(null);
         }
+    }
+
+    @Override
+    public void showProgress(boolean isShow) {
+        errorViewHelper.hideError();
+        displayProgress(isShow);
     }
 
     @Override

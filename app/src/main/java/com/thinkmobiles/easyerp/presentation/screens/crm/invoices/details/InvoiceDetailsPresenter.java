@@ -1,7 +1,5 @@
 package com.thinkmobiles.easyerp.presentation.screens.crm.invoices.details;
 
-import android.content.res.Resources;
-
 import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.data.model.crm.invoice.detail.InvoicePayment;
 import com.thinkmobiles.easyerp.data.model.crm.invoice.detail.ResponseGetInvoiceDetails;

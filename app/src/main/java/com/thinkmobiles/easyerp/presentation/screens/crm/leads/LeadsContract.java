@@ -41,6 +41,7 @@ public interface LeadsContract {
     }
     interface LeadsPresenter extends MasterFlowSelectableBasePresenter<String, LeadDH> {
         void refresh();
+        void refreshOptionMenu();
         void loadNextPage(int page);
 
         void filterByContactName(FilterDH filterDH);
@@ -50,6 +51,8 @@ public interface LeadsContract {
 
         void changeFilter(int requestCode, String filterName);
         void removeAll();
+
+        int getCurrentPage();
     }
     interface LeadsModel extends BaseModel {
         Observable<ResponseGetLeads> getFilteredLeads(FilterQuery query, int page);

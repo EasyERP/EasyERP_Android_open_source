@@ -256,7 +256,8 @@ public class MenuDrawerView extends FrameLayout implements IMenuProviderFunction
 
         @Override
         public void selectCurrentUser() {
-
+            if (menuClickListener != null)
+                menuClickListener.onClickUser();
         }
     };
 

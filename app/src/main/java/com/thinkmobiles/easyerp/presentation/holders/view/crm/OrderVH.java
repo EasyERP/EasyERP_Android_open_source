@@ -34,6 +34,7 @@ public final class OrderVH extends MasterFlowSelectableVHHelper<OrderDH> {
     private final ImageView ivShipped_VLIO;
 
     private final String not_assigned;
+    private final String orderDateFormatter;
 
     public OrderVH(View itemView, @Nullable OnCardClickListener listener, int viewType) {
         super(itemView, listener, viewType);
@@ -49,6 +50,7 @@ public final class OrderVH extends MasterFlowSelectableVHHelper<OrderDH> {
         ivShipped_VLIO = findView(R.id.ivShipped_VLIO);
 
         not_assigned = itemView.getContext().getString(R.string.not_assigned);
+        orderDateFormatter = itemView.getContext().getString(R.string.order_date);
     }
 
     @Override
@@ -57,11 +59,9 @@ public final class OrderVH extends MasterFlowSelectableVHHelper<OrderDH> {
 
         tvOrderName_VLIO.setText(data.getOrder().name);
         tvOrderStatus_VLIO.setText(data.getOrder().workflow.name.toUpperCase());
-        tvOrderStatus_VLIO.setBackgroundDrawable(
-                new RoundRectDrawable(ContextCompat.getColor(itemView.getContext(), TagHelper.getColorResIdByName(data.getOrder().workflow.status))));
+        tvOrderStatus_VLIO.setBackgroundDrawable(new RoundRectDrawable(ContextCompat.getColor(itemView.getContext(), TagHelper.getColorResIdByName(data.getOrder().workflow.status))));
         tvCustomer_VLIO.setText(TextUtils.isEmpty(data.getOrder().supplier.name) ? not_assigned : data.getOrder().supplier.name);
-
-        tvCreatedDate_VLIO.setText(String.format("Order Date: %s", new DateManager.DateConverter(data.getOrder().orderDate).setDstPattern(DateManager.PATTERN_DATE_SIMPLE_PREVIEW).toString()));
+        tvCreatedDate_VLIO.setText(String.format(orderDateFormatter, new DateManager.DateConverter(data.getOrder().orderDate).setDstPattern(DateManager.PATTERN_DATE_SIMPLE_PREVIEW).toString()));
 
         tvTotalPrice_VLIO.setText(StringUtil.getFormattedPriceFromCent(new DollarFormatter().getFormat(),
                 data.getOrder().paymentInfo.total,
@@ -71,6 +71,7 @@ public final class OrderVH extends MasterFlowSelectableVHHelper<OrderDH> {
             case "NOT":
                 ivAllocated_VLIO.setImageResource(R.drawable.ic_allocated_off);
                 break;
+            case "NOA":
             case "NOR":
                 ivAllocated_VLIO.setImageResource(R.drawable.ic_allocated_middle_on);
                 break;
@@ -83,6 +84,7 @@ public final class OrderVH extends MasterFlowSelectableVHHelper<OrderDH> {
             case "NOT":
                 ivFulfilled_VLIO.setImageResource(R.drawable.ic_fulfilled_off);
                 break;
+            case "NOA":
             case "NOR":
                 ivFulfilled_VLIO.setImageResource(R.drawable.ic_fulfilled_middle_on);
                 break;
@@ -95,6 +97,7 @@ public final class OrderVH extends MasterFlowSelectableVHHelper<OrderDH> {
             case "NOT":
                 ivShipped_VLIO.setImageResource(R.drawable.ic_shipped_off);
                 break;
+            case "NOA":
             case "NOR":
                 ivShipped_VLIO.setImageResource(R.drawable.ic_shipped_middle_on);
                 break;

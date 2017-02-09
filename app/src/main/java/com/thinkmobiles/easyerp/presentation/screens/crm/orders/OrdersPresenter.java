@@ -38,7 +38,7 @@ public class OrdersPresenter extends MasterFlowSelectablePresenterHelper<String,
         if (orders.size() == 0) {
             view.showProgress(true);
             loadOrders(1);
-        } else view.displayOrders(prepareOrderDHs(orders), true);
+        } else view.displayOrders(prepareOrderDHs(orders, true), true);
     }
 
     @Override
@@ -54,8 +54,10 @@ public class OrdersPresenter extends MasterFlowSelectablePresenterHelper<String,
                 model.getOrders(page).subscribe(
                         responseGetOrders -> {
                             currentPage = page;
+                            if (needClear)
+                                orders.clear();
                             orders.addAll(responseGetOrders.data);
-                            view.displayOrders(prepareOrderDHs(responseGetOrders.data), needClear);
+                            view.displayOrders(prepareOrderDHs(responseGetOrders.data, needClear), needClear);
                         },
                         throwable -> view.displayError(throwable.getMessage(), ErrorViewHelper.ErrorType.NETWORK)
                 )
@@ -73,12 +75,12 @@ public class OrdersPresenter extends MasterFlowSelectablePresenterHelper<String,
             view.openOrderDetailsScreen(dh.getId());
     }
 
-    private ArrayList<OrderDH> prepareOrderDHs(final List<Order> orders) {
+    private ArrayList<OrderDH> prepareOrderDHs(final List<Order> orders, boolean needClear) {
         int position = 0;
         final ArrayList<OrderDH> result = new ArrayList<>();
         for (Order order : orders) {
             final OrderDH orderDH = new OrderDH(order);
-            makeSelectedDHIfNeed(orderDH, view, position++, true);
+            makeSelectedDHIfNeed(orderDH, view, position++, needClear);
             result.add(orderDH);
         }
         return result;
