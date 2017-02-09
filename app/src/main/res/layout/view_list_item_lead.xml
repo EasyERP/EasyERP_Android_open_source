@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@drawable/bg_with_bottom_divider_line_selector"
-    android:orientation="vertical"
-    android:padding="@dimen/default_padding"
-    tools:background="@android:color/white">
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="@drawable/bg_with_bottom_divider_line_selector"
+              android:orientation="vertical"
+              android:padding="@dimen/default_padding"
+              tools:background="@android:color/white">
 
     <LinearLayout
         android:id="@+id/llFirstLine_VLIL"
@@ -14,80 +14,73 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <FrameLayout
+        <LinearLayout
             android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:layout_weight="1">
+            android:orientation="horizontal">
 
-            <LinearLayout
+            <ImageView
+                android:id="@+id/ivPriority_LIL"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_gravity="top"
+                android:layout_marginEnd="@dimen/default_padding_quart"
+                android:layout_marginTop="@dimen/default_padding_3dp"
+                tools:src="@drawable/ic_low_priority_20"/>
 
-                <ImageView
-                    android:id="@+id/ivPriority_LIL"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    tools:src="@drawable/ic_low_priority_20"
-                    android:layout_gravity="top"
-                    android:layout_marginEnd="@dimen/default_padding_quart"
-                    android:layout_marginTop="@dimen/default_padding_quart"/>
+            <TextView
+                android:id="@+id/tvLeadName_LIL"
+                style="@style/TextListTitleStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:text="Web development"/>
 
-                <TextView
-                    style="@style/TextListTitleStyle"
-                    android:id="@+id/tvLeadName_LIL"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    tools:text="Web development" />
-
-            </LinearLayout>
-
-        </FrameLayout>
+        </LinearLayout>
 
         <TextView
-            style="@style/SmallChipsStyle"
             android:id="@+id/tvStage_LIL"
+            style="@style/SmallChipsStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/default_padding_3dp"
-            android:layout_marginStart="@dimen/default_padding_middle"
             android:layout_gravity="top"
-            tools:text="Not Interested" />
+            android:layout_marginStart="@dimen/default_padding_middle"
+            android:layout_marginTop="@dimen/default_padding_3dp"
+            tools:text="Not Interested"/>
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="@dimen/default_padding_quart">
+        android:layout_marginTop="@dimen/default_padding_quart"
+        android:orientation="horizontal">
 
         <TextView
-            style="@style/TextListInfoStyle"
             android:id="@+id/tvAssignedTo_LIL"
+            style="@style/TextListInfoStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="Alex Hoshylyk"/>
 
         <TextView
-            style="@style/TextListInfoStyle"
             android:id="@+id/tvSource_LIL"
+            style="@style/TextListInfoStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="end"
-            tools:text="ThinkMobiles" />
+            tools:text="ThinkMobiles"/>
 
     </LinearLayout>
 
     <TextView
-        style="@style/TextListInfoGreyStyle"
         android:id="@+id/tvEditedBy_VLIL"
+        style="@style/TextListInfoGreyStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/default_padding_half"
-        tools:text="Last Edited: Today, at 2:45 PM by Test Admin" />
+        tools:text="Last Edited: Today, at 2:45 PM by Test Admin"/>
 
 </LinearLayout>
 

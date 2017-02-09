@@ -20,7 +20,7 @@ public abstract class DateManager {
     private static final String PATTERN_OUTPUT              = "dd MMM, yyyy, HH:mm:ss";
     private static final String PATTERN_COOKIE_EXPIRED      = "E, dd MMM yyyy HH:mm:ss z"; //Expires=Wed, 18 Jan 2017 08:58:07 GMT
 
-    private static final String PATTERN_SIMPLE_DATE         = "MMMM dd, yyyy"; //January 15, 2017
+    public static final String PATTERN_SIMPLE_DATE         = "MMMM dd, yyyy"; //January 15, 2017
     private static final String PATTERN_SIMPLE_DATE_SHORT   = "MMM dd, yyyy"; //Jan 15, 2017
     private static final String PATTERN_SIMPLE_TIME         = "h:mm a";   // 2:45 PM
 
