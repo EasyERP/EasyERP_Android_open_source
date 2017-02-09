@@ -68,11 +68,11 @@ public final class OrderVH extends MasterFlowSelectableVHHelper<OrderDH> {
                 data.getOrder().currency.id != null ? data.getOrder().currency.id.symbol : "$"));
 
         switch (data.getOrder().status.allocateStatus) {
+            case "NOR":
             case "NOT":
                 ivAllocated_VLIO.setImageResource(R.drawable.ic_allocated_off);
                 break;
             case "NOA":
-            case "NOR":
                 ivAllocated_VLIO.setImageResource(R.drawable.ic_allocated_middle_on);
                 break;
             case "ALL":
@@ -81,11 +81,11 @@ public final class OrderVH extends MasterFlowSelectableVHHelper<OrderDH> {
         }
 
         switch (data.getOrder().status.fulfillStatus) {
+            case "NOR":
             case "NOT":
                 ivFulfilled_VLIO.setImageResource(R.drawable.ic_fulfilled_off);
                 break;
             case "NOA":
-            case "NOR":
                 ivFulfilled_VLIO.setImageResource(R.drawable.ic_fulfilled_middle_on);
                 break;
             case "ALL":
@@ -94,11 +94,11 @@ public final class OrderVH extends MasterFlowSelectableVHHelper<OrderDH> {
         }
 
         switch (data.getOrder().status.shippingStatus) {
+            case "NOR":
             case "NOT":
                 ivShipped_VLIO.setImageResource(R.drawable.ic_shipped_off);
                 break;
             case "NOA":
-            case "NOR":
                 ivShipped_VLIO.setImageResource(R.drawable.ic_shipped_middle_on);
                 break;
             case "ALL":

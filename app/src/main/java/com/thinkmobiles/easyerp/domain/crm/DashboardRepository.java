@@ -33,7 +33,7 @@ public class DashboardRepository extends NetworkRepository implements DashboardL
     }
 
     public Observable<List<ResponseGetCRMDashboardCharts>> getDashboardListCharts(/*Dashboard id: String*/) {
-        return getNetworkObservable(dashboardService.getDashboardListCharts(Constants.CRM_DASHBOARD_BASE_ID));
+        return getNetworkObservable(dashboardService.getDashboardListCharts(Constants.CRM_DASHBOARD_BASE_ID, "reportsDashboard"));
     }
 
     @Override
