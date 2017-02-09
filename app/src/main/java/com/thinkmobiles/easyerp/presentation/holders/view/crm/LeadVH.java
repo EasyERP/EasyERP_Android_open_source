@@ -46,7 +46,7 @@ public final class LeadVH extends MasterFlowSelectableVHHelper<LeadDH> {
         if(!TextUtils.isEmpty(data.getLeadItem().name))
             tvLeadName_LIL.setText(data.getLeadItem().name);
         else
-            tvLeadName_LIL.setText("");
+            tvLeadName_LIL.setText(null);
         if(data.getLeadItem().workflow != null && !TextUtils.isEmpty(data.getLeadItem().workflow.name)) {
             tvStage_LIL.setText(data.getLeadItem().workflow.name);
             tvStage_LIL.setBackground(new RoundRectDrawable(ContextCompat.getColor(itemView.getContext(), TagHelper.getStatusColorRes(data.getLeadItem().workflow.name))));
@@ -74,7 +74,7 @@ public final class LeadVH extends MasterFlowSelectableVHHelper<LeadDH> {
         if(!TextUtils.isEmpty(data.getLeadItem().source))
             tvSource_LIL.setText(data.getLeadItem().source);
         else
-            tvSource_LIL.setText("");
+            tvSource_LIL.setText(null);
         if(data.getLeadItem().salesPerson != null && !TextUtils.isEmpty(data.getLeadItem().salesPerson.name))
             tvAssignedTo_LIL.setText(data.getLeadItem().salesPerson.name);
         else
@@ -87,7 +87,7 @@ public final class LeadVH extends MasterFlowSelectableVHHelper<LeadDH> {
                 out = out + " by " + data.getLeadItem().editedBy.user;
             tvEditedBy_VLIL.setText(out);
         } else
-            tvEditedBy_VLIL.setText("");
+            tvEditedBy_VLIL.setText(null);
 
         tvLeadName_LIL.requestLayout();
     }
