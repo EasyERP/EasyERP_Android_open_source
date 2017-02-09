@@ -2,6 +2,7 @@ package com.thinkmobiles.easyerp.presentation.screens.crm.leads.details;
 
 import android.graphics.drawable.Drawable;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.graphics.ColorUtils;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -209,11 +210,10 @@ public class LeadDetailsFragment extends BaseFragment<HomeActivity> implements L
         LayoutInflater inflater = LayoutInflater.from(getActivity());
         for(TagItem tagItem : tags) {
             TextView tvTag = (TextView) inflater.inflate(R.layout.text_view_tag, flowLayoutTags_FLD, false);
-            tvTag.setBackground(new RoundRectDrawable(ContextCompat.getColor(getActivity(), TagHelper.getColorResIdByName(tagItem.color))));
+            tvTag.setBackground(new RoundRectDrawable(ColorUtils.setAlphaComponent(ContextCompat.getColor(getActivity(), TagHelper.getColorResIdByName(tagItem.color)), 200)));
             tvTag.setText(tagItem.name);
             flowLayoutTags_FLD.addView(tvTag);
         }
-        flowLayoutTags_FLD.requestLayout();
     }
 
     @Override
