@@ -1,10 +1,13 @@
 package com.thinkmobiles.easyerp.presentation.screens.crm.leads.details;
 
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.graphics.ColorUtils;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
@@ -132,7 +135,15 @@ public class LeadDetailsFragment extends BaseFragment<HomeActivity> implements L
     protected RecyclerView rvAttachments_FLD;
 
     @ViewById
+    protected TextView tvEmptyContacts_FLD;
+    @ViewById
+    protected TextView tvEmptyCompany_FLD;
+    @ViewById
     protected TextView tvEmptyAttachments_FLD;
+    @ViewById
+    protected LinearLayout llContainerContacts_FLD;
+    @ViewById
+    protected LinearLayout llContainerCompanyInfo_FLD;
     //endregion
 
     @DrawableRes(R.drawable.ic_arrow_up)
@@ -147,7 +158,10 @@ public class LeadDetailsFragment extends BaseFragment<HomeActivity> implements L
         srlRefresh_FLD.setOnRefreshListener(() -> presenter.refresh());
         rvHistory.setLayoutManager(new LinearLayoutManager(getActivity()));
         rvHistory.setAdapter(historyAdapter);
-        tvAttachments_FLD.setMovementMethod(LinkMovementMethod.getInstance());
+
+        rvAttachments_FLD.setLayoutManager(new GridLayoutManager(getActivity(), 2));
+        rvAttachments_FLD.setAdapter(attachmentAdapter);
+        attachmentAdapter.setOnCardClickListener((view, position, viewType) -> presenter.startAttachment(position));
 
         RxView.clicks(btnHistory)
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
@@ -331,6 +345,18 @@ public class LeadDetailsFragment extends BaseFragment<HomeActivity> implements L
     }
 
     @Override
+    public void showContacts(boolean isShown) {
+        llContainerContacts_FLD.setVisibility(isShown ? View.VISIBLE : View.GONE);
+        tvEmptyContacts_FLD.setVisibility(isShown ? View.GONE : View.VISIBLE);
+    }
+
+    @Override
+    public void showCompany(boolean isShown) {
+        llContainerCompanyInfo_FLD.setVisibility(isShown ? View.VISIBLE : View.GONE);
+        tvEmptyCompany_FLD.setVisibility(isShown ? View.GONE : View.VISIBLE);
+    }
+
+    @Override
     public void showAttachments(boolean isShown) {
         if(!isShown) tvEmptyAttachments_FLD.setVisibility(View.VISIBLE);
     }
@@ -352,11 +378,13 @@ public class LeadDetailsFragment extends BaseFragment<HomeActivity> implements L
 
     @Override
     public void displayAttachments(ArrayList<AttachmentDH> attachmentDHs) {
-
+        attachmentAdapter.setListDH(attachmentDHs);
     }
 
     @Override
     public void startUrlIntent(String url) {
-
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(Uri.parse(url));
+        startActivity(intent);
     }
 }

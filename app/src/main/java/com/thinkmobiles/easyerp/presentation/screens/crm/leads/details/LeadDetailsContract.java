@@ -22,6 +22,9 @@ public interface LeadDetailsContract {
         void showHistory(boolean enable);
         void showError(String errMsg);
         void showMessage(String message);
+
+        void showContacts(boolean isShown);
+        void showCompany(boolean isShown);
         void showAttachments(boolean isShown);
 
         void setLeadName(String leadName);
@@ -56,6 +59,7 @@ public interface LeadDetailsContract {
     interface LeadDetailsPresenter extends BasePresenter {
         void changeNotesVisibility();
         void refresh();
+        void startAttachment(int pos);
     }
 
     interface LeadDetailsModel extends BaseModel {
