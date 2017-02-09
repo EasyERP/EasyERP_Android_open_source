@@ -123,7 +123,7 @@
         <item name="android:focusable">true</item>
         <item name="android:textColor">@color/textColorPrimary</item>
         <item name="android:textColorHint">@color/textColorHint</item>
-        <item name="backgroundTint">@color/colorPrimary</item>
+        <item name="backgroundTint">@color/dividerColor</item>
     </style>
 
     <!--My the best of the best styles-->
@@ -138,6 +138,13 @@
         <item name="android:textSize">@dimen/text_list_item_medium_16</item>
         <item name="android:textColor">@color/color_text_black</item>
         <item name="android:maxLines">1</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <style name="TextListInfoGreyStyle" parent="RobotoRegular">
+        <item name="android:textSize">@dimen/text_list_item_medium_16</item>
+        <item name="android:textColor">@color/color_text_gray</item>
+        <item name="android:maxLines">2</item>
         <item name="android:ellipsize">end</item>
     </style>
 
@@ -177,6 +184,17 @@
         <item name="colorControlActivated">@color/colorPrimary</item>
         <item name="android:textSize">@dimen/text_size_small_14</item>
         <item name="android:clickable">false</item>
+    </style>
+
+    <style name="SmallChipsStyle" parent="RobotoMedium">
+        <item name="android:textSize">@dimen/text_size_extra_small</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:paddingRight">@dimen/default_padding_half</item>
+        <item name="android:paddingLeft">@dimen/default_padding_half</item>
+        <item name="android:paddingTop">@dimen/default_padding_quart</item>
+        <item name="android:paddingBottom">@dimen/default_padding_quart</item>
+        <item name="android:gravity">center</item>
     </style>
 
 </resources>

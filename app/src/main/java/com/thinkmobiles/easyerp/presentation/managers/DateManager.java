@@ -56,7 +56,7 @@ public abstract class DateManager {
 
     public static String getDateToNow(String date) {
         SimpleDateFormat sdf = new SimpleDateFormat(PATTERN_DATE, Locale.US);
-        SimpleDateFormat sdfOut = new SimpleDateFormat(PATTERN_SIMPLE_DATE, Locale.US);
+        SimpleDateFormat sdfOut = new SimpleDateFormat(PATTERN_SIMPLE_DATE_SHORT, Locale.US);
         Calendar calendar = Calendar.getInstance();
         Calendar current = Calendar.getInstance();
         try {
