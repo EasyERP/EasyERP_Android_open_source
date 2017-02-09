@@ -54,7 +54,7 @@ public class UserProfileDialogFragment extends DialogFragment {
         View parent = LayoutInflater.from(getActivity()).inflate(R.layout.dialog_me_profile, null);
         initUI(parent);
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(), R.style.DefaultTheme_FilterDialogStyle)
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(), R.style.DefaultTheme_NoTitleDialogWithAnimation)
                 .setView(parent)
                 .setPositiveButton(R.string.dialog_btn_close, (dialogInterface, i) -> dismiss())
                 .setCancelable(true);
