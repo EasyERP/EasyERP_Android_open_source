@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.facebook.stetho.common.StringUtil;
 import com.michenko.simpleadapter.OnCardClickListener;
 import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectableVHHelper;
@@ -15,7 +14,6 @@ import com.thinkmobiles.easyerp.presentation.custom.RoundRectDrawable;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.LeadDH;
 import com.thinkmobiles.easyerp.presentation.managers.DateManager;
 import com.thinkmobiles.easyerp.presentation.managers.TagHelper;
-import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
 /**
  * Created by Lynx on 1/16/2017.
@@ -80,7 +78,7 @@ public final class LeadVH extends MasterFlowSelectableVHHelper<LeadDH> {
         if(data.getLeadItem().salesPerson != null && !TextUtils.isEmpty(data.getLeadItem().salesPerson.name))
             tvAssignedTo_LIL.setText(data.getLeadItem().salesPerson.name);
         else
-            tvAssignedTo_LIL.setText("");
+            tvAssignedTo_LIL.setText(itemView.getContext().getString(R.string.not_assigned));
         if(data.getLeadItem().editedBy != null && !TextUtils.isEmpty(data.getLeadItem().editedBy.date)) {
             //Last Edited: Today, at 2:45 PM by Test Admin
             String strDate = data.getLeadItem().editedBy.date;

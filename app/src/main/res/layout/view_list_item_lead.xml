@@ -31,8 +31,7 @@
                     tools:src="@drawable/ic_low_priority_20"
                     android:layout_gravity="top"
                     android:layout_marginEnd="@dimen/default_padding_quart"
-                    android:layout_marginTop="@dimen/default_padding_3dp"
-                    android:paddingTop="@dimen/padding_very_minimum"/>
+                    android:layout_marginTop="@dimen/default_padding_quart"/>
 
                 <TextView
                     style="@style/TextListTitleStyle"
@@ -47,20 +46,12 @@
         </FrameLayout>
 
         <TextView
-            style="@style/RobotoMedium"
+            style="@style/SmallChipsStyle"
             android:id="@+id/tvStage_LIL"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/text_size_extra_small"
-            android:textColor="@android:color/white"
-            android:textAllCaps="true"
-            android:paddingRight="@dimen/default_padding_half"
-            android:paddingLeft="@dimen/default_padding_half"
-            android:paddingTop="@dimen/default_padding_quart"
-            android:paddingBottom="@dimen/default_padding_quart"
             android:layout_marginTop="@dimen/default_padding_3dp"
             android:layout_gravity="top"
-            android:gravity="center"
             tools:text="Not Interested" />
 
     </LinearLayout>

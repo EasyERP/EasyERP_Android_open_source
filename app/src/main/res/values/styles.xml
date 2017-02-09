@@ -175,4 +175,15 @@
         <item name="android:clickable">false</item>
     </style>
 
+    <style name="SmallChipsStyle" parent="RobotoMedium">
+        <item name="android:textSize">@dimen/text_size_extra_small</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:paddingRight">@dimen/default_padding_half</item>
+        <item name="android:paddingLeft">@dimen/default_padding_half</item>
+        <item name="android:paddingTop">@dimen/default_padding_quart</item>
+        <item name="android:paddingBottom">@dimen/default_padding_quart</item>
+        <item name="android:gravity">center</item>
+    </style>
+
 </resources>
