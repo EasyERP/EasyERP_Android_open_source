@@ -95,14 +95,14 @@ public class CompaniesPresenter extends MasterFlowSelectablePresenterHelper<Stri
         }
     }
 
-    private ArrayList<CompanyDH> prepareDataHolders(CommonCompaniesResponse commonCompaniesResponse, boolean isFirstPage) {
+    private ArrayList<CompanyDH> prepareDataHolders(CommonCompaniesResponse commonCompaniesResponse, boolean needClear) {
         int position = 0;
         ArrayList<CompanyDH> result = new ArrayList<>();
         for(CompanyListItem companyListItem : commonCompaniesResponse.responseGetCompanies.data) {
             for(CustomerImageItem imageItem : commonCompaniesResponse.responseGetCustomersImages.data) {
                 if(companyListItem.id.equalsIgnoreCase(imageItem.id)) {
                     final CompanyDH companyDH = new CompanyDH(companyListItem, imageItem.imageSrc);
-                    makeSelectedDHIfNeed(companyDH, view, position++, isFirstPage);
+                    makeSelectedDHIfNeed(companyDH, view, position++, needClear);
                     result.add(companyDH);
                 }
             }

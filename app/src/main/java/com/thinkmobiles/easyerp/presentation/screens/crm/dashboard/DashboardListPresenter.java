@@ -35,7 +35,7 @@ public class DashboardListPresenter extends MasterFlowSelectablePresenterHelper<
         if (charts.size() == 0) {
             view.showProgress(true);
             loadDashboardChartsList();
-        } else view.displayDashboardChartsList(prepareDashboardDHs(charts));
+        } else view.displayDashboardChartsList(prepareDashboardDHs(charts, true));
     }
 
     @Override
@@ -49,7 +49,7 @@ public class DashboardListPresenter extends MasterFlowSelectablePresenterHelper<
         compositeSubscription.add(
                 model.getDashboardListCharts()
                         .subscribe(
-                                getCRMDashboardCharts -> view.displayDashboardChartsList(prepareDashboardDHs(charts = getCRMDashboardCharts.get(0).charts)),
+                                getCRMDashboardCharts -> view.displayDashboardChartsList(prepareDashboardDHs(charts = getCRMDashboardCharts.get(0).charts, true)),
                                 t -> view.displayError(t.getMessage(), ErrorViewHelper.ErrorType.NETWORK))
         );
     }
@@ -60,12 +60,12 @@ public class DashboardListPresenter extends MasterFlowSelectablePresenterHelper<
             view.openDashboardChartDetail(dh.getDashboardListItem());
     }
 
-    private ArrayList<DashboardListDH> prepareDashboardDHs(final List<DashboardListItem> dashboardListItems) {
+    private ArrayList<DashboardListDH> prepareDashboardDHs(final List<DashboardListItem> dashboardListItems, boolean needClear) {
         int position = 0;
         final ArrayList<DashboardListDH> result = new ArrayList<>();
         for (DashboardListItem dashboardListItem : dashboardListItems) {
             final DashboardListDH dashboardListDH = new DashboardListDH(dashboardListItem);
-            makeSelectedDHIfNeed(dashboardListDH, view, position++, true);
+            makeSelectedDHIfNeed(dashboardListDH, view, position++, needClear);
             result.add(dashboardListDH);
         }
         return result;

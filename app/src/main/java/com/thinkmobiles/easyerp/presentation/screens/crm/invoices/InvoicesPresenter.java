@@ -38,7 +38,7 @@ public class InvoicesPresenter extends MasterFlowSelectablePresenterHelper<Strin
         if (invoices.size() == 0) {
             view.showProgress(true);
             loadInvoices(1);
-        } else view.displayInvoices(prepareInvoiceDHs(invoices), true);
+        } else view.displayInvoices(prepareInvoiceDHs(invoices, true), true);
     }
 
     @Override
@@ -57,7 +57,7 @@ public class InvoicesPresenter extends MasterFlowSelectablePresenterHelper<Strin
                             if (needClear)
                                 invoices.clear();
                             invoices.addAll(responseGetInvoice.data);
-                            view.displayInvoices(prepareInvoiceDHs(responseGetInvoice.data), needClear);
+                            view.displayInvoices(prepareInvoiceDHs(responseGetInvoice.data, needClear), needClear);
                         },
                         throwable -> view.displayError(throwable.getMessage(), ErrorViewHelper.ErrorType.NETWORK)
                 )
@@ -75,12 +75,12 @@ public class InvoicesPresenter extends MasterFlowSelectablePresenterHelper<Strin
             view.openInvoiceDetailsScreen(dh.getId());
     }
 
-    private ArrayList<InvoiceDH> prepareInvoiceDHs(final List<Invoice> invoices) {
+    private ArrayList<InvoiceDH> prepareInvoiceDHs(final List<Invoice> invoices, boolean needClear) {
         int position = 0;
         final ArrayList<InvoiceDH> result = new ArrayList<>();
         for (Invoice invoice : invoices) {
             final InvoiceDH invoiceDH = new InvoiceDH(invoice);
-            makeSelectedDHIfNeed(invoiceDH, view, position++, true);
+            makeSelectedDHIfNeed(invoiceDH, view, position++, needClear);
             result.add(invoiceDH);
         }
         return result;
