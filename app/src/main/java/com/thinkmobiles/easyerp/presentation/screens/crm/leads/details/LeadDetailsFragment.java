@@ -22,10 +22,12 @@ import com.jakewharton.rxbinding.view.RxView;
 import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.data.model.crm.leads.TagItem;
 import com.thinkmobiles.easyerp.domain.crm.LeadsRepository;
+import com.thinkmobiles.easyerp.presentation.adapters.crm.AttachmentAdapter;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.HistoryAdapter;
 import com.thinkmobiles.easyerp.presentation.base.BaseFragment;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.custom.RoundRectDrawable;
+import com.thinkmobiles.easyerp.presentation.holders.data.crm.AttachmentDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.HistoryDH;
 import com.thinkmobiles.easyerp.presentation.managers.HistoryAnimationHelper;
 import com.thinkmobiles.easyerp.presentation.managers.TagHelper;
@@ -57,6 +59,8 @@ public class LeadDetailsFragment extends BaseFragment<HomeActivity> implements L
     protected ErrorViewHelper errorViewHelper;
     @Bean
     protected HistoryAnimationHelper animationHelper;
+    @Bean
+    protected AttachmentAdapter attachmentAdapter;
 
     @FragmentArg
     protected String leadId;
@@ -124,6 +128,11 @@ public class LeadDetailsFragment extends BaseFragment<HomeActivity> implements L
     protected ImageView ivIconArrow;
     @ViewById
     protected RecyclerView rvHistory;
+    @ViewById
+    protected RecyclerView rvAttachments_FLD;
+
+    @ViewById
+    protected TextView tvEmptyAttachments_FLD;
     //endregion
 
     @DrawableRes(R.drawable.ic_arrow_up)
@@ -297,11 +306,6 @@ public class LeadDetailsFragment extends BaseFragment<HomeActivity> implements L
     }
 
     @Override
-    public void setAttachments(String attachments) {
-        tvAttachments_FLD.setText(Html.fromHtml(attachments));
-    }
-
-    @Override
     public void showHistory(boolean enable) {
 
         if (enable && rvHistory.getVisibility() == View.GONE) {
@@ -327,6 +331,11 @@ public class LeadDetailsFragment extends BaseFragment<HomeActivity> implements L
     }
 
     @Override
+    public void showAttachments(boolean isShown) {
+        if(!isShown) tvEmptyAttachments_FLD.setVisibility(View.VISIBLE);
+    }
+
+    @Override
     public void setLeadName(String leadName) {
         tvNameLead_FLD.setText(leadName);
     }
@@ -339,5 +348,15 @@ public class LeadDetailsFragment extends BaseFragment<HomeActivity> implements L
     @Override
     public void setHistory(ArrayList<HistoryDH> history) {
         historyAdapter.setListDH(history);
+    }
+
+    @Override
+    public void displayAttachments(ArrayList<AttachmentDH> attachmentDHs) {
+
+    }
+
+    @Override
+    public void startUrlIntent(String url) {
+
     }
 }

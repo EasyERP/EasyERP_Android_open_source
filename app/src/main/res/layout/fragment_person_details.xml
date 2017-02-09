@@ -818,20 +818,12 @@
                             android:padding="@dimen/default_padding"
                             android:layout_marginStart="@dimen/default_padding_3dp"/>
 
-                        <LinearLayout
-                            android:id="@+id/llAttachmentsContainer_FPD"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical">
-
                             <android.support.v7.widget.RecyclerView
                                 android:id="@+id/rvAttachments_FPD"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="@dimen/default_padding_half"
                                 android:overScrollMode="never"/>
-
-                        </LinearLayout>
 
                     </FrameLayout>
 

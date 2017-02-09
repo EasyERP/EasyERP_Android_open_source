@@ -8,6 +8,7 @@ import com.thinkmobiles.easyerp.data.model.crm.leads.detail.ResponseGetLeadDetai
 import com.thinkmobiles.easyerp.presentation.base.BaseModel;
 import com.thinkmobiles.easyerp.presentation.base.BasePresenter;
 import com.thinkmobiles.easyerp.presentation.base.BaseView;
+import com.thinkmobiles.easyerp.presentation.holders.data.crm.AttachmentDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.HistoryDH;
 
 import java.util.ArrayList;
@@ -21,6 +22,7 @@ public interface LeadDetailsContract {
         void showHistory(boolean enable);
         void showError(String errMsg);
         void showMessage(String message);
+        void showAttachments(boolean isShown);
 
         void setLeadName(String leadName);
         void setCurrentStatus(String currentStatus);
@@ -45,8 +47,10 @@ public interface LeadDetailsContract {
         void setCompanyState(String companyState);
         void setCompanyZipcode(String companyZipcode);
         void setCompanyCountry(String companyCountry);
-        void setAttachments(String attachments);
         void setHistory(ArrayList<HistoryDH> history);
+
+        void displayAttachments(ArrayList<AttachmentDH> attachmentDHs);
+        void startUrlIntent(String url);
     }
 
     interface LeadDetailsPresenter extends BasePresenter {

@@ -186,4 +186,9 @@
         <item name="android:gravity">center</item>
     </style>
 
+    <style name="TextDetailsTitleStyle" parent="RobotoMedium">
+        <item name="android:textSize">@dimen/text_list_item_large_20</item>
+        <item name="android:textColor">@color/color_text_black</item>
+    </style>
+
 </resources>

@@ -155,8 +155,6 @@ public class PersonDetailsFragment extends BaseFragment<HomeActivity> implements
     @ViewById
     protected EditText etCompanyEmail_FPD;
     @ViewById
-    protected LinearLayout llAttachmentsContainer_FPD;
-    @ViewById
     protected RecyclerView rvAttachments_FPD;
     @ViewById
     protected FrameLayout btnHistory;
