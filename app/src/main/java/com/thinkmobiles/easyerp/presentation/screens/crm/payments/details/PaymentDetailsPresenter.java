@@ -5,6 +5,7 @@ import com.thinkmobiles.easyerp.data.model.user.organization.OrganizationSetting
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.managers.DateManager;
 import com.thinkmobiles.easyerp.presentation.screens.crm.dashboard.detail.charts.DollarFormatter;
+import com.thinkmobiles.easyerp.presentation.utils.Constants;
 import com.thinkmobiles.easyerp.presentation.utils.StringUtil;
 
 import java.text.DecimalFormat;
@@ -43,21 +44,20 @@ public class PaymentDetailsPresenter implements PaymentDetailsContract.PaymentDe
             compositeSubscription.add(model.getOrganizationSettings()
                     .subscribe(responseGetOrganizationSettings -> {
                         organizationSettings = responseGetOrganizationSettings.data;
-                        view.showProgress(false);
+                        view.showProgress(Constants.ProgressType.NONE);
                         setData();
                     }, t -> {
-                        view.showProgress(false);
                         view.showError(t.getMessage(), ErrorViewHelper.ErrorType.NETWORK);
                     }));
         } else {
-            view.showProgress(false);
+            view.showProgress(Constants.ProgressType.NONE);
             setData();
         }
     }
 
     @Override
     public void subscribe() {
-        view.showProgress(true);
+        view.showProgress(Constants.ProgressType.CENTER);
         refresh();
     }
 

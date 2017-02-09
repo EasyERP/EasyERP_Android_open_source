@@ -161,8 +161,16 @@ public abstract class BaseMasterFlowActivity extends AppCompatActivity {
 
     private void sendEventClearSelectedItem() {
         final Fragment fragment = getFragmentManager().findFragmentById(contentIdLayout());
-        if (fragment != null && fragment instanceof MasterFlowListFragment)
-            ((MasterFlowListFragment) fragment).clearSelectedItem();
+        if (fragment != null) {
+            if (fragment instanceof MasterFlowListFragment) {
+                ((MasterFlowListFragment) fragment).clearSelectedItem();
+                return;
+            }
+            if (fragment instanceof ListRefreshFragment) {
+                ((ListRefreshFragment) fragment).clearSelectedItem();
+            }
+        }
+
     }
 
     @OptionsItem(android.R.id.home)
