@@ -1,13 +1,19 @@
 package com.thinkmobiles.easyerp.presentation.screens.crm.opportunities.details;
 
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.graphics.ColorUtils;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.text.SpannableStringBuilder;
 import android.text.method.LinkMovementMethod;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.FrameLayout;
@@ -16,16 +22,22 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.ismaeltoe.FlowLayout;
 import com.jakewharton.rxbinding.view.RxView;
 import com.thinkmobiles.easyerp.R;
+import com.thinkmobiles.easyerp.data.model.crm.leads.TagItem;
 import com.thinkmobiles.easyerp.domain.crm.OpportunitiesRepository;
+import com.thinkmobiles.easyerp.presentation.adapters.crm.AttachmentAdapter;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.HistoryAdapter;
 import com.thinkmobiles.easyerp.presentation.base.BaseFragment;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
+import com.thinkmobiles.easyerp.presentation.custom.RoundRectDrawable;
 import com.thinkmobiles.easyerp.presentation.custom.transformations.CropCircleTransformation;
+import com.thinkmobiles.easyerp.presentation.holders.data.crm.AttachmentDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.HistoryDH;
 import com.thinkmobiles.easyerp.presentation.managers.HistoryAnimationHelper;
 import com.thinkmobiles.easyerp.presentation.managers.ImageHelper;
+import com.thinkmobiles.easyerp.presentation.managers.TagHelper;
 import com.thinkmobiles.easyerp.presentation.screens.home.HomeActivity;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
@@ -61,10 +73,6 @@ public class OpportunityDetailsFragment extends BaseFragment<HomeActivity> imple
     protected LinearLayout llMainContent_FOD;
     @ViewById
     protected NestedScrollView nsvContent_FOD;
-    @ViewById
-    protected LinearLayout llContactInfo_FOD;
-    @ViewById
-    protected LinearLayout llCompanyInfo_FOD;
 
     @ViewById
     protected TextView tvNameOpportunity_FOD;
@@ -77,19 +85,17 @@ public class OpportunityDetailsFragment extends BaseFragment<HomeActivity> imple
     @ViewById
     protected EditText etAssignedTo_FOD;
     @ViewById
-    protected TextView tvTags_FOD;
+    protected FlowLayout flowLayoutTags_FOD;
     @ViewById
     protected ImageView ivContactImage_FOD;
     @ViewById
-    protected TextView tvContactName_FOD;
+    protected EditText etContactName_FOD;
     @ViewById
-    protected TextView tvContactEmail_FOD;
+    protected EditText etContactEmail_FOD;
     @ViewById
     protected ImageView ivCompanyImage_FOD;
     @ViewById
-    protected TextView tvCompanyTitleName_FOD;
-    @ViewById
-    protected TextView tvCompanyUrl_FOD;
+    protected TextView tvCompanyTitleUrl_FOD;
     @ViewById
     protected EditText etCompanyName_FOD;
     @ViewById
@@ -99,15 +105,26 @@ public class OpportunityDetailsFragment extends BaseFragment<HomeActivity> imple
     @ViewById
     protected EditText etCompanyState_FOD;
     @ViewById
-    protected EditText etCompanyZip_FOD;
-    @ViewById
-    protected EditText etCompanyCountry_FOD;
+    protected EditText etCompanyZipcode_FOD;
     @ViewById
     protected EditText etCompanyPhone_FOD;
     @ViewById
+    protected EditText etCompanyCountry_FOD;
+    @ViewById
     protected EditText etCompanyEmail_FOD;
     @ViewById
-    protected TextView tvAttachments_FLD;
+    protected RecyclerView rvAttachments_FOD;
+
+    @ViewById
+    protected TextView tvEmptyContact_FOD;
+    @ViewById
+    protected LinearLayout llContactContainer_FOD;
+    @ViewById
+    protected TextView tvEmptyCompany_FOD;
+    @ViewById
+    protected LinearLayout llCompanyContainer_FOD;
+    @ViewById
+    protected TextView tvEmptyAttachments_FOD;
 
     @ViewById
     protected FrameLayout btnHistory;
@@ -125,6 +142,8 @@ public class OpportunityDetailsFragment extends BaseFragment<HomeActivity> imple
     protected OpportunitiesRepository opportunitiesRepository;
     @Bean
     protected HistoryAnimationHelper animationHelper;
+    @Bean
+    protected AttachmentAdapter attachmentAdapter;
 
     @DrawableRes(R.drawable.ic_arrow_up)
     protected Drawable icArrowUp;
@@ -144,7 +163,10 @@ public class OpportunityDetailsFragment extends BaseFragment<HomeActivity> imple
         srlRefresh_FOD.setOnRefreshListener(() -> presenter.refresh());
         rvHistory.setLayoutManager(new LinearLayoutManager(getActivity()));
         rvHistory.setAdapter(historyAdapter);
-        tvAttachments_FLD.setMovementMethod(LinkMovementMethod.getInstance());
+
+        rvAttachments_FOD.setLayoutManager(new GridLayoutManager(getActivity(), 2));
+        rvAttachments_FOD.setAdapter(attachmentAdapter);
+        attachmentAdapter.setOnCardClickListener((view, position, viewType) -> presenter.startAttachment(position));
 
         RxView.clicks(btnHistory)
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
@@ -193,13 +215,20 @@ public class OpportunityDetailsFragment extends BaseFragment<HomeActivity> imple
     }
 
     @Override
-    public void displayContactInfo(boolean isVisible) {
-        llContactInfo_FOD.setVisibility(isVisible ? View.VISIBLE : View.GONE);
+    public void showContact(boolean isShown) {
+        llContactContainer_FOD.setVisibility(isShown ? View.VISIBLE : View.GONE);
+        tvEmptyContact_FOD.setVisibility(isShown ? View.GONE : View.VISIBLE);
     }
 
     @Override
-    public void displayCompanyInfo(boolean isVisible) {
-        llCompanyInfo_FOD.setVisibility(isVisible ? View.VISIBLE : View.GONE);
+    public void showCompany(boolean isShown) {
+        llCompanyContainer_FOD.setVisibility(isShown ? View.VISIBLE : View.GONE);
+        tvEmptyCompany_FOD.setVisibility(isShown ? View.GONE : View.VISIBLE);
+    }
+
+    @Override
+    public void showAttachments(boolean isShown) {
+        if(!isShown) tvEmptyAttachments_FOD.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -235,12 +264,12 @@ public class OpportunityDetailsFragment extends BaseFragment<HomeActivity> imple
 
     @Override
     public void displayContactFullName(String contactFullname) {
-        tvContactName_FOD.setText(contactFullname);
+        etContactName_FOD.setText(contactFullname);
     }
 
     @Override
     public void displayContactEmail(String contactEmail) {
-        tvContactEmail_FOD.setText(contactEmail);
+        etContactEmail_FOD.setText(contactEmail);
     }
 
     @Override
@@ -250,14 +279,14 @@ public class OpportunityDetailsFragment extends BaseFragment<HomeActivity> imple
     }
 
     @Override
-    public void displayCompanyTitleName(String companyTitleName) {
-        tvCompanyTitleName_FOD.setText(companyTitleName);
-    }
-
-    @Override
     public void displayCompanyUrl(String companyUrl) {
-        tvCompanyUrl_FOD.setMovementMethod(LinkMovementMethod.getInstance());
-        tvCompanyUrl_FOD.setText(Html.fromHtml(companyUrl));
+        tvCompanyTitleUrl_FOD.setText(companyUrl);
+        String url;
+        if(!companyUrl.startsWith("http://")) url = "http://" + companyUrl;
+        else url = companyUrl;
+        RxView.clicks(tvCompanyTitleUrl_FOD)
+                .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
+                .subscribe(aVoid -> startUrlIntent(url));
     }
 
     @Override
@@ -282,7 +311,7 @@ public class OpportunityDetailsFragment extends BaseFragment<HomeActivity> imple
 
     @Override
     public void displayCompanyZip(String companyZip) {
-        etCompanyZip_FOD.setText(companyZip);
+        etCompanyZipcode_FOD.setText(companyZip);
     }
 
     @Override
@@ -301,13 +330,27 @@ public class OpportunityDetailsFragment extends BaseFragment<HomeActivity> imple
     }
 
     @Override
-    public void setAttachments(String attachments) {
-        tvAttachments_FLD.setText(Html.fromHtml(attachments));
+    public void setTags(ArrayList<TagItem> tags) {
+        flowLayoutTags_FOD.removeAllViews();
+        LayoutInflater inflater = LayoutInflater.from(getActivity());
+        for(TagItem tagItem : tags) {
+            TextView tvTag = (TextView) inflater.inflate(R.layout.text_view_tag, flowLayoutTags_FOD, false);
+            tvTag.setBackground(new RoundRectDrawable(ColorUtils.setAlphaComponent(ContextCompat.getColor(getActivity(), TagHelper.getColorResIdByName(tagItem.color)), 200)));
+            tvTag.setText(tagItem.name);
+            flowLayoutTags_FOD.addView(tvTag);
+        }
     }
 
     @Override
-    public void displayTags(SpannableStringBuilder tags) {
-        tvTags_FOD.setText(tags);
+    public void displayAttachments(ArrayList<AttachmentDH> attachmentDHs) {
+        attachmentAdapter.setListDH(attachmentDHs);
+    }
+
+    @Override
+    public void startUrlIntent(String url) {
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(Uri.parse(url));
+        startActivity(intent);
     }
 
     @Override
