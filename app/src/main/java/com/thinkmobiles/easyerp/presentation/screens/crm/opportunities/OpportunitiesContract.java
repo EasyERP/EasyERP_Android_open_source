@@ -6,6 +6,7 @@ import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectableBasePresenter;
 import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectableBaseView;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.OpportunityDH;
+import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
 import java.util.ArrayList;
 
@@ -19,12 +20,16 @@ public interface OpportunitiesContract {
 
     interface OpportunitiesView extends MasterFlowSelectableBaseView<OpportunitiesPresenter> {
         void displayOpportunities(ArrayList<OpportunityDH> opportunityDHs, boolean needClear);
-        void displayError(final String msg, final ErrorViewHelper.ErrorType errorType);
         void openOpportunityDetailsScreen(String opportunityID);
+
+        void displayErrorState(final String msg, final ErrorViewHelper.ErrorType errorType);
+        void displayErrorToast(final String msg);
+        void showProgress(Constants.ProgressType type);
     }
 
     interface OpportunitiesPresenter extends MasterFlowSelectableBasePresenter<String, OpportunityDH> {
-        void loadOpportunities(int page);
+        void refresh();
+        void loadNextPage();
     }
 
     interface OpportunitiesModel extends BaseModel {

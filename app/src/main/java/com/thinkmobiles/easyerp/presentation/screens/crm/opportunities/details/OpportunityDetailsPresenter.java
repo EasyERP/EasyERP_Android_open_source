@@ -3,8 +3,10 @@ package com.thinkmobiles.easyerp.presentation.screens.crm.opportunities.details;
 import android.text.TextUtils;
 
 import com.thinkmobiles.easyerp.data.model.crm.opportunities.detail.ResponseGetOpportunityDetails;
+import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.HistoryDH;
 import com.thinkmobiles.easyerp.presentation.managers.DateManager;
+import com.thinkmobiles.easyerp.presentation.utils.Constants;
 import com.thinkmobiles.easyerp.presentation.utils.StringUtil;
 
 import java.util.Collections;
@@ -46,21 +48,19 @@ public class OpportunityDetailsPresenter implements OpportunityDetailsContract.O
                 .subscribe(responseGetLeadDetails -> {
                     currentOpportunity = responseGetLeadDetails;
                     setData(currentOpportunity);
-                    view.showProgress(false);
-                    view.showError(null);
+                    view.showProgress(Constants.ProgressType.NONE);
                 }, throwable -> {
-                    view.showProgress(false);
-                    if(currentOpportunity != null && currentOpportunity.id.equalsIgnoreCase(opportunityID))
-                        view.showMessage(throwable.getMessage());
+                    if(currentOpportunity != null )
+                        view.displayErrorToast(throwable.getMessage());
                     else
-                        view.showError(throwable.getMessage());
+                        view.displayErrorState(throwable.getMessage(), ErrorViewHelper.ErrorType.NETWORK);
                 }));
     }
 
     @Override
     public void subscribe() {
         if (currentOpportunity == null) {
-            view.showProgress(true);
+            view.showProgress(Constants.ProgressType.CENTER);
             refresh();
         } else {
             setData(currentOpportunity);
