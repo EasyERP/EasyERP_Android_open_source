@@ -1,18 +1,10 @@
 package com.thinkmobiles.easyerp.presentation.screens.crm.opportunities;
 
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.view.View;
-import android.widget.Toast;
-
-import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.domain.crm.OpportunitiesRepository;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.OpportunitiesAdapter;
-import com.thinkmobiles.easyerp.presentation.base.ListRefreshFragment;
+import com.thinkmobiles.easyerp.presentation.base.rules.ListRefreshFragment;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
-import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowListFragment;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.OpportunityDH;
-import com.thinkmobiles.easyerp.presentation.listeners.EndlessRecyclerViewScrollListener;
 import com.thinkmobiles.easyerp.presentation.screens.crm.opportunities.details.OpportunityDetailsFragment_;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
@@ -20,8 +12,6 @@ import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EFragment;
-import org.androidannotations.annotations.ViewById;
-import org.androidannotations.annotations.res.StringRes;
 
 import java.util.ArrayList;
 

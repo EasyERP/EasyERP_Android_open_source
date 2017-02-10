@@ -2,10 +2,8 @@ package com.thinkmobiles.easyerp.presentation.screens.crm.persons.details;
 
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.support.v4.widget.NestedScrollView;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -24,8 +22,7 @@ import com.thinkmobiles.easyerp.domain.crm.PersonsRepository;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.AttachmentAdapter;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.HistoryAdapter;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.OpportunityAndLeadsAdapter;
-import com.thinkmobiles.easyerp.presentation.base.BaseFragment;
-import com.thinkmobiles.easyerp.presentation.base.RefreshFragment;
+import com.thinkmobiles.easyerp.presentation.base.rules.RefreshFragment;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.custom.transformations.CropCircleTransformation;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.AttachmentDH;
@@ -42,7 +39,6 @@ import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.FragmentArg;
 import org.androidannotations.annotations.ViewById;
-import org.androidannotations.annotations.res.DrawableRes;
 import org.androidannotations.annotations.res.StringRes;
 
 import java.util.ArrayList;
@@ -53,7 +49,7 @@ import java.util.concurrent.TimeUnit;
  */
 
 @EFragment
-public class PersonDetailsFragment extends RefreshFragment<HomeActivity> implements PersonDetailsContract.PersonDetailsView {
+public class PersonDetailsFragment extends RefreshFragment implements PersonDetailsContract.PersonDetailsView {
 
     @Override
     protected int getLayoutRes() {

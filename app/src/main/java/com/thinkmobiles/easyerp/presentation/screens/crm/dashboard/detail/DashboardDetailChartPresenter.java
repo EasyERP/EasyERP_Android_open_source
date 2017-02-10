@@ -4,8 +4,10 @@ package com.thinkmobiles.easyerp.presentation.screens.crm.dashboard.detail;
 import android.support.v4.util.Pair;
 
 import com.thinkmobiles.easyerp.data.model.crm.dashboard.DashboardListItem;
+import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.managers.DateManager;
 import com.thinkmobiles.easyerp.presentation.utils.AppDefaultStatesPreferences_;
+import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -55,7 +57,7 @@ public class DashboardDetailChartPresenter implements DashboardDetailChartContra
         view.displayHeader(workDashboardInfoForChart.name);
 
         if (chartData == null) {
-            view.changeProgressVisibilityState(true);
+            view.showProgress(Constants.ProgressType.CENTER);
             loadChartInfo();
         } else {
             view.displayChart(chartData, workDashboardInfoForChart.getChartType());
@@ -77,9 +79,12 @@ public class DashboardDetailChartPresenter implements DashboardDetailChartContra
                             workDashboardInfoForChart.getChartType(),
                             new DateManager.DateConverter(fromToFilter.first).setDstPattern(DateManager.PATTERN_DASHBOARD_BACKEND).toString(),
                             new DateManager.DateConverter(fromToFilter.second).setDstPattern(DateManager.PATTERN_DASHBOARD_BACKEND).toString())
-                            .subscribe(
-                                    result -> view.displayChart(chartData = result, workDashboardInfoForChart.getChartType()),
-                                    throwable -> view.displayError(throwable.getMessage())));
+                            .subscribe(result -> {
+                                view.showProgress(Constants.ProgressType.NONE);
+                                view.displayChart(chartData = result, workDashboardInfoForChart.getChartType());
+                            },throwable -> {
+                                view.displayErrorState(throwable.getMessage(), ErrorViewHelper.ErrorType.NETWORK);
+                            }));
     }
 
     @Override
@@ -97,7 +102,10 @@ public class DashboardDetailChartPresenter implements DashboardDetailChartContra
 
         if (this.dateFilterType.equals(DateFilterType.CUSTOM_DATES))
             view.chooseCustomDateRangeFromTo(fromToPair.first, fromToPair.second);
-        else view.reloadData();
+        else {
+            view.showProgress(Constants.ProgressType.CENTER);
+            loadChartInfo();
+        }
     }
 
     @Override
@@ -111,7 +119,9 @@ public class DashboardDetailChartPresenter implements DashboardDetailChartContra
                 .apply();
 
         view.displayDateFilterFromTo(getDateFromToString(getFromToFilterDate()));
-        view.reloadData();
+
+        view.showProgress(Constants.ProgressType.CENTER);
+        loadChartInfo();
     }
 
     private String getDateFromToString(final Pair<Calendar, Calendar> fromToPair) {

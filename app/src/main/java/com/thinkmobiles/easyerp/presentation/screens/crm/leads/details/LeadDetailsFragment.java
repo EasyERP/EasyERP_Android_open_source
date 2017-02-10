@@ -1,17 +1,13 @@
 package com.thinkmobiles.easyerp.presentation.screens.crm.leads.details;
 
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.graphics.ColorUtils;
 import android.support.v4.widget.NestedScrollView;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.Html;
-import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -27,8 +23,7 @@ import com.thinkmobiles.easyerp.data.model.crm.leads.TagItem;
 import com.thinkmobiles.easyerp.domain.crm.LeadsRepository;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.AttachmentAdapter;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.HistoryAdapter;
-import com.thinkmobiles.easyerp.presentation.base.BaseFragment;
-import com.thinkmobiles.easyerp.presentation.base.RefreshFragment;
+import com.thinkmobiles.easyerp.presentation.base.rules.RefreshFragment;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.custom.RoundRectDrawable;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.AttachmentDH;
@@ -44,14 +39,13 @@ import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.FragmentArg;
 import org.androidannotations.annotations.ViewById;
-import org.androidannotations.annotations.res.DrawableRes;
 
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
 
 @EFragment
-public class LeadDetailsFragment extends RefreshFragment<HomeActivity> implements LeadDetailsContract.LeadDetailsView {
+public class LeadDetailsFragment extends RefreshFragment implements LeadDetailsContract.LeadDetailsView {
 
     @Override
     protected int getLayoutRes() {

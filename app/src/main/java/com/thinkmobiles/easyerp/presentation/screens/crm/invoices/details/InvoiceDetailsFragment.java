@@ -1,17 +1,13 @@
 package com.thinkmobiles.easyerp.presentation.screens.crm.invoices.details;
 
-import android.graphics.drawable.Drawable;
 import android.support.v4.widget.NestedScrollView;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.jakewharton.rxbinding.view.RxView;
 import com.thinkmobiles.easyerp.R;
@@ -19,8 +15,7 @@ import com.thinkmobiles.easyerp.domain.crm.InvoiceRepository;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.HistoryAdapter;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.InvoicePaymentAdapter;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.ProductAdapter;
-import com.thinkmobiles.easyerp.presentation.base.BaseFragment;
-import com.thinkmobiles.easyerp.presentation.base.RefreshFragment;
+import com.thinkmobiles.easyerp.presentation.base.rules.RefreshFragment;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.HistoryDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.InvoicePaymentDH;
@@ -36,7 +31,6 @@ import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.FragmentArg;
 import org.androidannotations.annotations.ViewById;
-import org.androidannotations.annotations.res.DrawableRes;
 
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
@@ -48,7 +42,7 @@ import java.util.concurrent.TimeUnit;
  */
 
 @EFragment
-public class InvoiceDetailsFragment extends RefreshFragment<HomeActivity> implements InvoiceDetailsContract.InvoiceDetailsView {
+public class InvoiceDetailsFragment extends RefreshFragment implements InvoiceDetailsContract.InvoiceDetailsView {
 
     @Override
     protected int getLayoutRes() {

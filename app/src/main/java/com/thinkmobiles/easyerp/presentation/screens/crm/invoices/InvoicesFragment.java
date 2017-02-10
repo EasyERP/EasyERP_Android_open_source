@@ -2,7 +2,7 @@ package com.thinkmobiles.easyerp.presentation.screens.crm.invoices;
 
 import com.thinkmobiles.easyerp.domain.crm.InvoiceRepository;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.InvoicesAdapter;
-import com.thinkmobiles.easyerp.presentation.base.ListRefreshFragment;
+import com.thinkmobiles.easyerp.presentation.base.rules.ListRefreshFragment;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.InvoiceDH;
 import com.thinkmobiles.easyerp.presentation.screens.crm.invoices.details.InvoiceDetailsFragment_;

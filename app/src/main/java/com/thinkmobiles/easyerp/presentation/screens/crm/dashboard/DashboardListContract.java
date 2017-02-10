@@ -7,6 +7,7 @@ import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectableBasePresenter;
 import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectableBaseView;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.DashboardListDH;
+import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,8 +22,9 @@ public interface DashboardListContract {
     interface DashboardListView extends MasterFlowSelectableBaseView<DashboardListPresenter> {
         void displayDashboardChartsList(ArrayList<DashboardListDH> listDashboards);
         void openDashboardChartDetail(final DashboardListItem itemChartDashboard);
-        void displayError(final String msg, final ErrorViewHelper.ErrorType errorType);
-        void showProgress(final boolean isShow);
+        void displayErrorState(final String msg, final ErrorViewHelper.ErrorType errorType);
+        void displayErrorToast(final String msg);
+        void showProgress(Constants.ProgressType type);
     }
     interface DashboardListPresenter extends MasterFlowSelectableBasePresenter<String, DashboardListDH> {
         void loadDashboardChartsList();

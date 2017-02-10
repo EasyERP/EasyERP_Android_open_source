@@ -1,11 +1,10 @@
-package com.thinkmobiles.easyerp.presentation.base;
+package com.thinkmobiles.easyerp.presentation.base.rules;
 
 import android.support.annotation.CallSuper;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.thinkmobiles.easyerp.R;
-import com.thinkmobiles.easyerp.presentation.listeners.EndlessRecyclerViewScrollListener;
 import com.thinkmobiles.easyerp.presentation.listeners.EndlessScrollListener;
 import com.thinkmobiles.easyerp.presentation.screens.home.HomeActivity;
 
@@ -20,7 +19,7 @@ import org.androidannotations.annotations.ViewById;
  */
 
 @EFragment
-public abstract class ListRefreshFragment extends RefreshFragment<HomeActivity> {
+public abstract class ListRefreshFragment extends RefreshFragment {
 
     @Override
     protected int getLayoutRes() {

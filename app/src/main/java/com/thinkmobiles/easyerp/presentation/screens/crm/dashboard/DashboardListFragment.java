@@ -1,32 +1,28 @@
 package com.thinkmobiles.easyerp.presentation.screens.crm.dashboard;
 
 import android.support.v7.widget.LinearLayoutManager;
-import android.view.View;
-import android.widget.Toast;
 
-import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.data.model.crm.dashboard.DashboardListItem;
 import com.thinkmobiles.easyerp.domain.crm.DashboardRepository;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.DashboardListAdapter;
+import com.thinkmobiles.easyerp.presentation.base.rules.ListRefreshFragment;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
-import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowListFragment;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.DashboardListDH;
 import com.thinkmobiles.easyerp.presentation.screens.crm.dashboard.detail.DashboardDetailChartFragment_;
+import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EFragment;
-import org.androidannotations.annotations.ViewById;
-import org.androidannotations.annotations.res.StringRes;
 
 import java.util.ArrayList;
 
 /**
  * @author michael.soyma@thinkmobiles.com (Created on 1/18/2017.)
  */
-@EFragment(R.layout.fragment_simple_list_with_swipe_refresh)
-public class DashboardListFragment extends MasterFlowListFragment implements DashboardListContract.DashboardListView {
+@EFragment
+public class DashboardListFragment extends ListRefreshFragment implements DashboardListContract.DashboardListView {
 
     private DashboardListContract.DashboardListPresenter presenter;
 
@@ -34,14 +30,6 @@ public class DashboardListFragment extends MasterFlowListFragment implements Das
     protected DashboardRepository dashboardRepository;
     @Bean
     protected DashboardListAdapter dashboardListAdapter;
-    @Bean
-    protected ErrorViewHelper errorViewHelper;
-
-    @StringRes(R.string.list_is_empty)
-    protected String string_list_is_empty;
-
-    @ViewById(R.id.llErrorLayout)
-    protected View errorLayout;
 
     @AfterInject
     @Override
@@ -56,7 +44,6 @@ public class DashboardListFragment extends MasterFlowListFragment implements Das
 
     @AfterViews
     protected void initUI() {
-        errorViewHelper.init(errorLayout, view -> presenter.subscribe());
         listRecycler.setLayoutManager(new LinearLayoutManager(mActivity, LinearLayoutManager.VERTICAL, false));
         listRecycler.setAdapter(dashboardListAdapter);
         dashboardListAdapter.setOnCardClickListener((view, position, viewType) -> presenter.selectItem(dashboardListAdapter.getItem(position), position));
@@ -75,19 +62,24 @@ public class DashboardListFragment extends MasterFlowListFragment implements Das
     }
 
     @Override
-    public void onRefresh() {
-        errorViewHelper.hideError();
+    protected void onLoadNextPage() {
+
+    }
+
+    @Override
+    protected void onRetry() {
+        presenter.subscribe();
+    }
+
+    @Override
+    public void onRefreshData() {
+        super.onRefreshData();
         presenter.loadDashboardChartsList();
     }
 
     @Override
     public void displayDashboardChartsList(ArrayList<DashboardListDH> listDashboards) {
-        showProgress(false);
-        swipeContainer.setRefreshing(false);
         dashboardListAdapter.setListDH(listDashboards);
-
-        if (getCountItemsNow() == 0)
-            displayError(null, ErrorViewHelper.ErrorType.LIST_EMPTY);
     }
 
     @Override
@@ -102,20 +94,18 @@ public class DashboardListFragment extends MasterFlowListFragment implements Das
     }
 
     @Override
-    public void displayError(String msg, ErrorViewHelper.ErrorType errorType) {
-        displayProgress(false);
-        swipeContainer.setRefreshing(false);
-
-        final String resultMsg = errorType.equals(ErrorViewHelper.ErrorType.LIST_EMPTY) ? string_list_is_empty : msg;
-        if (getCountItemsNow() == 0)
-            errorViewHelper.showErrorMsg(resultMsg, errorType);
-        else Toast.makeText(mActivity, resultMsg, Toast.LENGTH_LONG).show();
+    public void displayErrorState(String msg, ErrorViewHelper.ErrorType errorType) {
+        showErrorState(msg, errorType);
     }
 
     @Override
-    public void showProgress(boolean isShow) {
-        errorViewHelper.hideError();
-        displayProgress(isShow);
+    public void displayErrorToast(String msg) {
+        showErrorToast(msg);
+    }
+
+    @Override
+    public void showProgress(Constants.ProgressType type) {
+        showProgressBar(type);
     }
 
     @Override

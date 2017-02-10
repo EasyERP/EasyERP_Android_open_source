@@ -1,4 +1,4 @@
-package com.thinkmobiles.easyerp.presentation.base;
+package com.thinkmobiles.easyerp.presentation.base.rules;
 
 import android.os.Bundle;
 import android.support.annotation.DrawableRes;
@@ -17,7 +17,10 @@ import android.widget.Toast;
 
 import com.jakewharton.rxbinding.view.RxView;
 import com.thinkmobiles.easyerp.R;
+import com.thinkmobiles.easyerp.presentation.base.BaseFragment;
+import com.thinkmobiles.easyerp.presentation.base.BaseMasterFlowActivity;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
+import com.thinkmobiles.easyerp.presentation.screens.home.HomeActivity;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
 import org.androidannotations.annotations.AfterViews;
@@ -33,7 +36,7 @@ import java.util.concurrent.TimeUnit;
  *         Email: alex.michenko@thinkmobiles.com
  */
 @EFragment
-public abstract class RefreshFragment<T extends BaseMasterFlowActivity> extends BaseFragment<T> {
+public abstract class RefreshFragment extends BaseFragment<HomeActivity> {
 
     @ViewById
     protected SwipeRefreshLayout srlHolderRefresh;

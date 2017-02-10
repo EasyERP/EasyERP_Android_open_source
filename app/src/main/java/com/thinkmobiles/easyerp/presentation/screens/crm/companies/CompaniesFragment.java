@@ -6,7 +6,7 @@ import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.data.model.crm.common.alphabet.AlphabetItem;
 import com.thinkmobiles.easyerp.domain.crm.CompaniesRepository;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.CompaniesAdapter;
-import com.thinkmobiles.easyerp.presentation.base.ListRefreshFragment;
+import com.thinkmobiles.easyerp.presentation.base.rules.ListRefreshFragment;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.custom.views.alphabet_view.AlphabetView;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.CompanyDH;

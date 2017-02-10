@@ -5,7 +5,7 @@ import android.widget.TextView;
 import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.data.model.crm.payments.Payment;
 import com.thinkmobiles.easyerp.domain.crm.PaymentsRepository;
-import com.thinkmobiles.easyerp.presentation.base.RefreshFragment;
+import com.thinkmobiles.easyerp.presentation.base.rules.RefreshFragment;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.screens.home.HomeActivity;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
@@ -24,7 +24,7 @@ import org.androidannotations.annotations.ViewById;
  */
 
 @EFragment
-public class PaymentDetailsFragment extends RefreshFragment<HomeActivity> implements PaymentDetailsContract.PaymentDetailsView {
+public class PaymentDetailsFragment extends RefreshFragment implements PaymentDetailsContract.PaymentDetailsView {
 
     @Override
     protected int getLayoutRes() {

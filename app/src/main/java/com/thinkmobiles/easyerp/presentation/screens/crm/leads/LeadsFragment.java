@@ -2,29 +2,23 @@ package com.thinkmobiles.easyerp.presentation.screens.crm.leads;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v7.widget.AppCompatAutoCompleteTextView;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
 import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.domain.crm.LeadsRepository;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.LeadsAdapter;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.SearchAdapter;
-import com.thinkmobiles.easyerp.presentation.base.ListRefreshFragment;
+import com.thinkmobiles.easyerp.presentation.base.rules.ListRefreshFragment;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
-import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowListFragment;
 import com.thinkmobiles.easyerp.presentation.dialogs.FilterDialogFragment;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.FilterDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.LeadDH;
-import com.thinkmobiles.easyerp.presentation.listeners.EndlessRecyclerViewScrollListener;
 import com.thinkmobiles.easyerp.presentation.screens.crm.leads.details.LeadDetailsFragment_;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
@@ -35,7 +29,6 @@ import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.OptionsItem;
 import org.androidannotations.annotations.ViewById;
-import org.androidannotations.annotations.res.StringRes;
 
 import java.util.ArrayList;
 

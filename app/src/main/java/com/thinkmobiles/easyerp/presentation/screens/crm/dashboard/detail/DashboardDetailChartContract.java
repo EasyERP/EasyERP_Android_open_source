@@ -5,6 +5,8 @@ import com.thinkmobiles.easyerp.data.model.crm.dashboard.detail.DashboardChartTy
 import com.thinkmobiles.easyerp.presentation.base.BaseModel;
 import com.thinkmobiles.easyerp.presentation.base.BasePresenter;
 import com.thinkmobiles.easyerp.presentation.base.BaseView;
+import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
+import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
 import java.util.Calendar;
 
@@ -18,11 +20,11 @@ public interface DashboardDetailChartContract {
     interface DashboardDetailChartView extends BaseView<DashboardDetailChartPresenter> {
         void displayHeader(final String title);
         void displayChart(final Object data, final DashboardChartType chartType);
-        void displayError(final String msg);
         void displayDateFilterFromTo(final String fromToDate);
         void chooseCustomDateRangeFromTo(final Calendar dateFrom, final Calendar dateTo);
-        void reloadData();
-        void changeProgressVisibilityState(final boolean isShow);
+        void displayErrorState(final String msg, ErrorViewHelper.ErrorType errorType);
+        void displayErrorToast(String msg);
+        void showProgress(Constants.ProgressType type);
     }
     interface DashboardDetailChartPresenter extends BasePresenter {
         void chooseFilterType(final DateFilterType dateFilterType);

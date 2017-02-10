@@ -14,7 +14,7 @@ import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.domain.crm.OrderRepository;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.HistoryAdapter;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.ProductAdapter;
-import com.thinkmobiles.easyerp.presentation.base.RefreshFragment;
+import com.thinkmobiles.easyerp.presentation.base.rules.RefreshFragment;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.HistoryDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.ProductDH;
@@ -35,7 +35,7 @@ import java.util.concurrent.TimeUnit;
 
 
 @EFragment
-public class OrderDetailsFragment extends RefreshFragment<HomeActivity> implements OrderDetailsContract.OrderDetailsView {
+public class OrderDetailsFragment extends RefreshFragment implements OrderDetailsContract.OrderDetailsView {
 
     @Override
     protected int getLayoutRes() {
