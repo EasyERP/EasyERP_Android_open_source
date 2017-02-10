@@ -26,8 +26,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="top"
                 android:layout_marginEnd="@dimen/default_padding_quart"
-                android:layout_marginTop="@dimen/default_padding_3dp"
-                tools:src="@drawable/ic_low_priority_20"/>
+                android:layout_marginTop="@dimen/default_padding_3dp"/>
 
             <TextView
                 android:id="@+id/tvLeadName_LIL"
