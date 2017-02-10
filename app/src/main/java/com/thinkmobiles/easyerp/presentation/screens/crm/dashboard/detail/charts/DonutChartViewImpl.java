@@ -50,11 +50,12 @@ public final class DonutChartViewImpl implements IChartView<PieData> {
 
         pieChart = new PieChart(parent.getContext());
         pieChart.setData(prepareData(data));
-        pieChart.setExtraOffsets(15, 15, 15, 15);
+        pieChart.setExtraOffsets(5, 15, 5, 15);
 
         pieChart.setDrawCenterText(true);
-        pieChart.setCenterTextSize(26);
-        pieChart.setCenterTextColor(ContextCompat.getColor(parent.getContext(), R.color.colorPrimary));
+        pieChart.setCenterTextSize(27);
+        pieChart.setCenterTextColor(ContextCompat.getColor(parent.getContext(), R.color.color_text_black));
+        pieChart.setCenterTextTypeface(Typeface.create("sans-serif-condensed", Typeface.NORMAL));
         pieChart.setCenterText(generateCenterSpannableText());
 
         pieChart.setEntryLabelTextSize(15);
@@ -63,19 +64,21 @@ public final class DonutChartViewImpl implements IChartView<PieData> {
         final Description description = pieChart.getDescription();
         description.setEnabled(false);
         description.setTextSize(15);
-        description.setTextColor(ContextCompat.getColor(parent.getContext(), R.color.colorPrimary));
+        description.setTextColor(ContextCompat.getColor(parent.getContext(), R.color.color_text_black));
         description.setTextAlign(Paint.Align.LEFT);
-        description.setTypeface(Typeface.DEFAULT_BOLD);
-        description.setPosition(0, 28);
+        description.setTypeface(Typeface.create("sans-serif-medium", Typeface.NORMAL));
+        description.setPosition(0, 16 * parent.getContext().getResources().getDisplayMetrics().density);
 
         Legend legend = pieChart.getLegend();
         legend.setVerticalAlignment(Legend.LegendVerticalAlignment.BOTTOM);
         legend.setHorizontalAlignment(Legend.LegendHorizontalAlignment.LEFT);
         legend.setOrientation(Legend.LegendOrientation.HORIZONTAL);
+        legend.setWordWrapEnabled(true);
         legend.setDrawInside(false);
-        legend.setTextColor(ContextCompat.getColor(parent.getContext(), R.color.colorPrimaryDark));
+        legend.setTypeface(Typeface.create("sans-serif-condensed", Typeface.NORMAL));
+        legend.setTextColor(ContextCompat.getColor(parent.getContext(), R.color.color_text_black));
         legend.setXEntrySpace(16);
-        legend.setTextSize(13);
+        legend.setTextSize(14);
 
         pieChart.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
             @Override
