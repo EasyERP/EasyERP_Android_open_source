@@ -172,7 +172,7 @@
         <item name="android:ellipsize">end</item>
     </style>
 
-    <style name="TextNoDataStyle" parent="RobotoMedium">
+    <style name="TextNoDataStyle" parent="RobotoRegular">
         <item name="android:text">@string/no_data</item>
         <item name="android:textColor">@color/color_text_gray</item>
         <item name="android:textSize">@dimen/text_list_item_medium_16</item>
