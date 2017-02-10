@@ -6,6 +6,7 @@ import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectableBasePresenter;
 import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectableBaseView;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.OrderDH;
+import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
 import java.util.ArrayList;
 
@@ -18,13 +19,15 @@ import rx.Observable;
 public interface OrdersContract {
     interface OrdersView extends MasterFlowSelectableBaseView<OrdersPresenter> {
         void displayOrders(ArrayList<OrderDH> orderDHs, boolean needClear);
-        void displayError(final String msg, final ErrorViewHelper.ErrorType errorType);
         void openOrderDetailsScreen(String orderID);
-        void showProgress(final boolean isShow);
+
+        void displayErrorState(final String msg, final ErrorViewHelper.ErrorType errorType);
+        void displayErrorToast(final String msg);
+        void showProgress(Constants.ProgressType type);
     }
     interface OrdersPresenter extends MasterFlowSelectableBasePresenter<String, OrderDH> {
-        void loadOrders(int page);
-        int getCurrentPage();
+        void refresh();
+        void loadNextPage();
     }
     interface OrdersModel extends BaseModel {
         Observable<ResponseGetOrders> getOrders(final int page);

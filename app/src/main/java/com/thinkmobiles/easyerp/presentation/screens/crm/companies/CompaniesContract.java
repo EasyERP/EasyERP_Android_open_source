@@ -9,6 +9,7 @@ import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectableBasePresenter;
 import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectableBaseView;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.CompanyDH;
+import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
 import java.util.ArrayList;
 
@@ -21,14 +22,18 @@ import rx.Observable;
 public interface CompaniesContract {
     interface CompaniesView extends MasterFlowSelectableBaseView<CompaniesPresenter> {
         void displayEnabledLetters(ArrayList<AlphabetItem> enabledAlphabetItems);
+        void displaySelectedLetter(String selectedLetter);
         void displayCompanies(ArrayList<CompanyDH> companyDHs, boolean needClear);
-        void displayError(final String msg, final ErrorViewHelper.ErrorType errorType);
         void openCompanyDetailsScreen(String companyID);
+
+        void displayErrorState(final String msg, final ErrorViewHelper.ErrorType errorType);
+        void displayErrorToast(final String msg);
+        void showProgress(Constants.ProgressType type);
     }
     interface CompaniesPresenter extends MasterFlowSelectableBasePresenter<String, CompanyDH> {
         void setLetter(String letter);
-        void loadAlphabet();
-        void loadMore(int page);
+        void refresh();
+        void loadNextPage();
     }
     interface CompaniesModel extends BaseModel {
         Observable<ResponseGetAlphabet> getCompaniesAlphabet();

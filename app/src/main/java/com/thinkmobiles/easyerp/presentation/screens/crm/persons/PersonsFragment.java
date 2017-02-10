@@ -1,28 +1,23 @@
 package com.thinkmobiles.easyerp.presentation.screens.crm.persons;
 
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.Toast;
 
 import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.data.model.crm.common.alphabet.AlphabetItem;
 import com.thinkmobiles.easyerp.domain.crm.PersonsRepository;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.PersonsAdapter;
+import com.thinkmobiles.easyerp.presentation.base.rules.ListRefreshFragment;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
-import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowListFragment;
-import com.thinkmobiles.easyerp.presentation.custom.views.alphabet_view.AlphabetListAdapter;
 import com.thinkmobiles.easyerp.presentation.custom.views.alphabet_view.AlphabetView;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.PersonDH;
-import com.thinkmobiles.easyerp.presentation.listeners.EndlessRecyclerViewScrollListener;
 import com.thinkmobiles.easyerp.presentation.screens.crm.persons.details.PersonDetailsFragment_;
+import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.ViewById;
-import org.androidannotations.annotations.res.StringRes;
 
 import java.util.ArrayList;
 
@@ -30,26 +25,23 @@ import java.util.ArrayList;
  * Created by Lynx on 1/20/2017.
  */
 
-@EFragment(R.layout.fragment_persons)
-public class PersonsFragment extends MasterFlowListFragment implements PersonsContract.PersonsView {
+@EFragment
+public class PersonsFragment extends ListRefreshFragment implements PersonsContract.PersonsView {
+
+    @Override
+    protected int getLayoutRes() {
+        return R.layout.fragment_list_with_alphabet;
+    }
 
     private PersonsContract.PersonsPresenter presenter;
-    private EndlessRecyclerViewScrollListener scrollListener;
 
     @ViewById
-    protected AlphabetView alphabetView_FP;
-    @StringRes(R.string.list_is_empty)
-    protected String string_list_is_empty;
-
-    @ViewById(R.id.llErrorLayout)
-    protected View errorLayout;
+    protected AlphabetView alphabetView;
 
     @Bean
     protected PersonsAdapter personsAdapter;
     @Bean
     protected PersonsRepository personsRepository;
-    @Bean
-    protected ErrorViewHelper errorViewHelper;
 
     @AfterInject
     @Override
@@ -59,81 +51,58 @@ public class PersonsFragment extends MasterFlowListFragment implements PersonsCo
 
     @AfterViews
     protected void initUI() {
-        errorViewHelper.init(errorLayout, view -> loadWithProgressBar());
-        LinearLayoutManager llm = new LinearLayoutManager(mActivity);
-
-        scrollListener = new EndlessRecyclerViewScrollListener(llm, presenter.getCurrentPage()) {
-            @Override
-            public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
-                displayProgress(true);
-                presenter.loadMore(page);
-            }
-        };
-
-        listRecycler.setLayoutManager(llm);
         listRecycler.setAdapter(personsAdapter);
-        listRecycler.addOnScrollListener(scrollListener);
-
-        alphabetView_FP.setListener(letter -> {
-            presenter.setLetter(letter);
-            presenter.loadMore(1);
-        });
-
-
         personsAdapter.setOnCardClickListener((view, position, viewType) -> presenter.selectItem(personsAdapter.getItem(position), position));
 
-        loadWithProgressBar();
-    }
+        alphabetView.setListener(letter -> presenter.setLetter(letter));
 
-    private void loadWithProgressBar() {
-        errorViewHelper.hideError();
-        showProgress(true);
         presenter.subscribe();
     }
 
     @Override
-    public void onRefresh() {
-        errorViewHelper.hideError();
-        scrollListener.resetState();
+    protected void onLoadNextPage() {
+        presenter.loadNextPage();
+    }
+
+    @Override
+    protected void onRetry() {
+        presenter.subscribe();
+    }
+
+    @Override
+    public void onRefreshData() {
+        super.onRefreshData();
         presenter.refresh();
     }
 
     @Override
     public void displayEnabledLetters(ArrayList<AlphabetItem> enabledAlphabetItems) {
-        alphabetView_FP.setEnabledLetters(enabledAlphabetItems);
+        alphabetView.setEnabledLetters(enabledAlphabetItems);
     }
 
     @Override
     public void displaySelectedLetter(String selectedLetter) {
-        alphabetView_FP.selectLetterWithoutListener(selectedLetter);
+        alphabetView.selectLetterWithoutListener(selectedLetter);
     }
 
     @Override
     public void displayPersons(ArrayList<PersonDH> personDHs, boolean needClear) {
-        showProgress(false);
-        alphabetView_FP.setVisibility(View.VISIBLE);
-        swipeContainer.setRefreshing(false);
-
-        if (needClear)
+        alphabetView.setVisibility(View.VISIBLE);
+        if (needClear) {
             personsAdapter.setListDH(personDHs);
-        else
+        } else {
             personsAdapter.addListDH(personDHs);
-
-        if (getCountItemsNow() == 0)
-            displayError(null, ErrorViewHelper.ErrorType.LIST_EMPTY);
+        }
     }
 
     @Override
-    public void displayError(String msg, ErrorViewHelper.ErrorType errorType) {
-        displayProgress(false);
-        swipeContainer.setRefreshing(false);
+    public void displayErrorState(String msg, ErrorViewHelper.ErrorType errorType) {
+        showErrorState(msg, errorType);
+    }
 
-        final String resultMsg = errorType.equals(ErrorViewHelper.ErrorType.LIST_EMPTY) ? string_list_is_empty : msg;
-        if (getCountItemsNow() == 0) {
-            alphabetView_FP.setVisibility(View.GONE);
-            errorViewHelper.showErrorMsg(resultMsg, errorType);
-        } else
-            Toast.makeText(mActivity, resultMsg, Toast.LENGTH_LONG).show();
+    @Override
+    public void displayErrorToast(String msg) {
+        showErrorToast(msg);
     }
 
     @Override
@@ -144,9 +113,8 @@ public class PersonsFragment extends MasterFlowListFragment implements PersonsCo
     }
 
     @Override
-    public void showProgress(boolean isShow) {
-        errorViewHelper.hideError();
-        displayProgress(isShow);
+    public void showProgress(Constants.ProgressType type) {
+        showProgressBar(type);
     }
 
     @Override
@@ -167,7 +135,7 @@ public class PersonsFragment extends MasterFlowListFragment implements PersonsCo
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        if (presenter != null) presenter.unsubscribe();
+        presenter.unsubscribe();
     }
 
     @Override

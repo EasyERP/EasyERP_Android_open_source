@@ -1,17 +1,13 @@
 package com.thinkmobiles.easyerp.presentation.screens.crm.invoices.details;
 
-import android.graphics.drawable.Drawable;
 import android.support.v4.widget.NestedScrollView;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.jakewharton.rxbinding.view.RxView;
 import com.thinkmobiles.easyerp.R;
@@ -19,7 +15,7 @@ import com.thinkmobiles.easyerp.domain.crm.InvoiceRepository;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.HistoryAdapter;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.InvoicePaymentAdapter;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.ProductAdapter;
-import com.thinkmobiles.easyerp.presentation.base.BaseFragment;
+import com.thinkmobiles.easyerp.presentation.base.rules.RefreshFragment;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.HistoryDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.InvoicePaymentDH;
@@ -35,7 +31,6 @@ import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.FragmentArg;
 import org.androidannotations.annotations.ViewById;
-import org.androidannotations.annotations.res.DrawableRes;
 
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
@@ -46,15 +41,17 @@ import java.util.concurrent.TimeUnit;
  *         Email: alex.michenko@thinkmobiles.com
  */
 
-@EFragment(R.layout.fragment_invoice_details)
-public class InvoiceDetailsFragment extends BaseFragment<HomeActivity> implements InvoiceDetailsContract.InvoiceDetailsView {
+@EFragment
+public class InvoiceDetailsFragment extends RefreshFragment implements InvoiceDetailsContract.InvoiceDetailsView {
 
+    @Override
+    protected int getLayoutRes() {
+        return R.layout.fragment_invoice_details;
+    }
 
     @FragmentArg
     protected String invoiceId;
 
-    @ViewById
-    protected SwipeRefreshLayout srlRefresh_FID;
     @ViewById
     protected NestedScrollView nsvContent_FID;
     @ViewById
@@ -107,13 +104,6 @@ public class InvoiceDetailsFragment extends BaseFragment<HomeActivity> implement
     protected ImageView ivIconArrow;
     @ViewById
     protected RecyclerView rvHistory;
-    @ViewById
-    protected LinearLayout llErrorLayout;
-
-    @DrawableRes(R.drawable.ic_arrow_up)
-    protected Drawable icArrowUp;
-    @DrawableRes(R.drawable.ic_arrow_down)
-    protected Drawable icArrowDown;
 
     @Bean
     protected InvoiceRepository invoiceRepository;
@@ -123,8 +113,6 @@ public class InvoiceDetailsFragment extends BaseFragment<HomeActivity> implement
     protected ProductAdapter productAdapter;
     @Bean
     protected InvoicePaymentAdapter paymentAdapter;
-    @Bean
-    protected ErrorViewHelper errorViewHelper;
     @Bean
     protected HistoryAnimationHelper animationHelper;
 
@@ -138,8 +126,6 @@ public class InvoiceDetailsFragment extends BaseFragment<HomeActivity> implement
 
     @AfterViews
     protected void initUI() {
-        errorViewHelper.init(llErrorLayout, v -> presenter.subscribe());
-
         rvHistory.setAdapter(historyAdapter);
         rvHistory.setLayoutManager(new LinearLayoutManager(getActivity()));
 
@@ -154,11 +140,19 @@ public class InvoiceDetailsFragment extends BaseFragment<HomeActivity> implement
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
                 .subscribe(aVoid -> presenter.changeNotesVisibility());
 
-        srlRefresh_FID.setOnRefreshListener(() -> presenter.refresh());
-
         animationHelper.init(ivIconArrow, rvHistory);
 
         presenter.subscribe();
+    }
+
+    @Override
+    protected void onRetry() {
+        presenter.subscribe();
+    }
+
+    @Override
+    protected void onRefreshData() {
+        presenter.refresh();
     }
 
     @Override
@@ -174,17 +168,8 @@ public class InvoiceDetailsFragment extends BaseFragment<HomeActivity> implement
     }
 
     @Override
-    public void showProgress(boolean enable) {
-        if (enable) {
-            errorViewHelper.hideError();
-            displayProgress(true);
-            srlRefresh_FID.setVisibility(View.GONE);
-            srlRefresh_FID.setRefreshing(false);
-        } else {
-            displayProgress(false);
-            srlRefresh_FID.setVisibility(View.VISIBLE);
-            srlRefresh_FID.setRefreshing(false);
-        }
+    public void showProgress(Constants.ProgressType type) {
+        showProgressBar(type);
     }
 
     @Override
@@ -301,12 +286,12 @@ public class InvoiceDetailsFragment extends BaseFragment<HomeActivity> implement
     }
 
     @Override
-    public void showError(String errorMessage, ErrorViewHelper.ErrorType errorType) {
-        errorViewHelper.showErrorMsg(errorMessage, errorType);
+    public void displayErrorState(String msg, ErrorViewHelper.ErrorType errorType) {
+        showErrorState(msg, errorType);
     }
 
     @Override
-    public void showMessage(String errorMessage) {
-        Toast.makeText(getActivity(), errorMessage, Toast.LENGTH_SHORT).show();
+    public void displayErrorToast(String msg) {
+        showErrorToast(msg);
     }
 }

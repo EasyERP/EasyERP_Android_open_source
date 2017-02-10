@@ -15,11 +15,13 @@ import com.thinkmobiles.easyerp.data.model.crm.dashboard.detail.DashboardChartTy
 import com.thinkmobiles.easyerp.domain.crm.DashboardRepository;
 import com.thinkmobiles.easyerp.presentation.base.BaseFragment;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
+import com.thinkmobiles.easyerp.presentation.base.rules.RefreshFragment;
 import com.thinkmobiles.easyerp.presentation.screens.crm.dashboard.detail.DashboardDetailChartContract.DashboardDetailChartView;
 import com.thinkmobiles.easyerp.presentation.screens.crm.dashboard.detail.charts.ChartViewFabric;
 import com.thinkmobiles.easyerp.presentation.screens.crm.dashboard.detail.charts.IChartView;
 import com.thinkmobiles.easyerp.presentation.screens.home.HomeActivity;
 import com.thinkmobiles.easyerp.presentation.utils.AppDefaultStatesPreferences_;
+import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterViews;
@@ -36,8 +38,13 @@ import java.util.GregorianCalendar;
 /**
  * @author michael.soyma@thinkmobiles.com (Created on 1/20/2017.)
  */
-@EFragment(R.layout.fragment_dashboard_chart_detail)
-public class DashboardDetailChartFragment extends BaseFragment<HomeActivity> implements DashboardDetailChartView {
+@EFragment
+public class DashboardDetailChartFragment extends RefreshFragment implements DashboardDetailChartView {
+
+    @Override
+    protected int getLayoutRes() {
+        return R.layout.fragment_dashboard_chart_detail;
+    }
 
     private DashboardDetailChartContract.DashboardDetailChartPresenter presenter;
 
@@ -49,21 +56,12 @@ public class DashboardDetailChartFragment extends BaseFragment<HomeActivity> imp
     @FragmentArg
     protected DashboardListItem dashboardConfigsForChart;
 
-    @ViewById(R.id.llErrorLayout)
-    protected View errorLayout;
-    @ViewById
-    protected SwipeRefreshLayout swipeContainer;
     @ViewById(R.id.flContainerChart_FDCD)
     protected FrameLayout containerChart;
     @ViewById(R.id.tvTitleDashboardDetail_FDCD)
     protected TextView titleDashboardChart;
     @ViewById(R.id.tvPreviewDateFilterDates_FDCD)
     protected TextView previewDateFilterDates;
-
-    @ColorRes
-    protected int colorPrimary;
-    @ColorRes
-    protected int colorPrimaryDark;
 
     @Pref
     protected AppDefaultStatesPreferences_ appDefaultStatesPreferences;
@@ -77,28 +75,17 @@ public class DashboardDetailChartFragment extends BaseFragment<HomeActivity> imp
 
     @AfterViews
     protected void initUI() {
-        swipeContainer.setColorSchemeColors(colorPrimary, colorPrimaryDark);
-        swipeContainer.setOnRefreshListener(() -> loadChartInfo(false));
-        errorViewHelper.init(errorLayout, view -> loadChartInfo(true));
-
         presenter.subscribe();
     }
 
-    private void loadChartInfo(boolean withProgress) {
-        changeProgressVisibilityState(withProgress);
-        presenter.loadChartInfo();
+    @Override
+    protected void onRetry() {
+        presenter.subscribe();
     }
 
     @Override
-    public void changeProgressVisibilityState(final boolean isShow) {
-        errorViewHelper.hideError();
-        if (isShow) {
-            containerChart.setVisibility(View.INVISIBLE);
-            displayProgress(true);
-        } else {
-            displayProgress(false);
-            containerChart.setVisibility(View.VISIBLE);
-        }
+    protected void onRefreshData() {
+        presenter.loadChartInfo();
     }
 
     @Override
@@ -113,22 +100,10 @@ public class DashboardDetailChartFragment extends BaseFragment<HomeActivity> imp
 
     @Override
     public void displayChart(Object data, DashboardChartType chartType) {
-        swipeContainer.setRefreshing(false);
-        changeProgressVisibilityState(false);
 
         IChartView chartView = ChartViewFabric.implementByChartType(chartType);
         if (chartView != null)
             chartView.render(containerChart, data);
-    }
-
-    @Override
-    public void displayError(String msg) {
-        swipeContainer.setRefreshing(false);
-        displayProgress(false);
-
-        if (containerChart.getVisibility() == View.VISIBLE)
-            Toast.makeText(mActivity, msg, Toast.LENGTH_LONG).show();
-        else errorViewHelper.showErrorMsg(msg, ErrorViewHelper.ErrorType.NETWORK);
     }
 
     @Override
@@ -151,8 +126,18 @@ public class DashboardDetailChartFragment extends BaseFragment<HomeActivity> imp
     }
 
     @Override
-    public void reloadData() {
-        loadChartInfo(true);
+    public void displayErrorState(String msg, ErrorViewHelper.ErrorType errorType) {
+        showErrorState(msg, errorType);
+    }
+
+    @Override
+    public void displayErrorToast(String msg) {
+        showErrorToast(msg);
+    }
+
+    @Override
+    public void showProgress(Constants.ProgressType type) {
+        showProgressBar(type);
     }
 
     @Override

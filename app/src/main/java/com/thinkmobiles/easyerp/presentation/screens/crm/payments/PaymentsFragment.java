@@ -1,26 +1,18 @@
 package com.thinkmobiles.easyerp.presentation.screens.crm.payments;
 
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.view.View;
-import android.widget.Toast;
-
-import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.data.model.crm.payments.Payment;
 import com.thinkmobiles.easyerp.domain.crm.PaymentsRepository;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.PaymentsAdapter;
+import com.thinkmobiles.easyerp.presentation.base.rules.ListRefreshFragment;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
-import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowListFragment;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.PaymentDH;
-import com.thinkmobiles.easyerp.presentation.listeners.EndlessRecyclerViewScrollListener;
 import com.thinkmobiles.easyerp.presentation.screens.crm.payments.details.PaymentDetailsFragment_;
+import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EFragment;
-import org.androidannotations.annotations.ViewById;
-import org.androidannotations.annotations.res.StringRes;
 
 import java.util.ArrayList;
 
@@ -29,25 +21,16 @@ import java.util.ArrayList;
  *         Company: Thinkmobiles
  *         Email: michael.soyma@thinkmobiles.com
  */
-@EFragment(R.layout.fragment_simple_list_with_swipe_refresh)
-public class PaymentsFragment extends MasterFlowListFragment implements PaymentsContract.PaymentsView {
+
+@EFragment
+public class PaymentsFragment extends ListRefreshFragment implements PaymentsContract.PaymentsView {
 
     private PaymentsContract.PaymentsPresenter presenter;
-    private EndlessRecyclerViewScrollListener scrollListener;
-    private LinearLayoutManager recyclerLayoutManager;
 
     @Bean
     protected PaymentsRepository paymentsRepository;
     @Bean
     protected PaymentsAdapter paymentsAdapter;
-    @Bean
-    protected ErrorViewHelper errorViewHelper;
-
-    @StringRes(R.string.list_is_empty)
-    protected String string_list_is_empty;
-
-    @ViewById(R.id.llErrorLayout)
-    protected View errorLayout;
 
     @AfterInject
     @Override
@@ -62,29 +45,26 @@ public class PaymentsFragment extends MasterFlowListFragment implements Payments
 
     @AfterViews
     protected void initUI() {
-        errorViewHelper.init(errorLayout, view -> presenter.subscribe());
-
-        recyclerLayoutManager = new LinearLayoutManager(mActivity);
-        scrollListener = new EndlessRecyclerViewScrollListener(recyclerLayoutManager) {
-            @Override
-            public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
-                displayProgress(true);
-                presenter.loadPayments(page);
-            }
-        };
-        listRecycler.setLayoutManager(recyclerLayoutManager);
         listRecycler.setAdapter(paymentsAdapter);
-        listRecycler.addOnScrollListener(scrollListener);
         paymentsAdapter.setOnCardClickListener((view, position, viewType) -> presenter.selectItem(paymentsAdapter.getItem(position), position));
 
         presenter.subscribe();
     }
 
     @Override
-    public void onRefresh() {
-        errorViewHelper.hideError();
-        scrollListener.resetState();
+    protected void onRetry() {
         presenter.subscribe();
+    }
+
+    @Override
+    protected void onRefreshData() {
+        super.onRefreshData();
+        presenter.refresh();
+    }
+
+    @Override
+    protected void onLoadNextPage() {
+        presenter.loadNextPage();
     }
 
     @Override
@@ -99,26 +79,21 @@ public class PaymentsFragment extends MasterFlowListFragment implements Payments
 
     @Override
     public void displayPayments(ArrayList<PaymentDH> paymentDHs, boolean needClear) {
-        showProgress(false);
-        swipeContainer.setRefreshing(false);
-
-        if (needClear)
+        if (needClear) {
             paymentsAdapter.setListDH(paymentDHs);
-        else paymentsAdapter.addListDH(paymentDHs);
-
-        if (getCountItemsNow() == 0)
-            displayError(null, ErrorViewHelper.ErrorType.LIST_EMPTY);
+        } else {
+            paymentsAdapter.addListDH(paymentDHs);
+        }
     }
 
     @Override
-    public void displayError(String msg, ErrorViewHelper.ErrorType errorType) {
-        displayProgress(false);
-        swipeContainer.setRefreshing(false);
+    public void displayErrorState(String msg, ErrorViewHelper.ErrorType errorType) {
+        showErrorState(msg, errorType);
+    }
 
-        final String resultMsg = errorType.equals(ErrorViewHelper.ErrorType.LIST_EMPTY) ? string_list_is_empty : msg;
-        if (getCountItemsNow() == 0)
-            errorViewHelper.showErrorMsg(resultMsg, errorType);
-        else Toast.makeText(mActivity, resultMsg, Toast.LENGTH_LONG).show();
+    @Override
+    public void displayErrorToast(String msg) {
+        showErrorToast(msg);
     }
 
     @Override
@@ -133,9 +108,8 @@ public class PaymentsFragment extends MasterFlowListFragment implements Payments
     }
 
     @Override
-    public void showProgress(boolean isShow) {
-        errorViewHelper.hideError();
-        displayProgress(isShow);
+    public void showProgress(Constants.ProgressType type) {
+        showProgressBar(type);
     }
 
     @Override

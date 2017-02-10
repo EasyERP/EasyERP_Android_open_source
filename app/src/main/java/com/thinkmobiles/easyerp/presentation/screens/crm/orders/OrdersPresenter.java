@@ -4,6 +4,7 @@ import com.thinkmobiles.easyerp.data.model.crm.order.Order;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectablePresenterHelper;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.OrderDH;
+import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +24,7 @@ public class OrdersPresenter extends MasterFlowSelectablePresenterHelper<String,
     private CompositeSubscription compositeSubscription;
 
     private int currentPage = 1;
+    private int totalItems;
     private ArrayList<Order> orders = new ArrayList<>();
 
     public OrdersPresenter(OrdersContract.OrdersView view, OrdersContract.OrdersModel model) {
@@ -36,9 +38,23 @@ public class OrdersPresenter extends MasterFlowSelectablePresenterHelper<String,
     @Override
     public void subscribe() {
         if (orders.size() == 0) {
-            view.showProgress(true);
-            loadOrders(1);
+            view.showProgress(Constants.ProgressType.CENTER);
+            refresh();
         } else view.displayOrders(prepareOrderDHs(orders, true), true);
+    }
+
+    @Override
+    public void refresh() {
+        loadOrders(1);
+    }
+
+    @Override
+    public void loadNextPage() {
+        if(view.getCountItemsNow() == totalItems) {
+            return;
+        }
+        view.showProgress(Constants.ProgressType.BOTTOM);
+        loadOrders(currentPage + 1);
     }
 
     @Override
@@ -47,26 +63,36 @@ public class OrdersPresenter extends MasterFlowSelectablePresenterHelper<String,
             compositeSubscription.clear();
     }
 
-    @Override
     public void loadOrders(int page) {
         final boolean needClear = page == 1;
         compositeSubscription.add(
                 model.getOrders(page).subscribe(
                         responseGetOrders -> {
                             currentPage = page;
-                            if (needClear)
-                                orders.clear();
-                            orders.addAll(responseGetOrders.data);
-                            view.displayOrders(prepareOrderDHs(responseGetOrders.data, needClear), needClear);
+                            totalItems = responseGetOrders.total;
+                            saveData(responseGetOrders.data, needClear);
+                            if (orders.isEmpty()) {
+                                view.displayErrorState(null, ErrorViewHelper.ErrorType.LIST_EMPTY);
+                            } else {
+                                view.showProgress(Constants.ProgressType.NONE);
+                                view.displayOrders(prepareOrderDHs(responseGetOrders.data, needClear), needClear);
+                            }
                         },
-                        throwable -> view.displayError(throwable.getMessage(), ErrorViewHelper.ErrorType.NETWORK)
+                        throwable -> {
+                            if (orders.isEmpty()) {
+                                view.displayErrorState(throwable.getMessage(), ErrorViewHelper.ErrorType.NETWORK);
+                            } else {
+                                view.displayErrorToast(throwable.getMessage());
+                            }
+                        }
                 )
         );
     }
 
-    @Override
-    public int getCurrentPage() {
-        return currentPage;
+    private void saveData(final List<Order> orders, boolean needClear) {
+        if (needClear)
+            this.orders.clear();
+        this.orders.addAll(orders);
     }
 
     @Override

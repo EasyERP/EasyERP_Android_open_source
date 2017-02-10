@@ -1,55 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:background="@android:color/white">
 
-    <com.thinkmobiles.easyerp.presentation.custom.views.CustomSwipeRefreshLayout
-        android:id="@+id/swipeContainer"
+    <LinearLayout
+        android:id="@+id/llHeaderChartsDetail_FDCD"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_accent_divider_for_header"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="@dimen/default_padding">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@android:color/white">
+        <TextView
+            android:id="@+id/tvTitleDashboardDetail_FDCD"
+            style="@style/TextDetailsTitleStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            tools:text="Costs by Sales Manager" />
 
-            <LinearLayout
-                android:id="@+id/llHeaderChartsDetail_FDCD"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/bg_accent_divider_for_header"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:padding="@dimen/default_padding">
+        <TextView
+            android:id="@+id/tvPreviewDateFilterDates_FDCD"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/text_grey_hint_color"
+            tools:text="01, Jan 2017 - 31, Jan 2017" />
 
-                <TextView
-                    android:id="@+id/tvTitleDashboardDetail_FDCD"
-                    style="@style/TextDetailsTitleStyle"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    tools:text="Costs by Sales Manager" />
+    </LinearLayout>
 
-                <TextView
-                    android:id="@+id/tvPreviewDateFilterDates_FDCD"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/text_grey_hint_color"
-                    tools:text="01, Jan 2017 - 31, Jan 2017" />
+    <FrameLayout
+        android:id="@+id/flContainerChart_FDCD"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/llHeaderChartsDetail_FDCD"
+        android:padding="@dimen/default_padding" />
 
-            </LinearLayout>
-
-            <FrameLayout
-                android:id="@+id/flContainerChart_FDCD"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_below="@id/llHeaderChartsDetail_FDCD"
-                android:padding="@dimen/default_padding" />
-
-        </RelativeLayout>
-    </com.thinkmobiles.easyerp.presentation.custom.views.CustomSwipeRefreshLayout>
-
-    <include layout="@layout/view_error_with_holder_icon" />
-
-</FrameLayout>
+</RelativeLayout>

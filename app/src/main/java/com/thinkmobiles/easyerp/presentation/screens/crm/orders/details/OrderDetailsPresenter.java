@@ -13,6 +13,7 @@ import com.thinkmobiles.easyerp.presentation.holders.data.crm.HistoryDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.ProductDH;
 import com.thinkmobiles.easyerp.presentation.managers.DateManager;
 import com.thinkmobiles.easyerp.presentation.screens.crm.dashboard.detail.charts.DollarFormatter;
+import com.thinkmobiles.easyerp.presentation.utils.Constants;
 import com.thinkmobiles.easyerp.presentation.utils.StringUtil;
 
 import java.text.DecimalFormat;
@@ -56,15 +57,14 @@ public class OrderDetailsPresenter implements OrderDetailsContract.OrderDetailsP
     public void refresh() {
         compositeSubscription.add(model.getOrderDetails(orderId)
                 .subscribe(responseGerOrderDetails -> {
-                    view.showProgress(false);
+                    view.showProgress(Constants.ProgressType.NONE);
                     setData(responseGerOrderDetails);
                 }, t -> {
-                    view.showProgress(false);
                     t.printStackTrace();
                     if (currentOrder == null) {
-                        view.showError(t.getMessage(), ErrorViewHelper.ErrorType.NETWORK);
+                        view.displayErrorState(t.getMessage(), ErrorViewHelper.ErrorType.NETWORK);
                     } else {
-                        view.showMessage(t.getMessage());
+                        view.displayErrorToast(t.getMessage());
                     }
                 }));
     }
@@ -72,19 +72,38 @@ public class OrderDetailsPresenter implements OrderDetailsContract.OrderDetailsP
     private void getOrganizationSettings() {
         compositeSubscription.add(model.getOrganizationSettings()
                 .subscribe(responseGetOrganizationSettings -> {
-                    organizationSettings = responseGetOrganizationSettings.data;
-
-                }, Throwable::printStackTrace));
+                    setOrgData(responseGetOrganizationSettings.data);
+                }, t -> {
+                    t.printStackTrace();
+                    view.displayErrorToast(t.getMessage());
+                }));
     }
 
     @Override
     public void subscribe() {
         if (currentOrder == null) {
-            view.showProgress(true);
+            view.showProgress(Constants.ProgressType.CENTER);
             refresh();
             getOrganizationSettings();
         } else {
             setData(currentOrder);
+            setOrgData(organizationSettings);
+        }
+    }
+
+    private void setOrgData(OrganizationSettings response) {
+        organizationSettings = response;
+
+        if (organizationSettings != null) {
+            view.setCompanyName(organizationSettings.name);
+            if (organizationSettings.address != null)
+                view.setCompanyAddress(StringUtil.getAddress(organizationSettings.address));
+
+            view.setOwnerName(organizationSettings.contactName);
+            view.setOwnerSite(organizationSettings.website);
+            if (organizationSettings.contact != null)
+                view.setOwnerEmail(organizationSettings.contact.email);
+            view.setAdvice(String.format("Payment should be made by bank transfer or check made payable to %s", organizationSettings.contactName.toUpperCase()));
         }
     }
 
@@ -114,18 +133,6 @@ public class OrderDetailsPresenter implements OrderDetailsContract.OrderDetailsP
             view.setBankAddress(response.paymentMethod.address);
             view.setBankIBAN(response.paymentMethod.account);
             view.setSwiftCode(response.paymentMethod.swiftCode);
-        }
-
-        if (organizationSettings != null) {
-            view.setCompanyName(organizationSettings.name);
-            if (organizationSettings.address != null)
-                view.setCompanyAddress(StringUtil.getAddress(organizationSettings.address));
-
-            view.setOwnerName(organizationSettings.contactName);
-            view.setOwnerSite(organizationSettings.website);
-            if (organizationSettings.contact != null)
-                view.setOwnerEmail(organizationSettings.contact.email);
-            view.setAdvice(String.format("Payment should be made by bank transfer or check made payable to %s", organizationSettings.contactName.toUpperCase()));
         }
 
         if (response.attachments != null && !response.attachments.isEmpty()) {

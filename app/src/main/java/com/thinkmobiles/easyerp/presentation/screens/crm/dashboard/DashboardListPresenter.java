@@ -4,6 +4,7 @@ import com.thinkmobiles.easyerp.data.model.crm.dashboard.DashboardListItem;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectablePresenterHelper;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.DashboardListDH;
+import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,7 +34,7 @@ public class DashboardListPresenter extends MasterFlowSelectablePresenterHelper<
     @Override
     public void subscribe() {
         if (charts.size() == 0) {
-            view.showProgress(true);
+            view.showProgress(Constants.ProgressType.CENTER);
             loadDashboardChartsList();
         } else view.displayDashboardChartsList(prepareDashboardDHs(charts, true));
     }
@@ -48,9 +49,21 @@ public class DashboardListPresenter extends MasterFlowSelectablePresenterHelper<
     public void loadDashboardChartsList() {
         compositeSubscription.add(
                 model.getDashboardListCharts()
-                        .subscribe(
-                                getCRMDashboardCharts -> view.displayDashboardChartsList(prepareDashboardDHs(charts = getCRMDashboardCharts.get(0).charts, true)),
-                                t -> view.displayError(t.getMessage(), ErrorViewHelper.ErrorType.NETWORK))
+                        .subscribe(getCRMDashboardCharts -> {
+                            charts = getCRMDashboardCharts.get(0).charts;
+                            if (charts.isEmpty()) {
+                                view.displayErrorState(null, ErrorViewHelper.ErrorType.LIST_EMPTY);
+                            } else {
+                                view.showProgress(Constants.ProgressType.NONE);
+                                view.displayDashboardChartsList(prepareDashboardDHs(charts, true));
+                            }
+                        }, t -> {
+                            if (charts.isEmpty()) {
+                                view.displayErrorState(t.getMessage(), ErrorViewHelper.ErrorType.NETWORK);
+                            } else {
+                                view.displayErrorToast(t.getMessage());
+                            }
+                        })
         );
     }
 

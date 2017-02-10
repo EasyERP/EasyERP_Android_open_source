@@ -12,7 +12,7 @@ import android.view.Menu;
 
 import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.presentation.EasyErpApplication;
-import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowListFragment;
+import com.thinkmobiles.easyerp.presentation.base.rules.ListRefreshFragment;
 import com.thinkmobiles.easyerp.presentation.managers.CookieManager;
 
 import org.androidannotations.annotations.AfterInject;
@@ -29,7 +29,8 @@ import org.androidannotations.annotations.res.StringRes;
  * @author michael.soyma@thinkmobiles.com (Created on 1/17/2017.)
  */
 @EActivity
-public abstract class BaseMasterFlowActivity extends AppCompatActivity {
+public abstract class
+BaseMasterFlowActivity extends AppCompatActivity {
 
     @Bean
     protected CookieManager cookieManager;
@@ -161,8 +162,12 @@ public abstract class BaseMasterFlowActivity extends AppCompatActivity {
 
     private void sendEventClearSelectedItem() {
         final Fragment fragment = getFragmentManager().findFragmentById(contentIdLayout());
-        if (fragment != null && fragment instanceof MasterFlowListFragment)
-            ((MasterFlowListFragment) fragment).clearSelectedItem();
+        if (fragment != null) {
+            if (fragment instanceof ListRefreshFragment) {
+                ((ListRefreshFragment) fragment).clearSelectedItem();
+            }
+        }
+
     }
 
     @OptionsItem(android.R.id.home)

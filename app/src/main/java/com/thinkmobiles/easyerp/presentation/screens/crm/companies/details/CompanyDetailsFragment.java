@@ -2,10 +2,8 @@ package com.thinkmobiles.easyerp.presentation.screens.crm.companies.details;
 
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.support.v4.widget.NestedScrollView;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -25,7 +23,7 @@ import com.thinkmobiles.easyerp.domain.crm.CompaniesRepository;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.ContactsAdapter;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.HistoryAdapter;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.OpportunityAndLeadsAdapter;
-import com.thinkmobiles.easyerp.presentation.base.BaseFragment;
+import com.thinkmobiles.easyerp.presentation.base.rules.RefreshFragment;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.custom.transformations.CropCircleTransformation;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.ContactDH;
@@ -42,7 +40,6 @@ import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.FragmentArg;
 import org.androidannotations.annotations.ViewById;
-import org.androidannotations.annotations.res.DrawableRes;
 
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
@@ -51,8 +48,13 @@ import java.util.concurrent.TimeUnit;
  * Created by Lynx on 2/2/2017.
  */
 
-@EFragment(R.layout.fragment_company_details)
-public class CompanyDetailsFragment extends BaseFragment<HomeActivity> implements CompanyDetailsContract.CompanyDetailsView {
+@EFragment
+public class CompanyDetailsFragment extends RefreshFragment implements CompanyDetailsContract.CompanyDetailsView {
+
+    @Override
+    protected int getLayoutRes() {
+        return R.layout.fragment_company_details;
+    }
 
     private CompanyDetailsContract.CompanyDetailsPresenter presenter;
 
@@ -60,10 +62,6 @@ public class CompanyDetailsFragment extends BaseFragment<HomeActivity> implement
     protected String companyID;
 
     //region View inject
-    @ViewById(R.id.llErrorLayout)
-    protected View errorLayout;
-    @ViewById
-    protected SwipeRefreshLayout srlRefresh_FCD;
     @ViewById
     protected NestedScrollView nsvContent_FCD;
     @ViewById
@@ -140,13 +138,6 @@ public class CompanyDetailsFragment extends BaseFragment<HomeActivity> implement
     protected RecyclerView rvHistory;
     //endregion
 
-    @DrawableRes(R.drawable.ic_arrow_up)
-    protected Drawable icArrowUp;
-    @DrawableRes(R.drawable.ic_arrow_down)
-    protected Drawable icArrowDown;
-
-    @Bean
-    protected ErrorViewHelper errorViewHelper;
     @Bean
     protected HistoryAdapter historyAdapter;
     @Bean
@@ -166,9 +157,6 @@ public class CompanyDetailsFragment extends BaseFragment<HomeActivity> implement
 
     @AfterViews
     protected void initUI() {
-        errorViewHelper.init(errorLayout, v -> presenter.refresh());
-
-        srlRefresh_FCD.setOnRefreshListener(() -> presenter.refresh());
         rvHistory.setLayoutManager(new LinearLayoutManager(getActivity()));
         rvHistory.setAdapter(historyAdapter);
 
@@ -187,23 +175,20 @@ public class CompanyDetailsFragment extends BaseFragment<HomeActivity> implement
         presenter.subscribe();
     }
 
-    //region Set data
     @Override
-    protected boolean needProgress() {
-        return true;
+    protected void onRetry() {
+        presenter.subscribe();
     }
 
     @Override
-    public void showProgress(boolean enable) {
-        if (enable) {
-            displayProgress(true);
-            srlRefresh_FCD.setVisibility(View.GONE);
-            srlRefresh_FCD.setRefreshing(false);
-        } else {
-            displayProgress(false);
-            srlRefresh_FCD.setVisibility(View.VISIBLE);
-            srlRefresh_FCD.setRefreshing(false);
-        }
+    protected void onRefreshData() {
+        presenter.refresh();
+    }
+    //region Set data
+
+    @Override
+    public void showProgress(Constants.ProgressType type) {
+        showProgressBar(type);
     }
 
     @Override
@@ -216,19 +201,13 @@ public class CompanyDetailsFragment extends BaseFragment<HomeActivity> implement
     }
 
     @Override
-    public void displayError(String msg) {
-        if(msg == null) errorViewHelper.hideError();
-        else {
-            srlRefresh_FCD.setRefreshing(false);
-            displayProgress(false);
-            srlRefresh_FCD.setVisibility(View.GONE);
-            errorViewHelper.showErrorMsg(msg, ErrorViewHelper.ErrorType.NETWORK);
-        }
+    public void displayErrorToast(String msg) {
+        showErrorToast(msg);
     }
 
     @Override
-    public void showMessage(String message) {
-        Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
+    public void displayErrorState(String msg, ErrorViewHelper.ErrorType errorType) {
+        showErrorState(msg, errorType);
     }
 
     @Override

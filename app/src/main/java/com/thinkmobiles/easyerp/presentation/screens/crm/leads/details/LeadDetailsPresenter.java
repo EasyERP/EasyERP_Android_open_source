@@ -7,6 +7,7 @@ import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.data.model.crm.leads.detail.AttachmentItem;
 import com.thinkmobiles.easyerp.data.model.crm.leads.detail.ResponseGetLeadDetails;
 import com.thinkmobiles.easyerp.presentation.EasyErpApplication;
+import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.AttachmentDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.HistoryDH;
 import com.thinkmobiles.easyerp.presentation.managers.DateManager;
@@ -52,14 +53,12 @@ public class LeadDetailsPresenter implements LeadDetailsContract.LeadDetailsPres
                 .subscribe(responseGetLeadDetails -> {
                     currentLead = responseGetLeadDetails;
                     setData(currentLead);
-                    view.showProgress(false);
-                    view.showError(null);
+                    view.showProgress(Constants.ProgressType.NONE);
                 }, throwable -> {
-                    view.showProgress(false);
-                    if(currentLead != null && currentLead._id.equalsIgnoreCase(leadId))
-                        view.showMessage(throwable.getMessage());
+                    if(currentLead != null)
+                        view.displayErrorToast(throwable.getMessage());
                     else
-                        view.showError(throwable.getMessage());
+                        view.displayErrorState(throwable.getMessage(), ErrorViewHelper.ErrorType.NETWORK);
                 }));
     }
 
@@ -81,7 +80,7 @@ public class LeadDetailsPresenter implements LeadDetailsContract.LeadDetailsPres
     @Override
     public void subscribe() {
         if (currentLead == null) {
-            view.showProgress(true);
+            view.showProgress(Constants.ProgressType.CENTER);
             refresh();
         } else {
             setData(currentLead);

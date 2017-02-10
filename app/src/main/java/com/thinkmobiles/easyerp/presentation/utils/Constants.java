@@ -86,4 +86,8 @@ public abstract class Constants {
         FIELD_EMPTY,
         FIELD_INVALID
     }
+
+    public enum ProgressType {
+        CENTER, BOTTOM, NONE
+    }
 }

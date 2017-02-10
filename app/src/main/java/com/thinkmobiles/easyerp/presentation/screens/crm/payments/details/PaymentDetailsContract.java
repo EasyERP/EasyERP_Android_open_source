@@ -5,6 +5,7 @@ import com.thinkmobiles.easyerp.presentation.base.BaseModel;
 import com.thinkmobiles.easyerp.presentation.base.BasePresenter;
 import com.thinkmobiles.easyerp.presentation.base.BaseView;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
+import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
 import rx.Observable;
 
@@ -17,8 +18,7 @@ import rx.Observable;
 public interface PaymentDetailsContract {
 
     interface PaymentDetailsView extends BaseView<PaymentDetailsPresenter> {
-
-        void showProgress(boolean enable);
+        void showProgress(Constants.ProgressType type);
 
         void setPaymentStatus(String paymentStatus);
         void setCompanyName(String companyName);
@@ -36,7 +36,7 @@ public interface PaymentDetailsContract {
         void setOwnerEmail(String ownerEmail);
         void setAdvice(String advice);
 
-        void showError(String errorMessage, ErrorViewHelper.ErrorType errorType);
+        void displayErrorState(String errorMessage, ErrorViewHelper.ErrorType errorType);
     }
 
     interface PaymentDetailsPresenter extends BasePresenter {

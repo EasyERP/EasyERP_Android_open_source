@@ -24,6 +24,7 @@ public interface InvoiceService {
             @Query("filter[date][value][1]") final String filterDateValueTo,
             @Query("forSales") final boolean forSales,
             @Query("viewType") final String viewType,
+            @Query("page") final int page,
             @Query("count") final int count,
             @Query("sort[invoiceDate]") final Integer sort,
             @Query("contentType") final String contentType);

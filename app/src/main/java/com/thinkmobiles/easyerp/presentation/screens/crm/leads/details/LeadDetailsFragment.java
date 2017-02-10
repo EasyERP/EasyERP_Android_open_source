@@ -1,17 +1,13 @@
 package com.thinkmobiles.easyerp.presentation.screens.crm.leads.details;
 
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.graphics.ColorUtils;
 import android.support.v4.widget.NestedScrollView;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.Html;
-import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -27,7 +23,7 @@ import com.thinkmobiles.easyerp.data.model.crm.leads.TagItem;
 import com.thinkmobiles.easyerp.domain.crm.LeadsRepository;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.AttachmentAdapter;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.HistoryAdapter;
-import com.thinkmobiles.easyerp.presentation.base.BaseFragment;
+import com.thinkmobiles.easyerp.presentation.base.rules.RefreshFragment;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.custom.RoundRectDrawable;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.AttachmentDH;
@@ -43,14 +39,18 @@ import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.FragmentArg;
 import org.androidannotations.annotations.ViewById;
-import org.androidannotations.annotations.res.DrawableRes;
 
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
 
-@EFragment(R.layout.fragment_lead_details)
-public class LeadDetailsFragment extends BaseFragment<HomeActivity> implements LeadDetailsContract.LeadDetailsView {
+@EFragment
+public class LeadDetailsFragment extends RefreshFragment implements LeadDetailsContract.LeadDetailsView {
+
+    @Override
+    protected int getLayoutRes() {
+        return R.layout.fragment_lead_details;
+    }
 
     private LeadDetailsContract.LeadDetailsPresenter presenter;
 
@@ -68,13 +68,8 @@ public class LeadDetailsFragment extends BaseFragment<HomeActivity> implements L
     @FragmentArg
     protected String leadId;
 
-    //region Views inject
-    @ViewById(R.id.llErrorLayout)
-    protected View errorLayout;
     @ViewById
     protected LinearLayout llMainContent_FLD;
-    @ViewById
-    protected SwipeRefreshLayout srlRefresh_FLD;
     @ViewById
     protected NestedScrollView nsvContent_FLD;
     @ViewById
@@ -144,16 +139,8 @@ public class LeadDetailsFragment extends BaseFragment<HomeActivity> implements L
     protected LinearLayout llContainerCompanyInfo_FLD;
     //endregion
 
-    @DrawableRes(R.drawable.ic_arrow_up)
-    protected Drawable icArrowUp;
-    @DrawableRes(R.drawable.ic_arrow_down)
-    protected Drawable icArrowDown;
-
     @AfterViews
     protected void initUI() {
-        errorViewHelper.init(errorLayout, v -> presenter.refresh());
-
-        srlRefresh_FLD.setOnRefreshListener(() -> presenter.refresh());
         rvHistory.setLayoutManager(new LinearLayoutManager(getActivity()));
         rvHistory.setAdapter(historyAdapter);
 
@@ -193,16 +180,18 @@ public class LeadDetailsFragment extends BaseFragment<HomeActivity> implements L
     }
 
     @Override
-    public void showProgress(boolean enable) {
-        if(enable) {
-            displayProgress(true);
-            srlRefresh_FLD.setVisibility(View.GONE);
-            srlRefresh_FLD.setRefreshing(false);
-        } else {
-            displayProgress(false);
-            srlRefresh_FLD.setVisibility(View.VISIBLE);
-            srlRefresh_FLD.setRefreshing(false);
-        }
+    protected void onRetry() {
+        presenter.subscribe();
+    }
+
+    @Override
+    protected void onRefreshData() {
+        presenter.refresh();
+    }
+
+    @Override
+    public void showProgress(Constants.ProgressType type) {
+        showProgressBar(type);
     }
 
     @Override
@@ -319,7 +308,6 @@ public class LeadDetailsFragment extends BaseFragment<HomeActivity> implements L
 
     @Override
     public void showHistory(boolean enable) {
-
         if (enable && rvHistory.getVisibility() == View.GONE) {
             animationHelper.forward(nsvContent_FLD.getHeight());
         }
@@ -328,17 +316,12 @@ public class LeadDetailsFragment extends BaseFragment<HomeActivity> implements L
     }
 
     @Override
-    public void showError(String errMsg) {
-        if(errMsg == null) {
-            errorViewHelper.hideError();
-        } else {
-            errorViewHelper.showErrorMsg(errMsg, ErrorViewHelper.ErrorType.NETWORK);
-        }
-        llMainContent_FLD.setVisibility(errMsg == null ? View.VISIBLE : View.GONE);
+    public void displayErrorState(String errMsg, ErrorViewHelper.ErrorType errorType) {
+        showErrorState(errMsg, errorType);
     }
 
     @Override
-    public void showMessage(String message) {
+    public void displayErrorToast(String message) {
         Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
     }
 

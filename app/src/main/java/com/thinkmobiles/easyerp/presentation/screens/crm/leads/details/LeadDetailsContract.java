@@ -8,8 +8,10 @@ import com.thinkmobiles.easyerp.data.model.crm.leads.detail.ResponseGetLeadDetai
 import com.thinkmobiles.easyerp.presentation.base.BaseModel;
 import com.thinkmobiles.easyerp.presentation.base.BasePresenter;
 import com.thinkmobiles.easyerp.presentation.base.BaseView;
+import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.AttachmentDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.HistoryDH;
+import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
 import java.util.ArrayList;
 
@@ -18,10 +20,10 @@ import rx.Observable;
 public interface LeadDetailsContract {
 
     interface LeadDetailsView extends BaseView<LeadDetailsPresenter> {
-        void showProgress(boolean enable);
+        void showProgress(Constants.ProgressType type);
         void showHistory(boolean enable);
-        void showError(String errMsg);
-        void showMessage(String message);
+        void displayErrorState(String errMsg, ErrorViewHelper.ErrorType errorType);
+        void displayErrorToast(String message);
 
         void showContacts(boolean isShown);
         void showCompany(boolean isShown);

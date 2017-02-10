@@ -10,6 +10,7 @@ import com.thinkmobiles.easyerp.data.model.crm.persons.person_item.PersonModel;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectablePresenterHelper;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.PersonDH;
+import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
 import java.util.ArrayList;
 
@@ -26,7 +27,8 @@ public class PersonsPresenter extends MasterFlowSelectablePresenterHelper<String
     private CompositeSubscription compositeSubscription;
 
     private String selectedLetter = "All";
-    private int page = 1;
+    private int currentPage = 1;
+    private int totalItems;
 
     private ArrayList<AlphabetItem> enabledAlphabetItems = new ArrayList<>();
     private CommonPersonsResponse personsResponse = null;
@@ -48,21 +50,25 @@ public class PersonsPresenter extends MasterFlowSelectablePresenterHelper<String
     @Override
     public void setLetter(String letter) {
         selectedLetter = letter;
+        view.showProgress(Constants.ProgressType.CENTER);
+        refresh();
     }
 
-    @Override
-    public void loadAlphabet() {
+    private void loadAlphabet() {
         compositeSubscription.add(
                 personsModel.getPersonsAlphabet()
                 .subscribe(responseGetPersonsAlphabet -> {
                     enabledAlphabetItems = responseGetPersonsAlphabet.data;
                     view.displayEnabledLetters(responseGetPersonsAlphabet.data);
-                }, t -> {})
+                    view.displaySelectedLetter(selectedLetter);
+                }, t -> {
+                    t.printStackTrace();
+                    view.displayErrorToast(t.getMessage());
+                })
         );
     }
 
-    @Override
-    public void loadMore(int page) {
+    private void loadMore(final int page) {
         final boolean needClear = page == 1;
         if(selectedLetter.equalsIgnoreCase("All")) {
             //load all
@@ -71,16 +77,8 @@ public class PersonsPresenter extends MasterFlowSelectablePresenterHelper<String
                            .flatMap(responseGetPersons -> personsModel.getPersonImages(prepareIDsForImagesRequest(responseGetPersons)),
                                    CommonPersonsResponse::new)
                            .subscribe(commonPersonsResponse -> {
-
-                               this.page = page;
-                               if(needClear) personsResponse = commonPersonsResponse;
-                               else if(personsResponse != null) {
-                                   personsResponse.responseGetCustomersImages.data.addAll(commonPersonsResponse.responseGetCustomersImages.data);
-                                   personsResponse.responseGetPersons.data.addAll(commonPersonsResponse.responseGetPersons.data);
-                               }
-
-                               view.displayPersons(prepareDataHolders(commonPersonsResponse, needClear), needClear);
-                           }, t -> view.displayError(t.getMessage(), ErrorViewHelper.ErrorType.NETWORK))
+                               setData(page, commonPersonsResponse, needClear);
+                           }, this::error)
            );
         } else {
             //load by letter
@@ -89,29 +87,44 @@ public class PersonsPresenter extends MasterFlowSelectablePresenterHelper<String
                             .flatMap(responseGetPersons -> personsModel.getPersonImages(prepareIDsForImagesRequest(responseGetPersons)),
                                     CommonPersonsResponse::new)
                             .subscribe(commonPersonsResponse -> {
-
-                                this.page = page;
-                                if(needClear) personsResponse = commonPersonsResponse;
-                                else if(personsResponse != null) {
-                                    personsResponse.responseGetCustomersImages.data.addAll(commonPersonsResponse.responseGetCustomersImages.data);
-                                    personsResponse.responseGetPersons.data.addAll(commonPersonsResponse.responseGetPersons.data);
-                                }
-
-                                view.displayPersons(prepareDataHolders(commonPersonsResponse, needClear), needClear);
-                            }, t -> view.displayError(t.getMessage(), ErrorViewHelper.ErrorType.NETWORK))
+                                setData(page, commonPersonsResponse, needClear);
+                            }, this::error)
             );
+        }
+    }
+
+    private void error(Throwable t) {
+        if (personsResponse == null) {
+            view.displayErrorState(t.getMessage(), ErrorViewHelper.ErrorType.NETWORK);
+        } else {
+            view.displayErrorToast(t.getMessage());
+        }
+    }
+
+    private void saveData(CommonPersonsResponse commonPersonsResponse, boolean needClear) {
+        if(needClear) personsResponse = commonPersonsResponse;
+        else if(personsResponse != null) {
+            personsResponse.responseGetCustomersImages.data.addAll(commonPersonsResponse.responseGetCustomersImages.data);
+            personsResponse.responseGetPersons.data.addAll(commonPersonsResponse.responseGetPersons.data);
+        }
+    }
+
+    private void setData(int page, CommonPersonsResponse commonPersonsResponse, boolean needClear) {
+        currentPage = page;
+        totalItems = commonPersonsResponse.responseGetPersons.total;
+        saveData(commonPersonsResponse, needClear);
+        if (personsResponse.responseGetPersons.data.isEmpty()) {
+            view.displayErrorState(null, ErrorViewHelper.ErrorType.LIST_EMPTY);
+        } else {
+            view.showProgress(Constants.ProgressType.NONE);
+            view.displayPersons(prepareDataHolders(commonPersonsResponse, needClear), needClear);
         }
     }
 
     @Override
     public void refresh() {
         loadAlphabet();
-        loadMore(page);
-    }
-
-    @Override
-    public int getCurrentPage() {
-        return page;
+        loadMore(1);
     }
 
     private ArrayList<PersonDH> prepareDataHolders(CommonPersonsResponse commonPersonsResponse, boolean needClear) {
@@ -140,18 +153,24 @@ public class PersonsPresenter extends MasterFlowSelectablePresenterHelper<String
     }
 
     @Override
-    public void subscribe() {
-        if(enabledAlphabetItems.isEmpty()) {
-            loadAlphabet();
-        } else {
-            view.displayEnabledLetters(enabledAlphabetItems);
-            if(!TextUtils.isEmpty(selectedLetter)) view.displaySelectedLetter(selectedLetter);
+    public void loadNextPage() {
+        if(view.getCountItemsNow() == totalItems) {
+            return;
         }
+        view.showProgress(Constants.ProgressType.BOTTOM);
+        loadMore(currentPage + 1);
+    }
 
+    @Override
+    public void subscribe() {
         if(personsResponse == null) {
-            view.showProgress(true);
-            loadMore(1);
+            view.showProgress(Constants.ProgressType.CENTER);
+            refresh();
         } else {
+            if (!enabledAlphabetItems.isEmpty()) {
+                view.displayEnabledLetters(enabledAlphabetItems);
+                if(!TextUtils.isEmpty(selectedLetter)) view.displaySelectedLetter(selectedLetter);
+            }
             view.displayPersons(prepareDataHolders(personsResponse, true), true);
         }
     }

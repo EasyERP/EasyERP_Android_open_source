@@ -1,16 +1,14 @@
 package com.thinkmobiles.easyerp.presentation.screens.crm.payments.details;
 
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.data.model.crm.payments.Payment;
 import com.thinkmobiles.easyerp.domain.crm.PaymentsRepository;
-import com.thinkmobiles.easyerp.presentation.base.BaseFragment;
+import com.thinkmobiles.easyerp.presentation.base.rules.RefreshFragment;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.screens.home.HomeActivity;
+import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterViews;
@@ -25,14 +23,17 @@ import org.androidannotations.annotations.ViewById;
  *         Email: alex.michenko@thinkmobiles.com
  */
 
-@EFragment(R.layout.fragment_payment_details)
-public class PaymentDetailsFragment extends BaseFragment<HomeActivity> implements PaymentDetailsContract.PaymentDetailsView {
+@EFragment
+public class PaymentDetailsFragment extends RefreshFragment implements PaymentDetailsContract.PaymentDetailsView {
+
+    @Override
+    protected int getLayoutRes() {
+        return R.layout.fragment_payment_details;
+    }
 
     @FragmentArg
     protected Payment payment;
 
-    @ViewById
-    protected SwipeRefreshLayout srlRefresh_FPD;
     @ViewById
     protected TextView tvPaymentStatus_FPD;
     @ViewById
@@ -63,13 +64,9 @@ public class PaymentDetailsFragment extends BaseFragment<HomeActivity> implement
     protected TextView tvOwnerEmail_FPD;
     @ViewById
     protected TextView tvAdvice_FPD;
-    @ViewById
-    protected LinearLayout llErrorLayout;
 
     private PaymentDetailsContract.PaymentDetailsPresenter presenter;
 
-    @Bean
-    protected ErrorViewHelper errorViewHelper;
     @Bean
     protected PaymentsRepository paymentsRepository;
 
@@ -81,11 +78,17 @@ public class PaymentDetailsFragment extends BaseFragment<HomeActivity> implement
 
     @AfterViews
     protected void initUI() {
-        errorViewHelper.init(llErrorLayout, v -> presenter.subscribe());
-
-        srlRefresh_FPD.setOnRefreshListener(() -> presenter.refresh());
-
         presenter.subscribe();
+    }
+
+    @Override
+    protected void onRetry() {
+        presenter.subscribe();
+    }
+
+    @Override
+    public void onRefreshData() {
+        presenter.refresh();
     }
 
     @Override
@@ -100,17 +103,8 @@ public class PaymentDetailsFragment extends BaseFragment<HomeActivity> implement
     }
 
     @Override
-    public void showProgress(boolean enable) {
-        if (enable) {
-            errorViewHelper.hideError();
-            displayProgress(true);
-            srlRefresh_FPD.setVisibility(View.GONE);
-            srlRefresh_FPD.setRefreshing(false);
-        } else {
-            displayProgress(false);
-            srlRefresh_FPD.setVisibility(View.VISIBLE);
-            srlRefresh_FPD.setRefreshing(false);
-        }
+    public void showProgress(Constants.ProgressType type) {
+        showProgressBar(type);
     }
 
     @Override
@@ -189,7 +183,12 @@ public class PaymentDetailsFragment extends BaseFragment<HomeActivity> implement
     }
 
     @Override
-    public void showError(String errorMessage, ErrorViewHelper.ErrorType errorType) {
-        errorViewHelper.showErrorMsg(errorMessage, errorType);
+    public void displayErrorState(String errorMessage, ErrorViewHelper.ErrorType errorType) {
+        showErrorState(errorMessage, errorType);
+    }
+
+    @Override
+    public boolean optionsMenuForDetail() {
+        return true;
     }
 }

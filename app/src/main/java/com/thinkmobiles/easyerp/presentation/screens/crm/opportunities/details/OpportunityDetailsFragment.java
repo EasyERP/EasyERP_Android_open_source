@@ -1,18 +1,13 @@
 package com.thinkmobiles.easyerp.presentation.screens.crm.opportunities.details;
 
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.graphics.ColorUtils;
 import android.support.v4.widget.NestedScrollView;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.Html;
-import android.text.SpannableStringBuilder;
-import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
@@ -20,7 +15,6 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.ismaeltoe.FlowLayout;
 import com.jakewharton.rxbinding.view.RxView;
@@ -29,7 +23,7 @@ import com.thinkmobiles.easyerp.data.model.crm.leads.TagItem;
 import com.thinkmobiles.easyerp.domain.crm.OpportunitiesRepository;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.AttachmentAdapter;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.HistoryAdapter;
-import com.thinkmobiles.easyerp.presentation.base.BaseFragment;
+import com.thinkmobiles.easyerp.presentation.base.rules.RefreshFragment;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.custom.RoundRectDrawable;
 import com.thinkmobiles.easyerp.presentation.custom.transformations.CropCircleTransformation;
@@ -47,7 +41,6 @@ import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.FragmentArg;
 import org.androidannotations.annotations.ViewById;
-import org.androidannotations.annotations.res.DrawableRes;
 
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
@@ -56,19 +49,19 @@ import java.util.concurrent.TimeUnit;
  * Created by Lynx on 2/1/2017.
  */
 
-@EFragment(R.layout.fragment_opportunity_details)
-public class OpportunityDetailsFragment extends BaseFragment<HomeActivity> implements OpportunityDetailsContract.OpportunityDetailsView {
+@EFragment
+public class OpportunityDetailsFragment extends RefreshFragment implements OpportunityDetailsContract.OpportunityDetailsView {
+
+    @Override
+    protected int getLayoutRes() {
+        return R.layout.fragment_opportunity_details;
+    }
 
     private OpportunityDetailsContract.OpportunityDetailsPresenter presenter;
 
     @FragmentArg
     protected String opportunityID;
 
-    //region View inject
-    @ViewById(R.id.llErrorLayout)
-    protected View errorLayout;
-    @ViewById
-    protected SwipeRefreshLayout srlRefresh_FOD;
     @ViewById
     protected LinearLayout llMainContent_FOD;
     @ViewById
@@ -135,8 +128,6 @@ public class OpportunityDetailsFragment extends BaseFragment<HomeActivity> imple
     //endregion
 
     @Bean
-    protected ErrorViewHelper errorViewHelper;
-    @Bean
     protected HistoryAdapter historyAdapter;
     @Bean
     protected OpportunitiesRepository opportunitiesRepository;
@@ -144,11 +135,6 @@ public class OpportunityDetailsFragment extends BaseFragment<HomeActivity> imple
     protected HistoryAnimationHelper animationHelper;
     @Bean
     protected AttachmentAdapter attachmentAdapter;
-
-    @DrawableRes(R.drawable.ic_arrow_up)
-    protected Drawable icArrowUp;
-    @DrawableRes(R.drawable.ic_arrow_down)
-    protected Drawable icArrowDown;
 
     @AfterInject
     @Override
@@ -158,9 +144,6 @@ public class OpportunityDetailsFragment extends BaseFragment<HomeActivity> imple
 
     @AfterViews
     protected void initUI() {
-        errorViewHelper.init(errorLayout, v -> presenter.refresh());
-
-        srlRefresh_FOD.setOnRefreshListener(() -> presenter.refresh());
         rvHistory.setLayoutManager(new LinearLayoutManager(getActivity()));
         rvHistory.setAdapter(historyAdapter);
 
@@ -178,16 +161,18 @@ public class OpportunityDetailsFragment extends BaseFragment<HomeActivity> imple
     }
 
     @Override
-    public void showProgress(boolean enable) {
-        if(enable) {
-            displayProgress(true);
-            srlRefresh_FOD.setVisibility(View.GONE);
-            srlRefresh_FOD.setRefreshing(false);
-        } else {
-            displayProgress(false);
-            srlRefresh_FOD.setVisibility(View.VISIBLE);
-            srlRefresh_FOD.setRefreshing(false);
-        }
+    protected void onRetry() {
+        presenter.subscribe();
+    }
+
+    @Override
+    protected void onRefreshData() {
+        presenter.refresh();
+    }
+
+    @Override
+    public void showProgress(Constants.ProgressType type) {
+        showProgressBar(type);
     }
 
     @Override
@@ -200,18 +185,13 @@ public class OpportunityDetailsFragment extends BaseFragment<HomeActivity> imple
     }
 
     @Override
-    public void showError(String errMsg) {
-        if(errMsg == null) {
-            errorViewHelper.hideError();
-        } else {
-            errorViewHelper.showErrorMsg(errMsg, ErrorViewHelper.ErrorType.NETWORK);
-        }
-        llMainContent_FOD.setVisibility(errMsg == null ? View.VISIBLE : View.GONE);
+    public void displayErrorState(String errMsg, ErrorViewHelper.ErrorType errorType) {
+        showErrorState(errMsg, errorType);
     }
 
     @Override
-    public void showMessage(String message) {
-        Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
+    public void displayErrorToast(String message) {
+        showErrorToast(message);
     }
 
     @Override
