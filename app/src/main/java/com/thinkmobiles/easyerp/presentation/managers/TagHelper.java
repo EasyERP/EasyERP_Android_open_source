@@ -145,13 +145,13 @@ public abstract class TagHelper {
             case OPPORTUNITY_IN_PROGRESS:
                 return R.color.color_status_in_progress;
             case OPPORTUNITY_PENDING:
-                return R.color.color_chips_grey;
+                return R.color.color_status_not_interested;
             case OPPORTUNITY_DONE:
                 return R.color.color_chips_green;
             case OPPORTUNITY_CANCELLED:
-                return R.color.color_chips_grey;
+                return R.color.color_status_do_not_contact;
             default:
-                return R.color.color_status_in_progress;
+                return R.color.color_status_do_not_contact;
         }
     }
 }
