@@ -5,9 +5,11 @@ import android.text.TextUtils;
 import com.thinkmobiles.easyerp.data.model.crm.companies.detail.ResponseGetCompanyDetails;
 import com.thinkmobiles.easyerp.data.model.crm.leads.detail.Customer;
 import com.thinkmobiles.easyerp.data.model.crm.persons.details.OpportunityItem;
+import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.ContactDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.HistoryDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.OpportunityAndLeadDH;
+import com.thinkmobiles.easyerp.presentation.utils.Constants;
 import com.thinkmobiles.easyerp.presentation.utils.StringUtil;
 
 import java.util.ArrayList;
@@ -49,22 +51,21 @@ public class CompanyDetailsPresenter implements CompanyDetailsContract.CompanyDe
         compositeSubscription.add(model.getCompanyDetails(companyID)
                 .subscribe(responseGetCompanyDetails -> {
                     currentData = responseGetCompanyDetails;
+                    view.showProgress(Constants.ProgressType.NONE);
                     setData(currentData);
-                    view.showProgress(false);
-                    view.displayError(null);
                 }, throwable -> {
-                    view.showProgress(false);
-                    if(currentData != null && currentData.id.equalsIgnoreCase(companyID))
-                        view.showMessage(throwable.getMessage());
-                    else
-                        view.displayError(throwable.getMessage());
+                    if(currentData != null) {
+                        view.displayErrorToast(throwable.getMessage());
+                    } else {
+                        view.displayErrorState(throwable.getMessage(), ErrorViewHelper.ErrorType.NETWORK);
+                    }
                 }));
     }
 
     @Override
     public void subscribe() {
         if (currentData == null) {
-            view.showProgress(true);
+            view.showProgress(Constants.ProgressType.CENTER);
             refresh();
         } else {
             setData(currentData);

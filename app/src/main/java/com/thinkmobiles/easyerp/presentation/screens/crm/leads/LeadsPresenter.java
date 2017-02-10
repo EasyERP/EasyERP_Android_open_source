@@ -1,7 +1,6 @@
 package com.thinkmobiles.easyerp.presentation.screens.crm.leads;
 
 import com.thinkmobiles.easyerp.data.model.crm.leads.LeadItem;
-import com.thinkmobiles.easyerp.data.model.crm.leads.ResponseGetLeads;
 import com.thinkmobiles.easyerp.data.model.crm.leads.filter.FilterItem;
 import com.thinkmobiles.easyerp.data.model.crm.leads.filter.ResponseGetLeadsFilters;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
@@ -48,41 +47,48 @@ public class LeadsPresenter extends MasterFlowSelectablePresenterHelper<String, 
     }
 
     @Override
-    public void loadNextPage(int page) {
+    public void loadNextPage() {
         if(view.getCountItemsNow() == totalItems) {
             return;
         }
-        view.showProgress(true);
-        loadLeads(page);
+        view.showProgress(Constants.ProgressType.BOTTOM);
+        loadLeads(currentPage + 1);
     }
 
     private void getFirstPage() {
-        view.showProgress(true);
+        view.showProgress(Constants.ProgressType.CENTER);
         refresh();
     }
 
     private void loadLeads(int page) {
-        final boolean isFirst = page == 1;
+        final boolean needClear = page == 1;
         compositeSubscription.add(
                 model.getFilteredLeads(queryBuilder.build(), page)
                         .subscribe(
                                 responseGetLeads -> {
                                     currentPage = page;
-                                    if(isFirst) leadItems.clear();
-                                    leadItems.addAll(responseGetLeads.data);
-
                                     totalItems = responseGetLeads.total;
-                                    view.showProgress(false);
-                                    if(isFirst && responseGetLeads.data.isEmpty()) {
-                                        view.showEmptyState();
+                                    saveData(responseGetLeads.data, needClear);
+                                    if(leadItems.isEmpty()) {
+                                        view.displayErrorState(null, ErrorViewHelper.ErrorType.LIST_EMPTY);
                                     } else {
-                                        view.displayLeads(prepareLeadDHs(responseGetLeads.data, isFirst), isFirst);
+                                        view.showProgress(Constants.ProgressType.NONE);
+                                        view.displayLeads(prepareLeadDHs(responseGetLeads.data, needClear), needClear);
                                     }
                                 }, t -> {
-                                    view.showProgress(false);
-                                    view.displayError(t.getMessage(), ErrorViewHelper.ErrorType.NETWORK);
+                                    if (leadItems.isEmpty()) {
+                                        view.displayErrorState(t.getMessage(), ErrorViewHelper.ErrorType.NETWORK);
+                                    } else {
+                                        view.displayErrorToast(t.getMessage());
+                                    }
                                 }
                         ));
+    }
+
+    private void saveData(ArrayList<LeadItem> leadItems, boolean needClear) {
+        if(needClear)
+            this.leadItems.clear();
+        this.leadItems.addAll(leadItems);
     }
 
     private void loadLeadsFilters() {
@@ -93,7 +99,7 @@ public class LeadsPresenter extends MasterFlowSelectablePresenterHelper<String, 
                     view.setContactNames(contactName);
                 }, t -> {
                     view.showFilters(false);
-                    view.displayError(t.getMessage(), ErrorViewHelper.ErrorType.NETWORK);
+                    view.displayErrorState(t.getMessage(), ErrorViewHelper.ErrorType.NETWORK);
                 }));
     }
 
@@ -122,11 +128,11 @@ public class LeadsPresenter extends MasterFlowSelectablePresenterHelper<String, 
 
     @Override
     public void refreshOptionMenu() {
-        filterList(contactName, queryBuilder.forContactName(), isVisible -> view.selectContactNameInFilters(isVisible));
-        filterList(workflow, queryBuilder.forWorkflow(), isVisible -> view.selectWorkflowInFilters(isVisible));
-        filterList(assignedTo, queryBuilder.forAssignedTo(), isVisible -> view.selectAssignedToInFilters(isVisible));
-        filterList(createdBy, queryBuilder.forCreatedBy(), isVisible -> view.selectCreatedByInFilters(isVisible));
-        filterList(source, queryBuilder.forSource(), isVisible -> view.selectSourceInFilters(isVisible));
+        view.selectContactNameInFilters(queryBuilder.forContactName().getValues() != null);
+        view.selectWorkflowInFilters(queryBuilder.forWorkflow().getValues() != null);
+        view.selectAssignedToInFilters(queryBuilder.forAssignedTo().getValues() != null);
+        view.selectCreatedByInFilters(queryBuilder.forCreatedBy().getValues() != null);
+        view.selectSourceInFilters(queryBuilder.forSource().getValues() != null);
     }
 
     @Override
@@ -178,11 +184,6 @@ public class LeadsPresenter extends MasterFlowSelectablePresenterHelper<String, 
         clearFilter(source, queryBuilder.forSource(), isVisible -> view.selectSourceInFilters(isVisible));
         view.setTextToSearch("");
         getFirstPage();
-    }
-
-    @Override
-    public int getCurrentPage() {
-        return currentPage;
     }
 
     @Override

@@ -22,6 +22,7 @@ import rx.Observable;
 public interface CompaniesContract {
     interface CompaniesView extends MasterFlowSelectableBaseView<CompaniesPresenter> {
         void displayEnabledLetters(ArrayList<AlphabetItem> enabledAlphabetItems);
+        void displaySelectedLetter(String selectedLetter);
         void displayCompanies(ArrayList<CompanyDH> companyDHs, boolean needClear);
         void openCompanyDetailsScreen(String companyID);
 

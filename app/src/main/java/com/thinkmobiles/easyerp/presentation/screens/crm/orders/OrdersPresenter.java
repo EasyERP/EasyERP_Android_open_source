@@ -24,6 +24,7 @@ public class OrdersPresenter extends MasterFlowSelectablePresenterHelper<String,
     private CompositeSubscription compositeSubscription;
 
     private int currentPage = 1;
+    private int totalItems;
     private ArrayList<Order> orders = new ArrayList<>();
 
     public OrdersPresenter(OrdersContract.OrdersView view, OrdersContract.OrdersModel model) {
@@ -49,6 +50,9 @@ public class OrdersPresenter extends MasterFlowSelectablePresenterHelper<String,
 
     @Override
     public void loadNextPage() {
+        if(view.getCountItemsNow() == totalItems) {
+            return;
+        }
         view.showProgress(Constants.ProgressType.BOTTOM);
         loadOrders(currentPage + 1);
     }
@@ -65,6 +69,7 @@ public class OrdersPresenter extends MasterFlowSelectablePresenterHelper<String,
                 model.getOrders(page).subscribe(
                         responseGetOrders -> {
                             currentPage = page;
+                            totalItems = responseGetOrders.total;
                             saveData(responseGetOrders.data, needClear);
                             if (orders.isEmpty()) {
                                 view.displayErrorState(null, ErrorViewHelper.ErrorType.LIST_EMPTY);

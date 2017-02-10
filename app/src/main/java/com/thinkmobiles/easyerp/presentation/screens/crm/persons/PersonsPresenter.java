@@ -28,6 +28,7 @@ public class PersonsPresenter extends MasterFlowSelectablePresenterHelper<String
 
     private String selectedLetter = "All";
     private int currentPage = 1;
+    private int totalItems;
 
     private ArrayList<AlphabetItem> enabledAlphabetItems = new ArrayList<>();
     private CommonPersonsResponse personsResponse = null;
@@ -110,6 +111,7 @@ public class PersonsPresenter extends MasterFlowSelectablePresenterHelper<String
 
     private void setData(int page, CommonPersonsResponse commonPersonsResponse, boolean needClear) {
         currentPage = page;
+        totalItems = commonPersonsResponse.responseGetPersons.total;
         saveData(commonPersonsResponse, needClear);
         if (personsResponse.responseGetPersons.data.isEmpty()) {
             view.displayErrorState(null, ErrorViewHelper.ErrorType.LIST_EMPTY);
@@ -152,6 +154,9 @@ public class PersonsPresenter extends MasterFlowSelectablePresenterHelper<String
 
     @Override
     public void loadNextPage() {
+        if(view.getCountItemsNow() == totalItems) {
+            return;
+        }
         view.showProgress(Constants.ProgressType.BOTTOM);
         loadMore(currentPage + 1);
     }

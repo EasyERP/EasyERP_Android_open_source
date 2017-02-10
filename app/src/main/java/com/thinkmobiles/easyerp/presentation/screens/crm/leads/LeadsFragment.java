@@ -18,6 +18,7 @@ import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.domain.crm.LeadsRepository;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.LeadsAdapter;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.SearchAdapter;
+import com.thinkmobiles.easyerp.presentation.base.ListRefreshFragment;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowListFragment;
 import com.thinkmobiles.easyerp.presentation.dialogs.FilterDialogFragment;
@@ -41,24 +42,15 @@ import java.util.ArrayList;
 /**
  * Created by Lynx on 1/16/2017.
  */
-@EFragment(R.layout.fragment_simple_list_with_swipe_refresh)
-public class LeadsFragment extends MasterFlowListFragment implements LeadsContract.LeadsView {
+@EFragment
+public class LeadsFragment extends ListRefreshFragment implements LeadsContract.LeadsView {
 
     private LeadsContract.LeadsPresenter presenter;
-    private EndlessRecyclerViewScrollListener scrollListener;
 
     @Bean
     protected LeadsRepository leadsRepository;
     @Bean
     protected LeadsAdapter leadsAdapter;
-    @Bean
-    protected ErrorViewHelper errorViewHelper;
-
-    @StringRes(R.string.list_is_empty)
-    protected String string_list_is_empty;
-
-    @ViewById(R.id.llErrorLayout)
-    protected View errorLayout;
 
     @ViewById
     protected AppCompatAutoCompleteTextView actSearch;
@@ -86,18 +78,7 @@ public class LeadsFragment extends MasterFlowListFragment implements LeadsContra
 
     @AfterViews
     protected void initUI() {
-        errorViewHelper.init(errorLayout, view -> presenter.subscribe());
-
-        LinearLayoutManager llm = new LinearLayoutManager(mActivity);
-        scrollListener = new EndlessRecyclerViewScrollListener(llm, presenter.getCurrentPage()) {
-            @Override
-            public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
-                presenter.loadNextPage(page);
-            }
-        };
-        listRecycler.setLayoutManager(llm);
         listRecycler.setAdapter(leadsAdapter);
-        listRecycler.addOnScrollListener(scrollListener);
         leadsAdapter.setOnCardClickListener((view, position, viewType) ->
                 presenter.selectItem(leadsAdapter.getItem(position), position)
         );
@@ -106,6 +87,7 @@ public class LeadsFragment extends MasterFlowListFragment implements LeadsContra
         actSearch.setOnItemClickListener((adapterView, view, i, l) ->
                 presenter.filterByContactName(searchAdapter.getItem(i))
         );
+
         actSearch.setOnKeyListener((v, keyCode, event) -> {
             if (event.getKeyCode() == KeyEvent.KEYCODE_ENTER
                     && event.getAction() == KeyEvent.ACTION_DOWN) {
@@ -121,6 +103,17 @@ public class LeadsFragment extends MasterFlowListFragment implements LeadsContra
             }
             return false;
         });
+
+        presenter.subscribe();
+    }
+
+    @Override
+    protected void onLoadNextPage() {
+        presenter.loadNextPage();
+    }
+
+    @Override
+    protected void onRetry() {
         presenter.subscribe();
     }
 
@@ -140,16 +133,8 @@ public class LeadsFragment extends MasterFlowListFragment implements LeadsContra
     }
 
     @Override
-    public void showProgress(boolean isShow) {
-        if (isShow) {
-            errorViewHelper.hideError();
-            displayProgress(true);
-            swipeContainer.setRefreshing(false);
-        } else {
-            errorViewHelper.hideError();
-            displayProgress(false);
-            swipeContainer.setRefreshing(false);
-        }
+    public void showProgress(Constants.ProgressType type) {
+        showProgressBar(type);
     }
 
     @Override
@@ -158,20 +143,13 @@ public class LeadsFragment extends MasterFlowListFragment implements LeadsContra
     }
 
     @Override
-    public void showEmptyState() {
-        leadsAdapter.setListDH(new ArrayList<>());
-        errorViewHelper.showErrorMsg(string_list_is_empty, ErrorViewHelper.ErrorType.LIST_EMPTY);
+    public void displayErrorState(String msg, ErrorViewHelper.ErrorType errorType) {
+        showErrorState(msg, errorType);
     }
 
     @Override
-    public void displayError(String msg, ErrorViewHelper.ErrorType errorType) {
-        displayProgress(false);
-        swipeContainer.setRefreshing(false);
-
-        final String resultMsg = errorType.equals(ErrorViewHelper.ErrorType.LIST_EMPTY) ? string_list_is_empty : msg;
-        if (getCountItemsNow() == 0)
-            errorViewHelper.showErrorMsg(resultMsg, errorType);
-        else Toast.makeText(mActivity, resultMsg, Toast.LENGTH_LONG).show();
+    public void displayErrorToast(String msg) {
+        showErrorToast(msg);
     }
 
     @Override
@@ -186,8 +164,8 @@ public class LeadsFragment extends MasterFlowListFragment implements LeadsContra
     }
 
     @Override
-    public void onRefresh() {
-        scrollListener.resetState();
+    public void onRefreshData() {
+        super.onRefreshData();
         presenter.refresh();
     }
 

@@ -8,6 +8,7 @@ import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectableBase
 import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectableBaseView;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.FilterDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.LeadDH;
+import com.thinkmobiles.easyerp.presentation.utils.Constants;
 import com.thinkmobiles.easyerp.presentation.utils.filter.FilterQuery;
 
 import java.util.ArrayList;
@@ -21,7 +22,8 @@ import rx.Observable;
 public interface LeadsContract {
     interface LeadsView extends MasterFlowSelectableBaseView<LeadsPresenter> {
         void displayLeads(ArrayList<LeadDH> leadDHs, boolean needClear);
-        void displayError(final String msg, final ErrorViewHelper.ErrorType errorType);
+        void displayErrorState(final String msg, final ErrorViewHelper.ErrorType errorType);
+        void displayErrorToast(final String msg);
         void openLeadDetailsScreen(String leadId);
 
         void setContactNames(ArrayList<FilterDH> contactNames);
@@ -35,14 +37,13 @@ public interface LeadsContract {
 
         void showFilterDialog(ArrayList<FilterDH> filterDHs, int requestCode, String filterName);
 
-        void showProgress(boolean isShow);
-        void showEmptyState();
+        void showProgress(Constants.ProgressType type);
 
     }
     interface LeadsPresenter extends MasterFlowSelectableBasePresenter<String, LeadDH> {
         void refresh();
         void refreshOptionMenu();
-        void loadNextPage(int page);
+        void loadNextPage();
 
         void filterByContactName(FilterDH filterDH);
         void filterBySearchContactName(String name);
@@ -51,8 +52,6 @@ public interface LeadsContract {
 
         void changeFilter(int requestCode, String filterName);
         void removeAll();
-
-        int getCurrentPage();
     }
     interface LeadsModel extends BaseModel {
         Observable<ResponseGetLeads> getFilteredLeads(FilterQuery query, int page);

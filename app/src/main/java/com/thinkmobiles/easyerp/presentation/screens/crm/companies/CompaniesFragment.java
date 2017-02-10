@@ -86,6 +86,11 @@ public class CompaniesFragment extends ListRefreshFragment implements CompaniesC
     }
 
     @Override
+    public void displaySelectedLetter(String selectedLetter) {
+        alphabetView.selectLetterWithoutListener(selectedLetter);
+    }
+
+    @Override
     public void displayCompanies(ArrayList<CompanyDH> companyDHs, boolean needClear) {
         alphabetView.setVisibility(View.VISIBLE);
         if (needClear){

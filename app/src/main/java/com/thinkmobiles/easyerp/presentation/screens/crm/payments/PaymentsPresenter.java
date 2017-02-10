@@ -24,6 +24,7 @@ public class PaymentsPresenter extends MasterFlowSelectablePresenterHelper<Strin
     private CompositeSubscription compositeSubscription;
 
     private int currentPage = 1;
+    private int totalItems;
     private ArrayList<Payment> payments = new ArrayList<>();
 
     public PaymentsPresenter(PaymentsContract.PaymentsView view, PaymentsContract.PaymentsModel model) {
@@ -51,6 +52,9 @@ public class PaymentsPresenter extends MasterFlowSelectablePresenterHelper<Strin
 
     @Override
     public void loadNextPage() {
+        if(view.getCountItemsNow() == totalItems) {
+            return;
+        }
         view.showProgress(Constants.ProgressType.BOTTOM);
         loadNextPayments(currentPage + 1);
     }
@@ -67,6 +71,7 @@ public class PaymentsPresenter extends MasterFlowSelectablePresenterHelper<Strin
                 model.getPayments(page).subscribe(
                         responseGetPayments -> {
                             currentPage = page;
+                            totalItems = responseGetPayments.total;
                             saveData(responseGetPayments.data, needClear);
                             if (payments.isEmpty()) {
                                 view.displayErrorState(null, ErrorViewHelper.ErrorType.LIST_EMPTY);

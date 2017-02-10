@@ -24,6 +24,7 @@ public class InvoicesPresenter extends MasterFlowSelectablePresenterHelper<Strin
     private CompositeSubscription compositeSubscription;
 
     private int currentPage = 1;
+    private int totalItems;
     private ArrayList<Invoice> invoices = new ArrayList<>();
 
     public InvoicesPresenter(InvoicesContract.InvoicesView view, InvoicesContract.InvoicesModel model) {
@@ -49,6 +50,9 @@ public class InvoicesPresenter extends MasterFlowSelectablePresenterHelper<Strin
 
     @Override
     public void loadNextPage() {
+        if(view.getCountItemsNow() == totalItems) {
+            return;
+        }
         view.showProgress(Constants.ProgressType.BOTTOM);
         loadInvoices(currentPage + 1);
     }
@@ -65,6 +69,7 @@ public class InvoicesPresenter extends MasterFlowSelectablePresenterHelper<Strin
                 model.getInvoices(page).subscribe(
                         responseGetInvoice -> {
                             currentPage = page;
+                            totalItems = responseGetInvoice.total;
                             saveData(responseGetInvoice.data, needClear);
                             if (invoices.isEmpty()) {
                                 view.displayErrorState(null, ErrorViewHelper.ErrorType.LIST_EMPTY);

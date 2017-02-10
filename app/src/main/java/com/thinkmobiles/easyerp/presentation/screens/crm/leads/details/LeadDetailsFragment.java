@@ -28,6 +28,7 @@ import com.thinkmobiles.easyerp.domain.crm.LeadsRepository;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.AttachmentAdapter;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.HistoryAdapter;
 import com.thinkmobiles.easyerp.presentation.base.BaseFragment;
+import com.thinkmobiles.easyerp.presentation.base.RefreshFragment;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.custom.RoundRectDrawable;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.AttachmentDH;
@@ -49,8 +50,13 @@ import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
 
-@EFragment(R.layout.fragment_lead_details)
-public class LeadDetailsFragment extends BaseFragment<HomeActivity> implements LeadDetailsContract.LeadDetailsView {
+@EFragment
+public class LeadDetailsFragment extends RefreshFragment<HomeActivity> implements LeadDetailsContract.LeadDetailsView {
+
+    @Override
+    protected int getLayoutRes() {
+        return R.layout.fragment_lead_details;
+    }
 
     private LeadDetailsContract.LeadDetailsPresenter presenter;
 
@@ -68,13 +74,8 @@ public class LeadDetailsFragment extends BaseFragment<HomeActivity> implements L
     @FragmentArg
     protected String leadId;
 
-    //region Views inject
-    @ViewById(R.id.llErrorLayout)
-    protected View errorLayout;
     @ViewById
     protected LinearLayout llMainContent_FLD;
-    @ViewById
-    protected SwipeRefreshLayout srlRefresh_FLD;
     @ViewById
     protected NestedScrollView nsvContent_FLD;
     @ViewById
@@ -146,16 +147,8 @@ public class LeadDetailsFragment extends BaseFragment<HomeActivity> implements L
     protected LinearLayout llContainerCompanyInfo_FLD;
     //endregion
 
-    @DrawableRes(R.drawable.ic_arrow_up)
-    protected Drawable icArrowUp;
-    @DrawableRes(R.drawable.ic_arrow_down)
-    protected Drawable icArrowDown;
-
     @AfterViews
     protected void initUI() {
-        errorViewHelper.init(errorLayout, v -> presenter.refresh());
-
-        srlRefresh_FLD.setOnRefreshListener(() -> presenter.refresh());
         rvHistory.setLayoutManager(new LinearLayoutManager(getActivity()));
         rvHistory.setAdapter(historyAdapter);
 
@@ -195,16 +188,18 @@ public class LeadDetailsFragment extends BaseFragment<HomeActivity> implements L
     }
 
     @Override
-    public void showProgress(boolean enable) {
-        if(enable) {
-            displayProgress(true);
-            srlRefresh_FLD.setVisibility(View.GONE);
-            srlRefresh_FLD.setRefreshing(false);
-        } else {
-            displayProgress(false);
-            srlRefresh_FLD.setVisibility(View.VISIBLE);
-            srlRefresh_FLD.setRefreshing(false);
-        }
+    protected void onRetry() {
+        presenter.subscribe();
+    }
+
+    @Override
+    protected void onRefreshData() {
+        presenter.refresh();
+    }
+
+    @Override
+    public void showProgress(Constants.ProgressType type) {
+        showProgressBar(type);
     }
 
     @Override
@@ -321,7 +316,6 @@ public class LeadDetailsFragment extends BaseFragment<HomeActivity> implements L
 
     @Override
     public void showHistory(boolean enable) {
-
         if (enable && rvHistory.getVisibility() == View.GONE) {
             animationHelper.forward(nsvContent_FLD.getHeight());
         }
@@ -330,17 +324,12 @@ public class LeadDetailsFragment extends BaseFragment<HomeActivity> implements L
     }
 
     @Override
-    public void showError(String errMsg) {
-        if(errMsg == null) {
-            errorViewHelper.hideError();
-        } else {
-            errorViewHelper.showErrorMsg(errMsg, ErrorViewHelper.ErrorType.NETWORK);
-        }
-        llMainContent_FLD.setVisibility(errMsg == null ? View.VISIBLE : View.GONE);
+    public void displayErrorState(String errMsg, ErrorViewHelper.ErrorType errorType) {
+        showErrorState(errMsg, errorType);
     }
 
     @Override
-    public void showMessage(String message) {
+    public void displayErrorToast(String message) {
         Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
     }
 
