@@ -43,7 +43,7 @@ public class AttachmentVH extends RecyclerVH<AttachmentDH> {
             fileName = data.getItem().name;
         if(!TextUtils.isEmpty(fileExtension)) {
             String mimeType = MimeTypeMap.getSingleton().getMimeTypeFromExtension(fileExtension);
-            final String[] mimeInfo = mimeType.split("/");
+            final String[] mimeInfo = TextUtils.isEmpty(mimeType) ? new String[] {""} : mimeType.split("/");
             switch (mimeInfo[0]) {
                 case "text":
                     image = ContextCompat.getDrawable(itemView.getContext(), R.drawable.ic_mime_text);
