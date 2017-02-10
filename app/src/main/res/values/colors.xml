@@ -58,5 +58,6 @@
     <color name="color_status_not_interested">#eb5a46</color>
     <color name="color_status_no_answer">#fbaf5d</color>
     <color name="color_status_do_not_contact">#95a5a6</color>
+    <color name="color_status_in_progress">#3498db</color>
 
 </resources>

@@ -57,6 +57,12 @@ public abstract class TagHelper {
     public static final String PRIORITY_NO_ANSWER = "No Answer";
     public static final String PRIORITY_DONT_CONTACT = "Don't Contact";
 
+    public static final String OPPORTUNITY_NEW = "New";
+    public static final String OPPORTUNITY_IN_PROGRESS = "In Progress";
+    public static final String OPPORTUNITY_PENDING = "Pending";
+    public static final String OPPORTUNITY_DONE = "Done";
+    public static final String OPPORTUNITY_CANCELLED = "Cancelled";
+
     public static int getStatusColorRes(String status) {
         switch (status) {
             case PRIORITY_NEW:
@@ -76,8 +82,8 @@ public abstract class TagHelper {
         }
     }
 
-    public static final String PAYMENT              = "Payment";
-    public static final String REFUND               = "Refund";
+    public static final String PAYMENT = "Payment";
+    public static final String REFUND = "Refund";
 
     public static int getColorResIdByName(String colorName) {
         switch (colorName) {
@@ -129,6 +135,23 @@ public abstract class TagHelper {
                 return R.color.color_chips_green;
             default:
                 return R.color.tag_bg_grey;
+        }
+    }
+
+    public static int getOpportunityStatusColorRes(String status) {
+        switch (status) {
+            case OPPORTUNITY_NEW:
+                return R.color.color_status_new;
+            case OPPORTUNITY_IN_PROGRESS:
+                return R.color.color_status_in_progress;
+            case OPPORTUNITY_PENDING:
+                return R.color.color_chips_grey;
+            case OPPORTUNITY_DONE:
+                return R.color.color_chips_green;
+            case OPPORTUNITY_CANCELLED:
+                return R.color.color_chips_grey;
+            default:
+                return R.color.color_status_in_progress;
         }
     }
 }
