@@ -1,24 +1,20 @@
 package com.thinkmobiles.easyerp.presentation.screens.crm.orders.details;
 
-import android.graphics.drawable.Drawable;
 import android.support.v4.widget.NestedScrollView;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.jakewharton.rxbinding.view.RxView;
 import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.domain.crm.OrderRepository;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.HistoryAdapter;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.ProductAdapter;
-import com.thinkmobiles.easyerp.presentation.base.BaseFragment;
+import com.thinkmobiles.easyerp.presentation.base.RefreshFragment;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.HistoryDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.ProductDH;
@@ -33,20 +29,22 @@ import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.FragmentArg;
 import org.androidannotations.annotations.ViewById;
-import org.androidannotations.annotations.res.DrawableRes;
 
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
 
-@EFragment(R.layout.fragment_order_details)
-public class OrderDetailsFragment extends BaseFragment<HomeActivity> implements OrderDetailsContract.OrderDetailsView {
+@EFragment
+public class OrderDetailsFragment extends RefreshFragment<HomeActivity> implements OrderDetailsContract.OrderDetailsView {
+
+    @Override
+    protected int getLayoutRes() {
+        return R.layout.fragment_order_details;
+    }
 
     @FragmentArg
     protected String orderId;
 
-    @ViewById
-    protected SwipeRefreshLayout srlRefresh_FOD;
     @ViewById
     protected NestedScrollView nsvContent_FOD;
     @ViewById
@@ -107,13 +105,6 @@ public class OrderDetailsFragment extends BaseFragment<HomeActivity> implements 
     protected ImageView ivIconArrow;
     @ViewById
     protected RecyclerView rvHistory;
-    @ViewById
-    protected LinearLayout llErrorLayout;
-
-    @DrawableRes(R.drawable.ic_arrow_up)
-    protected Drawable icArrowUp;
-    @DrawableRes(R.drawable.ic_arrow_down)
-    protected Drawable icArrowDown;
 
     @Bean
     protected OrderRepository orderRepository;
@@ -121,8 +112,6 @@ public class OrderDetailsFragment extends BaseFragment<HomeActivity> implements 
     protected HistoryAdapter historyAdapter;
     @Bean
     protected ProductAdapter productAdapter;
-    @Bean
-    protected ErrorViewHelper errorViewHelper;
     @Bean
     protected HistoryAnimationHelper animationHelper;
 
@@ -136,7 +125,6 @@ public class OrderDetailsFragment extends BaseFragment<HomeActivity> implements 
 
     @AfterViews
     protected void initUI() {
-        errorViewHelper.init(llErrorLayout, v -> presenter.subscribe());
 
         rvHistory.setAdapter(historyAdapter);
         rvHistory.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -144,16 +132,23 @@ public class OrderDetailsFragment extends BaseFragment<HomeActivity> implements 
         rvProductList_FOD.setAdapter(productAdapter);
         rvProductList_FOD.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-
         RxView.clicks(btnHistory)
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
                 .subscribe(aVoid -> presenter.changeNotesVisibility());
 
-        srlRefresh_FOD.setOnRefreshListener(() -> presenter.refresh());
-
         animationHelper.init(ivIconArrow, rvHistory);
 
         presenter.subscribe();
+    }
+
+    @Override
+    protected void onRetry() {
+        presenter.subscribe();
+    }
+
+    @Override
+    protected void onRefreshData() {
+        presenter.refresh();
     }
 
     @Override
@@ -168,17 +163,8 @@ public class OrderDetailsFragment extends BaseFragment<HomeActivity> implements 
     }
 
     @Override
-    public void showProgress(boolean enable) {
-        if (enable) {
-            errorViewHelper.hideError();
-            displayProgress(true);
-            srlRefresh_FOD.setVisibility(View.GONE);
-            srlRefresh_FOD.setRefreshing(false);
-        } else {
-            displayProgress(false);
-            srlRefresh_FOD.setVisibility(View.VISIBLE);
-            srlRefresh_FOD.setRefreshing(false);
-        }
+    public void showProgress(Constants.ProgressType type) {
+        showProgressBar(type);
     }
 
     @Override
@@ -325,13 +311,13 @@ public class OrderDetailsFragment extends BaseFragment<HomeActivity> implements 
     }
 
     @Override
-    public void showError(String errorMessage, ErrorViewHelper.ErrorType errorType) {
-        errorViewHelper.showErrorMsg(errorMessage, errorType);
+    public void displayErrorState(String msg, ErrorViewHelper.ErrorType errorType) {
+        showErrorState(msg, errorType);
     }
 
     @Override
-    public void showMessage(String errorMessage) {
-        Toast.makeText(getActivity(), errorMessage, Toast.LENGTH_SHORT).show();
+    public void displayErrorToast(String msg) {
+        showErrorToast(msg);
     }
 
     @Override

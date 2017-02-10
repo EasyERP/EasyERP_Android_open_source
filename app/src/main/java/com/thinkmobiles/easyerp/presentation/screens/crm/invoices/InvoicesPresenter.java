@@ -4,6 +4,7 @@ import com.thinkmobiles.easyerp.data.model.crm.invoice.Invoice;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectablePresenterHelper;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.InvoiceDH;
+import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,9 +37,20 @@ public class InvoicesPresenter extends MasterFlowSelectablePresenterHelper<Strin
     @Override
     public void subscribe() {
         if (invoices.size() == 0) {
-            view.showProgress(true);
-            loadInvoices(1);
+            view.showProgress(Constants.ProgressType.CENTER);
+            refresh();
         } else view.displayInvoices(prepareInvoiceDHs(invoices, true), true);
+    }
+
+    @Override
+    public void refresh() {
+        loadInvoices(1);
+    }
+
+    @Override
+    public void loadNextPage() {
+        view.showProgress(Constants.ProgressType.BOTTOM);
+        loadInvoices(currentPage + 1);
     }
 
     @Override
@@ -47,26 +59,35 @@ public class InvoicesPresenter extends MasterFlowSelectablePresenterHelper<Strin
             compositeSubscription.clear();
     }
 
-    @Override
-    public void loadInvoices(int page) {
+    private void loadInvoices(int page) {
         final boolean needClear = page == 1;
         compositeSubscription.add(
                 model.getInvoices(page).subscribe(
                         responseGetInvoice -> {
                             currentPage = page;
-                            if (needClear)
-                                invoices.clear();
-                            invoices.addAll(responseGetInvoice.data);
-                            view.displayInvoices(prepareInvoiceDHs(responseGetInvoice.data, needClear), needClear);
+                            saveData(responseGetInvoice.data, needClear);
+                            if (invoices.isEmpty()) {
+                                view.displayErrorState(null, ErrorViewHelper.ErrorType.LIST_EMPTY);
+                            } else {
+                                view.showProgress(Constants.ProgressType.NONE);
+                                view.displayInvoices(prepareInvoiceDHs(responseGetInvoice.data, needClear), needClear);
+                            }
                         },
-                        throwable -> view.displayError(throwable.getMessage(), ErrorViewHelper.ErrorType.NETWORK)
+                        throwable -> {
+                            if (invoices.isEmpty()) {
+                                view.displayErrorState(throwable.getMessage(), ErrorViewHelper.ErrorType.NETWORK);
+                            } else {
+                                view.displayErrorToast(throwable.getMessage());
+                            }
+                        }
                 )
         );
     }
 
-    @Override
-    public int getCurrentPage() {
-        return currentPage;
+    private void saveData(final List<Invoice> invoices, boolean needClear) {
+        if (needClear)
+            this.invoices.clear();
+        this.invoices.addAll(invoices);
     }
 
     @Override

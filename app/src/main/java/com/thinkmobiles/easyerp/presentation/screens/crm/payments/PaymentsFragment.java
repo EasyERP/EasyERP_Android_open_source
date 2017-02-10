@@ -1,8 +1,5 @@
 package com.thinkmobiles.easyerp.presentation.screens.crm.payments;
 
-import android.support.v7.widget.LinearLayoutManager;
-
-import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.data.model.crm.payments.Payment;
 import com.thinkmobiles.easyerp.domain.crm.PaymentsRepository;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.PaymentsAdapter;
@@ -24,13 +21,9 @@ import java.util.ArrayList;
  *         Company: Thinkmobiles
  *         Email: michael.soyma@thinkmobiles.com
  */
+
 @EFragment
 public class PaymentsFragment extends ListRefreshFragment implements PaymentsContract.PaymentsView {
-
-    @Override
-    protected int getLayoutRes() {
-        return R.layout.fragment_list_with_search;
-    }
 
     private PaymentsContract.PaymentsPresenter presenter;
 
@@ -52,13 +45,7 @@ public class PaymentsFragment extends ListRefreshFragment implements PaymentsCon
 
     @AfterViews
     protected void initUI() {
-
-        LinearLayoutManager recyclerLayoutManager = new LinearLayoutManager(mActivity);
-        initEndlessScrollListener(recyclerLayoutManager);
-
-        listRecycler.setLayoutManager(recyclerLayoutManager);
         listRecycler.setAdapter(paymentsAdapter);
-        listRecycler.addOnScrollListener(scrollListener);
         paymentsAdapter.setOnCardClickListener((view, position, viewType) -> presenter.selectItem(paymentsAdapter.getItem(position), position));
 
         presenter.subscribe();
@@ -97,16 +84,15 @@ public class PaymentsFragment extends ListRefreshFragment implements PaymentsCon
         } else {
             paymentsAdapter.addListDH(paymentDHs);
         }
-
     }
 
     @Override
-    public void displayError(String msg, ErrorViewHelper.ErrorType errorType) {
+    public void displayErrorState(String msg, ErrorViewHelper.ErrorType errorType) {
         showErrorState(msg, errorType);
     }
 
     @Override
-    public void displayErrorMessage(String msg) {
+    public void displayErrorToast(String msg) {
         showErrorToast(msg);
     }
 

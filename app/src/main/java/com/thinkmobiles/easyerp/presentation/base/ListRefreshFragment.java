@@ -4,10 +4,12 @@ import android.support.annotation.CallSuper;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
+import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.presentation.listeners.EndlessRecyclerViewScrollListener;
 import com.thinkmobiles.easyerp.presentation.listeners.EndlessScrollListener;
 import com.thinkmobiles.easyerp.presentation.screens.home.HomeActivity;
 
+import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.ViewById;
 
@@ -20,6 +22,11 @@ import org.androidannotations.annotations.ViewById;
 @EFragment
 public abstract class ListRefreshFragment extends RefreshFragment<HomeActivity> {
 
+    @Override
+    protected int getLayoutRes() {
+        return R.layout.fragment_list_with_search;
+    }
+
     @ViewById
     protected RecyclerView listRecycler;
 
@@ -27,8 +34,11 @@ public abstract class ListRefreshFragment extends RefreshFragment<HomeActivity> 
 
     protected abstract void onLoadNextPage();
 
-    protected void initEndlessScrollListener(LinearLayoutManager layoutManager) {
-        scrollListener = new EndlessScrollListener(layoutManager, () -> {
+    @AfterViews
+    protected void initList() {
+        LinearLayoutManager recyclerLayoutManager = new LinearLayoutManager(getActivity());
+
+        scrollListener = new EndlessScrollListener(recyclerLayoutManager, () -> {
             if (srlHolderRefresh.isRefreshing()) {
                 return false;
             } else {
@@ -36,6 +46,9 @@ public abstract class ListRefreshFragment extends RefreshFragment<HomeActivity> 
                 return true;
             }
         });
+
+        listRecycler.setLayoutManager(recyclerLayoutManager);
+        listRecycler.addOnScrollListener(scrollListener);
     }
 
     @CallSuper

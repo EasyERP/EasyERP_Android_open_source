@@ -183,7 +183,12 @@ public class PaymentDetailsFragment extends RefreshFragment<HomeActivity> implem
     }
 
     @Override
-    public void showError(String errorMessage, ErrorViewHelper.ErrorType errorType) {
+    public void displayErrorState(String errorMessage, ErrorViewHelper.ErrorType errorType) {
         showErrorState(errorMessage, errorType);
+    }
+
+    @Override
+    public boolean optionsMenuForDetail() {
+        return true;
     }
 }

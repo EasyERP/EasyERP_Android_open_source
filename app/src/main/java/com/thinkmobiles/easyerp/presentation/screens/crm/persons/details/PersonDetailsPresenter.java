@@ -7,6 +7,7 @@ import com.thinkmobiles.easyerp.data.model.crm.leads.detail.AttachmentItem;
 import com.thinkmobiles.easyerp.data.model.crm.persons.details.OpportunityItem;
 import com.thinkmobiles.easyerp.data.model.crm.persons.details.ResponseGetPersonDetails;
 import com.thinkmobiles.easyerp.presentation.EasyErpApplication;
+import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.AttachmentDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.HistoryDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.OpportunityAndLeadDH;
@@ -51,16 +52,14 @@ public class PersonDetailsPresenter implements PersonDetailsContract.PersonDetai
     public void refresh() {
         compositeSubscription.add(model.getPersonDetails(personID)
                 .subscribe(responseGetPersonDetails -> {
-                    view.showProgress(false);
+                    view.showProgress(Constants.ProgressType.NONE);
                     currentPerson = responseGetPersonDetails;
                     setData(currentPerson);
-                    view.displayError(null);
                 }, throwable -> {
-                    view.showProgress(false);
-                    if(currentPerson != null && currentPerson.id.equalsIgnoreCase(personID))
-                        view.showMessage(throwable.getMessage());
+                    if(currentPerson != null)
+                        view.displayErrorState(throwable.getMessage(), ErrorViewHelper.ErrorType.NETWORK);
                     else
-                        view.displayError(throwable.getMessage());
+                        view.displayErrorToast(throwable.getMessage());
                 }));
     }
 
@@ -72,8 +71,8 @@ public class PersonDetailsPresenter implements PersonDetailsContract.PersonDetai
 
     @Override
     public void subscribe() {
-        if (currentPerson == null || !currentPerson.id.equalsIgnoreCase(personID)) {
-            view.showProgress(true);
+        if (currentPerson == null) {
+            view.showProgress(Constants.ProgressType.CENTER);
             refresh();
         } else {
             setData(currentPerson);

@@ -8,6 +8,7 @@ import com.thinkmobiles.easyerp.presentation.base.BaseView;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.HistoryDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.ProductDH;
+import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
 import java.util.ArrayList;
 
@@ -17,7 +18,7 @@ import rx.Observable;
 public interface OrderDetailsContract {
 
     interface OrderDetailsView extends BaseView<OrderDetailsPresenter> {
-        void showProgress(boolean enable);
+        void showProgress(Constants.ProgressType type);
         void showHistory(boolean enable);
 
         void setOrderStatusName(String orderStatus);
@@ -47,8 +48,8 @@ public interface OrderDetailsContract {
         void setHistory(ArrayList<HistoryDH> history);
         void setProducts(ArrayList<ProductDH> products);
 
-        void showError(String errorMessage, ErrorViewHelper.ErrorType errorType);
-        void showMessage(String errorMessage);
+        void displayErrorState(final String msg, final ErrorViewHelper.ErrorType errorType);
+        void displayErrorToast(final String msg);
     }
 
     interface OrderDetailsPresenter extends BasePresenter {

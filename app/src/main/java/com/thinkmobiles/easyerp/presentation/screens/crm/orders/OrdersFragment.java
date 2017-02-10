@@ -8,11 +8,13 @@ import android.widget.Toast;
 import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.domain.crm.OrderRepository;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.OrdersAdapter;
+import com.thinkmobiles.easyerp.presentation.base.ListRefreshFragment;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowListFragment;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.OrderDH;
 import com.thinkmobiles.easyerp.presentation.listeners.EndlessRecyclerViewScrollListener;
 import com.thinkmobiles.easyerp.presentation.screens.crm.orders.details.OrderDetailsFragment_;
+import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterViews;
@@ -28,25 +30,15 @@ import java.util.ArrayList;
  *         Company: Thinkmobiles
  *         Email: michael.soyma@thinkmobiles.com
  */
-@EFragment(R.layout.fragment_simple_list_with_swipe_refresh)
-public class OrdersFragment extends MasterFlowListFragment implements OrdersContract.OrdersView {
+@EFragment
+public class OrdersFragment extends ListRefreshFragment implements OrdersContract.OrdersView {
 
     private OrdersContract.OrdersPresenter presenter;
-    private EndlessRecyclerViewScrollListener scrollListener;
-    private LinearLayoutManager recyclerLayoutManager;
 
     @Bean
     protected OrderRepository orderRepository;
     @Bean
     protected OrdersAdapter ordersAdapter;
-    @Bean
-    protected ErrorViewHelper errorViewHelper;
-
-    @StringRes(R.string.list_is_empty)
-    protected String string_list_is_empty;
-
-    @ViewById(R.id.llErrorLayout)
-    protected View errorLayout;
 
     @AfterInject
     @Override
@@ -61,28 +53,26 @@ public class OrdersFragment extends MasterFlowListFragment implements OrdersCont
 
     @AfterViews
     protected void initUI() {
-        errorViewHelper.init(errorLayout, view -> presenter.subscribe());
-        recyclerLayoutManager = new LinearLayoutManager(mActivity);
-        scrollListener = new EndlessRecyclerViewScrollListener(recyclerLayoutManager, presenter.getCurrentPage()) {
-            @Override
-            public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
-                displayProgress(true);
-                presenter.loadOrders(page);
-            }
-        };
-        listRecycler.setLayoutManager(recyclerLayoutManager);
         listRecycler.setAdapter(ordersAdapter);
-        listRecycler.addOnScrollListener(scrollListener);
         ordersAdapter.setOnCardClickListener((view, position, viewType) -> presenter.selectItem(ordersAdapter.getItem(position), position));
 
         presenter.subscribe();
     }
 
     @Override
-    public void onRefresh() {
-        errorViewHelper.hideError();
-        scrollListener.resetState();
-        presenter.loadOrders(1);
+    protected void onLoadNextPage() {
+        presenter.loadNextPage();
+    }
+
+    @Override
+    protected void onRetry() {
+        presenter.subscribe();
+    }
+
+    @Override
+    public void onRefreshData() {
+        super.onRefreshData();
+        presenter.refresh();
     }
 
     @Override
@@ -97,26 +87,26 @@ public class OrdersFragment extends MasterFlowListFragment implements OrdersCont
 
     @Override
     public void displayOrders(ArrayList<OrderDH> orderDHs, boolean needClear) {
-        showProgress(false);
-        swipeContainer.setRefreshing(false);
-
-        if (needClear)
+        if (needClear) {
             ordersAdapter.setListDH(orderDHs);
-        else ordersAdapter.addListDH(orderDHs);
-
-        if (getCountItemsNow() == 0)
-            displayError(null, ErrorViewHelper.ErrorType.LIST_EMPTY);
+        } else {
+            ordersAdapter.addListDH(orderDHs);
+        }
     }
 
     @Override
-    public void displayError(String msg, ErrorViewHelper.ErrorType errorType) {
-        displayProgress(false);
-        swipeContainer.setRefreshing(false);
+    public void displayErrorState(String msg, ErrorViewHelper.ErrorType errorType) {
+        showErrorState(msg, errorType);
+    }
 
-        final String resultMsg = errorType.equals(ErrorViewHelper.ErrorType.LIST_EMPTY) ? string_list_is_empty : msg;
-        if (getCountItemsNow() == 0)
-            errorViewHelper.showErrorMsg(resultMsg, errorType);
-        else Toast.makeText(mActivity, resultMsg, Toast.LENGTH_LONG).show();
+    @Override
+    public void displayErrorToast(String msg) {
+        showErrorToast(msg);
+    }
+
+    @Override
+    public void showProgress(Constants.ProgressType type) {
+        showProgressBar(type);
     }
 
     @Override
@@ -128,12 +118,6 @@ public class OrdersFragment extends MasterFlowListFragment implements OrdersCont
         } else {
             mActivity.replaceFragmentContentDetail(null);
         }
-    }
-
-    @Override
-    public void showProgress(boolean isShow) {
-        errorViewHelper.hideError();
-        displayProgress(isShow);
     }
 
     @Override

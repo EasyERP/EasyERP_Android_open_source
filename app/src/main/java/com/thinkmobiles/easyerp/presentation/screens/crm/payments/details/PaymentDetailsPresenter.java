@@ -47,7 +47,7 @@ public class PaymentDetailsPresenter implements PaymentDetailsContract.PaymentDe
                         view.showProgress(Constants.ProgressType.NONE);
                         setData();
                     }, t -> {
-                        view.showError(t.getMessage(), ErrorViewHelper.ErrorType.NETWORK);
+                        view.displayErrorState(t.getMessage(), ErrorViewHelper.ErrorType.NETWORK);
                     }));
         } else {
             view.showProgress(Constants.ProgressType.NONE);

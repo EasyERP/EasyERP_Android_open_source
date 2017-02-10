@@ -25,6 +25,7 @@ import com.thinkmobiles.easyerp.presentation.adapters.crm.AttachmentAdapter;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.HistoryAdapter;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.OpportunityAndLeadsAdapter;
 import com.thinkmobiles.easyerp.presentation.base.BaseFragment;
+import com.thinkmobiles.easyerp.presentation.base.RefreshFragment;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.custom.transformations.CropCircleTransformation;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.AttachmentDH;
@@ -51,19 +52,19 @@ import java.util.concurrent.TimeUnit;
  * Created by Lynx on 1/24/2017.
  */
 
-@EFragment(R.layout.fragment_person_details)
-public class PersonDetailsFragment extends BaseFragment<HomeActivity> implements PersonDetailsContract.PersonDetailsView {
+@EFragment
+public class PersonDetailsFragment extends RefreshFragment<HomeActivity> implements PersonDetailsContract.PersonDetailsView {
+
+    @Override
+    protected int getLayoutRes() {
+        return R.layout.fragment_person_details;
+    }
 
     private PersonDetailsContract.PersonDetailsPresenter presenter;
 
     @FragmentArg
     protected String personID;
 
-    //region View Inject
-    @ViewById(R.id.llErrorLayout)
-    protected View errorLayout;
-    @ViewById
-    protected SwipeRefreshLayout srlRefresh_FPD;
     @ViewById
     protected NestedScrollView nsvContent_FPD;
     @ViewById
@@ -177,11 +178,6 @@ public class PersonDetailsFragment extends BaseFragment<HomeActivity> implements
     protected TextView tvEmptyAttachments_FPD;
     //endregion
 
-    @DrawableRes(R.drawable.ic_arrow_up)
-    protected Drawable icArrowUp;
-    @DrawableRes(R.drawable.ic_arrow_down)
-    protected Drawable icArrowDown;
-
     @StringRes(R.string.err_not_specified)
     protected String notSpecified;
 
@@ -189,8 +185,6 @@ public class PersonDetailsFragment extends BaseFragment<HomeActivity> implements
     protected PersonsRepository personsRepository;
     @Bean
     protected HistoryAdapter historyAdapter;
-    @Bean
-    protected ErrorViewHelper errorViewHelper;
     @Bean
     protected HistoryAnimationHelper animationHelper;
     @Bean
@@ -201,9 +195,6 @@ public class PersonDetailsFragment extends BaseFragment<HomeActivity> implements
     @AfterViews
     protected void initUI() {
         setEmptyData();
-        errorViewHelper.init(errorLayout, v -> presenter.refresh());
-
-        srlRefresh_FPD.setOnRefreshListener(() -> presenter.refresh());
         rvHistory.setLayoutManager(new LinearLayoutManager(getActivity()));
         rvHistory.setAdapter(historyAdapter);
 
@@ -221,6 +212,16 @@ public class PersonDetailsFragment extends BaseFragment<HomeActivity> implements
         animationHelper.init(ivIconArrow, rvHistory);
 
         presenter.subscribe();
+    }
+
+    @Override
+    protected void onRetry() {
+        presenter.subscribe();
+    }
+
+    @Override
+    protected void onRefreshData() {
+        presenter.refresh();
     }
 
     @Override
@@ -391,19 +392,13 @@ public class PersonDetailsFragment extends BaseFragment<HomeActivity> implements
     }
 
     @Override
-    public void displayError(String msg) {
-        if (msg == null) errorViewHelper.hideError();
-        else {
-            srlRefresh_FPD.setRefreshing(false);
-            displayProgress(false);
-            srlRefresh_FPD.setVisibility(View.GONE);
-            errorViewHelper.showErrorMsg(msg, ErrorViewHelper.ErrorType.NETWORK);
-        }
+    public void displayErrorState(String msg, ErrorViewHelper.ErrorType errorType) {
+        showErrorState(msg, errorType);
     }
 
     @Override
-    public void showMessage(String message) {
-        Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
+    public void displayErrorToast(String msg) {
+        showErrorToast(msg);
     }
 
     @Override
@@ -526,16 +521,8 @@ public class PersonDetailsFragment extends BaseFragment<HomeActivity> implements
     }
 
     @Override
-    public void showProgress(boolean enable) {
-        if (enable) {
-            displayProgress(true);
-            srlRefresh_FPD.setVisibility(View.GONE);
-            srlRefresh_FPD.setRefreshing(false);
-        } else {
-            displayProgress(false);
-            srlRefresh_FPD.setVisibility(View.VISIBLE);
-            srlRefresh_FPD.setRefreshing(false);
-        }
+    public void showProgress(Constants.ProgressType type) {
+        showProgressBar(type);
     }
 
     @Override

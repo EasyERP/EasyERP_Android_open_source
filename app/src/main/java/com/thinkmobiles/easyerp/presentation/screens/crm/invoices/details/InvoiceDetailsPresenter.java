@@ -1,17 +1,16 @@
 package com.thinkmobiles.easyerp.presentation.screens.crm.invoices.details;
 
-import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.data.model.crm.invoice.detail.InvoicePayment;
 import com.thinkmobiles.easyerp.data.model.crm.invoice.detail.ResponseGetInvoiceDetails;
 import com.thinkmobiles.easyerp.data.model.crm.order.detail.OrderProduct;
 import com.thinkmobiles.easyerp.data.model.user.organization.OrganizationSettings;
-import com.thinkmobiles.easyerp.presentation.EasyErpApplication;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.HistoryDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.InvoicePaymentDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.ProductDH;
 import com.thinkmobiles.easyerp.presentation.managers.DateManager;
 import com.thinkmobiles.easyerp.presentation.screens.crm.dashboard.detail.charts.DollarFormatter;
+import com.thinkmobiles.easyerp.presentation.utils.Constants;
 import com.thinkmobiles.easyerp.presentation.utils.StringUtil;
 
 import java.text.DecimalFormat;
@@ -36,7 +35,6 @@ public class InvoiceDetailsPresenter implements InvoiceDetailsContract.InvoiceDe
     private ResponseGetInvoiceDetails currentInvoice;
     private OrganizationSettings organizationSettings;
     private boolean isVisibleHistory;
-    private String notSpecified;
     private DecimalFormat formatter;
 
 
@@ -47,7 +45,6 @@ public class InvoiceDetailsPresenter implements InvoiceDetailsContract.InvoiceDe
         view.setPresenter(this);
 
         compositeSubscription = new CompositeSubscription();
-        notSpecified = EasyErpApplication.getInstance().getString(R.string.err_not_specified);
         formatter = new DollarFormatter().getFormat();
     }
 
@@ -61,15 +58,14 @@ public class InvoiceDetailsPresenter implements InvoiceDetailsContract.InvoiceDe
     public void refresh() {
         compositeSubscription.add(model.getInvoiceDetails(invoiceId)
                 .subscribe(responseGerOrderDetails -> {
-                    view.showProgress(false);
+                    view.showProgress(Constants.ProgressType.NONE);
                     setData(responseGerOrderDetails);
                 }, t -> {
-                    view.showProgress(false);
                     t.printStackTrace();
                     if (currentInvoice == null) {
-                        view.showError(t.getMessage(), ErrorViewHelper.ErrorType.NETWORK);
+                        view.displayErrorState(t.getMessage(), ErrorViewHelper.ErrorType.NETWORK);
                     } else {
-                        view.showMessage(t.getMessage());
+                        view.displayErrorToast(t.getMessage());
                     }
                 }));
     }
@@ -77,19 +73,29 @@ public class InvoiceDetailsPresenter implements InvoiceDetailsContract.InvoiceDe
     private void getOrganizationSettings() {
         compositeSubscription.add(model.getOrganizationSettings()
                 .subscribe(responseGetOrganizationSettings -> {
-                    organizationSettings = responseGetOrganizationSettings.data;
-
+                    setOrgData(responseGetOrganizationSettings.data);
                 }, Throwable::printStackTrace));
+    }
+
+    private void setOrgData(OrganizationSettings data) {
+        organizationSettings = data;
+
+        if (organizationSettings != null) {
+            view.setCompanyName(organizationSettings.name);
+            if (organizationSettings.address != null)
+                view.setCompanyAddress(StringUtil.getAddress(organizationSettings.address));
+        }
     }
 
     @Override
     public void subscribe() {
         if (currentInvoice == null) {
-            view.showProgress(true);
+            view.showProgress(Constants.ProgressType.CENTER);
             refresh();
             getOrganizationSettings();
         } else {
             setData(currentInvoice);
+            setOrgData(organizationSettings);
         }
     }
 
@@ -117,11 +123,6 @@ public class InvoiceDetailsPresenter implements InvoiceDetailsContract.InvoiceDe
                 view.setPaymentMade(StringUtil.getFormattedPriceFromCent(formatter, paymentMade, symbol));
             }
             view.setBalanceDue(StringUtil.getFormattedPriceFromCent(formatter, response.paymentInfo.balance, symbol));
-        }
-        if (organizationSettings != null) {
-            view.setCompanyName(organizationSettings.name);
-            if (organizationSettings.address != null)
-                view.setCompanyAddress(StringUtil.getAddress(organizationSettings.address));
         }
 
         if (response.attachments != null && !response.attachments.isEmpty()) {

@@ -9,6 +9,7 @@ import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectableBasePresenter;
 import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectableBaseView;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.PersonDH;
+import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
 import java.util.ArrayList;
 
@@ -23,16 +24,16 @@ public interface PersonsContract {
         void displayEnabledLetters(ArrayList<AlphabetItem> enabledAlphabetItems);
         void displaySelectedLetter(String selectedLetter);
         void displayPersons(ArrayList<PersonDH> personDHs, boolean needClear);
-        void displayError(final String msg, final ErrorViewHelper.ErrorType errorType);
         void openPersonDetailsScreen(String personID);
-        void showProgress(final boolean isShow);
+
+        void displayErrorState(final String msg, final ErrorViewHelper.ErrorType errorType);
+        void displayErrorToast(final String msg);
+        void showProgress(Constants.ProgressType type);
     }
     interface PersonsPresenter extends MasterFlowSelectableBasePresenter<String, PersonDH> {
         void setLetter(String letter);
-        void loadAlphabet();
-        void loadMore(int page);
         void refresh();
-        int getCurrentPage();
+        void loadNextPage();
     }
     interface PersonsModel extends BaseModel {
         Observable<ResponseGetAlphabet> getPersonsAlphabet();

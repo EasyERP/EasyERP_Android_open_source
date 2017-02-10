@@ -4,9 +4,11 @@ import com.thinkmobiles.easyerp.data.model.crm.persons.details.ResponseGetPerson
 import com.thinkmobiles.easyerp.presentation.base.BaseModel;
 import com.thinkmobiles.easyerp.presentation.base.BasePresenter;
 import com.thinkmobiles.easyerp.presentation.base.BaseView;
+import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.AttachmentDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.HistoryDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.OpportunityAndLeadDH;
+import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
 import java.util.ArrayList;
 
@@ -18,15 +20,16 @@ import rx.Observable;
 
 public interface PersonDetailsContract {
     interface PersonDetailsView extends BaseView<PersonDetailsPresenter> {
-        void showProgress(boolean enable);
+        void showProgress(Constants.ProgressType type);
         void showHistory(boolean isShow);
 
         void showCompanyInfo(boolean isShow);
         void showSalesPurchasesInfo(boolean isShow);
         void showLeadsAndOpportunities(boolean isShown);
         void showAttachments(boolean isShown);
-        void displayError(final String msg);
-        void showMessage(String message);
+
+        void displayErrorState(final String msg, final ErrorViewHelper.ErrorType errorType);
+        void displayErrorToast(final String msg);
 
         void showJobPosition(boolean isShown);
         void showCompany(boolean isShown);

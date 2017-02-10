@@ -32,7 +32,7 @@ public class InvoiceRepository extends NetworkRepository implements InvoicesCont
 
     @Override
     public Observable<ResponseGetInvoice> getInvoices(final int page) {
-        return getNetworkObservable(invoiceService.getInvoice(null, null, true, "list", 50, null, "invoice"));
+        return getNetworkObservable(invoiceService.getInvoice(null, null, true, "list", page, 50, null, "invoice"));
     }
 
     @Override

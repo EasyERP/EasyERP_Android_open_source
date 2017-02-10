@@ -62,33 +62,28 @@ public class PaymentsPresenter extends MasterFlowSelectablePresenterHelper<Strin
     }
 
     private void loadNextPayments(int page) {
-        final boolean isFirst = page == 1;
+        final boolean needClear = page == 1;
         compositeSubscription.add(
                 model.getPayments(page).subscribe(
                         responseGetPayments -> {
                             currentPage = page;
-                            ArrayList<PaymentDH> list = prepareOrderDHs(responseGetPayments.data, isFirst);
+                            saveData(responseGetPayments.data, needClear);
                             if (payments.isEmpty()) {
-                                view.displayError(null, ErrorViewHelper.ErrorType.LIST_EMPTY);
+                                view.displayErrorState(null, ErrorViewHelper.ErrorType.LIST_EMPTY);
                             } else {
                                 view.showProgress(Constants.ProgressType.NONE);
-                                view.displayPayments(list, isFirst);
+                                view.displayPayments(prepareOrderDHs(responseGetPayments.data, needClear), needClear);
                             }
                         },
                         throwable -> {
                             if (payments.isEmpty()) {
-                                view.displayError(throwable.getMessage(), ErrorViewHelper.ErrorType.NETWORK);
+                                view.displayErrorState(throwable.getMessage(), ErrorViewHelper.ErrorType.NETWORK);
                             } else {
-                                view.displayErrorMessage(throwable.getMessage());
+                                view.displayErrorToast(throwable.getMessage());
                             }
                         }
                 )
         );
-    }
-
-    @Override
-    public int getCurrentPage() {
-        return currentPage;
     }
 
     @Override
@@ -97,10 +92,13 @@ public class PaymentsPresenter extends MasterFlowSelectablePresenterHelper<Strin
             view.openPaymentDetailsScreen(dh.getPayment());
     }
 
-    private ArrayList<PaymentDH> prepareOrderDHs(final List<Payment> payments, boolean needClear) {
+    private void saveData(final List<Payment> payments, boolean needClear) {
         if (needClear)
             this.payments.clear();
         this.payments.addAll(payments);
+    }
+
+    private ArrayList<PaymentDH> prepareOrderDHs(final List<Payment> payments, boolean needClear) {
         int position = 0;
         final ArrayList<PaymentDH> result = new ArrayList<>();
         for (Payment payment : payments) {
