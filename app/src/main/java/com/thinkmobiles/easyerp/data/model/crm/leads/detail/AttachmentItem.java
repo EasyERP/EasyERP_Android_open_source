@@ -25,7 +25,7 @@ public class AttachmentItem implements Parcelable {
     @SerializedName("_id")
     public String id;
     public String name;
-    @SerializedName("shortPath")
+    @SerializedName("shortPas")
     public String shortPath;
     public String size;
     public String uploadDate;

@@ -785,17 +785,19 @@
 
             </FrameLayout>
 
-            <TextView
-                style="@style/TextContentTitle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingEnd="@dimen/default_padding"
-                android:paddingStart="@dimen/default_padding"
-                android:text="@string/attachments" />
+                    <TextView
+                        style="@style/TextContentTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/default_padding"
+                        android:layout_marginEnd="@dimen/default_padding"
+                        android:text="@string/attachments"/>
 
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/default_padding"
+                        android:layout_marginEnd="@dimen/default_padding">
 
                 <TextView
                     android:id="@+id/tvEmptyAttachments_FPD"
@@ -805,22 +807,14 @@
                     android:layout_marginStart="@dimen/default_padding_3dp"
                     android:padding="@dimen/default_padding" />
 
-                <LinearLayout
-                    android:id="@+id/llAttachmentsContainer_FPD"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                            <android.support.v7.widget.RecyclerView
+                                android:id="@+id/rvAttachments_FPD"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/default_padding_half"
+                                android:overScrollMode="never"/>
 
-                    <android.support.v7.widget.RecyclerView
-                        android:id="@+id/rvAttachments_FPD"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/default_padding_half"
-                        android:overScrollMode="never" />
-
-                </LinearLayout>
-
-            </FrameLayout>
+                    </FrameLayout>
 
         </LinearLayout>
 

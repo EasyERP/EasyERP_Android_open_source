@@ -45,7 +45,7 @@ public final class PaymentVH extends MasterFlowSelectableVHHelper<PaymentDH> {
 
         not_assigned = itemView.getContext().getString(R.string.not_assigned);
         no_data = itemView.getContext().getString(R.string.no_data);
-        paymentDateFormatter = itemView.getContext().getString(R.string.payment_date);
+        paymentDateFormatter = itemView.getContext().getString(R.string.pattern_payment_date);
     }
 
     @Override
@@ -61,7 +61,7 @@ public final class PaymentVH extends MasterFlowSelectableVHHelper<PaymentDH> {
                 data.getPayment().currency.id != null ? data.getPayment().currency.symbol : "$"));
 
         final String paymentType = data.getPayment().refund ? "Refund" : "Payment";
-        tvPaymentType_VLIP.setText(paymentType.toUpperCase());
+        tvPaymentType_VLIP.setText(paymentType);
         tvPaymentType_VLIP.setBackgroundDrawable(new RoundRectDrawable(ContextCompat.getColor(itemView.getContext(), TagHelper.getColorResIdByName(paymentType))));
     }
 }

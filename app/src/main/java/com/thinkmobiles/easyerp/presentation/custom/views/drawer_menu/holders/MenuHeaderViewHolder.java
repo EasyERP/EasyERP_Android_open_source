@@ -44,7 +44,8 @@ public final class MenuHeaderViewHolder extends BaseViewHolder<UserInfo> impleme
         dividerView = findWithId(R.id.vDivider_VDMH);
         moduleLabelView = findWithId(R.id.tvMenuModule_VDMH);
 
-        moduleLabelView.setOnClickListener(view -> headerMenuProviderFunctions.showModules());
+        moduleLabelView.setOnClickListener(view -> this.headerMenuProviderFunctions.showModules());
+        itemView.findViewById(R.id.rlUserContainer_VDMH).setOnClickListener(view -> this.headerMenuProviderFunctions.selectCurrentUser());
     }
 
     private void updateModuleLabelView() {

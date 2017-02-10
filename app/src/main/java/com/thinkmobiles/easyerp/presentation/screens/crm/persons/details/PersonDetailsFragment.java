@@ -156,8 +156,6 @@ public class PersonDetailsFragment extends RefreshFragment<HomeActivity> impleme
     @ViewById
     protected EditText etCompanyEmail_FPD;
     @ViewById
-    protected LinearLayout llAttachmentsContainer_FPD;
-    @ViewById
     protected RecyclerView rvAttachments_FPD;
     @ViewById
     protected FrameLayout btnHistory;

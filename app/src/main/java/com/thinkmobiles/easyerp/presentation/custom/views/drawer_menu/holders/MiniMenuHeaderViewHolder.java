@@ -25,7 +25,7 @@ public final class MiniMenuHeaderViewHolder extends BaseViewHolder<UserInfo> {
 
         userAvatarView = findWithId(R.id.ivAvatar_VDMMH);
 
-        itemView.setOnClickListener(view -> headerMenuProviderFunctions.selectCurrentUser());
+        itemView.setOnClickListener(view -> this.headerMenuProviderFunctions.selectCurrentUser());
     }
 
 
