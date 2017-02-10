@@ -50,6 +50,11 @@
         <item name="android:layout_weight">1</item>
         <item name="android:textColorHint">@color/color_text_gray</item>
         <item name="android:layout_marginTop">16dp</item>
+        <item name="android:focusableInTouchMode">false</item>
+        <item name="android:clickable">false</item>
+        <item name="android:editable">false</item>
+        <item name="android:cursorVisible">false</item>
+        <item name="android:longClickable">false</item>
     </style>
 
     <style name="DefaultTheme.LeadInputFieldStyle" parent="DefaultTheme.DefaultBlackEditTextTheme">
@@ -62,7 +67,11 @@
         <item name="android:layout_width">match_parent</item>
         <item name="backgroundTint">@color/color_divider</item>
         <item name="android:textSize">@dimen/text_list_item_medium_16</item>
-        <item name="android:enabled">false</item>
+        <item name="android:focusableInTouchMode">false</item>
+        <item name="android:clickable">false</item>
+        <item name="android:editable">false</item>
+        <item name="android:cursorVisible">false</item>
+        <item name="android:longClickable">false</item>
     </style>
 
     <style name="ContentTitleStyle" parent="@style/RobotoMedium">

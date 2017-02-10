@@ -246,12 +246,14 @@
 
                                         <android.support.v7.widget.CardView
                                             android:layout_width="@dimen/image_size_large"
-                                            android:layout_height="@dimen/image_size_large">
+                                            android:layout_height="@dimen/image_size_large"
+                                            app:cardBackgroundColor="@android:color/white">
 
                                             <ImageView
                                                 android:id="@+id/ivCompanyImage_FOD"
                                                 android:layout_width="match_parent"
                                                 android:layout_height="match_parent"
+                                                android:src="@drawable/placeholder"
                                                 android:scaleType="centerCrop"/>
 
                                         </android.support.v7.widget.CardView>
