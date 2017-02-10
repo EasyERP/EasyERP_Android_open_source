@@ -124,8 +124,6 @@ public class LeadDetailsFragment extends BaseFragment<HomeActivity> implements L
     @ViewById
     protected TextView tvCompanyCountry_FLD;
     @ViewById
-    protected TextView tvAttachments_FLD;
-    @ViewById
     protected FrameLayout btnHistory;
     @ViewById
     protected ImageView ivIconArrow;

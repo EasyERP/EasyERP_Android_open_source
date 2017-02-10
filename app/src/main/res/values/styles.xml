@@ -62,6 +62,7 @@
         <item name="android:layout_width">match_parent</item>
         <item name="backgroundTint">@color/color_divider</item>
         <item name="android:textSize">@dimen/text_list_item_medium_16</item>
+        <item name="android:enabled">false</item>
     </style>
 
     <style name="ContentTitleStyle" parent="@style/RobotoMedium">

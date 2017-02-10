@@ -280,7 +280,7 @@
                                             app:hintAnimationEnabled="false"
                                             android:hint="@string/name">
 
-                                            <EditText
+                                            e<EditText
                                                 android:id="@+id/etCompanyName_FOD"
                                                 style="@style/DefaultTheme.LeadInputFieldStyle"
                                                 android:text="@string/err_not_specified"/>
@@ -431,7 +431,7 @@
                                 android:layout_height="wrap_content"
                                 android:paddingBottom="@dimen/default_padding_half"
                                 android:paddingTop="@dimen/default_padding_half"
-                                android:layout_marginLeft="@dimen/default_padding_3dp"/>
+                                android:layout_marginStart="@dimen/default_padding_3dp"/>
 
                             <android.support.v7.widget.RecyclerView
                                 android:id="@+id/rvAttachments_FOD"

@@ -33,6 +33,7 @@ public class ResponseGetOpportunityDetails implements Parcelable {
     public Customer customer;
     public LeadCompany company;
     public ExpectedRevenue expectedRevenue;
+    public String tempCompanyField;
 
     public ResponseGetOpportunityDetails() {
     }
@@ -56,6 +57,7 @@ public class ResponseGetOpportunityDetails implements Parcelable {
         dest.writeParcelable(this.customer, flags);
         dest.writeParcelable(this.company, flags);
         dest.writeParcelable(this.expectedRevenue, flags);
+        dest.writeString(this.tempCompanyField);
     }
 
     protected ResponseGetOpportunityDetails(Parcel in) {
@@ -71,6 +73,7 @@ public class ResponseGetOpportunityDetails implements Parcelable {
         this.customer = in.readParcelable(Customer.class.getClassLoader());
         this.company = in.readParcelable(LeadCompany.class.getClassLoader());
         this.expectedRevenue = in.readParcelable(ExpectedRevenue.class.getClassLoader());
+        this.tempCompanyField = in.readString();
     }
 
     public static final Creator<ResponseGetOpportunityDetails> CREATOR = new Creator<ResponseGetOpportunityDetails>() {
