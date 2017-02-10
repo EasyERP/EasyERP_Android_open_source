@@ -125,8 +125,6 @@ public class LeadDetailsFragment extends RefreshFragment<HomeActivity> implement
     @ViewById
     protected TextView tvCompanyCountry_FLD;
     @ViewById
-    protected TextView tvAttachments_FLD;
-    @ViewById
     protected FrameLayout btnHistory;
     @ViewById
     protected ImageView ivIconArrow;

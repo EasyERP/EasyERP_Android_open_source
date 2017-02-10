@@ -2,10 +2,12 @@ package com.thinkmobiles.easyerp.presentation.screens.crm.opportunities.details;
 
 import android.text.SpannableStringBuilder;
 
+import com.thinkmobiles.easyerp.data.model.crm.leads.TagItem;
 import com.thinkmobiles.easyerp.data.model.crm.opportunities.detail.ResponseGetOpportunityDetails;
 import com.thinkmobiles.easyerp.presentation.base.BaseModel;
 import com.thinkmobiles.easyerp.presentation.base.BasePresenter;
 import com.thinkmobiles.easyerp.presentation.base.BaseView;
+import com.thinkmobiles.easyerp.presentation.holders.data.crm.AttachmentDH;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.HistoryDH;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
@@ -25,8 +27,9 @@ public interface OpportunityDetailsContract {
         void displayErrorState(String errMsg, ErrorViewHelper.ErrorType errorType);
         void displayErrorToast(String message);
 
-        void displayContactInfo(boolean isVisible);
-        void displayCompanyInfo(boolean isVisible);
+        void showContact(boolean isShown);
+        void showCompany(boolean isShown);
+        void showAttachments(boolean isShown);
 
         void displayOpportunityName(String opportunityName);
         void displayStatus(String opportunityStatus);
@@ -39,7 +42,6 @@ public interface OpportunityDetailsContract {
         void displayContactEmail(String contactEmail);
 
         void displayCompanyImage(String companyImageBase64);
-        void displayCompanyTitleName(String companyTitleName);
         void displayCompanyUrl(String companyUrl);
         void displayCompanyName(String companyName);
         void displayCompanyStreet(String companyStreet);
@@ -50,13 +52,16 @@ public interface OpportunityDetailsContract {
         void displayCompanyPhone(String companyPhone);
         void displayCompanyEmail(String companyEmail);
 
-        void setAttachments(String attachments);
-        void displayTags(SpannableStringBuilder tags);
+        void setTags(ArrayList<TagItem> tags);
+        void displayAttachments(ArrayList<AttachmentDH> attachmentDHs);
+        void startUrlIntent(String url);
+
         void displayHistory(ArrayList<HistoryDH> history);
     }
     interface OpportunityDetailsPresenter extends BasePresenter {
         void changeNotesVisibility();
         void refresh();
+        void startAttachment(int pos);
     }
     interface OpportunityDetailsModel extends BaseModel {
         Observable<ResponseGetOpportunityDetails> getOpportunityDetails(String opportunityID);
