@@ -8,46 +8,42 @@
               android:padding="@dimen/default_padding"
               tools:background="@android:color/white">
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/llFirstLine_VLIL"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_weight="1"
+        <ImageView
+            android:id="@+id/ivPriority_LIL"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:id="@+id/ivPriority_LIL"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="top"
-                android:layout_marginEnd="@dimen/default_padding_quart"
-                android:layout_marginTop="@dimen/default_padding_3dp"/>
-
-            <TextView
-                android:id="@+id/tvLeadName_LIL"
-                style="@style/TextListTitleStyle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                tools:text="Web development"/>
-
-        </LinearLayout>
+            android:layout_alignParentTop="true"
+            android:layout_marginEnd="@dimen/default_padding_quart"
+            android:layout_marginTop="@dimen/default_padding_3dp"
+            tools:src="@drawable/ic_cold"/>
 
         <TextView
             android:id="@+id/tvStage_LIL"
             style="@style/SmallChipsStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="top"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
             android:layout_marginStart="@dimen/default_padding_middle"
             android:layout_marginTop="@dimen/default_padding_3dp"
             tools:text="Not Interested"/>
 
-    </LinearLayout>
+        <TextView
+            android:id="@+id/tvLeadName_LIL"
+            style="@style/TextListTitleStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/ivPriority_LIL"
+            android:layout_toStartOf="@id/tvStage_LIL"
+            tools:text="Web development"/>
+
+    </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"

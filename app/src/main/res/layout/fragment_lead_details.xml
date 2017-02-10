@@ -460,13 +460,14 @@
                     android:paddingBottom="@dimen/default_padding_half"
                     android:paddingTop="@dimen/default_padding_half">
 
-                    <TextView
-                        android:id="@+id/tvEmptyAttachments_FLD"
-                        style="@style/TextNoDataStyle"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:paddingBottom="@dimen/default_padding_half"
-                        android:paddingTop="@dimen/default_padding_half" />
+                            <TextView
+                                android:id="@+id/tvEmptyAttachments_FLD"
+                                style="@style/TextNoDataStyle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:paddingBottom="@dimen/default_padding_half"
+                                android:paddingTop="@dimen/default_padding_half"
+                                android:layout_marginLeft="@dimen/default_padding_3dp"/>
 
                     <android.support.v7.widget.RecyclerView
                         android:id="@+id/rvAttachments_FLD"

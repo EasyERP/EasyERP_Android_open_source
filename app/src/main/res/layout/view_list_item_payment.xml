@@ -5,7 +5,8 @@
     android:layout_height="wrap_content"
     android:background="@drawable/bg_with_bottom_divider_line_selector"
     android:orientation="vertical"
-    android:padding="@dimen/default_padding">
+    android:padding="@dimen/default_padding"
+    tools:background="@android:color/white">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -80,15 +81,12 @@
 
         <TextView
             android:id="@+id/tvPaymentDate_VLIP"
-            style="@style/RobotoRegular"
+            style="@style/TextListInfoGreyStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/default_padding_middle"
             android:layout_weight="1"
-            android:ellipsize="end"
             android:maxLines="1"
-            android:textColor="@color/color_text_black"
-            android:textSize="@dimen/text_list_item_medium_16"
             tools:text="Payment Date: 02 Feb, 2017" />
 
         <TextView

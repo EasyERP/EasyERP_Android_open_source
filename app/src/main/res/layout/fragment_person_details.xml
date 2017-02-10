@@ -799,13 +799,13 @@
                         android:layout_marginStart="@dimen/default_padding"
                         android:layout_marginEnd="@dimen/default_padding">
 
-                <TextView
-                    android:id="@+id/tvEmptyAttachments_FPD"
-                    style="@style/TextNoDataStyle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/default_padding_3dp"
-                    android:padding="@dimen/default_padding" />
+                        <TextView
+                            style="@style/TextNoDataStyle"
+                            android:id="@+id/tvEmptyAttachments_FPD"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/default_padding"
+                            android:layout_marginStart="@dimen/default_padding_3dp"/>
 
                             <android.support.v7.widget.RecyclerView
                                 android:id="@+id/rvAttachments_FPD"
