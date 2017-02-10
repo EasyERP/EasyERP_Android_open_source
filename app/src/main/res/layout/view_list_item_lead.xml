@@ -41,7 +41,7 @@
             android:layout_height="wrap_content"
             android:layout_toEndOf="@id/ivPriority_LIL"
             android:layout_toStartOf="@id/tvStage_LIL"
-            tools:text="Web development"/>
+            tools:text="Web developmentsd s sd sd ds ds ds ds sd sd sd sd s s ds s s"/>
 
     </RelativeLayout>
 

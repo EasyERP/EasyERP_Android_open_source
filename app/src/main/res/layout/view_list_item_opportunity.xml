@@ -30,9 +30,8 @@
             style="@style/TextListTitleStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_toEndOf="@id/ivPriority_LIL"
-            android:layout_toStartOf="@id/tvStage_LIL"
-            tools:text="Web development"/>
+            android:layout_toStartOf="@id/tvStage_VLIO"
+            tools:text="Web developmentsdsdsdsds sd sd sd sd sd sd s s sdsd sd s sdsd sds ds ds"/>
 
     </RelativeLayout>
 
