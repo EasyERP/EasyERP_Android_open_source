@@ -10,6 +10,7 @@ import com.thinkmobiles.easyerp.data.model.user.UserInfo;
 import com.thinkmobiles.easyerp.presentation.custom.transformations.CropCircleTransformation;
 import com.thinkmobiles.easyerp.presentation.custom.views.drawer_menu.IMenuProviderFunctions;
 import com.thinkmobiles.easyerp.presentation.custom.views.drawer_menu.models.MenuConfigs;
+import com.thinkmobiles.easyerp.presentation.custom.views.drawer_menu.models.MenuItem;
 import com.thinkmobiles.easyerp.presentation.managers.ImageHelper;
 
 /**
@@ -49,8 +50,10 @@ public final class MenuHeaderViewHolder extends BaseViewHolder<UserInfo> impleme
     }
 
     private void updateModuleLabelView() {
-        if (currentChosenModuleId >= 0)
-            moduleLabelView.setText(MenuConfigs.menuModules.get(currentChosenModuleId).getLabel());
+        MenuItem module = MenuConfigs.getMenuModuleById(currentChosenModuleId);
+        if (module != null) {
+            moduleLabelView.setText(module.getLabel());
+        }
     }
 
     @Override

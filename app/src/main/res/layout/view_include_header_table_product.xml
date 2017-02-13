@@ -5,7 +5,7 @@
     android:layout_marginEnd="@dimen/default_padding"
     android:layout_marginStart="@dimen/default_padding"
     android:layout_marginTop="@dimen/default_padding_big"
-    android:background="@color/color_bg__header_table_product"
+    android:background="@color/color_bg_header_table_product"
     android:gravity="center_vertical">
 
 

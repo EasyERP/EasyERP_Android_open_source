@@ -49,6 +49,13 @@ public abstract class MenuConfigs {
         menuModuleItems.put(9, getSettingsModule());
     }
 
+    public static MenuItem getMenuModuleById(final int moduleId) {
+        for (MenuItem module: menuModules)
+            if (module.getId() == moduleId)
+                return module;
+        return null;
+    }
+
     private static List<MenuItem> getReportsModule() {
         final List<MenuItem> menuItems = new ArrayList<>();
         menuItems.add(new MenuItem(0, R.drawable.ic_menu_item_placeholder, "General", false));
@@ -177,7 +184,10 @@ public abstract class MenuConfigs {
     }
 
     public static String getLabel(final int moduleId, final int itemId) {
-        return menuModuleItems.get(moduleId).get(itemId).getLabel();
+        for (MenuItem item: menuModuleItems.get(moduleId))
+            if (item.getId() == itemId)
+                return item.getLabel();
+        return null;
     }
 
     private static BaseFragment getFragmentByIdWithCRMModule(final int itemId) {
