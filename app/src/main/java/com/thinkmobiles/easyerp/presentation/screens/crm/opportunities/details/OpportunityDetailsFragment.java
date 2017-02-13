@@ -314,7 +314,7 @@ public class OpportunityDetailsFragment extends RefreshFragment implements Oppor
         LayoutInflater inflater = LayoutInflater.from(getActivity());
         for(TagItem tagItem : tags) {
             TextView tvTag = (TextView) inflater.inflate(R.layout.view_text_tag, flowLayoutTags_FOD, false);
-            tvTag.setBackground(new RoundRectDrawable(ColorUtils.setAlphaComponent(ContextCompat.getColor(getActivity(), TagHelper.getColorResIdByName(tagItem.color)), 200)));
+            tvTag.setBackground(new RoundRectDrawable(ColorUtils.setAlphaComponent(ContextCompat.getColor(getActivity(), TagHelper.getColorResIdByName(tagItem.color)), 150)));
             tvTag.setText(tagItem.name);
             flowLayoutTags_FOD.addView(tvTag);
         }
