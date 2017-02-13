@@ -35,6 +35,8 @@ public class PaymentDetailsFragment extends RefreshFragment implements PaymentDe
     protected Payment payment;
 
     @ViewById
+    protected TextView tvTitlePayment_FPD;
+    @ViewById
     protected TextView tvPaymentStatus_FPD;
     @ViewById
     protected TextView tvCompanyName_FPD;
@@ -125,6 +127,7 @@ public class PaymentDetailsFragment extends RefreshFragment implements PaymentDe
     @Override
     public void setPaymentName(String paymentName) {
         tvPaymentName_FPD.setText(paymentName);
+        tvTitlePayment_FPD.setText(paymentName);
     }
 
     @Override

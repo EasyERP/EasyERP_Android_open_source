@@ -51,16 +51,9 @@
 
                     <TextView
                         android:id="@+id/tvOrderStatus_FOD"
-                        style="@style/PdfStyle.BoldText"
+                        style="@style/PdfStyle.BoldText.WorkflowStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/default_padding"
-                        android:gravity="center"
-                        android:paddingBottom="@dimen/default_padding_quart"
-                        android:paddingEnd="@dimen/default_padding"
-                        android:paddingStart="@dimen/default_padding"
-                        android:paddingTop="@dimen/default_padding_quart"
-                        android:textColor="@android:color/white"
                         tools:background="@drawable/bg_order_status"
                         tools:text="Draft/ Quotation" />
 

@@ -140,4 +140,5 @@
     <string name="contact_name">Contact Name</string>
     <string name="order_details_title_order_preview">Order Preview</string>
     <string name="invoice_details_subtitle_payments">Payments</string>
+    <string name="invoice_details_subtitle_invoice_preview">Invoice Preview</string>
 </resources>
