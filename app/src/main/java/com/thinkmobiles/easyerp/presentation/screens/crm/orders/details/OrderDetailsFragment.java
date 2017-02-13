@@ -1,6 +1,7 @@
 package com.thinkmobiles.easyerp.presentation.screens.crm.orders.details;
 
 import android.support.v4.widget.NestedScrollView;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
@@ -12,10 +13,12 @@ import android.widget.TextView;
 import com.jakewharton.rxbinding.view.RxView;
 import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.domain.crm.OrderRepository;
+import com.thinkmobiles.easyerp.presentation.adapters.crm.AttachmentAdapter;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.HistoryAdapter;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.ProductAdapter;
 import com.thinkmobiles.easyerp.presentation.base.rules.RefreshFragment;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
+import com.thinkmobiles.easyerp.presentation.holders.data.crm.AttachmentDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.HistoryDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.ProductDH;
 import com.thinkmobiles.easyerp.presentation.managers.HistoryAnimationHelper;
@@ -47,6 +50,8 @@ public class OrderDetailsFragment extends RefreshFragment implements OrderDetail
 
     @ViewById
     protected NestedScrollView nsvContent_FOD;
+    @ViewById
+    protected TextView tvTitleOrder_FOD;
     @ViewById
     protected TextView tvOrderStatus_FOD;
     @ViewById
@@ -98,7 +103,9 @@ public class OrderDetailsFragment extends RefreshFragment implements OrderDetail
     @ViewById
     protected TextView tvAdvice_FOD;
     @ViewById
-    protected TextView tvAttachments_FOD;
+    protected TextView tvEmptyAttachments_FOD;
+    @ViewById
+    protected RecyclerView rvAttachments_FOD;
     @ViewById
     protected FrameLayout btnHistory;
     @ViewById
@@ -114,6 +121,8 @@ public class OrderDetailsFragment extends RefreshFragment implements OrderDetail
     protected ProductAdapter productAdapter;
     @Bean
     protected HistoryAnimationHelper animationHelper;
+    @Bean
+    protected AttachmentAdapter attachmentAdapter;
 
     private OrderDetailsContract.OrderDetailsPresenter presenter;
 
@@ -128,6 +137,9 @@ public class OrderDetailsFragment extends RefreshFragment implements OrderDetail
 
         rvHistory.setAdapter(historyAdapter);
         rvHistory.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+        rvAttachments_FOD.setAdapter(attachmentAdapter);
+        rvAttachments_FOD.setLayoutManager(new GridLayoutManager(getActivity(), 2));
 
         rvProductList_FOD.setAdapter(productAdapter);
         rvProductList_FOD.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -199,6 +211,7 @@ public class OrderDetailsFragment extends RefreshFragment implements OrderDetail
     @Override
     public void setOrderName(String orderName) {
         tvOrderName_FOD.setText(orderName);
+        tvTitleOrder_FOD.setText(orderName);
     }
 
     @Override
@@ -291,8 +304,9 @@ public class OrderDetailsFragment extends RefreshFragment implements OrderDetail
     }
 
     @Override
-    public void setAttachments(String attachments) {
-        tvAttachments_FOD.setText(Html.fromHtml(attachments));
+    public void setAttachments(ArrayList<AttachmentDH> attachments) {
+        tvEmptyAttachments_FOD.setVisibility(View.GONE);
+        attachmentAdapter.setListDH(attachments);
     }
 
     @Override

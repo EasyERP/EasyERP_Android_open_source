@@ -6,6 +6,7 @@ import com.thinkmobiles.easyerp.presentation.base.BaseModel;
 import com.thinkmobiles.easyerp.presentation.base.BasePresenter;
 import com.thinkmobiles.easyerp.presentation.base.BaseView;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
+import com.thinkmobiles.easyerp.presentation.holders.data.crm.AttachmentDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.HistoryDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.ProductDH;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
@@ -43,7 +44,7 @@ public interface OrderDetailsContract {
         void setOwnerName(String ownerName);
         void setOwnerSite(String ownerSite);
         void setOwnerEmail(String ownerEmail);
-        void setAttachments(String attachments);
+        void setAttachments(ArrayList<AttachmentDH> attachmentDHs);
         void setAdvice(String advice);
         void setHistory(ArrayList<HistoryDH> history);
         void setProducts(ArrayList<ProductDH> products);

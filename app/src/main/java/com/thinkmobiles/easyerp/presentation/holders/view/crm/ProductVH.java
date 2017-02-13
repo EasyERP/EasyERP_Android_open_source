@@ -50,7 +50,7 @@ public final class ProductVH extends RecyclerVH<ProductDH> {
     public void bindData(ProductDH data) {
         OrderProduct model = data.getModel();
         String symbol = data.getSymbol();
-        tvNumber_LIOP.setText(String.valueOf(getAdapterPosition()));
+        tvNumber_LIOP.setText(String.valueOf(getAdapterPosition() + 1));
         if (model.product != null && model.product.info != null)
             tvSku_LIOP.setText(model.product.info.SKU);
         else {

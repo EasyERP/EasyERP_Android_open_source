@@ -21,7 +21,6 @@
     <color name="chart_workflow_item_bg_color">#F7F7F7</color>
     <color name="chart_workflow_item_text_color">#7F7F80</color>
 
-    <color name="bg_header_table_order_product">#454545</color>
 
     <color name="tag_bg_red">#eb5a46</color>
     <color name="tag_bg_pink">#ff80ce</color>
@@ -59,5 +58,8 @@
     <color name="color_status_no_answer">#fbaf5d</color>
     <color name="color_status_do_not_contact">#95a5a6</color>
     <color name="color_status_in_progress">#3498db</color>
+
+    <color name="color_bg__header_table_product">#737373</color>
+    <color name="color_text_red">#e74c3c</color>
 
 </resources>

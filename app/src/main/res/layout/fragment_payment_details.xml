@@ -190,7 +190,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/default_dimen_32"
-                            android:background="@color/bg_header_table_order_product"
+                            android:background="@color/color_bg__header_table_product"
                             android:gravity="center_vertical">
 
 
