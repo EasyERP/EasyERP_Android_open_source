@@ -7,6 +7,7 @@ import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.view.View;
@@ -21,13 +22,15 @@ import android.widget.Toast;
 import com.jakewharton.rxbinding.view.RxView;
 import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.domain.crm.CompaniesRepository;
-import com.thinkmobiles.easyerp.presentation.adapters.crm.ContactAdapter;
+import com.thinkmobiles.easyerp.presentation.adapters.crm.AttachmentAdapter;
+import com.thinkmobiles.easyerp.presentation.adapters.crm.ContactsAdapter;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.HistoryAdapter;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.OpportunityAndLeadsAdapter;
 import com.thinkmobiles.easyerp.presentation.base.rules.RefreshFragment;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.custom.transformations.CropCircleTransformation;
-import com.thinkmobiles.easyerp.presentation.holders.data.crm.ContactDH;
+import com.thinkmobiles.easyerp.presentation.holders.data.crm.AttachmentDH;
+import com.thinkmobiles.easyerp.presentation.holders.data.crm.ContactsDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.HistoryDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.OpportunityAndLeadDH;
 import com.thinkmobiles.easyerp.presentation.managers.HistoryAnimationHelper;
@@ -129,13 +132,13 @@ public class CompanyDetailsFragment extends RefreshFragment implements CompanyDe
     @ViewById
     protected RecyclerView rvLeadsAndOpportunities_FCD;
     @ViewById
-    protected TextView tvAttachments_FCD;
-    @ViewById
     protected FrameLayout btnHistory;
     @ViewById
     protected ImageView ivIconArrow;
     @ViewById
     protected RecyclerView rvHistory;
+    @ViewById
+    protected RecyclerView rvAttachments_FCD;
 
     @ViewById
     protected LinearLayout llContainerBillingAddress_FCD;
@@ -166,13 +169,15 @@ public class CompanyDetailsFragment extends RefreshFragment implements CompanyDe
     @Bean
     protected HistoryAdapter historyAdapter;
     @Bean
-    protected ContactAdapter contactAdapter;
+    protected ContactsAdapter contactAdapter;
     @Bean
     protected OpportunityAndLeadsAdapter opportunityAndLeadsAdapter;
     @Bean
     protected CompaniesRepository companiesRepository;
     @Bean
     protected HistoryAnimationHelper animationHelper;
+    @Bean
+    protected AttachmentAdapter attachmentAdapter;
 
     @AfterInject
     @Override
@@ -185,11 +190,15 @@ public class CompanyDetailsFragment extends RefreshFragment implements CompanyDe
         rvHistory.setLayoutManager(new LinearLayoutManager(getActivity()));
         rvHistory.setAdapter(historyAdapter);
 
-        rvContacts_FCD.setLayoutManager(new LinearLayoutManager(getActivity()));
+        rvContacts_FCD.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
         rvContacts_FCD.setAdapter(contactAdapter);
 
         rvLeadsAndOpportunities_FCD.setLayoutManager(new GridLayoutManager(getActivity(), 2));
         rvLeadsAndOpportunities_FCD.setAdapter(opportunityAndLeadsAdapter);
+
+        rvAttachments_FCD.setLayoutManager(new GridLayoutManager(getActivity(), 2));
+        rvAttachments_FCD.setAdapter(attachmentAdapter);
+        attachmentAdapter.setOnCardClickListener((view, position, viewType) -> presenter.startAttachment(position));
 
         RxView.clicks(btnHistory)
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
@@ -273,7 +282,7 @@ public class CompanyDetailsFragment extends RefreshFragment implements CompanyDe
 
     @Override
     public void displayCompanyImage(String base64Image) {
-        ImageHelper.getBitmapFromBase64(base64Image, new CropCircleTransformation())
+        ImageHelper.getBitmapFromBase64(base64Image)
                 .subscribe(ivCompanyAvatar_FCD::setImageBitmap);
     }
 
@@ -447,8 +456,8 @@ public class CompanyDetailsFragment extends RefreshFragment implements CompanyDe
     }
 
     @Override
-    public void displayContacts(ArrayList<ContactDH> contactDHs) {
-        contactAdapter.setListDH(contactDHs);
+    public void displayContacts(ArrayList<ContactsDH> contactsDHs) {
+        contactAdapter.setListDH(contactsDHs);
     }
 
     @Override
@@ -457,14 +466,20 @@ public class CompanyDetailsFragment extends RefreshFragment implements CompanyDe
     }
 
     @Override
-    public void displayAttachments(String attachments) {
-        tvAttachments_FCD.setMovementMethod(LinkMovementMethod.getInstance());
-        tvAttachments_FCD.setText(Html.fromHtml(attachments));
+    public void displayAttachments(ArrayList<AttachmentDH> attachmentDHs) {
+        attachmentAdapter.setListDH(attachmentDHs);
     }
 
     @Override
     public void displayHistory(ArrayList<HistoryDH> historyDHs) {
         historyAdapter.setListDH(historyDHs);
+    }
+
+    @Override
+    public void startUrlIntent(String url) {
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(Uri.parse(url));
+        startActivity(intent);
     }
     //endregion
 

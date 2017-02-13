@@ -223,6 +223,8 @@
     <style name="TextContactNameCard" parent="RobotoMedium">
         <item name="android:textSize">@dimen/text_list_item_medium_16</item>
         <item name="android:textColor">@color/color_text_black</item>
+        <item name="android:maxLines">3</item>
+        <item name="android:ellipsize">end</item>
     </style>
 
     <style name="TextContactInfoStyle" parent="RobotoRegular">
