@@ -1,6 +1,7 @@
 package com.thinkmobiles.easyerp.presentation.screens.crm.invoices.details;
 
 import android.support.v4.widget.NestedScrollView;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
@@ -12,11 +13,13 @@ import android.widget.TextView;
 import com.jakewharton.rxbinding.view.RxView;
 import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.domain.crm.InvoiceRepository;
+import com.thinkmobiles.easyerp.presentation.adapters.crm.AttachmentAdapter;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.HistoryAdapter;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.InvoicePaymentAdapter;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.ProductAdapter;
 import com.thinkmobiles.easyerp.presentation.base.rules.RefreshFragment;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
+import com.thinkmobiles.easyerp.presentation.holders.data.crm.AttachmentDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.HistoryDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.InvoicePaymentDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.ProductDH;
@@ -54,6 +57,8 @@ public class InvoiceDetailsFragment extends RefreshFragment implements InvoiceDe
 
     @ViewById
     protected NestedScrollView nsvContent_FID;
+    @ViewById
+    protected TextView tvTitleInvoice_FID;
     @ViewById
     protected TextView tvInvoiceStatus_FID;
     @ViewById
@@ -93,11 +98,13 @@ public class InvoiceDetailsFragment extends RefreshFragment implements InvoiceDe
     @ViewById
     protected TextView tvBalanceDue_FID;
     @ViewById
-    protected TextView tvAttachments_FID;
-    @ViewById
     protected TextView tvPaymentsTitle_FID;
     @ViewById
     protected RecyclerView rvPayments_FID;
+    @ViewById
+    protected TextView tvEmptyAttachments_FID;
+    @ViewById
+    protected RecyclerView rvAttachments_FID;
     @ViewById
     protected FrameLayout btnHistory;
     @ViewById
@@ -115,6 +122,8 @@ public class InvoiceDetailsFragment extends RefreshFragment implements InvoiceDe
     protected InvoicePaymentAdapter paymentAdapter;
     @Bean
     protected HistoryAnimationHelper animationHelper;
+    @Bean
+    protected AttachmentAdapter attachmentAdapter;
 
     private InvoiceDetailsContract.InvoiceDetailsPresenter presenter;
 
@@ -131,6 +140,9 @@ public class InvoiceDetailsFragment extends RefreshFragment implements InvoiceDe
 
         rvProductList_FID.setAdapter(productAdapter);
         rvProductList_FID.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+        rvAttachments_FID.setAdapter(attachmentAdapter);
+        rvAttachments_FID.setLayoutManager(new GridLayoutManager(getActivity(), 2));
 
         rvPayments_FID.setAdapter(paymentAdapter);
         rvPayments_FID.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -202,8 +214,9 @@ public class InvoiceDetailsFragment extends RefreshFragment implements InvoiceDe
     }
 
     @Override
-    public void setInvoiceName(String orderName) {
-        tvInvoiceName_FID.setText(orderName);
+    public void setInvoiceName(String invoiceName) {
+        tvInvoiceName_FID.setText(invoiceName);
+        tvTitleInvoice_FID.setText(invoiceName);
     }
 
     @Override
@@ -264,8 +277,10 @@ public class InvoiceDetailsFragment extends RefreshFragment implements InvoiceDe
     }
 
     @Override
-    public void setAttachments(String attachments) {
-        tvAttachments_FID.setText(Html.fromHtml(attachments));
+    public void setAttachments(ArrayList<AttachmentDH> attachments) {
+        tvEmptyAttachments_FID.setVisibility(View.GONE);
+        rvAttachments_FID.setVisibility(View.VISIBLE);
+        attachmentAdapter.setListDH(attachments);
     }
 
     @Override

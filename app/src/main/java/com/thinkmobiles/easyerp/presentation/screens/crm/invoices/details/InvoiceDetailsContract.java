@@ -6,6 +6,7 @@ import com.thinkmobiles.easyerp.presentation.base.BaseModel;
 import com.thinkmobiles.easyerp.presentation.base.BasePresenter;
 import com.thinkmobiles.easyerp.presentation.base.BaseView;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
+import com.thinkmobiles.easyerp.presentation.holders.data.crm.AttachmentDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.HistoryDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.InvoicePaymentDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.ProductDH;
@@ -43,7 +44,7 @@ public interface InvoiceDetailsContract {
         void setTotal(String total);
         void setPaymentMade(String paymentMade);
         void setBalanceDue(String balanceDue);
-        void setAttachments(String attachments);
+        void setAttachments(ArrayList<AttachmentDH> attachments);
         void setPayments(ArrayList<InvoicePaymentDH> payments);
         void setHistory(ArrayList<HistoryDH> history);
         void setProducts(ArrayList<ProductDH> products);
