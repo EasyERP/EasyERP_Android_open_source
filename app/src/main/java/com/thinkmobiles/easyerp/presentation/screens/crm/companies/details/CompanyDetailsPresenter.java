@@ -92,6 +92,7 @@ public class CompanyDetailsPresenter implements CompanyDetailsContract.CompanyDe
         if(!TextUtils.isEmpty(data.imageSrc)) view.displayCompanyImage(data.imageSrc);
         if(!TextUtils.isEmpty(data.fullName)) view.displayCompanyName(data.fullName);
         if(!TextUtils.isEmpty(data.website)) view.displayCompanyUrl(StringUtil.getClickableUrl(data.website, data.website));
+        if(!TextUtils.isEmpty(data.skype)) view.enableSkypeButton(data.skype);
         if(data.social != null) {
             if(!TextUtils.isEmpty(data.social.facebook)) {
                 view.enableFacebookButton(data.social.facebook);

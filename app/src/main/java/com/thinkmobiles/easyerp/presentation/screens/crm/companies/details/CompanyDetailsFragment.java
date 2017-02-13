@@ -14,6 +14,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -71,13 +72,13 @@ public class CompanyDetailsFragment extends RefreshFragment implements CompanyDe
     @ViewById
     protected TextView tvCompanyWebsite_FCD;
     @ViewById
+    protected TextView tvEmail_FPD;
+    @ViewById
     protected ImageView ivCompanyFb_FCD;
     @ViewById
     protected ImageView ivCompanyLinkedIn_FCD;
     @ViewById
     protected ImageView ivCompanySkype_FCD;
-    @ViewById
-    protected EditText etEmail_FCD;
     @ViewById
     protected EditText etAssignedTo_FCD;
     @ViewById
@@ -136,6 +137,31 @@ public class CompanyDetailsFragment extends RefreshFragment implements CompanyDe
     protected ImageView ivIconArrow;
     @ViewById
     protected RecyclerView rvHistory;
+
+    @ViewById
+    protected LinearLayout llContainerBillingAddress_FCD;
+    @ViewById
+    protected LinearLayout llContainerShippingAddress_FDC;
+    @ViewById
+    protected LinearLayout llContainerSalesPurchases_FPD;
+    @ViewById
+    protected FrameLayout flContainerContacts_FCD;
+    @ViewById
+    protected FrameLayout flContainerLeadsAndOpportunities_FCD;
+    @ViewById
+    protected FrameLayout flContainerAttachments_FCD;
+    @ViewById
+    protected TextView tvEmptyBillingAddress_FPD;
+    @ViewById
+    protected TextView tvEmptyShippingAddress_FPD;
+    @ViewById
+    protected TextView tvEmptySalesAndPurchases_FPD;
+    @ViewById
+    protected TextView tvEmptyContacts_FPD;
+    @ViewById
+    protected TextView tvEmptyLeadsAndOpportunities_FCD;
+    @ViewById
+    protected TextView tvEmptyAttachments_FCD;
     //endregion
 
     @Bean
@@ -206,6 +232,42 @@ public class CompanyDetailsFragment extends RefreshFragment implements CompanyDe
     }
 
     @Override
+    public void showBillingAddress(boolean isShown) {
+        llContainerBillingAddress_FCD.setVisibility(isShown ? View.VISIBLE : View.GONE);
+        tvEmptyBillingAddress_FPD.setVisibility(isShown ? View.GONE : View.VISIBLE);
+    }
+
+    @Override
+    public void showShippingAddress(boolean isShown) {
+        llContainerShippingAddress_FDC.setVisibility(isShown ? View.VISIBLE : View.GONE);
+        tvEmptyShippingAddress_FPD.setVisibility(isShown ? View.GONE : View.VISIBLE);
+    }
+
+    @Override
+    public void showSalesAndPurchases(boolean isShown) {
+        llContainerSalesPurchases_FPD.setVisibility(isShown ? View.VISIBLE : View.GONE);
+        tvEmptySalesAndPurchases_FPD.setVisibility(isShown ? View.GONE : View.VISIBLE);
+    }
+
+    @Override
+    public void showContact(boolean isShown) {
+        flContainerContacts_FCD.setVisibility(isShown ? View.VISIBLE : View.GONE);
+        tvEmptyContacts_FPD.setVisibility(isShown ? View.GONE : View.VISIBLE);
+    }
+
+    @Override
+    public void showLeadsAndOpportunities(boolean isShown) {
+        flContainerLeadsAndOpportunities_FCD.setVisibility(isShown ? View.VISIBLE : View.GONE);
+        tvEmptyLeadsAndOpportunities_FCD.setVisibility(isShown ? View.GONE : View.VISIBLE);
+    }
+
+    @Override
+    public void showAttachments(boolean isShown) {
+        flContainerAttachments_FCD.setVisibility(isShown ? View.VISIBLE : View.GONE);
+        tvEmptyAttachments_FCD.setVisibility(isShown ? View.GONE : View.VISIBLE);
+    }
+
+    @Override
     public void displayErrorState(String msg, ErrorViewHelper.ErrorType errorType) {
         showErrorState(msg, errorType);
     }
@@ -267,7 +329,7 @@ public class CompanyDetailsFragment extends RefreshFragment implements CompanyDe
 
     @Override
     public void displayEmail(String email) {
-        etEmail_FCD.setText(email);
+        tvEmail_FPD.setText(email);
     }
 
     @Override

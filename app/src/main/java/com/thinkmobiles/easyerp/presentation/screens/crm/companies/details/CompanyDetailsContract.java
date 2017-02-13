@@ -25,14 +25,21 @@ public interface CompanyDetailsContract {
         void displayErrorState(final String msg, final ErrorViewHelper.ErrorType errorType);
         void displayErrorToast(final String msg);
 
+        void showBillingAddress(boolean isShown);
+        void showShippingAddress(boolean isShown);
+        void showSalesAndPurchases(boolean isShown);
+        void showContact(boolean isShown);
+        void showLeadsAndOpportunities(boolean isShown);
+        void showAttachments(boolean isShown);
+
         void displayCompanyImage(String base64Image);
         void displayCompanyName(String companyName);
         void displayCompanyUrl(String companyUrl);
+        void displayEmail(String email);
         void enableFacebookButton(String url);
         void enableLinkedInButton(String url);
         void enableSkypeButton(String url);
 
-        void displayEmail(String email);
         void displayAssignedTo(String assignedTo);
         void displayLinkedIn(String linkedIn);
         void displayFacebook(String facebook);

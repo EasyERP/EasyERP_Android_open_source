@@ -220,6 +220,11 @@
         <item name="android:textColor">@color/color_text_black</item>
     </style>
 
+    <style name="TextContactNameCard" parent="RobotoMedium">
+        <item name="android:textSize">@dimen/text_list_item_medium_16</item>
+        <item name="android:textColor">@color/color_text_black</item>
+    </style>
+
     <style name="PdfStyle" parent="@style/RobotoCondensedRegular">
         <item name="android:textSize">@dimen/text_size_table_12</item>
         <item name="android:textColor">@color/color_text_black</item>
