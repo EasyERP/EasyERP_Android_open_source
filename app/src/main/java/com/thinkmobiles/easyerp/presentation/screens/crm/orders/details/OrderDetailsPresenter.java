@@ -6,7 +6,7 @@ import android.content.res.Resources;
 import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.data.model.crm.leads.detail.AttachmentItem;
 import com.thinkmobiles.easyerp.data.model.crm.order.detail.OrderProduct;
-import com.thinkmobiles.easyerp.data.model.crm.order.detail.ResponseGerOrderDetails;
+import com.thinkmobiles.easyerp.data.model.crm.order.detail.ResponseGetOrderDetails;
 import com.thinkmobiles.easyerp.data.model.user.organization.OrganizationSettings;
 import com.thinkmobiles.easyerp.presentation.EasyErpApplication;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
@@ -30,7 +30,7 @@ public class OrderDetailsPresenter implements OrderDetailsContract.OrderDetailsP
     private String orderId;
     private CompositeSubscription compositeSubscription;
 
-    private ResponseGerOrderDetails currentOrder;
+    private ResponseGetOrderDetails currentOrder;
     private OrganizationSettings organizationSettings;
     private boolean isVisibleHistory;
     private String notSpecified;
@@ -109,7 +109,7 @@ public class OrderDetailsPresenter implements OrderDetailsContract.OrderDetailsP
         }
     }
 
-    private void setData(ResponseGerOrderDetails response) {
+    private void setData(ResponseGetOrderDetails response) {
         currentOrder = response;
 
         view.setOrderStatusName(response.workflow.name);

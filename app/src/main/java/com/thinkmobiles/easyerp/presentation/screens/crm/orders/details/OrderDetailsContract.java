@@ -1,6 +1,6 @@
 package com.thinkmobiles.easyerp.presentation.screens.crm.orders.details;
 
-import com.thinkmobiles.easyerp.data.model.crm.order.detail.ResponseGerOrderDetails;
+import com.thinkmobiles.easyerp.data.model.crm.order.detail.ResponseGetOrderDetails;
 import com.thinkmobiles.easyerp.data.model.user.organization.ResponseGetOrganizationSettings;
 import com.thinkmobiles.easyerp.presentation.base.BaseModel;
 import com.thinkmobiles.easyerp.presentation.base.BasePresenter;
@@ -59,7 +59,7 @@ public interface OrderDetailsContract {
     }
 
     interface OrderDetailsModel extends BaseModel {
-        Observable<ResponseGerOrderDetails> getOrderDetails(String orderId);
+        Observable<ResponseGetOrderDetails> getOrderDetails(String orderId);
         Observable<ResponseGetOrganizationSettings> getOrganizationSettings();
     }
 }

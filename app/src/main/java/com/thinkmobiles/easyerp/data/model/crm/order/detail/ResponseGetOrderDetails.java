@@ -19,7 +19,7 @@ import com.thinkmobiles.easyerp.data.model.crm.persons.details.CreatedEditedUser
 
 import java.util.ArrayList;
 
-public class ResponseGerOrderDetails implements Parcelable {
+public class ResponseGetOrderDetails implements Parcelable {
 
     /**
      * {
@@ -406,7 +406,7 @@ public class ResponseGerOrderDetails implements Parcelable {
 //    public InvoiceItem invoice;
 
 
-    public ResponseGerOrderDetails() {
+    public ResponseGetOrderDetails() {
     }
 
     @Override
@@ -446,7 +446,7 @@ public class ResponseGerOrderDetails implements Parcelable {
         dest.writeParcelable(this.prepayment, flags);
     }
 
-    protected ResponseGerOrderDetails(Parcel in) {
+    protected ResponseGetOrderDetails(Parcel in) {
         this.id = in.readString();
         this._type = in.readString();
         this._v = in.readInt();
@@ -477,15 +477,15 @@ public class ResponseGerOrderDetails implements Parcelable {
         this.prepayment = in.readParcelable(Prepayment.class.getClassLoader());
     }
 
-    public static final Creator<ResponseGerOrderDetails> CREATOR = new Creator<ResponseGerOrderDetails>() {
+    public static final Creator<ResponseGetOrderDetails> CREATOR = new Creator<ResponseGetOrderDetails>() {
         @Override
-        public ResponseGerOrderDetails createFromParcel(Parcel source) {
-            return new ResponseGerOrderDetails(source);
+        public ResponseGetOrderDetails createFromParcel(Parcel source) {
+            return new ResponseGetOrderDetails(source);
         }
 
         @Override
-        public ResponseGerOrderDetails[] newArray(int size) {
-            return new ResponseGerOrderDetails[size];
+        public ResponseGetOrderDetails[] newArray(int size) {
+            return new ResponseGetOrderDetails[size];
         }
     };
 }

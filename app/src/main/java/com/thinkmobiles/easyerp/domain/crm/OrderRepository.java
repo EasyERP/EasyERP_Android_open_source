@@ -2,7 +2,7 @@ package com.thinkmobiles.easyerp.domain.crm;
 
 import com.thinkmobiles.easyerp.data.api.Rest;
 import com.thinkmobiles.easyerp.data.model.crm.order.ResponseGetOrders;
-import com.thinkmobiles.easyerp.data.model.crm.order.detail.ResponseGerOrderDetails;
+import com.thinkmobiles.easyerp.data.model.crm.order.detail.ResponseGetOrderDetails;
 import com.thinkmobiles.easyerp.data.model.user.organization.ResponseGetOrganizationSettings;
 import com.thinkmobiles.easyerp.data.services.OrderService;
 import com.thinkmobiles.easyerp.data.services.UserService;
@@ -39,7 +39,7 @@ public class OrderRepository extends NetworkRepository implements OrdersContract
     }
 
     @Override
-    public Observable<ResponseGerOrderDetails> getOrderDetails(String orderId) {
+    public Observable<ResponseGetOrderDetails> getOrderDetails(String orderId) {
         return getNetworkObservable(orderService.getOrderDetails(orderId));
     }
 

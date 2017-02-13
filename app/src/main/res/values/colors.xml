@@ -59,7 +59,7 @@
     <color name="color_status_do_not_contact">#95a5a6</color>
     <color name="color_status_in_progress">#3498db</color>
 
-    <color name="color_bg__header_table_product">#737373</color>
+    <color name="color_bg_header_table_product">#737373</color>
     <color name="color_text_red">#e74c3c</color>
 
 </resources>
