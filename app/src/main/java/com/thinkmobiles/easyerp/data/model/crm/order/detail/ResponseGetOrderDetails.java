@@ -19,7 +19,7 @@ import com.thinkmobiles.easyerp.data.model.crm.persons.details.CreatedEditedUser
 
 import java.util.ArrayList;
 
-public class ResponseGerOrderDetails implements Parcelable {
+public class ResponseGetOrderDetails implements Parcelable {
 
     /**
      * {
@@ -380,7 +380,7 @@ public class ResponseGerOrderDetails implements Parcelable {
     public ArrayList<AttachmentItem> attachments;
     public String whoCanRW;
     public FilterItem warehouse;
-    public Workflow tempWorkflow;
+    public String tempWorkflow;
     public Workflow workflow;
 //    public Object shippingExpenses;
     public PaymentInfo paymentInfo;
@@ -406,6 +406,9 @@ public class ResponseGerOrderDetails implements Parcelable {
 //    public InvoiceItem invoice;
 
 
+    public ResponseGetOrderDetails() {
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -424,7 +427,7 @@ public class ResponseGerOrderDetails implements Parcelable {
         dest.writeTypedList(this.attachments);
         dest.writeString(this.whoCanRW);
         dest.writeParcelable(this.warehouse, flags);
-        dest.writeParcelable(this.tempWorkflow, flags);
+        dest.writeString(this.tempWorkflow);
         dest.writeParcelable(this.workflow, flags);
         dest.writeParcelable(this.paymentInfo, flags);
         dest.writeParcelable(this.priceList, flags);
@@ -443,10 +446,7 @@ public class ResponseGerOrderDetails implements Parcelable {
         dest.writeParcelable(this.prepayment, flags);
     }
 
-    public ResponseGerOrderDetails() {
-    }
-
-    protected ResponseGerOrderDetails(Parcel in) {
+    protected ResponseGetOrderDetails(Parcel in) {
         this.id = in.readString();
         this._type = in.readString();
         this._v = in.readInt();
@@ -458,7 +458,7 @@ public class ResponseGerOrderDetails implements Parcelable {
         this.attachments = in.createTypedArrayList(AttachmentItem.CREATOR);
         this.whoCanRW = in.readString();
         this.warehouse = in.readParcelable(FilterItem.class.getClassLoader());
-        this.tempWorkflow = in.readParcelable(Workflow.class.getClassLoader());
+        this.tempWorkflow = in.readString();
         this.workflow = in.readParcelable(Workflow.class.getClassLoader());
         this.paymentInfo = in.readParcelable(PaymentInfo.class.getClassLoader());
         this.priceList = in.readParcelable(FilterItem.class.getClassLoader());
@@ -477,15 +477,15 @@ public class ResponseGerOrderDetails implements Parcelable {
         this.prepayment = in.readParcelable(Prepayment.class.getClassLoader());
     }
 
-    public static final Parcelable.Creator<ResponseGerOrderDetails> CREATOR = new Parcelable.Creator<ResponseGerOrderDetails>() {
+    public static final Creator<ResponseGetOrderDetails> CREATOR = new Creator<ResponseGetOrderDetails>() {
         @Override
-        public ResponseGerOrderDetails createFromParcel(Parcel source) {
-            return new ResponseGerOrderDetails(source);
+        public ResponseGetOrderDetails createFromParcel(Parcel source) {
+            return new ResponseGetOrderDetails(source);
         }
 
         @Override
-        public ResponseGerOrderDetails[] newArray(int size) {
-            return new ResponseGerOrderDetails[size];
+        public ResponseGetOrderDetails[] newArray(int size) {
+            return new ResponseGetOrderDetails[size];
         }
     };
 }

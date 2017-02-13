@@ -2,67 +2,63 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@android:color/white"
+    android:layout_marginEnd="@dimen/default_padding"
+    android:layout_marginStart="@dimen/default_padding"
+    android:layout_marginTop="@dimen/default_padding_big"
+    android:background="@color/color_bg__header_table_product"
     android:gravity="center_vertical">
 
 
     <TextView
-        android:id="@+id/tvNumber_LIOP"
+        style="@style/PdfStyle.TableStyle.Header"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        style="@style/PdfStyle.TableStyle"
         android:text="@string/item_product_number" />
 
     <TextView
-        android:id="@+id/tvSku_LIOP"
+        style="@style/PdfStyle.TableStyle.Header"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        style="@style/PdfStyle.TableStyle"
         android:text="@string/item_product_sku" />
 
     <TextView
-        android:id="@+id/tvInfo_LIOP"
+        style="@style/PdfStyle.TableStyle.Header"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        style="@style/PdfStyle.TableStyle"
         android:text="@string/item_product_info" />
 
     <TextView
-        android:id="@+id/tvQty_LIOP"
+        style="@style/PdfStyle.TableStyle.Header"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="0.5"
         android:gravity="center"
-        style="@style/PdfStyle.TableStyle"
         android:text="@string/item_product_qty" />
 
     <TextView
-        android:id="@+id/tvUnitPrice_LIOP"
+        style="@style/PdfStyle.TableStyle.Header"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:gravity="center_vertical|end"
-        style="@style/PdfStyle.TableStyle"
         android:text="@string/item_product_unit_price" />
 
     <TextView
-        android:id="@+id/tvTaxes_LIOP"
+        style="@style/PdfStyle.TableStyle.Header"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="0.7"
         android:gravity="center_vertical|end"
-        style="@style/PdfStyle.TableStyle"
         android:text="@string/item_product_taxes" />
 
     <TextView
-        android:id="@+id/tvAmount_LIOP"
+        style="@style/PdfStyle.TableStyle.Header"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:gravity="center_vertical|end"
-        style="@style/PdfStyle.TableStyle"
         android:text="@string/item_product_amount" />
 
 </LinearLayout>

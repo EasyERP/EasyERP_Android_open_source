@@ -192,74 +192,12 @@
 
                         </LinearLayout>
 
-                        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/default_dimen_32"
-                            android:background="@color/bg_header_table_order_product"
-                            android:gravity="center_vertical">
-
-
-                            <TextView
-                                style="@style/TextHeaderTableProductStyle"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@string/item_product_number" />
-
-                            <TextView
-                                style="@style/TextHeaderTableProductStyle"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="@string/item_product_sku" />
-
-                            <TextView
-                                style="@style/TextHeaderTableProductStyle"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="@string/item_product_info" />
-
-                            <TextView
-                                style="@style/TextHeaderTableProductStyle"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="0.5"
-                                android:gravity="center"
-                                android:text="@string/item_product_qty" />
-
-                            <TextView
-                                style="@style/TextHeaderTableProductStyle"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:gravity="center_vertical|end"
-                                android:text="@string/item_product_unit_price" />
-
-                            <TextView
-                                style="@style/TextHeaderTableProductStyle"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="0.7"
-                                android:gravity="center_vertical|end"
-                                android:text="@string/item_product_taxes" />
-
-                            <TextView
-                                style="@style/TextHeaderTableProductStyle"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:gravity="center_vertical|end"
-                                android:text="@string/item_product_amount" />
-
-
-                        </LinearLayout>
+                        <include layout="@layout/view_include_header_table_product"/>
 
                         <android.support.v7.widget.RecyclerView
                             android:id="@+id/rvProductList_FID"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/default_padding" />
+                            android:layout_height="wrap_content" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
