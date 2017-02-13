@@ -110,6 +110,9 @@
         <item name="android:textColor">@android:color/black</item>
         <item name="android:padding">@dimen/default_padding_quart</item>
     </style>
+    <style name="RobotoLight">
+        <item name="android:fontFamily">sans-serif-light</item>
+    </style>
 
     <!-- Dialogs Styles -->
     <style name="DefaultTheme.NoTitleDialogWithAnimation" parent="Theme.AppCompat.Light.Dialog.Alert" >
@@ -189,6 +192,11 @@
         <item name="android:visibility">gone</item>
     </style>
 
+    <style name="TextNoDataStyle.Attachments">
+        <item name="android:text">@string/no_attachments</item>
+        <item name="android:visibility">visible</item>
+    </style>
+
     <style name="CustomCheckBox" parent="Widget.AppCompat.CompoundButton.CheckBox">
         <item name="colorControlNormal">@color/colorPrimary</item>
         <item name="colorControlActivated">@color/colorPrimary</item>
@@ -211,5 +219,33 @@
         <item name="android:textSize">@dimen/text_list_item_large_20</item>
         <item name="android:textColor">@color/color_text_black</item>
     </style>
+
+    <style name="PdfStyle" parent="@style/RobotoCondensedRegular">
+        <item name="android:textSize">@dimen/text_size_table_12</item>
+        <item name="android:textColor">@color/color_text_black</item>
+    </style>
+
+    <style name="PdfStyle.BoldText">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="PdfStyle.FieldTitleStyle" >
+        <item name="android:textColor">@color/color_text_gray</item>
+    </style>
+
+    <style name="PdfStyle.TableStyle">
+        <item name="android:padding">@dimen/default_padding_quart</item>
+    </style>
+
+    <style name="PdfStyle.TableStyle.Header">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextContentTitle.WithoutPadding">
+        <item name="android:paddingStart">0dp</item>
+        <item name="android:layout_marginTop">@dimen/default_padding</item>
+    </style>
+
 
 </resources>

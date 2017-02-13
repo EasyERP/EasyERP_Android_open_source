@@ -2,7 +2,7 @@ package com.thinkmobiles.easyerp.data.services;
 
 import com.thinkmobiles.easyerp.data.model.crm.dashboard.detail.order.OrderItem;
 import com.thinkmobiles.easyerp.data.model.crm.order.ResponseGetOrders;
-import com.thinkmobiles.easyerp.data.model.crm.order.detail.ResponseGerOrderDetails;
+import com.thinkmobiles.easyerp.data.model.crm.order.detail.ResponseGetOrderDetails;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
 import java.util.List;
@@ -31,5 +31,5 @@ public interface OrderService {
             @Query("forSales") final boolean forSales);
 
     @GET(Constants.GET_ORDER + "/{orderId}")
-    Observable<ResponseGerOrderDetails> getOrderDetails(@Path("orderId") String orderId);
+    Observable<ResponseGetOrderDetails> getOrderDetails(@Path("orderId") String orderId);
 }
