@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <android.support.v4.widget.SwipeRefreshLayout
+    <com.thinkmobiles.easyerp.presentation.custom.views.CustomSwipeRefreshLayout
         android:id="@+id/srlHolderRefresh"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -55,13 +55,11 @@
                     android:text="@string/try_again"
                     android:textColor="@android:color/white" />
 
-
             </LinearLayout>
 
         </FrameLayout>
 
-
-    </android.support.v4.widget.SwipeRefreshLayout>
+    </com.thinkmobiles.easyerp.presentation.custom.views.CustomSwipeRefreshLayout>
 
     <ProgressBar
         android:id="@+id/pbProgressBottom"

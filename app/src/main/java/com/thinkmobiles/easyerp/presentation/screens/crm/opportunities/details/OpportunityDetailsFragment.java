@@ -32,7 +32,6 @@ import com.thinkmobiles.easyerp.presentation.holders.data.crm.HistoryDH;
 import com.thinkmobiles.easyerp.presentation.managers.HistoryAnimationHelper;
 import com.thinkmobiles.easyerp.presentation.managers.ImageHelper;
 import com.thinkmobiles.easyerp.presentation.managers.TagHelper;
-import com.thinkmobiles.easyerp.presentation.screens.home.HomeActivity;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
 import org.androidannotations.annotations.AfterInject;
@@ -314,7 +313,7 @@ public class OpportunityDetailsFragment extends RefreshFragment implements Oppor
         flowLayoutTags_FOD.removeAllViews();
         LayoutInflater inflater = LayoutInflater.from(getActivity());
         for(TagItem tagItem : tags) {
-            TextView tvTag = (TextView) inflater.inflate(R.layout.text_view_tag, flowLayoutTags_FOD, false);
+            TextView tvTag = (TextView) inflater.inflate(R.layout.view_text_tag, flowLayoutTags_FOD, false);
             tvTag.setBackground(new RoundRectDrawable(ColorUtils.setAlphaComponent(ContextCompat.getColor(getActivity(), TagHelper.getColorResIdByName(tagItem.color)), 200)));
             tvTag.setText(tagItem.name);
             flowLayoutTags_FOD.addView(tvTag);

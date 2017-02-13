@@ -18,8 +18,6 @@ import android.widget.Toast;
 import com.jakewharton.rxbinding.view.RxView;
 import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.presentation.base.BaseFragment;
-import com.thinkmobiles.easyerp.presentation.base.BaseMasterFlowActivity;
-import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.screens.home.HomeActivity;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
@@ -72,7 +70,7 @@ public abstract class RefreshFragment extends BaseFragment<HomeActivity> {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         toast = Toast.makeText(getActivity(), null, Toast.LENGTH_SHORT);
-        View parent = inflater.inflate(R.layout.view_parent, container, false);
+        View parent = inflater.inflate(R.layout.view_parent_refresh_for_fragments, container, false);
         flContent = (FrameLayout) parent.findViewById(R.id.flContent);
         View.inflate(getActivity(), getLayoutRes(), flContent);
         return parent;
@@ -94,12 +92,13 @@ public abstract class RefreshFragment extends BaseFragment<HomeActivity> {
 
     protected void showProgressBar(Constants.ProgressType type) {
         llHolderError.setVisibility(View.GONE);
-        srlHolderRefresh.setEnabled(false);
         switch (type) {
             case BOTTOM:
+                srlHolderRefresh.setEnabled(false);
                 pbProgressBottom.setVisibility(View.VISIBLE);
                 break;
             case CENTER:
+                srlHolderRefresh.setEnabled(false);
                 flContent.setVisibility(View.GONE);
                 pbHolderProgress.setVisibility(View.VISIBLE);
                 break;

@@ -2,20 +2,11 @@ package com.thinkmobiles.easyerp.presentation.base;
 
 import android.app.Activity;
 import android.app.Fragment;
-import android.os.Bundle;
 import android.support.annotation.MenuRes;
-import android.support.annotation.Nullable;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.FrameLayout;
-import android.widget.RelativeLayout;
-
-import com.thinkmobiles.easyerp.R;
 
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.EFragment;
@@ -29,7 +20,6 @@ import org.androidannotations.annotations.SystemService;
 public abstract class BaseFragment<T extends BaseMasterFlowActivity> extends Fragment {
 
     protected T mActivity;
-    private View progressView;
 
     @SystemService
     protected InputMethodManager inputMethodManager;
@@ -51,22 +41,9 @@ public abstract class BaseFragment<T extends BaseMasterFlowActivity> extends Fra
     }
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        if (needProgress() && (view instanceof FrameLayout || view instanceof RelativeLayout)) {
-            progressView = LayoutInflater.from(mActivity).inflate(R.layout.view_progress, (ViewGroup) view, false);
-            ((ViewGroup) view).addView(progressView);
-        }
-    }
-
-    @Override
     public void onStop() {
         super.onStop();
         hideKeyboard();
-    }
-
-    public void displayProgress(boolean isShow) {
-        progressView.setVisibility(isShow ? View.VISIBLE : View.GONE);
     }
 
     @Override
@@ -106,10 +83,6 @@ public abstract class BaseFragment<T extends BaseMasterFlowActivity> extends Fra
     public boolean optionsMenuForDetail() { return false; }
     public @MenuRes int optionsMenuRes() { return 0; }
     public void optionsMenuInitialized(final Menu menu) {}
-
-    protected boolean needProgress() {
-        return true;
-    }
 
     protected void hideKeyboard() {
         if(getView() != null) {
