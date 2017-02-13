@@ -123,7 +123,7 @@
     <string name="invoice_details_order_number">Order Number:</string>
     <string name="invoice_details_due_date">Due Date:</string>
     <string name="invoice_details_invoice">Invoice</string>
-    <string name="Invoice_detailsinvoice_date">Invoice Date</string>
+    <string name="Invoice_details_invoice_date">Invoice Date:</string>
     <string name="payment_details_payment_date">Payment Date:</string>
     <string name="payment_details_bank_account">Bank Account:</string>
     <string name="payment_details_account">Account:</string>
@@ -139,4 +139,5 @@
     <string name="last_access">Last Access:</string>
     <string name="contact_name">Contact Name</string>
     <string name="order_details_title_order_preview">Order Preview</string>
+    <string name="invoice_details_subtitle_payments">Payments</string>
 </resources>

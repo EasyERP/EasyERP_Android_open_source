@@ -101,7 +101,7 @@
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
+                            android:layout_marginStart="@dimen/default_padding"
                             android:gravity="end"
                             android:orientation="vertical">
 
@@ -112,7 +112,7 @@
                                 android:text="@string/order_details_order"
                                 android:textAllCaps="true"
                                 android:textColor="@color/color_text_black"
-                                android:textSize="30sp" />
+                                android:textSize="@dimen/text_sixe_pdf_type" />
 
                             <TextView
                                 android:id="@+id/tvOrderName_FOD"

@@ -2,9 +2,11 @@ package com.thinkmobiles.easyerp.presentation.screens.crm.invoices.details;
 
 import com.thinkmobiles.easyerp.data.model.crm.invoice.detail.InvoicePayment;
 import com.thinkmobiles.easyerp.data.model.crm.invoice.detail.ResponseGetInvoiceDetails;
+import com.thinkmobiles.easyerp.data.model.crm.leads.detail.AttachmentItem;
 import com.thinkmobiles.easyerp.data.model.crm.order.detail.OrderProduct;
 import com.thinkmobiles.easyerp.data.model.user.organization.OrganizationSettings;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
+import com.thinkmobiles.easyerp.presentation.holders.data.crm.AttachmentDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.HistoryDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.InvoicePaymentDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.ProductDH;
@@ -126,7 +128,9 @@ public class InvoiceDetailsPresenter implements InvoiceDetailsContract.InvoiceDe
         }
 
         if (response.attachments != null && !response.attachments.isEmpty()) {
-            view.setAttachments(StringUtil.getAttachments(response.attachments));
+            ArrayList<AttachmentDH> result = new ArrayList<>();
+            for(AttachmentItem item : response.attachments) result.add(new AttachmentDH(item));
+            view.setAttachments(result);
         }
 
         if (response.payments != null && !response.payments.isEmpty()) {
