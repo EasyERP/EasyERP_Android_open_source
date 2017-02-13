@@ -139,6 +139,7 @@ public class PersonsPresenter extends MasterFlowSelectablePresenterHelper<String
                 }
             }
         }
+        selectFirstElementIfNeed(result, view);
         return result;
     }
 

@@ -109,6 +109,7 @@ public class InvoicesPresenter extends MasterFlowSelectablePresenterHelper<Strin
             makeSelectedDHIfNeed(invoiceDH, view, position++, needClear);
             result.add(invoiceDH);
         }
+        selectFirstElementIfNeed(result, view);
         return result;
     }
 

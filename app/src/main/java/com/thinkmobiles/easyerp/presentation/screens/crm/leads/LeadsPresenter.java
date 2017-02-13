@@ -149,6 +149,7 @@ public class LeadsPresenter extends MasterFlowSelectablePresenterHelper<String, 
             makeSelectedDHIfNeed(leadDH, view, position++, needClear);
             result.add(leadDH);
         }
+        selectFirstElementIfNeed(result, view);
         return result;
     }
 

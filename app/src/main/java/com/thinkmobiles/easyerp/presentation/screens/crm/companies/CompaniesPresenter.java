@@ -169,6 +169,7 @@ public class CompaniesPresenter extends MasterFlowSelectablePresenterHelper<Stri
                 }
             }
         }
+        selectFirstElementIfNeed(result, view);
         return result;
     }
 

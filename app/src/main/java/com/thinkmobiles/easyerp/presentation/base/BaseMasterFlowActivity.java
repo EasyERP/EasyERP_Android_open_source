@@ -13,6 +13,7 @@ import android.view.Menu;
 import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.presentation.EasyErpApplication;
 import com.thinkmobiles.easyerp.presentation.base.rules.ListRefreshFragment;
+import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowListSelectableFragment;
 import com.thinkmobiles.easyerp.presentation.managers.CookieManager;
 
 import org.androidannotations.annotations.AfterInject;
@@ -163,8 +164,8 @@ BaseMasterFlowActivity extends AppCompatActivity {
     private void sendEventClearSelectedItem() {
         final Fragment fragment = getFragmentManager().findFragmentById(contentIdLayout());
         if (fragment != null) {
-            if (fragment instanceof ListRefreshFragment) {
-                ((ListRefreshFragment) fragment).clearSelectedItem();
+            if (fragment instanceof MasterFlowListSelectableFragment) {
+                ((MasterFlowListSelectableFragment) fragment).clearSelectedItem();
             }
         }
 

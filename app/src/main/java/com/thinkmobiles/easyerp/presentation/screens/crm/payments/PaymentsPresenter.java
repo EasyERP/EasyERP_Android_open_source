@@ -111,6 +111,7 @@ public class PaymentsPresenter extends MasterFlowSelectablePresenterHelper<Strin
             makeSelectedDHIfNeed(paymentDH, view, position++, needClear);
             result.add(paymentDH);
         }
+        selectFirstElementIfNeed(result, view);
         return result;
     }
 

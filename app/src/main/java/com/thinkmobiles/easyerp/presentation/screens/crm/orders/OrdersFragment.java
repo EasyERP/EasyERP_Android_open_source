@@ -2,7 +2,7 @@ package com.thinkmobiles.easyerp.presentation.screens.crm.orders;
 
 import com.thinkmobiles.easyerp.domain.crm.OrderRepository;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.OrdersAdapter;
-import com.thinkmobiles.easyerp.presentation.base.rules.ListRefreshFragment;
+import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowListSelectableFragment;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.OrderDH;
 import com.thinkmobiles.easyerp.presentation.screens.crm.orders.details.OrderDetailsFragment_;
@@ -21,7 +21,7 @@ import java.util.ArrayList;
  *         Email: michael.soyma@thinkmobiles.com
  */
 @EFragment
-public class OrdersFragment extends ListRefreshFragment implements OrdersContract.OrdersView {
+public class OrdersFragment extends MasterFlowListSelectableFragment implements OrdersContract.OrdersView {
 
     private OrdersContract.OrdersPresenter presenter;
 

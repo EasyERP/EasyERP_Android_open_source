@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:tools="http://schemas.android.com/tools"
-             android:layout_width="match_parent"
-             android:layout_height="wrap_content"
-             android:background="@drawable/bg_with_bottom_divider_line_selector"
-             tools:background="@android:color/white">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_with_bottom_divider_line_selector"
+    tools:background="@android:color/white">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,13 +16,13 @@
             android:id="@+id/ivPersonImage_VLIP"
             android:layout_width="@dimen/image_size_small"
             android:layout_height="@dimen/image_size_small"
-            android:scaleType="centerCrop"/>
+            android:scaleType="centerCrop" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginStart="@dimen/default_padding_middle">
+            android:layout_marginStart="@dimen/default_padding_middle"
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -31,39 +31,40 @@
                 android:paddingBottom="@dimen/default_padding_quart">
 
                 <TextView
-                    style="@style/TextListTitleStyle"
                     android:id="@+id/tvPersonName_VLIP"
+                    style="@style/TextListTitleStyle"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center_vertical"
-                    tools:text="Bradley Douglas"/>
+                    android:includeFontPadding="false"
+                    tools:text="Bradley Douglas" />
 
                 <TextView
-                    style="@style/TextListInfoStyle"
                     android:id="@+id/tvPersonCountry_VLIP"
+                    style="@style/TextListInfoStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_gravity="top"
                     android:layout_marginStart="@dimen/default_padding"
-                    tools:text="United States"/>
+                    tools:text="United States" />
 
             </LinearLayout>
 
             <TextView
-                style="@style/TextListInfoStyle"
                 android:id="@+id/tvPersonEmail_VLIP"
+                style="@style/TextListInfoStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingBottom="@dimen/padding_very_minimum"
-                tools:text="smith@diagnext.com"/>
+                tools:text="smith@diagnext.com" />
 
             <TextView
-                style="@style/TextListInfoStyle"
                 android:id="@+id/tvPersonPhone_VLIP"
+                style="@style/TextListInfoStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                tools:text="80502312123"/>
+                tools:text="80502312123" />
 
         </LinearLayout>
 

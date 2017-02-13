@@ -1,6 +1,9 @@
 package com.thinkmobiles.easyerp.presentation.base.rules;
 
 import android.support.v4.util.Pair;
+import android.text.TextUtils;
+
+import java.util.List;
 
 /**
  * @author michael.soyma@thinkmobiles.com (Created on 1/18/2017.)
@@ -45,5 +48,13 @@ public abstract class MasterFlowSelectablePresenterHelper<ID_TYPE, DH_TYPE exten
             setSelectedInfo(position, dh.getId());
             return true;
         } else return false;
+    }
+
+    protected void selectFirstElementIfNeed(final List<DH_TYPE> preparedDHs, final MasterFlowSelectableBaseView selectableBaseView) {
+        if (getSelectedItemId() == null && preparedDHs.size() > 0 && selectableBaseView.withItemSelecting()) {
+            final DH_TYPE dataHolder = preparedDHs.get(0);
+            selectItem(dataHolder, 0);
+            makeSelectedDHIfNeed(dataHolder, selectableBaseView, 0, true);
+        }
     }
 }

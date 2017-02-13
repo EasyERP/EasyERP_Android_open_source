@@ -100,6 +100,7 @@ public class OpportunitiesPresenter extends MasterFlowSelectablePresenterHelper<
             makeSelectedDHIfNeed(opportunityDH, view, position++, needClear);
             result.add(opportunityDH);
         }
+        selectFirstElementIfNeed(result, view);
         return result;
     }
 

@@ -22,7 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginRight="@dimen/default_padding"
+            android:layout_marginEnd="@dimen/default_padding"
             android:layout_toEndOf="@id/ivAvatar_VDMH"
             android:orientation="vertical">
 
@@ -32,8 +32,8 @@
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:text="Michael Soyma"
-                android:textColor="@color/white_main_text_color" />
+                android:textColor="@color/white_main_text_color"
+                tools:text="Michael Soyma" />
 
             <TextView
                 android:id="@+id/tvUserMail_VDMH"
@@ -41,9 +41,9 @@
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:text="michael.soyma@thinkmobiles.com"
                 android:textColor="@color/transparent_white_main_text_color"
-                android:textSize="@dimen/small_text_size" />
+                android:textSize="@dimen/small_text_size"
+                tools:text="michael.soyma@thinkmobiles.com" />
         </LinearLayout>
 
     </RelativeLayout>
@@ -61,11 +61,11 @@
         android:drawablePadding="@dimen/default_padding"
         android:gravity="center_vertical"
         android:paddingBottom="@dimen/default_padding_half"
-        android:paddingLeft="@dimen/default_padding"
-        android:paddingRight="@dimen/default_padding_half"
+        android:paddingEnd="@dimen/default_padding_half"
+        android:paddingStart="@dimen/default_padding"
         android:paddingTop="@dimen/default_padding_half"
-        android:text="CRM"
-        android:textColor="@color/white_main_text_color" />
+        android:textColor="@color/white_main_text_color"
+        tools:text="CRM" />
 
     <View
         android:id="@+id/vDivider_VDMH"

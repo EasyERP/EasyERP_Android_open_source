@@ -81,6 +81,7 @@ public class DashboardListPresenter extends MasterFlowSelectablePresenterHelper<
             makeSelectedDHIfNeed(dashboardListDH, view, position++, needClear);
             result.add(dashboardListDH);
         }
+        selectFirstElementIfNeed(result, view);
         return result;
     }
 }

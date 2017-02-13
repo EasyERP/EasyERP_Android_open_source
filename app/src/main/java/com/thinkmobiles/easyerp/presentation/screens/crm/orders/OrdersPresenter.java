@@ -109,6 +109,7 @@ public class OrdersPresenter extends MasterFlowSelectablePresenterHelper<String,
             makeSelectedDHIfNeed(orderDH, view, position++, needClear);
             result.add(orderDH);
         }
+        selectFirstElementIfNeed(result, view);
         return result;
     }
 }

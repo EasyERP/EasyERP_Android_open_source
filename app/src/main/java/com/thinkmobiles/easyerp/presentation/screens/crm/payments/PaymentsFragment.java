@@ -3,7 +3,7 @@ package com.thinkmobiles.easyerp.presentation.screens.crm.payments;
 import com.thinkmobiles.easyerp.data.model.crm.payments.Payment;
 import com.thinkmobiles.easyerp.domain.crm.PaymentsRepository;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.PaymentsAdapter;
-import com.thinkmobiles.easyerp.presentation.base.rules.ListRefreshFragment;
+import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowListSelectableFragment;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.PaymentDH;
 import com.thinkmobiles.easyerp.presentation.screens.crm.payments.details.PaymentDetailsFragment_;
@@ -23,7 +23,7 @@ import java.util.ArrayList;
  */
 
 @EFragment
-public class PaymentsFragment extends ListRefreshFragment implements PaymentsContract.PaymentsView {
+public class PaymentsFragment extends MasterFlowListSelectableFragment implements PaymentsContract.PaymentsView {
 
     private PaymentsContract.PaymentsPresenter presenter;
 

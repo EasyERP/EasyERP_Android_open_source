@@ -2,7 +2,7 @@ package com.thinkmobiles.easyerp.presentation.screens.crm.invoices;
 
 import com.thinkmobiles.easyerp.domain.crm.InvoiceRepository;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.InvoicesAdapter;
-import com.thinkmobiles.easyerp.presentation.base.rules.ListRefreshFragment;
+import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowListSelectableFragment;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.InvoiceDH;
 import com.thinkmobiles.easyerp.presentation.screens.crm.invoices.details.InvoiceDetailsFragment_;
@@ -21,7 +21,7 @@ import java.util.ArrayList;
  *         Email: michael.soyma@thinkmobiles.com
  */
 @EFragment
-public class InvoicesFragment extends ListRefreshFragment implements InvoicesContract.InvoicesView {
+public class InvoicesFragment extends MasterFlowListSelectableFragment implements InvoicesContract.InvoicesView {
 
     private InvoicesContract.InvoicesPresenter presenter;
 

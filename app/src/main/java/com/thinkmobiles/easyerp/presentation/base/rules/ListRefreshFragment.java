@@ -60,9 +60,4 @@ public abstract class ListRefreshFragment extends RefreshFragment {
         scrollListener.reset();
         super.showErrorToast(message);
     }
-
-    public boolean withItemSelecting() {
-        return mActivity.isTablet && !mActivity.isPortrait;
-    }
-    public abstract void clearSelectedItem();
 }

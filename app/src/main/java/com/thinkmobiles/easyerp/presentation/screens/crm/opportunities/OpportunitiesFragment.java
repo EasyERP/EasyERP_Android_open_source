@@ -2,7 +2,7 @@ package com.thinkmobiles.easyerp.presentation.screens.crm.opportunities;
 
 import com.thinkmobiles.easyerp.domain.crm.OpportunitiesRepository;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.OpportunitiesAdapter;
-import com.thinkmobiles.easyerp.presentation.base.rules.ListRefreshFragment;
+import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowListSelectableFragment;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.OpportunityDH;
 import com.thinkmobiles.easyerp.presentation.screens.crm.opportunities.details.OpportunityDetailsFragment_;
@@ -20,7 +20,7 @@ import java.util.ArrayList;
  */
 
 @EFragment
-public class OpportunitiesFragment extends ListRefreshFragment implements OpportunitiesContract.OpportunitiesView {
+public class OpportunitiesFragment extends MasterFlowListSelectableFragment implements OpportunitiesContract.OpportunitiesView {
 
     private OpportunitiesContract.OpportunitiesPresenter presenter;
 

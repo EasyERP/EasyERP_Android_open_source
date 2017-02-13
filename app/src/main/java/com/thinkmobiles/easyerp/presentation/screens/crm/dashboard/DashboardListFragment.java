@@ -5,7 +5,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import com.thinkmobiles.easyerp.data.model.crm.dashboard.DashboardListItem;
 import com.thinkmobiles.easyerp.domain.crm.DashboardRepository;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.DashboardListAdapter;
-import com.thinkmobiles.easyerp.presentation.base.rules.ListRefreshFragment;
+import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowListSelectableFragment;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.DashboardListDH;
 import com.thinkmobiles.easyerp.presentation.screens.crm.dashboard.detail.DashboardDetailChartFragment_;
@@ -22,7 +22,7 @@ import java.util.ArrayList;
  * @author michael.soyma@thinkmobiles.com (Created on 1/18/2017.)
  */
 @EFragment
-public class DashboardListFragment extends ListRefreshFragment implements DashboardListContract.DashboardListView {
+public class DashboardListFragment extends MasterFlowListSelectableFragment implements DashboardListContract.DashboardListView {
 
     private DashboardListContract.DashboardListPresenter presenter;
 
