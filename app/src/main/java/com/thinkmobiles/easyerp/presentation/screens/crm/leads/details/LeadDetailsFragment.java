@@ -219,7 +219,7 @@ public class LeadDetailsFragment extends RefreshFragment implements LeadDetailsC
         LayoutInflater inflater = LayoutInflater.from(getActivity());
         for(TagItem tagItem : tags) {
             TextView tvTag = (TextView) inflater.inflate(R.layout.view_text_tag, flowLayoutTags_FLD, false);
-            tvTag.setBackground(new RoundRectDrawable(ColorUtils.setAlphaComponent(ContextCompat.getColor(getActivity(), TagHelper.getColorResIdByName(tagItem.color)), 200)));
+            tvTag.setBackground(new RoundRectDrawable(ColorUtils.setAlphaComponent(ContextCompat.getColor(getActivity(), TagHelper.getColorResIdByName(tagItem.color)), 150)));
             tvTag.setText(tagItem.name);
             flowLayoutTags_FLD.addView(tvTag);
         }
