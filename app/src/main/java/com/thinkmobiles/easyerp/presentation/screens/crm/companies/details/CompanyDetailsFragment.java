@@ -21,7 +21,7 @@ import android.widget.Toast;
 import com.jakewharton.rxbinding.view.RxView;
 import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.domain.crm.CompaniesRepository;
-import com.thinkmobiles.easyerp.presentation.adapters.crm.ContactsAdapter;
+import com.thinkmobiles.easyerp.presentation.adapters.crm.ContactAdapter;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.HistoryAdapter;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.OpportunityAndLeadsAdapter;
 import com.thinkmobiles.easyerp.presentation.base.rules.RefreshFragment;
@@ -32,7 +32,6 @@ import com.thinkmobiles.easyerp.presentation.holders.data.crm.HistoryDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.OpportunityAndLeadDH;
 import com.thinkmobiles.easyerp.presentation.managers.HistoryAnimationHelper;
 import com.thinkmobiles.easyerp.presentation.managers.ImageHelper;
-import com.thinkmobiles.easyerp.presentation.screens.home.HomeActivity;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
 import org.androidannotations.annotations.AfterInject;
@@ -167,7 +166,7 @@ public class CompanyDetailsFragment extends RefreshFragment implements CompanyDe
     @Bean
     protected HistoryAdapter historyAdapter;
     @Bean
-    protected ContactsAdapter contactsAdapter;
+    protected ContactAdapter contactAdapter;
     @Bean
     protected OpportunityAndLeadsAdapter opportunityAndLeadsAdapter;
     @Bean
@@ -187,7 +186,7 @@ public class CompanyDetailsFragment extends RefreshFragment implements CompanyDe
         rvHistory.setAdapter(historyAdapter);
 
         rvContacts_FCD.setLayoutManager(new LinearLayoutManager(getActivity()));
-        rvContacts_FCD.setAdapter(contactsAdapter);
+        rvContacts_FCD.setAdapter(contactAdapter);
 
         rvLeadsAndOpportunities_FCD.setLayoutManager(new GridLayoutManager(getActivity(), 2));
         rvLeadsAndOpportunities_FCD.setAdapter(opportunityAndLeadsAdapter);
@@ -449,7 +448,7 @@ public class CompanyDetailsFragment extends RefreshFragment implements CompanyDe
 
     @Override
     public void displayContacts(ArrayList<ContactDH> contactDHs) {
-        contactsAdapter.setListDH(contactDHs);
+        contactAdapter.setListDH(contactDHs);
     }
 
     @Override

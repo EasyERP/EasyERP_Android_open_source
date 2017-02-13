@@ -15,8 +15,10 @@
         android:layout_margin="@dimen/default_padding">
 
         <ImageView
+            android:id="@+id/ivContactImage_VLIC"
             android:layout_width="@dimen/user_avatar_size"
-            android:layout_height="@dimen/user_avatar_size"/>
+            android:layout_height="@dimen/user_avatar_size"
+            android:scaleType="centerCrop"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -28,11 +30,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:paddingBottom="@dimen/default_padding_quart">
+                android:layout_marginBottom="@dimen/padding_very_minimum">
 
                 <TextView
                     style="@style/TextContactNameCard"
-                    android:id="@+id/tvCompanyName_VLIC"
+                    android:id="@+id/tvContactName_VLIC"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -40,8 +42,8 @@
                     tools:text="Bradley Douglas"/>
 
                 <TextView
-                    style="@style/TextListInfoStyle"
-                    android:id="@+id/tvCompanyCountry_VLIC"
+                    style="@style/TextContactInfoStyle"
+                    android:id="@+id/tvContactCountry_VLIC"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_gravity="top"
@@ -49,6 +51,22 @@
                     tools:text="United States"/>
 
             </LinearLayout>
+
+            <TextView
+                style="@style/TextContactInfoStyle"
+                android:id="@+id/tvContactJobPosition_VLIC"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:text="Founder and SEO"
+                android:layout_marginBottom="@dimen/padding_very_minimum"/>
+
+            <TextView
+                style="@style/TextContactInfoStyle"
+                android:id="@+id/tvContactEmail_VLIC"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:text="contact@mail.box"
+                android:layout_marginBottom="@dimen/padding_very_minimum"/>
 
         </LinearLayout>
 

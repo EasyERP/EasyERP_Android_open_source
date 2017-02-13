@@ -225,6 +225,13 @@
         <item name="android:textColor">@color/color_text_black</item>
     </style>
 
+    <style name="TextContactInfoStyle" parent="RobotoRegular">
+        <item name="android:textSize">@dimen/text_size_small_14</item>
+        <item name="android:textColor">@color/color_text_black</item>
+        <item name="android:maxLines">2</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
     <style name="PdfStyle" parent="@style/RobotoCondensedRegular">
         <item name="android:textSize">@dimen/text_size_table_12</item>
         <item name="android:textColor">@color/color_text_black</item>
