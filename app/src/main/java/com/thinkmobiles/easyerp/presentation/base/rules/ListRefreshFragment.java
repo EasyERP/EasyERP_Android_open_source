@@ -6,7 +6,6 @@ import android.support.v7.widget.RecyclerView;
 
 import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.presentation.listeners.EndlessScrollListener;
-import com.thinkmobiles.easyerp.presentation.screens.home.HomeActivity;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EFragment;

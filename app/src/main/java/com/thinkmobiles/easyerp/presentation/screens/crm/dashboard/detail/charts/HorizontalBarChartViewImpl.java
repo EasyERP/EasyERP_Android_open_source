@@ -2,6 +2,7 @@ package com.thinkmobiles.easyerp.presentation.screens.crm.dashboard.detail.chart
 
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Typeface;
 import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.widget.FrameLayout;
@@ -38,7 +39,7 @@ public final class HorizontalBarChartViewImpl implements IChartView<BarData> {
 
         barChart = new HorizontalBarChart(parent.getContext());
         barChart.setData(prepareData(data));
-        barChart.setExtraOffsets(0, 0, 15, 50);
+        barChart.setExtraOffsets(0, 0, 15, 0);
 
         XAxis xl = barChart.getXAxis();
         xl.setPosition(XAxis.XAxisPosition.BOTTOM);
@@ -69,8 +70,10 @@ public final class HorizontalBarChartViewImpl implements IChartView<BarData> {
         legend.setOrientation(Legend.LegendOrientation.HORIZONTAL);
         legend.setDrawInside(false);
         legend.setTextColor(ContextCompat.getColor(parent.getContext(), R.color.colorPrimaryDark));
+        legend.setTypeface(Typeface.create("sans-serif-condensed", Typeface.NORMAL));
         legend.setFormToTextSpace(8);
-        legend.setTextSize(13);
+        legend.setTextSize(14);
+        legend.setEnabled(false);
 
         final Description description = barChart.getDescription();
         description.setEnabled(true);
@@ -83,8 +86,13 @@ public final class HorizontalBarChartViewImpl implements IChartView<BarData> {
                 parent.getHeight() - parent.getPaddingTop() - parent.getPaddingBottom() - Utils.convertDpToPixel(38));
 
         barChart.setFitBars(true);
-        barChart.animateY(700);
 
+        final FrameLayout.LayoutParams lp = new FrameLayout.LayoutParams(parent.getLayoutParams());
+        final int margin = (int) parent.getResources().getDimension(R.dimen.default_padding_half);
+        lp.setMargins(margin, margin, margin, margin);
+
+        barChart.setLayoutParams(lp);
+        barChart.animateY(700);
         parent.addView(barChart);
     }
 
@@ -106,7 +114,7 @@ public final class HorizontalBarChartViewImpl implements IChartView<BarData> {
         barDataSet.setValueFormatter(new DollarFormatter());
         barDataSet.setValueTextSize(10);
         barDataSet.setDrawValues(true);
-        barDataSet.setColors(ColorGenerateManager.generateGradientBetweenColors(invoices.size(), Color.parseColor("#99D6EA"), Color.parseColor("#1082a7")));
+        barDataSet.setColors(ColorGenerateManager.generateGradientBetweenColors(invoices.size(), Color.parseColor("#30cfb0"), Color.parseColor("#3498db")));
         barDataSet.setForm(Legend.LegendForm.CIRCLE);
         barDataSet.setFormSize(12);
 
@@ -115,5 +123,4 @@ public final class HorizontalBarChartViewImpl implements IChartView<BarData> {
 
         return barData;
     }
-
 }

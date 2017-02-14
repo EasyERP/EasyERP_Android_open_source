@@ -1,7 +1,6 @@
 package com.thinkmobiles.easyerp.presentation.holders.view.crm;
 
 import android.content.res.Resources;
-import android.graphics.Color;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.ImageView;

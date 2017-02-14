@@ -22,9 +22,8 @@ import java.util.List;
  * @author michael.soyma@thinkmobiles.com (Created on 1/26/2017.)
  */
 
-public class OverViewChartViewImpl implements IChartView<List<OrderItem>> {
+public class OverViewChartViewImpl implements IChartView<ArrayList<DashboardOverviewChartDH>> {
 
-    private ArrayList<DashboardOverviewChartDH> dataWorkflows = new ArrayList<>();
     private final int[] afs = new int[3];
     private int totalCount;
     private double totalRevenue;
@@ -35,7 +34,7 @@ public class OverViewChartViewImpl implements IChartView<List<OrderItem>> {
         parent.removeAllViews();
 
         final View targetView = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_chart_overview, parent, false);
-        prepareInfoFromData(prepareData(data));
+        final ArrayList<DashboardOverviewChartDH> dataWorkflows = prepareData(data);
 
         displayAFS(targetView.findViewById(R.id.llAFSInfoLayout_VCO));
         ((TextView) targetView.findViewById(R.id.tvTotalCountValue_VCO)).setText(String.valueOf(totalCount));
@@ -55,12 +54,9 @@ public class OverViewChartViewImpl implements IChartView<List<OrderItem>> {
 
     @SuppressWarnings("unchecked")
     @Override
-    public List<OrderItem> prepareData(Object data) {
-        return (List<OrderItem>) data;
-    }
-
-    private void prepareInfoFromData(final List<OrderItem> orderItems) {
-        for (OrderItem item: orderItems) {
+    public ArrayList<DashboardOverviewChartDH> prepareData(Object data) {
+        final ArrayList<DashboardOverviewChartDH> dataWorkflows = new ArrayList<>();
+        for (OrderItem item: ((List<OrderItem>) data)) {
             dataWorkflows.add(new DashboardOverviewChartDH(item.name, item.count));
 
             if (item.status != null) {
@@ -74,6 +70,7 @@ public class OverViewChartViewImpl implements IChartView<List<OrderItem>> {
             totalCount += item.count;
             totalRevenue += item.total;
         }
+        return dataWorkflows;
     }
 
     private void displayAFS(final View rootAFS) {
@@ -85,5 +82,4 @@ public class OverViewChartViewImpl implements IChartView<List<OrderItem>> {
             ((TextView) rootAFS.findViewById(R.id.tvShippedValue_VCO)).setText(String.valueOf(afs[2]));
         }
     }
-
 }

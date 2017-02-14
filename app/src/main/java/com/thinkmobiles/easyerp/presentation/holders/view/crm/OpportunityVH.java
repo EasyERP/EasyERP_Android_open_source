@@ -17,8 +17,6 @@ import com.thinkmobiles.easyerp.presentation.managers.TagHelper;
 import com.thinkmobiles.easyerp.presentation.screens.crm.dashboard.detail.charts.DollarFormatter;
 import com.thinkmobiles.easyerp.presentation.utils.StringUtil;
 
-import java.util.Locale;
-
 /**
  * Created by Lynx on 1/30/2017.
  */

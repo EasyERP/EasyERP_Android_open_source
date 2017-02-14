@@ -1,7 +1,6 @@
 package com.thinkmobiles.easyerp.presentation.utils;
 
 
-import android.graphics.Color;
 import android.graphics.Typeface;
 import android.text.Html;
 import android.text.SpannableStringBuilder;
@@ -9,14 +8,10 @@ import android.text.Spanned;
 import android.text.TextUtils;
 import android.text.style.StyleSpan;
 
-import com.thinkmobiles.easyerp.data.model.crm.leads.TagItem;
 import com.thinkmobiles.easyerp.data.model.crm.leads.detail.Address;
 import com.thinkmobiles.easyerp.data.model.crm.leads.detail.AttachmentItem;
 import com.thinkmobiles.easyerp.data.model.crm.leads.detail.NoteItem;
-import com.thinkmobiles.easyerp.presentation.EasyErpApplication_;
-import com.thinkmobiles.easyerp.presentation.custom.RoundedBackgroundSpan;
 import com.thinkmobiles.easyerp.presentation.managers.DateManager;
-import com.thinkmobiles.easyerp.presentation.managers.TagHelper;
 
 import java.text.Format;
 import java.util.ArrayList;
@@ -130,29 +125,6 @@ public abstract class StringUtil {
         }
 
         return Html.fromHtml(builder.toString()).toString();
-    }
-
-
-
-    public static SpannableStringBuilder prepareTags(ArrayList<TagItem> tagItems) {
-        SpannableStringBuilder stringBuilder = new SpannableStringBuilder();
-
-        String between = "   ";
-        int tagStart = 0;
-
-        for (TagItem tag : tagItems) {
-            // Append tag and space after
-            stringBuilder.append(tag.name);
-            stringBuilder.append(between);
-
-            // Set span for tag
-            RoundedBackgroundSpan tagSpan = new RoundedBackgroundSpan(EasyErpApplication_.getInstance(), TagHelper.getColorResIdByName(tag.color), Color.WHITE);
-            stringBuilder.setSpan(tagSpan, tagStart, tagStart + tag.name.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-
-            // Update to next tag start
-            tagStart += tag.name.length() + between.length();
-        }
-        return stringBuilder;
     }
 
     public static SpannableStringBuilder getSpannedByUser(String userName) {

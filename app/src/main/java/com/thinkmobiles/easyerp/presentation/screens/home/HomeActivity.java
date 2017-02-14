@@ -79,4 +79,10 @@ public class HomeActivity extends BaseMasterFlowActivity implements IMenuClickLi
     public void onClickUser() {
         UserProfileDialogFragment_.builder().userInfo(userInfo).build().show(getFragmentManager(), null);
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        menuDrawerView.defaultSelect();
+    }
 }
