@@ -1,5 +1,6 @@
 package com.thinkmobiles.easyerp.presentation.custom;
 
+import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
 import android.graphics.Paint;
@@ -11,24 +12,25 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 /**
- * @author Michael Soyma (Created on 2/7/2017).
+ * @author Michael Soyma (Created on 2/14/2017).
  *         Company: Thinkmobiles
  *         Email: michael.soyma@thinkmobiles.com
  */
-public class RoundRectDrawable extends Drawable {
+public class CircleStrokeDrawable extends Drawable {
 
-    private static final int CORNER_RADIUS = 30;
+    private static final int STROKE_WIDTH = 2;
     private final Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
 
-    public RoundRectDrawable(int colorBg) {
-        paint.setStyle(Paint.Style.FILL);
+    public CircleStrokeDrawable(final Resources res, int colorBg) {
+        paint.setStyle(Paint.Style.STROKE);
         paint.setColor(colorBg);
+        paint.setStrokeWidth(STROKE_WIDTH * res.getDisplayMetrics().density);
     }
 
     @Override
     public void draw(@NonNull Canvas canvas) {
-        final RectF rect = new RectF(0, 0, canvas.getWidth(), canvas.getHeight());
-        canvas.drawRoundRect(rect, CORNER_RADIUS, CORNER_RADIUS, paint);
+        final int size = Math.min(canvas.getWidth(), canvas.getHeight());
+        canvas.drawCircle(size / 2, size / 2, size / 2 - paint.getStrokeWidth(), paint);
     }
 
     @Override

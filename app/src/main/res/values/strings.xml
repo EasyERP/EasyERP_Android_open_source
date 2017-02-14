@@ -29,8 +29,8 @@
     <string name="allocated">Allocated</string>
     <string name="fulfilled">Fulfilled</string>
     <string name="shipped">Shipped</string>
-    <string name="total_count">Total count</string>
-    <string name="total_revenue">Total revenue</string>
+    <string name="total_count">Total Count</string>
+    <string name="total_revenue">Total Revenue</string>
     <string name="about">About</string>
     <string name="contacts">Contacts</string>
     <string name="current_status">Current Status</string>

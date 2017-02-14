@@ -37,16 +37,16 @@ public class OverViewChartViewImpl implements IChartView<List<OrderItem>> {
         final View targetView = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_chart_overview, parent, false);
         prepareInfoFromData(prepareData(data));
 
-        displayAFS(targetView.findViewById(R.id.llHeaderInfo_VCO));
+        displayAFS(targetView.findViewById(R.id.llAFSInfoLayout_VCO));
         ((TextView) targetView.findViewById(R.id.tvTotalCountValue_VCO)).setText(String.valueOf(totalCount));
-        ((TextView) targetView.findViewById(R.id.tvTotalRevenue_VCO )).setText(StringUtil.getFormattedPrice(new DollarFormatter().getFormat(), totalRevenue));
+        ((TextView) targetView.findViewById(R.id.tvTotalRevenueValue_VCO )).setText(StringUtil.getFormattedPrice(new DollarFormatter().getFormat(), totalRevenue));
 
         final RecyclerView workflowsRecycler = (RecyclerView) targetView.findViewById(R.id.rvWorkflows_VCO);
         final DashboardOverviewChartAdapter adapter = new DashboardOverviewChartAdapter();
         adapter.setListDH(dataWorkflows);
 
         if (dataWorkflows.size() > 0) {
-            workflowsRecycler.setLayoutManager(new GridLayoutManager(parent.getContext(), Math.min(4, dataWorkflows.size()), LinearLayoutManager.VERTICAL, false));
+            workflowsRecycler.setLayoutManager(new GridLayoutManager(parent.getContext(), 4, LinearLayoutManager.VERTICAL, false));
             workflowsRecycler.setAdapter(adapter);
         }
 
@@ -78,7 +78,7 @@ public class OverViewChartViewImpl implements IChartView<List<OrderItem>> {
 
     private void displayAFS(final View rootAFS) {
         if (afs[0] == 0 && afs[1] == 0 && afs[2] == 0) {
-            rootAFS.setVisibility(View.INVISIBLE);
+            rootAFS.setVisibility(View.GONE);
         } else {
             ((TextView) rootAFS.findViewById(R.id.tvAllocatedValue_VCO)).setText(String.valueOf(afs[0]));
             ((TextView) rootAFS.findViewById(R.id.tvFulfilledValue_VCO)).setText(String.valueOf(afs[1]));
