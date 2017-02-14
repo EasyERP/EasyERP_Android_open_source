@@ -82,9 +82,7 @@ public class DashboardDetailChartPresenter implements DashboardDetailChartContra
                             .subscribe(result -> {
                                 view.showProgress(Constants.ProgressType.NONE);
                                 view.displayChart(chartData = result, workDashboardInfoForChart.getChartType());
-                            },throwable -> {
-                                view.displayErrorState(throwable.getMessage(), ErrorViewHelper.ErrorType.NETWORK);
-                            }));
+                            },throwable -> view.displayErrorState(throwable.getMessage(), ErrorViewHelper.ErrorType.NETWORK)));
     }
 
     @Override

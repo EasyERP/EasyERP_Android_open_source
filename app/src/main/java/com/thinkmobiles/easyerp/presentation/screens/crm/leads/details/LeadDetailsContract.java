@@ -1,8 +1,6 @@
 package com.thinkmobiles.easyerp.presentation.screens.crm.leads.details;
 
 
-import android.text.SpannableStringBuilder;
-
 import com.thinkmobiles.easyerp.data.model.crm.leads.TagItem;
 import com.thinkmobiles.easyerp.data.model.crm.leads.detail.ResponseGetLeadDetails;
 import com.thinkmobiles.easyerp.presentation.base.BaseModel;
