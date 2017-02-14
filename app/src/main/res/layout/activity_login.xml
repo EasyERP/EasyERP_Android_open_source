@@ -30,7 +30,7 @@
         android:layout_gravity="center"
         android:minWidth="@dimen/login_min_width_form_credentials"
         android:orientation="vertical"
-        android:paddingTop="150dp"
+        android:paddingTop="170dp"
         android:visibility="invisible"
         android:descendantFocusability="beforeDescendants"
         android:focusableInTouchMode="true"
@@ -92,7 +92,8 @@
             android:id="@+id/btnDemoMode_AL"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/demo_mode" />
+            android:text="@string/demo_mode"
+            android:layout_marginTop="@dimen/default_padding_half"/>
 
     </LinearLayout>
 
