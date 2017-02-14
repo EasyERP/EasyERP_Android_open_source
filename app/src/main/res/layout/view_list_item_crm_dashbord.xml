@@ -7,20 +7,20 @@
     android:orientation="horizontal"
     android:padding="@dimen/default_padding">
 
+    <TextView
+        android:id="@+id/tvDashboardName_VLICD"
+        style="@style/TextListTitleRegularStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        tools:text="Dashboard" />
+
     <ImageView
         android:id="@+id/ivChartType_VLICD"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/default_padding_middle"
         android:padding="@dimen/padding_very_minimum"
         tools:src="@drawable/ic_chart_donut" />
-
-    <TextView
-        android:id="@+id/tvDashboardName_VLICD"
-        style="@style/TextListTitleStyle"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/default_padding_middle"
-        android:layout_weight="1"
-        tools:text="Dashboard" />
 
 </LinearLayout>

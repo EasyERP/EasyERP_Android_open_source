@@ -46,9 +46,12 @@ public abstract class TagHelper {
 
     public static final String PAID = "Paid";
     public static final String UNPAID = "Unpaid";
+    public static final String NOT_APPROVED = "Not Approved";
     public static final String UNPAID_NOT_APPROVED = "Unpaid / Not Approved";
+    public static final String INVOICED = "Invoiced";
     public static final String PARTIALLY_PAID = "Partially Paid";
     public static final String DRAFT = "Draft";
+    public static final String NEW_ORDER = "New Order";
 
     public static final String PRIORITY_NEW = "New";
     public static final String PRIORITY_SENT = "Sent";
@@ -149,6 +152,25 @@ public abstract class TagHelper {
             case OPPORTUNITY_DONE:
                 return R.color.color_chips_green;
             case OPPORTUNITY_CANCELLED:
+                return R.color.color_status_do_not_contact;
+            default:
+                return R.color.color_status_do_not_contact;
+        }
+    }
+
+    public static int getWorkflowColorRes(String workflow) {
+        switch (workflow) {
+            case PAID:
+            case DRAFT:
+            case INVOICED:
+                return R.color.color_status_new;
+            case PARTIALLY_PAID:
+            case NEW_ORDER:
+                return R.color.color_status_in_progress;
+            case UNPAID:
+            case CANCELLED:
+                return R.color.color_status_not_interested;
+            case NOT_APPROVED:
                 return R.color.color_status_do_not_contact;
             default:
                 return R.color.color_status_do_not_contact;
