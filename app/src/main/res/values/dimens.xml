@@ -57,5 +57,6 @@
     <dimen name="image_size_large">144dp</dimen>
     <dimen name="text_sixe_pdf_type">30sp</dimen>
 
+    <dimen name="circle_indicator_small_size">10dp</dimen>
 
 </resources>
