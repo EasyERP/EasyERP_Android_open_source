@@ -10,7 +10,7 @@ import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.AttachmentDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.ContactDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.HistoryDH;
-import com.thinkmobiles.easyerp.presentation.holders.data.crm.OpportunityAndLeadDH;
+import com.thinkmobiles.easyerp.presentation.holders.data.crm.LeadAndOpportunityDH;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
 import java.util.ArrayList;
@@ -224,9 +224,9 @@ public class CompanyDetailsPresenter implements CompanyDetailsContract.CompanyDe
     private void setLeadsAndOpportunities(ResponseGetCompanyDetails data) {
         boolean isLeadsAndOpportunitiesAvailable = false;
         if(data.opportunities != null && !data.opportunities.isEmpty()) {
-            ArrayList<OpportunityAndLeadDH> result = new ArrayList<>();
+            ArrayList<LeadAndOpportunityDH> result = new ArrayList<>();
             for(OpportunityItem opportunityItem : data.opportunities) {
-                result.add(new OpportunityAndLeadDH(opportunityItem));
+                result.add(new LeadAndOpportunityDH(opportunityItem));
             }
             view.displayLeadAndOpportunity(result);
             isLeadsAndOpportunitiesAvailable = true;

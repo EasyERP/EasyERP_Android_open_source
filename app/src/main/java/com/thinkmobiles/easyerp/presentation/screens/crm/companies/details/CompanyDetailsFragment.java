@@ -29,7 +29,7 @@ import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.AttachmentDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.ContactDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.HistoryDH;
-import com.thinkmobiles.easyerp.presentation.holders.data.crm.OpportunityAndLeadDH;
+import com.thinkmobiles.easyerp.presentation.holders.data.crm.LeadAndOpportunityDH;
 import com.thinkmobiles.easyerp.presentation.managers.HistoryAnimationHelper;
 import com.thinkmobiles.easyerp.presentation.managers.ImageHelper;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
@@ -460,8 +460,8 @@ public class CompanyDetailsFragment extends RefreshFragment implements CompanyDe
     }
 
     @Override
-    public void displayLeadAndOpportunity(ArrayList<OpportunityAndLeadDH> opportunityAndLeadDHs) {
-        opportunityAndLeadsAdapter.setListDH(opportunityAndLeadDHs);
+    public void displayLeadAndOpportunity(ArrayList<LeadAndOpportunityDH> leadAndOpportunityDHs) {
+        opportunityAndLeadsAdapter.setListDH(leadAndOpportunityDHs);
     }
 
     @Override
