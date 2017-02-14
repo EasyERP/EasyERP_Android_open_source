@@ -75,6 +75,30 @@ public class LoginPresenter implements LoginContract.LoginPresenter {
     }
 
     @Override
+    public void launchDemoMode() {
+        compositeSubscription.add(
+                loginModel.login(Constants.DEMO_LOGIN, Constants.DEMO_PASSWORD, Constants.DEMO_DB_ID)
+                        .subscribe(s -> {
+                            if(s.equalsIgnoreCase("OK")) {
+                                getCurrentUser();
+                            }
+                            Log.d("HTTP", "Response: " + s);
+                        }, t -> {
+                            String errMsg = "";
+                            if(t instanceof HttpException) {
+                                HttpException e = (HttpException) t;
+                                ResponseError responseError = Rest.getInstance().parseError(e.response().errorBody());
+                                errMsg = responseError.error;
+                            } else {
+                                errMsg = t.getMessage();
+                            }
+                            view.displayError(errMsg);
+                            Log.d("HTTP", "Error: " + t.getMessage());
+                        })
+        );
+    }
+
+    @Override
     public void getCurrentUser() {
         compositeSubscription.add(
                 userModel.getCurrentUser()

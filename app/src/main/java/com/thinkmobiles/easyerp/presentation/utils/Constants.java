@@ -90,4 +90,8 @@ public abstract class Constants {
     public enum ProgressType {
         CENTER, BOTTOM, NONE
     }
+
+    public static final String DEMO_LOGIN                   = "testAdmin";
+    public static final String DEMO_PASSWORD                = "111111";
+    public static final String DEMO_DB_ID                   = "lilyadb";
 }
