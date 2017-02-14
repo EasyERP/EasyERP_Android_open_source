@@ -43,13 +43,10 @@
                         tools:text="Android, iOS Development"/>
 
                     <TextView
+                        style="@style/MediumChipsStyle"
                         android:id="@+id/tvPriority_VLIOAL"
-                        style="@style/RobotoMedium"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/default_padding"
-                        android:padding="@dimen/default_padding_small"
-                        android:textSize="@dimen/text_size_small_14"
                         tools:text="COLD"/>
 
                 </LinearLayout>

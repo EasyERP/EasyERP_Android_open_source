@@ -99,7 +99,10 @@ public class CompanyDetailsPresenter implements CompanyDetailsContract.CompanyDe
     private void setGeneralInfo(ResponseGetCompanyDetails data) {
         if(!TextUtils.isEmpty(data.imageSrc)) view.displayCompanyImage(data.imageSrc);
         if(!TextUtils.isEmpty(data.fullName)) view.displayCompanyName(data.fullName);
-        if(!TextUtils.isEmpty(data.website)) view.displayCompanyUrl(StringUtil.getClickableUrl(data.website, data.website));
+        if(!TextUtils.isEmpty(data.website)) {
+            if(!data.website.startsWith("http://")) data.website = "http://" + data.website;
+            view.displayCompanyUrl(data.website);
+        }
         if(!TextUtils.isEmpty(data.skype)) view.enableSkypeButton(data.skype);
         if(data.social != null) {
             if(!TextUtils.isEmpty(data.social.facebook)) {

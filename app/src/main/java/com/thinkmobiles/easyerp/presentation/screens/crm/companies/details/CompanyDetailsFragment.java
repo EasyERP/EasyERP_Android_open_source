@@ -293,8 +293,10 @@ public class CompanyDetailsFragment extends RefreshFragment implements CompanyDe
 
     @Override
     public void displayCompanyUrl(String companyUrl) {
-        tvCompanyWebsite_FCD.setMovementMethod(LinkMovementMethod.getInstance());
-        tvCompanyWebsite_FCD.setText(Html.fromHtml(companyUrl));
+        tvCompanyWebsite_FCD.setText(companyUrl);
+        RxView.clicks(tvCompanyWebsite_FCD)
+                .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
+                .subscribe(aVoid -> startUrlIntent(companyUrl));
     }
 
     @Override

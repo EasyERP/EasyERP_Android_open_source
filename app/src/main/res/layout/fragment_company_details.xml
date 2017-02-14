@@ -54,11 +54,12 @@
 
                         <TextView
                             android:id="@+id/tvCompanyWebsite_FCD"
-                            style="@style/TextLargeInfoStyle"
+                            style="@style/TextUrlStyle"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/default_padding_small"
-                            tools:text="Program Leader"/>
+                            android:textSize="@dimen/text_size_big_24"
+                            tools:text="yahoo.com"/>
 
                         <TextView
                             android:id="@+id/tvEmail_FPD"
@@ -208,7 +209,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/default_padding_3dp"
-                    android:layout_marginTop="@dimen/default_padding"/>
+                    android:layout_marginTop="@dimen/default_padding"
+                    tools:visibility="visible"/>
 
                 <LinearLayout
                     android:id="@+id/llContainerBillingAddress_FCD"
@@ -312,7 +314,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/default_padding_3dp"
-                    android:layout_marginTop="@dimen/default_padding"/>
+                    android:layout_marginTop="@dimen/default_padding"
+                    tools:visibility="visible"/>
 
                 <LinearLayout
                     android:id="@+id/llContainerShippingAddress_FDC"
@@ -421,7 +424,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/default_padding_3dp"
-                        android:layout_marginTop="@dimen/default_padding"/>
+                        android:layout_marginTop="@dimen/default_padding"
+                        tools:visibility="visible"/>
 
                     <LinearLayout
                         android:id="@+id/llContainerSalesPurchases_FPD"
@@ -567,9 +571,10 @@
                 style="@style/TextNoDataStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/default_padding"
+                android:layout_marginStart="@dimen/default_padding_fixed"
                 android:layout_marginEnd="@dimen/default_padding"
-                android:layout_marginTop="@dimen/default_padding"/>
+                android:layout_marginTop="@dimen/default_padding"
+                tools:visibility="visible"/>
 
             <FrameLayout
                 android:id="@+id/flContainerContacts_FCD"
@@ -583,6 +588,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/default_padding_half"
+                    android:nestedScrollingEnabled="false"
                     android:overScrollMode="never"/>
 
             </FrameLayout>
@@ -600,7 +606,7 @@
                 style="@style/TextNoDataStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/default_padding"
+                android:layout_marginStart="@dimen/default_padding_fixed"
                 android:layout_marginEnd="@dimen/default_padding"
                 android:layout_marginTop="@dimen/default_padding"/>
 
@@ -616,6 +622,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/default_padding_half"
+                    android:nestedScrollingEnabled="false"
                     android:overScrollMode="never"/>
 
             </FrameLayout>
@@ -634,7 +641,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/default_padding"
-                android:layout_marginStart="@dimen/default_padding"
+                android:layout_marginStart="@dimen/default_padding_fixed"
                 android:layout_marginTop="@dimen/default_padding"/>
 
             <FrameLayout
@@ -649,7 +656,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/default_padding_half"
-                    android:overScrollMode="never"/>
+                    android:overScrollMode="never"
+                    android:nestedScrollingEnabled="false"/>
 
             </FrameLayout>
 
