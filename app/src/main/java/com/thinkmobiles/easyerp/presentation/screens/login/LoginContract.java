@@ -29,6 +29,7 @@ public interface LoginContract {
     }
     interface LoginPresenter extends BasePresenter {
         void login();
+        void launchDemoMode();
         void getCurrentUser();
 
         void clearCookies();
