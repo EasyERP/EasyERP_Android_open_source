@@ -4,7 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import com.michenko.simpleadapter.RecyclerDH;
-import com.thinkmobiles.easyerp.data.model.crm.leads.filter.FilterItem;
+import com.thinkmobiles.easyerp.data.model.crm.filter.FilterItem;
 
 /**
  * Created by samson on 26.01.17.

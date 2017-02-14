@@ -1,12 +1,12 @@
 package com.thinkmobiles.easyerp.presentation.base.rules;
 
 import android.support.annotation.CallSuper;
+import android.support.v7.widget.AppCompatAutoCompleteTextView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.presentation.listeners.EndlessScrollListener;
-import com.thinkmobiles.easyerp.presentation.screens.home.HomeActivity;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EFragment;
@@ -28,6 +28,8 @@ public abstract class ListRefreshFragment extends RefreshFragment {
 
     @ViewById
     protected RecyclerView listRecycler;
+    @ViewById
+    protected AppCompatAutoCompleteTextView actSearch;
 
     protected EndlessScrollListener scrollListener;
 

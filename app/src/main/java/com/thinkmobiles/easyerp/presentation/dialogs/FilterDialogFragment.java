@@ -83,7 +83,6 @@ public class FilterDialogFragment extends DialogFragment implements DialogInterf
                 searchAdapter.getFilter().filter(s);
             }
         });
-        etSearch.setOnClickListener((v) -> etSearch.setText(""));
 
         rvList = (RecyclerView) parent.findViewById(R.id.rvList_DF);
         rvList.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -119,4 +118,11 @@ public class FilterDialogFragment extends DialogFragment implements DialogInterf
         }
         dialog.dismiss();
     }
+
+    @Override
+    public void onCancel(DialogInterface dialog) {
+        inputMethodManager.hideSoftInputFromWindow(etSearch.getWindowToken(), InputMethodManager.RESULT_HIDDEN);
+        super.onCancel(dialog);
+    }
+
 }

@@ -132,7 +132,10 @@ public class Rest {
     }
 
     public OpportunityService getOpportunityService() {
-        return opportunityService == null ? createService(OpportunityService.class) : opportunityService;
+        if (opportunityService == null) {
+            opportunityService = createService(OpportunityService.class);
+        }
+        return opportunityService;
     }
 
     public CompaniesService getCompaniesService() {

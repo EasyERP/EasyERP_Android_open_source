@@ -3,7 +3,7 @@ package com.thinkmobiles.easyerp.domain.crm;
 import com.thinkmobiles.easyerp.data.api.Rest;
 import com.thinkmobiles.easyerp.data.model.crm.leads.ResponseGetLeads;
 import com.thinkmobiles.easyerp.data.model.crm.leads.detail.ResponseGetLeadDetails;
-import com.thinkmobiles.easyerp.data.model.crm.leads.filter.ResponseGetLeadsFilters;
+import com.thinkmobiles.easyerp.data.model.crm.filter.ResponseGetFilters;
 import com.thinkmobiles.easyerp.data.services.FilterService;
 import com.thinkmobiles.easyerp.data.services.LeadService;
 import com.thinkmobiles.easyerp.presentation.base.NetworkRepository;
@@ -46,7 +46,7 @@ public class LeadsRepository extends NetworkRepository implements LeadsContract.
         ));
     }
 
-    public Observable<ResponseGetLeadsFilters> getLeadFilters() {
+    public Observable<ResponseGetFilters> getLeadFilters() {
         return getNetworkObservable(filterService.getLeadFilters("Leads"));
     }
 

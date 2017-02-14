@@ -1,8 +1,8 @@
 package com.thinkmobiles.easyerp.presentation.screens.crm.leads;
 
 import com.thinkmobiles.easyerp.data.model.crm.leads.LeadItem;
-import com.thinkmobiles.easyerp.data.model.crm.leads.filter.FilterItem;
-import com.thinkmobiles.easyerp.data.model.crm.leads.filter.ResponseGetLeadsFilters;
+import com.thinkmobiles.easyerp.data.model.crm.filter.FilterItem;
+import com.thinkmobiles.easyerp.data.model.crm.filter.ResponseGetFilters;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectablePresenterHelper;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.FilterDH;
@@ -153,24 +153,24 @@ public class LeadsPresenter extends MasterFlowSelectablePresenterHelper<String, 
         return result;
     }
 
-    private void prepareFilterDHs(ResponseGetLeadsFilters responseGetLeadsFilters) {
-        for (FilterItem leadItem : responseGetLeadsFilters.contactName) {
+    private void prepareFilterDHs(ResponseGetFilters responseGetFilters) {
+        for (FilterItem leadItem : responseGetFilters.contactName) {
             FilterDH leadDH = new FilterDH(leadItem);
             contactName.add(leadDH);
         }
-        for (FilterItem leadItem : responseGetLeadsFilters.salesPerson) {
+        for (FilterItem leadItem : responseGetFilters.salesPerson) {
             FilterDH leadDH = new FilterDH(leadItem);
             assignedTo.add(leadDH);
         }
-        for (FilterItem leadItem : responseGetLeadsFilters.createdBy) {
+        for (FilterItem leadItem : responseGetFilters.createdBy) {
             FilterDH leadDH = new FilterDH(leadItem);
             createdBy.add(leadDH);
         }
-        for (FilterItem leadItem : responseGetLeadsFilters.workflow) {
+        for (FilterItem leadItem : responseGetFilters.workflow) {
             FilterDH leadDH = new FilterDH(leadItem);
             workflow.add(leadDH);
         }
-        for (FilterItem leadItem : responseGetLeadsFilters.source) {
+        for (FilterItem leadItem : responseGetFilters.source) {
             FilterDH leadDH = new FilterDH(leadItem);
             source.add(leadDH);
         }

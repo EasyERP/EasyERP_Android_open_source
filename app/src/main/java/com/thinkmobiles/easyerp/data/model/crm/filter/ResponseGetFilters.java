@@ -1,4 +1,4 @@
-package com.thinkmobiles.easyerp.data.model.crm.leads.filter;
+package com.thinkmobiles.easyerp.data.model.crm.filter;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -6,7 +6,7 @@ import android.os.Parcelable;
 import java.util.ArrayList;
 
 
-public class ResponseGetLeadsFilters implements Parcelable {
+public class ResponseGetFilters implements Parcelable {
 
     /**
      * {
@@ -38,14 +38,16 @@ public class ResponseGetLeadsFilters implements Parcelable {
      }
      */
 
-    public ArrayList<FilterItem> contactName;
-    public ArrayList<FilterItem> source;
-    public ArrayList<FilterItem> workflow;
-    public ArrayList<FilterItem> salesPerson;
-    public ArrayList<FilterItem> createdBy;
+    public ArrayList<FilterItem> contactName;       //Leads
+    public ArrayList<FilterItem> source;            //Leads
+    public ArrayList<FilterItem> workflow;          //Leads
+    public ArrayList<FilterItem> salesPerson;       //Leads, Opportunities
+    public ArrayList<FilterItem> createdBy;         //Leads, Opportunities
+    public ArrayList<FilterItem> customer;          //Opportunities
+    public ArrayList<FilterItem> name;              //Opportunities
 
 
-    public ResponseGetLeadsFilters() {
+    public ResponseGetFilters() {
     }
 
     @Override
@@ -60,25 +62,29 @@ public class ResponseGetLeadsFilters implements Parcelable {
         dest.writeTypedList(this.workflow);
         dest.writeTypedList(this.salesPerson);
         dest.writeTypedList(this.createdBy);
+        dest.writeTypedList(this.customer);
+        dest.writeTypedList(this.name);
     }
 
-    protected ResponseGetLeadsFilters(Parcel in) {
+    protected ResponseGetFilters(Parcel in) {
         this.contactName = in.createTypedArrayList(FilterItem.CREATOR);
         this.source = in.createTypedArrayList(FilterItem.CREATOR);
         this.workflow = in.createTypedArrayList(FilterItem.CREATOR);
         this.salesPerson = in.createTypedArrayList(FilterItem.CREATOR);
         this.createdBy = in.createTypedArrayList(FilterItem.CREATOR);
+        this.customer = in.createTypedArrayList(FilterItem.CREATOR);
+        this.name = in.createTypedArrayList(FilterItem.CREATOR);
     }
 
-    public static final Creator<ResponseGetLeadsFilters> CREATOR = new Creator<ResponseGetLeadsFilters>() {
+    public static final Creator<ResponseGetFilters> CREATOR = new Creator<ResponseGetFilters>() {
         @Override
-        public ResponseGetLeadsFilters createFromParcel(Parcel source) {
-            return new ResponseGetLeadsFilters(source);
+        public ResponseGetFilters createFromParcel(Parcel source) {
+            return new ResponseGetFilters(source);
         }
 
         @Override
-        public ResponseGetLeadsFilters[] newArray(int size) {
-            return new ResponseGetLeadsFilters[size];
+        public ResponseGetFilters[] newArray(int size) {
+            return new ResponseGetFilters[size];
         }
     };
 }

@@ -10,7 +10,7 @@
         android:orientation="vertical">
 
         <android.support.v7.widget.AppCompatAutoCompleteTextView
-            style="@style/DefaultTheme.FilterDialog.SearchFieldStyle"
+            style="@style/SearchFieldStyle"
             android:id="@+id/actSearch"
             android:hint="@string/list_searchview_hint"
             android:imeOptions="flagNoExtractUi|actionSearch"

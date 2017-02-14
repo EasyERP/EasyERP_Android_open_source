@@ -13,6 +13,8 @@ public class FilterQuery {
     public ArrayList<String> source;
     public ArrayList<String> createdBy;
     public ArrayList<String> workflow;
+    public ArrayList<String> customer;
+    public ArrayList<String> name;
 
     public FilterQuery() {
         this.queryMap = new HashMap<>();
@@ -20,11 +22,13 @@ public class FilterQuery {
 
     public static class Builder {
 
-        private FilterTypeQuery contactName;
-        private FilterTypeQuery createdBy;
-        private FilterTypeQuery assignedTo;
-        private FilterTypeQuery source;
-        private FilterTypeQuery workflow;
+        private final FilterTypeQuery contactName;
+        private final FilterTypeQuery createdBy;
+        private final FilterTypeQuery assignedTo;
+        private final FilterTypeQuery source;
+        private final FilterTypeQuery workflow;
+        private final FilterTypeQuery customer;
+        private final FilterTypeQuery name;
 
         public Builder() {
             contactName = new FilterTypeQuery("contactName", "contactName");
@@ -32,7 +36,11 @@ public class FilterQuery {
             assignedTo = new FilterTypeQuery("salesPerson", "salesPerson._id");
             source = new FilterTypeQuery("source", "source");
             workflow = new FilterTypeQuery("workflow", "workflow._id");
+            customer = new FilterTypeQuery("customer", "customer");
+            name = new FilterTypeQuery("name", "_id");
         }
+
+
 
         public FilterTypeQuery forContactName() {
             return contactName;
@@ -54,27 +62,26 @@ public class FilterQuery {
             return workflow;
         }
 
+        public FilterTypeQuery forCustomer() {
+            return customer;
+        }
+
+        public FilterTypeQuery forName() {
+            return name;
+        }
+
         public FilterQuery build() {
             FilterQuery query = new FilterQuery();
 
-            query.contactName = contactName.getValues();
-            addKey(query.queryMap, query.contactName, contactName);
-            query.assignedTo = assignedTo.getValues();
-            addKey(query.queryMap, query.assignedTo, assignedTo);
-            query.createdBy = createdBy.getValues();
-            addKey(query.queryMap, query.createdBy, createdBy);
-            query.source = source.getValues();
-            addKey(query.queryMap, query.source, source);
-            query.workflow = workflow.getValues();
-            addKey(query.queryMap, query.workflow, workflow);
+            query.contactName = contactName.save(query.queryMap);
+            query.assignedTo = assignedTo.save(query.queryMap);
+            query.createdBy = createdBy.save(query.queryMap);
+            query.source = source.save(query.queryMap);
+            query.workflow = workflow.save(query.queryMap);
+            query.name = name.save(query.queryMap);
+            query.customer = customer.save(query.queryMap);
 
             return query;
-        }
-
-        private void addKey(Map<String, String> queryMap, ArrayList<String> values, FilterTypeQuery typeQuery) {
-            if (values != null) {
-                queryMap.put(String.format("filter[%s][key]", typeQuery.getKey()), typeQuery.getTypeFilter());
-            }
         }
     }
 

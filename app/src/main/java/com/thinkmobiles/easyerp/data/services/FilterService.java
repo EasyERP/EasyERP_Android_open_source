@@ -1,6 +1,6 @@
 package com.thinkmobiles.easyerp.data.services;
 
-import com.thinkmobiles.easyerp.data.model.crm.leads.filter.ResponseGetLeadsFilters;
+import com.thinkmobiles.easyerp.data.model.crm.filter.ResponseGetFilters;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
 import retrofit2.http.GET;
@@ -14,5 +14,5 @@ import rx.Observable;
 public interface FilterService {
 
     @GET(Constants.GET_FILTER + "/{filterParam}")
-    Observable<ResponseGetLeadsFilters> getLeadFilters(@Path("filterParam") String filterParam);
+    Observable<ResponseGetFilters> getLeadFilters(@Path("filterParam") String filterParam);
 }

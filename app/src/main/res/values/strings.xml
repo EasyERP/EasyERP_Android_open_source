@@ -72,7 +72,7 @@
     <string name="dialog_btn_close">Close</string>
     <string name="dialog_btn_apply">Apply</string>
     <string name="dialog_btn_cancel">Cancel</string>
-    <string name="dialog_btn_remove">Remove</string>
+    <string name="dialog_btn_remove">Remove all</string>
     <string name="amount">Amount</string>
     <string name="contact">Contact</string>
     <string name="mobile">Mobile</string>
@@ -141,4 +141,7 @@
     <string name="order_details_title_order_preview">Order Preview</string>
     <string name="invoice_details_subtitle_payments">Payments</string>
     <string name="invoice_details_subtitle_invoice_preview">Invoice Preview</string>
+    <string name="menu_filter_name">Name</string>
+    <string name="menu_filter_customer">Customer</string>
+    <string name="menu_filter_sales_person">Sales Person</string>
 </resources>

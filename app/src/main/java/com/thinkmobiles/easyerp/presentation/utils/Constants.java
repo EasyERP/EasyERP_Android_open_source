@@ -76,6 +76,8 @@ public abstract class Constants {
     public static final int REQUEST_CODE_FILTER_ASSIGNED_TO = 17;
     public static final int REQUEST_CODE_FILTER_CREATED_BY  = 18;
     public static final int REQUEST_CODE_FILTER_SOURCE      = 19;
+    public static final int REQUEST_CODE_FILTER_NAME        = 20;
+    public static final int REQUEST_CODE_FILTER_CUSTOMER    = 21;
 
     //Bundle keys
     public static final String KEY_FILTER_LIST              = "keyFilterList";

@@ -1,7 +1,12 @@
 package com.thinkmobiles.easyerp.presentation.utils.filter;
 
 
+import com.thinkmobiles.easyerp.presentation.holders.data.crm.FilterDH;
+import com.thinkmobiles.easyerp.presentation.listeners.VisibilityCallback;
+import com.thinkmobiles.easyerp.presentation.screens.crm.leads.LeadsPresenter;
+
 import java.util.ArrayList;
+import java.util.Map;
 
 public class FilterTypeQuery {
 
@@ -27,15 +32,25 @@ public class FilterTypeQuery {
         return this;
     }
 
-    public String getKey() {
-        return key;
-    }
-
-    public String getTypeFilter() {
-        return typeFilter;
-    }
-
     public ArrayList<String> getValues() {
         return values;
     }
+
+    public void setList(ArrayList<FilterDH> filterDHs, VisibilityCallback callback) {
+        values = null;
+        for (FilterDH dh : filterDHs) {
+            if(dh.selected) {
+                add(dh.id);
+            }
+        }
+        callback.setVisibility(values != null);
+    }
+
+    public ArrayList<String> save(final Map<String, String> map) {
+        if (values != null) {
+            map.put(String.format("filter[%s][key]", key), typeFilter);
+        }
+        return values;
+    }
+
 }

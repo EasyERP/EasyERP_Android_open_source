@@ -2,7 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white">
+    android:background="@android:color/white"
+    android:descendantFocusability="beforeDescendants"
+    android:focusableInTouchMode="true">
 
     <View
         android:layout_width="match_parent"
@@ -10,13 +12,9 @@
         android:background="@color/colorPrimaryDark"/>
 
     <EditText
-        style="@style/DefaultTheme.FilterDialog.SearchFieldStyle"
+        style="@style/SearchFieldStyle"
         android:id="@+id/etSearch_DF"
-        android:hint="@string/list_searchview_hint"
-        android:imeOptions="flagNoExtractUi|actionDone"
-        android:drawableStart="@drawable/ic_search_black"
-        android:drawablePadding="@dimen/default_padding_half"
-        android:padding="@dimen/default_padding" />
+        android:imeOptions="flagNoExtractUi|actionDone" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rvList_DF"

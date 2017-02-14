@@ -129,14 +129,27 @@
     <style name="DefaultTheme.FilterDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
         <item name="colorAccent">@color/colorAccent</item>
         <item name="windowNoTitle">true</item>
-        <item name="editTextStyle">@style/DefaultTheme.FilterDialog.SearchFieldStyle</item>
+        <item name="editTextStyle">@style/SearchFieldStyle</item>
     </style>
 
-    <style name="DefaultTheme.FilterDialog.SearchFieldStyle" parent="DefaultTheme.LeadInputFieldStyle">
-        <item name="android:focusable">true</item>
-        <item name="android:textColor">@color/textColorPrimary</item>
+    <style name="SearchFieldStyle">
+        <item name="android:textColor">@color/color_text_black</item>
         <item name="android:textColorHint">@color/textColorHint</item>
-        <item name="backgroundTint">@color/dividerColor</item>
+        <item name="android:padding">@dimen/default_padding</item>
+        <item name="android:drawablePadding">@dimen/default_padding_half</item>
+        <item name="android:drawableStart">@drawable/ic_search_black</item>
+        <item name="android:background">@drawable/bg_search_view_selector</item>
+        <item name="android:hint">@string/list_searchview_hint</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:lines">1</item>
+        <item name="android:focusable">true</item>
+        <item name="android:focusableInTouchMode">true</item>
+        <item name="android:scrollHorizontally">true</item>
+        <item name="android:inputType">text</item>
+        <item name="android:imeOptions">flagNoExtractUi|</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:textSize">@dimen/text_list_item_medium_16</item>
     </style>
 
     <!--My the best of the best styles-->

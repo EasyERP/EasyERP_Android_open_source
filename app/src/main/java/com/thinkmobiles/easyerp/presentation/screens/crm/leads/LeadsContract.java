@@ -1,7 +1,7 @@
 package com.thinkmobiles.easyerp.presentation.screens.crm.leads;
 
 import com.thinkmobiles.easyerp.data.model.crm.leads.ResponseGetLeads;
-import com.thinkmobiles.easyerp.data.model.crm.leads.filter.ResponseGetLeadsFilters;
+import com.thinkmobiles.easyerp.data.model.crm.filter.ResponseGetFilters;
 import com.thinkmobiles.easyerp.presentation.base.BaseModel;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectableBasePresenter;
@@ -55,6 +55,6 @@ public interface LeadsContract {
     }
     interface LeadsModel extends BaseModel {
         Observable<ResponseGetLeads> getFilteredLeads(FilterQuery query, int page);
-        Observable<ResponseGetLeadsFilters> getLeadFilters();
+        Observable<ResponseGetFilters> getLeadFilters();
     }
 }

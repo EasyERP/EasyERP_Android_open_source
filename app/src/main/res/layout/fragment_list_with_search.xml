@@ -4,13 +4,9 @@
     android:layout_height="match_parent">
 
     <android.support.v7.widget.AppCompatAutoCompleteTextView
-        style="@style/DefaultTheme.FilterDialog.SearchFieldStyle"
+        style="@style/SearchFieldStyle"
         android:id="@+id/actSearch"
-        android:hint="@string/list_searchview_hint"
         android:imeOptions="flagNoExtractUi|actionSearch"
-        android:drawableStart="@drawable/ic_search_black"
-        android:drawablePadding="@dimen/default_padding_half"
-        android:padding="@dimen/default_padding"
         android:visibility="gone"/>
 
     <android.support.v7.widget.RecyclerView

@@ -1,12 +1,15 @@
 package com.thinkmobiles.easyerp.presentation.screens.crm.opportunities;
 
+import com.thinkmobiles.easyerp.data.model.crm.filter.ResponseGetFilters;
 import com.thinkmobiles.easyerp.data.model.crm.opportunities.ResponseGetOpportunities;
 import com.thinkmobiles.easyerp.presentation.base.BaseModel;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectableBasePresenter;
 import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectableBaseView;
+import com.thinkmobiles.easyerp.presentation.holders.data.crm.FilterDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.OpportunityDH;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
+import com.thinkmobiles.easyerp.presentation.utils.filter.FilterQuery;
 
 import java.util.ArrayList;
 
@@ -25,14 +28,31 @@ public interface OpportunitiesContract {
         void displayErrorState(final String msg, final ErrorViewHelper.ErrorType errorType);
         void displayErrorToast(final String msg);
         void showProgress(Constants.ProgressType type);
+
+        void setNames(ArrayList<FilterDH> contactNames);
+        void setTextToSearch(String text);
+        void showFilters(boolean isShow);
+        void selectFilter(int pos, boolean isSelected);
+
+        void showFilterDialog(ArrayList<FilterDH> filterDHs, int requestCode, String filterName);
     }
 
     interface OpportunitiesPresenter extends MasterFlowSelectableBasePresenter<String, OpportunityDH> {
         void refresh();
         void loadNextPage();
+
+        void filterByContactName(FilterDH filterDH);
+        void filterBySearchContactName(String name);
+        void filterByList(ArrayList<FilterDH> filterDHs, int requestCode);
+        void removeFilter(int requestCode);
+
+        void changeFilter(int requestCode, String filterName);
+        void refreshOptionMenu();
+        void removeAll();
     }
 
     interface OpportunitiesModel extends BaseModel {
-        Observable<ResponseGetOpportunities> getOpportunities(int page);
+        Observable<ResponseGetOpportunities> getFilteredOpportunities(FilterQuery query, int page);
+        Observable<ResponseGetFilters> getOpportunityFilters();
     }
 }
