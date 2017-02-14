@@ -71,6 +71,8 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
     protected EditText etDbId_AL;
     @ViewById
     protected Button btnLogin_AL;
+    @ViewById
+    protected Button btnDemoMode_AL;
 
     @StringRes(R.string.err_login_required)
     protected String errEmptyLogin;
@@ -97,7 +99,6 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
 
     @AfterViews
     protected void initUI() {
-        if(!BuildConfig.PRODUCTION) putDefaultDebugCredentials();
         if(cookieManager.isCookieExists()) presenter.getCurrentUser();
 
         ivAppIcon_AL.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
@@ -111,12 +112,9 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
         RxView.clicks(btnLogin_AL)
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
                 .subscribe(aVoid -> presenter.login());
-    }
-
-    private void putDefaultDebugCredentials() {
-        etLogin_AL.setText("testAdmin");
-        etPassword_AL.setText("111111");
-        etDbId_AL.setText("lilyadb");
+        RxView.clicks(btnDemoMode_AL)
+                .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
+                .subscribe(aVoid -> presenter.launchDemoMode());
     }
 
     @Override
