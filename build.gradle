@@ -3,10 +3,12 @@ apply from: 'configs/configuration.gradle'
 buildscript {
     repositories {
         jcenter()
+        maven { url 'https://maven.fabric.io/public' }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:2.2.3'
         classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
         classpath 'me.tatarka:gradle-retrolambda:3.2.5'
+        classpath 'io.fabric.tools:gradle:1.+'
     }
 }
