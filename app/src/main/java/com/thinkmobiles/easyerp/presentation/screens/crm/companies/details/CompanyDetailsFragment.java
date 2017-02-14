@@ -8,8 +8,6 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
-import android.text.Html;
-import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -23,14 +21,13 @@ import com.jakewharton.rxbinding.view.RxView;
 import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.domain.crm.CompaniesRepository;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.AttachmentAdapter;
-import com.thinkmobiles.easyerp.presentation.adapters.crm.ContactsAdapter;
+import com.thinkmobiles.easyerp.presentation.adapters.crm.ContactAdapter;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.HistoryAdapter;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.OpportunityAndLeadsAdapter;
 import com.thinkmobiles.easyerp.presentation.base.rules.RefreshFragment;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
-import com.thinkmobiles.easyerp.presentation.custom.transformations.CropCircleTransformation;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.AttachmentDH;
-import com.thinkmobiles.easyerp.presentation.holders.data.crm.ContactsDH;
+import com.thinkmobiles.easyerp.presentation.holders.data.crm.ContactDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.HistoryDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.OpportunityAndLeadDH;
 import com.thinkmobiles.easyerp.presentation.managers.HistoryAnimationHelper;
@@ -169,7 +166,7 @@ public class CompanyDetailsFragment extends RefreshFragment implements CompanyDe
     @Bean
     protected HistoryAdapter historyAdapter;
     @Bean
-    protected ContactsAdapter contactAdapter;
+    protected ContactAdapter contactAdapter;
     @Bean
     protected OpportunityAndLeadsAdapter opportunityAndLeadsAdapter;
     @Bean
@@ -458,8 +455,8 @@ public class CompanyDetailsFragment extends RefreshFragment implements CompanyDe
     }
 
     @Override
-    public void displayContacts(ArrayList<ContactsDH> contactsDHs) {
-        contactAdapter.setListDH(contactsDHs);
+    public void displayContacts(ArrayList<ContactDH> contactDHs) {
+        contactAdapter.setListDH(contactDHs);
     }
 
     @Override

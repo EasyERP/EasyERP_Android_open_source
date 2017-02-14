@@ -8,11 +8,10 @@ import com.thinkmobiles.easyerp.data.model.crm.leads.detail.Customer;
 import com.thinkmobiles.easyerp.data.model.crm.persons.details.OpportunityItem;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.AttachmentDH;
-import com.thinkmobiles.easyerp.presentation.holders.data.crm.ContactsDH;
+import com.thinkmobiles.easyerp.presentation.holders.data.crm.ContactDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.HistoryDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.OpportunityAndLeadDH;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
-import com.thinkmobiles.easyerp.presentation.utils.StringUtil;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -212,9 +211,9 @@ public class CompanyDetailsPresenter implements CompanyDetailsContract.CompanyDe
     private void setContacts(ResponseGetCompanyDetails data) {
         boolean isContactsAvailable = false;
         if(data.contacts != null && !data.contacts.isEmpty()) {
-            ArrayList<ContactsDH> result = new ArrayList<>();
+            ArrayList<ContactDH> result = new ArrayList<>();
             for(Customer customer : data.contacts) {
-                result.add(new ContactsDH(customer));
+                result.add(new ContactDH(customer));
             }
             view.displayContacts(result);
             isContactsAvailable = true;

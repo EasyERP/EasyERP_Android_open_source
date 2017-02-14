@@ -11,14 +11,14 @@ import com.michenko.simpleadapter.RecyclerVH;
 import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.data.model.crm.leads.detail.Customer;
 import com.thinkmobiles.easyerp.presentation.custom.transformations.CropCircleTransformation;
-import com.thinkmobiles.easyerp.presentation.holders.data.crm.ContactsDH;
+import com.thinkmobiles.easyerp.presentation.holders.data.crm.ContactDH;
 import com.thinkmobiles.easyerp.presentation.managers.ImageHelper;
 
 /**
  * Created by Lynx on 2/13/2017.
  */
 
-public class ContactsVH extends RecyclerVH<ContactsDH> {
+public class ContactVH extends RecyclerVH<ContactDH> {
 
     private ImageView ivContactImage_VLIC;
     private TextView tvContactName_VLIC;
@@ -26,7 +26,7 @@ public class ContactsVH extends RecyclerVH<ContactsDH> {
     private TextView tvContactJobPosition_VLIC;
     private TextView tvContactEmail_VLIC;
 
-    public ContactsVH(View itemView, @Nullable OnCardClickListener listener, int viewType) {
+    public ContactVH(View itemView, @Nullable OnCardClickListener listener, int viewType) {
         super(itemView, listener, viewType);
 
         ivContactImage_VLIC = findView(R.id. ivContactImage_VLIC);
@@ -37,7 +37,7 @@ public class ContactsVH extends RecyclerVH<ContactsDH> {
     }
 
     @Override
-    public void bindData(ContactsDH data) {
+    public void bindData(ContactDH data) {
         Customer item = data.getCustomer();
         ivContactImage_VLIC.setImageResource(R.drawable.placeholder);
         if(!TextUtils.isEmpty(item.imageSrc)) {

@@ -7,11 +7,11 @@ import com.thinkmobiles.easyerp.data.model.crm.leads.detail.Customer;
  * Created by Lynx on 2/13/2017.
  */
 
-public class ContactsDH extends RecyclerDH {
+public class ContactDH extends RecyclerDH {
 
     private Customer customer;
 
-    public ContactsDH(Customer customer) {
+    public ContactDH(Customer customer) {
         this.customer = customer;
     }
 

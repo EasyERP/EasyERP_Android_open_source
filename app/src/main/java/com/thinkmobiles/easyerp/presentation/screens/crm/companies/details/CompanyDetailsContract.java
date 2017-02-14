@@ -6,7 +6,7 @@ import com.thinkmobiles.easyerp.presentation.base.BasePresenter;
 import com.thinkmobiles.easyerp.presentation.base.BaseView;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.AttachmentDH;
-import com.thinkmobiles.easyerp.presentation.holders.data.crm.ContactsDH;
+import com.thinkmobiles.easyerp.presentation.holders.data.crm.ContactDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.HistoryDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.OpportunityAndLeadDH;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
@@ -68,7 +68,7 @@ public interface CompanyDetailsContract {
         void displaySalesImplementedBy(String salesImplementedBy);
         void displaySalesLanguage(String salesLanguage);
 
-        void displayContacts(ArrayList<ContactsDH> contactsDHs);
+        void displayContacts(ArrayList<ContactDH> contactDHs);
         void displayLeadAndOpportunity(ArrayList<OpportunityAndLeadDH> opportunityAndLeadDHs);
         void displayAttachments(ArrayList<AttachmentDH> attachmentDHs);
         void displayHistory(ArrayList<HistoryDH> historyDHs);
