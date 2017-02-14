@@ -215,9 +215,36 @@
         <item name="android:gravity">center</item>
     </style>
 
+    <style name="MediumChipsStyle" parent="RobotoMedium">
+        <item name="android:textSize">@dimen/text_size_extra_small</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:paddingRight">@dimen/default_padding_half</item>
+        <item name="android:paddingLeft">@dimen/default_padding_half</item>
+        <item name="android:paddingTop">@dimen/default_padding_quart</item>
+        <item name="android:paddingBottom">@dimen/default_padding_quart</item>
+        <item name="android:layout_marginLeft">@dimen/default_padding_quart</item>
+        <item name="android:layout_marginRight">@dimen/default_padding_quart</item>
+        <item name="android:gravity">center</item>
+    </style>
+
     <style name="TextDetailsTitleStyle" parent="RobotoMedium">
         <item name="android:textSize">@dimen/text_list_item_large_20</item>
         <item name="android:textColor">@color/color_text_black</item>
+    </style>
+
+    <style name="TextContactNameCard" parent="RobotoCondensedBold">
+        <item name="android:textSize">@dimen/text_list_item_medium_16</item>
+        <item name="android:textColor">@color/color_text_black</item>
+        <item name="android:maxLines">2</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <style name="TextContactInfoStyle" parent="RobotoRegular">
+        <item name="android:textSize">@dimen/text_size_small_14</item>
+        <item name="android:textColor">@color/color_text_black</item>
+        <item name="android:maxLines">2</item>
+        <item name="android:ellipsize">end</item>
     </style>
 
     <style name="PdfStyle" parent="@style/RobotoCondensedRegular">

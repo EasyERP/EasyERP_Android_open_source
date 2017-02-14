@@ -1,42 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:orientation="horizontal"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:padding="@dimen/default_padding">
-
-    <ImageView
-        android:id="@+id/ivContactImage_VLIC"
-        android:layout_width="85dp"
-        android:layout_height="85dp"
-        android:scaleType="centerCrop"/>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="@dimen/default_padding_medium_small"
+    app:cardBackgroundColor="@android:color/white">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginLeft="@dimen/default_padding">
+        android:orientation="horizontal"
+        android:layout_margin="@dimen/default_padding">
 
-        <TextView
-            style="@style/RobotoCondensedBold"
-            android:id="@+id/tvContactName_VLIC"
+        <ImageView
+            android:id="@+id/ivContactImage_VLIC"
+            android:layout_width="@dimen/user_avatar_size"
+            android:layout_height="@dimen/user_avatar_size"
+            android:scaleType="centerCrop"/>
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/color_text_black"
-            tools:text="Alex Bigler"
-            android:textSize="@dimen/text_list_item_large_20"/>
+            android:orientation="vertical"
+            android:layout_marginStart="@dimen/default_padding_half">
 
-        <TextView
-            style="@style/RobotoCondensedRegular"
-            android:id="@+id/tvContactEmail_VLIC"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:text="abigler@hashtag-recruitment.ch"
-            android:textSize="@dimen/text_list_item_medium_16"
-            android:textColor="@color/colorAccent"
-            android:layout_marginTop="@dimen/default_padding_half"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="@dimen/padding_very_minimum">
+
+                <TextView
+                    style="@style/TextContactNameCard"
+                    android:id="@+id/tvContactName_VLIC"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    tools:text="Bradley Douglas"/>
+
+                <TextView
+                    style="@style/TextContactInfoStyle"
+                    android:id="@+id/tvContactCountry_VLIC"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="top"
+                    android:layout_marginStart="@dimen/default_padding"
+                    tools:text="United States"/>
+
+            </LinearLayout>
+
+            <TextView
+                style="@style/TextContactInfoStyle"
+                android:id="@+id/tvContactJobPosition_VLIC"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:text="Founder and SEO"
+                android:layout_marginBottom="@dimen/padding_very_minimum"/>
+
+            <TextView
+                style="@style/TextContactInfoStyle"
+                android:id="@+id/tvContactEmail_VLIC"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:text="contact@mail.box"
+                android:layout_marginBottom="@dimen/padding_very_minimum"/>
+
+        </LinearLayout>
 
     </LinearLayout>
 
-</LinearLayout>
+</android.support.v7.widget.CardView>

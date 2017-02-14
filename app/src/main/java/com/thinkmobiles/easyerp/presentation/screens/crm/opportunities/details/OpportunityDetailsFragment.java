@@ -8,6 +8,7 @@ import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
@@ -22,12 +23,14 @@ import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.data.model.crm.leads.TagItem;
 import com.thinkmobiles.easyerp.domain.crm.OpportunitiesRepository;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.AttachmentAdapter;
+import com.thinkmobiles.easyerp.presentation.adapters.crm.ContactAdapter;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.HistoryAdapter;
 import com.thinkmobiles.easyerp.presentation.base.rules.RefreshFragment;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.custom.RoundRectDrawable;
 import com.thinkmobiles.easyerp.presentation.custom.transformations.CropCircleTransformation;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.AttachmentDH;
+import com.thinkmobiles.easyerp.presentation.holders.data.crm.ContactDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.HistoryDH;
 import com.thinkmobiles.easyerp.presentation.managers.HistoryAnimationHelper;
 import com.thinkmobiles.easyerp.presentation.managers.ImageHelper;
@@ -79,12 +82,6 @@ public class OpportunityDetailsFragment extends RefreshFragment implements Oppor
     @ViewById
     protected FlowLayout flowLayoutTags_FOD;
     @ViewById
-    protected ImageView ivContactImage_FOD;
-    @ViewById
-    protected EditText etContactName_FOD;
-    @ViewById
-    protected EditText etContactEmail_FOD;
-    @ViewById
     protected ImageView ivCompanyImage_FOD;
     @ViewById
     protected TextView tvCompanyTitleUrl_FOD;
@@ -105,12 +102,14 @@ public class OpportunityDetailsFragment extends RefreshFragment implements Oppor
     @ViewById
     protected EditText etCompanyEmail_FOD;
     @ViewById
+    protected RecyclerView rvContacts_FOD;
+    @ViewById
     protected RecyclerView rvAttachments_FOD;
 
     @ViewById
     protected TextView tvEmptyContact_FOD;
     @ViewById
-    protected LinearLayout llContactContainer_FOD;
+    protected FrameLayout flContainerContacts_FOD;
     @ViewById
     protected TextView tvEmptyCompany_FOD;
     @ViewById
@@ -134,6 +133,8 @@ public class OpportunityDetailsFragment extends RefreshFragment implements Oppor
     protected HistoryAnimationHelper animationHelper;
     @Bean
     protected AttachmentAdapter attachmentAdapter;
+    @Bean
+    protected ContactAdapter contactAdapter;
 
     @AfterInject
     @Override
@@ -145,6 +146,9 @@ public class OpportunityDetailsFragment extends RefreshFragment implements Oppor
     protected void initUI() {
         rvHistory.setLayoutManager(new LinearLayoutManager(getActivity()));
         rvHistory.setAdapter(historyAdapter);
+
+        rvContacts_FOD.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
+        rvContacts_FOD.setAdapter(contactAdapter);
 
         rvAttachments_FOD.setLayoutManager(new GridLayoutManager(getActivity(), 2));
         rvAttachments_FOD.setAdapter(attachmentAdapter);
@@ -195,7 +199,7 @@ public class OpportunityDetailsFragment extends RefreshFragment implements Oppor
 
     @Override
     public void showContact(boolean isShown) {
-        llContactContainer_FOD.setVisibility(isShown ? View.VISIBLE : View.GONE);
+        flContainerContacts_FOD.setVisibility(isShown ? View.VISIBLE : View.GONE);
         tvEmptyContact_FOD.setVisibility(isShown ? View.GONE : View.VISIBLE);
     }
 
@@ -236,19 +240,8 @@ public class OpportunityDetailsFragment extends RefreshFragment implements Oppor
     }
 
     @Override
-    public void displayContactImage(String contactImageBase64) {
-        ImageHelper.getBitmapFromBase64(contactImageBase64, new CropCircleTransformation())
-                .subscribe(ivContactImage_FOD::setImageBitmap);
-    }
-
-    @Override
-    public void displayContactFullName(String contactFullname) {
-        etContactName_FOD.setText(contactFullname);
-    }
-
-    @Override
-    public void displayContactEmail(String contactEmail) {
-        etContactEmail_FOD.setText(contactEmail);
+    public void displayContacts(ArrayList<ContactDH> contactDHs) {
+        contactAdapter.setListDH(contactDHs);
     }
 
     @Override

@@ -7,31 +7,31 @@ import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.Html;
-import android.text.method.LinkMovementMethod;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.jakewharton.rxbinding.view.RxView;
 import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.domain.crm.CompaniesRepository;
-import com.thinkmobiles.easyerp.presentation.adapters.crm.ContactsAdapter;
+import com.thinkmobiles.easyerp.presentation.adapters.crm.AttachmentAdapter;
+import com.thinkmobiles.easyerp.presentation.adapters.crm.ContactAdapter;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.HistoryAdapter;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.OpportunityAndLeadsAdapter;
 import com.thinkmobiles.easyerp.presentation.base.rules.RefreshFragment;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
-import com.thinkmobiles.easyerp.presentation.custom.transformations.CropCircleTransformation;
+import com.thinkmobiles.easyerp.presentation.holders.data.crm.AttachmentDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.ContactDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.HistoryDH;
-import com.thinkmobiles.easyerp.presentation.holders.data.crm.OpportunityAndLeadDH;
+import com.thinkmobiles.easyerp.presentation.holders.data.crm.LeadAndOpportunityDH;
 import com.thinkmobiles.easyerp.presentation.managers.HistoryAnimationHelper;
 import com.thinkmobiles.easyerp.presentation.managers.ImageHelper;
-import com.thinkmobiles.easyerp.presentation.screens.home.HomeActivity;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
 import org.androidannotations.annotations.AfterInject;
@@ -71,13 +71,13 @@ public class CompanyDetailsFragment extends RefreshFragment implements CompanyDe
     @ViewById
     protected TextView tvCompanyWebsite_FCD;
     @ViewById
+    protected TextView tvEmail_FPD;
+    @ViewById
     protected ImageView ivCompanyFb_FCD;
     @ViewById
     protected ImageView ivCompanyLinkedIn_FCD;
     @ViewById
     protected ImageView ivCompanySkype_FCD;
-    @ViewById
-    protected EditText etEmail_FCD;
     @ViewById
     protected EditText etAssignedTo_FCD;
     @ViewById
@@ -129,25 +129,52 @@ public class CompanyDetailsFragment extends RefreshFragment implements CompanyDe
     @ViewById
     protected RecyclerView rvLeadsAndOpportunities_FCD;
     @ViewById
-    protected TextView tvAttachments_FCD;
-    @ViewById
     protected FrameLayout btnHistory;
     @ViewById
     protected ImageView ivIconArrow;
     @ViewById
     protected RecyclerView rvHistory;
+    @ViewById
+    protected RecyclerView rvAttachments_FCD;
+
+    @ViewById
+    protected LinearLayout llContainerBillingAddress_FCD;
+    @ViewById
+    protected LinearLayout llContainerShippingAddress_FDC;
+    @ViewById
+    protected LinearLayout llContainerSalesPurchases_FPD;
+    @ViewById
+    protected FrameLayout flContainerContacts_FCD;
+    @ViewById
+    protected FrameLayout flContainerLeadsAndOpportunities_FCD;
+    @ViewById
+    protected FrameLayout flContainerAttachments_FCD;
+    @ViewById
+    protected TextView tvEmptyBillingAddress_FPD;
+    @ViewById
+    protected TextView tvEmptyShippingAddress_FPD;
+    @ViewById
+    protected TextView tvEmptySalesAndPurchases_FPD;
+    @ViewById
+    protected TextView tvEmptyContacts_FPD;
+    @ViewById
+    protected TextView tvEmptyLeadsAndOpportunities_FCD;
+    @ViewById
+    protected TextView tvEmptyAttachments_FCD;
     //endregion
 
     @Bean
     protected HistoryAdapter historyAdapter;
     @Bean
-    protected ContactsAdapter contactsAdapter;
+    protected ContactAdapter contactAdapter;
     @Bean
     protected OpportunityAndLeadsAdapter opportunityAndLeadsAdapter;
     @Bean
     protected CompaniesRepository companiesRepository;
     @Bean
     protected HistoryAnimationHelper animationHelper;
+    @Bean
+    protected AttachmentAdapter attachmentAdapter;
 
     @AfterInject
     @Override
@@ -160,11 +187,15 @@ public class CompanyDetailsFragment extends RefreshFragment implements CompanyDe
         rvHistory.setLayoutManager(new LinearLayoutManager(getActivity()));
         rvHistory.setAdapter(historyAdapter);
 
-        rvContacts_FCD.setLayoutManager(new LinearLayoutManager(getActivity()));
-        rvContacts_FCD.setAdapter(contactsAdapter);
+        rvContacts_FCD.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
+        rvContacts_FCD.setAdapter(contactAdapter);
 
         rvLeadsAndOpportunities_FCD.setLayoutManager(new GridLayoutManager(getActivity(), 2));
         rvLeadsAndOpportunities_FCD.setAdapter(opportunityAndLeadsAdapter);
+
+        rvAttachments_FCD.setLayoutManager(new GridLayoutManager(getActivity(), 2));
+        rvAttachments_FCD.setAdapter(attachmentAdapter);
+        attachmentAdapter.setOnCardClickListener((view, position, viewType) -> presenter.startAttachment(position));
 
         RxView.clicks(btnHistory)
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
@@ -206,13 +237,49 @@ public class CompanyDetailsFragment extends RefreshFragment implements CompanyDe
     }
 
     @Override
+    public void showBillingAddress(boolean isShown) {
+        llContainerBillingAddress_FCD.setVisibility(isShown ? View.VISIBLE : View.GONE);
+        tvEmptyBillingAddress_FPD.setVisibility(isShown ? View.GONE : View.VISIBLE);
+    }
+
+    @Override
+    public void showShippingAddress(boolean isShown) {
+        llContainerShippingAddress_FDC.setVisibility(isShown ? View.VISIBLE : View.GONE);
+        tvEmptyShippingAddress_FPD.setVisibility(isShown ? View.GONE : View.VISIBLE);
+    }
+
+    @Override
+    public void showSalesAndPurchases(boolean isShown) {
+        llContainerSalesPurchases_FPD.setVisibility(isShown ? View.VISIBLE : View.GONE);
+        tvEmptySalesAndPurchases_FPD.setVisibility(isShown ? View.GONE : View.VISIBLE);
+    }
+
+    @Override
+    public void showContact(boolean isShown) {
+        flContainerContacts_FCD.setVisibility(isShown ? View.VISIBLE : View.GONE);
+        tvEmptyContacts_FPD.setVisibility(isShown ? View.GONE : View.VISIBLE);
+    }
+
+    @Override
+    public void showLeadsAndOpportunities(boolean isShown) {
+        flContainerLeadsAndOpportunities_FCD.setVisibility(isShown ? View.VISIBLE : View.GONE);
+        tvEmptyLeadsAndOpportunities_FCD.setVisibility(isShown ? View.GONE : View.VISIBLE);
+    }
+
+    @Override
+    public void showAttachments(boolean isShown) {
+        flContainerAttachments_FCD.setVisibility(isShown ? View.VISIBLE : View.GONE);
+        tvEmptyAttachments_FCD.setVisibility(isShown ? View.GONE : View.VISIBLE);
+    }
+
+    @Override
     public void displayErrorState(String msg, ErrorViewHelper.ErrorType errorType) {
         showErrorState(msg, errorType);
     }
 
     @Override
     public void displayCompanyImage(String base64Image) {
-        ImageHelper.getBitmapFromBase64(base64Image, new CropCircleTransformation())
+        ImageHelper.getBitmapFromBase64(base64Image)
                 .subscribe(ivCompanyAvatar_FCD::setImageBitmap);
     }
 
@@ -223,8 +290,10 @@ public class CompanyDetailsFragment extends RefreshFragment implements CompanyDe
 
     @Override
     public void displayCompanyUrl(String companyUrl) {
-        tvCompanyWebsite_FCD.setMovementMethod(LinkMovementMethod.getInstance());
-        tvCompanyWebsite_FCD.setText(Html.fromHtml(companyUrl));
+        tvCompanyWebsite_FCD.setText(companyUrl);
+        RxView.clicks(tvCompanyWebsite_FCD)
+                .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
+                .subscribe(aVoid -> startUrlIntent(companyUrl));
     }
 
     @Override
@@ -267,7 +336,7 @@ public class CompanyDetailsFragment extends RefreshFragment implements CompanyDe
 
     @Override
     public void displayEmail(String email) {
-        etEmail_FCD.setText(email);
+        tvEmail_FPD.setText(email);
     }
 
     @Override
@@ -387,23 +456,29 @@ public class CompanyDetailsFragment extends RefreshFragment implements CompanyDe
 
     @Override
     public void displayContacts(ArrayList<ContactDH> contactDHs) {
-        contactsAdapter.setListDH(contactDHs);
+        contactAdapter.setListDH(contactDHs);
     }
 
     @Override
-    public void displayLeadAndOpportunity(ArrayList<OpportunityAndLeadDH> opportunityAndLeadDHs) {
-        opportunityAndLeadsAdapter.setListDH(opportunityAndLeadDHs);
+    public void displayLeadAndOpportunity(ArrayList<LeadAndOpportunityDH> leadAndOpportunityDHs) {
+        opportunityAndLeadsAdapter.setListDH(leadAndOpportunityDHs);
     }
 
     @Override
-    public void displayAttachments(String attachments) {
-        tvAttachments_FCD.setMovementMethod(LinkMovementMethod.getInstance());
-        tvAttachments_FCD.setText(Html.fromHtml(attachments));
+    public void displayAttachments(ArrayList<AttachmentDH> attachmentDHs) {
+        attachmentAdapter.setListDH(attachmentDHs);
     }
 
     @Override
     public void displayHistory(ArrayList<HistoryDH> historyDHs) {
         historyAdapter.setListDH(historyDHs);
+    }
+
+    @Override
+    public void startUrlIntent(String url) {
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(Uri.parse(url));
+        startActivity(intent);
     }
     //endregion
 
