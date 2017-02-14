@@ -18,11 +18,6 @@ import rx.Observable;
  */
 
 public interface OpportunityService {
-    @GET(Constants.GET_OPPORTUNITIES)
-    Observable<ResponseGetOpportunities> getOpportunities(@Query("viewType") String viewType,
-                                                          @Query("contentType") String contentType,
-                                                          @Query("count") int count,
-                                                          @Query("page") int page);
 
     @GET(Constants.GET_LEADS)
     Observable<ResponseGetOpportunities> getFilteredOpportunities(
@@ -34,6 +29,7 @@ public interface OpportunityService {
             @Query("page") int page,
             @Query("count") int count
     );
+
     @GET(Constants.GET_OPPORTUNITY_DETAILS)
     Observable<ResponseGetOpportunityDetails> getOpportunityDetails(@Path("OpportunityID") String OpportunityID);
 }

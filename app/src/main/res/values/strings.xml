@@ -144,4 +144,6 @@
     <string name="menu_filter_name">Name</string>
     <string name="menu_filter_customer">Customer</string>
     <string name="menu_filter_sales_person">Sales Person</string>
+    <string name="menu_filter_project_name">Project Name</string>
+    <string name="menu_filter_status">Status</string>
 </resources>

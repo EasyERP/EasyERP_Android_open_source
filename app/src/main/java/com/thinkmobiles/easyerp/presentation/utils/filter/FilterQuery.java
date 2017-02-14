@@ -15,6 +15,8 @@ public class FilterQuery {
     public ArrayList<String> workflow;
     public ArrayList<String> customer;
     public ArrayList<String> name;
+    public ArrayList<String> project;
+    public ArrayList<String> supplier;
 
     public FilterQuery() {
         this.queryMap = new HashMap<>();
@@ -29,6 +31,8 @@ public class FilterQuery {
         private final FilterTypeQuery workflow;
         private final FilterTypeQuery customer;
         private final FilterTypeQuery name;
+        private final FilterTypeQuery project;
+        private final FilterTypeQuery supplier;
 
         public Builder() {
             contactName = new FilterTypeQuery("contactName", "contactName");
@@ -38,6 +42,8 @@ public class FilterQuery {
             workflow = new FilterTypeQuery("workflow", "workflow._id");
             customer = new FilterTypeQuery("customer", "customer");
             name = new FilterTypeQuery("name", "_id");
+            project = new FilterTypeQuery("project", "project._id");
+            supplier = new FilterTypeQuery("supplier", "supplier._id");
         }
 
 
@@ -70,6 +76,14 @@ public class FilterQuery {
             return name;
         }
 
+        public FilterTypeQuery forSupplier() {
+            return supplier;
+        }
+
+        public FilterTypeQuery forProject() {
+            return project;
+        }
+
         public FilterQuery build() {
             FilterQuery query = new FilterQuery();
 
@@ -80,6 +94,8 @@ public class FilterQuery {
             query.workflow = workflow.save(query.queryMap);
             query.name = name.save(query.queryMap);
             query.customer = customer.save(query.queryMap);
+            query.supplier = supplier.save(query.queryMap);
+            query.project = project.save(query.queryMap);
 
             return query;
         }

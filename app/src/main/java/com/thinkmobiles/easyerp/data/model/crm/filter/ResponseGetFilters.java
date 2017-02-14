@@ -45,6 +45,8 @@ public class ResponseGetFilters implements Parcelable {
     public ArrayList<FilterItem> createdBy;         //Leads, Opportunities
     public ArrayList<FilterItem> customer;          //Opportunities
     public ArrayList<FilterItem> name;              //Opportunities
+    public ArrayList<FilterItem> project;           //Invoice
+    public ArrayList<FilterItem> supplier;          //Invoice
 
 
     public ResponseGetFilters() {

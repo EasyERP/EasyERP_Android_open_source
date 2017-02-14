@@ -272,7 +272,7 @@ public class LeadsFragment extends MasterFlowListSelectableFragment implements L
 
     @Override
     public int optionsMenuRes() {
-        return R.menu.menu_filters;
+        return R.menu.menu_lead_filters;
     }
 
     @Override

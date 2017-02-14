@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/menuFilter_MB"
+        android:icon="@drawable/ic_filter_white"
+        android:title="@string/menu_filter"
+        app:showAsAction="ifRoom">
+        <menu>
+            <item
+                android:id="@+id/menuFilterAssignedTo"
+                android:checkable="true"
+                android:title="@string/menu_filter_assigned_to" />
+            <item
+                android:id="@+id/menuFilterProject"
+                android:checkable="true"
+                android:title="@string/menu_filter_project_name" />
+            <item
+                android:id="@+id/menuFilterStatus"
+                android:checkable="true"
+                android:title="@string/menu_filter_status" />
+            <item
+                android:id="@+id/menuFilterCustomer"
+                android:checkable="true"
+                android:title="@string/menu_filter_customer" />
+            <item
+                android:id="@+id/menuFilterRemoveAll"
+                android:title="@string/menu_filter_remove_all" />
+        </menu>
+    </item>
+</menu>

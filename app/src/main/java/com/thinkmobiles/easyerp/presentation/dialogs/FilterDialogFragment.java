@@ -116,13 +116,8 @@ public class FilterDialogFragment extends DialogFragment implements DialogInterf
                 }
                 break;
         }
-        dialog.dismiss();
-    }
-
-    @Override
-    public void onCancel(DialogInterface dialog) {
         inputMethodManager.hideSoftInputFromWindow(etSearch.getWindowToken(), InputMethodManager.RESULT_HIDDEN);
-        super.onCancel(dialog);
+        dialog.dismiss();
     }
 
 }

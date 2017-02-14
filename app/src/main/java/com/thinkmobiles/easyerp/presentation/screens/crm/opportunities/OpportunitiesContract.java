@@ -29,7 +29,7 @@ public interface OpportunitiesContract {
         void displayErrorToast(final String msg);
         void showProgress(Constants.ProgressType type);
 
-        void setNames(ArrayList<FilterDH> contactNames);
+        void setNames(ArrayList<FilterDH> names);
         void setTextToSearch(String text);
         void showFilters(boolean isShow);
         void selectFilter(int pos, boolean isSelected);
