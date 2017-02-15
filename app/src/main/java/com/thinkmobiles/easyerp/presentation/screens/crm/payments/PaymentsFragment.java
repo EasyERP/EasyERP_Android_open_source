@@ -43,6 +43,11 @@ public class PaymentsFragment extends MasterFlowListSelectableFragment implement
         this.presenter = presenter;
     }
 
+    @Override
+    public String getScreenName() {
+        return "Payment list screen";
+    }
+
     @AfterViews
     protected void initUI() {
         listRecycler.setAdapter(paymentsAdapter);

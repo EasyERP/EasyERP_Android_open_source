@@ -86,7 +86,9 @@ dependencies {
     compile appDependencies.flowLayout
 
     /*Analytic tools*/
+    compile devDependencies.analytic
     compile(devDependencies.crashlytic) {
         transitive = true;
     }
 }
+apply plugin: 'com.google.gms.google-services'

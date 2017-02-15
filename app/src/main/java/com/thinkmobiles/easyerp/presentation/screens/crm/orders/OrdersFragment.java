@@ -41,6 +41,11 @@ public class OrdersFragment extends MasterFlowListSelectableFragment implements 
         this.presenter = presenter;
     }
 
+    @Override
+    public String getScreenName() {
+        return "Order list screen";
+    }
+
     @AfterViews
     protected void initUI() {
         listRecycler.setAdapter(ordersAdapter);

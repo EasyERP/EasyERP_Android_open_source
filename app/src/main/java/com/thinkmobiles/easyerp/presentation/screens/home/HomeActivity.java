@@ -3,6 +3,8 @@ package com.thinkmobiles.easyerp.presentation.screens.home;
 import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.data.model.user.UserInfo;
 import com.thinkmobiles.easyerp.presentation.base.BaseMasterFlowActivity;
+import com.thinkmobiles.easyerp.presentation.base.BasePresenter;
+import com.thinkmobiles.easyerp.presentation.base.BaseView;
 import com.thinkmobiles.easyerp.presentation.custom.views.drawer_menu.IMenuClickListener;
 import com.thinkmobiles.easyerp.presentation.custom.views.drawer_menu.MenuDrawerContainer;
 import com.thinkmobiles.easyerp.presentation.custom.views.drawer_menu.MenuDrawerState;
@@ -20,7 +22,7 @@ import org.androidannotations.annotations.ViewById;
  */
 
 @EActivity(R.layout.activity_home)
-public class HomeActivity extends BaseMasterFlowActivity implements IMenuClickListener {
+public class HomeActivity extends BaseMasterFlowActivity implements IMenuClickListener, BaseView {
 
     @Extra
     protected UserInfo userInfo;
@@ -84,5 +86,20 @@ public class HomeActivity extends BaseMasterFlowActivity implements IMenuClickLi
     protected void onResume() {
         super.onResume();
         menuDrawerView.defaultSelect();
+    }
+
+    @Override
+    public void initPresenter() {
+
+    }
+
+    @Override
+    public void setPresenter(BasePresenter presenter) {
+
+    }
+
+    @Override
+    public String getScreenName() {
+        return "Home screen";
     }
 }

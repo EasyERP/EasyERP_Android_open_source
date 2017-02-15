@@ -109,6 +109,11 @@ public class OpportunitiesFragment extends MasterFlowListSelectableFragment impl
     }
 
     @Override
+    public String getScreenName() {
+        return "Opportunity list screen";
+    }
+
+    @Override
     public void onDestroyView() {
         super.onDestroyView();
         presenter.unsubscribe();

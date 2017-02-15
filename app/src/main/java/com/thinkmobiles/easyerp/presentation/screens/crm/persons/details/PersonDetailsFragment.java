@@ -555,6 +555,11 @@ public class PersonDetailsFragment extends RefreshFragment implements PersonDeta
         this.presenter = presenter;
     }
 
+    @Override
+    public String getScreenName() {
+        return "Person details screen";
+    }
+
     private void setEmptyData() {
         displayPersonName(notSpecified);
         displayJobPosition(notSpecified);

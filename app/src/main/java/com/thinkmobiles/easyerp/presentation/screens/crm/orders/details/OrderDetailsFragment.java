@@ -173,6 +173,11 @@ public class OrderDetailsFragment extends RefreshFragment implements OrderDetail
     }
 
     @Override
+    public String getScreenName() {
+        return "Order details screen";
+    }
+
+    @Override
     public void showProgress(Constants.ProgressType type) {
         showProgressBar(type);
     }

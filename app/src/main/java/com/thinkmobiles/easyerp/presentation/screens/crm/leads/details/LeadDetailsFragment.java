@@ -179,6 +179,11 @@ public class LeadDetailsFragment extends RefreshFragment implements LeadDetailsC
     }
 
     @Override
+    public String getScreenName() {
+        return "Lead details screen";
+    }
+
+    @Override
     protected void onRetry() {
         presenter.subscribe();
     }

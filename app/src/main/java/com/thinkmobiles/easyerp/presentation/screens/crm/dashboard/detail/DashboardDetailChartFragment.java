@@ -12,6 +12,7 @@ import com.thinkmobiles.easyerp.data.model.crm.dashboard.detail.DashboardChartTy
 import com.thinkmobiles.easyerp.domain.crm.DashboardRepository;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.base.rules.RefreshFragment;
+import com.thinkmobiles.easyerp.presentation.managers.GoogleAnalyticHelper;
 import com.thinkmobiles.easyerp.presentation.screens.crm.dashboard.detail.DashboardDetailChartContract.DashboardDetailChartView;
 import com.thinkmobiles.easyerp.presentation.screens.crm.dashboard.detail.charts.ChartViewFabric;
 import com.thinkmobiles.easyerp.presentation.screens.crm.dashboard.detail.charts.IChartView;
@@ -69,6 +70,7 @@ public class DashboardDetailChartFragment extends RefreshFragment implements Das
 
     @AfterViews
     protected void initUI() {
+        GoogleAnalyticHelper.trackScreenView(this, getResources().getConfiguration());
         presenter.subscribe();
     }
 
@@ -85,6 +87,11 @@ public class DashboardDetailChartFragment extends RefreshFragment implements Das
     @Override
     public void setPresenter(DashboardDetailChartContract.DashboardDetailChartPresenter presenter) {
         this.presenter = presenter;
+    }
+
+    @Override
+    public String getScreenName() {
+        return "Dashboard details screen";
     }
 
     @Override

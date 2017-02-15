@@ -171,6 +171,11 @@ public class InvoiceDetailsFragment extends RefreshFragment implements InvoiceDe
     }
 
     @Override
+    public String getScreenName() {
+        return "Invoice details screen";
+    }
+
+    @Override
     public void onDestroyView() {
         animationHelper.cancel();
         presenter.unsubscribe();

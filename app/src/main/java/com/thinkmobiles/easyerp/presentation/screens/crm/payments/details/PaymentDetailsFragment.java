@@ -104,6 +104,11 @@ public class PaymentDetailsFragment extends RefreshFragment implements PaymentDe
     }
 
     @Override
+    public String getScreenName() {
+        return "Payment details screen";
+    }
+
+    @Override
     public void showProgress(Constants.ProgressType type) {
         showProgressBar(type);
     }

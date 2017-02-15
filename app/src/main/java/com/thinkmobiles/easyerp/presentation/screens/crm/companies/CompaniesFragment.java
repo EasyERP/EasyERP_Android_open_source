@@ -10,6 +10,7 @@ import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowListSelectableFragment;
 import com.thinkmobiles.easyerp.presentation.custom.views.alphabet_view.AlphabetView;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.CompanyDH;
+import com.thinkmobiles.easyerp.presentation.managers.GoogleAnalyticHelper;
 import com.thinkmobiles.easyerp.presentation.screens.crm.companies.details.CompanyDetailsFragment_;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
@@ -51,6 +52,8 @@ public class CompaniesFragment extends MasterFlowListSelectableFragment implemen
 
     @AfterViews
     protected void initUI() {
+        GoogleAnalyticHelper.trackScreenView(this, getResources().getConfiguration());
+
         listRecycler.setAdapter(companiesAdapter);
         companiesAdapter.setOnCardClickListener((view, position, viewType) -> presenter.selectItem(companiesAdapter.getItem(position), position));
 
@@ -134,6 +137,11 @@ public class CompaniesFragment extends MasterFlowListSelectableFragment implemen
     @Override
     public void setPresenter(CompaniesContract.CompaniesPresenter presenter) {
         this.presenter = presenter;
+    }
+
+    @Override
+    public String getScreenName() {
+        return "Company list screen";
     }
 
     @Override

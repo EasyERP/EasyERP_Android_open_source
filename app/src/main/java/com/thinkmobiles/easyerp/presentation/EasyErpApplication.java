@@ -8,6 +8,7 @@ import com.facebook.stetho.Stetho;
 import com.thinkmobiles.easyerp.BuildConfig;
 import com.thinkmobiles.easyerp.data.api.Rest;
 import com.thinkmobiles.easyerp.presentation.managers.CookieManager;
+import com.thinkmobiles.easyerp.presentation.managers.GoogleAnalyticHelper;
 
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EApplication;
@@ -36,6 +37,8 @@ public class EasyErpApplication extends Application {
             Stetho.initializeWithDefaults(this);
         }
         Rest.getInstance().setCookieManager(cookieManager);
+
+        GoogleAnalyticHelper.init(this);
     }
 
     public static EasyErpApplication getInstance() {

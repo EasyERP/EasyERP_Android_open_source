@@ -27,6 +27,7 @@ import com.thinkmobiles.easyerp.data.model.user.UserInfo;
 import com.thinkmobiles.easyerp.domain.LoginRepository;
 import com.thinkmobiles.easyerp.domain.UserRepository;
 import com.thinkmobiles.easyerp.presentation.managers.CookieManager;
+import com.thinkmobiles.easyerp.presentation.managers.GoogleAnalyticHelper;
 import com.thinkmobiles.easyerp.presentation.screens.home.HomeActivity_;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
@@ -99,6 +100,8 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
 
     @AfterViews
     protected void initUI() {
+        GoogleAnalyticHelper.trackScreenView(this, getResources().getConfiguration());
+
         if(cookieManager.isCookieExists()) presenter.getCurrentUser();
 
         ivAppIcon_AL.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
@@ -111,10 +114,16 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
 
         RxView.clicks(btnLogin_AL)
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
-                .subscribe(aVoid -> presenter.login());
+                .subscribe(aVoid -> {
+
+                    presenter.login();
+                });
         RxView.clicks(btnDemoMode_AL)
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
-                .subscribe(aVoid -> presenter.launchDemoMode());
+                .subscribe(aVoid -> {
+
+                    presenter.launchDemoMode();
+                });
     }
 
     @Override
@@ -195,6 +204,11 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
     @Override
     public void setPresenter(LoginContract.LoginPresenter presenter) {
         this.presenter = presenter;
+    }
+
+    @Override
+    public String getScreenName() {
+        return "Login screen";
     }
 
     private void runSplashAnimation() {

@@ -8,6 +8,7 @@ import com.thinkmobiles.easyerp.presentation.adapters.crm.DashboardListAdapter;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowListSelectableFragment;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.DashboardListDH;
+import com.thinkmobiles.easyerp.presentation.managers.GoogleAnalyticHelper;
 import com.thinkmobiles.easyerp.presentation.screens.crm.dashboard.detail.DashboardDetailChartFragment_;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
@@ -42,8 +43,15 @@ public class DashboardListFragment extends MasterFlowListSelectableFragment impl
         this.presenter = presenter;
     }
 
+    @Override
+    public String getScreenName() {
+        return "Dashboard list screen";
+    }
+
     @AfterViews
     protected void initUI() {
+        GoogleAnalyticHelper.trackScreenView(this, getResources().getConfiguration());
+
         listRecycler.setLayoutManager(new LinearLayoutManager(mActivity, LinearLayoutManager.VERTICAL, false));
         listRecycler.setAdapter(dashboardListAdapter);
         dashboardListAdapter.setOnCardClickListener((view, position, viewType) -> presenter.selectItem(dashboardListAdapter.getItem(position), position));

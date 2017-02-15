@@ -340,6 +340,11 @@ public class OpportunityDetailsFragment extends RefreshFragment implements Oppor
     }
 
     @Override
+    public String getScreenName() {
+        return "Opportunity details screen";
+    }
+
+    @Override
     public void onDestroyView() {
         animationHelper.cancel();
         presenter.unsubscribe();

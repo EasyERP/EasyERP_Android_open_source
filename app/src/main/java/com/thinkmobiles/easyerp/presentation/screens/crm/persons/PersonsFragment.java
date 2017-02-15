@@ -123,6 +123,11 @@ public class PersonsFragment extends MasterFlowListSelectableFragment implements
     }
 
     @Override
+    public String getScreenName() {
+        return "Person list screen";
+    }
+
+    @Override
     public int getCountItemsNow() {
         return personsAdapter.getItemCount();
     }

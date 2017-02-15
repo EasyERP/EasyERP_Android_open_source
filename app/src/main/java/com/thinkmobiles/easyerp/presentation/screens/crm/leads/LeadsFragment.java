@@ -69,6 +69,11 @@ public class LeadsFragment extends MasterFlowListSelectableFragment implements L
         this.presenter = presenter;
     }
 
+    @Override
+    public String getScreenName() {
+        return "Lead list screen";
+    }
+
     @AfterViews
     protected void initUI() {
         listRecycler.setAdapter(leadsAdapter);
