@@ -11,6 +11,7 @@ import com.thinkmobiles.easyerp.presentation.custom.views.drawer_menu.MenuDrawer
 import com.thinkmobiles.easyerp.presentation.custom.views.drawer_menu.MenuDrawerView;
 import com.thinkmobiles.easyerp.presentation.custom.views.drawer_menu.models.MenuConfigs;
 import com.thinkmobiles.easyerp.presentation.dialogs.UserProfileDialogFragment_;
+import com.thinkmobiles.easyerp.presentation.managers.GoogleAnalyticHelper;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EActivity;
@@ -79,6 +80,7 @@ public class HomeActivity extends BaseMasterFlowActivity implements IMenuClickLi
 
     @Override
     public void onClickUser() {
+        GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_IMAGE, "Side menu user image");
         UserProfileDialogFragment_.builder().userInfo(userInfo).build().show(getFragmentManager(), null);
     }
 

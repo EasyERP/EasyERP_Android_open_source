@@ -34,7 +34,7 @@ public abstract class GoogleAnalyticHelper {
                 .build());
     }
 
-    public static void trackClick(BaseView baseView, Configuration configuration, EventType eventType, String details) {
+    public static void trackClick(BaseView baseView, EventType eventType, String details) {
         if(tracker == null || !tracker.isInitialized()) {
             Log.d("myLogs", "Google analytic not initialized");
             return;
@@ -54,7 +54,7 @@ public abstract class GoogleAnalyticHelper {
         CLICK_SIDE_MENU_MODULE("Click side menu module"),
         CLICK_SIDE_MENU_ITEM("Click side menu item"),
         CLICK_MENU_ITEM("Click menu item"),
-        CLICK_LIST_ITEM("Click list item"),
+        CLICK_DASHBOARD_ITEM("Click list item"),
         CLICK_ATTACHMENT("Click attachment"),
         CLICK_IMAGE("Click image"),
         SET_FILTER("Set filter");

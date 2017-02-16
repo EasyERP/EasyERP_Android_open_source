@@ -115,13 +115,13 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
         RxView.clicks(btnLogin_AL)
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
                 .subscribe(aVoid -> {
-
+                    GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_BUTTON, "Login");
                     presenter.login();
                 });
         RxView.clicks(btnDemoMode_AL)
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
                 .subscribe(aVoid -> {
-
+                    GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_BUTTON, "Demo mode");
                     presenter.launchDemoMode();
                 });
     }
