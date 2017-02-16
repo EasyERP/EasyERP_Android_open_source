@@ -14,5 +14,4 @@ public abstract class NetworkRepository {
         return observable.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.newThread());
     }
-
 }

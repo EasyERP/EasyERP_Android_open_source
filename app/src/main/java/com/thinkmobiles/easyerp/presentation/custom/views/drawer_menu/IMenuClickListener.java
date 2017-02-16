@@ -5,6 +5,7 @@ package com.thinkmobiles.easyerp.presentation.custom.views.drawer_menu;
  */
 
 public interface IMenuClickListener {
+    void chooseModule(final int moduleId);
     void chooseItem(final int moduleId, final int itemId);
     void onClickUser();
 }

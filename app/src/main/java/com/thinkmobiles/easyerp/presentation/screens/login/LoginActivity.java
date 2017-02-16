@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -89,6 +90,8 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
     @Bean
     protected CookieManager cookieManager;
 
+    private ProgressDialog progressDialog;
+
     @AfterInject
     @Override
     public void initPresenter() {
@@ -126,11 +129,29 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
                 });
     }
 
+
+
     @Override
-    public void displayError(String error) {
+    public void showProgress(String msg) {
+        progressDialog = new ProgressDialog(this, R.style.DefaultTheme_NoTitleDialogWithAnimation);
+        progressDialog.setCancelable(false);
+        progressDialog.setMessage(msg);
+        progressDialog.show();
+    }
+
+    @Override
+    public void dismissProgress() {
+        if (progressDialog != null) {
+            progressDialog.dismiss();
+            progressDialog = null;
+        }
+    }
+
+    @Override
+    public void showErrorToast(String msg) {
         if (llInput_AL.getVisibility() != View.VISIBLE)
             animatorSet2.start();
-        Toast.makeText(this, error, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -263,5 +284,6 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
         super.onDestroy();
         if (animatorSet1 != null) animatorSet1.cancel();
         if (animatorSet2 != null) animatorSet2.cancel();
+        presenter.unsubscribe();
     }
 }
