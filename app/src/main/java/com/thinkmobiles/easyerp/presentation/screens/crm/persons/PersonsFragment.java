@@ -10,6 +10,7 @@ import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowListSelectableFragment;
 import com.thinkmobiles.easyerp.presentation.custom.views.alphabet_view.AlphabetView;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.PersonDH;
+import com.thinkmobiles.easyerp.presentation.managers.GoogleAnalyticHelper;
 import com.thinkmobiles.easyerp.presentation.screens.crm.persons.details.PersonDetailsFragment_;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
@@ -51,6 +52,8 @@ public class PersonsFragment extends MasterFlowListSelectableFragment implements
 
     @AfterViews
     protected void initUI() {
+        GoogleAnalyticHelper.trackScreenView(this, getResources().getConfiguration());
+
         listRecycler.setAdapter(personsAdapter);
         personsAdapter.setOnCardClickListener((view, position, viewType) -> presenter.selectItem(personsAdapter.getItem(position), position));
 

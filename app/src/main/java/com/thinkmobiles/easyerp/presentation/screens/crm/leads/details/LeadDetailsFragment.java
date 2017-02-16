@@ -28,6 +28,7 @@ import com.thinkmobiles.easyerp.presentation.base.rules.RefreshFragment;
 import com.thinkmobiles.easyerp.presentation.custom.RoundRectDrawable;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.AttachmentDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.HistoryDH;
+import com.thinkmobiles.easyerp.presentation.managers.GoogleAnalyticHelper;
 import com.thinkmobiles.easyerp.presentation.managers.HistoryAnimationHelper;
 import com.thinkmobiles.easyerp.presentation.managers.TagHelper;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
@@ -140,6 +141,8 @@ public class LeadDetailsFragment extends RefreshFragment implements LeadDetailsC
 
     @AfterViews
     protected void initUI() {
+        GoogleAnalyticHelper.trackScreenView(this, getResources().getConfiguration());
+
         rvHistory.setLayoutManager(new LinearLayoutManager(getActivity()));
         rvHistory.setAdapter(historyAdapter);
 

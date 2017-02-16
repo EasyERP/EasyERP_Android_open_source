@@ -30,7 +30,7 @@ public abstract class GoogleAnalyticHelper {
 
         tracker.setScreenName(baseView.getScreenName());
         tracker.send(new HitBuilders.ScreenViewBuilder()
-                .set("Orientation", getOrientation(configuration))
+                .setCustomDimension(1, getOrientation(configuration))
                 .build());
     }
 
@@ -43,15 +43,12 @@ public abstract class GoogleAnalyticHelper {
 
         HitBuilders.EventBuilder builder = new HitBuilders.EventBuilder();
         builder.setAction(eventType.toString());
-        builder.set("Orientation", getOrientation(configuration));
         builder.setLabel(details);
 
         tracker.send(builder.build());
     }
 
     public enum EventType {
-
-        ENTER_SCREEN("Enter screen"),
         CLICK_BUTTON("Click button"),
         CLICK_URL("Click url"),
         CLICK_SIDE_MENU_MODULE("Click side menu module"),

@@ -5,6 +5,7 @@ import com.thinkmobiles.easyerp.presentation.adapters.crm.InvoicesAdapter;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowListSelectableFragment;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.InvoiceDH;
+import com.thinkmobiles.easyerp.presentation.managers.GoogleAnalyticHelper;
 import com.thinkmobiles.easyerp.presentation.screens.crm.invoices.details.InvoiceDetailsFragment_;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
@@ -48,6 +49,8 @@ public class InvoicesFragment extends MasterFlowListSelectableFragment implement
 
     @AfterViews
     protected void initUI() {
+        GoogleAnalyticHelper.trackScreenView(this, getResources().getConfiguration());
+
         listRecycler.setAdapter(invoicesAdapter);
         invoicesAdapter.setOnCardClickListener((view, position, viewType) -> presenter.selectItem(invoicesAdapter.getItem(position), position));
 

@@ -28,6 +28,7 @@ import com.thinkmobiles.easyerp.presentation.custom.transformations.CropCircleTr
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.AttachmentDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.HistoryDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.LeadAndOpportunityDH;
+import com.thinkmobiles.easyerp.presentation.managers.GoogleAnalyticHelper;
 import com.thinkmobiles.easyerp.presentation.managers.HistoryAnimationHelper;
 import com.thinkmobiles.easyerp.presentation.managers.ImageHelper;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
@@ -187,6 +188,8 @@ public class PersonDetailsFragment extends RefreshFragment implements PersonDeta
 
     @AfterViews
     protected void initUI() {
+        GoogleAnalyticHelper.trackScreenView(this, getResources().getConfiguration());
+
         setEmptyData();
         rvHistory.setLayoutManager(new LinearLayoutManager(getActivity()));
         rvHistory.setAdapter(historyAdapter);

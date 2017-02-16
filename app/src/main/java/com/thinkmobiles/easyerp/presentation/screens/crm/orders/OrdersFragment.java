@@ -5,6 +5,7 @@ import com.thinkmobiles.easyerp.presentation.adapters.crm.OrdersAdapter;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowListSelectableFragment;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.OrderDH;
+import com.thinkmobiles.easyerp.presentation.managers.GoogleAnalyticHelper;
 import com.thinkmobiles.easyerp.presentation.screens.crm.orders.details.OrderDetailsFragment_;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
@@ -48,6 +49,8 @@ public class OrdersFragment extends MasterFlowListSelectableFragment implements 
 
     @AfterViews
     protected void initUI() {
+        GoogleAnalyticHelper.trackScreenView(this, getResources().getConfiguration());
+
         listRecycler.setAdapter(ordersAdapter);
         ordersAdapter.setOnCardClickListener((view, position, viewType) -> presenter.selectItem(ordersAdapter.getItem(position), position));
 

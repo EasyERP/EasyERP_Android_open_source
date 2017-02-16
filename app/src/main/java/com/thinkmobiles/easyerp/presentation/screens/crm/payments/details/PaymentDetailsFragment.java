@@ -7,6 +7,7 @@ import com.thinkmobiles.easyerp.data.model.crm.payments.Payment;
 import com.thinkmobiles.easyerp.domain.crm.PaymentsRepository;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.base.rules.RefreshFragment;
+import com.thinkmobiles.easyerp.presentation.managers.GoogleAnalyticHelper;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
 import org.androidannotations.annotations.AfterInject;
@@ -79,6 +80,8 @@ public class PaymentDetailsFragment extends RefreshFragment implements PaymentDe
 
     @AfterViews
     protected void initUI() {
+        GoogleAnalyticHelper.trackScreenView(this, getResources().getConfiguration());
+
         presenter.subscribe();
     }
 

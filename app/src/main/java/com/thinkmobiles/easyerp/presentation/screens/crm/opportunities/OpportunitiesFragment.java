@@ -5,6 +5,7 @@ import com.thinkmobiles.easyerp.presentation.adapters.crm.OpportunitiesAdapter;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowListSelectableFragment;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.OpportunityDH;
+import com.thinkmobiles.easyerp.presentation.managers.GoogleAnalyticHelper;
 import com.thinkmobiles.easyerp.presentation.screens.crm.opportunities.details.OpportunityDetailsFragment_;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
@@ -38,6 +39,8 @@ public class OpportunitiesFragment extends MasterFlowListSelectableFragment impl
 
     @AfterViews
     protected void initUI() {
+        GoogleAnalyticHelper.trackScreenView(this, getResources().getConfiguration());
+
         listRecycler.setAdapter(opportunitiesAdapter);
         opportunitiesAdapter.setOnCardClickListener((view, position, viewType) -> presenter.selectItem(opportunitiesAdapter.getItem(position), position));
 

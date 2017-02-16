@@ -6,6 +6,7 @@ import com.thinkmobiles.easyerp.presentation.adapters.crm.PaymentsAdapter;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowListSelectableFragment;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.PaymentDH;
+import com.thinkmobiles.easyerp.presentation.managers.GoogleAnalyticHelper;
 import com.thinkmobiles.easyerp.presentation.screens.crm.payments.details.PaymentDetailsFragment_;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
@@ -50,6 +51,8 @@ public class PaymentsFragment extends MasterFlowListSelectableFragment implement
 
     @AfterViews
     protected void initUI() {
+        GoogleAnalyticHelper.trackScreenView(this, getResources().getConfiguration());
+
         listRecycler.setAdapter(paymentsAdapter);
         paymentsAdapter.setOnCardClickListener((view, position, viewType) -> presenter.selectItem(paymentsAdapter.getItem(position), position));
 

@@ -19,6 +19,7 @@ import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowListSelectable
 import com.thinkmobiles.easyerp.presentation.dialogs.FilterDialogFragment;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.FilterDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.LeadDH;
+import com.thinkmobiles.easyerp.presentation.managers.GoogleAnalyticHelper;
 import com.thinkmobiles.easyerp.presentation.screens.crm.leads.details.LeadDetailsFragment_;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
@@ -76,6 +77,8 @@ public class LeadsFragment extends MasterFlowListSelectableFragment implements L
 
     @AfterViews
     protected void initUI() {
+        GoogleAnalyticHelper.trackScreenView(this, getResources().getConfiguration());
+
         listRecycler.setAdapter(leadsAdapter);
         leadsAdapter.setOnCardClickListener((view, position, viewType) ->
                 presenter.selectItem(leadsAdapter.getItem(position), position)

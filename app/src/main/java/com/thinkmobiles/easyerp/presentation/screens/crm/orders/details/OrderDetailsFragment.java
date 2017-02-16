@@ -20,6 +20,7 @@ import com.thinkmobiles.easyerp.presentation.base.rules.RefreshFragment;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.AttachmentDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.HistoryDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.ProductDH;
+import com.thinkmobiles.easyerp.presentation.managers.GoogleAnalyticHelper;
 import com.thinkmobiles.easyerp.presentation.managers.HistoryAnimationHelper;
 import com.thinkmobiles.easyerp.presentation.managers.TagHelper;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
@@ -132,6 +133,7 @@ public class OrderDetailsFragment extends RefreshFragment implements OrderDetail
 
     @AfterViews
     protected void initUI() {
+        GoogleAnalyticHelper.trackScreenView(this, getResources().getConfiguration());
 
         rvHistory.setAdapter(historyAdapter);
         rvHistory.setLayoutManager(new LinearLayoutManager(getActivity()));
