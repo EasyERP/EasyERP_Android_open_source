@@ -199,7 +199,10 @@ public class PersonDetailsFragment extends RefreshFragment implements PersonDeta
 
         rvAttachments_FPD.setLayoutManager(new GridLayoutManager(getActivity(), 2));
         rvAttachments_FPD.setAdapter(attachmentAdapter);
-        attachmentAdapter.setOnCardClickListener((view, position, viewType) -> presenter.startAttachment(position));
+        attachmentAdapter.setOnCardClickListener((view, position, viewType) -> {
+            GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_ATTACHMENT, "");
+            presenter.startAttachment(position);
+        });
 
         RxView.clicks(btnHistory)
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
@@ -284,6 +287,7 @@ public class PersonDetailsFragment extends RefreshFragment implements PersonDeta
         RxView.clicks(ivSkype_FPD)
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
                 .subscribe(aVoid -> {
+                    GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_SOCIAL_BUTTON, "Skype");
                     try {
                         Intent sky = new Intent(Intent.ACTION_VIEW);
                         sky.setData(Uri.parse("skype:" + skype));
@@ -300,6 +304,7 @@ public class PersonDetailsFragment extends RefreshFragment implements PersonDeta
         RxView.clicks(ivLinkedIn_FPD)
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
                 .subscribe(aVoid -> {
+                    GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_SOCIAL_BUTTON, "Linked In");
                     Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.linkedin.com/profile/view?id=" + linkedIn));
                     getActivity().startActivity(intent);
                 });
@@ -311,6 +316,7 @@ public class PersonDetailsFragment extends RefreshFragment implements PersonDeta
         RxView.clicks(ivFacebook_FPD)
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
                 .subscribe(aVoid -> {
+                    GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_SOCIAL_BUTTON, "Facebook");
                     Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(facebook));
                     getActivity().startActivity(intent);
                 });
@@ -462,7 +468,10 @@ public class PersonDetailsFragment extends RefreshFragment implements PersonDeta
         else url = companyUrl;
         RxView.clicks(tvCompanyTitleUrl_FPD)
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
-                .subscribe(aVoid -> startUrlIntent(url));
+                .subscribe(aVoid -> {
+                    GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_URL, url);
+                    startUrlIntent(url);
+                });
     }
 
     @Override
@@ -524,6 +533,7 @@ public class PersonDetailsFragment extends RefreshFragment implements PersonDeta
     @Override
     public void showHistory(boolean enable) {
         if (enable && rvHistory.getVisibility() == View.GONE) {
+            GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_BUTTON, "History");
             animationHelper.forward(nsvContent_FPD.getHeight());
         }
         if (!enable && rvHistory.getVisibility() == View.VISIBLE)

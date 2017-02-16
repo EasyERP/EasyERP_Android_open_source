@@ -198,7 +198,10 @@ public class CompanyDetailsFragment extends RefreshFragment implements CompanyDe
 
         rvAttachments_FCD.setLayoutManager(new GridLayoutManager(getActivity(), 2));
         rvAttachments_FCD.setAdapter(attachmentAdapter);
-        attachmentAdapter.setOnCardClickListener((view, position, viewType) -> presenter.startAttachment(position));
+        attachmentAdapter.setOnCardClickListener((view, position, viewType) -> {
+            GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_ATTACHMENT, "");
+            presenter.startAttachment(position);
+        });
 
         RxView.clicks(btnHistory)
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
@@ -228,6 +231,7 @@ public class CompanyDetailsFragment extends RefreshFragment implements CompanyDe
     @Override
     public void showHistory(boolean enable) {
         if (enable && rvHistory.getVisibility() == View.GONE) {
+            GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_BUTTON, "History");
             animationHelper.forward(nsvContent_FCD.getHeight());
         }
         if (!enable && rvHistory.getVisibility() == View.VISIBLE)
@@ -296,7 +300,10 @@ public class CompanyDetailsFragment extends RefreshFragment implements CompanyDe
         tvCompanyWebsite_FCD.setText(companyUrl);
         RxView.clicks(tvCompanyWebsite_FCD)
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
-                .subscribe(aVoid -> startUrlIntent(companyUrl));
+                .subscribe(aVoid -> {
+                    GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_URL, companyUrl);
+                    startUrlIntent(companyUrl);
+                });
     }
 
     @Override
@@ -305,6 +312,7 @@ public class CompanyDetailsFragment extends RefreshFragment implements CompanyDe
         RxView.clicks(ivCompanyFb_FCD)
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
                 .subscribe(aVoid -> {
+                    GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_SOCIAL_BUTTON, "Facebook");
                     Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
                     getActivity().startActivity(intent);
                 });
@@ -316,6 +324,7 @@ public class CompanyDetailsFragment extends RefreshFragment implements CompanyDe
         RxView.clicks(ivCompanyLinkedIn_FCD)
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
                 .subscribe(aVoid -> {
+                    GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_SOCIAL_BUTTON, "Linked In");
                     Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.linkedin.com/profile/view?id=" + url));
                     getActivity().startActivity(intent);
                 });
@@ -327,6 +336,7 @@ public class CompanyDetailsFragment extends RefreshFragment implements CompanyDe
         RxView.clicks(ivCompanySkype_FCD)
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
                 .subscribe(aVoid -> {
+                    GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_SOCIAL_BUTTON, "Skype");
                     try {
                         Intent sky = new Intent(Intent.ACTION_VIEW);
                         sky.setData(Uri.parse("skype:" + url));

@@ -1,5 +1,7 @@
 package com.thinkmobiles.easyerp.presentation.screens.crm.orders.details;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -140,6 +142,10 @@ public class OrderDetailsFragment extends RefreshFragment implements OrderDetail
 
         rvAttachments_FOD.setAdapter(attachmentAdapter);
         rvAttachments_FOD.setLayoutManager(new GridLayoutManager(getActivity(), 2));
+        attachmentAdapter.setOnCardClickListener((view, position, viewType) -> {
+            GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_ATTACHMENT, "");
+            presenter.startAttachment(position);
+        });
 
         rvProductList_FOD.setAdapter(productAdapter);
         rvProductList_FOD.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -187,6 +193,7 @@ public class OrderDetailsFragment extends RefreshFragment implements OrderDetail
     @Override
     public void showHistory(boolean enable) {
         if (enable && rvHistory.getVisibility() == View.GONE) {
+            GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_BUTTON, "History");
             animationHelper.forward(nsvContent_FOD.getHeight());
         }
         if (!enable && rvHistory.getVisibility() == View.VISIBLE)
@@ -337,6 +344,13 @@ public class OrderDetailsFragment extends RefreshFragment implements OrderDetail
     @Override
     public void displayErrorToast(String msg) {
         showErrorToast(msg);
+    }
+
+    @Override
+    public void startUrlIntent(String url) {
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(Uri.parse(url));
+        startActivity(intent);
     }
 
     @Override

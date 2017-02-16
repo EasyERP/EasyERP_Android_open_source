@@ -148,7 +148,10 @@ public class LeadDetailsFragment extends RefreshFragment implements LeadDetailsC
 
         rvAttachments_FLD.setLayoutManager(new GridLayoutManager(getActivity(), 2));
         rvAttachments_FLD.setAdapter(attachmentAdapter);
-        attachmentAdapter.setOnCardClickListener((view, position, viewType) -> presenter.startAttachment(position));
+        attachmentAdapter.setOnCardClickListener((view, position, viewType) -> {
+            GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_ATTACHMENT, "");
+            presenter.startAttachment(position);
+        });
 
         RxView.clicks(btnHistory)
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
@@ -316,6 +319,7 @@ public class LeadDetailsFragment extends RefreshFragment implements LeadDetailsC
     @Override
     public void showHistory(boolean enable) {
         if (enable && rvHistory.getVisibility() == View.GONE) {
+            GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_BUTTON, "History");
             animationHelper.forward(nsvContent_FLD.getHeight());
         }
         if (!enable && rvHistory.getVisibility() == View.VISIBLE)

@@ -8,8 +8,6 @@ import com.thinkmobiles.easyerp.data.model.user.UserInfo;
 import com.thinkmobiles.easyerp.domain.UserRepository;
 import com.thinkmobiles.easyerp.presentation.EasyErpApplication;
 import com.thinkmobiles.easyerp.presentation.base.BaseMasterFlowActivity;
-import com.thinkmobiles.easyerp.presentation.base.BasePresenter;
-import com.thinkmobiles.easyerp.presentation.base.BaseView;
 import com.thinkmobiles.easyerp.presentation.custom.views.drawer_menu.IMenuClickListener;
 import com.thinkmobiles.easyerp.presentation.custom.views.drawer_menu.MenuDrawerContainer;
 import com.thinkmobiles.easyerp.presentation.custom.views.drawer_menu.MenuDrawerState;
@@ -71,6 +69,7 @@ public class HomeActivity extends BaseMasterFlowActivity implements HomeContract
 
     @Override
     protected void logOut() {
+        GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_MENU_ITEM, "Logout");
         presenter.logOut();
     }
 
@@ -105,11 +104,12 @@ public class HomeActivity extends BaseMasterFlowActivity implements HomeContract
 
     @Override
     public void chooseModule(int moduleId) {
-        //TODO for analytics. Use MenuConfigs.getModuleLabel(moduleId); for tracking label the module
+        GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_SIDE_MENU_MODULE, MenuConfigs.getModuleLabel(moduleId));
     }
 
     @Override
     public void chooseItem(int moduleId, int itemId) {
+        GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_SIDE_MENU_ITEM, MenuConfigs.getItemLabel(moduleId, itemId));
         replaceFragmentContent(MenuConfigs.getFragmentByMenuId(moduleId, itemId), MenuConfigs.getItemLabel(moduleId, itemId));
     }
 
@@ -155,16 +155,6 @@ public class HomeActivity extends BaseMasterFlowActivity implements HomeContract
     protected void onDestroy() {
         super.onDestroy();
         presenter.unsubscribe();
-    }
-
-    @Override
-    public void initPresenter() {
-
-    }
-
-    @Override
-    public void setPresenter(BasePresenter presenter) {
-
     }
 
     @Override

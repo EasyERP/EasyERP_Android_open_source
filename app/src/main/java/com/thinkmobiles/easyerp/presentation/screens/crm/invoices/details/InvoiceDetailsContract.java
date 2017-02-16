@@ -51,11 +51,14 @@ public interface InvoiceDetailsContract {
 
         void displayErrorState(final String msg, final ErrorViewHelper.ErrorType errorType);
         void displayErrorToast(final String msg);
+
+        void startUrlIntent(String url);
     }
 
     interface InvoiceDetailsPresenter extends BasePresenter {
         void changeNotesVisibility();
         void refresh();
+        void startAttachment(int pos);
     }
 
     interface InvoiceDetailsModel extends BaseModel {

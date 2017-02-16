@@ -72,6 +72,12 @@ public class InvoiceDetailsPresenter implements InvoiceDetailsContract.InvoiceDe
                 }));
     }
 
+    @Override
+    public void startAttachment(int pos) {
+        String url = String.format("%sdownload/%s", Constants.BASE_URL, currentInvoice.attachments.get(pos).shortPath);
+        view.startUrlIntent(url);
+    }
+
     private void getOrganizationSettings() {
         compositeSubscription.add(model.getOrganizationSettings()
                 .subscribe(responseGetOrganizationSettings -> {

@@ -2,6 +2,7 @@ package com.thinkmobiles.easyerp.presentation.managers;
 
 import android.app.Application;
 import android.content.res.Configuration;
+import android.text.TextUtils;
 import android.util.Log;
 
 import com.google.android.gms.analytics.GoogleAnalytics;
@@ -9,6 +10,12 @@ import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.presentation.base.BaseView;
+import com.thinkmobiles.easyerp.presentation.holders.data.crm.FilterDH;
+
+import java.util.ArrayList;
+import java.util.Locale;
+
+import static com.thinkmobiles.easyerp.presentation.managers.GoogleAnalyticHelper.EventType.SET_FILTER;
 
 /**
  * Created by Lynx on 2/15/2017.
@@ -27,8 +34,8 @@ public abstract class GoogleAnalyticHelper {
             Log.d("myLogs", "Google analytic not initialized");
             return;
         }
-
         tracker.setScreenName(baseView.getScreenName());
+
         tracker.send(new HitBuilders.ScreenViewBuilder()
                 .setCustomDimension(1, getOrientation(configuration))
                 .build());
@@ -42,8 +49,30 @@ public abstract class GoogleAnalyticHelper {
         tracker.setScreenName(baseView.getScreenName());
 
         HitBuilders.EventBuilder builder = new HitBuilders.EventBuilder();
-        builder.setAction(eventType.toString());
-        builder.setLabel(details);
+        builder.setCategory(eventType.toString());
+        builder.setAction(details);
+
+        tracker.send(builder.build());
+    }
+
+    public static void trackFilters(BaseView baseView, String filterName, ArrayList<FilterDH> filters) {
+        if(tracker == null || !tracker.isInitialized()) {
+            Log.d("myLogs", "Google analytic not initialized");
+            return;
+        }
+
+        tracker.setScreenName(baseView.getScreenName());
+        HitBuilders.EventBuilder builder = new HitBuilders.EventBuilder();
+        builder.setCategory(SET_FILTER.toString());
+
+        String filterValue = "";
+        for(FilterDH filterDH : filters) {
+            if(filterDH.selected) {
+                filterValue = " " + filterValue;
+            }
+        }
+        if(TextUtils.isEmpty(filterValue)) filterValue = " None";
+        builder.setAction(String.format(Locale.US, "Filter name: %s, Filter values: %s", filterName, filterValue));
 
         tracker.send(builder.build());
     }
@@ -57,6 +86,8 @@ public abstract class GoogleAnalyticHelper {
         CLICK_DASHBOARD_ITEM("Click list item"),
         CLICK_ATTACHMENT("Click attachment"),
         CLICK_IMAGE("Click image"),
+        CLICK_SOCIAL_BUTTON("Click social button"),
+        SET_CHART_PERIOD("Set chart period"),
         SET_FILTER("Set filter");
 
         private final String name;
@@ -82,6 +113,10 @@ public abstract class GoogleAnalyticHelper {
     private static String getOrientation(Configuration configuration) {
         return configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
                 ? OrientationType.LANDSCAPE : OrientationType.PORTRAIT;
+    }
+
+    public static String getFromToString(int yFrom, int mFrom, int dFrom, int dTo, int mTo, int yTo) {
+        return String.format(Locale.US, "From %02d.%02d.%d to %02d.%02d.%d", dFrom, mFrom, yFrom, dTo, mTo, yTo);
     }
 
 }

@@ -1,5 +1,6 @@
 package com.thinkmobiles.easyerp.presentation.screens.crm.dashboard.detail;
 
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
@@ -115,7 +116,12 @@ public class DashboardDetailChartFragment extends RefreshFragment implements Das
     @Override
     public void chooseCustomDateRangeFromTo(Calendar dateFrom, Calendar dateTo) {
         SmoothDateRangePickerFragment dateRangePickerFragment = SmoothDateRangePickerFragment.newInstance(
-                (rpFragment, y, m, d, yTo, mTo, dTo) -> presenter.setCustomFilterRangeDateFromTo(new GregorianCalendar(y, m, d), new GregorianCalendar(yTo, mTo, dTo)),
+                (rpFragment, y, m, d, yTo, mTo, dTo) -> {
+                    GoogleAnalyticHelper.trackClick(this,
+                            GoogleAnalyticHelper.EventType.SET_CHART_PERIOD,
+                            GoogleAnalyticHelper.getFromToString(y, m, d, yTo, mTo, dTo));
+                    presenter.setCustomFilterRangeDateFromTo(new GregorianCalendar(y, m, d), new GregorianCalendar(yTo, mTo, dTo));
+                },
                 dateFrom.get(Calendar.YEAR),
                 dateFrom.get(Calendar.MONTH),
                 dateFrom.get(Calendar.DAY_OF_MONTH),
@@ -157,18 +163,23 @@ public class DashboardDetailChartFragment extends RefreshFragment implements Das
         item.setChecked(true);
         switch (item.getItemId()) {
             case R.id.thisMonth_MCDD:
+                GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.SET_CHART_PERIOD, "This month");
                 presenter.chooseFilterType(DateFilterType.THIS_MONTH);
                 break;
             case R.id.thisFinancialYear_MCDD:
+                GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.SET_CHART_PERIOD, "This financial year");
                 presenter.chooseFilterType(DateFilterType.THIS_FINANCIAL_YEAR);
                 break;
             case R.id.lastMonth_MCDD:
+                GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.SET_CHART_PERIOD, "Last month");
                 presenter.chooseFilterType(DateFilterType.LAST_MONTH);
                 break;
             case R.id.lastQuarter_MCDD:
+                GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.SET_CHART_PERIOD, "Last quarter");
                 presenter.chooseFilterType(DateFilterType.LAST_QUARTER);
                 break;
             case R.id.lastFinancialYear_MCDD:
+                GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.SET_CHART_PERIOD, "Last financial year");
                 presenter.chooseFilterType(DateFilterType.LAST_FINANCIAL_YEAR);
                 break;
             case R.id.customDates_MCDD:

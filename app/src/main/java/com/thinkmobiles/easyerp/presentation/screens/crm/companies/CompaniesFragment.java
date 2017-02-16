@@ -57,7 +57,10 @@ public class CompaniesFragment extends MasterFlowListSelectableFragment implemen
         listRecycler.setAdapter(companiesAdapter);
         companiesAdapter.setOnCardClickListener((view, position, viewType) -> presenter.selectItem(companiesAdapter.getItem(position), position));
 
-        alphabetView.setListener(letter -> presenter.setLetter(letter));
+        alphabetView.setListener(letter -> {
+            GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.SET_FILTER, "Letter " + letter);
+            presenter.setLetter(letter);
+        });
 
         presenter.subscribe();
     }

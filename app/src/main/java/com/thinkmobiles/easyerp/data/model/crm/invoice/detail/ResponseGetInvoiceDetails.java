@@ -15,6 +15,7 @@ import com.thinkmobiles.easyerp.data.model.crm.order.detail.OrderProduct;
 import com.thinkmobiles.easyerp.data.model.crm.order.detail.PaymentMethod;
 import com.thinkmobiles.easyerp.data.model.crm.order.detail.Prepayment;
 import com.thinkmobiles.easyerp.data.model.crm.order.detail.Supplier;
+import com.thinkmobiles.easyerp.data.model.crm.persons.details.CreatedEditedUserString;
 
 import java.util.ArrayList;
 
@@ -194,8 +195,8 @@ public class ResponseGetInvoiceDetails implements Parcelable {
     public ArrayList<NoteItem> notes;
     public ArrayList<AttachmentItem> attachments;
     //    public Object channel;
-    public CreatedEditedBy editedBy;
-    public CreatedEditedBy createdBy;
+    public CreatedEditedUserString editedBy;
+    public CreatedEditedUserString createdBy;
     //    public Object project;
     public String creationDate;
     public Groups groups;

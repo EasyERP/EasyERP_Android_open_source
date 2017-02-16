@@ -54,7 +54,11 @@ public class DashboardListFragment extends MasterFlowListSelectableFragment impl
 
         listRecycler.setLayoutManager(new LinearLayoutManager(mActivity, LinearLayoutManager.VERTICAL, false));
         listRecycler.setAdapter(dashboardListAdapter);
-        dashboardListAdapter.setOnCardClickListener((view, position, viewType) -> presenter.selectItem(dashboardListAdapter.getItem(position), position));
+        dashboardListAdapter.setOnCardClickListener((view, position, viewType) -> {
+            String chartName = dashboardListAdapter.getItem(position).getDashboardListItem().name;
+            GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_DASHBOARD_ITEM, chartName);
+            presenter.selectItem(dashboardListAdapter.getItem(position), position);
+        });
 
         presenter.subscribe();
     }

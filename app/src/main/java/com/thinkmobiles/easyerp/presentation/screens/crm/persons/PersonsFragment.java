@@ -57,7 +57,10 @@ public class PersonsFragment extends MasterFlowListSelectableFragment implements
         listRecycler.setAdapter(personsAdapter);
         personsAdapter.setOnCardClickListener((view, position, viewType) -> presenter.selectItem(personsAdapter.getItem(position), position));
 
-        alphabetView.setListener(letter -> presenter.setLetter(letter));
+        alphabetView.setListener(letter -> {
+            GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.SET_FILTER, "Letter " + letter);
+            presenter.setLetter(letter);
+        });
 
         presenter.subscribe();
     }
