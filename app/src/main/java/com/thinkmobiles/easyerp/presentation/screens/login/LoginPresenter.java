@@ -51,37 +51,39 @@ public class LoginPresenter implements LoginContract.LoginPresenter {
         if(errCodeLogin == Constants.ErrorCodes.OK
                 && errCodePassword == Constants.ErrorCodes.OK
                 && errCodeDbID == Constants.ErrorCodes.OK) {
-            compositeSubscription.add(
-                    loginModel.login(login, pass, dbId)
-                            .subscribe(s -> {
-                                if(s.equalsIgnoreCase("OK")) {
-                                    getCurrentUser();
-                                }
-                                Log.d("HTTP", "Response: " + s);
-                            }, t -> {
-                                String errMsg = "";
-                                if(t instanceof HttpException) {
-                                    HttpException e = (HttpException) t;
-                                    ResponseError responseError = Rest.getInstance().parseError(e.response().errorBody());
-                                    errMsg = responseError.error;
-                                } else {
-                                    errMsg = t.getMessage();
-                                }
-                                view.displayError(errMsg);
-                                Log.d("HTTP", "Error: " + t.getMessage());
-                            })
-            );
+            login(login, pass, dbId);
         }
     }
 
     @Override
     public void launchDemoMode() {
+        login(Constants.DEMO_LOGIN, Constants.DEMO_PASSWORD, Constants.DEMO_DB_ID);
+    }
+
+    @Override
+    public void getCurrentUser() {
         compositeSubscription.add(
-                loginModel.login(Constants.DEMO_LOGIN, Constants.DEMO_PASSWORD, Constants.DEMO_DB_ID)
+                userModel.getCurrentUser()
+                        .subscribe(responseGetCurrentUser -> {
+                            view.dismissProgress();
+                            view.startHomeScreen(responseGetCurrentUser.user);
+                        }, t -> {
+                            view.dismissProgress();
+                            view.showErrorToast(t.getMessage());
+                            Log.d("HTTP", "Error: " + t.getMessage());
+                        })
+        );
+    }
+
+    private void login(final String login, final String password, final String databaseId) {
+        view.showProgress("Login. Please wait a second...");
+        compositeSubscription.add(
+                loginModel.login(login, password, databaseId)
                         .subscribe(s -> {
                             if(s.equalsIgnoreCase("OK")) {
                                 getCurrentUser();
-                            }
+                            } else
+                                view.dismissProgress();
                             Log.d("HTTP", "Response: " + s);
                         }, t -> {
                             String errMsg = "";
@@ -92,22 +94,10 @@ public class LoginPresenter implements LoginContract.LoginPresenter {
                             } else {
                                 errMsg = t.getMessage();
                             }
-                            view.displayError(errMsg);
+                            view.dismissProgress();
+                            view.showErrorToast(errMsg);
                             Log.d("HTTP", "Error: " + t.getMessage());
                         })
-        );
-    }
-
-    @Override
-    public void getCurrentUser() {
-        compositeSubscription.add(
-                userModel.getCurrentUser()
-                .subscribe(responseGetCurrentUser -> {
-                    view.startHomeScreen(responseGetCurrentUser.user);
-                }, t -> {
-                    view.displayError(t.getMessage());
-                    Log.d("HTTP", "Error: " + t.getMessage());
-                })
         );
     }
 

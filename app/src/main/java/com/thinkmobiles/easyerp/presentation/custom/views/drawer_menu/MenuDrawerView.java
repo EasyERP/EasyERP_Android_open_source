@@ -247,6 +247,8 @@ public class MenuDrawerView extends FrameLayout implements IMenuProviderFunction
                 break;
             case FULL_MODULES:
                 selectModule(id);
+                if (menuClickListener != null)
+                    menuClickListener.chooseModule(id);
                 break;
         }
     };

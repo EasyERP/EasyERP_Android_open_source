@@ -16,6 +16,7 @@ public abstract class Constants {
     //User
     public static final String GET_CURRENT_USER             = "users/current";
     public static final String GET_ORGANIZATION_SETTINGS    = "organizationSettings";
+    public static final String GET_LOGOUT                   = "logout";
     //End User
 
     //------------------------------------------------------ CRM
@@ -91,7 +92,7 @@ public abstract class Constants {
         CENTER, BOTTOM, NONE
     }
 
-    public static final String DEMO_LOGIN                   = "testAdmin";
+    public static final String DEMO_LOGIN                   = "superAdmin";
     public static final String DEMO_PASSWORD                = "111111";
-    public static final String DEMO_DB_ID                   = "lilyadb";
+    public static final String DEMO_DB_ID                   = "CRM";
 }

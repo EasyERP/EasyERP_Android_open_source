@@ -16,6 +16,9 @@ public interface UserService {
     @GET(Constants.GET_CURRENT_USER)
     Observable<ResponseGetCurrentUser> getCurrentUser();
 
+    @GET(Constants.GET_LOGOUT)
+    Observable<String> logOut();
+
     @GET(Constants.GET_ORGANIZATION_SETTINGS)
     Observable<ResponseGetOrganizationSettings> getOrganizationSettings();
 

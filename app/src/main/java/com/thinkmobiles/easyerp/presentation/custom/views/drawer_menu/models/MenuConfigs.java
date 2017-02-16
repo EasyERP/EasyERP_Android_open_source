@@ -183,7 +183,14 @@ public abstract class MenuConfigs {
         return null;
     }
 
-    public static String getLabel(final int moduleId, final int itemId) {
+    public static String getModuleLabel(final int moduleId) {
+        for (MenuItem item: menuModules)
+            if (item.getId() == moduleId)
+                return item.getLabel();
+        return null;
+    }
+
+    public static String getItemLabel(final int moduleId, final int itemId) {
         for (MenuItem item: menuModuleItems.get(moduleId))
             if (item.getId() == itemId)
                 return item.getLabel();
