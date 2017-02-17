@@ -469,7 +469,7 @@ public class PersonDetailsFragment extends RefreshFragment implements PersonDeta
         RxView.clicks(tvCompanyTitleUrl_FPD)
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
                 .subscribe(aVoid -> {
-                    GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_URL, url);
+                    GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_URL, "");
                     startUrlIntent(url);
                 });
     }

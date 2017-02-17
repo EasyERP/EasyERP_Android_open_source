@@ -265,7 +265,7 @@ public class OpportunityDetailsFragment extends RefreshFragment implements Oppor
         RxView.clicks(tvCompanyTitleUrl_FOD)
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
                 .subscribe(aVoid -> {
-                    GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_URL, url);
+                    GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_URL, "");
                     startUrlIntent(url);
                 });
     }

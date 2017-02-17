@@ -301,7 +301,7 @@ public class CompanyDetailsFragment extends RefreshFragment implements CompanyDe
         RxView.clicks(tvCompanyWebsite_FCD)
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
                 .subscribe(aVoid -> {
-                    GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_URL, companyUrl);
+                    GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_URL, "");
                     startUrlIntent(companyUrl);
                 });
     }

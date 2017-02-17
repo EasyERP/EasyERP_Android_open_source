@@ -109,7 +109,7 @@ public class FilterDialogFragment extends DialogFragment implements DialogInterf
                 if (target != null) {
                     if(target instanceof BaseView) {
                         BaseView baseViewTarget = (BaseView) target;
-                        GoogleAnalyticHelper.trackFilters(baseViewTarget, filterName, filterList);
+                        GoogleAnalyticHelper.trackClick(baseViewTarget, GoogleAnalyticHelper.EventType.SET_FILTER, filterName);
                     } else {
                         Log.d("myLogs", "Filters parent view must implement BaseView interface");
                     }

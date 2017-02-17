@@ -55,28 +55,6 @@ public abstract class GoogleAnalyticHelper {
         tracker.send(builder.build());
     }
 
-    public static void trackFilters(BaseView baseView, String filterName, ArrayList<FilterDH> filters) {
-        if(tracker == null || !tracker.isInitialized()) {
-            Log.d("myLogs", "Google analytic not initialized");
-            return;
-        }
-
-        tracker.setScreenName(baseView.getScreenName());
-        HitBuilders.EventBuilder builder = new HitBuilders.EventBuilder();
-        builder.setCategory(SET_FILTER.toString());
-
-        String filterValue = "";
-        for(FilterDH filterDH : filters) {
-            if(filterDH.selected) {
-                filterValue = " " + filterValue;
-            }
-        }
-        if(TextUtils.isEmpty(filterValue)) filterValue = " None";
-        builder.setAction(String.format(Locale.US, "Filter name: %s, Filter values: %s", filterName, filterValue));
-
-        tracker.send(builder.build());
-    }
-
     public enum EventType {
         CLICK_BUTTON("Click button"),
         CLICK_URL("Click url"),

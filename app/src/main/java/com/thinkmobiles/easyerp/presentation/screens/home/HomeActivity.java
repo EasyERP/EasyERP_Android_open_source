@@ -115,7 +115,7 @@ public class HomeActivity extends BaseMasterFlowActivity implements HomeContract
 
     @Override
     public void onClickUser() {
-        GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_IMAGE, "Side menu user image");
+        GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_IMAGE, "Side menu user profile");
         UserProfileDialogFragment_.builder().userInfo(userInfo).build().show(getFragmentManager(), null);
     }
 
