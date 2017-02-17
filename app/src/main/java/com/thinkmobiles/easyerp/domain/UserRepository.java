@@ -4,6 +4,7 @@ import com.thinkmobiles.easyerp.data.api.Rest;
 import com.thinkmobiles.easyerp.data.model.user.ResponseGetCurrentUser;
 import com.thinkmobiles.easyerp.data.services.UserService;
 import com.thinkmobiles.easyerp.presentation.base.NetworkRepository;
+import com.thinkmobiles.easyerp.presentation.screens.about.AboutContract;
 import com.thinkmobiles.easyerp.presentation.screens.home.HomeContract;
 import com.thinkmobiles.easyerp.presentation.screens.login.LoginContract;
 
@@ -16,7 +17,7 @@ import rx.Observable;
  */
 
 @EBean(scope = EBean.Scope.Singleton)
-public class UserRepository extends NetworkRepository implements LoginContract.UserModel, HomeContract.HomeModel {
+public class UserRepository extends NetworkRepository implements LoginContract.UserModel, HomeContract.HomeModel, AboutContract.AboutModel {
 
     private UserService userService;
 

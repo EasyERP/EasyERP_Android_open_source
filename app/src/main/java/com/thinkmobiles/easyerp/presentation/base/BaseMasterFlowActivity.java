@@ -14,6 +14,8 @@ import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.presentation.EasyErpApplication;
 import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowListSelectableFragment;
 import com.thinkmobiles.easyerp.presentation.managers.CookieManager;
+import com.thinkmobiles.easyerp.presentation.screens.about.AboutActivity;
+import com.thinkmobiles.easyerp.presentation.screens.about.AboutActivity_;
 
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterViews;
@@ -158,6 +160,14 @@ public abstract class BaseMasterFlowActivity extends AppCompatActivity {
             }
         }
 
+    }
+
+    @OptionsItem(R.id.menuAboutUs_MB)
+    protected void openAboutUsScreen() {
+        AboutActivity_.intent(this)
+                .isWebPage(true)
+                .data("http://www.thinkmobiles.com")
+                .start();
     }
 
     @OptionsItem(android.R.id.home)
