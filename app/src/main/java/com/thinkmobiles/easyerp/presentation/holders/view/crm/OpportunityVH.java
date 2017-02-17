@@ -54,7 +54,7 @@ public final class OpportunityVH extends MasterFlowSelectableVHHelper<Opportunit
         if(data.getOpportunityListItem().workflow != null && !TextUtils.isEmpty(data.getOpportunityListItem().workflow.name)) {
             tvStage_VLIO.setText(data.getOpportunityListItem().workflow.name);
             tvStage_VLIO.setBackground(new RoundRectDrawable(ContextCompat.getColor(itemView.getContext(),
-                    TagHelper.getOpportunityStatusColorRes(item.workflow.status))));
+                    TagHelper.getStatusColorRes(item.workflow.status))));
         }
         else {
             tvStage_VLIO.setBackgroundResource(0);

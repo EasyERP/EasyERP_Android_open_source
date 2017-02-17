@@ -53,7 +53,7 @@ public final class LeadVH extends MasterFlowSelectableVHHelper<LeadDH> {
             tvLeadName_LIL.setText(null);
         if(data.getLeadItem().workflow != null && !TextUtils.isEmpty(data.getLeadItem().workflow.name)) {
             tvStage_LIL.setText(data.getLeadItem().workflow.name);
-            tvStage_LIL.setBackground(new RoundRectDrawable(ContextCompat.getColor(itemView.getContext(), TagHelper.getStatusColorRes(data.getLeadItem().workflow.name))));
+            tvStage_LIL.setBackground(new RoundRectDrawable(ContextCompat.getColor(itemView.getContext(), TagHelper.getStatusColorRes(data.getLeadItem().workflow.status))));
         }
         else {
             tvStage_LIL.setBackgroundResource(0);

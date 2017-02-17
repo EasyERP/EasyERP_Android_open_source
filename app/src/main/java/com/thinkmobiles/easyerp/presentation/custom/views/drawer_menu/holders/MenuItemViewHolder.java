@@ -27,7 +27,7 @@ public final class MenuItemViewHolder extends BaseViewHolder<MenuItem> implement
 
         itemView.setOnClickListener(view -> {
             if (data.isEnabled())
-                itemsProviderFunctions.select(data.getId());
+                this.itemsProviderFunctions.select(data.getId());
         });
     }
 
