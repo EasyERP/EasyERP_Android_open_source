@@ -3,20 +3,19 @@ package com.thinkmobiles.easyerp.presentation.utils.filter;
 
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.FilterDH;
 import com.thinkmobiles.easyerp.presentation.listeners.VisibilityCallback;
-import com.thinkmobiles.easyerp.presentation.screens.crm.leads.LeadsPresenter;
 
 import java.util.ArrayList;
 import java.util.Map;
 
 public class FilterTypeQuery {
 
+    private String type;
     private String key;
-    private String typeFilter;
     private ArrayList<String> values;
 
-    public FilterTypeQuery(String key, String typeFilter) {
+    public FilterTypeQuery(String type, String key) {
+        this.type = type;
         this.key = key;
-        this.typeFilter = typeFilter;
     }
 
     public FilterTypeQuery add(String value) {
@@ -30,6 +29,14 @@ public class FilterTypeQuery {
     public FilterTypeQuery removeAll() {
         values = null;
         return this;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public String getKey() {
+        return key;
     }
 
     public ArrayList<String> getValues() {
@@ -48,7 +55,7 @@ public class FilterTypeQuery {
 
     public ArrayList<String> save(final Map<String, String> map) {
         if (values != null) {
-            map.put(String.format("filter[%s][key]", key), typeFilter);
+            map.put(String.format("filter[%s][key]", type), key);
         }
         return values;
     }

@@ -3,10 +3,12 @@ package com.thinkmobiles.easyerp.data.api;
 import com.facebook.stetho.okhttp3.StethoInterceptor;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.thinkmobiles.easyerp.data.api.deserializers.FilterDeserializer;
 import com.thinkmobiles.easyerp.data.api.interceptors.AddCookieInterceptor;
 import com.thinkmobiles.easyerp.data.api.interceptors.BadCookieInterceptor;
 import com.thinkmobiles.easyerp.data.api.interceptors.ReceiveCookieInterceptor;
 import com.thinkmobiles.easyerp.data.model.ResponseError;
+import com.thinkmobiles.easyerp.data.model.crm.filter.ResponseFilters;
 import com.thinkmobiles.easyerp.data.services.CompaniesService;
 import com.thinkmobiles.easyerp.data.services.CustomerService;
 import com.thinkmobiles.easyerp.data.services.DashboardService;
@@ -62,8 +64,9 @@ public class Rest {
 
     private Rest() {
         Gson malformedGson = new GsonBuilder()
-            .setLenient()
-            .create();
+                .setLenient()
+                .registerTypeAdapter(ResponseFilters.class, new FilterDeserializer())
+                .create();
 
         receiveCookieInterceptor = new ReceiveCookieInterceptor();
         addCookieInterceptor = new AddCookieInterceptor();
@@ -92,7 +95,7 @@ public class Rest {
     }
 
     public static Rest getInstance() {
-        if(restInstance == null) restInstance = new Rest();
+        if (restInstance == null) restInstance = new Rest();
         return restInstance;
     }
 

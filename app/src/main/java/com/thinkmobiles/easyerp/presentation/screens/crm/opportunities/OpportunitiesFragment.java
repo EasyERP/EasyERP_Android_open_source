@@ -45,11 +45,8 @@ public class OpportunitiesFragment extends MasterFlowListSelectableFragment impl
     protected OpportunitiesRepository opportunitiesRepository;
     @Bean
     protected OpportunitiesAdapter opportunitiesAdapter;
-    @Bean
-    protected SearchAdapter searchAdapter;
 
     protected MenuItem menuFilter;
-
 
     @AfterInject
     @Override
@@ -62,7 +59,6 @@ public class OpportunitiesFragment extends MasterFlowListSelectableFragment impl
         listRecycler.setAdapter(opportunitiesAdapter);
         opportunitiesAdapter.setOnCardClickListener((view, position, viewType) -> presenter.selectItem(opportunitiesAdapter.getItem(position), position));
 
-        actSearch.setAdapter(searchAdapter);
         actSearch.setOnItemClickListener((adapterView, view, i, l) ->
                 presenter.filterByContactName(searchAdapter.getItem(i))
         );
@@ -220,15 +216,7 @@ public class OpportunitiesFragment extends MasterFlowListSelectableFragment impl
 
     @Override
     public void showFilterDialog(ArrayList<FilterDH> filterDHs, int requestCode, String filterName) {
-        actSearch.clearFocus();
-        listRecycler.requestFocus();
-        FilterDialogFragment dialogFragment = new FilterDialogFragment();
-        Bundle bundle = new Bundle();
-        bundle.putParcelableArrayList(Constants.KEY_FILTER_LIST, filterDHs);
-        bundle.putString(Constants.KEY_FILTER_NAME, filterName);
-        dialogFragment.setArguments(bundle);
-        dialogFragment.setTargetFragment(this, requestCode);
-        dialogFragment.show(getFragmentManager(), getClass().getName());
+        showDialogFiltering(filterDHs, requestCode, filterName);
     }
 
     @Override

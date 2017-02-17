@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/menuSearch"
+        android:title="@string/menu_filter"
+        app:showAsAction="ifRoom|collapseActionView"
+        android:icon="@android:drawable/ic_menu_search"
+        app:actionViewClass="android.support.v7.widget.SearchView"/>
+
+    <item
+        android:id="@+id/menuFilter_MB"
+        android:icon="@drawable/ic_filter_white"
+        android:visible="false"
+        android:title="@string/menu_filter"
+        app:showAsAction="ifRoom">
+        <menu>
+            <item
+                android:id="@+id/menuFilterRemoveAll"
+                android:checkable="false"
+                android:orderInCategory="1000"
+                android:title="@string/menu_filter_remove_all" />
+        </menu>
+    </item>
+</menu>

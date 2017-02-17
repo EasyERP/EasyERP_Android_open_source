@@ -1,5 +1,7 @@
 package com.thinkmobiles.easyerp.presentation.utils.filter;
 
+import android.util.SparseArray;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -18,8 +20,19 @@ public class FilterQuery {
     public ArrayList<String> project;
     public ArrayList<String> supplier;
 
+    public SparseArray<FilterTypeQuery> filters;
+
     public FilterQuery() {
         this.queryMap = new HashMap<>();
+        this.filters = new SparseArray<>();
+    }
+
+    public void putFilter(int code, String type, String key) {
+        filters.put(code, new FilterTypeQuery(type, key));
+    }
+
+    public FilterTypeQuery forFilter(int code) {
+        return  filters.get(code);
     }
 
     public static class Builder {
@@ -34,6 +47,8 @@ public class FilterQuery {
         private final FilterTypeQuery project;
         private final FilterTypeQuery supplier;
 
+        private final SparseArray<FilterTypeQuery> filters;
+
         public Builder() {
             contactName = new FilterTypeQuery("contactName", "contactName");
             createdBy = new FilterTypeQuery("createdBy", "createdBy.user._id");
@@ -44,9 +59,18 @@ public class FilterQuery {
             name = new FilterTypeQuery("name", "_id");
             project = new FilterTypeQuery("project", "project._id");
             supplier = new FilterTypeQuery("supplier", "supplier._id");
+
+            filters = new SparseArray<>();
         }
 
+        public Builder putFilter(int code, String type, String key) {
+            filters.put(code, new FilterTypeQuery(type, key));
+            return this;
+        }
 
+        public FilterTypeQuery forFilter(int code) {
+            return  filters.get(code);
+        }
 
         public FilterTypeQuery forContactName() {
             return contactName;
@@ -96,6 +120,8 @@ public class FilterQuery {
             query.customer = customer.save(query.queryMap);
             query.supplier = supplier.save(query.queryMap);
             query.project = project.save(query.queryMap);
+
+            query.filters = filters;
 
             return query;
         }

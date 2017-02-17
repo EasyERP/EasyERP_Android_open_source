@@ -44,9 +44,12 @@ public class ResponseGetFilters implements Parcelable {
     public ArrayList<FilterItem> salesPerson;       //Leads, Opportunities
     public ArrayList<FilterItem> createdBy;         //Leads, Opportunities
     public ArrayList<FilterItem> customer;          //Opportunities
-    public ArrayList<FilterItem> name;              //Opportunities
+    public ArrayList<FilterItem> name;              //Opportunities, Payments
     public ArrayList<FilterItem> project;           //Invoice
-    public ArrayList<FilterItem> supplier;          //Invoice
+    public ArrayList<FilterItem> supplier;          //Invoice, Payments
+    public ArrayList<FilterItem> assigned;          //Payments
+    public ArrayList<FilterItem> paymentMethod;     //Payments
+    public ArrayList<FilterItem> refund;            //Payments
 
 
     public ResponseGetFilters() {
@@ -66,6 +69,11 @@ public class ResponseGetFilters implements Parcelable {
         dest.writeTypedList(this.createdBy);
         dest.writeTypedList(this.customer);
         dest.writeTypedList(this.name);
+        dest.writeTypedList(this.project);
+        dest.writeTypedList(this.supplier);
+        dest.writeTypedList(this.assigned);
+        dest.writeTypedList(this.paymentMethod);
+        dest.writeTypedList(this.refund);
     }
 
     protected ResponseGetFilters(Parcel in) {
@@ -76,6 +84,11 @@ public class ResponseGetFilters implements Parcelable {
         this.createdBy = in.createTypedArrayList(FilterItem.CREATOR);
         this.customer = in.createTypedArrayList(FilterItem.CREATOR);
         this.name = in.createTypedArrayList(FilterItem.CREATOR);
+        this.project = in.createTypedArrayList(FilterItem.CREATOR);
+        this.supplier = in.createTypedArrayList(FilterItem.CREATOR);
+        this.assigned = in.createTypedArrayList(FilterItem.CREATOR);
+        this.paymentMethod = in.createTypedArrayList(FilterItem.CREATOR);
+        this.refund = in.createTypedArrayList(FilterItem.CREATOR);
     }
 
     public static final Creator<ResponseGetFilters> CREATOR = new Creator<ResponseGetFilters>() {

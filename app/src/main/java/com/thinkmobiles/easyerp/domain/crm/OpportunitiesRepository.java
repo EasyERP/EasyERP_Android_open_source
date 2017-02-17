@@ -49,7 +49,7 @@ public class OpportunitiesRepository extends NetworkRepository implements Opport
     }
 
     public Observable<ResponseGetFilters> getOpportunityFilters() {
-        return getNetworkObservable(filterService.getLeadFilters("Opportunities"));
+        return getNetworkObservable(filterService.getFilters("Opportunities"));
     }
 
 }

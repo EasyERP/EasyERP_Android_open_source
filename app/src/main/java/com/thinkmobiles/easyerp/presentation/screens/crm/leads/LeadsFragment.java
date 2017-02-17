@@ -45,12 +45,6 @@ public class LeadsFragment extends MasterFlowListSelectableFragment implements L
     @Bean
     protected LeadsAdapter leadsAdapter;
 
-    @ViewById
-    protected AppCompatAutoCompleteTextView actSearch;
-
-    @Bean
-    protected SearchAdapter searchAdapter;
-
     protected MenuItem menuFilter;
     protected MenuItem menuContactName;
     protected MenuItem menuAssignedTo;
@@ -76,7 +70,6 @@ public class LeadsFragment extends MasterFlowListSelectableFragment implements L
                 presenter.selectItem(leadsAdapter.getItem(position), position)
         );
 
-        actSearch.setAdapter(searchAdapter);
         actSearch.setOnItemClickListener((adapterView, view, i, l) ->
                 presenter.filterByContactName(searchAdapter.getItem(i))
         );
@@ -108,13 +101,6 @@ public class LeadsFragment extends MasterFlowListSelectableFragment implements L
     @Override
     protected void onRetry() {
         presenter.subscribe();
-    }
-
-    @AfterTextChange(R.id.actSearch)
-    protected void afterSearchChanged(Editable editable) {
-        if (editable.length() > 1) {
-            searchAdapter.getFilter().filter(editable.toString());
-        }
     }
 
     @Override
@@ -248,15 +234,7 @@ public class LeadsFragment extends MasterFlowListSelectableFragment implements L
 
     @Override
     public void showFilterDialog(ArrayList<FilterDH> filterDHs, int requestCode, String filterName) {
-        actSearch.clearFocus();
-        listRecycler.requestFocus();
-        FilterDialogFragment dialogFragment = new FilterDialogFragment();
-        Bundle bundle = new Bundle();
-        bundle.putParcelableArrayList(Constants.KEY_FILTER_LIST, filterDHs);
-        bundle.putString(Constants.KEY_FILTER_NAME, filterName);
-        dialogFragment.setArguments(bundle);
-        dialogFragment.setTargetFragment(this, requestCode);
-        dialogFragment.show(getFragmentManager(), getClass().getName());
+        showDialogFiltering(filterDHs, requestCode, filterName);
     }
 
     @Override

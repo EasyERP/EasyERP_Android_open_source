@@ -47,7 +47,7 @@ public class LeadsRepository extends NetworkRepository implements LeadsContract.
     }
 
     public Observable<ResponseGetFilters> getLeadFilters() {
-        return getNetworkObservable(filterService.getLeadFilters("Leads"));
+        return getNetworkObservable(filterService.getFilters("Leads"));
     }
 
     @Override

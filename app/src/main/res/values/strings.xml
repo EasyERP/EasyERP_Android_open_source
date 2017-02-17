@@ -146,4 +146,7 @@
     <string name="menu_filter_sales_person">Sales Person</string>
     <string name="menu_filter_project_name">Project Name</string>
     <string name="menu_filter_status">Status</string>
+    <string name="menu_filter_payment_way">Payment way</string>
+    <string name="menu_filter_type">Type</string>
+    <string name="menu_filter_company">Company</string>
 </resources>

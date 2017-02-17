@@ -61,6 +61,6 @@ public class InvoiceRepository extends NetworkRepository implements InvoicesCont
     }
 
     public Observable<ResponseGetFilters> getInvoiceFilters() {
-        return getNetworkObservable(filterService.getLeadFilters("invoice"));
+        return getNetworkObservable(filterService.getFilters("invoice"));
     }
 }

@@ -42,8 +42,6 @@ public class InvoicesFragment extends MasterFlowListSelectableFragment implement
     protected InvoiceRepository invoiceRepository;
     @Bean
     protected InvoicesAdapter invoicesAdapter;
-    @Bean
-    protected SearchAdapter searchAdapter;
 
     protected MenuItem menuFilter;
 
@@ -63,7 +61,6 @@ public class InvoicesFragment extends MasterFlowListSelectableFragment implement
         listRecycler.setAdapter(invoicesAdapter);
         invoicesAdapter.setOnCardClickListener((view, position, viewType) -> presenter.selectItem(invoicesAdapter.getItem(position), position));
 
-        actSearch.setAdapter(searchAdapter);
         actSearch.setOnItemClickListener((adapterView, view, i, l) ->
                 presenter.filterByContactName(searchAdapter.getItem(i))
         );
@@ -215,15 +212,7 @@ public class InvoicesFragment extends MasterFlowListSelectableFragment implement
 
     @Override
     public void showFilterDialog(ArrayList<FilterDH> filterDHs, int requestCode, String filterName) {
-        actSearch.clearFocus();
-        listRecycler.requestFocus();
-        FilterDialogFragment dialogFragment = new FilterDialogFragment();
-        Bundle bundle = new Bundle();
-        bundle.putParcelableArrayList(Constants.KEY_FILTER_LIST, filterDHs);
-        bundle.putString(Constants.KEY_FILTER_NAME, filterName);
-        dialogFragment.setArguments(bundle);
-        dialogFragment.setTargetFragment(this, requestCode);
-        dialogFragment.show(getFragmentManager(), getClass().getName());
+        showDialogFiltering(filterDHs, requestCode, filterName);
     }
 
     @Override
