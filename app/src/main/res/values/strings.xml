@@ -142,4 +142,6 @@
     <string name="invoice_details_subtitle_payments">Payments</string>
     <string name="invoice_details_subtitle_invoice_preview">Invoice Preview</string>
     <string name="demo_mode">Demo mode</string>
+    <string name="error_connection">Connection problems. Make sure your internet connection established</string>
+    <string name="error_unknown">Something going wrong :(</string>
 </resources>

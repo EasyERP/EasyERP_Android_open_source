@@ -4,6 +4,7 @@ import com.thinkmobiles.easyerp.data.model.crm.opportunities.list_item.Opportuni
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectablePresenterHelper;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.OpportunityDH;
+import com.thinkmobiles.easyerp.presentation.managers.ErrorManager;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
 import java.util.ArrayList;
@@ -42,7 +43,7 @@ public class OpportunitiesPresenter extends MasterFlowSelectablePresenterHelper<
                                     totalItems = responseGetOpportunities.total;
                                     saveData(responseGetOpportunities.data, needClear);
                                     if (opportunityItems.isEmpty()) {
-                                        view.displayErrorState(null, ErrorViewHelper.ErrorType.LIST_EMPTY);
+                                        view.displayErrorState(ErrorManager.getErrorType(null));
                                     } else {
                                         view.showProgress(Constants.ProgressType.NONE);
                                         view.displayOpportunities(prepareOpportunitiesDHs(responseGetOpportunities.data, needClear), needClear);
@@ -50,7 +51,7 @@ public class OpportunitiesPresenter extends MasterFlowSelectablePresenterHelper<
                                 },
                                 t -> {
                                     if (opportunityItems.isEmpty()) {
-                                        view.displayErrorState(t.getMessage(), ErrorViewHelper.ErrorType.NETWORK);
+                                        view.displayErrorState(ErrorManager.getErrorType(t));
                                     } else {
                                         view.displayErrorToast(t.getMessage());
                                     }
