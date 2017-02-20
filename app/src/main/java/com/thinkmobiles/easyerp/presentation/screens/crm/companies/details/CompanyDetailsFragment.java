@@ -215,7 +215,7 @@ public class CompanyDetailsFragment extends RefreshFragment implements CompanyDe
     protected void onRefreshData() {
         presenter.refresh();
     }
-    //region Set data
+    //region Set url
 
     @Override
     public void showProgress(Constants.ProgressType type) {

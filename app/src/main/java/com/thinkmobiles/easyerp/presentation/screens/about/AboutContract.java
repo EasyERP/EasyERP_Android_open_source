@@ -13,17 +13,11 @@ import rx.Observable;
 public interface AboutContract {
     interface AboutView extends BaseView<AboutPresenter> {
         void displayWebUrl(String url);
-        void displayTextInfo(String textInfo);
-
-        void restartApp();
-        void showProgress(final String msg);
-        void dismissProgress();
         void showErrorToast(final String msg);
+        void showProgress(boolean isShown);
     }
     interface AboutPresenter extends BasePresenter {
-        void logOut();
     }
     interface AboutModel extends BaseModel {
-        Observable<?> logout();
     }
 }

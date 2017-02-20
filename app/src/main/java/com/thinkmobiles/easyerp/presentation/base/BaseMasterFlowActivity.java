@@ -11,15 +11,11 @@ import android.text.TextUtils;
 import android.view.Menu;
 
 import com.thinkmobiles.easyerp.R;
-import com.thinkmobiles.easyerp.presentation.EasyErpApplication;
 import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowListSelectableFragment;
-import com.thinkmobiles.easyerp.presentation.managers.CookieManager;
-import com.thinkmobiles.easyerp.presentation.screens.about.AboutActivity;
 import com.thinkmobiles.easyerp.presentation.screens.about.AboutActivity_;
 
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterViews;
-import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.InstanceState;
 import org.androidannotations.annotations.OptionsItem;
@@ -165,8 +161,7 @@ public abstract class BaseMasterFlowActivity extends AppCompatActivity {
     @OptionsItem(R.id.menuAboutUs_MB)
     protected void openAboutUsScreen() {
         AboutActivity_.intent(this)
-                .isWebPage(true)
-                .data("http://www.thinkmobiles.com")
+                .url("http://www.thinkmobiles.com")
                 .start();
     }
 

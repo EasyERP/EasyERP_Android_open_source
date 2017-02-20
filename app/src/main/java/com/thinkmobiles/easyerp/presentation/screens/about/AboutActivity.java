@@ -1,19 +1,16 @@
 package com.thinkmobiles.easyerp.presentation.screens.about;
 
-import android.app.ProgressDialog;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.TextView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.domain.UserRepository;
-import com.thinkmobiles.easyerp.presentation.EasyErpApplication;
 import com.thinkmobiles.easyerp.presentation.managers.CookieManager;
 
 import org.androidannotations.annotations.AfterInject;
@@ -36,14 +33,12 @@ public class AboutActivity extends AppCompatActivity implements AboutContract.Ab
     private AboutContract.AboutPresenter presenter;
 
     @Extra
-    protected String data;
-    @Extra
-    protected boolean isWebPage;
+    protected String url;
 
     @ViewById
-    protected WebView wvAbout_AA;
+    protected ProgressBar pbProgress_AA;
     @ViewById
-    protected TextView tvInfo_AA;
+    protected WebView wvAbout_AA;
     @ViewById
     protected Toolbar toolbar;
     @ViewById
@@ -61,8 +56,6 @@ public class AboutActivity extends AppCompatActivity implements AboutContract.Ab
     @Bean
     protected CookieManager cookieManager;
 
-    private ProgressDialog progressDialog;
-
     @AfterViews
     protected void initUI() {
         initToolbar();
@@ -72,41 +65,19 @@ public class AboutActivity extends AppCompatActivity implements AboutContract.Ab
                 view.loadUrl(url);
                 return true;
             }
+
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                super.onPageFinished(view, url);
+                showProgress(false);
+            }
         });
         presenter.subscribe();
     }
 
     @Override
     public void displayWebUrl(String url) {
-        tvInfo_AA.setVisibility(View.GONE);
         wvAbout_AA.loadUrl(url);
-    }
-
-    @Override
-    public void displayTextInfo(String textInfo) {
-        wvAbout_AA.setVisibility(View.GONE);
-        tvInfo_AA.setText(textInfo);
-    }
-
-    @Override
-    public void restartApp() {
-        EasyErpApplication.getInstance().restartApp();
-    }
-
-    @Override
-    public void showProgress(String msg) {
-        progressDialog = new ProgressDialog(this, R.style.DefaultTheme_NoTitleDialogWithAnimation);
-        progressDialog.setCancelable(false);
-        progressDialog.setMessage(msg);
-        progressDialog.show();
-    }
-
-    @Override
-    public void dismissProgress() {
-        if (progressDialog != null) {
-            progressDialog.dismiss();
-            progressDialog = null;
-        }
     }
 
     @Override
@@ -114,10 +85,15 @@ public class AboutActivity extends AppCompatActivity implements AboutContract.Ab
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
     }
 
+    @Override
+    public void showProgress(boolean isShown) {
+        pbProgress_AA.setVisibility(isShown ? View.VISIBLE : View.GONE);
+    }
+
     @AfterInject
     @Override
     public void initPresenter() {
-        new AboutPresenter(this, userRepository, cookieManager, data, isWebPage);
+        new AboutPresenter(this, userRepository, cookieManager, url);
     }
 
     @Override
@@ -128,24 +104,6 @@ public class AboutActivity extends AppCompatActivity implements AboutContract.Ab
     @OptionsItem(android.R.id.home)
     protected void clickBack() {
         onBackPressed();
-    }
-
-    @OptionsItem(R.id.menuLogout_ML)
-    protected void logOut() {
-        presenter.logOut();
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        if (isTablet && !isPortrait) {
-            toolbarDetail.getMenu().clear();
-            toolbarDetail.inflateMenu(R.menu.menu_logout);
-            toolbarDetail.setOnMenuItemClickListener(this::onOptionsItemSelected);
-            return true;
-        } else {
-            getMenuInflater().inflate(R.menu.menu_logout, menu);
-            return true;
-        }
     }
 
     @Override

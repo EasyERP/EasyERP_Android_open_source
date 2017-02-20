@@ -1299,7 +1299,7 @@ public class SlidingPaneMenuDragHelper {
      * <p>This depends on internal state populated by
      * {@link #shouldInterceptTouchEvent(android.view.MotionEvent)} or
      * {@link #processTouchEvent(android.view.MotionEvent)}. You should only rely on
-     * the results of this method after all currently available touch data
+     * the results of this method after all currently available touch url
      * has been provided to one of these two methods.</p>
      *
      * @param directions Combination of direction flags, see {@link #DIRECTION_HORIZONTAL},
@@ -1323,7 +1323,7 @@ public class SlidingPaneMenuDragHelper {
      * <p>This depends on internal state populated by
      * {@link #shouldInterceptTouchEvent(android.view.MotionEvent)} or
      * {@link #processTouchEvent(android.view.MotionEvent)}. You should only rely on
-     * the results of this method after all currently available touch data
+     * the results of this method after all currently available touch url
      * has been provided to one of these two methods.</p>
      *
      * @param directions Combination of direction flags, see {@link #DIRECTION_HORIZONTAL},
