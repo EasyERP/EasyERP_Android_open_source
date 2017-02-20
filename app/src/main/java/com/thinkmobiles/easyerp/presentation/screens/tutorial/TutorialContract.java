@@ -9,9 +9,11 @@ import com.thinkmobiles.easyerp.presentation.base.BaseView;
 
 public interface TutorialContract {
     interface TutorialView extends BaseView<TutorialPresenter> {
-
+        void startLoginScreen();
+        void startDemoMode();
     }
     interface TutorialPresenter extends BasePresenter {
-
+        void login();
+        void demo();
     }
 }

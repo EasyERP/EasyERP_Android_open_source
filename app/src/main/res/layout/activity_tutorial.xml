@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent">
@@ -18,19 +19,21 @@
 
         <TextView
             style="@style/WhiteButtonStyle"
+            android:background="?android:attr/selectableItemBackground"
             android:id="@+id/btnLogin_AT"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/login"/>
 
-        <View
+        <com.thinkmobiles.easyerp.presentation.custom.views.circle_page_indicator.CirclePageIndicator
+            android:id="@+id/cpiTutorial_AT"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:background="@color/color_chips_green"
             android:layout_weight="1"/>
 
         <TextView
             style="@style/WhiteButtonStyle"
+            android:background="?android:attr/selectableItemBackground"
             android:id="@+id/btnDemo_AT"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
