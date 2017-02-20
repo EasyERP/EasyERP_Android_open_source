@@ -32,7 +32,7 @@
             android:name=".presentation.screens.home.HomeActivity_"
             android:screenOrientation="sensor"
             android:windowSoftInputMode="stateHidden"/>
-        <activity android:name=".presentation.screens.about.AboutActivity_"
+        <activity android:name=".presentation.screens.about.WebActivity_"
                   android:screenOrientation="sensor"
                   android:configChanges="orientation|screenSize"
                   android:windowSoftInputMode="stateHidden"/>

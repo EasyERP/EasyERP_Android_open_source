@@ -4,7 +4,6 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -21,31 +20,30 @@ import org.androidannotations.annotations.Extra;
 import org.androidannotations.annotations.OptionsItem;
 import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.res.BooleanRes;
-import org.androidannotations.annotations.res.StringRes;
 
 /**
  * Created by Lynx on 2/17/2017.
  */
 
 @EActivity(R.layout.activity_about)
-public class AboutActivity extends AppCompatActivity implements AboutContract.AboutView {
+public class WebActivity extends AppCompatActivity implements WebContract.WebView {
 
-    private AboutContract.AboutPresenter presenter;
+    private WebContract.WebPresenter presenter;
 
+    @Extra
+    protected String title;
     @Extra
     protected String url;
 
     @ViewById
     protected ProgressBar pbProgress_AA;
     @ViewById
-    protected WebView wvAbout_AA;
+    protected android.webkit.WebView wvAbout_AA;
     @ViewById
     protected Toolbar toolbar;
     @ViewById
     protected Toolbar toolbarDetail;
 
-    @StringRes(R.string.about)
-    protected String about;
     @BooleanRes
     public boolean isTablet;
     @BooleanRes
@@ -61,13 +59,13 @@ public class AboutActivity extends AppCompatActivity implements AboutContract.Ab
         initToolbar();
         wvAbout_AA.setWebViewClient(new WebViewClient() {
             @Override
-            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+            public boolean shouldOverrideUrlLoading(android.webkit.WebView view, String url) {
                 view.loadUrl(url);
                 return true;
             }
 
             @Override
-            public void onPageFinished(WebView view, String url) {
+            public void onPageFinished(android.webkit.WebView view, String url) {
                 super.onPageFinished(view, url);
                 showProgress(false);
             }
@@ -93,11 +91,11 @@ public class AboutActivity extends AppCompatActivity implements AboutContract.Ab
     @AfterInject
     @Override
     public void initPresenter() {
-        new AboutPresenter(this, userRepository, cookieManager, url);
+        new WebPresenter(this, userRepository, cookieManager, url);
     }
 
     @Override
-    public void setPresenter(AboutContract.AboutPresenter presenter) {
+    public void setPresenter(WebContract.WebPresenter presenter) {
         this.presenter = presenter;
     }
 
@@ -122,6 +120,6 @@ public class AboutActivity extends AppCompatActivity implements AboutContract.Ab
             actionBar.setHomeButtonEnabled(true);
             actionBar.setDisplayShowTitleEnabled(true);
         }
-        setTitle(about);
+        setTitle(title);
     }
 }

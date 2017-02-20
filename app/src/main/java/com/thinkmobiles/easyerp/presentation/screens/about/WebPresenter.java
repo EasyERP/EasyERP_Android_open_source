@@ -8,15 +8,15 @@ import rx.subscriptions.CompositeSubscription;
  * Created by Lynx on 2/17/2017.
  */
 
-public class AboutPresenter implements AboutContract.AboutPresenter {
+public class WebPresenter implements WebContract.WebPresenter {
 
-    private AboutContract.AboutView view;
-    private final AboutContract.AboutModel model;
+    private WebContract.WebView view;
+    private final WebContract.WebModel model;
     private CompositeSubscription compositeSubscription;
 
     private final String url;
 
-    public AboutPresenter(AboutContract.AboutView view, AboutContract.AboutModel model, CookieManager cookieManager, String url) {
+    public WebPresenter(WebContract.WebView view, WebContract.WebModel model, CookieManager cookieManager, String url) {
         this.view = view;
         this.model = model;
         this.url = url;
