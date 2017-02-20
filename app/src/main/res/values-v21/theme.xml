@@ -8,4 +8,10 @@
         <item name="android:navigationBarColor">@color/colorPrimaryDark</item>
         <item name="android:windowTranslucentStatus">true</item>
     </style>
+
+    <style name="LoginTheme" parent="AppTheme">
+        <item name="android:windowBackground">@drawable/bg_login</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+    </style>
+
 </resources>

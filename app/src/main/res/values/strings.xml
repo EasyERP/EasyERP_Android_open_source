@@ -141,5 +141,8 @@
     <string name="order_details_title_order_preview">Order Preview</string>
     <string name="invoice_details_subtitle_payments">Payments</string>
     <string name="invoice_details_subtitle_invoice_preview">Invoice Preview</string>
-    <string name="demo_mode">Demo mode</string>
+    <string name="demo_mode">Demo</string>
+
+    <string name="terms_and_conditions_privacy_policy">By signing up you agree Terms &amp; conditions and Privacy policy</string>
+    <string name="forgot_password">Forgot Password?</string>
 </resources>

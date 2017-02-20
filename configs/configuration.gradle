@@ -35,6 +35,7 @@ allprojects {
         appDependencies = [
                 androidSupportDesign:       "com.android.support:design:${androidSupportVersion}",
                 androidSupportCardView:     "com.android.support:cardview-v7:${androidSupportVersion}",
+                androidSupportPercent:      "com.android.support:percent:${androidSupportVersion}",
                 androidAnnotations:         "org.androidannotations:androidannotations:${androidAnnotationVersion}",
                 androidAnnotationsApi:      "org.androidannotations:androidannotations-api:${androidAnnotationVersion}",
                 recyclerAdaptersMichenko:   "com.github.alex-michenko:recycleradapters:${recyclerAdaptersVersion}",

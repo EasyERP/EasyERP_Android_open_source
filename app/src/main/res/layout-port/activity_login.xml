@@ -8,9 +8,9 @@
     android:background="@drawable/bg_login">
 
     <FrameLayout
-        android:layout_height="match_parent"
+        android:layout_width="match_parent"
         android:layout_alignParentStart="true"
-        app:layout_widthPercent="50%">
+        app:layout_heightPercent="50%">
 
         <ImageView
             android:id="@+id/vBgTriangle_AL"
@@ -41,10 +41,9 @@
 
     <FrameLayout
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_centerVertical="true"
-        app:layout_marginEndPercent="14%"
-        app:layout_widthPercent="32%">
+        android:layout_centerHorizontal="true"
+        app:layout_marginTopPercent="50%"
+        app:layout_widthPercent="55%">
 
         <include layout="@layout/view_include_frame_login" />
 
