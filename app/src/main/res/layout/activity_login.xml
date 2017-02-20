@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/rvContainer_AL"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/bg_login_screen">
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:id="@+id/rvContainer_AL"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/bg_login_screen">
 
     <ImageView
         android:layout_width="match_parent"
@@ -18,7 +19,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        app:srcCompat="@drawable/ic_erp" />
+        app:srcCompat="@drawable/ic_erp"
+        tools:visibility="gone"/>
 
     <LinearLayout
         android:id="@+id/llInput_AL"
@@ -28,8 +30,11 @@
         android:layout_gravity="center"
         android:minWidth="@dimen/login_min_width_form_credentials"
         android:orientation="vertical"
-        android:paddingTop="150dp"
-        android:visibility="invisible">
+        android:paddingTop="170dp"
+        android:visibility="invisible"
+        android:descendantFocusability="beforeDescendants"
+        android:focusableInTouchMode="true"
+        tools:visibility="visible">
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/tilLogin_AL"
@@ -82,6 +87,13 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/default_padding"
             android:text="@string/login" />
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/btnDemoMode_AL"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/demo_mode"
+            android:layout_marginTop="@dimen/default_padding_half"/>
 
     </LinearLayout>
 

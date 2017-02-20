@@ -25,9 +25,11 @@ allprojects {
 
         // Development
         stethoVersion = '1.4.2'
+        crashlyticVersion = '2.6.6@aar'
 
         devDependencies = [
-                stetho:                     "com.facebook.stetho:stetho-okhttp3:${stethoVersion}"
+                stetho:                     "com.facebook.stetho:stetho-okhttp3:${stethoVersion}",
+                crashlytic:                 "com.crashlytics.sdk.android:crashlytics:${crashlyticVersion}"
         ]
 
         appDependencies = [
@@ -49,6 +51,7 @@ allprojects {
 
     repositories {
         maven { url "https://jitpack.io" }
+        maven { url 'https://maven.fabric.io/public' }
         jcenter()
     }
 }

@@ -17,8 +17,6 @@ import com.thinkmobiles.easyerp.presentation.managers.TagHelper;
 import com.thinkmobiles.easyerp.presentation.screens.crm.dashboard.detail.charts.DollarFormatter;
 import com.thinkmobiles.easyerp.presentation.utils.StringUtil;
 
-import java.util.Locale;
-
 /**
  * Created by Lynx on 1/30/2017.
  */
@@ -56,7 +54,7 @@ public final class OpportunityVH extends MasterFlowSelectableVHHelper<Opportunit
         if(data.getOpportunityListItem().workflow != null && !TextUtils.isEmpty(data.getOpportunityListItem().workflow.name)) {
             tvStage_VLIO.setText(data.getOpportunityListItem().workflow.name);
             tvStage_VLIO.setBackground(new RoundRectDrawable(ContextCompat.getColor(itemView.getContext(),
-                    TagHelper.getOpportunityStatusColorRes(item.workflow.status))));
+                    TagHelper.getStatusColorRes(item.workflow.status))));
         }
         else {
             tvStage_VLIO.setBackgroundResource(0);

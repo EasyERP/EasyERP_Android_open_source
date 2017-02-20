@@ -15,7 +15,9 @@ import rx.Observable;
 
 public interface LoginContract {
     interface LoginView extends BaseView<LoginPresenter> {
-        void displayError(String error);
+        void showProgress(final String msg);
+        void dismissProgress();
+        void showErrorToast(final String msg);
 
         String getLogin();
         String getPassword();
@@ -29,8 +31,8 @@ public interface LoginContract {
     }
     interface LoginPresenter extends BasePresenter {
         void login();
+        void launchDemoMode();
         void getCurrentUser();
-
         void clearCookies();
     }
     interface LoginModel extends BaseModel {

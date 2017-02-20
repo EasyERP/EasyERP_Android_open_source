@@ -93,8 +93,12 @@ public final class DonutChartViewImpl implements IChartView<PieData> {
             }
         });
 
-        pieChart.animateY(700, Easing.EasingOption.EaseInOutQuad);
+        final FrameLayout.LayoutParams lp = new FrameLayout.LayoutParams(parent.getLayoutParams());
+        final int margin = (int) parent.getResources().getDimension(R.dimen.default_padding_half);
+        lp.setMargins(margin, margin, margin, margin);
 
+        pieChart.setLayoutParams(lp);
+        pieChart.animateY(700, Easing.EasingOption.EaseInOutQuad);
         parent.addView(pieChart);
     }
 

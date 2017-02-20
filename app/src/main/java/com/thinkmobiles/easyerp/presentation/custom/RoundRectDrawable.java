@@ -45,5 +45,4 @@ public class RoundRectDrawable extends Drawable {
     public int getOpacity() {
         return PixelFormat.TRANSPARENT;
     }
-
 }

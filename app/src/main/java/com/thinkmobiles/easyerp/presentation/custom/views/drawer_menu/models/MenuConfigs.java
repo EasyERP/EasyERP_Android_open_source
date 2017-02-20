@@ -66,7 +66,7 @@ public abstract class MenuConfigs {
     private static List<MenuItem> getCRMModule() {
         final List<MenuItem> menuItems = new ArrayList<>();
         menuItems.add(new MenuItem(0, R.drawable.ic_menu_item_placeholder, "Dashboard", true));
-        menuItems.add(new MenuItem(1, R.drawable.ic_menu_item_placeholder, "Custom Dashboard", false));
+//        menuItems.add(new MenuItem(1, R.drawable.ic_menu_item_placeholder, "Custom Dashboard", false));
         menuItems.add(new MenuItem(2, R.drawable.ic_menu_item_placeholder, "Leads", true));
         menuItems.add(new MenuItem(3, R.drawable.ic_menu_item_placeholder, "Opportunities", true));
         menuItems.add(new MenuItem(4, R.drawable.ic_menu_item_placeholder, "Persons", true));
@@ -183,7 +183,14 @@ public abstract class MenuConfigs {
         return null;
     }
 
-    public static String getLabel(final int moduleId, final int itemId) {
+    public static String getModuleLabel(final int moduleId) {
+        for (MenuItem item: menuModules)
+            if (item.getId() == moduleId)
+                return item.getLabel();
+        return null;
+    }
+
+    public static String getItemLabel(final int moduleId, final int itemId) {
         for (MenuItem item: menuModuleItems.get(moduleId))
             if (item.getId() == itemId)
                 return item.getLabel();

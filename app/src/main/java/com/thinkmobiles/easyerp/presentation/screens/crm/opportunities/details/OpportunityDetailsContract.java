@@ -1,14 +1,13 @@
 package com.thinkmobiles.easyerp.presentation.screens.crm.opportunities.details;
 
-import android.text.SpannableStringBuilder;
-
 import com.thinkmobiles.easyerp.data.model.crm.leads.TagItem;
 import com.thinkmobiles.easyerp.data.model.crm.opportunities.detail.ResponseGetOpportunityDetails;
 import com.thinkmobiles.easyerp.presentation.base.BaseModel;
 import com.thinkmobiles.easyerp.presentation.base.BasePresenter;
 import com.thinkmobiles.easyerp.presentation.base.BaseView;
-import com.thinkmobiles.easyerp.presentation.holders.data.crm.AttachmentDH;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
+import com.thinkmobiles.easyerp.presentation.holders.data.crm.AttachmentDH;
+import com.thinkmobiles.easyerp.presentation.holders.data.crm.ContactDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.HistoryDH;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
@@ -36,10 +35,7 @@ public interface OpportunityDetailsContract {
         void displayRevenue(String revenue);
         void displayCloseDate(String closeDate);
         void displayAssignedTo(String assignedTo);
-
-        void displayContactImage(String contactImageBase64);
-        void displayContactFullName(String contactFullname);
-        void displayContactEmail(String contactEmail);
+        void displayContacts(ArrayList<ContactDH> contactDHs);
 
         void displayCompanyImage(String companyImageBase64);
         void displayCompanyUrl(String companyUrl);

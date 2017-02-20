@@ -27,6 +27,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/text_grey_hint_color"
+            android:textSize="@dimen/text_list_item_medium_16"
             tools:text="01, Jan 2017 - 31, Jan 2017" />
 
     </LinearLayout>
@@ -36,6 +37,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/llHeaderChartsDetail_FDCD"
-        android:padding="@dimen/default_padding" />
+        android:background="@color/color_bg_chart"
+        android:padding="@dimen/default_padding_half" />
 
 </RelativeLayout>

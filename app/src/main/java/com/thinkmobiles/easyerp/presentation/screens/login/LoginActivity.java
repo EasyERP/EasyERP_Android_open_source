@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -71,6 +72,8 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
     protected EditText etDbId_AL;
     @ViewById
     protected Button btnLogin_AL;
+    @ViewById
+    protected Button btnDemoMode_AL;
 
     @StringRes(R.string.err_login_required)
     protected String errEmptyLogin;
@@ -86,6 +89,8 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
     @Bean
     protected CookieManager cookieManager;
 
+    private ProgressDialog progressDialog;
+
     @AfterInject
     @Override
     public void initPresenter() {
@@ -97,7 +102,6 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
 
     @AfterViews
     protected void initUI() {
-        if(!BuildConfig.PRODUCTION) putDefaultDebugCredentials();
         if(cookieManager.isCookieExists()) presenter.getCurrentUser();
 
         ivAppIcon_AL.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
@@ -111,19 +115,34 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
         RxView.clicks(btnLogin_AL)
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
                 .subscribe(aVoid -> presenter.login());
+        RxView.clicks(btnDemoMode_AL)
+                .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
+                .subscribe(aVoid -> presenter.launchDemoMode());
     }
 
-    private void putDefaultDebugCredentials() {
-        etLogin_AL.setText("testAdmin");
-        etPassword_AL.setText("111111");
-        etDbId_AL.setText("lilyadb");
+
+
+    @Override
+    public void showProgress(String msg) {
+        progressDialog = new ProgressDialog(this, R.style.DefaultTheme_NoTitleDialogWithAnimation);
+        progressDialog.setCancelable(false);
+        progressDialog.setMessage(msg);
+        progressDialog.show();
     }
 
     @Override
-    public void displayError(String error) {
+    public void dismissProgress() {
+        if (progressDialog != null) {
+            progressDialog.dismiss();
+            progressDialog = null;
+        }
+    }
+
+    @Override
+    public void showErrorToast(String msg) {
         if (llInput_AL.getVisibility() != View.VISIBLE)
             animatorSet2.start();
-        Toast.makeText(this, error, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -251,5 +270,6 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
         super.onDestroy();
         if (animatorSet1 != null) animatorSet1.cancel();
         if (animatorSet2 != null) animatorSet2.cancel();
+        presenter.unsubscribe();
     }
 }

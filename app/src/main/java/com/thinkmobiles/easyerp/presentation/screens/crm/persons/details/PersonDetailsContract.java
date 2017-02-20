@@ -7,7 +7,7 @@ import com.thinkmobiles.easyerp.presentation.base.BaseView;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.AttachmentDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.HistoryDH;
-import com.thinkmobiles.easyerp.presentation.holders.data.crm.OpportunityAndLeadDH;
+import com.thinkmobiles.easyerp.presentation.holders.data.crm.LeadAndOpportunityDH;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
 import java.util.ArrayList;
@@ -81,7 +81,7 @@ public interface PersonDetailsContract {
         void displayCompanyPhone(String companyPhone);
         void displayCompanyEmail(String companyEmail);
 
-        void displayLeadAndOpportunity(ArrayList<OpportunityAndLeadDH> opportunityAndLeadDHs);
+        void displayLeadAndOpportunity(ArrayList<LeadAndOpportunityDH> leadAndOpportunityDHs);
         void displayAttachments(ArrayList<AttachmentDH> attachmentDHs);
         void displayHistory(ArrayList<HistoryDH> historyDHs);
         void startUrlIntent(String url);

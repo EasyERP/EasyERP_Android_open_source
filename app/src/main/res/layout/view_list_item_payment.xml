@@ -20,16 +20,16 @@
             android:orientation="horizontal">
 
             <TextView
-                style="@style/TextListTitleStyle"
                 android:id="@+id/tvSourceDocument_VLIP"
+                style="@style/TextListTitleStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 tools:text="Web development" />
 
             <TextView
-                style="@style/SmallChipsStyle"
                 android:id="@+id/tvPaymentType_VLIP"
+                style="@style/SmallChipsStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/default_padding_middle"
@@ -86,6 +86,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/default_padding_middle"
             android:layout_weight="1"
+            android:ellipsize="end"
             android:maxLines="1"
             tools:text="Payment Date: 02 Feb, 2017" />
 

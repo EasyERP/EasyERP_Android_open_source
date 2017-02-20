@@ -2,15 +2,13 @@ package com.thinkmobiles.easyerp.presentation.screens.crm.persons.details;
 
 import android.text.TextUtils;
 
-import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.data.model.crm.leads.detail.AttachmentItem;
 import com.thinkmobiles.easyerp.data.model.crm.persons.details.OpportunityItem;
 import com.thinkmobiles.easyerp.data.model.crm.persons.details.ResponseGetPersonDetails;
-import com.thinkmobiles.easyerp.presentation.EasyErpApplication;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.AttachmentDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.HistoryDH;
-import com.thinkmobiles.easyerp.presentation.holders.data.crm.OpportunityAndLeadDH;
+import com.thinkmobiles.easyerp.presentation.holders.data.crm.LeadAndOpportunityDH;
 import com.thinkmobiles.easyerp.presentation.managers.DateManager;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
@@ -199,9 +197,9 @@ public class PersonDetailsPresenter implements PersonDetailsContract.PersonDetai
 
     private void setLeadsAndOpportunities(ResponseGetPersonDetails data) {
         if(data.opportunities != null && !data.opportunities.isEmpty()) {
-            ArrayList<OpportunityAndLeadDH> result = new ArrayList<>();
+            ArrayList<LeadAndOpportunityDH> result = new ArrayList<>();
             for(OpportunityItem opportunityItem : data.opportunities) {
-                result.add(new OpportunityAndLeadDH(opportunityItem));
+                result.add(new LeadAndOpportunityDH(opportunityItem));
             }
             view.displayLeadAndOpportunity(result);
         }

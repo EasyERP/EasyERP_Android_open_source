@@ -8,11 +8,11 @@ import com.thinkmobiles.easyerp.presentation.holders.view.crm.ContactVH;
 import org.androidannotations.annotations.EBean;
 
 /**
- * Created by Lynx on 2/3/2017.
+ * Created by Lynx on 2/13/2017.
  */
 
 @EBean
-public class ContactsAdapter extends SimpleRecyclerAdapter<ContactDH, ContactVH> {
+public class ContactAdapter extends SimpleRecyclerAdapter<ContactDH, ContactVH> {
     @Override
     protected int getItemLayout() {
         return R.layout.view_list_item_contact;

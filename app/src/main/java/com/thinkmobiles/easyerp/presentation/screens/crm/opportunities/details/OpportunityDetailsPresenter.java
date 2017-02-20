@@ -6,10 +6,10 @@ import com.thinkmobiles.easyerp.data.model.crm.leads.detail.AttachmentItem;
 import com.thinkmobiles.easyerp.data.model.crm.opportunities.detail.ResponseGetOpportunityDetails;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.AttachmentDH;
+import com.thinkmobiles.easyerp.presentation.holders.data.crm.ContactDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.HistoryDH;
 import com.thinkmobiles.easyerp.presentation.managers.DateManager;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
-import com.thinkmobiles.easyerp.presentation.utils.StringUtil;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -53,7 +53,7 @@ public class OpportunityDetailsPresenter implements OpportunityDetailsContract.O
                     setData(currentOpportunity);
                     view.showProgress(Constants.ProgressType.NONE);
                 }, throwable -> {
-                    if(currentOpportunity != null )
+                    if(currentOpportunity != null)
                         view.displayErrorToast(throwable.getMessage());
                     else
                         view.displayErrorState(throwable.getMessage(), ErrorViewHelper.ErrorType.NETWORK);
@@ -68,7 +68,7 @@ public class OpportunityDetailsPresenter implements OpportunityDetailsContract.O
 
     @Override
     public void subscribe() {
-        if (currentOpportunity == null) {
+        if(currentOpportunity == null) {
             view.showProgress(Constants.ProgressType.CENTER);
             refresh();
         } else {
@@ -83,7 +83,8 @@ public class OpportunityDetailsPresenter implements OpportunityDetailsContract.O
 
     private void setData(ResponseGetOpportunityDetails data) {
         if(!TextUtils.isEmpty(data.name)) view.displayOpportunityName(data.name);
-        if(data.workflow != null && !TextUtils.isEmpty(data.workflow.name)) view.displayStatus(data.workflow.name);
+        if(data.workflow != null && !TextUtils.isEmpty(data.workflow.name))
+            view.displayStatus(data.workflow.name);
         if(data.expectedRevenue != null) {
             view.displayRevenue(String.format(Locale.US, "%d %s",
                     data.expectedRevenue.value,
@@ -93,13 +94,10 @@ public class OpportunityDetailsPresenter implements OpportunityDetailsContract.O
             view.displayCloseDate(DateManager.convert(data.expectedClosing)
                     .setDstPattern(DateManager.PATTERN_DATE_SIMPLE_PREVIEW)
                     .toString());
-        if(data.salesPerson != null && !TextUtils.isEmpty(data.salesPerson.fullName)) view.displayAssignedTo(data.salesPerson.fullName);
+        if(data.salesPerson != null && !TextUtils.isEmpty(data.salesPerson.fullName))
+            view.displayAssignedTo(data.salesPerson.fullName);
         view.showContact(data.customer != null && !TextUtils.isEmpty(data.customer.fullName));
-        if(data.customer != null) {
-            if(!TextUtils.isEmpty(data.customer.imageSrc)) view.displayContactImage(data.customer.imageSrc);
-            if(!TextUtils.isEmpty(data.customer.fullName)) view.displayContactFullName(data.customer.fullName);
-            if(!TextUtils.isEmpty(data.customer.email)) view.displayContactEmail(data.customer.email);
-        }
+        setContacts(data);
         view.showCompany(data.company != null && !TextUtils.isEmpty(data.company.fullName));
         displayCompany(data);
         displayTags(data);
@@ -113,7 +111,7 @@ public class OpportunityDetailsPresenter implements OpportunityDetailsContract.O
             view.displayCompanyName(currentOpportunity.tempCompanyField);
             isCompanyInfoAvailable = true;
         }
-        if (currentOpportunity.company != null) {
+        if(currentOpportunity.company != null) {
             if(currentOpportunity.company.address != null) {
                 if(!TextUtils.isEmpty(currentOpportunity.company.address.street)) {
                     view.displayCompanyStreet(currentOpportunity.company.address.street);
@@ -156,9 +154,21 @@ public class OpportunityDetailsPresenter implements OpportunityDetailsContract.O
                     isCompanyInfoAvailable = true;
                 }
             }
-            if(!TextUtils.isEmpty(currentOpportunity.company.email)) view.displayCompanyEmail(currentOpportunity.company.email);
+            if(!TextUtils.isEmpty(currentOpportunity.company.email))
+                view.displayCompanyEmail(currentOpportunity.company.email);
         }
         view.showCompany(isCompanyInfoAvailable);
+    }
+
+    private void setContacts(ResponseGetOpportunityDetails currentOpportunity) {
+        boolean isContactsAvailable = false;
+        if(currentOpportunity.customer != null) {
+            ArrayList<ContactDH> result = new ArrayList<>();
+            result.add(new ContactDH(currentOpportunity.customer));
+            view.displayContacts(result);
+            isContactsAvailable = true;
+        }
+        view.showContact(isContactsAvailable);
     }
 
     private void displayTags(ResponseGetOpportunityDetails currentOpportunity) {
@@ -168,9 +178,10 @@ public class OpportunityDetailsPresenter implements OpportunityDetailsContract.O
     }
 
     private void displayAttachments(ResponseGetOpportunityDetails currentOpportunity) {
-        if (currentOpportunity.attachments != null && !currentOpportunity.attachments.isEmpty()) {
+        if(currentOpportunity.attachments != null && !currentOpportunity.attachments.isEmpty()) {
             ArrayList<AttachmentDH> result = new ArrayList<>();
-            for(AttachmentItem item : currentOpportunity.attachments) result.add(new AttachmentDH(item));
+            for (AttachmentItem item : currentOpportunity.attachments)
+                result.add(new AttachmentDH(item));
             view.displayAttachments(result);
         } else
             view.showAttachments(false);

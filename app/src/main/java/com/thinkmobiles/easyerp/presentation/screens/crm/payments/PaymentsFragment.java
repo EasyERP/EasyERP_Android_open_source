@@ -15,6 +15,7 @@ import com.thinkmobiles.easyerp.presentation.adapters.crm.SuggestionAdapter;
 import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowListSelectableFragment;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.FilterDH;
+import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowListSelectableFragment;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.PaymentDH;
 import com.thinkmobiles.easyerp.presentation.screens.crm.payments.details.PaymentDetailsFragment_;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
@@ -132,7 +133,6 @@ public class PaymentsFragment extends MasterFlowListSelectableFragment implement
     public void clearSelectedItem() {
         presenter.clearSelectedInfo();
     }
-
 
     @Override
     public int optionsMenuRes() {

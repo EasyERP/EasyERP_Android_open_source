@@ -5,9 +5,10 @@ import com.thinkmobiles.easyerp.presentation.base.BaseModel;
 import com.thinkmobiles.easyerp.presentation.base.BasePresenter;
 import com.thinkmobiles.easyerp.presentation.base.BaseView;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
+import com.thinkmobiles.easyerp.presentation.holders.data.crm.AttachmentDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.ContactDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.HistoryDH;
-import com.thinkmobiles.easyerp.presentation.holders.data.crm.OpportunityAndLeadDH;
+import com.thinkmobiles.easyerp.presentation.holders.data.crm.LeadAndOpportunityDH;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
 import java.util.ArrayList;
@@ -25,14 +26,21 @@ public interface CompanyDetailsContract {
         void displayErrorState(final String msg, final ErrorViewHelper.ErrorType errorType);
         void displayErrorToast(final String msg);
 
+        void showBillingAddress(boolean isShown);
+        void showShippingAddress(boolean isShown);
+        void showSalesAndPurchases(boolean isShown);
+        void showContact(boolean isShown);
+        void showLeadsAndOpportunities(boolean isShown);
+        void showAttachments(boolean isShown);
+
         void displayCompanyImage(String base64Image);
         void displayCompanyName(String companyName);
         void displayCompanyUrl(String companyUrl);
+        void displayEmail(String email);
         void enableFacebookButton(String url);
         void enableLinkedInButton(String url);
         void enableSkypeButton(String url);
 
-        void displayEmail(String email);
         void displayAssignedTo(String assignedTo);
         void displayLinkedIn(String linkedIn);
         void displayFacebook(String facebook);
@@ -61,13 +69,15 @@ public interface CompanyDetailsContract {
         void displaySalesLanguage(String salesLanguage);
 
         void displayContacts(ArrayList<ContactDH> contactDHs);
-        void displayLeadAndOpportunity(ArrayList<OpportunityAndLeadDH> opportunityAndLeadDHs);
-        void displayAttachments(String attachments);
+        void displayLeadAndOpportunity(ArrayList<LeadAndOpportunityDH> leadAndOpportunityDHs);
+        void displayAttachments(ArrayList<AttachmentDH> attachmentDHs);
         void displayHistory(ArrayList<HistoryDH> historyDHs);
+        void startUrlIntent(String url);
     }
     interface CompanyDetailsPresenter extends BasePresenter {
         void changeNotesVisibility();
         void refresh();
+        void startAttachment(int pos);
     }
     interface CompanyDetailsModel extends BaseModel {
         Observable<ResponseGetCompanyDetails> getCompanyDetails(String companyID);

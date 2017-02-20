@@ -12,7 +12,6 @@ import android.view.Menu;
 
 import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.presentation.EasyErpApplication;
-import com.thinkmobiles.easyerp.presentation.base.rules.ListRefreshFragment;
 import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowListSelectableFragment;
 import com.thinkmobiles.easyerp.presentation.managers.CookieManager;
 
@@ -30,11 +29,7 @@ import org.androidannotations.annotations.res.StringRes;
  * @author michael.soyma@thinkmobiles.com (Created on 1/17/2017.)
  */
 @EActivity
-public abstract class
-BaseMasterFlowActivity extends AppCompatActivity {
-
-    @Bean
-    protected CookieManager cookieManager;
+public abstract class BaseMasterFlowActivity extends AppCompatActivity {
 
     @ViewById
     protected Toolbar toolbar;
@@ -117,12 +112,6 @@ BaseMasterFlowActivity extends AppCompatActivity {
         }
     }
 
-    @OptionsItem(R.id.menuLogout_MB)
-    protected void logout() {
-        cookieManager.clearCookie();
-        EasyErpApplication.getInstance().restartApp();
-    }
-
     public void replaceFragmentContent(final BaseFragment fragment, final String title) {
         setToolbarTitle(title);
         replaceFragmentContentDetail(null);
@@ -176,6 +165,8 @@ BaseMasterFlowActivity extends AppCompatActivity {
         onHomeMenuSelect(getFragmentManager().getBackStackEntryCount() == 0 || (isTablet && !isPortrait));
     }
 
+    @OptionsItem(R.id.menuLogout_MB)
+    protected abstract void logOut();
     protected abstract void onHomeMenuSelect(boolean isHamburger);
     protected abstract @IdRes int contentIdLayout();
     protected abstract @IdRes int contentDetailIdLayout();

@@ -3,6 +3,7 @@ package com.thinkmobiles.easyerp.presentation;
 import android.app.Application;
 import android.content.Intent;
 
+import com.crashlytics.android.Crashlytics;
 import com.facebook.stetho.Stetho;
 import com.thinkmobiles.easyerp.BuildConfig;
 import com.thinkmobiles.easyerp.data.api.Rest;
@@ -10,6 +11,8 @@ import com.thinkmobiles.easyerp.presentation.managers.CookieManager;
 
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EApplication;
+
+import io.fabric.sdk.android.Fabric;
 
 /**
  * Created by Lynx on 1/13/2017.
@@ -27,7 +30,9 @@ public class EasyErpApplication extends Application {
     public void onCreate() {
         super.onCreate();
         INSTANCE = this;
-        if(!BuildConfig.PRODUCTION) {
+        if(BuildConfig.PRODUCTION) {
+            Fabric.with(this, new Crashlytics());
+        } else {
             Stetho.initializeWithDefaults(this);
         }
         Rest.getInstance().setCookieManager(cookieManager);

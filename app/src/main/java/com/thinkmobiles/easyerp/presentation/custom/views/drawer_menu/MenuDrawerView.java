@@ -81,15 +81,18 @@ public class MenuDrawerView extends FrameLayout implements IMenuProviderFunction
 
         menuHeaderViewHolder = new MenuHeaderViewHolder(findViewById(R.id.rlHeaderContainer_VDMH), headerMenuProviderFunctions);
         miniMenuHeaderViewHolder = new MiniMenuHeaderViewHolder(findViewById(R.id.rlHeaderContainer_VDMMH), headerMenuProviderFunctions);
-
-        defaultSelect();
     }
 
     /**
      * Default state, when initialized menu. By default: module CRM
      */
-    private void defaultSelect() {
-        selectModule(1);
+    public void defaultSelect() {
+        if (!isSelectedItemNow())
+            selectItem(1, 0, true);
+    }
+
+    private boolean isSelectedItemNow() {
+        return menuHeaderViewHolder.getCurrentChosenModuleId() >= 0 && menuHeaderViewHolder.getCurrentChosenItemId() >= 0;
     }
 
     public void setMenuClickListener(IMenuClickListener menuClickListener) {
@@ -244,6 +247,8 @@ public class MenuDrawerView extends FrameLayout implements IMenuProviderFunction
                 break;
             case FULL_MODULES:
                 selectModule(id);
+                if (menuClickListener != null)
+                    menuClickListener.chooseModule(id);
                 break;
         }
     };
