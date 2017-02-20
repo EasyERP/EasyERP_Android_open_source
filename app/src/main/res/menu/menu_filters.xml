@@ -4,17 +4,18 @@
 
     <item
         android:id="@+id/menuSearch"
-        android:title="@string/menu_filter"
+        android:title="@string/list_searchview_hint"
+        android:visible="false"
         app:showAsAction="ifRoom|collapseActionView"
-        android:icon="@android:drawable/ic_menu_search"
+        android:icon="@drawable/ic_search_white"
         app:actionViewClass="android.support.v7.widget.SearchView"/>
 
     <item
-        android:id="@+id/menuFilter_MB"
+        android:id="@+id/menuFilters"
         android:icon="@drawable/ic_filter_white"
         android:visible="false"
         android:title="@string/menu_filter"
-        app:showAsAction="ifRoom">
+        app:showAsAction="always">
         <menu>
             <item
                 android:id="@+id/menuFilterRemoveAll"

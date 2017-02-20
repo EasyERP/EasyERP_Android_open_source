@@ -6,7 +6,6 @@ import android.support.v7.widget.SearchView;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
 import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.data.model.crm.payments.Payment;
@@ -44,15 +43,10 @@ public class PaymentsFragment extends MasterFlowListSelectableFragment implement
     @Bean
     protected PaymentsAdapter paymentsAdapter;
 
-    private SuggestionAdapter suggestionAdapter;
-    private MenuItem menuFilter;
-
     @AfterInject
     @Override
     public void initPresenter() {
         new PaymentsPresenter(this, paymentsRepository);
-
-        suggestionAdapter = new SuggestionAdapter(getActivity());
     }
 
     @Override
@@ -64,27 +58,6 @@ public class PaymentsFragment extends MasterFlowListSelectableFragment implement
     protected void initUI() {
         listRecycler.setAdapter(paymentsAdapter);
         paymentsAdapter.setOnCardClickListener((view, position, viewType) -> presenter.selectItem(paymentsAdapter.getItem(position), position));
-
-        actSearch.setOnItemClickListener((adapterView, view, i, l) ->
-                presenter.filterBySearchItem(searchAdapter.getItem(i))
-        );
-
-        actSearch.setOnKeyListener((v, keyCode, event) -> {
-            if (event.getKeyCode() == KeyEvent.KEYCODE_ENTER
-                    && event.getAction() == KeyEvent.ACTION_DOWN) {
-
-                String name = actSearch.getText().toString();
-                if (!name.trim().isEmpty())
-                    presenter.filterBySearchText(name);
-
-                hideKeyboard();
-                actSearch.dismissDropDown();
-                listRecycler.requestFocus();
-                return true;
-            }
-            return false;
-        });
-
         presenter.subscribe();
     }
 
@@ -168,42 +141,34 @@ public class PaymentsFragment extends MasterFlowListSelectableFragment implement
 
     @Override
     public void optionsMenuInitialized(Menu menu) {
-        actSearch.dismissDropDown();
-        menuFilter = menu.findItem(R.id.menuFilter_MB);
-        SearchView searchView = (SearchView) menu.findItem(R.id.menuSearch).getActionView();
-        searchView.setSuggestionsAdapter(suggestionAdapter);
-        searchView.setOnSuggestionListener(new SearchView.OnSuggestionListener()
-        {
-            @Override
-            public boolean onSuggestionClick(int position)
-            {
-                FilterDH item = suggestionAdapter.getSuggestion(position);
-                presenter.filterBySearchItem(item);
-                return true;
-            }
-
-            @Override
-            public boolean onSuggestionSelect(int position)
-            {
-                return false;
-            }
-        });
+        super.optionsMenuInitialized(menu);
         presenter.buildOptionMenu();
+    }
+
+    @Override
+    protected void onClickSearchSuggestion(FilterDH item) {
+        presenter.filterBySearchItem(item);
+    }
+
+    @Override
+    protected void onSubmitSearch(String text) {
+        presenter.filterBySearchText(text);
     }
 
     @Override
     public void createMenuFilters(FilterHelper helper) {
         if (helper.isInitialized()) {
-            menuFilter.setVisible(true);
+            menuFilters.setVisible(true);
+            menuSearch.setVisible(true);
             suggestionAdapter.setItems(helper.getSearchableFilterList());
-            helper.buildMenu(menuFilter.getSubMenu());
+            helper.buildMenu(menuFilters.getSubMenu());
         }
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.menuFilter_MB:
+            case R.id.menuFilters:
             case R.id.menuSearch:
                 return false;
             case R.id.menuFilterRemoveAll:
@@ -230,7 +195,7 @@ public class PaymentsFragment extends MasterFlowListSelectableFragment implement
 
     @Override
     public void selectFilter(int id, boolean isSelected) {
-        menuFilter.getSubMenu().getItem(id).setChecked(isSelected);
+        menuFilters.getSubMenu().getItem(id).setChecked(isSelected);
     }
 
     @Override

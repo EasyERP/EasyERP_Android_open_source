@@ -31,7 +31,7 @@ public interface PaymentsContract {
         void displayErrorToast(final String msg);
         void showProgress(Constants.ProgressType type);
 
-        void createMenuFilters(FilterHelper wrapper);
+        void createMenuFilters(FilterHelper helper);
         void setListToSearch(ArrayList<FilterDH> companies);
         void setTextToSearch(String text);
         void selectFilter(int id, boolean isSelected);

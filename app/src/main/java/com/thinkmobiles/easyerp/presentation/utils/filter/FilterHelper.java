@@ -62,8 +62,7 @@ public class FilterHelper {
     public void setupMenu(CheckFilterCallback callback) {
         if (filters != null)
         for (int i = 0; i < filters.size(); ++i) {
-            int code = filters.keyAt(i);
-            callback.onCheckedFilter(code, queryBuilder.forFilter(code).getValues() != null);
+            callback.onCheckedFilter(i, queryBuilder.forFilter(i).getValues() != null);
         }
     }
 
@@ -72,23 +71,23 @@ public class FilterHelper {
     }
 
     public ArrayList<FilterDH> getFilterList(int index) {
-        return filters.valueAt(index);
+        return filters.get(index);
     }
 
     public void filterByItem(FilterDH filterDH, CheckFilterCallback callback) {
-        for (FilterDH dh : filters.valueAt(indexSearchableFilter)) {
+        for (FilterDH dh : filters.get(indexSearchableFilter)) {
             dh.selected = dh.equals(filterDH);
         }
-        queryBuilder.forFilter(filters.keyAt(indexSearchableFilter))
+        queryBuilder.forFilter(indexSearchableFilter)
                 .removeAll()
                 .add(filterDH.id);
         callback.onCheckedFilter(indexSearchableFilter, true);
     }
 
     public void filterByText(String text, CheckFilterCallback callback) {
-        FilterTypeQuery contactQuery = queryBuilder.forFilter(filters.keyAt(0));
+        FilterTypeQuery contactQuery = queryBuilder.forFilter(indexSearchableFilter);
         contactQuery.removeAll();
-        for (FilterDH dh : filters.valueAt(0)) {
+        for (FilterDH dh : filters.get(indexSearchableFilter)) {
             if(dh.name.toLowerCase().contains(text)) {
                 contactQuery.add(dh.id);
                 dh.selected = true;
@@ -108,7 +107,7 @@ public class FilterHelper {
                 filter.add(dh.id);
             }
         }
-        callback.onCheckedFilter(filters.indexOfKey(code), filter.getValues() != null);
+        callback.onCheckedFilter(code, filter.getValues() != null);
     }
 
     public void removeFilter(int code, CheckFilterCallback callback) {
@@ -117,15 +116,15 @@ public class FilterHelper {
             dh.selected = false;
         }
         queryBuilder.forFilter(code).removeAll();
-        callback.onCheckedFilter(filters.indexOfKey(code), false);
+        callback.onCheckedFilter(code, false);
     }
 
     public void removeAllFilters(CheckFilterCallback callback) {
         for (int position = 0; position < filters.size(); ++position) {
-            for (FilterDH dh : filters.valueAt(position)) {
+            for (FilterDH dh : filters.get(position)) {
                 dh.selected = false;
             }
-            queryBuilder.forFilter(filters.keyAt(position)).removeAll();
+            queryBuilder.forFilter(position).removeAll();
             callback.onCheckedFilter(position, false);
         }
     }

@@ -12,6 +12,9 @@
 
         <item name="android:textViewStyle">@style/DefaultTheme.DefaultBlackTextTheme</item>
         <item name="editTextStyle">@style/DefaultTheme.DefaultBlackEditTextTheme</item>
+        <item name="searchViewStyle">@style/SearchViewStyle</item>
+        <item name="android:dropDownItemStyle">@style/DropDownItemStyle</item>
+        <item name="autoCompleteTextViewStyle">@style/AutoCompleteTextViewStyle</item>
 
         <item name="colorButtonNormal">@color/colorPrimary</item>
 
@@ -85,40 +88,49 @@
     <style name="RobotoMedium">
         <item name="android:fontFamily">sans-serif-medium</item>
     </style>
+
     <style name="RobotoRegular">
         <item name="android:fontFamily">sans-serif</item>
     </style>
+
     <style name="RobotoBold">
         <item name="android:fontFamily">sans-serif-light</item>
         <item name="android:textStyle">bold</item>
     </style>
+
     <style name="RobotoCondensedBold">
         <item name="android:fontFamily">sans-serif-condensed</item>
         <item name="android:textStyle">bold</item>
     </style>
+
     <style name="RobotoCondensedRegular">
         <item name="android:fontFamily">sans-serif-condensed</item>
         <item name="android:textStyle">normal</item>
     </style>
+
     <style name="TextHeaderTableProductStyle" parent="RobotoBold">
         <item name="android:textSize">@dimen/text_size_table_12</item>
         <item name="android:textColor">@android:color/white</item>
         <item name="android:padding">@dimen/default_padding_quart</item>
     </style>
+
     <style name="TextTableProductStyle" parent="RobotoBold">
         <item name="android:textSize">@dimen/text_size_table_12</item>
         <item name="android:textColor">@android:color/black</item>
         <item name="android:padding">@dimen/default_padding_quart</item>
     </style>
+
     <style name="RobotoLight">
         <item name="android:fontFamily">sans-serif-light</item>
     </style>
 
     <!-- Dialogs Styles -->
-    <style name="DefaultTheme.NoTitleDialogWithAnimation" parent="Theme.AppCompat.Light.Dialog.Alert" >
+    <style name="DefaultTheme.NoTitleDialogWithAnimation" parent="Theme.AppCompat.Light.Dialog.Alert">
         <item name="colorAccent">@color/colorAccent</item>
         <item name="windowNoTitle">true</item>
-        <item name="android:windowAnimationStyle">@style/DefaultTheme.NoTitleDialogWithAnimation.ScaleWindowAnimation</item>
+        <item name="android:windowAnimationStyle">
+            @style/DefaultTheme.NoTitleDialogWithAnimation.ScaleWindowAnimation
+        </item>
     </style>
 
     <style name="DefaultTheme.NoTitleDialogWithAnimation.ScaleWindowAnimation">
@@ -151,6 +163,24 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:textSize">@dimen/text_list_item_medium_16</item>
+    </style>
+
+    <style name="SearchViewStyle" parent="Widget.AppCompat.SearchView">
+        <!--Close button icon -->
+        <item name="closeIcon">@drawable/ic_close_white</item>
+        <!--Search button icon -->
+        <item name="searchIcon">@drawable/ic_search_white</item>
+        <item name="queryHint">@string/list_searchview_hint</item>
+        <item name="android:maxWidth">10000dp</item>
+    </style>
+
+    <style name="DropDownItemStyle" parent="Widget.AppCompat.DropDownItem.Spinner">
+        <item name="android:textColor">@color/color_text_black</item>
+        <item name="android:background">@android:color/white</item>
+    </style>
+
+    <style name="AutoCompleteTextViewStyle" parent="Widget.AppCompat.Light.AutoCompleteTextView">
+        <item name="android:popupBackground">#ffffff</item>
     </style>
 
     <!--My the best of the best styles-->
@@ -255,7 +285,7 @@
     </style>
 
 
-    <style name="PdfStyle.FieldTitleStyle" >
+    <style name="PdfStyle.FieldTitleStyle">
         <item name="android:textColor">@color/color_text_gray</item>
     </style>
 

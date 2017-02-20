@@ -5,10 +5,14 @@ import android.support.annotation.CallSuper;
 import android.support.v7.widget.AppCompatAutoCompleteTextView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.text.Editable;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.SearchAdapter;
+import com.thinkmobiles.easyerp.presentation.adapters.crm.SuggestionAdapter;
 import com.thinkmobiles.easyerp.presentation.dialogs.FilterDialogFragment;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.FilterDH;
 import com.thinkmobiles.easyerp.presentation.listeners.EndlessScrollListener;
@@ -45,10 +49,16 @@ public abstract class ListRefreshFragment extends RefreshFragment {
 
     protected EndlessScrollListener scrollListener;
 
+    protected SuggestionAdapter suggestionAdapter;
+    protected MenuItem menuFilters;
+    protected MenuItem menuSearch;
+
     protected abstract void onLoadNextPage();
 
     @AfterViews
     protected void initList() {
+        suggestionAdapter = new SuggestionAdapter(getActivity());
+
         LinearLayoutManager recyclerLayoutManager = new LinearLayoutManager(getActivity());
 
         scrollListener = new EndlessScrollListener(recyclerLayoutManager, () -> {
@@ -83,6 +93,49 @@ public abstract class ListRefreshFragment extends RefreshFragment {
         scrollListener.reset();
         super.showErrorToast(message);
     }
+
+    @CallSuper
+    public void optionsMenuInitialized(Menu menu) {
+        menuFilters = menu.findItem(R.id.menuFilters);
+        menuSearch = menu.findItem(R.id.menuSearch);
+        SearchView searchView = (SearchView) menuSearch.getActionView();
+        searchView.setSuggestionsAdapter(suggestionAdapter);
+        searchView.setFocusable(false);
+        searchView.setOnSuggestionListener(new SearchView.OnSuggestionListener()
+        {
+            @Override
+            public boolean onSuggestionClick(int position)
+            {
+                FilterDH item = suggestionAdapter.getSuggestion(position);
+                searchView.setQuery(item.name, false);
+                searchView.clearFocus();
+                onClickSearchSuggestion(item);
+                return true;
+            }
+
+            @Override
+            public boolean onSuggestionSelect(int position)
+            {
+                return false;
+            }
+        });
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                searchView.clearFocus();
+                onSubmitSearch(query);
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
+    }
+
+    protected void onClickSearchSuggestion(FilterDH item){}
+    protected void onSubmitSearch(String text){}
 
     protected void showDialogFiltering(ArrayList<FilterDH> filterDHs, int requestCode, String filterName) {
         actSearch.clearFocus();

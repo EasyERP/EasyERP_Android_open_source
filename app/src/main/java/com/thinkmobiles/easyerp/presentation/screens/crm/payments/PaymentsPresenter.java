@@ -1,6 +1,7 @@
 package com.thinkmobiles.easyerp.presentation.screens.crm.payments;
 
 import com.thinkmobiles.easyerp.data.model.crm.payments.Payment;
+import com.thinkmobiles.easyerp.data.model.crm.payments.ResponseGetPayments;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectablePresenterHelper;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.FilterDH;
@@ -47,7 +48,7 @@ public class PaymentsPresenter extends MasterFlowSelectablePresenterHelper<Strin
             getFirstPage();
             loadPaymentFilters();
         } else {
-            view.displayPayments(preparePaymentDHs(payments, true), true);
+            setData(payments, true);
         }
     }
 
@@ -75,6 +76,7 @@ public class PaymentsPresenter extends MasterFlowSelectablePresenterHelper<Strin
                 .flatMap(responseFilters -> Observable.just(FilterHelper.create(responseFilters)))
                 .subscribe(filterHelper -> {
                     helper = filterHelper;
+                    view.createMenuFilters(helper);
                 }, t -> {
                     view.displayErrorToast(t.getMessage());
                 }));
@@ -94,12 +96,7 @@ public class PaymentsPresenter extends MasterFlowSelectablePresenterHelper<Strin
                             currentPage = page;
                             totalItems = responseGetPayments.total;
                             saveData(responseGetPayments.data, needClear);
-                            if (payments.isEmpty()) {
-                                view.displayErrorState(null, ErrorViewHelper.ErrorType.LIST_EMPTY);
-                            } else {
-                                view.showProgress(Constants.ProgressType.NONE);
-                                view.displayPayments(preparePaymentDHs(responseGetPayments.data, needClear), needClear);
-                            }
+                            setData(responseGetPayments.data, needClear);
                         },
                         throwable -> {
                             if (payments.isEmpty()) {
@@ -122,6 +119,15 @@ public class PaymentsPresenter extends MasterFlowSelectablePresenterHelper<Strin
         if (needClear)
             this.payments.clear();
         this.payments.addAll(payments);
+    }
+
+    private void setData(final List<Payment> payments, boolean needClear) {
+        if (this.payments.isEmpty()) {
+            view.displayErrorState(null, ErrorViewHelper.ErrorType.LIST_EMPTY);
+        } else {
+            view.showProgress(Constants.ProgressType.NONE);
+            view.displayPayments(preparePaymentDHs(payments, needClear), needClear);
+        }
     }
 
     private ArrayList<PaymentDH> preparePaymentDHs(final List<Payment> payments, boolean needClear) {
