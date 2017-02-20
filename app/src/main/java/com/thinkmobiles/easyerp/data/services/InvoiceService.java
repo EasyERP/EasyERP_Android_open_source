@@ -12,6 +12,7 @@ import java.util.Map;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 import retrofit2.http.QueryMap;
+import retrofit2.http.Url;
 import rx.Observable;
 
 /**
@@ -42,6 +43,9 @@ public interface InvoiceService {
             @Query("page") int page,
             @Query("count") int count
     );
+
+    @GET
+    Observable<ResponseGetInvoice> getInvoices(@Url String url);
 
     @GET(Constants.GET_INVOICE_BY_WORKFLOWS)
     Observable<List<OrderItem>> getInvoiceByWorkflows(

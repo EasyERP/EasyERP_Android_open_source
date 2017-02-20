@@ -1,15 +1,16 @@
 package com.thinkmobiles.easyerp.domain.crm;
 
 import com.thinkmobiles.easyerp.data.api.Rest;
+import com.thinkmobiles.easyerp.data.model.crm.filter.ResponseFilters;
 import com.thinkmobiles.easyerp.data.model.crm.leads.ResponseGetLeads;
 import com.thinkmobiles.easyerp.data.model.crm.leads.detail.ResponseGetLeadDetails;
-import com.thinkmobiles.easyerp.data.model.crm.filter.ResponseGetFilters;
 import com.thinkmobiles.easyerp.data.services.FilterService;
 import com.thinkmobiles.easyerp.data.services.LeadService;
 import com.thinkmobiles.easyerp.presentation.base.NetworkRepository;
 import com.thinkmobiles.easyerp.presentation.screens.crm.leads.LeadsContract;
 import com.thinkmobiles.easyerp.presentation.screens.crm.leads.details.LeadDetailsContract;
-import com.thinkmobiles.easyerp.presentation.utils.filter.FilterQuery;
+import com.thinkmobiles.easyerp.presentation.utils.Constants;
+import com.thinkmobiles.easyerp.presentation.utils.filter.FilterHelper;
 
 import org.androidannotations.annotations.EBean;
 
@@ -31,23 +32,16 @@ public class LeadsRepository extends NetworkRepository implements LeadsContract.
     }
 
     @Override
-    public Observable<ResponseGetLeads> getFilteredLeads(FilterQuery query, int page) {
-        query.queryMap.put("viewType", "list");
-        query.queryMap.put("contentType", "Leads");
-        return getNetworkObservable(leadService.getFilteredLeads(
-                query.queryMap,
-                query.contactName,
-                query.source,
-                query.workflow,
-                query.assignedTo,
-                query.createdBy,
-                page,
-                50
+    public Observable<ResponseGetLeads> getFilteredLeads(FilterHelper query, int page) {
+        return getNetworkObservable(leadService.getLeads(query
+                .createUrl(Constants.GET_LEADS, "Leads", page)
+                .build()
+                .toString()
         ));
     }
 
-    public Observable<ResponseGetFilters> getLeadFilters() {
-        return getNetworkObservable(filterService.getFilters("Leads"));
+    public Observable<ResponseFilters> getFilters() {
+        return getNetworkObservable(filterService.getListFilters("Leads"));
     }
 
     @Override

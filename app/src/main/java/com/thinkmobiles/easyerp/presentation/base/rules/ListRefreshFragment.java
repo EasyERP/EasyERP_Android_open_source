@@ -42,10 +42,6 @@ public abstract class ListRefreshFragment extends RefreshFragment {
 
     @ViewById
     protected RecyclerView listRecycler;
-    @ViewById
-    protected AppCompatAutoCompleteTextView actSearch;
-    @Bean
-    protected SearchAdapter searchAdapter;
 
     protected EndlessScrollListener scrollListener;
 
@@ -72,15 +68,6 @@ public abstract class ListRefreshFragment extends RefreshFragment {
 
         listRecycler.setLayoutManager(recyclerLayoutManager);
         listRecycler.addOnScrollListener(scrollListener);
-
-        actSearch.setAdapter(searchAdapter);
-    }
-
-    @AfterTextChange(R.id.actSearch)
-    protected void afterSearchChanged(Editable editable) {
-        if (editable.length() > 1) {
-            searchAdapter.getFilter().filter(editable.toString());
-        }
     }
 
     @CallSuper
@@ -138,7 +125,6 @@ public abstract class ListRefreshFragment extends RefreshFragment {
     protected void onSubmitSearch(String text){}
 
     protected void showDialogFiltering(ArrayList<FilterDH> filterDHs, int requestCode, String filterName) {
-        actSearch.clearFocus();
         listRecycler.requestFocus();
         FilterDialogFragment dialogFragment = new FilterDialogFragment();
         Bundle bundle = new Bundle();

@@ -1,11 +1,7 @@
 package com.thinkmobiles.easyerp.presentation.utils.filter;
 
 
-import com.thinkmobiles.easyerp.presentation.holders.data.crm.FilterDH;
-import com.thinkmobiles.easyerp.presentation.listeners.VisibilityCallback;
-
 import java.util.ArrayList;
-import java.util.Map;
 
 public class FilterTypeQuery {
 
@@ -40,23 +36,6 @@ public class FilterTypeQuery {
     }
 
     public ArrayList<String> getValues() {
-        return values;
-    }
-
-    public void setList(ArrayList<FilterDH> filterDHs, VisibilityCallback callback) {
-        values = null;
-        for (FilterDH dh : filterDHs) {
-            if(dh.selected) {
-                add(dh.id);
-            }
-        }
-        callback.setVisibility(values != null);
-    }
-
-    public ArrayList<String> save(final Map<String, String> map) {
-        if (values != null) {
-            map.put(String.format("filter[%s][key]", type), key);
-        }
         return values;
     }
 

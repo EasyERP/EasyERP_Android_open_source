@@ -21,6 +21,7 @@ public abstract class Constants {
 
     //------------------------------------------------------ CRM
 
+    public static final int COUNT_LIST_ITEMS                = 25;
     public static final String CRM_DASHBOARD_BASE_ID        = "582bfabf5a43a4bc2524bf09";
     public static final String GET_DASHBOARD_CHARTS         = "customDashboard/{dashboardId}";
 
@@ -70,16 +71,6 @@ public abstract class Constants {
     //------------------------------------------------------ END CRM
 
     public static final int DELAY_CLICK                     = 600;
-
-    //Request codes
-    public static final int REQUEST_CODE_FILTER_CONTACT_NAME = 15;
-    public static final int REQUEST_CODE_FILTER_WORKFLOW    = 16;
-    public static final int REQUEST_CODE_FILTER_ASSIGNED_TO = 17;
-    public static final int REQUEST_CODE_FILTER_CREATED_BY  = 18;
-    public static final int REQUEST_CODE_FILTER_SOURCE      = 19;
-    public static final int REQUEST_CODE_FILTER_NAME        = 20;
-    public static final int REQUEST_CODE_FILTER_CUSTOMER    = 21;
-    public static final int REQUEST_CODE_FILTER_PROJECT     = 22;
 
     //Bundle keys
     public static final String KEY_FILTER_LIST              = "keyFilterList";

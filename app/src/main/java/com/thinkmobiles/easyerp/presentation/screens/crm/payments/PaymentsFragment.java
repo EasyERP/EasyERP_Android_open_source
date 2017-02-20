@@ -182,18 +182,6 @@ public class PaymentsFragment extends MasterFlowListSelectableFragment implement
     }
 
     @Override
-    public void setListToSearch(ArrayList<FilterDH> companies) {
-        searchAdapter.setItems(companies);
-    }
-
-    @Override
-    public void setTextToSearch(String text) {
-        actSearch.setText(text);
-        actSearch.setSelection(text.length());
-        hideKeyboard();
-    }
-
-    @Override
     public void selectFilter(int id, boolean isSelected) {
         menuFilters.getSubMenu().getItem(id).setChecked(isSelected);
     }

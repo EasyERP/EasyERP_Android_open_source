@@ -10,7 +10,6 @@ import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectableBase
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.FilterDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.PaymentDH;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
-import com.thinkmobiles.easyerp.presentation.utils.filter.FilterQuery;
 import com.thinkmobiles.easyerp.presentation.utils.filter.FilterHelper;
 
 import java.util.ArrayList;
@@ -32,8 +31,6 @@ public interface PaymentsContract {
         void showProgress(Constants.ProgressType type);
 
         void createMenuFilters(FilterHelper helper);
-        void setListToSearch(ArrayList<FilterDH> companies);
-        void setTextToSearch(String text);
         void selectFilter(int id, boolean isSelected);
 
         void showFilterDialog(ArrayList<FilterDH> filterDHs, int requestCode, String filterName);
@@ -52,7 +49,7 @@ public interface PaymentsContract {
         void removeAll();
     }
     interface PaymentsModel extends BaseModel {
-        Observable<ResponseGetPayments> getFilteredPayments(FilterQuery query, int page);
-        Observable<ResponseFilters> getPaymentFilters();
+        Observable<ResponseGetPayments> getFilteredPayments(FilterHelper helper, int page);
+        Observable<ResponseFilters> getFilters();
     }
 }

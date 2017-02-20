@@ -11,6 +11,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 import retrofit2.http.QueryMap;
+import retrofit2.http.Url;
 import rx.Observable;
 
 /**
@@ -19,16 +20,8 @@ import rx.Observable;
 
 public interface OpportunityService {
 
-    @GET(Constants.GET_LEADS)
-    Observable<ResponseGetOpportunities> getFilteredOpportunities(
-            @QueryMap Map<String, String> keys,
-            @Query("filter[customer][value][]") List<String> customer,
-            @Query("filter[name][value][]") List<String> name,
-            @Query("filter[workflow][value][]") List<String> workflow,
-            @Query("filter[salesPerson][value][]") List<String> salesPerson,
-            @Query("page") int page,
-            @Query("count") int count
-    );
+    @GET
+    Observable<ResponseGetOpportunities> getOpportunities(@Url String url);
 
     @GET(Constants.GET_OPPORTUNITY_DETAILS)
     Observable<ResponseGetOpportunityDetails> getOpportunityDetails(@Path("OpportunityID") String OpportunityID);

@@ -1,7 +1,6 @@
 package com.thinkmobiles.easyerp.presentation.screens.crm.payments;
 
 import com.thinkmobiles.easyerp.data.model.crm.payments.Payment;
-import com.thinkmobiles.easyerp.data.model.crm.payments.ResponseGetPayments;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectablePresenterHelper;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.FilterDH;
@@ -46,7 +45,7 @@ public class PaymentsPresenter extends MasterFlowSelectablePresenterHelper<Strin
     public void subscribe() {
         if (payments.isEmpty() && !helper.isInitialized()) {
             getFirstPage();
-            loadPaymentFilters();
+            loadFilters();
         } else {
             setData(payments, true);
         }
@@ -71,8 +70,8 @@ public class PaymentsPresenter extends MasterFlowSelectablePresenterHelper<Strin
         loadNextPayments(currentPage + 1);
     }
 
-    private void loadPaymentFilters() {
-        compositeSubscription.add(model.getPaymentFilters()
+    private void loadFilters() {
+        compositeSubscription.add(model.getFilters()
                 .flatMap(responseFilters -> Observable.just(FilterHelper.create(responseFilters)))
                 .subscribe(filterHelper -> {
                     helper = filterHelper;
@@ -91,7 +90,7 @@ public class PaymentsPresenter extends MasterFlowSelectablePresenterHelper<Strin
     private void loadNextPayments(int page) {
         final boolean needClear = page == 1;
         compositeSubscription.add(
-                model.getFilteredPayments(helper.getFilterBuilder(), page).subscribe(
+                model.getFilteredPayments(helper, page).subscribe(
                         responseGetPayments -> {
                             currentPage = page;
                             totalItems = responseGetPayments.total;
@@ -145,7 +144,6 @@ public class PaymentsPresenter extends MasterFlowSelectablePresenterHelper<Strin
     @Override
     public void filterBySearchItem(FilterDH filterDH) {
         helper.filterByItem(filterDH, (position, isVisible) -> view.selectFilter(position, isVisible));
-        view.setTextToSearch(filterDH.name);
         getFirstPage();
     }
 

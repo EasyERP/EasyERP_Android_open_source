@@ -1,14 +1,18 @@
 package com.thinkmobiles.easyerp.domain.crm;
 
 import com.thinkmobiles.easyerp.data.api.Rest;
+import com.thinkmobiles.easyerp.data.model.crm.filter.ResponseFilters;
 import com.thinkmobiles.easyerp.data.model.crm.order.ResponseGetOrders;
 import com.thinkmobiles.easyerp.data.model.crm.order.detail.ResponseGetOrderDetails;
 import com.thinkmobiles.easyerp.data.model.user.organization.ResponseGetOrganizationSettings;
+import com.thinkmobiles.easyerp.data.services.FilterService;
 import com.thinkmobiles.easyerp.data.services.OrderService;
 import com.thinkmobiles.easyerp.data.services.UserService;
 import com.thinkmobiles.easyerp.presentation.base.NetworkRepository;
 import com.thinkmobiles.easyerp.presentation.screens.crm.orders.OrdersContract;
 import com.thinkmobiles.easyerp.presentation.screens.crm.orders.details.OrderDetailsContract;
+import com.thinkmobiles.easyerp.presentation.utils.Constants;
+import com.thinkmobiles.easyerp.presentation.utils.filter.FilterHelper;
 
 import org.androidannotations.annotations.EBean;
 
@@ -23,19 +27,26 @@ public class OrderRepository extends NetworkRepository implements OrdersContract
 
     private OrderService orderService;
     private UserService userService;
+    private FilterService filterService;
 
     public OrderRepository() {
         orderService = Rest.getInstance().getOrderService();
         userService = Rest.getInstance().getUserService();
+        filterService = Rest.getInstance().getFilterService();
     }
 
     @Override
-    public Observable<ResponseGetOrders> getOrders(final int page) {
-        return getNetworkObservable(orderService.getOrder(
-                "list",
-                page,
-                50,
-                "order"));
+    public Observable<ResponseGetOrders> getOrders(FilterHelper query, final int page) {
+        return getNetworkObservable(orderService.getOrders(query
+                .createUrl(Constants.GET_ORDER, "order", page)
+                .build()
+                .toString()
+        ));
+    }
+
+    @Override
+    public Observable<ResponseFilters> getFilters() {
+        return getNetworkObservable(filterService.getListFilters("order"));
     }
 
     @Override

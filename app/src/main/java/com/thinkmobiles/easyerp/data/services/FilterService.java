@@ -14,9 +14,6 @@ import rx.Observable;
 
 public interface FilterService {
 
-    @GET(Constants.GET_FILTER + "/{filterParam}")
-    Observable<ResponseGetFilters> getFilters(@Path("filterParam") String filterParam);
-
     @GET(Constants.GET_FILTER + "/{listType}")
     Observable<ResponseFilters> getListFilters(@Path("listType") String filterParam);
 }

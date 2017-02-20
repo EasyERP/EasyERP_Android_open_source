@@ -1,6 +1,6 @@
 package com.thinkmobiles.easyerp.presentation.screens.crm.opportunities;
 
-import com.thinkmobiles.easyerp.data.model.crm.filter.ResponseGetFilters;
+import com.thinkmobiles.easyerp.data.model.crm.filter.ResponseFilters;
 import com.thinkmobiles.easyerp.data.model.crm.opportunities.ResponseGetOpportunities;
 import com.thinkmobiles.easyerp.presentation.base.BaseModel;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
@@ -9,7 +9,7 @@ import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectableBase
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.FilterDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.OpportunityDH;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
-import com.thinkmobiles.easyerp.presentation.utils.filter.FilterQuery;
+import com.thinkmobiles.easyerp.presentation.utils.filter.FilterHelper;
 
 import java.util.ArrayList;
 
@@ -29,10 +29,8 @@ public interface OpportunitiesContract {
         void displayErrorToast(final String msg);
         void showProgress(Constants.ProgressType type);
 
-        void setNames(ArrayList<FilterDH> names);
-        void setTextToSearch(String text);
-        void showFilters(boolean isShow);
-        void selectFilter(int pos, boolean isSelected);
+        void createMenuFilters(FilterHelper helper);
+        void selectFilter(int id, boolean isSelected);
 
         void showFilterDialog(ArrayList<FilterDH> filterDHs, int requestCode, String filterName);
     }
@@ -41,18 +39,18 @@ public interface OpportunitiesContract {
         void refresh();
         void loadNextPage();
 
-        void filterByContactName(FilterDH filterDH);
-        void filterBySearchContactName(String name);
+        void filterBySearchItem(FilterDH filterDH);
+        void filterBySearchText(String name);
         void filterByList(ArrayList<FilterDH> filterDHs, int requestCode);
         void removeFilter(int requestCode);
 
-        void changeFilter(int requestCode, String filterName);
-        void refreshOptionMenu();
+        void changeFilter(int position, String filterName);
+        void buildOptionMenu();
         void removeAll();
     }
 
     interface OpportunitiesModel extends BaseModel {
-        Observable<ResponseGetOpportunities> getFilteredOpportunities(FilterQuery query, int page);
-        Observable<ResponseGetFilters> getOpportunityFilters();
+        Observable<ResponseGetOpportunities> getOpportunities(FilterHelper query, int page);
+        Observable<ResponseFilters> getOpportunityFilters();
     }
 }

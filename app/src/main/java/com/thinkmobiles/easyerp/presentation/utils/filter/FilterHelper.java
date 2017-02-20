@@ -1,5 +1,6 @@
 package com.thinkmobiles.easyerp.presentation.utils.filter;
 
+import android.net.Uri;
 import android.support.v4.util.Pair;
 import android.util.SparseArray;
 import android.view.Menu;
@@ -10,6 +11,7 @@ import com.thinkmobiles.easyerp.data.model.crm.filter.ResponseFilters;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.FilterDH;
 import com.thinkmobiles.easyerp.presentation.listeners.CheckFilterCallback;
 import com.thinkmobiles.easyerp.presentation.listeners.VisibilityCallback;
+import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
 import java.util.ArrayList;
 
@@ -23,7 +25,7 @@ public class FilterHelper {
 
     private SparseArray<ArrayList<FilterDH>> filters;
     private SparseArray<String> names;
-    private FilterQuery queryBuilder;
+    private SparseArray<FilterTypeQuery> params;
 
     private final int indexSearchableFilter = 0;
 
@@ -31,7 +33,7 @@ public class FilterHelper {
         FilterHelper helper= new FilterHelper();
         helper.filters = new SparseArray<>();
         helper.names = new SparseArray<>();
-        helper.queryBuilder = new FilterQuery();
+        helper.params = new SparseArray<>();
         for (FilterInfo info : responseFilters.filters) {
             ArrayList<FilterDH> dh = new ArrayList<>();
             for (FilterItem item : info.list) {
@@ -40,17 +42,13 @@ public class FilterHelper {
             }
             helper.filters.put(info.code, dh);
             helper.names.put(info.code, info.name);
-            helper.queryBuilder.putFilter(info.code, info.type, info.key);
+            helper.params.put(info.code, new FilterTypeQuery(info.type, info.key));
         }
         return helper;
     }
 
     public boolean isInitialized() {
         return filters != null;
-    }
-
-    public FilterQuery getFilterBuilder() {
-        return queryBuilder;
     }
 
     public void buildMenu(Menu menu) {
@@ -62,7 +60,7 @@ public class FilterHelper {
     public void setupMenu(CheckFilterCallback callback) {
         if (filters != null)
         for (int i = 0; i < filters.size(); ++i) {
-            callback.onCheckedFilter(i, queryBuilder.forFilter(i).getValues() != null);
+            callback.onCheckedFilter(i, params.get(i).getValues() != null);
         }
     }
 
@@ -78,14 +76,14 @@ public class FilterHelper {
         for (FilterDH dh : filters.get(indexSearchableFilter)) {
             dh.selected = dh.equals(filterDH);
         }
-        queryBuilder.forFilter(indexSearchableFilter)
+        params.get(indexSearchableFilter)
                 .removeAll()
                 .add(filterDH.id);
         callback.onCheckedFilter(indexSearchableFilter, true);
     }
 
     public void filterByText(String text, CheckFilterCallback callback) {
-        FilterTypeQuery contactQuery = queryBuilder.forFilter(indexSearchableFilter);
+        FilterTypeQuery contactQuery = params.get(indexSearchableFilter);
         contactQuery.removeAll();
         for (FilterDH dh : filters.get(indexSearchableFilter)) {
             if(dh.name.toLowerCase().contains(text)) {
@@ -100,7 +98,7 @@ public class FilterHelper {
 
     public void filterByList(ArrayList<FilterDH> filterDHs, int code, CheckFilterCallback callback) {
         filters.put(code, filterDHs);
-        FilterTypeQuery filter = queryBuilder.forFilter(code);
+        FilterTypeQuery filter = params.get(code);
         filter.removeAll();
         for (FilterDH dh : filterDHs) {
             if(dh.selected) {
@@ -115,7 +113,7 @@ public class FilterHelper {
         for (FilterDH dh : filterDHs) {
             dh.selected = false;
         }
-        queryBuilder.forFilter(code).removeAll();
+        params.get(code).removeAll();
         callback.onCheckedFilter(code, false);
     }
 
@@ -124,9 +122,34 @@ public class FilterHelper {
             for (FilterDH dh : filters.get(position)) {
                 dh.selected = false;
             }
-            queryBuilder.forFilter(position).removeAll();
+            params.get(position).removeAll();
             callback.onCheckedFilter(position, false);
         }
+    }
+
+
+    public Uri.Builder createUrl(String path, String type, int page) {
+        Uri.Builder builder = Uri.parse(Constants.BASE_URL).buildUpon();
+        builder.appendPath(path)
+                .appendQueryParameter("page", String.valueOf(page))
+                .appendQueryParameter("count", String.valueOf(Constants.COUNT_LIST_ITEMS))
+                .appendQueryParameter("viewType", "list")
+                .appendQueryParameter("contentType", type);
+
+        if (params != null) {
+            for (int i = 0; i < params.size(); ++i) {
+                FilterTypeQuery filter = params.valueAt(i);
+                if (filter.getValues() != null) {
+                    builder.appendQueryParameter(String.format("filter[%s][key]", filter.getType()), filter.getKey());
+                    String queryName = String.format("filter[%s][value][]", filter.getType());
+                    for (String value : filter.getValues()) {
+                        builder.appendQueryParameter(queryName, value);
+                    }
+                }
+            }
+        }
+
+        return builder;
     }
 
 }
