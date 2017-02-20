@@ -10,7 +10,7 @@ public class ResponseGetLeadWorkflow implements Parcelable {
 
     /**
      * {
-     "data": [
+     "url": [
      {
      "_id": "528ce74ef3f67bc40b00001e",
      "__v": 0,
