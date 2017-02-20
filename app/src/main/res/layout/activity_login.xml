@@ -92,7 +92,7 @@
             android:id="@+id/btnDemoMode_AL"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/demo_mode"
+            android:text="@string/demo"
             android:layout_marginTop="@dimen/default_padding_half"/>
 
     </LinearLayout>
