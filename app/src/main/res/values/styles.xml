@@ -258,8 +258,8 @@
     </style>
 
     <style name="CustomCheckBox" parent="Widget.AppCompat.CompoundButton.CheckBox">
-        <item name="colorControlNormal">@color/colorPrimary</item>
-        <item name="colorControlActivated">@color/colorPrimary</item>
+        <item name="colorControlNormal">@color/color_text_gray</item>
+        <item name="colorControlActivated">@color/colorAccent</item>
         <item name="android:textSize">@dimen/text_size_small_14</item>
         <item name="android:clickable">false</item>
     </style>

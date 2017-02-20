@@ -3,7 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@android:color/white"
     android:padding="@dimen/default_padding">
 
@@ -11,9 +10,11 @@
         android:id="@+id/cbItem"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:theme="@style/CustomCheckBox"
         android:paddingStart="@dimen/default_dimen_32"
         tools:text="text 1"
-        app:buttonTint="@color/colorPrimary"
-        android:textColor="@color/colorPrimary"/>
+        android:textSize="@dimen/text_list_item_medium_16"
+        android:clickable="true"
+        android:textColor="@color/color_text_black"/>
 
 </LinearLayout>

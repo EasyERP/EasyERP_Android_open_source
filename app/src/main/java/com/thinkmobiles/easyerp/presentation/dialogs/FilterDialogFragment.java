@@ -13,6 +13,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -33,6 +34,7 @@ public class FilterDialogFragment extends DialogFragment implements DialogInterf
 
     private EditText etSearch;
     private RecyclerView rvList;
+    private Toolbar toolbar;
 
     private SearchDialogAdapter searchAdapter;
 
@@ -68,6 +70,7 @@ public class FilterDialogFragment extends DialogFragment implements DialogInterf
         View parent = LayoutInflater.from(getActivity()).inflate(R.layout.dialog_filter, null);
 
         etSearch = (EditText) parent.findViewById(R.id.etSearch_DF);
+        toolbar = (Toolbar) parent.findViewById(R.id.toolbar);
         etSearch.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -88,9 +91,10 @@ public class FilterDialogFragment extends DialogFragment implements DialogInterf
         rvList.setLayoutManager(new LinearLayoutManager(getActivity()));
         rvList.setAdapter(searchAdapter);
 
+        toolbar.setTitle(String.format("%s : %s", getString(R.string.menu_filter), filterName));
+
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(), R.style.DefaultTheme_FilterDialogStyle)
                 .setView(parent)
-                .setTitle(String.format("%s : %s", getString(R.string.menu_filter), filterName))
                 .setPositiveButton(R.string.dialog_btn_apply, this)
                 .setNegativeButton(R.string.dialog_btn_cancel, this)
                 .setNeutralButton(R.string.dialog_btn_remove, this);
