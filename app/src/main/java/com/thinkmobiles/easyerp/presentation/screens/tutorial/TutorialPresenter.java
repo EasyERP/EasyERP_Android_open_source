@@ -1,5 +1,7 @@
 package com.thinkmobiles.easyerp.presentation.screens.tutorial;
 
+import com.thinkmobiles.easyerp.presentation.utils.Constants;
+
 import rx.subscriptions.CompositeSubscription;
 
 /**
@@ -27,7 +29,14 @@ public class TutorialPresenter implements TutorialContract.TutorialPresenter {
 
     @Override
     public void demo() {
-        view.startDemoMode();
+        compositeSubscription.add(
+                tutorialModel.login(Constants.DEMO_LOGIN, Constants.DEMO_PASSWORD, Constants.DEMO_DB_ID)
+                .subscribe(s -> {
+
+                }, t -> {
+
+                })
+        );
     }
 
     @Override
