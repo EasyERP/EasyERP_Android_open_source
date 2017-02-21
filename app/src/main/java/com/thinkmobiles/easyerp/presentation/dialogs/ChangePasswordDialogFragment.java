@@ -11,6 +11,7 @@ import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.presentation.managers.ValidationManager;
@@ -19,6 +20,8 @@ import com.thinkmobiles.easyerp.presentation.utils.Constants;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.FragmentArg;
 import org.androidannotations.annotations.res.StringRes;
+
+import java.util.regex.Pattern;
 
 /**
  * @author Michael Soyma (Created on 2/21/2017).
@@ -35,9 +38,12 @@ public class ChangePasswordDialogFragment extends DialogFragment {
 
     @StringRes(R.string.err_password_required)
     protected String errPasswordRequired;
-
     @StringRes(R.string.err_password_confirm_equal)
     protected String errPasswordConfirmEqual;
+    @StringRes(R.string.err_password_wrong_symbols)
+    protected String errPasswordWrongSymbols;
+    @StringRes(R.string.err_password_short)
+    protected String errPasswordShort;
 
     @Override
     public void onAttach(Activity activity) {
@@ -82,24 +88,31 @@ public class ChangePasswordDialogFragment extends DialogFragment {
         final String oldPassword = etOldPassword_DCP.getText().toString();
         final String newPassword = etNewPassword_DCP.getText().toString();
         final String confirmPassword = etConfirmPassword_DCP.getText().toString();
-        if (!showError(ValidationManager.isPasswordValid(oldPassword), tilOldPassword_DCP, errPasswordRequired)) {
-            if (!showError(ValidationManager.isPasswordValid(newPassword), tilNewPassword_DCP, errPasswordRequired)) {
-                if (!showError(ValidationManager.isPasswordValid(confirmPassword), tilConfirmPassword_DCP, errPasswordRequired)) {
+        if (!showError(ValidationManager.isPasswordValid(oldPassword), tilOldPassword_DCP)) {
+            if (!showError(ValidationManager.isPasswordValid(newPassword), tilNewPassword_DCP)) {
+                if (!showError(ValidationManager.isPasswordValid(confirmPassword), tilConfirmPassword_DCP)) {
                     if (newPassword.equals(confirmPassword)) {
                         dismiss();
                         if (changePasswordCallback != null)
                             changePasswordCallback.changePassword(oldPassword, newPassword);
-                    } else showError(Constants.ErrorCodes.FIELD_INVALID, tilConfirmPassword_DCP, errPasswordConfirmEqual);
+                    } else Toast.makeText(getActivity(), errPasswordConfirmEqual, Toast.LENGTH_SHORT).show();
                 }
             }
         }
     }
 
-    private boolean showError(final Constants.ErrorCodes errorCode, final TextInputLayout textInputLayout, final String emptyField) {
+    private boolean showError(final Constants.ErrorCodes errorCode, final TextInputLayout textInputLayout) {
         switch (errorCode) {
+            case INVALID_CHARS:
+                textInputLayout.setError(errPasswordWrongSymbols);
+                textInputLayout.setErrorEnabled(true);
+                return true;
+            case SHORTNESS:
+                textInputLayout.setError(errPasswordShort);
+                textInputLayout.setErrorEnabled(true);
+                return true;
             case FIELD_EMPTY:
-            case FIELD_INVALID:
-                textInputLayout.setError(emptyField);
+                textInputLayout.setError(errPasswordRequired);
                 textInputLayout.setErrorEnabled(true);
                 return true;
             case OK:

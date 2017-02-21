@@ -100,6 +100,10 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
     protected String errEmptyLogin;
     @StringRes(R.string.err_password_required)
     protected String errEmptyPassword;
+    @StringRes(R.string.err_password_wrong_symbols)
+    protected String errPasswordWrongSymbols;
+    @StringRes(R.string.err_password_short)
+    protected String errPasswordShort;
     @StringRes(R.string.err_db_id_required)
     protected String errEmptyDbID;
     @StringRes(R.string.terms_and_conditions_privacy_policy)
@@ -239,6 +243,14 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
         switch (code) {
             case FIELD_EMPTY:
                 tilPassword_VIFL.setError(errEmptyPassword);
+                tilPassword_VIFL.setErrorEnabled(true);
+                break;
+            case INVALID_CHARS:
+                tilPassword_VIFL.setError(errPasswordWrongSymbols);
+                tilPassword_VIFL.setErrorEnabled(true);
+                break;
+            case SHORTNESS:
+                tilPassword_VIFL.setError(errPasswordShort);
                 tilPassword_VIFL.setErrorEnabled(true);
                 break;
             case OK:

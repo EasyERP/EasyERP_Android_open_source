@@ -87,7 +87,8 @@ public abstract class Constants {
     public enum ErrorCodes {
         OK,
         FIELD_EMPTY,
-        FIELD_INVALID
+        INVALID_CHARS,
+        SHORTNESS
     }
 
     public enum ProgressType {

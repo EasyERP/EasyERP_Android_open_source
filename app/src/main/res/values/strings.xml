@@ -22,6 +22,8 @@
     <string name="err_login_required">Login is required</string>
     <string name="err_password_required">Password is required</string>
     <string name="err_password_confirm_equal">Passwords do not match</string>
+    <string name="err_password_wrong_symbols">Only A–Z, a–z, 0-9, _ @ symbols allowed</string>
+    <string name="err_password_short">Should be at least 3 characters long</string>
     <string name="err_login_or_email_required">Username or Email is required</string>
     <string name="err_db_id_required">Database ID is required</string>
 
