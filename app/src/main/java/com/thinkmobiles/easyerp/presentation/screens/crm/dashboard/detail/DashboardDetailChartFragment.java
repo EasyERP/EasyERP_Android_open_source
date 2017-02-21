@@ -10,7 +10,7 @@ import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.data.model.crm.dashboard.DashboardListItem;
 import com.thinkmobiles.easyerp.data.model.crm.dashboard.detail.DashboardChartType;
 import com.thinkmobiles.easyerp.domain.crm.DashboardRepository;
-import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
+import com.thinkmobiles.easyerp.presentation.base.rules.ErrorType;
 import com.thinkmobiles.easyerp.presentation.base.rules.RefreshFragment;
 import com.thinkmobiles.easyerp.presentation.screens.crm.dashboard.detail.DashboardDetailChartContract.DashboardDetailChartView;
 import com.thinkmobiles.easyerp.presentation.screens.crm.dashboard.detail.charts.ChartViewFabric;
@@ -44,8 +44,6 @@ public class DashboardDetailChartFragment extends RefreshFragment implements Das
 
     @Bean
     protected DashboardRepository dashboardRepository;
-    @Bean
-    protected ErrorViewHelper errorViewHelper;
 
     @FragmentArg
     protected DashboardListItem dashboardConfigsForChart;
@@ -120,7 +118,7 @@ public class DashboardDetailChartFragment extends RefreshFragment implements Das
     }
 
     @Override
-    public void displayErrorState(ErrorViewHelper.ErrorType errorType) {
+    public void displayErrorState(ErrorType errorType) {
         showErrorState(errorType);
     }
 

@@ -18,10 +18,7 @@ import com.thinkmobiles.easyerp.presentation.managers.ValidationManager;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
 import org.androidannotations.annotations.EFragment;
-import org.androidannotations.annotations.FragmentArg;
 import org.androidannotations.annotations.res.StringRes;
-
-import java.util.regex.Pattern;
 
 /**
  * @author Michael Soyma (Created on 2/21/2017).

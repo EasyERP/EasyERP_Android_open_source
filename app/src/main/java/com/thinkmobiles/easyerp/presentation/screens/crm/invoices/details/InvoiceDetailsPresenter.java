@@ -5,7 +5,6 @@ import com.thinkmobiles.easyerp.data.model.crm.invoice.detail.ResponseGetInvoice
 import com.thinkmobiles.easyerp.data.model.crm.leads.detail.AttachmentItem;
 import com.thinkmobiles.easyerp.data.model.crm.order.detail.OrderProduct;
 import com.thinkmobiles.easyerp.data.model.user.organization.OrganizationSettings;
-import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.AttachmentDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.HistoryDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.InvoicePaymentDH;

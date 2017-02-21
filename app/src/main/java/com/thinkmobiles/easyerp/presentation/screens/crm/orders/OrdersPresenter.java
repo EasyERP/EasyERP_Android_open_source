@@ -1,7 +1,6 @@
 package com.thinkmobiles.easyerp.presentation.screens.crm.orders;
 
 import com.thinkmobiles.easyerp.data.model.crm.order.Order;
-import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectablePresenterHelper;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.OrderDH;
 import com.thinkmobiles.easyerp.presentation.managers.ErrorManager;

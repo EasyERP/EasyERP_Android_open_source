@@ -1,7 +1,6 @@
 package com.thinkmobiles.easyerp.presentation.screens.crm.dashboard;
 
 import com.thinkmobiles.easyerp.data.model.crm.dashboard.DashboardListItem;
-import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectablePresenterHelper;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.DashboardListDH;
 import com.thinkmobiles.easyerp.presentation.managers.ErrorManager;

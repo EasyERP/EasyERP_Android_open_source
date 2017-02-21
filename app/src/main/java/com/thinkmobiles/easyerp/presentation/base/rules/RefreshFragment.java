@@ -112,7 +112,7 @@ public abstract class RefreshFragment extends BaseFragment<HomeActivity> {
         }
     }
 
-    protected void showErrorState(final ErrorViewHelper.ErrorType errorType) {
+    protected void showErrorState(final ErrorType errorType) {
         showProgressBar(Constants.ProgressType.NONE);
         llHolderError.setVisibility(View.VISIBLE);
         ivHolderIcon.setImageResource(getPlaceholderIcon(errorType));
@@ -144,14 +144,14 @@ public abstract class RefreshFragment extends BaseFragment<HomeActivity> {
 
     private
     @DrawableRes
-    int getPlaceholderIcon(final ErrorViewHelper.ErrorType errorType) {
+    int getPlaceholderIcon(final ErrorType errorType) {
         switch (errorType) {
             case LIST_EMPTY:
                 return R.drawable.ic_empty_list;
             case NETWORK:
+            case UNKNOWN:
                 return R.drawable.ic_error;
         }
         return 0;
     }
-
 }
