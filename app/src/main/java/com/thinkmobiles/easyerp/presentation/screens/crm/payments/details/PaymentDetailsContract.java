@@ -36,7 +36,7 @@ public interface PaymentDetailsContract {
         void setOwnerEmail(String ownerEmail);
         void setAdvice(String advice);
 
-        void displayErrorState(String errorMessage, ErrorViewHelper.ErrorType errorType);
+        void displayErrorState(ErrorViewHelper.ErrorType errorType);
     }
 
     interface PaymentDetailsPresenter extends BasePresenter {

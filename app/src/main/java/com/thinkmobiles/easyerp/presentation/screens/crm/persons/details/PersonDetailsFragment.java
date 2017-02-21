@@ -385,8 +385,8 @@ public class PersonDetailsFragment extends RefreshFragment implements PersonDeta
     }
 
     @Override
-    public void displayErrorState(String msg, ErrorViewHelper.ErrorType errorType) {
-        showErrorState(msg, errorType);
+    public void displayErrorState(ErrorViewHelper.ErrorType errorType) {
+        showErrorState(errorType);
     }
 
     @Override

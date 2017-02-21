@@ -315,13 +315,13 @@ public class LeadDetailsFragment extends RefreshFragment implements LeadDetailsC
     }
 
     @Override
-    public void displayErrorState(String errMsg, ErrorViewHelper.ErrorType errorType) {
-        showErrorState(errMsg, errorType);
+    public void displayErrorState(ErrorViewHelper.ErrorType errorType) {
+        showErrorState(errorType);
     }
 
     @Override
     public void displayErrorToast(String message) {
-        Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
+        showErrorToast(message);
     }
 
     @Override

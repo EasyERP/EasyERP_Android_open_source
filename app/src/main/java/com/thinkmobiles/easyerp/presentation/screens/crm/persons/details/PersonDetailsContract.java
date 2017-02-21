@@ -28,7 +28,7 @@ public interface PersonDetailsContract {
         void showLeadsAndOpportunities(boolean isShown);
         void showAttachments(boolean isShown);
 
-        void displayErrorState(final String msg, final ErrorViewHelper.ErrorType errorType);
+        void displayErrorState(final ErrorViewHelper.ErrorType errorType);
         void displayErrorToast(final String msg);
 
         void showJobPosition(boolean isShown);

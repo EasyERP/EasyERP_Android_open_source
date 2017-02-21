@@ -5,6 +5,7 @@ import android.util.Log;
 import com.thinkmobiles.easyerp.data.api.Rest;
 import com.thinkmobiles.easyerp.data.model.ResponseError;
 import com.thinkmobiles.easyerp.presentation.managers.CookieManager;
+import com.thinkmobiles.easyerp.presentation.managers.ErrorManager;
 import com.thinkmobiles.easyerp.presentation.managers.ValidationManager;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
@@ -69,7 +70,7 @@ public class LoginPresenter implements LoginContract.LoginPresenter {
                             view.startHomeScreen(responseGetCurrentUser.user);
                         }, t -> {
                             view.dismissProgress();
-                            view.showErrorToast(t.getMessage());
+                            view.showErrorToast(ErrorManager.getErrorMessage(t));
                         })
         );
     }
@@ -90,7 +91,7 @@ public class LoginPresenter implements LoginContract.LoginPresenter {
                                 ResponseError responseError = Rest.getInstance().parseError(e.response().errorBody());
                                 errMsg = responseError.error;
                             } else {
-                                errMsg = t.getMessage();
+                                errMsg = ErrorManager.getErrorMessage(t);
                             }
                             view.dismissProgress();
                             view.showErrorToast(errMsg);

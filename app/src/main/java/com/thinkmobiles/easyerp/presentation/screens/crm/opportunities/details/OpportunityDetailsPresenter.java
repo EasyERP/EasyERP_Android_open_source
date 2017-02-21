@@ -9,6 +9,7 @@ import com.thinkmobiles.easyerp.presentation.holders.data.crm.AttachmentDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.ContactDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.HistoryDH;
 import com.thinkmobiles.easyerp.presentation.managers.DateManager;
+import com.thinkmobiles.easyerp.presentation.managers.ErrorManager;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
 import java.util.ArrayList;
@@ -54,9 +55,9 @@ public class OpportunityDetailsPresenter implements OpportunityDetailsContract.O
                     view.showProgress(Constants.ProgressType.NONE);
                 }, throwable -> {
                     if(currentOpportunity != null)
-                        view.displayErrorToast(throwable.getMessage());
+                        view.displayErrorToast(ErrorManager.getErrorMessage(throwable));
                     else
-                        view.displayErrorState(throwable.getMessage(), ErrorViewHelper.ErrorType.NETWORK);
+                        view.displayErrorState(ErrorManager.getErrorType(throwable));
                 }));
     }
 

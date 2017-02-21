@@ -125,6 +125,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
 
     @AfterViews
     protected void initUI() {
+        initSplashAnimation();
         if(cookieManager.isCookieExists()) presenter.getCurrentUser();
 
         flAppIcon_AL.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
@@ -273,7 +274,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
         this.presenter = presenter;
     }
 
-    private void runSplashAnimation() {
+    private void initSplashAnimation() {
         ObjectAnimator iconFade = ObjectAnimator.ofFloat(vAppIcon_AL, View.ALPHA, 0.4f, 1f);
         ObjectAnimator iconScaleX = ObjectAnimator.ofFloat(flAppIcon_AL, View.SCALE_X, 0.5f, 1f);
         ObjectAnimator iconScaleY = ObjectAnimator.ofFloat(flAppIcon_AL, View.SCALE_Y, 0.5f, 1f);
@@ -328,7 +329,9 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
                     animatorSet2.start();
             }
         });
+    }
 
+    private void runSplashAnimation() {
         animatorSet1.start();
     }
 

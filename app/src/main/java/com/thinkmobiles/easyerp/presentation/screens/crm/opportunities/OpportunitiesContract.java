@@ -22,7 +22,7 @@ public interface OpportunitiesContract {
         void displayOpportunities(ArrayList<OpportunityDH> opportunityDHs, boolean needClear);
         void openOpportunityDetailsScreen(String opportunityID);
 
-        void displayErrorState(final String msg, final ErrorViewHelper.ErrorType errorType);
+        void displayErrorState(final ErrorViewHelper.ErrorType errorType);
         void displayErrorToast(final String msg);
         void showProgress(Constants.ProgressType type);
     }
