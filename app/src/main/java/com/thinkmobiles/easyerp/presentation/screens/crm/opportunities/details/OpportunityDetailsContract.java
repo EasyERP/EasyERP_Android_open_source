@@ -23,7 +23,7 @@ public interface OpportunityDetailsContract {
     interface OpportunityDetailsView extends BaseView<OpportunityDetailsPresenter> {
         void showProgress(Constants.ProgressType type);
         void showHistory(boolean enable);
-        void displayErrorState(String errMsg, ErrorViewHelper.ErrorType errorType);
+        void displayErrorState(ErrorViewHelper.ErrorType errorType);
         void displayErrorToast(String message);
 
         void showContact(boolean isShown);

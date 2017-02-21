@@ -185,8 +185,8 @@ public class PaymentDetailsFragment extends RefreshFragment implements PaymentDe
     }
 
     @Override
-    public void displayErrorState(String errorMessage, ErrorViewHelper.ErrorType errorType) {
-        showErrorState(errorMessage, errorType);
+    public void displayErrorState(ErrorViewHelper.ErrorType errorType) {
+        showErrorState(errorType);
     }
 
     @Override

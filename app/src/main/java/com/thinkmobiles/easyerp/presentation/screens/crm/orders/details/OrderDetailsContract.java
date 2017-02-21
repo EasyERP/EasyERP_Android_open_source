@@ -49,7 +49,7 @@ public interface OrderDetailsContract {
         void setHistory(ArrayList<HistoryDH> history);
         void setProducts(ArrayList<ProductDH> products);
 
-        void displayErrorState(final String msg, final ErrorViewHelper.ErrorType errorType);
+        void displayErrorState(final ErrorViewHelper.ErrorType errorType);
         void displayErrorToast(final String msg);
     }
 

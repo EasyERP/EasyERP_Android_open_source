@@ -4,6 +4,7 @@ import com.thinkmobiles.easyerp.data.model.crm.payments.Payment;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectablePresenterHelper;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.PaymentDH;
+import com.thinkmobiles.easyerp.presentation.managers.ErrorManager;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
 import java.util.ArrayList;
@@ -74,7 +75,7 @@ public class PaymentsPresenter extends MasterFlowSelectablePresenterHelper<Strin
                             totalItems = responseGetPayments.total;
                             saveData(responseGetPayments.data, needClear);
                             if (payments.isEmpty()) {
-                                view.displayErrorState(null, ErrorViewHelper.ErrorType.LIST_EMPTY);
+                                view.displayErrorState(ErrorManager.getErrorType(null));
                             } else {
                                 view.showProgress(Constants.ProgressType.NONE);
                                 view.displayPayments(prepareOrderDHs(responseGetPayments.data, needClear), needClear);
@@ -82,9 +83,9 @@ public class PaymentsPresenter extends MasterFlowSelectablePresenterHelper<Strin
                         },
                         throwable -> {
                             if (payments.isEmpty()) {
-                                view.displayErrorState(throwable.getMessage(), ErrorViewHelper.ErrorType.NETWORK);
+                                view.displayErrorState(ErrorManager.getErrorType(throwable));
                             } else {
-                                view.displayErrorToast(throwable.getMessage());
+                                view.displayErrorToast(ErrorManager.getErrorMessage(throwable));
                             }
                         }
                 )

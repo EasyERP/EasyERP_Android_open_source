@@ -26,7 +26,7 @@ public interface PersonsContract {
         void displayPersons(ArrayList<PersonDH> personDHs, boolean needClear);
         void openPersonDetailsScreen(String personID);
 
-        void displayErrorState(final String msg, final ErrorViewHelper.ErrorType errorType);
+        void displayErrorState(final ErrorViewHelper.ErrorType errorType);
         void displayErrorToast(final String msg);
         void showProgress(Constants.ProgressType type);
     }

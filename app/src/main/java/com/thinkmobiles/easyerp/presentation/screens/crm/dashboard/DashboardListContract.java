@@ -22,7 +22,7 @@ public interface DashboardListContract {
     interface DashboardListView extends MasterFlowSelectableBaseView<DashboardListPresenter> {
         void displayDashboardChartsList(ArrayList<DashboardListDH> listDashboards);
         void openDashboardChartDetail(final DashboardListItem itemChartDashboard);
-        void displayErrorState(final String msg, final ErrorViewHelper.ErrorType errorType);
+        void displayErrorState(final ErrorViewHelper.ErrorType errorType);
         void displayErrorToast(final String msg);
         void showProgress(Constants.ProgressType type);
     }

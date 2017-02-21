@@ -22,7 +22,7 @@ public interface DashboardDetailChartContract {
         void displayChart(final Object data, final DashboardChartType chartType);
         void displayDateFilterFromTo(final String fromToDate);
         void chooseCustomDateRangeFromTo(final Calendar dateFrom, final Calendar dateTo);
-        void displayErrorState(final String msg, ErrorViewHelper.ErrorType errorType);
+        void displayErrorState(ErrorViewHelper.ErrorType errorType);
         void displayErrorToast(String msg);
         void showProgress(Constants.ProgressType type);
     }
