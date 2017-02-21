@@ -3,6 +3,7 @@
 
     <string name="no_data">No data</string>
     <string name="hint_username">Username</string>
+    <string name="hint_username_or_email">Username or Email</string>
     <string name="hint_password">Password</string>
     <string name="hint_database_id">Database ID</string>
     <string name="login">Login</string>
@@ -17,6 +18,7 @@
     <string name="err_not_specified">Not specified</string>
     <string name="err_login_required">Login is required</string>
     <string name="err_password_required">Password is required</string>
+    <string name="err_login_or_email_required">Username or Email is required</string>
     <string name="err_db_id_required">Database ID is required</string>
 
     <string name="date_filter">Date filter</string>
@@ -73,6 +75,7 @@
     <string name="dialog_btn_apply">Apply</string>
     <string name="dialog_btn_cancel">Cancel</string>
     <string name="dialog_btn_remove">Remove</string>
+    <string name="dialog_btn_send">Send</string>
     <string name="amount">Amount</string>
     <string name="contact">Contact</string>
     <string name="mobile">Mobile</string>
@@ -146,5 +149,6 @@
     <string name="about_us">About us</string>
 
     <string name="terms_and_conditions_privacy_policy">By signing up you agree Terms &amp; conditions and Privacy policy</string>
-    <string name="forgot_password">Forgot Password?</string>
+    <string name="forgot_password">Forgot Password</string>
+    <string name="forgot_password_question">Forgot Password?</string>
 </resources>
