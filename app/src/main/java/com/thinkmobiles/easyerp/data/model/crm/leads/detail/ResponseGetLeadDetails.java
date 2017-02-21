@@ -105,7 +105,7 @@ public class ResponseGetLeadDetails implements Parcelable {
                         "last": "Michenko",
                         "first": "Alex"
                     },
-                    "imageSrc": "data:image/jpeg;base64",
+                    "imageSrc": "url:image/jpeg;base64",
                     "fullName": "Alex Michenko",
                     "id": "55b92ad221e4b7c40f00009e"
                 },
@@ -270,7 +270,7 @@ public class ResponseGetLeadDetails implements Parcelable {
             "department": null,
             "company": null,
             "email": "",
-            "imageSrc": "data:image/png;base64",
+            "imageSrc": "url:image/png;base64",
             "name": {
                 "last": "Hurst",
                 "first": "Aaron"
@@ -353,7 +353,7 @@ public class ResponseGetLeadDetails implements Parcelable {
             "department": null,
             "company": null,
             "email": "nopromises@mail.com",
-            "imageSrc": "data:image/jpeg;base64",
+            "imageSrc": "url:image/jpeg;base64",
             "name": {
                 "last": "",
                 "first": "Eternity Insurance group"
