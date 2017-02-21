@@ -4,7 +4,7 @@ import com.thinkmobiles.easyerp.data.model.user.organization.ResponseGetOrganiza
 import com.thinkmobiles.easyerp.presentation.base.BaseModel;
 import com.thinkmobiles.easyerp.presentation.base.BasePresenter;
 import com.thinkmobiles.easyerp.presentation.base.BaseView;
-import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
+import com.thinkmobiles.easyerp.presentation.base.rules.ErrorType;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
 import rx.Observable;
@@ -36,7 +36,7 @@ public interface PaymentDetailsContract {
         void setOwnerEmail(String ownerEmail);
         void setAdvice(String advice);
 
-        void displayErrorState(ErrorViewHelper.ErrorType errorType);
+        void displayErrorState(ErrorType errorType);
     }
 
     interface PaymentDetailsPresenter extends BasePresenter {

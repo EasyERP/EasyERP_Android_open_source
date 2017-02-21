@@ -16,11 +16,14 @@ public interface HomeContract {
         void showProgress(final String msg);
         void dismissProgress();
         void showErrorToast(final String msg);
+        void showInfoToast(final String msg);
     }
     interface HomePresenter extends BasePresenter {
         void logOut();
+        void changePassword(final String userId, final String oldPass, final String newPass);
     }
     interface HomeModel extends BaseModel {
         Observable<?> logout();
+        Observable<?> changePassword(final String userId, final String oldPass, final String newPass);
     }
 }

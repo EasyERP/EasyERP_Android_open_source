@@ -3,7 +3,7 @@ package com.thinkmobiles.easyerp.presentation.screens.crm.dashboard;
 import com.thinkmobiles.easyerp.data.model.crm.dashboard.DashboardListItem;
 import com.thinkmobiles.easyerp.data.model.crm.dashboard.ResponseGetCRMDashboardCharts;
 import com.thinkmobiles.easyerp.presentation.base.BaseModel;
-import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
+import com.thinkmobiles.easyerp.presentation.base.rules.ErrorType;
 import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectableBasePresenter;
 import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectableBaseView;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.DashboardListDH;
@@ -22,7 +22,7 @@ public interface DashboardListContract {
     interface DashboardListView extends MasterFlowSelectableBaseView<DashboardListPresenter> {
         void displayDashboardChartsList(ArrayList<DashboardListDH> listDashboards);
         void openDashboardChartDetail(final DashboardListItem itemChartDashboard);
-        void displayErrorState(final ErrorViewHelper.ErrorType errorType);
+        void displayErrorState(final ErrorType errorType);
         void displayErrorToast(final String msg);
         void showProgress(Constants.ProgressType type);
     }

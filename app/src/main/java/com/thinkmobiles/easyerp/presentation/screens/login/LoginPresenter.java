@@ -1,7 +1,5 @@
 package com.thinkmobiles.easyerp.presentation.screens.login;
 
-import android.util.Log;
-
 import com.thinkmobiles.easyerp.data.api.Rest;
 import com.thinkmobiles.easyerp.data.model.ResponseError;
 import com.thinkmobiles.easyerp.presentation.managers.CookieManager;

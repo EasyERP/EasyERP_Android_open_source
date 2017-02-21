@@ -15,7 +15,7 @@ import com.thinkmobiles.easyerp.domain.crm.OrderRepository;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.AttachmentAdapter;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.HistoryAdapter;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.ProductAdapter;
-import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
+import com.thinkmobiles.easyerp.presentation.base.rules.ErrorType;
 import com.thinkmobiles.easyerp.presentation.base.rules.RefreshFragment;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.AttachmentDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.HistoryDH;
@@ -323,7 +323,7 @@ public class OrderDetailsFragment extends RefreshFragment implements OrderDetail
     }
 
     @Override
-    public void displayErrorState(ErrorViewHelper.ErrorType errorType) {
+    public void displayErrorState(ErrorType errorType) {
         showErrorState(errorType);
     }
 

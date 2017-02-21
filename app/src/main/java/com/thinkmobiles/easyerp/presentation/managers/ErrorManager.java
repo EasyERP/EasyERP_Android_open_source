@@ -1,6 +1,6 @@
 package com.thinkmobiles.easyerp.presentation.managers;
 
-import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
+import com.thinkmobiles.easyerp.presentation.base.rules.ErrorType;
 
 import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
@@ -11,12 +11,12 @@ import java.net.UnknownHostException;
 
 public abstract class ErrorManager {
 
-    public static ErrorViewHelper.ErrorType getErrorType(Throwable t) {
-        if(t == null) return ErrorViewHelper.ErrorType.LIST_EMPTY;
+    public static ErrorType getErrorType(Throwable t) {
+        if(t == null) return ErrorType.LIST_EMPTY;
         else if(t instanceof UnknownHostException || t instanceof SocketTimeoutException)
-            return ErrorViewHelper.ErrorType.NETWORK;
+            return ErrorType.NETWORK;
         else
-            return ErrorViewHelper.ErrorType.UNKNOWN;
+            return ErrorType.UNKNOWN;
     }
 
     public static String getErrorMessage(Throwable t) {
