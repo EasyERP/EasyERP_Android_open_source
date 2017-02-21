@@ -23,6 +23,9 @@
     <dimen name="divider_height">1dp</dimen>
 
     <dimen name="login_min_width_form_credentials">300dp</dimen>
+    <dimen name="login_logo_margin">32dp</dimen>
+    <dimen name="padding_start_for_credentials_ui">33dp</dimen>
+    <dimen name="login_icons_size">17dp</dimen>
 
     <!--/////////////////////// DESIGN ///////////////////////-->
 

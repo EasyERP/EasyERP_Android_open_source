@@ -64,6 +64,7 @@ dependencies {
     /*Android support*/
     compile appDependencies.androidSupportDesign
     compile appDependencies.androidSupportCardView
+    compile appDependencies.androidSupportPercent
 
     /*Android annotations*/
     apt appDependencies.androidAnnotations

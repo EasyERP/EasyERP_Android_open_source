@@ -2,13 +2,14 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.thinkmobiles.easyerp">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
-    <supports-screens android:smallScreens="false"
-        android:normalScreens="false"
+    <supports-screens
         android:largeScreens="true"
-        android:xlargeScreens="true"
-        android:requiresSmallestWidthDp="600" />
+        android:normalScreens="false"
+        android:requiresSmallestWidthDp="600"
+        android:smallScreens="false"
+        android:xlargeScreens="true" />
 
     <application
         android:name=".presentation.EasyErpApplication_"
@@ -23,12 +24,14 @@
         <activity
             android:name=".presentation.screens.tutorial.TutorialActivity_"
             android:screenOrientation="sensor"
+            android:theme="@style/LoginTheme"
             android:windowSoftInputMode="stateHidden">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".presentation.screens.login.LoginActivity_"
             android:screenOrientation="sensor"
@@ -36,6 +39,12 @@
         <activity
             android:name=".presentation.screens.home.HomeActivity_"
             android:screenOrientation="sensor"
+            android:windowSoftInputMode="stateHidden" />
+
+        <activity
+            android:name=".presentation.screens.about.WebActivity_"
+            android:screenOrientation="sensor"
+            android:configChanges="orientation|screenSize"
             android:windowSoftInputMode="stateHidden"/>
 
         <meta-data

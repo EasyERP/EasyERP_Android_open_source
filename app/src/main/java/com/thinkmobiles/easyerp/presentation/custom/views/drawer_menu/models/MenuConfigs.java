@@ -65,18 +65,18 @@ public abstract class MenuConfigs {
 
     private static List<MenuItem> getCRMModule() {
         final List<MenuItem> menuItems = new ArrayList<>();
-        menuItems.add(new MenuItem(0, R.drawable.ic_menu_item_placeholder, "Dashboard", true));
+        menuItems.add(new MenuItem(0, R.drawable.ic_dashboard, "Dashboard", true));
 //        menuItems.add(new MenuItem(1, R.drawable.ic_menu_item_placeholder, "Custom Dashboard", false));
-        menuItems.add(new MenuItem(2, R.drawable.ic_menu_item_placeholder, "Leads", true));
-        menuItems.add(new MenuItem(3, R.drawable.ic_menu_item_placeholder, "Opportunities", true));
-        menuItems.add(new MenuItem(4, R.drawable.ic_menu_item_placeholder, "Persons", true));
-        menuItems.add(new MenuItem(5, R.drawable.ic_menu_item_placeholder, "Companies", true));
-        menuItems.add(new MenuItem(6, R.drawable.ic_menu_item_placeholder, "Reports", false));
-        menuItems.add(new MenuItem(7, R.drawable.ic_menu_item_placeholder, "Orders", true));
-        menuItems.add(new MenuItem(8, R.drawable.ic_menu_item_placeholder, "Invoices", true));
-        menuItems.add(new MenuItem(9, R.drawable.ic_menu_item_placeholder, "Payments", true));
-        menuItems.add(new MenuItem(10, R.drawable.ic_menu_item_placeholder, "Invoice Aging", false));
-        menuItems.add(new MenuItem(11, R.drawable.ic_menu_item_placeholder, "Tasks", false));
+        menuItems.add(new MenuItem(2, R.drawable.ic_leads, "Leads", true));
+        menuItems.add(new MenuItem(3, R.drawable.ic_opportunities, "Opportunities", true));
+        menuItems.add(new MenuItem(4, R.drawable.ic_persons, "Persons", true));
+        menuItems.add(new MenuItem(5, R.drawable.ic_companies, "Companies", true));
+        menuItems.add(new MenuItem(6, R.drawable.ic_reports, "Reports", false));
+        menuItems.add(new MenuItem(7, R.drawable.ic_orders, "Orders", true));
+        menuItems.add(new MenuItem(8, R.drawable.ic_invoices, "Invoices", true));
+        menuItems.add(new MenuItem(9, R.drawable.ic_paymens, "Payments", true));
+        menuItems.add(new MenuItem(10, R.drawable.ic_invoice_aging, "Invoice Aging", false));
+        menuItems.add(new MenuItem(11, R.drawable.ic_tasks, "Tasks", false));
         return menuItems;
     }
 

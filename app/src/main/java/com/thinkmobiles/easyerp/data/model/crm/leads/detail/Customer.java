@@ -86,7 +86,7 @@ public class Customer implements Parcelable {
      "department": null,
      "company": null,
      "email": "",
-     "imageSrc": "data:image/png;base64",
+     "imageSrc": "url:image/png;base64",
      "name": {
      "last": "Hurst",
      "first": "Aaron"
