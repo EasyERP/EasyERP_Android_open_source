@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="48dp"
+    android:height="48dp"
+    android:tint="@color/selector_color_menu_icons"
+    android:viewportHeight="48"
+    android:viewportWidth="48">
+
+    <group
+        android:translateX="-50.000000"
+        android:translateY="-728.000000">
+        <group
+            android:translateX="-32.000000"
+            android:translateY="503.000000">
+            <group
+                android:translateX="82.000000"
+                android:translateY="225.000000">
+                <path
+                    android:fillColor="#ffffff"
+                    android:pathData="M24,19.5 C21.5145,19.5 19.5,21.5145 19.5,24 C19.5,26.4855 21.5145,28.5 24,28.5
+C26.4855,28.5 28.5,26.4855 28.5,24 C28.5,21.51525 26.4855,19.5 24,19.5 Z
+M24,9.75 C16.13025,9.75 9.75,16.1295 9.75,24 C9.75,31.86975 16.13025,38.25
+24,38.25 C31.86975,38.25 38.25,31.86975 38.25,24 C38.25,16.13025 31.86975,9.75
+24,9.75 Z M24,33.75 C18.615,33.75 14.25,29.38425 14.25,24 C14.25,18.615
+18.615,14.25 24,14.25 C29.385,14.25 33.75,18.615 33.75,24 C33.75,29.385
+29.385,33.75 24,33.75 Z M24,0 C10.74525,0 0,10.74525 0,24 C0,37.25475
+10.74525,48 24,48 C37.25475,48 48,37.25475 48,24 C48,10.74525 37.25475,0 24,0 Z
+M24,43.5 C13.23075,43.5 4.5,34.77 4.5,24 C4.5,13.23075 13.23075,4.5 24,4.5
+C34.76925,4.5 43.5,13.23 43.5,24 C43.5,34.77 34.77,43.5 24,43.5 Z" />
+            </group>
+        </group>
+    </group>
+</vector>

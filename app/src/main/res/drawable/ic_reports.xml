@@ -1,11 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
-    android:width="32dp"
-    android:height="32dp"
+    android:width="47dp"
+    android:height="48dp"
     android:tint="@color/selector_color_menu_icons"
-    android:viewportHeight="32"
-    android:viewportWidth="32">
-    <path
-        android:fillColor="#ffffff"
-        android:pathData="M8.5 10l-7 0c-0.6 0 -1 0.4 -1 1l0 20c0 0.6 0.4 1 1 1l7 0c0.6 0 1 -0.4 1 -1l0 -20c0 -0.6 -0.4 -1 -1 -1zm-1 20l-5 0 0 -18 5 0 0 18zm12 -14.1l-7 0c-0.6 0 -1 0.4 -1 1l0 14.1c0 0.6 0.4 1 1 1l7 0c0.6 0 1 -0.4 1 -1l0 -14.1c0.1 -0.5 -0.4 -1 -1 -1zm-1 14.1l-5 0 0 -12 5 0 0 12zm12.1 -30l-7 0c-0.6 0 -1 0.4 -1 1l0 30c0 0.6 0.4 1 1 1l7 0c0.6 0 1 -0.4 1 -1l0 -30c0 -0.6 -0.5 -1 -1 -1zm-1 30l-5 0 0 -28 5 0 0 28z" />
+    android:viewportHeight="48"
+    android:viewportWidth="47">
+
+    <group
+        android:translateX="-51.000000"
+        android:translateY="-512.000000">
+        <group
+            android:translateX="48.000000"
+            android:translateY="512.000000">
+            <group android:translateX="3.000000">
+                <path
+                    android:fillColor="#ffffff"
+                    android:pathData="M 0 15 H 13 V 48 H 0 V 15 Z" />
+                <path
+                    android:fillColor="#ffffff"
+                    android:pathData="M 17 24 H 30 V 48 H 17 V 24 Z" />
+                <path
+                    android:fillColor="#ffffff"
+                    android:pathData="M 34 0 H 47 V 48 H 34 V 0 Z" />
+            </group>
+        </group>
+    </group>
 </vector>
