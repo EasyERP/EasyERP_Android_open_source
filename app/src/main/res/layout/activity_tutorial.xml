@@ -19,21 +19,26 @@
 
         <TextView
             style="@style/WhiteButtonStyle"
-            android:background="?android:attr/selectableItemBackground"
             android:id="@+id/btnLogin_AT"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/login"/>
 
-        <com.thinkmobiles.easyerp.presentation.custom.views.circle_page_indicator.CirclePageIndicator
-            android:id="@+id/cpiTutorial_AT"
+        <me.relex.circleindicator.CircleIndicator
+            android:id="@+id/ciTutorial_AT"
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            app:ci_width="13dp"
+            app:ci_height="13dp"
+            app:ci_orientation="horizontal"
+            app:ci_margin="6dp"
+            app:ci_animator="@animator/alpha"
+            app:ci_drawable_unselected="@drawable/view_pager_indicator"
+            app:ci_drawable="@drawable/view_pager_indicator_selected"
             android:layout_weight="1"/>
 
         <TextView
             style="@style/WhiteButtonStyle"
-            android:background="?android:attr/selectableItemBackground"
             android:id="@+id/btnDemo_AT"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

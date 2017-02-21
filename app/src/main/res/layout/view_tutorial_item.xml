@@ -14,7 +14,8 @@
         android:textSize="@dimen/text_size_title_large"
         tools:text="Manage always up-to-date information about invoices and payments"
         android:textColor="@android:color/white"
-        android:gravity="center"/>
+        android:gravity="center"
+        android:layout_marginTop="@dimen/default_padding"/>
 
     <ImageView
         android:id="@+id/ivTutorialImage_VTI"

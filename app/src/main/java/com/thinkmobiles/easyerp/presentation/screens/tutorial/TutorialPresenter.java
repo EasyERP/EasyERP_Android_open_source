@@ -6,6 +6,8 @@ package com.thinkmobiles.easyerp.presentation.screens.tutorial;
 
 public class TutorialPresenter implements TutorialContract.TutorialPresenter {
 
+    private TutorialContract.TutorialView view;
+
     @Override
     public void login() {
 

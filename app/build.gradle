@@ -89,4 +89,6 @@ dependencies {
     compile(devDependencies.crashlytic) {
         transitive = true;
     }
+
+    compile 'me.relex:circleindicator:1.2.2@aar'
 }
