@@ -10,7 +10,7 @@
         android:id="@+id/cbItem"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/CustomCheckBox"
+        style="@style/CustomCheckBoxStyle"
         android:paddingStart="@dimen/default_dimen_32"
         tools:text="text 1"
         android:textSize="@dimen/text_list_item_medium_16"

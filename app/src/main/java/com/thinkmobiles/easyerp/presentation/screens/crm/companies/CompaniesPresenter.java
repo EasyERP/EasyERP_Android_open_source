@@ -154,11 +154,12 @@ public class CompaniesPresenter extends MasterFlowSelectablePresenterHelper<Stri
     }
 
     private void setData(CommonCompaniesResponse commonPersonsResponse, boolean needClear) {
+        view.displaySelectedLetter(selectedLetter);
+        view.displayCompanies(prepareDataHolders(commonPersonsResponse, needClear), needClear);
         if (companiesResponse.responseGetCompanies.data.isEmpty()) {
             view.displayErrorState(ErrorManager.getErrorType(null));
         } else {
             view.showProgress(Constants.ProgressType.NONE);
-            view.displayCompanies(prepareDataHolders(commonPersonsResponse, needClear), needClear);
         }
     }
 

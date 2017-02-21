@@ -122,11 +122,11 @@ public class PaymentsPresenter extends MasterFlowSelectablePresenterHelper<Strin
     }
 
     private void setData(final List<Payment> payments, boolean needClear) {
+        view.displayPayments(preparePaymentDHs(payments, needClear), needClear);
         if (this.payments.isEmpty()) {
             view.displayErrorState(ErrorManager.getErrorType(null));
         } else {
             view.showProgress(Constants.ProgressType.NONE);
-            view.displayPayments(preparePaymentDHs(payments, needClear), needClear);
         }
     }
 

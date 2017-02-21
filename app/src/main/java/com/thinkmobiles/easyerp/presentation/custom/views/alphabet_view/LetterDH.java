@@ -9,15 +9,16 @@ import com.michenko.simpleadapter.RecyclerDH;
 public class LetterDH extends RecyclerDH {
 
     private String letter;
-    private LetterState letterState = LetterState.DISABLED;
+    private boolean enabled;
+    private boolean selected;
 
     public LetterDH(String letter) {
-        this.letter = letter;
+        this(letter, false);
     }
 
-    public LetterDH(LetterState letterState, String letter) {
-        this.letterState = letterState;
+    public LetterDH(String letter, boolean enabled) {
         this.letter = letter;
+        this.enabled = enabled;
     }
 
     public String getLetter() {
@@ -28,11 +29,19 @@ public class LetterDH extends RecyclerDH {
         this.letter = letter;
     }
 
-    public LetterState getLetterState() {
-        return letterState;
+    public boolean isSelected() {
+        return selected;
     }
 
-    public void setLetterState(LetterState letterState) {
-        this.letterState = letterState;
+    public void setSelected(boolean selected) {
+        this.selected = selected;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
     }
 }

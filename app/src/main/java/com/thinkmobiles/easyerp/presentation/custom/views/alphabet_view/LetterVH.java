@@ -5,6 +5,7 @@ import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.TextView;
 
+import com.jakewharton.rxbinding.view.RxView;
 import com.michenko.simpleadapter.OnCardClickListener;
 import com.michenko.simpleadapter.RecyclerVH;
 import com.thinkmobiles.easyerp.R;
@@ -26,16 +27,7 @@ public class LetterVH extends RecyclerVH<LetterDH> {
     @Override
     public void bindData(LetterDH data) {
         tvLetter_LIL.setText(data.getLetter());
-        switch (data.getLetterState()) {
-            case ENABLED:
-                tvLetter_LIL.setTextColor(ContextCompat.getColor(itemView.getContext(), R.color.color_text_black));
-                break;
-            case DISABLED:
-                tvLetter_LIL.setTextColor(ContextCompat.getColor(itemView.getContext(), android.R.color.darker_gray));
-                break;
-            case SELECTED:
-                tvLetter_LIL.setTextColor(ContextCompat.getColor(itemView.getContext(), R.color.colorAccent));
-                break;
-        }
+        tvLetter_LIL.setEnabled(data.isEnabled());
+        tvLetter_LIL.setSelected(data.isSelected());
     }
 }

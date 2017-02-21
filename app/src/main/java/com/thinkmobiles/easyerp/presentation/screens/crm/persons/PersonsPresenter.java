@@ -104,6 +104,7 @@ public class PersonsPresenter extends MasterFlowSelectablePresenterHelper<String
     }
 
     private void setData(CommonPersonsResponse commonPersonsResponse, boolean needClear) {
+        view.displaySelectedLetter(selectedLetter);
         view.displayPersons(prepareDataHolders(commonPersonsResponse, needClear), needClear);
         if (personsResponse.responseGetPersons.data.isEmpty()) {
             view.displayErrorState(ErrorManager.getErrorType(null));
@@ -159,6 +160,7 @@ public class PersonsPresenter extends MasterFlowSelectablePresenterHelper<String
             loadAlphabet();
             getFirstPage();
         } else {
+            view.displayEnabledLetters(enabledAlphabetItems);
             setData(personsResponse, true);
         }
     }

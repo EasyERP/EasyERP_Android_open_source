@@ -115,11 +115,11 @@ public class InvoicesPresenter extends MasterFlowSelectablePresenterHelper<Strin
     }
 
     private void setData(final List<Invoice> invoices, boolean needClear) {
+        view.displayInvoices(prepareInvoiceDHs(invoices, needClear), needClear);
         if (this.invoices.isEmpty()) {
             view.displayErrorState(ErrorManager.getErrorType(null));
         } else {
             view.showProgress(Constants.ProgressType.NONE);
-            view.displayInvoices(prepareInvoiceDHs(invoices, needClear), needClear);
         }
     }
 

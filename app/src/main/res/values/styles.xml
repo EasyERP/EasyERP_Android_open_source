@@ -282,6 +282,12 @@
         <item name="android:clickable">false</item>
     </style>
 
+    <style name="CustomCheckBoxStyle" >
+        <item name="android:theme">@style/CustomCheckBox</item>
+        <item name="android:textSize">@dimen/text_size_small_14</item>
+        <item name="android:clickable">false</item>
+    </style>
+
     <style name="SmallChipsStyle" parent="RobotoMedium">
         <item name="android:textSize">@dimen/text_size_extra_small</item>
         <item name="android:textColor">@android:color/white</item>

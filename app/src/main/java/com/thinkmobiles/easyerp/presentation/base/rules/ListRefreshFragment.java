@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.SuggestionAdapter;
@@ -74,6 +75,11 @@ public abstract class ListRefreshFragment extends RefreshFragment {
     protected void showErrorToast(String message) {
         scrollListener.reset();
         super.showErrorToast(message);
+    }
+
+    @Override
+    protected View getHiddenView() {
+        return listRecycler;
     }
 
     @CallSuper
