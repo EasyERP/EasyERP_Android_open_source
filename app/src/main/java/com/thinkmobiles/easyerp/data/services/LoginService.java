@@ -16,4 +16,8 @@ public interface LoginService {
     @FormUrlEncoded
     @POST(Constants.POST_LOGIN)
     Observable<String> login(@Field("login") String login, @Field("pass") String pass, @Field("dbId") String dbId, @Field("rememberMe") boolean isRememberMe);
+
+    @FormUrlEncoded
+    @POST(Constants.POST_FORGOT_PASSWORD)
+    Observable<Void> forgotPassword(@Field("login") String login, @Field("dbId") String dbId);
 }

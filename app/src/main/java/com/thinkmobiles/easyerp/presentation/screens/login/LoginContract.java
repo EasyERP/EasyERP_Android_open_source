@@ -18,6 +18,7 @@ public interface LoginContract {
         void showProgress(final String msg);
         void dismissProgress();
         void showErrorToast(final String msg);
+        void showInfoToast(final String msg);
 
         String getLogin();
         String getPassword();
@@ -34,9 +35,11 @@ public interface LoginContract {
         void launchDemoMode();
         void getCurrentUser();
         void clearCookies();
+        void forgotPassword(final String login, final String dbId);
     }
     interface LoginModel extends BaseModel {
         Observable<String> login(String login, String password, String dbId);
+        Observable<?> forgotPassword(String login, String dbId);
     }
     interface UserModel extends BaseModel {
         Observable<ResponseGetCurrentUser> getCurrentUser();
