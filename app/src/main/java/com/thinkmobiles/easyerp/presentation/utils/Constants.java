@@ -18,6 +18,7 @@ public abstract class Constants {
     public static final String GET_CURRENT_USER             = "users/current";
     public static final String GET_ORGANIZATION_SETTINGS    = "organizationSettings";
     public static final String GET_LOGOUT                   = "logout";
+    public static final String PATCH_CHANGE_PASSWORD        = "users/current/{userId}";
     //End User
 
     //------------------------------------------------------ CRM
