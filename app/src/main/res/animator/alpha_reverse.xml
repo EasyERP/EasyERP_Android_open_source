@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<set xmlns:android="http://schemas.android.com/apk/res/android"
-     android:duration="@android:integer/config_shortAnimTime">
+<set xmlns:android="http://schemas.android.com/apk/res/android">
+
 
     <objectAnimator
         android:propertyName="alpha"
         android:valueType="floatType"
-        android:valueFrom="0.5"
-        android:valueTo="1.0"/>
+        android:valueFrom="1.0"
+        android:valueTo="0.5"/>
 
     <objectAnimator
         android:propertyName="scaleX"
@@ -19,5 +19,4 @@
         android:valueType="floatType"
         android:valueFrom="0.5"
         android:valueTo="1.0"/>
-
 </set>
