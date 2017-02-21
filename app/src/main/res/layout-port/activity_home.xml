@@ -36,7 +36,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:scaleType="center"
-                    android:src="@drawable/ic_empty_content" />
+                    app:srcCompat="@drawable/ic_empty_content" />
 
                 <!-- Need commit fragments with white background-->
                 <FrameLayout
