@@ -4,7 +4,7 @@ import com.thinkmobiles.easyerp.data.model.crm.filter.ResponseFilters;
 import com.thinkmobiles.easyerp.data.model.crm.payments.Payment;
 import com.thinkmobiles.easyerp.data.model.crm.payments.ResponseGetPayments;
 import com.thinkmobiles.easyerp.presentation.base.BaseModel;
-import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
+import com.thinkmobiles.easyerp.presentation.base.rules.ErrorType;
 import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectableBasePresenter;
 import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectableBaseView;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.FilterDH;
@@ -26,7 +26,7 @@ public interface PaymentsContract {
         void displayPayments(ArrayList<PaymentDH> paymentDHs, boolean needClear);
         void openPaymentDetailsScreen(final Payment payment);
 
-        void displayErrorState(final ErrorViewHelper.ErrorType errorType);
+        void displayErrorState(final ErrorType errorType);
         void displayErrorToast(final String msg);
         void showProgress(Constants.ProgressType type);
 

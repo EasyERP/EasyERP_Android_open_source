@@ -4,7 +4,6 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
-import android.animation.ValueAnimator;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -15,25 +14,20 @@ import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
-import android.text.style.UnderlineSpan;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
-import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.OvershootInterpolator;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.jakewharton.rxbinding.view.RxView;
-import com.thinkmobiles.easyerp.BuildConfig;
 import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.data.model.user.UserInfo;
 import com.thinkmobiles.easyerp.domain.LoginRepository;
@@ -100,6 +94,10 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
     protected String errEmptyLogin;
     @StringRes(R.string.err_password_required)
     protected String errEmptyPassword;
+    @StringRes(R.string.err_password_wrong_symbols)
+    protected String errPasswordWrongSymbols;
+    @StringRes(R.string.err_password_short)
+    protected String errPasswordShort;
     @StringRes(R.string.err_db_id_required)
     protected String errEmptyDbID;
     @StringRes(R.string.terms_and_conditions_privacy_policy)
@@ -239,6 +237,14 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
         switch (code) {
             case FIELD_EMPTY:
                 tilPassword_VIFL.setError(errEmptyPassword);
+                tilPassword_VIFL.setErrorEnabled(true);
+                break;
+            case INVALID_CHARS:
+                tilPassword_VIFL.setError(errPasswordWrongSymbols);
+                tilPassword_VIFL.setErrorEnabled(true);
+                break;
+            case SHORTNESS:
+                tilPassword_VIFL.setError(errPasswordShort);
                 tilPassword_VIFL.setErrorEnabled(true);
                 break;
             case OK:

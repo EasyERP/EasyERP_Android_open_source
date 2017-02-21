@@ -8,7 +8,7 @@ import android.view.MenuItem;
 import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.domain.crm.OrderRepository;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.OrdersAdapter;
-import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
+import com.thinkmobiles.easyerp.presentation.base.rules.ErrorType;
 import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowListSelectableFragment;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.FilterDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.OrderDH;
@@ -93,7 +93,7 @@ public class OrdersFragment extends MasterFlowListSelectableFragment implements 
     }
 
     @Override
-    public void displayErrorState(ErrorViewHelper.ErrorType errorType) {
+    public void displayErrorState(ErrorType errorType) {
         showErrorState(errorType);
     }
 

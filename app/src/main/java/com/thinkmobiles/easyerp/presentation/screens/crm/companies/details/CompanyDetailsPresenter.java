@@ -6,7 +6,6 @@ import com.thinkmobiles.easyerp.data.model.crm.companies.detail.ResponseGetCompa
 import com.thinkmobiles.easyerp.data.model.crm.leads.detail.AttachmentItem;
 import com.thinkmobiles.easyerp.data.model.crm.leads.detail.Customer;
 import com.thinkmobiles.easyerp.data.model.crm.persons.details.OpportunityItem;
-import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.AttachmentDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.ContactDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.HistoryDH;

@@ -14,7 +14,7 @@ import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.domain.crm.LeadsRepository;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.LeadsAdapter;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.SearchAdapter;
-import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
+import com.thinkmobiles.easyerp.presentation.base.rules.ErrorType;
 import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowListSelectableFragment;
 import com.thinkmobiles.easyerp.presentation.dialogs.FilterDialogFragment;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.FilterDH;
@@ -93,7 +93,7 @@ public class LeadsFragment extends MasterFlowListSelectableFragment implements L
     }
 
     @Override
-    public void displayErrorState(ErrorViewHelper.ErrorType errorType) {
+    public void displayErrorState(ErrorType errorType) {
         showErrorState(errorType);
     }
 

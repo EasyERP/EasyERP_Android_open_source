@@ -11,6 +11,7 @@ import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.data.model.crm.payments.Payment;
 import com.thinkmobiles.easyerp.domain.crm.PaymentsRepository;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.PaymentsAdapter;
+import com.thinkmobiles.easyerp.presentation.base.rules.ErrorType;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.SuggestionAdapter;
 import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowListSelectableFragment;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
@@ -98,7 +99,7 @@ public class PaymentsFragment extends MasterFlowListSelectableFragment implement
     }
 
     @Override
-    public void displayErrorState(ErrorViewHelper.ErrorType errorType) {
+    public void displayErrorState(ErrorType errorType) {
         showErrorState(errorType);
     }
 

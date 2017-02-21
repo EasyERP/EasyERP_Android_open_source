@@ -3,7 +3,7 @@ package com.thinkmobiles.easyerp.presentation.screens.crm.leads;
 import com.thinkmobiles.easyerp.data.model.crm.filter.ResponseFilters;
 import com.thinkmobiles.easyerp.data.model.crm.leads.ResponseGetLeads;
 import com.thinkmobiles.easyerp.presentation.base.BaseModel;
-import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
+import com.thinkmobiles.easyerp.presentation.base.rules.ErrorType;
 import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectableBasePresenter;
 import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectableBaseView;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.FilterDH;
@@ -23,8 +23,7 @@ public interface LeadsContract {
     interface LeadsView extends MasterFlowSelectableBaseView<LeadsPresenter> {
         void openLeadDetailsScreen(String leadId);
         void displayLeads(ArrayList<LeadDH> leadDHs, boolean needClear);
-
-        void displayErrorState(final ErrorViewHelper.ErrorType errorType);
+        void displayErrorState(final ErrorType errorType);
         void displayErrorToast(final String msg);
         void showProgress(Constants.ProgressType type);
 

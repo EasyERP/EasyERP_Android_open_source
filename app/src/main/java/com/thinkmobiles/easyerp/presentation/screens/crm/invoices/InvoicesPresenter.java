@@ -1,7 +1,6 @@
 package com.thinkmobiles.easyerp.presentation.screens.crm.invoices;
 
 import com.thinkmobiles.easyerp.data.model.crm.invoice.Invoice;
-import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectablePresenterHelper;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.FilterDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.InvoiceDH;

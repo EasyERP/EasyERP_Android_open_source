@@ -10,7 +10,7 @@ import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.data.model.crm.common.alphabet.AlphabetItem;
 import com.thinkmobiles.easyerp.domain.crm.PersonsRepository;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.PersonsAdapter;
-import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
+import com.thinkmobiles.easyerp.presentation.base.rules.ErrorType;
 import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowListSelectableFragment;
 import com.thinkmobiles.easyerp.presentation.custom.views.alphabet_view.AlphabetView;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.FilterDH;
@@ -102,7 +102,7 @@ public class PersonsFragment extends MasterFlowListSelectableFragment implements
     }
 
     @Override
-    public void displayErrorState(ErrorViewHelper.ErrorType errorType) {
+    public void displayErrorState(ErrorType errorType) {
         showErrorState(errorType);
     }
 

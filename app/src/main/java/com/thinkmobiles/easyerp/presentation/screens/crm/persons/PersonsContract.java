@@ -6,7 +6,7 @@ import com.thinkmobiles.easyerp.data.model.crm.common.images.ResponseGetCustomer
 import com.thinkmobiles.easyerp.data.model.crm.filter.ResponseFilters;
 import com.thinkmobiles.easyerp.data.model.crm.persons.ResponseGetPersons;
 import com.thinkmobiles.easyerp.presentation.base.BaseModel;
-import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
+import com.thinkmobiles.easyerp.presentation.base.rules.ErrorType;
 import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectableBasePresenter;
 import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectableBaseView;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.FilterDH;
@@ -29,7 +29,7 @@ public interface PersonsContract {
         void displayPersons(ArrayList<PersonDH> personDHs, boolean needClear);
         void openPersonDetailsScreen(String personID);
 
-        void displayErrorState(final ErrorViewHelper.ErrorType errorType);
+        void displayErrorState(final ErrorType errorType);
         void displayErrorToast(final String msg);
         void showProgress(Constants.ProgressType type);
 

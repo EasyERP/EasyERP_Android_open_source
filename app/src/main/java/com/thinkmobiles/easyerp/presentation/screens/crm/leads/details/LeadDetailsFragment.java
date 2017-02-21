@@ -14,7 +14,6 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.ismaeltoe.FlowLayout;
 import com.jakewharton.rxbinding.view.RxView;
@@ -23,7 +22,7 @@ import com.thinkmobiles.easyerp.data.model.crm.leads.TagItem;
 import com.thinkmobiles.easyerp.domain.crm.LeadsRepository;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.AttachmentAdapter;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.HistoryAdapter;
-import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
+import com.thinkmobiles.easyerp.presentation.base.rules.ErrorType;
 import com.thinkmobiles.easyerp.presentation.base.rules.RefreshFragment;
 import com.thinkmobiles.easyerp.presentation.custom.RoundRectDrawable;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.AttachmentDH;
@@ -57,8 +56,6 @@ public class LeadDetailsFragment extends RefreshFragment implements LeadDetailsC
     protected LeadsRepository leadsRepository;
     @Bean
     protected HistoryAdapter historyAdapter;
-    @Bean
-    protected ErrorViewHelper errorViewHelper;
     @Bean
     protected HistoryAnimationHelper animationHelper;
     @Bean
@@ -315,7 +312,7 @@ public class LeadDetailsFragment extends RefreshFragment implements LeadDetailsC
     }
 
     @Override
-    public void displayErrorState(ErrorViewHelper.ErrorType errorType) {
+    public void displayErrorState(ErrorType errorType) {
         showErrorState(errorType);
     }
 
