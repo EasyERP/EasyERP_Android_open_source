@@ -125,14 +125,13 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
 
     @AfterViews
     protected void initUI() {
-        initSplashAnimation();
-        if(cookieManager.isCookieExists()) presenter.getCurrentUser();
-
         flAppIcon_AL.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
             public void onGlobalLayout() {
                 flAppIcon_AL.getViewTreeObserver().removeOnGlobalLayoutListener(this);
                 runSplashAnimation();
+                if(cookieManager.isCookieExists())
+                    presenter.getCurrentUser();
             }
         });
 
@@ -199,6 +198,11 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
         if (llInput_VIFL.getVisibility() != View.VISIBLE)
             animatorSet2.start();
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void showInfoToast(String msg) {
+        Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -274,7 +278,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
         this.presenter = presenter;
     }
 
-    private void initSplashAnimation() {
+    private void runSplashAnimation() {
         ObjectAnimator iconFade = ObjectAnimator.ofFloat(vAppIcon_AL, View.ALPHA, 0.4f, 1f);
         ObjectAnimator iconScaleX = ObjectAnimator.ofFloat(flAppIcon_AL, View.SCALE_X, 0.5f, 1f);
         ObjectAnimator iconScaleY = ObjectAnimator.ofFloat(flAppIcon_AL, View.SCALE_Y, 0.5f, 1f);
@@ -329,9 +333,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
                     animatorSet2.start();
             }
         });
-    }
 
-    private void runSplashAnimation() {
         animatorSet1.start();
     }
 

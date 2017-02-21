@@ -111,7 +111,7 @@ public class LoginPresenter implements LoginContract.LoginPresenter {
                 loginModel.forgotPassword(login, dbId)
                         .subscribe(s -> {
                             view.dismissProgress();
-                            view.showErrorToast("The new password was sent to your email. Please check it");
+                            view.showInfoToast("The new password was sent to your email. Please check it");
                         }, t -> {
                             String errMsg = "";
                             if(t instanceof HttpException) {
@@ -119,7 +119,7 @@ public class LoginPresenter implements LoginContract.LoginPresenter {
                                 ResponseError responseError = Rest.getInstance().parseError(e.response().errorBody());
                                 errMsg = responseError.error;
                             } else {
-                                errMsg = t.getMessage();
+                                errMsg = ErrorManager.getErrorMessage(t);
                             }
                             view.dismissProgress();
                             view.showErrorToast(errMsg);

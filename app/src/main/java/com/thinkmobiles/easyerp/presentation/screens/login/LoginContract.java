@@ -18,6 +18,7 @@ public interface LoginContract {
         void showProgress(final String msg);
         void dismissProgress();
         void showErrorToast(final String msg);
+        void showInfoToast(final String msg);
 
         String getLogin();
         String getPassword();
