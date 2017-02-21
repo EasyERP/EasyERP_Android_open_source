@@ -147,4 +147,7 @@
 
     <string name="terms_and_conditions_privacy_policy">By signing up you agree Terms &amp; conditions and Privacy policy</string>
     <string name="forgot_password">Forgot Password?</string>
+
+    <string name="error_connection">Connection problems. Make sure your internet connection established</string>
+    <string name="error_unknown">Something going wrong :(</string>
 </resources>

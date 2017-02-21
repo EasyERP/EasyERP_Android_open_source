@@ -20,7 +20,7 @@ public interface LeadDetailsContract {
     interface LeadDetailsView extends BaseView<LeadDetailsPresenter> {
         void showProgress(Constants.ProgressType type);
         void showHistory(boolean enable);
-        void displayErrorState(String errMsg, ErrorViewHelper.ErrorType errorType);
+        void displayErrorState(ErrorViewHelper.ErrorType errorType);
         void displayErrorToast(String message);
 
         void showContacts(boolean isShown);

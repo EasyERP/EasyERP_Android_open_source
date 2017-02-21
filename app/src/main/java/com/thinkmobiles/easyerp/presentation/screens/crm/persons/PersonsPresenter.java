@@ -10,6 +10,7 @@ import com.thinkmobiles.easyerp.data.model.crm.persons.person_item.PersonModel;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectablePresenterHelper;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.PersonDH;
+import com.thinkmobiles.easyerp.presentation.managers.ErrorManager;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
 import java.util.ArrayList;
@@ -95,9 +96,9 @@ public class PersonsPresenter extends MasterFlowSelectablePresenterHelper<String
 
     private void error(Throwable t) {
         if (personsResponse == null) {
-            view.displayErrorState(t.getMessage(), ErrorViewHelper.ErrorType.NETWORK);
+            view.displayErrorState(ErrorManager.getErrorType(t));
         } else {
-            view.displayErrorToast(t.getMessage());
+            view.displayErrorToast(ErrorManager.getErrorMessage(t));
         }
     }
 
@@ -114,7 +115,7 @@ public class PersonsPresenter extends MasterFlowSelectablePresenterHelper<String
         totalItems = commonPersonsResponse.responseGetPersons.total;
         saveData(commonPersonsResponse, needClear);
         if (personsResponse.responseGetPersons.data.isEmpty()) {
-            view.displayErrorState(null, ErrorViewHelper.ErrorType.LIST_EMPTY);
+            view.displayErrorState(ErrorManager.getErrorType(null));
         } else {
             view.showProgress(Constants.ProgressType.NONE);
             view.displayPersons(prepareDataHolders(commonPersonsResponse, needClear), needClear);

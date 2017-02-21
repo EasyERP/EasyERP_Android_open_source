@@ -187,8 +187,8 @@ public class OpportunityDetailsFragment extends RefreshFragment implements Oppor
     }
 
     @Override
-    public void displayErrorState(String errMsg, ErrorViewHelper.ErrorType errorType) {
-        showErrorState(errMsg, errorType);
+    public void displayErrorState(ErrorViewHelper.ErrorType errorType) {
+        showErrorState(errorType);
     }
 
     @Override

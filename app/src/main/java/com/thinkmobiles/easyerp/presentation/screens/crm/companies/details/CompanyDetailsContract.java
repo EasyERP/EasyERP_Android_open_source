@@ -23,7 +23,7 @@ public interface CompanyDetailsContract {
     interface CompanyDetailsView extends BaseView<CompanyDetailsPresenter> {
         void showHistory(boolean isShow);
         void showProgress(Constants.ProgressType type);
-        void displayErrorState(final String msg, final ErrorViewHelper.ErrorType errorType);
+        void displayErrorState(final ErrorViewHelper.ErrorType errorType);
         void displayErrorToast(final String msg);
 
         void showBillingAddress(boolean isShown);
