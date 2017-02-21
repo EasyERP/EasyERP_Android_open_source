@@ -8,6 +8,7 @@
     <string name="login">Login</string>
 
     <string name="menu_filter">Filter</string>
+    <string name="menu_filter_remove_all">Remove all</string>
     <string name="menu_logout">Logout</string>
 
     <string name="list_is_empty">Sorry, but list is empty.\nPlease try again later!</string>
@@ -63,12 +64,6 @@
     <string name="notes_amp_timeline"><![CDATA[Notes & Timeline]]></string>
 
     <string name="list_searchview_hint">Search</string>
-    <string name="menu_filter_contact_name">Contact name</string>
-    <string name="menu_filter_source">Source</string>
-    <string name="menu_filter_stage">Stage</string>
-    <string name="menu_filter_assigned_to">Assigned to</string>
-    <string name="menu_filter_created_by">Created by</string>
-    <string name="menu_filter_remove_all">Remove all</string>
     <string name="dialog_btn_close">Close</string>
     <string name="dialog_btn_apply">Apply</string>
     <string name="dialog_btn_cancel">Cancel</string>
@@ -147,13 +142,4 @@
 
     <string name="terms_and_conditions_privacy_policy">By signing up you agree Terms &amp; conditions and Privacy policy</string>
     <string name="forgot_password">Forgot Password?</string>
-    <string name="demo_mode">Demo mode</string>
-    <string name="menu_filter_name">Name</string>
-    <string name="menu_filter_customer">Customer</string>
-    <string name="menu_filter_sales_person">Sales Person</string>
-    <string name="menu_filter_project_name">Project Name</string>
-    <string name="menu_filter_status">Status</string>
-    <string name="menu_filter_payment_way">Payment way</string>
-    <string name="menu_filter_type">Type</string>
-    <string name="menu_filter_company">Company</string>
 </resources>

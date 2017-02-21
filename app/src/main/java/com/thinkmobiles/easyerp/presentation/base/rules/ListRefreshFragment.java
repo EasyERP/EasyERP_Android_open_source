@@ -2,25 +2,20 @@ package com.thinkmobiles.easyerp.presentation.base.rules;
 
 import android.os.Bundle;
 import android.support.annotation.CallSuper;
-import android.support.v7.widget.AppCompatAutoCompleteTextView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
-import android.text.Editable;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.thinkmobiles.easyerp.R;
-import com.thinkmobiles.easyerp.presentation.adapters.crm.SearchAdapter;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.SuggestionAdapter;
 import com.thinkmobiles.easyerp.presentation.dialogs.FilterDialogFragment;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.FilterDH;
 import com.thinkmobiles.easyerp.presentation.listeners.EndlessScrollListener;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
-import org.androidannotations.annotations.AfterTextChange;
 import org.androidannotations.annotations.AfterViews;
-import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.ViewById;
 
@@ -37,7 +32,7 @@ public abstract class ListRefreshFragment extends RefreshFragment {
 
     @Override
     protected int getLayoutRes() {
-        return R.layout.fragment_list_with_search;
+        return R.layout.fragment_list;
     }
 
     @ViewById

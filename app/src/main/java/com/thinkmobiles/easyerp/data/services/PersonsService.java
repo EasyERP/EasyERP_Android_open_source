@@ -8,6 +8,7 @@ import com.thinkmobiles.easyerp.presentation.utils.Constants;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
+import retrofit2.http.Url;
 import rx.Observable;
 
 /**
@@ -18,6 +19,9 @@ public interface PersonsService {
 
     @GET(Constants.GET_PERSONS_ALPHABET)
     Observable<ResponseGetAlphabet> getPersonsAlphabet(@Query("contentType") String contentType);
+
+    @GET
+    Observable<ResponseGetPersons> getPersons(@Url String url);
 
     @GET(Constants.GET_PERSONS)
     Observable<ResponseGetPersons> getAllPersons(@Query("viewType") String viewType,
