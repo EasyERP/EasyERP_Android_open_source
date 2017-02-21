@@ -2,8 +2,6 @@ package com.thinkmobiles.easyerp.presentation.screens.crm.payments;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.support.v7.widget.SearchView;
-import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -12,11 +10,8 @@ import com.thinkmobiles.easyerp.data.model.crm.payments.Payment;
 import com.thinkmobiles.easyerp.domain.crm.PaymentsRepository;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.PaymentsAdapter;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorType;
-import com.thinkmobiles.easyerp.presentation.adapters.crm.SuggestionAdapter;
 import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowListSelectableFragment;
-import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.FilterDH;
-import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowListSelectableFragment;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.PaymentDH;
 import com.thinkmobiles.easyerp.presentation.screens.crm.payments.details.PaymentDetailsFragment_;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
