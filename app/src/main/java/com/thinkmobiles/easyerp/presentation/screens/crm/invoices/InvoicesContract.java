@@ -25,7 +25,7 @@ public interface InvoicesContract {
         void displayInvoices(ArrayList<InvoiceDH> invoiceDHs, boolean needClear);
         void openInvoiceDetailsScreen(String invoiceID);
 
-        void displayErrorState(final String msg, final ErrorViewHelper.ErrorType errorType);
+        void displayErrorState(final ErrorViewHelper.ErrorType errorType);
         void displayErrorToast(final String msg);
         void showProgress(Constants.ProgressType type);
 

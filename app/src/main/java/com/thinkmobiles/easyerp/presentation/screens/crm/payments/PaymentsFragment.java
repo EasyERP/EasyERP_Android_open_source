@@ -98,8 +98,8 @@ public class PaymentsFragment extends MasterFlowListSelectableFragment implement
     }
 
     @Override
-    public void displayErrorState(String msg, ErrorViewHelper.ErrorType errorType) {
-        showErrorState(msg, errorType);
+    public void displayErrorState(ErrorViewHelper.ErrorType errorType) {
+        showErrorState(errorType);
     }
 
     @Override

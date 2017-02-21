@@ -80,7 +80,7 @@
         android:layout_gravity="end"
         android:layout_marginTop="@dimen/default_padding_quart"
         android:padding="@dimen/default_padding_quart"
-        android:text="@string/forgot_password"
+        android:text="@string/forgot_password_question"
         android:textColor="@color/white_main_text_color" />
 
 

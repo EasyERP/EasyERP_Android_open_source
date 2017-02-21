@@ -112,18 +112,27 @@ public abstract class RefreshFragment extends BaseFragment<HomeActivity> {
         }
     }
 
-    protected void showErrorState(final String msg, final ErrorViewHelper.ErrorType errorType) {
+    protected void showErrorState(final ErrorViewHelper.ErrorType errorType) {
         showProgressBar(Constants.ProgressType.NONE);
         llHolderError.setVisibility(View.VISIBLE);
         ivHolderIcon.setImageResource(getPlaceholderIcon(errorType));
-        if (errorType == ErrorViewHelper.ErrorType.LIST_EMPTY) {
-            btnHolderTry.setVisibility(View.GONE);
-            srlHolderRefresh.setEnabled(true);
-            tvHolderMessage.setText(R.string.list_is_empty);
-        } else {
-            btnHolderTry.setVisibility(View.VISIBLE);
-            srlHolderRefresh.setEnabled(false);
-            tvHolderMessage.setText(msg);
+
+        switch (errorType) {
+            case LIST_EMPTY:
+                btnHolderTry.setVisibility(View.GONE);
+                srlHolderRefresh.setEnabled(true);
+                tvHolderMessage.setText(R.string.list_is_empty);
+                break;
+            case NETWORK:
+                btnHolderTry.setVisibility(View.VISIBLE);
+                srlHolderRefresh.setEnabled(false);
+                tvHolderMessage.setText(R.string.error_connection);
+                break;
+            case UNKNOWN:
+                btnHolderTry.setVisibility(View.VISIBLE);
+                srlHolderRefresh.setEnabled(false);
+                tvHolderMessage.setText(R.string.error_unknown);
+                break;
         }
     }
 

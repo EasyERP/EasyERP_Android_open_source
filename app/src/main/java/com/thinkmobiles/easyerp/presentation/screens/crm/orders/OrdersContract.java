@@ -24,7 +24,7 @@ public interface OrdersContract {
         void displayOrders(ArrayList<OrderDH> orderDHs, boolean needClear);
         void openOrderDetailsScreen(String orderID);
 
-        void displayErrorState(final String msg, final ErrorViewHelper.ErrorType errorType);
+        void displayErrorState(final ErrorViewHelper.ErrorType errorType);
         void displayErrorToast(final String msg);
         void showProgress(Constants.ProgressType type);
 

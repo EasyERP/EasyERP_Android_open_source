@@ -24,7 +24,7 @@ public interface LeadsContract {
         void openLeadDetailsScreen(String leadId);
         void displayLeads(ArrayList<LeadDH> leadDHs, boolean needClear);
 
-        void displayErrorState(final String msg, final ErrorViewHelper.ErrorType errorType);
+        void displayErrorState(final ErrorViewHelper.ErrorType errorType);
         void displayErrorToast(final String msg);
         void showProgress(Constants.ProgressType type);
 

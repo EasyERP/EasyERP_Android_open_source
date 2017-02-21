@@ -41,8 +41,8 @@
     </style>
 
     <style name="DefaultTheme.InputFields">
-        <item name="android:textColor">@color/colorPrimaryDark</item>
-        <item name="android:textColorHint">@color/colorPrimary</item>
+        <item name="android:textColor">@color/color_text_black</item>
+        <item name="android:textColorHint">@color/text_grey_hint_color</item>
         <item name="colorControlNormal">@color/text_grey_hint_color</item>
         <item name="colorControlActivated">@color/colorPrimary</item>
         <item name="colorControlHighlight">@color/colorPrimaryDark</item>

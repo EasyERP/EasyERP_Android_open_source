@@ -26,7 +26,7 @@ public interface PaymentsContract {
         void displayPayments(ArrayList<PaymentDH> paymentDHs, boolean needClear);
         void openPaymentDetailsScreen(final Payment payment);
 
-        void displayErrorState(final String msg, final ErrorViewHelper.ErrorType errorType);
+        void displayErrorState(final ErrorViewHelper.ErrorType errorType);
         void displayErrorToast(final String msg);
         void showProgress(Constants.ProgressType type);
 

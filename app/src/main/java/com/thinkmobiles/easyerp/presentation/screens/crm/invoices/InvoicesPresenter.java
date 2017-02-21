@@ -5,6 +5,7 @@ import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectablePresenterHelper;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.FilterDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.InvoiceDH;
+import com.thinkmobiles.easyerp.presentation.managers.ErrorManager;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 import com.thinkmobiles.easyerp.presentation.utils.filter.FilterHelper;
 
@@ -98,9 +99,9 @@ public class InvoicesPresenter extends MasterFlowSelectablePresenterHelper<Strin
                         },
                         throwable -> {
                             if (invoices.isEmpty()) {
-                                view.displayErrorState(throwable.getMessage(), ErrorViewHelper.ErrorType.NETWORK);
+                                view.displayErrorState(ErrorManager.getErrorType(throwable));
                             } else {
-                                view.displayErrorToast(throwable.getMessage());
+                                view.displayErrorToast(ErrorManager.getErrorMessage(throwable));
                             }
                         }
                 )
@@ -115,7 +116,7 @@ public class InvoicesPresenter extends MasterFlowSelectablePresenterHelper<Strin
 
     private void setData(final List<Invoice> invoices, boolean needClear) {
         if (this.invoices.isEmpty()) {
-            view.displayErrorState(null, ErrorViewHelper.ErrorType.LIST_EMPTY);
+            view.displayErrorState(ErrorManager.getErrorType(null));
         } else {
             view.showProgress(Constants.ProgressType.NONE);
             view.displayInvoices(prepareInvoiceDHs(invoices, needClear), needClear);

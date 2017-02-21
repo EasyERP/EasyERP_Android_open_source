@@ -11,6 +11,7 @@ import com.thinkmobiles.easyerp.presentation.holders.data.crm.HistoryDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.InvoicePaymentDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.ProductDH;
 import com.thinkmobiles.easyerp.presentation.managers.DateManager;
+import com.thinkmobiles.easyerp.presentation.managers.ErrorManager;
 import com.thinkmobiles.easyerp.presentation.screens.crm.dashboard.detail.charts.DollarFormatter;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 import com.thinkmobiles.easyerp.presentation.utils.StringUtil;
@@ -65,9 +66,9 @@ public class InvoiceDetailsPresenter implements InvoiceDetailsContract.InvoiceDe
                 }, t -> {
                     t.printStackTrace();
                     if (currentInvoice == null) {
-                        view.displayErrorState(t.getMessage(), ErrorViewHelper.ErrorType.NETWORK);
+                        view.displayErrorState(ErrorManager.getErrorType(t));
                     } else {
-                        view.displayErrorToast(t.getMessage());
+                        view.displayErrorToast(ErrorManager.getErrorMessage(t));
                     }
                 }));
     }

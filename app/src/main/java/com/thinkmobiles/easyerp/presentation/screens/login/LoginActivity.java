@@ -38,6 +38,8 @@ import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.data.model.user.UserInfo;
 import com.thinkmobiles.easyerp.domain.LoginRepository;
 import com.thinkmobiles.easyerp.domain.UserRepository;
+import com.thinkmobiles.easyerp.presentation.dialogs.ForgotPasswordDialogFragment;
+import com.thinkmobiles.easyerp.presentation.dialogs.ForgotPasswordDialogFragment_;
 import com.thinkmobiles.easyerp.presentation.managers.CookieManager;
 import com.thinkmobiles.easyerp.presentation.screens.home.HomeActivity_;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
@@ -52,7 +54,7 @@ import org.androidannotations.annotations.res.StringRes;
 import java.util.concurrent.TimeUnit;
 
 @EActivity(R.layout.activity_login)
-public class LoginActivity extends AppCompatActivity implements LoginContract.LoginView {
+public class LoginActivity extends AppCompatActivity implements LoginContract.LoginView, ForgotPasswordDialogFragment.IForgotPasswordCallback {
 
     private LoginContract.LoginPresenter presenter;
 
@@ -123,13 +125,13 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
 
     @AfterViews
     protected void initUI() {
-        if(cookieManager.isCookieExists()) presenter.getCurrentUser();
-
         flAppIcon_AL.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
             public void onGlobalLayout() {
                 flAppIcon_AL.getViewTreeObserver().removeOnGlobalLayoutListener(this);
                 runSplashAnimation();
+                if(cookieManager.isCookieExists())
+                    presenter.getCurrentUser();
             }
         });
 
@@ -141,7 +143,11 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
                 .subscribe(aVoid -> presenter.launchDemoMode());
         RxView.clicks(tvForgotPassword_VIFL)
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
-                .subscribe(aVoid -> {/*TODO make logic with forgot password*/});
+                .subscribe(aVoid ->
+                        ForgotPasswordDialogFragment_.builder()
+                            .databaseID(etDbId_VIFL.getText().toString())
+                            .username(etLogin_VIFL.getText().toString())
+                            .build().show(getFragmentManager(), null));
 
         tvTermsAndCondition_VIFL.setText(buildTermsAndConditions());
         tvTermsAndCondition_VIFL.setMovementMethod(LinkMovementMethod.getInstance());
@@ -192,6 +198,11 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
         if (llInput_VIFL.getVisibility() != View.VISIBLE)
             animatorSet2.start();
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void showInfoToast(String msg) {
+        Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -332,5 +343,10 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
         if (animatorSet1 != null) animatorSet1.cancel();
         if (animatorSet2 != null) animatorSet2.cancel();
         presenter.unsubscribe();
+    }
+
+    @Override
+    public void forgotPassword(String dbId, String usernameOrEmail) {
+        presenter.forgotPassword(usernameOrEmail, dbId);
     }
 }

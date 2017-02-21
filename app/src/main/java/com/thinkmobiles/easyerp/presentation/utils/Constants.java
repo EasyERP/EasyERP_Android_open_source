@@ -11,6 +11,7 @@ public abstract class Constants {
 
     //Login
     public static final String POST_LOGIN                   = "users/login";
+    public static final String POST_FORGOT_PASSWORD         = "users/forgotPassword";
     //End Login
 
     //User

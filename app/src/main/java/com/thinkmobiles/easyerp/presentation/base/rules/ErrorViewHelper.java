@@ -61,7 +61,7 @@ public class ErrorViewHelper {
     }
 
     public enum ErrorType {
-        LIST_EMPTY, NETWORK
+        LIST_EMPTY, NETWORK, UNKNOWN
     }
 
 }

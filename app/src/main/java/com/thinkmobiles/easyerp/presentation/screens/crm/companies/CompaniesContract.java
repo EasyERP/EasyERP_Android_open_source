@@ -29,7 +29,7 @@ public interface CompaniesContract {
         void displayCompanies(ArrayList<CompanyDH> companyDHs, boolean needClear);
         void openCompanyDetailsScreen(String companyID);
 
-        void displayErrorState(final String msg, final ErrorViewHelper.ErrorType errorType);
+        void displayErrorState(final ErrorViewHelper.ErrorType errorType);
         void displayErrorToast(final String msg);
         void showProgress(Constants.ProgressType type);
 

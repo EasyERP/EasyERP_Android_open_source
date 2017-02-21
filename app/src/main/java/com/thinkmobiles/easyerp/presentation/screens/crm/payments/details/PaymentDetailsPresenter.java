@@ -4,6 +4,7 @@ import com.thinkmobiles.easyerp.data.model.crm.payments.Payment;
 import com.thinkmobiles.easyerp.data.model.user.organization.OrganizationSettings;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.managers.DateManager;
+import com.thinkmobiles.easyerp.presentation.managers.ErrorManager;
 import com.thinkmobiles.easyerp.presentation.screens.crm.dashboard.detail.charts.DollarFormatter;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 import com.thinkmobiles.easyerp.presentation.utils.StringUtil;
@@ -47,7 +48,7 @@ public class PaymentDetailsPresenter implements PaymentDetailsContract.PaymentDe
                         view.showProgress(Constants.ProgressType.NONE);
                         setData();
                     }, t -> {
-                        view.displayErrorState(t.getMessage(), ErrorViewHelper.ErrorType.NETWORK);
+                        view.displayErrorState(ErrorManager.getErrorType(t));
                     }));
         } else {
             view.showProgress(Constants.ProgressType.NONE);

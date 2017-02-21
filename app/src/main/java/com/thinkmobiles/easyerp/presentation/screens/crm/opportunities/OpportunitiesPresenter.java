@@ -5,6 +5,7 @@ import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectablePresenterHelper;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.FilterDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.OpportunityDH;
+import com.thinkmobiles.easyerp.presentation.managers.ErrorManager;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 import com.thinkmobiles.easyerp.presentation.utils.filter.FilterHelper;
 
@@ -49,9 +50,9 @@ public class OpportunitiesPresenter extends MasterFlowSelectablePresenterHelper<
                                 },
                                 t -> {
                                     if (opportunityItems.isEmpty()) {
-                                        view.displayErrorState(t.getMessage(), ErrorViewHelper.ErrorType.NETWORK);
+                                        view.displayErrorState(ErrorManager.getErrorType(t));
                                     } else {
-                                        view.displayErrorToast(t.getMessage());
+                                        view.displayErrorToast(ErrorManager.getErrorMessage(t));
                                     }
                                 }));
     }
@@ -75,11 +76,11 @@ public class OpportunitiesPresenter extends MasterFlowSelectablePresenterHelper<
 
 
     private void setData(final ArrayList<OpportunityListItem> list, boolean needClear) {
+        view.displayOpportunities(prepareOpportunitiesDHs(list, needClear), needClear);
         if (opportunityItems.isEmpty()) {
-            view.displayErrorState(null, ErrorViewHelper.ErrorType.LIST_EMPTY);
+            view.displayErrorState(ErrorManager.getErrorType(null));
         } else {
             view.showProgress(Constants.ProgressType.NONE);
-            view.displayOpportunities(prepareOpportunitiesDHs(list, needClear), needClear);
         }
     }
 

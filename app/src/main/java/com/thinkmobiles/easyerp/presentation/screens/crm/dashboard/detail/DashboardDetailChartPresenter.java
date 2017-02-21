@@ -6,6 +6,7 @@ import android.support.v4.util.Pair;
 import com.thinkmobiles.easyerp.data.model.crm.dashboard.DashboardListItem;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.managers.DateManager;
+import com.thinkmobiles.easyerp.presentation.managers.ErrorManager;
 import com.thinkmobiles.easyerp.presentation.utils.AppDefaultStatesPreferences_;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
@@ -82,7 +83,7 @@ public class DashboardDetailChartPresenter implements DashboardDetailChartContra
                             .subscribe(result -> {
                                 view.showProgress(Constants.ProgressType.NONE);
                                 view.displayChart(chartData = result, workDashboardInfoForChart.getChartType());
-                            },throwable -> view.displayErrorState(throwable.getMessage(), ErrorViewHelper.ErrorType.NETWORK)));
+                            },throwable -> view.displayErrorState(ErrorManager.getErrorType(throwable))));
     }
 
     @Override
