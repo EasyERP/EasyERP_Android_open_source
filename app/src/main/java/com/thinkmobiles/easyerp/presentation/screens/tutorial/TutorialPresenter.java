@@ -1,7 +1,12 @@
 package com.thinkmobiles.easyerp.presentation.screens.tutorial;
 
+import com.thinkmobiles.easyerp.data.api.Rest;
+import com.thinkmobiles.easyerp.data.model.ResponseError;
+import com.thinkmobiles.easyerp.presentation.managers.CookieManager;
+import com.thinkmobiles.easyerp.presentation.managers.ErrorManager;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
+import retrofit2.adapter.rxjava.HttpException;
 import rx.subscriptions.CompositeSubscription;
 
 /**
@@ -12,14 +17,22 @@ public class TutorialPresenter implements TutorialContract.TutorialPresenter {
 
     private TutorialContract.TutorialView view;
     private TutorialContract.TutorialModel tutorialModel;
+    private TutorialContract.UserModel userModel;
     private CompositeSubscription compositeSubscription;
 
-    public TutorialPresenter(TutorialContract.TutorialView view, TutorialContract.TutorialModel tutorialModel) {
+    private boolean isPreview;
+
+    public TutorialPresenter(TutorialContract.TutorialView view, TutorialContract.TutorialModel tutorialModel, CookieManager cookieManager, TutorialContract.UserModel userModel, boolean isPreview) {
         this.view = view;
         this.tutorialModel = tutorialModel;
+        this.userModel = userModel;
         compositeSubscription = new CompositeSubscription();
 
         view.setPresenter(this);
+
+        if(!isPreview && cookieManager.isCookieExists() && !cookieManager.isCookieExpired()) {
+            view.startLoginScreen();
+        }
     }
 
     @Override
@@ -29,13 +42,26 @@ public class TutorialPresenter implements TutorialContract.TutorialPresenter {
 
     @Override
     public void demo() {
+        view.showProgress("Login. Please wait a second...");
         compositeSubscription.add(
                 tutorialModel.login(Constants.DEMO_LOGIN, Constants.DEMO_PASSWORD, Constants.DEMO_DB_ID)
-                .subscribe(s -> {
-
-                }, t -> {
-
-                })
+                        .subscribe(s -> {
+                            if(s.equalsIgnoreCase("OK")) {
+                                getCurrentUser();
+                            } else
+                                view.dismissProgress();
+                        }, t -> {
+                            String errMsg = "";
+                            if(t instanceof HttpException) {
+                                HttpException e = (HttpException) t;
+                                ResponseError responseError = Rest.getInstance().parseError(e.response().errorBody());
+                                errMsg = responseError.error;
+                            } else {
+                                errMsg = ErrorManager.getErrorMessage(t);
+                            }
+                            view.dismissProgress();
+                            view.showInfoToast(errMsg);
+                        })
         );
     }
 
@@ -47,5 +73,18 @@ public class TutorialPresenter implements TutorialContract.TutorialPresenter {
     @Override
     public void unsubscribe() {
         if(compositeSubscription.hasSubscriptions()) compositeSubscription.clear();
+    }
+
+    private void getCurrentUser() {
+        compositeSubscription.add(
+                userModel.getCurrentUser()
+                        .subscribe(responseGetCurrentUser -> {
+                            view.dismissProgress();
+                            view.startHomeScreen(responseGetCurrentUser.user);
+                        }, t -> {
+                            view.dismissProgress();
+                            view.showInfoToast(ErrorManager.getErrorMessage(t));
+                        })
+        );
     }
 }

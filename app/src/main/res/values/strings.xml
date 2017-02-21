@@ -154,4 +154,5 @@
 
     <string name="error_connection">Connection problems. Make sure your internet connection established</string>
     <string name="error_unknown">Something going wrong :(</string>
+    <string name="tutorial">Tutorial</string>
 </resources>

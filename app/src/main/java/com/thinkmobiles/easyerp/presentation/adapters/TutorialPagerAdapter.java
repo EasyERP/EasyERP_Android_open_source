@@ -15,6 +15,8 @@ import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.EBean;
 import org.androidannotations.annotations.RootContext;
 
+import java.util.regex.Pattern;
+
 /**
  * Created by Lynx on 2/20/2017.
  */
@@ -54,23 +56,23 @@ public class TutorialPagerAdapter extends PagerAdapter {
         switch (position) {
             case 0:
                 tvTitle_VTI.setText("First page");
-                ivTutorialImage_VTI.setImageDrawable(ContextCompat.getDrawable(activity, R.drawable.placeholder));
+                ivTutorialImage_VTI.setImageDrawable(ContextCompat.getDrawable(activity, R.drawable.gabe));
                 break;
             case 1:
                 tvTitle_VTI.setText("Second page");
-                ivTutorialImage_VTI.setImageDrawable(ContextCompat.getDrawable(activity, R.drawable.placeholder));
+                ivTutorialImage_VTI.setImageDrawable(ContextCompat.getDrawable(activity, R.drawable.gabe));
                 break;
             case 2:
                 tvTitle_VTI.setText("Third page");
-                ivTutorialImage_VTI.setImageDrawable(ContextCompat.getDrawable(activity, R.drawable.placeholder));
+                ivTutorialImage_VTI.setImageDrawable(ContextCompat.getDrawable(activity, R.drawable.gabe));
                 break;
             case 3:
-                tvTitle_VTI.setText("Forth page");
-                ivTutorialImage_VTI.setImageDrawable(ContextCompat.getDrawable(activity, R.drawable.placeholder));
+                tvTitle_VTI.setText("Fourth page");
+                ivTutorialImage_VTI.setImageDrawable(ContextCompat.getDrawable(activity, R.drawable.gabe));
                 break;
             case 4:
                 tvTitle_VTI.setText("Fifth page");
-                ivTutorialImage_VTI.setImageDrawable(ContextCompat.getDrawable(activity, R.drawable.placeholder));
+                ivTutorialImage_VTI.setImageDrawable(ContextCompat.getDrawable(activity, R.drawable.gabe));
                 break;
         }
         container.addView(view);
