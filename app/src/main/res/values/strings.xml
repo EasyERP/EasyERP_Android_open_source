@@ -141,7 +141,7 @@
     <string name="order_details_title_order_preview">Order Preview</string>
     <string name="invoice_details_subtitle_payments">Payments</string>
     <string name="invoice_details_subtitle_invoice_preview">Invoice Preview</string>
-    <string name="demo_mode">Demo</string>
+    <string name="demo">Demo</string>
 
     <string name="about_us">About us</string>
 
