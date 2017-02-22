@@ -32,7 +32,7 @@ class DashboardChartsLayerRepository {
             case "totalSalesRevenue":
                 switch (chartType) {
                     case OVERVIEW: return invoiceService.getInvoiceByWorkflows(filterDateFrom, filterDateTo, true, "list", 5, -1, "invoice");
-                    case TABLE: return invoiceService.getInvoice(filterDateFrom, filterDateTo, true, "list", 1, 5, -1, "invoice");
+                    case TABLE: return invoiceService.getInvoiceForDashboard(filterDateFrom, filterDateTo, true, "list", 1, 5, -1, "invoice");
                 }
                 break;
             case "revenueBySales":
@@ -53,7 +53,7 @@ class DashboardChartsLayerRepository {
             case "totalPurchaseRevenue":
                 switch (chartType) {
                     case OVERVIEW: return invoiceService.getInvoiceByWorkflows(filterDateFrom, filterDateTo, false, "list", 5, -1, "purchaseInvoices");
-                    case TABLE: return invoiceService.getInvoice(filterDateFrom, filterDateTo, false, "list", 1, 5, -1, "purchaseInvoices");
+                    case TABLE: return invoiceService.getInvoiceForDashboard(filterDateFrom, filterDateTo, false, "list", 1, 5, -1, "purchaseInvoices");
                 }
                 break;
             case "purchaseRevenueBySales":
@@ -73,7 +73,7 @@ class DashboardChartsLayerRepository {
                 break;
             case "pastDueInvoices":
                 switch (chartType) {
-                    case TABLE: return invoiceService.getInvoice(filterDateFrom, filterDateTo, true, "list", 1, 5, -1, "invoice");
+                    case TABLE: return invoiceService.getInvoiceForDashboard(filterDateFrom, filterDateTo, true, "list", 1, 5, -1, "invoice");
                 }
                 break;
             case "purchaseRevenueByCountry":
@@ -88,7 +88,7 @@ class DashboardChartsLayerRepository {
                 break;
             case "pastDuePurchaseInvoices":
                 switch (chartType) {
-                    case TABLE: return invoiceService.getInvoice(filterDateFrom, filterDateTo, false, "list", 1, 5, -1, "purchaseInvoices");
+                    case TABLE: return invoiceService.getInvoiceForDashboard(filterDateFrom, filterDateTo, false, "list", 1, 5, -1, "purchaseInvoices");
                 }
                 break;
         }

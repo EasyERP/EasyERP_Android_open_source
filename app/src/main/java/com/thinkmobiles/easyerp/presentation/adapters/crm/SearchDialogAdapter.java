@@ -8,9 +8,11 @@ import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.FilterDH;
 import com.thinkmobiles.easyerp.presentation.holders.view.crm.FilterVH;
 
+import org.androidannotations.annotations.EBean;
+
 import java.util.ArrayList;
 
-
+@EBean
 public class SearchDialogAdapter extends SimpleRecyclerAdapter<FilterDH, FilterVH> implements Filterable {
 
     private SearchFilter filter;

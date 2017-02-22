@@ -99,11 +99,11 @@ public abstract class RefreshFragment extends BaseFragment<HomeActivity> {
                 break;
             case CENTER:
                 srlHolderRefresh.setEnabled(false);
-                flContent.setVisibility(View.GONE);
+                getHiddenView().setVisibility(View.GONE);
                 pbHolderProgress.setVisibility(View.VISIBLE);
                 break;
             case NONE:
-                flContent.setVisibility(View.VISIBLE);
+                getHiddenView().setVisibility(View.VISIBLE);
                 pbHolderProgress.setVisibility(View.GONE);
                 pbProgressBottom.setVisibility(View.GONE);
                 srlHolderRefresh.setRefreshing(false);
@@ -112,13 +112,19 @@ public abstract class RefreshFragment extends BaseFragment<HomeActivity> {
         }
     }
 
+    protected View getHiddenView() {
+        return flContent;
+    }
+
     protected void showErrorState(final ErrorType errorType) {
         showProgressBar(Constants.ProgressType.NONE);
         llHolderError.setVisibility(View.VISIBLE);
         ivHolderIcon.setImageResource(getPlaceholderIcon(errorType));
+        llHolderError.setBackgroundResource(android.R.color.white);
 
         switch (errorType) {
             case LIST_EMPTY:
+                llHolderError.setBackgroundResource(android.R.color.transparent);
                 btnHolderTry.setVisibility(View.GONE);
                 srlHolderRefresh.setEnabled(true);
                 tvHolderMessage.setText(R.string.list_is_empty);

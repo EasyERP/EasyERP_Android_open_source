@@ -34,7 +34,7 @@ public class AlphabetView extends FrameLayout {
     @AfterViews
     protected void initUI() {
         initBaseLetters();
-        alphabetListAdapter.setOnCardClickListener((view, position, viewType) -> selectLetter(position));
+        alphabetListAdapter.setOnCardClickListener((view, position, viewType) -> listener.onLetterSelected(alphabetListAdapter.getItem(position).getLetter()));
 
         rvAlphabet_VA.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
         rvAlphabet_VA.setAdapter(alphabetListAdapter);
@@ -53,53 +53,33 @@ public class AlphabetView extends FrameLayout {
     }
 
     public void setEnabledLetters(ArrayList<AlphabetItem> enabledLetters) {
-        for(AlphabetItem alphabetItem : enabledLetters) {
-            for(LetterDH dh : alphabetListAdapter.getListDH()) {
-                if(dh.getLetter().equalsIgnoreCase(alphabetItem.id)) {
-                    dh.setLetterState(LetterState.ENABLED);
+        for (AlphabetItem alphabetItem : enabledLetters) {
+            for (LetterDH dh : alphabetListAdapter.getListDH()) {
+                if (dh.getLetter().equalsIgnoreCase(alphabetItem.id)) {
+                    dh.setEnabled(true);
                 }
             }
         }
-        alphabetListAdapter.notifyDataSetChanged();
-    }
-
-    private void selectLetter(int position) {
-        LetterDH selectedDH = alphabetListAdapter.getItem(position);
-        if(selectedDH.getLetterState() == LetterState.ENABLED) {
-            enableItem(position);
-            listener.onLetterSelected(selectedDH.getLetter());
-        }
+        alphabetListAdapter.updateList();
     }
 
     public void selectLetterWithoutListener(String letter) {
-        if(!letter.trim().equalsIgnoreCase("All")) {
-            alphabetListAdapter.getItem(0).setLetterState(LetterState.ENABLED);
-            for (LetterDH dh : alphabetListAdapter.getListDH())
-                if(letter.equalsIgnoreCase(dh.getLetter())) {
-                    dh.setLetterState(LetterState.SELECTED);
-                    break;
-                }
-            alphabetListAdapter.notifyDataSetChanged();
-        }
-    }
-
-    private void enableItem(int position) {
-        for(int i = 0; i < alphabetListAdapter.getItemCount(); i++) {
-            if(alphabetListAdapter.getItem(i).getLetterState() == LetterState.SELECTED) {
-                alphabetListAdapter.getItem(i).setLetterState(LetterState.ENABLED);
-                alphabetListAdapter.notifyItemChanged(i);
+        for (LetterDH dh : alphabetListAdapter.getListDH()) {
+            if (letter.equalsIgnoreCase(dh.getLetter())) {
+                dh.setSelected(true);
+            } else {
+                dh.setSelected(false);
             }
         }
-        alphabetListAdapter.getItem(position).setLetterState(LetterState.SELECTED);
-        alphabetListAdapter.notifyItemChanged(position);
+        alphabetListAdapter.updateList();
     }
 
     private void initBaseLetters() {
         ArrayList<LetterDH> allLetters = new ArrayList<>();
-        allLetters.add(new LetterDH(LetterState.SELECTED, "All  "));
-        allLetters.add(new LetterDH("0-9  "));
+        allLetters.add(new LetterDH("All", true));
+        allLetters.add(new LetterDH("0-9"));
 
-        for (char c = 'A'; c <= 'Z'; c++){
+        for (char c = 'A'; c <= 'Z'; c++) {
             allLetters.add(new LetterDH(String.valueOf(c)));
         }
         alphabetListAdapter.setListDH(allLetters);

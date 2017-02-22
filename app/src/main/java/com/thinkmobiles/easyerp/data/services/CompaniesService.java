@@ -8,6 +8,7 @@ import com.thinkmobiles.easyerp.presentation.utils.Constants;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
+import retrofit2.http.Url;
 import rx.Observable;
 
 /**
@@ -19,20 +20,8 @@ public interface CompaniesService {
     @GET(Constants.GET_COMPANIES_ALPHABET)
     Observable<ResponseGetAlphabet> getCompaniesAlphabet(@Query("contentType") String contentType);
 
-    @GET(Constants.GET_COMPANIES)
-    Observable<ResponseGetCompanies> getCompanies(@Query("viewType") String viewType,
-                                                  @Query("contentType") String contentType,
-                                                  @Query("count") int count,
-                                                  @Query("page") int page);
-
-    @GET(Constants.GET_COMPANIES)
-    Observable<ResponseGetCompanies> getCompaniesByLetter(@Query("viewType") String viewType,
-                                                          @Query("contentType") String contentType,
-                                                          @Query("filter[letter][key]") String filterLetterKey,
-                                                          @Query("filter[letter][value]") String filterLetterValue,
-                                                          @Query("filter[letter][type]") String filterLetterType,
-                                                          @Query("count") int count,
-                                                          @Query("page") int page);
+    @GET
+    Observable<ResponseGetCompanies> getCompanies(@Url String url);
 
     @GET(Constants.GET_COMPANY_DETAILS)
     Observable<ResponseGetCompanyDetails> getCompanyDetails(@Path("companyID") String companyID);

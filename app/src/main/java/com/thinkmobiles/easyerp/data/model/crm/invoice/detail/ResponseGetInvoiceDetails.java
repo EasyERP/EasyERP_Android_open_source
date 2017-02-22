@@ -10,7 +10,7 @@ import com.thinkmobiles.easyerp.data.model.crm.leads.detail.AttachmentItem;
 import com.thinkmobiles.easyerp.data.model.crm.leads.detail.CreatedEditedBy;
 import com.thinkmobiles.easyerp.data.model.crm.leads.detail.Groups;
 import com.thinkmobiles.easyerp.data.model.crm.leads.detail.NoteItem;
-import com.thinkmobiles.easyerp.data.model.crm.leads.filter.FilterItem;
+import com.thinkmobiles.easyerp.data.model.crm.filter.FilterItem;
 import com.thinkmobiles.easyerp.data.model.crm.order.detail.OrderProduct;
 import com.thinkmobiles.easyerp.data.model.crm.order.detail.PaymentMethod;
 import com.thinkmobiles.easyerp.data.model.crm.order.detail.Prepayment;

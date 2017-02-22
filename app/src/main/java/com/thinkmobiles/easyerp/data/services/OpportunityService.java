@@ -4,9 +4,14 @@ import com.thinkmobiles.easyerp.data.model.crm.opportunities.ResponseGetOpportun
 import com.thinkmobiles.easyerp.data.model.crm.opportunities.detail.ResponseGetOpportunityDetails;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
+import java.util.List;
+import java.util.Map;
+
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
+import retrofit2.http.QueryMap;
+import retrofit2.http.Url;
 import rx.Observable;
 
 /**
@@ -14,11 +19,9 @@ import rx.Observable;
  */
 
 public interface OpportunityService {
-    @GET(Constants.GET_OPPORTUNITIES)
-    Observable<ResponseGetOpportunities> getOpportunities(@Query("viewType") String viewType,
-                                                          @Query("contentType") String contentType,
-                                                          @Query("count") int count,
-                                                          @Query("page") int page);
+
+    @GET
+    Observable<ResponseGetOpportunities> getOpportunities(@Url String url);
 
     @GET(Constants.GET_OPPORTUNITY_DETAILS)
     Observable<ResponseGetOpportunityDetails> getOpportunityDetails(@Path("OpportunityID") String OpportunityID);
