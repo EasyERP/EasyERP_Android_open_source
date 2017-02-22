@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/rvContainer_AL"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/bg_login">
+    android:layout_height="match_parent">
 
     <FrameLayout
         android:layout_width="match_parent"

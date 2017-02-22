@@ -350,6 +350,13 @@
         <item name="android:paddingBottom">@dimen/default_padding_quart</item>
         <item name="android:textColor">@android:color/white</item>
     </style>
+    
+    <style name="WhiteButtonStyle" parent="RobotoMedium">
+        <item name="android:textSize">@dimen/text_list_item_large_20</item>
+        <item name="android:padding">@dimen/padding_button_large</item>
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
 
 
     <style name="PdfStyle.FieldTitleStyle">

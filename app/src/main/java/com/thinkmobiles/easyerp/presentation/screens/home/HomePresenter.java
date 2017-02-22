@@ -53,7 +53,7 @@ public final class HomePresenter implements HomeContract.HomePresenter {
                         },
                         t -> {
                             view.dismissProgress();
-                            view.showErrorToast(getErrorMsg(t));
+                            view.showErrorToast(ErrorManager.getErrorMessage(t));
                         }
                 )
         );
@@ -70,21 +70,9 @@ public final class HomePresenter implements HomeContract.HomePresenter {
                         },
                         t -> {
                             view.dismissProgress();
-                            view.showErrorToast(getErrorMsg(t));
+                            view.showErrorToast(ErrorManager.getErrorMessage(t));
                         }
                 )
         );
-    }
-
-    private String getErrorMsg(final Throwable t) {
-        String errMsg;
-        if(t instanceof HttpException) {
-            HttpException e = (HttpException) t;
-            ResponseError responseError = Rest.getInstance().parseError(e.response().errorBody());
-            errMsg = responseError.error;
-        } else {
-            errMsg = ErrorManager.getErrorMessage(t);
-        }
-        return errMsg;
     }
 }
