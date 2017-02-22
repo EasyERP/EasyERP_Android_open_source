@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tvTitle_VTI"
+        style="@style/RobotoRegular"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/tutorial_margin_title"
+        android:gravity="center"
+        android:padding="@dimen/default_padding_big"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/text_size_title_large"
+        tools:text="@string/tutorial_1" />
+
+    <ImageView
+        android:id="@+id/ivTutorialImage_VTI"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        tools:src="@drawable/tutorial1" />
+
+</LinearLayout>

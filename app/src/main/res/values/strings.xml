@@ -163,5 +163,11 @@
 
     <string name="error_connection">Connection problems. Make sure your internet connection established</string>
     <string name="error_unknown">Something going wrong :(</string>
+
     <string name="tutorial">Tutorial</string>
+    <string name="tutorial_1">Keep your finger on the pulse of sales in your company</string>
+    <string name="tutorial_2">See all incoming Leads and Opportunities with ease</string>
+    <string name="tutorial_3">Hold all your working contacts near at hand</string>
+    <string name="tutorial_4">Look through sales orders with fulfilled products</string>
+    <string name="tutorial_5">Get up-to-date information about invoices and payments</string>
 </resources>

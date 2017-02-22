@@ -55,24 +55,24 @@ public class TutorialPagerAdapter extends PagerAdapter {
         ImageView ivTutorialImage_VTI = (ImageView) view.findViewById(R.id.ivTutorialImage_VTI);
         switch (position) {
             case 0:
-                tvTitle_VTI.setText("First page");
-                ivTutorialImage_VTI.setImageDrawable(ContextCompat.getDrawable(activity, R.drawable.gabe));
+                tvTitle_VTI.setText(R.string.tutorial_1);
+                ivTutorialImage_VTI.setImageDrawable(ContextCompat.getDrawable(activity, R.drawable.tutorial1));
                 break;
             case 1:
-                tvTitle_VTI.setText("Second page");
-                ivTutorialImage_VTI.setImageDrawable(ContextCompat.getDrawable(activity, R.drawable.gabe));
+                tvTitle_VTI.setText(R.string.tutorial_2);
+                ivTutorialImage_VTI.setImageDrawable(ContextCompat.getDrawable(activity, R.drawable.tutorial2));
                 break;
             case 2:
-                tvTitle_VTI.setText("Third page");
-                ivTutorialImage_VTI.setImageDrawable(ContextCompat.getDrawable(activity, R.drawable.gabe));
+                tvTitle_VTI.setText(R.string.tutorial_3);
+                ivTutorialImage_VTI.setImageDrawable(ContextCompat.getDrawable(activity, R.drawable.tutorial3));
                 break;
             case 3:
-                tvTitle_VTI.setText("Fourth page");
-                ivTutorialImage_VTI.setImageDrawable(ContextCompat.getDrawable(activity, R.drawable.gabe));
+                tvTitle_VTI.setText(R.string.tutorial_4);
+                ivTutorialImage_VTI.setImageDrawable(ContextCompat.getDrawable(activity, R.drawable.tutorial4));
                 break;
             case 4:
-                tvTitle_VTI.setText("Fifth page");
-                ivTutorialImage_VTI.setImageDrawable(ContextCompat.getDrawable(activity, R.drawable.gabe));
+                tvTitle_VTI.setText(R.string.tutorial_5);
+                ivTutorialImage_VTI.setImageDrawable(ContextCompat.getDrawable(activity, R.drawable.tutorial5));
                 break;
         }
         container.addView(view);
