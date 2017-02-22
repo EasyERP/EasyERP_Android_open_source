@@ -20,8 +20,6 @@ public class TutorialPresenter implements TutorialContract.TutorialPresenter {
     private TutorialContract.UserModel userModel;
     private CompositeSubscription compositeSubscription;
 
-    private boolean isPreview;
-
     public TutorialPresenter(TutorialContract.TutorialView view, TutorialContract.TutorialModel tutorialModel, CookieManager cookieManager, TutorialContract.UserModel userModel, boolean isPreview) {
         this.view = view;
         this.tutorialModel = tutorialModel;
@@ -31,7 +29,7 @@ public class TutorialPresenter implements TutorialContract.TutorialPresenter {
         view.setPresenter(this);
 
         if(!isPreview && cookieManager.isCookieExists() && !cookieManager.isCookieExpired()) {
-            view.startLoginScreen();
+            login();
         }
     }
 
