@@ -313,7 +313,7 @@
     <style name="WhiteButtonStyle" parent="RobotoMedium">
         <item name="android:textSize">@dimen/text_list_item_large_20</item>
         <item name="android:padding">@dimen/padding_button_large</item>
-        <item name="android:textColor">@color/color_status_in_progress</item>
+        <item name="android:textColor">@color/colorAccent</item>
         <item name="android:textAllCaps">true</item>
     </style>
 
