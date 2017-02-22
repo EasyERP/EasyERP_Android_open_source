@@ -83,16 +83,8 @@ public class LoginPresenter implements LoginContract.LoginPresenter {
                             } else
                                 view.dismissProgress();
                         }, t -> {
-                            String errMsg = "";
-                            if(t instanceof HttpException) {
-                                HttpException e = (HttpException) t;
-                                ResponseError responseError = Rest.getInstance().parseError(e.response().errorBody());
-                                errMsg = responseError.error;
-                            } else {
-                                errMsg = ErrorManager.getErrorMessage(t);
-                            }
                             view.dismissProgress();
-                            view.showErrorToast(errMsg);
+                            view.showErrorToast(ErrorManager.getErrorMessage(t));
                         })
         );
     }
@@ -111,16 +103,8 @@ public class LoginPresenter implements LoginContract.LoginPresenter {
                             view.dismissProgress();
                             view.showInfoToast("The new password was sent to your email. Please check it");
                         }, t -> {
-                            String errMsg = "";
-                            if(t instanceof HttpException) {
-                                HttpException e = (HttpException) t;
-                                ResponseError responseError = Rest.getInstance().parseError(e.response().errorBody());
-                                errMsg = responseError.error;
-                            } else {
-                                errMsg = ErrorManager.getErrorMessage(t);
-                            }
                             view.dismissProgress();
-                            view.showErrorToast(errMsg);
+                            view.showErrorToast(ErrorManager.getErrorMessage(t));
                         })
         );
     }

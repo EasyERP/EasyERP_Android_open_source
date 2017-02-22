@@ -51,16 +51,8 @@ public class TutorialPresenter implements TutorialContract.TutorialPresenter {
                             } else
                                 view.dismissProgress();
                         }, t -> {
-                            String errMsg = "";
-                            if(t instanceof HttpException) {
-                                HttpException e = (HttpException) t;
-                                ResponseError responseError = Rest.getInstance().parseError(e.response().errorBody());
-                                errMsg = responseError.error;
-                            } else {
-                                errMsg = ErrorManager.getErrorMessage(t);
-                            }
                             view.dismissProgress();
-                            view.showInfoToast(errMsg);
+                            view.showInfoToast(ErrorManager.getErrorMessage(t));
                         })
         );
     }

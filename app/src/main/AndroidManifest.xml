@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.thinkmobiles.easyerp">
+    package="com.thinkmobiles.easyerp">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <supports-screens
         android:largeScreens="true"
         android:normalScreens="false"
         android:requiresSmallestWidthDp="600"
         android:smallScreens="false"
-        android:xlargeScreens="true"/>
+        android:xlargeScreens="true" />
 
     <application
         android:name=".presentation.EasyErpApplication_"
@@ -27,8 +27,8 @@
             android:theme="@style/LoginTheme"
             android:windowSoftInputMode="stateHidden">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
@@ -36,21 +36,21 @@
             android:name=".presentation.screens.login.LoginActivity_"
             android:screenOrientation="sensor"
             android:theme="@style/LoginTheme"
-            android:windowSoftInputMode="stateHidden"/>
+            android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".presentation.screens.home.HomeActivity_"
             android:screenOrientation="sensor"
-            android:windowSoftInputMode="stateHidden"/>
+            android:windowSoftInputMode="stateHidden" />
 
         <activity
             android:name=".presentation.screens.about.WebActivity_"
             android:configChanges="orientation|screenSize"
             android:screenOrientation="sensor"
-            android:windowSoftInputMode="stateHidden"/>
+            android:windowSoftInputMode="stateHidden" />
 
         <meta-data
             android:name="io.fabric.ApiKey"
-            android:value="6a0144c31124068686d2d8eea6c80aa61a955598"/>
+            android:value="6a0144c31124068686d2d8eea6c80aa61a955598" />
 
     </application>
 

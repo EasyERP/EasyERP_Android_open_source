@@ -51,8 +51,6 @@ public class WebActivity extends AppCompatActivity implements WebContract.WebVie
 
     @Bean
     protected UserRepository userRepository;
-    @Bean
-    protected CookieManager cookieManager;
 
     @AfterViews
     protected void initUI() {
@@ -91,7 +89,7 @@ public class WebActivity extends AppCompatActivity implements WebContract.WebVie
     @AfterInject
     @Override
     public void initPresenter() {
-        new WebPresenter(this, userRepository, cookieManager, url);
+        new WebPresenter(this, userRepository, url);
     }
 
     @Override
