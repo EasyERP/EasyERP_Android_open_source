@@ -21,6 +21,6 @@
         app:tabGravity="center"
         app:tabIndicatorColor="@color/colorAccent"
         app:tabIndicatorHeight="4dp"
-        app:tabMinWidth="100dp" />
+        app:tabMinWidth="110dp" />
 
 </android.support.design.widget.AppBarLayout>

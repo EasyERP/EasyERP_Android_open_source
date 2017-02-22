@@ -4,7 +4,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.thinkmobiles.easyerp.presentation.screens.about.tabs.AboutAppFragment_;
+import com.thinkmobiles.easyerp.presentation.screens.about.tabs.about_app.AboutAppFragment_;
 
 import java.util.Arrays;
 

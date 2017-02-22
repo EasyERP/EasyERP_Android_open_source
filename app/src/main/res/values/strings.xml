@@ -173,4 +173,32 @@
     <string name="tutorial_3"><b>Hold</b> all your working contacts\nnear at hand</string>
     <string name="tutorial_4"><b>Look</b> through sales orders\nwith fulfilled products</string>
     <string name="tutorial_5"><b>Get</b> up-to-date information about\ninvoices and payments</string>
+
+    <string name="app_logo_in_text">Easy<b><font color='#427ede'>ERP</font></b></string>
+    <string name="app_description"><![CDATA[
+    We are a software engineering and consulting company which helps you to manage your working processes. <a href="https://easyerp.com">EasyERP</a> is a multichannel e-commerce management solution designed to meet varied operational requirements of the enterprises,  it is ideal for small and medium business.
+    <p>
+    <a href="https://easyerp.com">EasyERP</a> has the next features that can make your work more effective:<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;    1. Customer Relationship Management<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;    2. Reports<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;    3. Purchases and Sales orders management<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;    4. Payments<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;    5. Accounting<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;    6. Human Resource Management<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;    7. Inventory Management<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;    8. Integrations with Magento, Shopify and Etsy
+    </p>
+    <p>
+    The advantages of <a href="https://easyerp.com">EasyERP</a>:<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;    • Super fast and responsive<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;    • Stable for a load of users and big data storage<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;    • User-friendly and flexible<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;    • Highly Secured<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;    • Flexible platform<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;    • Easily customizable<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;    • Open-source
+    </p>
+    ]]></string>
+    <string name="contact_us">Contact Us</string>
+    <string name="rate_the_app">Rate the App</string>
 </resources>
