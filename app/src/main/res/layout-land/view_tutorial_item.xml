@@ -10,11 +10,11 @@
         style="@style/RobotoRegular"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/default_padding_big"
+        android:layout_marginTop="@dimen/tutorial_margin_top_land"
+        android:layout_marginBottom="@dimen/default_padding_big"
         android:gravity="center"
-        android:padding="@dimen/default_padding_big"
         android:textColor="@android:color/white"
-        android:textSize="@dimen/text_size_title_large"
+        android:textSize="@dimen/text_title_tutorial"
         tools:text="@string/tutorial_1" />
 
     <ImageView

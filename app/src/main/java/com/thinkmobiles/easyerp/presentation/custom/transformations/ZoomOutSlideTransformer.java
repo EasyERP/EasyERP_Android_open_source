@@ -21,7 +21,7 @@ import android.view.View;
 
 public class ZoomOutSlideTransformer extends BaseTransformer {
 
-    private static final float MIN_SCALE = 0.6f;
+    private static final float MIN_SCALE = 0.75f;
     private static final float MIN_ALPHA = 0.5f;
 
     @Override
