@@ -13,6 +13,7 @@ import android.view.Menu;
 import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowListSelectableFragment;
 import com.thinkmobiles.easyerp.presentation.screens.about.AboutUsActivity_;
+import com.thinkmobiles.easyerp.presentation.screens.tutorial.TutorialActivity_;
 
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterViews;
@@ -156,6 +157,13 @@ public abstract class BaseMasterFlowActivity extends AppCompatActivity {
             }
         }
 
+    }
+
+    @OptionsItem(R.id.menuTutorial_MB)
+    protected void openTutorialScreen() {
+        TutorialActivity_.intent(this)
+                .isPreview(true)
+                .start();
     }
 
     @OptionsItem(R.id.menuAboutUs_MB)

@@ -21,7 +21,7 @@
         android:theme="@style/AppTheme">
 
         <activity
-            android:name=".presentation.screens.login.LoginActivity_"
+            android:name=".presentation.screens.tutorial.TutorialActivity_"
             android:screenOrientation="sensor"
             android:theme="@style/LoginTheme"
             android:windowSoftInputMode="stateHidden">
@@ -30,6 +30,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".presentation.screens.login.LoginActivity_"
+            android:screenOrientation="sensor"
+            android:theme="@style/LoginTheme"
+            android:windowSoftInputMode="stateHidden" />
 
         <activity
             android:name=".presentation.screens.home.HomeActivity_"

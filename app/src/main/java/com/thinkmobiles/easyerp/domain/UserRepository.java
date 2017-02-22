@@ -7,6 +7,7 @@ import com.thinkmobiles.easyerp.presentation.base.NetworkRepository;
 import com.thinkmobiles.easyerp.presentation.screens.web.WebContract;
 import com.thinkmobiles.easyerp.presentation.screens.home.HomeContract;
 import com.thinkmobiles.easyerp.presentation.screens.login.LoginContract;
+import com.thinkmobiles.easyerp.presentation.screens.tutorial.TutorialContract;
 
 import org.androidannotations.annotations.EBean;
 
@@ -17,7 +18,7 @@ import rx.Observable;
  */
 
 @EBean(scope = EBean.Scope.Singleton)
-public class UserRepository extends NetworkRepository implements LoginContract.UserModel, HomeContract.HomeModel, WebContract.WebModel {
+public class UserRepository extends NetworkRepository implements LoginContract.UserModel, HomeContract.HomeModel, WebContract.WebModel, TutorialContract.UserModel {
 
     private UserService userService;
 
