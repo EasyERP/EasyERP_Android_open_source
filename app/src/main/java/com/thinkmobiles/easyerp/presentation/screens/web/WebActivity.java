@@ -1,4 +1,4 @@
-package com.thinkmobiles.easyerp.presentation.screens.about;
+package com.thinkmobiles.easyerp.presentation.screens.web;
 
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -25,7 +25,7 @@ import org.androidannotations.annotations.res.BooleanRes;
  * Created by Lynx on 2/17/2017.
  */
 
-@EActivity(R.layout.activity_about)
+@EActivity(R.layout.activity_web_view)
 public class WebActivity extends AppCompatActivity implements WebContract.WebView {
 
     private WebContract.WebPresenter presenter;
@@ -36,18 +36,11 @@ public class WebActivity extends AppCompatActivity implements WebContract.WebVie
     protected String url;
 
     @ViewById
-    protected ProgressBar pbProgress_AA;
+    protected ProgressBar pbProgress_AWV;
     @ViewById
-    protected android.webkit.WebView wvAbout_AA;
+    protected android.webkit.WebView wvAbout_AWV;
     @ViewById
     protected Toolbar toolbar;
-    @ViewById
-    protected Toolbar toolbarDetail;
-
-    @BooleanRes
-    public boolean isTablet;
-    @BooleanRes
-    public boolean isPortrait;
 
     @Bean
     protected UserRepository userRepository;
@@ -57,7 +50,7 @@ public class WebActivity extends AppCompatActivity implements WebContract.WebVie
     @AfterViews
     protected void initUI() {
         initToolbar();
-        wvAbout_AA.setWebViewClient(new WebViewClient() {
+        wvAbout_AWV.setWebViewClient(new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(android.webkit.WebView view, String url) {
                 view.loadUrl(url);
@@ -75,7 +68,7 @@ public class WebActivity extends AppCompatActivity implements WebContract.WebVie
 
     @Override
     public void displayWebUrl(String url) {
-        wvAbout_AA.loadUrl(url);
+        wvAbout_AWV.loadUrl(url);
     }
 
     @Override
@@ -85,7 +78,7 @@ public class WebActivity extends AppCompatActivity implements WebContract.WebVie
 
     @Override
     public void showProgress(boolean isShown) {
-        pbProgress_AA.setVisibility(isShown ? View.VISIBLE : View.GONE);
+        pbProgress_AWV.setVisibility(isShown ? View.VISIBLE : View.GONE);
     }
 
     @AfterInject
@@ -100,7 +93,7 @@ public class WebActivity extends AppCompatActivity implements WebContract.WebVie
     }
 
     @OptionsItem(android.R.id.home)
-    protected void clickBack() {
+    protected void selectBack() {
         onBackPressed();
     }
 

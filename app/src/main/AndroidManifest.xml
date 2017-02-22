@@ -37,10 +37,15 @@
             android:windowSoftInputMode="stateHidden" />
 
         <activity
-            android:name=".presentation.screens.about.WebActivity_"
+            android:name=".presentation.screens.web.WebActivity_"
             android:screenOrientation="sensor"
-            android:configChanges="orientation|screenSize"
-            android:windowSoftInputMode="stateHidden"/>
+            android:windowSoftInputMode="stateHidden" />
+
+        <activity
+            android:name=".presentation.screens.about.AboutUsActivity_"
+            android:label="@string/about_us"
+            android:screenOrientation="sensor"
+            android:windowSoftInputMode="stateHidden" />
 
         <meta-data
             android:name="io.fabric.ApiKey"

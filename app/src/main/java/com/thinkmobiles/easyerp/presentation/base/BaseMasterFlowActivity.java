@@ -12,7 +12,7 @@ import android.view.Menu;
 
 import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowListSelectableFragment;
-import com.thinkmobiles.easyerp.presentation.screens.about.WebActivity_;
+import com.thinkmobiles.easyerp.presentation.screens.about.AboutUsActivity_;
 
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterViews;
@@ -44,8 +44,6 @@ public abstract class BaseMasterFlowActivity extends AppCompatActivity {
 
     @InstanceState
     protected String title;
-    @StringRes(R.string.about_us)
-    protected String aboutUs;
 
     @AfterInject
     protected void listenFragmentBackStack() {
@@ -162,10 +160,7 @@ public abstract class BaseMasterFlowActivity extends AppCompatActivity {
 
     @OptionsItem(R.id.menuAboutUs_MB)
     protected void openAboutUsScreen() {
-        WebActivity_.intent(this)
-                .title(aboutUs)
-                .url("http://www.thinkmobiles.com")
-                .start();
+        AboutUsActivity_.intent(this).start();
     }
 
     @OptionsItem(android.R.id.home)
