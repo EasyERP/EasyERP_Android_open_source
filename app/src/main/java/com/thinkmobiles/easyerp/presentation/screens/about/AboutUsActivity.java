@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
 import com.thinkmobiles.easyerp.R;
+import com.thinkmobiles.easyerp.presentation.adapters.crm.AboutUsPagerAdapter;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EActivity;
@@ -41,6 +42,8 @@ public class AboutUsActivity extends AppCompatActivity implements AboutUsContrac
     @AfterViews
     protected void initUI() {
         initToolbar();
+        vpTabs_AAU.setAdapter(new AboutUsPagerAdapter(getSupportFragmentManager(), getString(R.string.app_name), getString(R.string.powered_by), getString(R.string.libraries)));
+        tabs.setupWithViewPager(vpTabs_AAU);
     }
 
     @OptionsItem(android.R.id.home)

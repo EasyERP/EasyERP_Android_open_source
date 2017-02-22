@@ -16,9 +16,11 @@
     <android.support.design.widget.TabLayout
         android:id="@+id/tabs"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
+        android:layout_height="wrap_content"
         app:layout_scrollFlags="enterAlways"
         app:tabGravity="center"
+        app:tabIndicatorColor="@color/colorAccent"
+        app:tabIndicatorHeight="4dp"
         app:tabMinWidth="100dp" />
 
 </android.support.design.widget.AppBarLayout>

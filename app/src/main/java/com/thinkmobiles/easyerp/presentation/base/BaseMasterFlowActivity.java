@@ -111,19 +111,19 @@ public abstract class BaseMasterFlowActivity extends AppCompatActivity {
         }
     }
 
-    public void replaceFragmentContent(final BaseFragment fragment, final String title) {
+    public void replaceFragmentContent(final BaseMasterFlowFragment fragment, final String title) {
         setToolbarTitle(title);
         replaceFragmentContentDetail(null);
         replaceFragment(fragment, contentIdLayout(), false);
     }
 
-    public void replaceFragmentContentDetail(final BaseFragment fragment) {
+    public void replaceFragmentContentDetail(final BaseMasterFlowFragment fragment) {
         if (!isPortrait && getFragmentManager().getBackStackEntryCount() > 0)
             getFragmentManager().popBackStackImmediate();
         replaceFragment(fragment, contentDetailIdLayout(), true);
     }
 
-    private void replaceFragment(final BaseFragment fragment, final int containerId, boolean withBackStack) {
+    private void replaceFragment(final BaseMasterFlowFragment fragment, final int containerId, boolean withBackStack) {
         if (fragment != null) {
             final FragmentTransaction ft = getFragmentManager().beginTransaction();
             ft.replace(containerId, fragment, fragment.getClass().getSimpleName());
@@ -161,9 +161,7 @@ public abstract class BaseMasterFlowActivity extends AppCompatActivity {
 
     @OptionsItem(R.id.menuTutorial_MB)
     protected void openTutorialScreen() {
-        TutorialActivity_.intent(this)
-                .isPreview(true)
-                .start();
+        TutorialActivity_.intent(this).isPreview(true).start();
     }
 
     @OptionsItem(R.id.menuAboutUs_MB)
@@ -181,5 +179,4 @@ public abstract class BaseMasterFlowActivity extends AppCompatActivity {
     protected abstract void onHomeMenuSelect(boolean isHamburger);
     protected abstract @IdRes int contentIdLayout();
     protected abstract @IdRes int contentDetailIdLayout();
-
 }

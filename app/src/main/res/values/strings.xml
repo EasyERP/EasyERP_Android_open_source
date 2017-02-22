@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">EasyERP</string>
 
+    <string name="powered_by">Powered By</string>
+    <string name="libraries">Libraries</string>
+
     <string name="no_data">No data</string>
     <string name="hint_username">Username</string>
     <string name="hint_username_or_email">Username or Email</string>
@@ -153,7 +156,7 @@
     <string name="invoice_details_subtitle_invoice_preview">Invoice Preview</string>
     <string name="demo">Demo</string>
 
-    <string name="about_us">About us</string>
+    <string name="about_us">About Us</string>
 
     <string name="terms_and_conditions_privacy_policy">By signing up you agree Terms &amp; conditions and Privacy policy</string>
     <string name="forgot_password">Forgot Password</string>
