@@ -85,9 +85,11 @@ dependencies {
     /*UI*/
     compile appDependencies.mpAndroidChart
     compile appDependencies.flowLayout
+    compile appDependencies.circleIndicator
 
     /*Analytic tools*/
     compile(devDependencies.crashlytic) {
         transitive = true;
     }
+
 }

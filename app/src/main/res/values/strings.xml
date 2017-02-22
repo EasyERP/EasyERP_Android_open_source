@@ -151,7 +151,7 @@
     <string name="order_details_title_order_preview">Order Preview</string>
     <string name="invoice_details_subtitle_payments">Payments</string>
     <string name="invoice_details_subtitle_invoice_preview">Invoice Preview</string>
-    <string name="demo_mode">Demo</string>
+    <string name="demo">Demo</string>
 
     <string name="about_us">About us</string>
 
@@ -163,4 +163,11 @@
 
     <string name="error_connection">Connection problems. Make sure your internet connection established</string>
     <string name="error_unknown">Something going wrong :(</string>
+
+    <string name="tutorial">Tutorial</string>
+    <string name="tutorial_1"><b>Keep</b> your finger on the pulse\nof sales in your company</string>
+    <string name="tutorial_2"><b>See</b> all incoming Leads and Opportunities\nwith ease</string>
+    <string name="tutorial_3"><b>Hold</b> all your working contacts\nnear at hand</string>
+    <string name="tutorial_4"><b>Look</b> through sales orders\nwith fulfilled products</string>
+    <string name="tutorial_5"><b>Get</b> up-to-date information about\ninvoices and payments</string>
 </resources>

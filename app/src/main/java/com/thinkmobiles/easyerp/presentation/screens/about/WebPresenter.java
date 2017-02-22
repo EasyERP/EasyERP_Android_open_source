@@ -16,7 +16,7 @@ public class WebPresenter implements WebContract.WebPresenter {
 
     private final String url;
 
-    public WebPresenter(WebContract.WebView view, WebContract.WebModel model, CookieManager cookieManager, String url) {
+    public WebPresenter(WebContract.WebView view, WebContract.WebModel model, String url) {
         this.view = view;
         this.model = model;
         this.url = url;

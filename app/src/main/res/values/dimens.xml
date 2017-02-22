@@ -24,8 +24,9 @@
 
     <dimen name="login_min_width_form_credentials">300dp</dimen>
     <dimen name="login_logo_margin">32dp</dimen>
-    <dimen name="padding_start_for_credentials_ui">33dp</dimen>
     <dimen name="login_icons_size">17dp</dimen>
+    <dimen name="padding_start_for_credentials_ui">33dp</dimen>
+    <dimen name="tutorial_margin_title">170dp</dimen>
 
     <!--/////////////////////// DESIGN ///////////////////////-->
 
@@ -33,6 +34,7 @@
     <dimen name="default_padding">16dp</dimen>
     <dimen name="default_padding_fixed">19dp</dimen>
     <dimen name="default_padding_big">24dp</dimen>
+    <dimen name="padding_button_large">30dp</dimen>
     <dimen name="list_item_line_12">12dp</dimen>
     <dimen name="list_item_side_8">8dp</dimen>
     <dimen name="default_padding_half">8dp</dimen>
@@ -61,5 +63,7 @@
     <dimen name="text_sixe_pdf_type">30sp</dimen>
 
     <dimen name="circle_indicator_small_size">10dp</dimen>
+    <dimen name="tutorial_margin_top_land">50dp</dimen>
+    <dimen name="text_title_tutorial">40sp</dimen>
 
 </resources>
