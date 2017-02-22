@@ -32,8 +32,8 @@
             app:ci_height="13dp"
             app:ci_orientation="horizontal"
             app:ci_margin="6dp"
-            app:ci_animator="@animator/alpha"
-            app:ci_animator_reverse="@animator/alpha_reverse"
+            app:ci_animator="@animator/tutorial_indicator_in"
+            app:ci_animator_reverse="@animator/tutorial_indicator_out"
             app:ci_drawable_unselected="@drawable/view_pager_indicator"
             app:ci_drawable="@drawable/view_pager_indicator_selected"
             android:layout_weight="1"/>
