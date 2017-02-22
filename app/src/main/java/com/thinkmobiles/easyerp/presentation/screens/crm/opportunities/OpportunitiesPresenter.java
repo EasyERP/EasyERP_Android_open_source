@@ -1,7 +1,6 @@
 package com.thinkmobiles.easyerp.presentation.screens.crm.opportunities;
 
 import com.thinkmobiles.easyerp.data.model.crm.opportunities.list_item.OpportunityListItem;
-import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectablePresenterHelper;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.OpportunityDH;
 import com.thinkmobiles.easyerp.presentation.managers.ErrorManager;

@@ -2,7 +2,7 @@ package com.thinkmobiles.easyerp.presentation.screens.crm.opportunities;
 
 import com.thinkmobiles.easyerp.data.model.crm.opportunities.ResponseGetOpportunities;
 import com.thinkmobiles.easyerp.presentation.base.BaseModel;
-import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
+import com.thinkmobiles.easyerp.presentation.base.rules.ErrorType;
 import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectableBasePresenter;
 import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectableBaseView;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.OpportunityDH;
@@ -22,7 +22,7 @@ public interface OpportunitiesContract {
         void displayOpportunities(ArrayList<OpportunityDH> opportunityDHs, boolean needClear);
         void openOpportunityDetailsScreen(String opportunityID);
 
-        void displayErrorState(final ErrorViewHelper.ErrorType errorType);
+        void displayErrorState(final ErrorType errorType);
         void displayErrorToast(final String msg);
         void showProgress(Constants.ProgressType type);
     }

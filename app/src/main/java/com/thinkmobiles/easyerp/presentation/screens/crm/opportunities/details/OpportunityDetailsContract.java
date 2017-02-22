@@ -5,7 +5,7 @@ import com.thinkmobiles.easyerp.data.model.crm.opportunities.detail.ResponseGetO
 import com.thinkmobiles.easyerp.presentation.base.BaseModel;
 import com.thinkmobiles.easyerp.presentation.base.BasePresenter;
 import com.thinkmobiles.easyerp.presentation.base.BaseView;
-import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
+import com.thinkmobiles.easyerp.presentation.base.rules.ErrorType;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.AttachmentDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.ContactDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.HistoryDH;
@@ -23,7 +23,7 @@ public interface OpportunityDetailsContract {
     interface OpportunityDetailsView extends BaseView<OpportunityDetailsPresenter> {
         void showProgress(Constants.ProgressType type);
         void showHistory(boolean enable);
-        void displayErrorState(ErrorViewHelper.ErrorType errorType);
+        void displayErrorState(ErrorType errorType);
         void displayErrorToast(String message);
 
         void showContact(boolean isShown);

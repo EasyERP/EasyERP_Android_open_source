@@ -6,7 +6,7 @@ import com.thinkmobiles.easyerp.data.model.crm.leads.detail.ResponseGetLeadDetai
 import com.thinkmobiles.easyerp.presentation.base.BaseModel;
 import com.thinkmobiles.easyerp.presentation.base.BasePresenter;
 import com.thinkmobiles.easyerp.presentation.base.BaseView;
-import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
+import com.thinkmobiles.easyerp.presentation.base.rules.ErrorType;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.AttachmentDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.HistoryDH;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
@@ -20,7 +20,7 @@ public interface LeadDetailsContract {
     interface LeadDetailsView extends BaseView<LeadDetailsPresenter> {
         void showProgress(Constants.ProgressType type);
         void showHistory(boolean enable);
-        void displayErrorState(ErrorViewHelper.ErrorType errorType);
+        void displayErrorState(ErrorType errorType);
         void displayErrorToast(String message);
 
         void showContacts(boolean isShown);

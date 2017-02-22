@@ -4,7 +4,6 @@ package com.thinkmobiles.easyerp.presentation.screens.crm.dashboard.detail;
 import android.support.v4.util.Pair;
 
 import com.thinkmobiles.easyerp.data.model.crm.dashboard.DashboardListItem;
-import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.managers.DateManager;
 import com.thinkmobiles.easyerp.presentation.managers.ErrorManager;
 import com.thinkmobiles.easyerp.presentation.utils.AppDefaultStatesPreferences_;

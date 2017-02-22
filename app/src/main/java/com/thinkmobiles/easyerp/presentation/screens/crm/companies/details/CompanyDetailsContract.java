@@ -4,7 +4,7 @@ import com.thinkmobiles.easyerp.data.model.crm.companies.detail.ResponseGetCompa
 import com.thinkmobiles.easyerp.presentation.base.BaseModel;
 import com.thinkmobiles.easyerp.presentation.base.BasePresenter;
 import com.thinkmobiles.easyerp.presentation.base.BaseView;
-import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
+import com.thinkmobiles.easyerp.presentation.base.rules.ErrorType;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.AttachmentDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.ContactDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.HistoryDH;
@@ -23,7 +23,7 @@ public interface CompanyDetailsContract {
     interface CompanyDetailsView extends BaseView<CompanyDetailsPresenter> {
         void showHistory(boolean isShow);
         void showProgress(Constants.ProgressType type);
-        void displayErrorState(final ErrorViewHelper.ErrorType errorType);
+        void displayErrorState(final ErrorType errorType);
         void displayErrorToast(final String msg);
 
         void showBillingAddress(boolean isShown);

@@ -34,4 +34,9 @@ public class UserRepository extends NetworkRepository implements LoginContract.U
     public Observable<?> logout() {
         return getNetworkObservable(userService.logOut());
     }
+
+    @Override
+    public Observable<?> changePassword(String userId, String oldPass, String newPass) {
+        return getNetworkObservable(userService.changePassword(userId, oldPass, newPass));
+    }
 }

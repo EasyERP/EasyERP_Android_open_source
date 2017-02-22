@@ -3,7 +3,6 @@ package com.thinkmobiles.easyerp.presentation.screens.crm.leads;
 import com.thinkmobiles.easyerp.data.model.crm.leads.LeadItem;
 import com.thinkmobiles.easyerp.data.model.crm.leads.filter.FilterItem;
 import com.thinkmobiles.easyerp.data.model.crm.leads.filter.ResponseGetLeadsFilters;
-import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectablePresenterHelper;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.FilterDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.LeadDH;
