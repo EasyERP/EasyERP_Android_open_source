@@ -93,7 +93,7 @@ public class LeadsPresenter extends MasterFlowSelectablePresenterHelper<String, 
                     helper = filterHelper;
                     view.createMenuFilters(helper);
                 }, t -> {
-                    view.displayErrorState(ErrorManager.getErrorType(t));
+                    view.displayErrorToast(ErrorManager.getErrorMessage(t));
                 }));
     }
 

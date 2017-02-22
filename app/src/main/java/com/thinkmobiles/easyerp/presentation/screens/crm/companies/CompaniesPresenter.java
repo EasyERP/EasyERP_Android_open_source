@@ -118,7 +118,7 @@ public class CompaniesPresenter extends MasterFlowSelectablePresenterHelper<Stri
                     helper = filterHelper;
                     view.createMenuFilters(helper);
                 }, t -> {
-                    view.displayErrorToast(t.getMessage());
+                    view.displayErrorToast(ErrorManager.getErrorMessage(t));
                 }));
     }
 

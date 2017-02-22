@@ -66,7 +66,7 @@ public class PersonsPresenter extends MasterFlowSelectablePresenterHelper<String
                             view.displaySelectedLetter(selectedLetter);
                         }, t -> {
                             t.printStackTrace();
-                            view.displayErrorToast(t.getMessage());
+                            view.displayErrorToast(ErrorManager.getErrorMessage(t));
                         })
         );
     }
@@ -176,7 +176,7 @@ public class PersonsPresenter extends MasterFlowSelectablePresenterHelper<String
                     helper = filterHelper;
                     view.createMenuFilters(helper);
                 }, t -> {
-                    view.displayErrorToast(t.getMessage());
+                    view.displayErrorToast(ErrorManager.getErrorMessage(t));
                 }));
     }
 

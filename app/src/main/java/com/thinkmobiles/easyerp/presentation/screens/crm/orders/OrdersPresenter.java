@@ -76,7 +76,7 @@ public class OrdersPresenter extends MasterFlowSelectablePresenterHelper<String,
                     helper = filterHelper;
                     view.createMenuFilters(helper);
                 }, t -> {
-                    view.displayErrorToast(t.getMessage());
+                    view.displayErrorToast(ErrorManager.getErrorMessage(t));
                 }));
     }
 
