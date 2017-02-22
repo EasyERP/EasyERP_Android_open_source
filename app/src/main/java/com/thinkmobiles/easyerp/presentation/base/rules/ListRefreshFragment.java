@@ -1,6 +1,5 @@
 package com.thinkmobiles.easyerp.presentation.base.rules;
 
-import android.os.Bundle;
 import android.support.annotation.CallSuper;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -12,9 +11,9 @@ import android.view.View;
 import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.SuggestionAdapter;
 import com.thinkmobiles.easyerp.presentation.dialogs.FilterDialogFragment;
+import com.thinkmobiles.easyerp.presentation.dialogs.FilterDialogFragment_;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.FilterDH;
 import com.thinkmobiles.easyerp.presentation.listeners.EndlessScrollListener;
-import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EFragment;
@@ -82,7 +81,6 @@ public abstract class ListRefreshFragment extends RefreshFragment {
         return listRecycler;
     }
 
-    @CallSuper
     public void optionsMenuInitialized(Menu menu) {
         menuFilters = menu.findItem(R.id.menuFilters);
         menuSearch = menu.findItem(R.id.menuSearch);
@@ -127,11 +125,10 @@ public abstract class ListRefreshFragment extends RefreshFragment {
 
     protected void showDialogFiltering(ArrayList<FilterDH> filterDHs, int requestCode, String filterName) {
         listRecycler.requestFocus();
-        FilterDialogFragment dialogFragment = new FilterDialogFragment();
-        Bundle bundle = new Bundle();
-        bundle.putParcelableArrayList(Constants.KEY_FILTER_LIST, filterDHs);
-        bundle.putString(Constants.KEY_FILTER_NAME, filterName);
-        dialogFragment.setArguments(bundle);
+        FilterDialogFragment dialogFragment = FilterDialogFragment_.builder()
+                .filterList(filterDHs)
+                .filterName(filterName)
+                .build();
         dialogFragment.setTargetFragment(this, requestCode);
         dialogFragment.show(getFragmentManager(), getClass().getName());
     }

@@ -96,34 +96,29 @@ public class FilterHelper {
         callback.onCheckedFilter(indexSearchableFilter, true);
     }
 
-    public void filterByList(ArrayList<FilterDH> filterDHs, int code, CheckFilterCallback callback) {
-        filters.put(code, filterDHs);
-        FilterTypeQuery filter = params.get(code);
+    public void filterByList(ArrayList<FilterDH> filterDHs, int position, CheckFilterCallback callback) {
+        filters.put(position, filterDHs);
+        FilterTypeQuery filter = params.get(position);
         filter.removeAll();
         for (FilterDH dh : filterDHs) {
             if(dh.selected) {
                 filter.add(dh.id);
             }
         }
-        callback.onCheckedFilter(code, filter.getValues() != null);
+        callback.onCheckedFilter(position, filter.getValues() != null);
     }
 
-    public void removeFilter(int code, CheckFilterCallback callback) {
-        ArrayList<FilterDH> filterDHs = filters.get(code);
-        for (FilterDH dh : filterDHs) {
+    public void removeFilter(int position, CheckFilterCallback callback) {
+        for (FilterDH dh : filters.get(position)) {
             dh.selected = false;
         }
-        params.get(code).removeAll();
-        callback.onCheckedFilter(code, false);
+        params.get(position).removeAll();
+        callback.onCheckedFilter(position, false);
     }
 
     public void removeAllFilters(CheckFilterCallback callback) {
         for (int position = 0; position < filters.size(); ++position) {
-            for (FilterDH dh : filters.get(position)) {
-                dh.selected = false;
-            }
-            params.get(position).removeAll();
-            callback.onCheckedFilter(position, false);
+            removeFilter(position, callback);
         }
     }
 

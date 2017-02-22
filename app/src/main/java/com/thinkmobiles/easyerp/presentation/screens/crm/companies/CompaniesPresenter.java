@@ -66,6 +66,7 @@ public class CompaniesPresenter extends MasterFlowSelectablePresenterHelper<Stri
             loadAlphabet();
             getFirstPage();
         } else {
+            view.displayEnabledLetters(enabledAlphabetItems);
             setData(companiesResponse, true);
         }
     }

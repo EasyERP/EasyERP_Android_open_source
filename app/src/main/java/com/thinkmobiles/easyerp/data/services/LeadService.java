@@ -26,8 +26,4 @@ public interface LeadService {
 
     @GET(Constants.GET_LEADS + "/{leadId}")
     Observable<ResponseGetLeadDetails> getLeadDetails(@Path("leadId") String leadId);
-
-    @GET("workflows/")
-    Observable<ResponseGetLeadWorkflow> getLeadWorkflow(@Query("id") String workflowId);
-
 }

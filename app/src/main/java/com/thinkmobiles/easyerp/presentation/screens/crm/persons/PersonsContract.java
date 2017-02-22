@@ -55,8 +55,6 @@ public interface PersonsContract {
     interface PersonsModel extends BaseModel {
         Observable<ResponseGetAlphabet> getPersonsAlphabet();
         Observable<ResponseGetCustomersImages> getPersonImages(ArrayList<String> customerIdList);
-        Observable<ResponseGetPersons> getAllPersons(int page);
-        Observable<ResponseGetPersons> getPersonsByLetter(String letter, int page);
         Observable<ResponseGetPersons> getPersons(FilterHelper helper, String letter, int page);
         Observable<ResponseFilters> getFilters();
     }

@@ -54,14 +54,6 @@ public class PersonsRepository implements PersonsContract.PersonsModel, PersonDe
         return getNetworkObservable(customerService.getCustomerImages(customerIdList));
     }
 
-    public Observable<ResponseGetPersons> getAllPersons(int page) {
-        return getNetworkObservable(personsService.getAllPersons("list", 50, "Persons", page));
-    }
-
-    public Observable<ResponseGetPersons> getPersonsByLetter(String letter, int page) {
-        return getNetworkObservable(personsService.getPersonsByLetter("list", "name.first", letter, "letter", "Persons", 50, page));
-    }
-
     public Observable<ResponseGetPersonDetails> getPersonDetails(String personID) {
         return getNetworkObservable(personsService.getPersonDetails(personID));
     }

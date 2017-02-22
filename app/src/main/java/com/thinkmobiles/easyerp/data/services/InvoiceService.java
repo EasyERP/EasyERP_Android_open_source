@@ -22,7 +22,7 @@ import rx.Observable;
 public interface InvoiceService {
 
     @GET(Constants.GET_INVOICE)
-    Observable<ResponseGetInvoice> getInvoice(
+    Observable<ResponseGetInvoice> getInvoiceForDashboard(
             @Query("filter[date][value][0]") final String filterDateValueFrom,
             @Query("filter[date][value][1]") final String filterDateValueTo,
             @Query("forSales") final boolean forSales,
@@ -31,18 +31,6 @@ public interface InvoiceService {
             @Query("count") final int count,
             @Query("sort[invoiceDate]") final Integer sort,
             @Query("contentType") final String contentType);
-
-    @GET(Constants.GET_INVOICE)
-    Observable<ResponseGetInvoice> getFilteredInvoice(
-            @QueryMap Map<String, String> keys,
-            @Query("filter[project][value][]") List<String> project,
-            @Query("filter[supplier][value][]") List<String> supplier,
-            @Query("filter[workflow][value][]") List<String> workflow,
-            @Query("filter[salesPerson][value][]") List<String> salesPerson,
-            @Query("forSales") boolean forSales,
-            @Query("page") int page,
-            @Query("count") int count
-    );
 
     @GET
     Observable<ResponseGetInvoice> getInvoices(@Url String url);

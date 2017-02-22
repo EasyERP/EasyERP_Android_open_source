@@ -100,60 +100,51 @@ public class Rest {
     }
 
     public LoginService getLoginService() {
-        return loginService == null ? createService(LoginService.class, false) : loginService;
+        return loginService == null ? loginService = createService(LoginService.class, false) : loginService;
     }
 
     public UserService getUserService() {
-        if (userService == null) {
-            userService = createService(UserService.class);
-        }
-        return userService;
+        return userService == null ? userService = createService(UserService.class) : userService;
     }
 
     public LeadService getLeadService() {
-        return leadService == null ? createService(LeadService.class) : leadService;
+        return leadService == null ? leadService = createService(LeadService.class) : leadService;
     }
 
     public DashboardService getDashboardService() {
-        return dashboardService == null ? createService(DashboardService.class) : dashboardService;
+        return dashboardService == null ? dashboardService = createService(DashboardService.class) : dashboardService;
     }
 
     public InvoiceService getInvoiceService() {
-        return invoiceService == null ? createService(InvoiceService.class) : invoiceService;
+        return invoiceService == null ? invoiceService = createService(InvoiceService.class) : invoiceService;
     }
 
     public OrderService getOrderService() {
-        return orderService == null ? createService(OrderService.class) : orderService;
+        return orderService == null ? orderService = createService(OrderService.class) : orderService;
     }
 
     public PaymentsService getPaymentService() {
-        return paymentsService == null ? createService(PaymentsService.class) : paymentsService;
+        return paymentsService == null ? paymentsService = createService(PaymentsService.class) : paymentsService;
     }
 
     public PersonsService getPersonsService() {
-        return personsService == null ? createService(PersonsService.class) : personsService;
+        return personsService == null ? personsService = createService(PersonsService.class) : personsService;
     }
 
     public OpportunityService getOpportunityService() {
-        if (opportunityService == null) {
-            opportunityService = createService(OpportunityService.class);
-        }
-        return opportunityService;
+        return opportunityService == null ? opportunityService = createService(OpportunityService.class) : opportunityService;
     }
 
     public CompaniesService getCompaniesService() {
-        return companiesService == null ? createService(CompaniesService.class) : companiesService;
+        return companiesService == null ? companiesService = createService(CompaniesService.class) : companiesService;
     }
 
     public CustomerService getCustomerService() {
-        return customerService == null ? createService(CustomerService.class) : customerService;
+        return customerService == null ? customerService = createService(CustomerService.class) : customerService;
     }
 
     public FilterService getFilterService() {
-        if (filterService == null) {
-            filterService = createService(FilterService.class);
-        }
-        return filterService;
+        return filterService == null ? filterService = createService(FilterService.class) : filterService;
     }
 
     public ResponseError parseError(ResponseBody responseBody) {
