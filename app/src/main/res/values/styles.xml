@@ -44,20 +44,20 @@
         <item name="android:textColor">@color/color_text_black</item>
         <item name="android:textColorHint">@color/text_grey_hint_color</item>
         <item name="colorControlNormal">@color/text_grey_hint_color</item>
-        <item name="colorControlActivated">@color/colorPrimary</item>
-        <item name="colorControlHighlight">@color/colorPrimaryDark</item>
+        <item name="colorControlActivated">@color/colorAccent</item>
+        <item name="colorControlHighlight">@color/dividerColor</item>
     </style>
 
     <style name="DefaultTheme.InputFieldsLight">
         <item name="android:textColor">@color/white_main_text_color</item>
-        <item name="android:textColorHint">@color/textColorHint</item>
+        <item name="android:textColorHint">@color/white_main_text_color</item>
         <item name="colorControlNormal">@color/dividerColor</item>
         <item name="colorControlActivated">@android:color/white</item>
         <item name="colorControlHighlight">@android:color/white</item>
     </style>
 
     <style name="TextInputLayoutStyleLight">
-        <item name="theme">@style/DefaultTheme.InputFieldsLight</item>
+        <item name="theme">@style/DefaultTheme.InputFieldsLight</item>`
     </style>
 
     <style name="TextInputLayoutStyle">
