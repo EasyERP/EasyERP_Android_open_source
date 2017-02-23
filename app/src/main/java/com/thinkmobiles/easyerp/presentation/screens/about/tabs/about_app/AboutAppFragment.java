@@ -32,6 +32,8 @@ public class AboutAppFragment extends BaseSupportFragment<AboutUsActivity> imple
 
     @ViewById
     protected TextView tvDescription_FAUS;
+    @ViewById
+    protected TextView tvVersion_FAUS;
 
     @AfterInject
     @Override
@@ -46,8 +48,10 @@ public class AboutAppFragment extends BaseSupportFragment<AboutUsActivity> imple
 
     @AfterViews
     protected void initUI() {
+        tvVersion_FAUS.setText(Html.fromHtml(String.format("Version: <b>%s (%s)</b>", BuildConfig.VERSION_NAME, BuildConfig.VERSION_CODE)));
         tvDescription_FAUS.setText(Html.fromHtml(getString(R.string.app_description)));
         tvDescription_FAUS.setMovementMethod(LinkMovementMethod.getInstance());
+        presenter.subscribe();
     }
 
     @Click(R.id.btnContactUs_FAUE)
@@ -102,5 +106,11 @@ public class AboutAppFragment extends BaseSupportFragment<AboutUsActivity> imple
             if (uriAlternative != null)
                 startActivity(new Intent(Intent.ACTION_VIEW, uriAlternative));
         }
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        presenter.unsubscribe();
     }
 }

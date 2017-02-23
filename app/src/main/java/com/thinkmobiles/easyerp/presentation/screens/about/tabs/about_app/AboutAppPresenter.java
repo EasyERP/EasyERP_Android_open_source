@@ -8,9 +8,9 @@ package com.thinkmobiles.easyerp.presentation.screens.about.tabs.about_app;
 public class AboutAppPresenter implements AboutAppContract.AboutAppPresenter {
 
     private static final String LINK_FACEBOOK = "https://www.facebook.com/easyerp/";
-    private static final String LINK_LINKEDIN = "https://www.linkedin.com/company/easyerp";
-    private static final String LINK_YOUTUBE = "https://www.youtube.com/user/EasyERP";
-    private static final String LINK_TWITER = "https://twitter.com/easy_erp";
+    private static final String LINK_LINKEDIN = "https://www.linkedin.com/company/easyerp/";
+    private static final String LINK_YOUTUBE = "https://www.youtube.com/user/EasyERP/";
+    private static final String LINK_TWITER = "https://twitter.com/easy_erp/";
     private static final String LINK_SKYPE = "skype:live:ligintir";
 
     private static final String SCHEME_MARKET = "market://details?id=%s";

@@ -174,7 +174,7 @@
     <string name="tutorial_4"><b>Look</b> through sales orders\nwith fulfilled products</string>
     <string name="tutorial_5"><b>Get</b> up-to-date information about\ninvoices and payments</string>
 
-    <string name="app_logo_in_text">Easy<b><font color='#427ede'>ERP</font></b></string>
+    <string name="app_logo_in_text">Easy<b><font color='#4E86C3'>ERP</font></b></string>
     <string name="app_description"><![CDATA[
     We are a software engineering and consulting company which helps you to manage your working processes. <a href="https://easyerp.com">EasyERP</a> is a multichannel e-commerce management solution designed to meet varied operational requirements of the enterprises,  it is ideal for small and medium business.
     <p>
@@ -201,4 +201,10 @@
     ]]></string>
     <string name="contact_us">Contact Us</string>
     <string name="rate_the_app">Rate the App</string>
+    <string name="visit_us">Visit us</string>
+    <string name="thinkmobiles_description"><![CDATA[
+    <font color="#4E86C3">Powered by Thinkmobiles ©.</font><br>
+    A Mobile Solutions Company.
+    <p>We create customized mobile applications for the most popular mobile platforms: iPhone&iPad, Android and Windows Phone.</p>
+    ]]></string>
 </resources>

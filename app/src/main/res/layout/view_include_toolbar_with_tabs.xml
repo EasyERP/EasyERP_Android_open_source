@@ -5,22 +5,29 @@
     android:layout_height="wrap_content"
     android:background="@drawable/bg_appbar_gradient">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:layout_marginTop="@dimen/statusBarHeight"
-        android:background="@drawable/fg_toolbar_gradient"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
-
-    <android.support.design.widget.TabLayout
-        android:id="@+id/tabs"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_scrollFlags="enterAlways"
-        app:tabGravity="center"
-        app:tabIndicatorColor="@color/colorAccent"
-        app:tabIndicatorHeight="4dp"
-        app:tabMinWidth="110dp" />
+        android:layout_marginTop="@dimen/statusBarHeight"
+        android:background="@drawable/fg_toolbar_gradient"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tabs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_scrollFlags="enterAlways"
+            app:tabGravity="center"
+            app:tabIndicatorColor="@color/colorAccent"
+            app:tabIndicatorHeight="4dp"
+            app:tabMinWidth="110dp" />
+
+    </LinearLayout>
 
 </android.support.design.widget.AppBarLayout>

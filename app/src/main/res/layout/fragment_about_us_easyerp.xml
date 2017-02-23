@@ -19,17 +19,25 @@
             style="@style/RobotoRegular"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/default_padding_big"
+            android:layout_margin="@dimen/default_padding_half"
             android:padding="@dimen/default_padding_half"
             android:text="@string/app_logo_in_text"
-            android:textSize="70sp" />
+            android:textSize="68sp" />
+
+        <TextView
+            android:id="@+id/tvVersion_FAUS"
+            style="@style/RobotoRegular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_list_item_medium_16"
+            tools:text="Version: 1.0.1 (3)" />
 
         <TextView
             android:id="@+id/tvDescription_FAUS"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/default_padding"
             android:padding="@dimen/default_padding_half"
-            android:textSize="@dimen/text_list_item_medium_16"
             tools:text="@string/app_description" />
 
         <LinearLayout
@@ -43,7 +51,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/default_padding_half"
                 android:padding="@dimen/default_padding_quart"
-                app:srcCompat="@drawable/icon_fb" />
+                app:srcCompat="@drawable/ic_fb" />
 
             <ImageView
                 android:id="@+id/ivLinkedIn_FAUE"
@@ -51,7 +59,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/default_padding_half"
                 android:padding="@dimen/default_padding_quart"
-                app:srcCompat="@drawable/icon_linkedin" />
+                app:srcCompat="@drawable/ic_linkedin" />
 
             <ImageView
                 android:id="@+id/ivSkype_FAUE"
@@ -59,7 +67,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/default_padding_half"
                 android:padding="@dimen/default_padding_quart"
-                app:srcCompat="@drawable/icon_skype" />
+                app:srcCompat="@drawable/ic_skype" />
 
             <ImageView
                 android:id="@+id/ivTwitter_FAUE"
@@ -67,7 +75,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/default_padding_half"
                 android:padding="@dimen/default_padding_quart"
-                app:srcCompat="@drawable/icon_skype" />
+                app:srcCompat="@drawable/ic_twitter" />
 
             <ImageView
                 android:id="@+id/ivYouTube_FAUE"
@@ -75,7 +83,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/default_padding_half"
                 android:padding="@dimen/default_padding_quart"
-                app:srcCompat="@drawable/icon_skype" />
+                app:srcCompat="@drawable/ic_youtube" />
         </LinearLayout>
 
         <LinearLayout
