@@ -58,6 +58,7 @@ android {
 
 }
 
+//TODO DANGEROUS!!!. Please move added dependency in repository: domain/LibrariesRepository.java
 dependencies {
     compile project(path: ':rangepickerdialog')
 
@@ -94,5 +95,4 @@ dependencies {
     compile(devDependencies.crashlytic) {
         transitive = true;
     }
-
 }
