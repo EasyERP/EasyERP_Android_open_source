@@ -79,7 +79,7 @@
                                 android:layout_height="wrap_content"
                                 android:padding="@dimen/default_padding_half"
                                 android:visibility="gone"
-                                app:srcCompat="@drawable/icon_fb"
+                                app:srcCompat="@drawable/ic_fb"
                                 tools:visibility="visible" />
 
                             <ImageView
@@ -88,7 +88,7 @@
                                 android:layout_height="wrap_content"
                                 android:padding="@dimen/default_padding_half"
                                 android:visibility="gone"
-                                app:srcCompat="@drawable/icon_linkedin"
+                                app:srcCompat="@drawable/ic_linkedin"
                                 tools:visibility="visible" />
 
                             <ImageView
@@ -97,7 +97,7 @@
                                 android:layout_height="wrap_content"
                                 android:padding="@dimen/default_padding_half"
                                 android:visibility="gone"
-                                app:srcCompat="@drawable/icon_skype"
+                                app:srcCompat="@drawable/ic_skype"
                                 tools:visibility="visible" />
 
                         </LinearLayout>

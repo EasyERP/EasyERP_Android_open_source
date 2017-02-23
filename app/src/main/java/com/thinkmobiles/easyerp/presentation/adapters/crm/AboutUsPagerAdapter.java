@@ -5,6 +5,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import com.thinkmobiles.easyerp.presentation.screens.about.tabs.about_app.AboutAppFragment_;
+import com.thinkmobiles.easyerp.presentation.screens.about.tabs.powered_by.PoweredByFragment_;
 
 import java.util.Arrays;
 
@@ -29,7 +30,7 @@ public class AboutUsPagerAdapter extends FragmentPagerAdapter {
             case 0:
                 return AboutAppFragment_.builder().build();
             case 1:
-                return AboutAppFragment_.builder().build();
+                return PoweredByFragment_.builder().build();
             case 2:
                 return AboutAppFragment_.builder().build();
             default: return null;
