@@ -4,7 +4,7 @@ import com.thinkmobiles.easyerp.data.api.Rest;
 import com.thinkmobiles.easyerp.data.model.user.ResponseGetCurrentUser;
 import com.thinkmobiles.easyerp.data.services.UserService;
 import com.thinkmobiles.easyerp.presentation.base.NetworkRepository;
-import com.thinkmobiles.easyerp.presentation.screens.about.WebContract;
+import com.thinkmobiles.easyerp.presentation.screens.web.WebContract;
 import com.thinkmobiles.easyerp.presentation.screens.home.HomeContract;
 import com.thinkmobiles.easyerp.presentation.screens.login.LoginContract;
 import com.thinkmobiles.easyerp.presentation.screens.tutorial.TutorialContract;

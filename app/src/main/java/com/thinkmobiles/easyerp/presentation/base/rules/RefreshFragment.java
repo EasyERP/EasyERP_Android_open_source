@@ -17,7 +17,7 @@ import android.widget.Toast;
 
 import com.jakewharton.rxbinding.view.RxView;
 import com.thinkmobiles.easyerp.R;
-import com.thinkmobiles.easyerp.presentation.base.BaseFragment;
+import com.thinkmobiles.easyerp.presentation.base.BaseMasterFlowFragment;
 import com.thinkmobiles.easyerp.presentation.screens.home.HomeActivity;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
@@ -34,7 +34,7 @@ import java.util.concurrent.TimeUnit;
  *         Email: alex.michenko@thinkmobiles.com
  */
 @EFragment
-public abstract class RefreshFragment extends BaseFragment<HomeActivity> {
+public abstract class RefreshFragment extends BaseMasterFlowFragment<HomeActivity> {
 
     @ViewById
     protected SwipeRefreshLayout srlHolderRefresh;

@@ -36,15 +36,18 @@ android {
     }
 
     buildTypes {
+        def packageForStetho = 'com.thinkmobiles.easyerp.debug'
         debug {
             signingConfig signingConfigs.debug
             buildConfigField "boolean", "PRODUCTION", "false"
+            buildConfigField packageForStetho + '.IStethoConfigure', 'STETHO', 'new ' + packageForStetho + '.DebugStethoHelper()'
         }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.debug
+            signingConfig signingConfigs.release
             buildConfigField "boolean", "PRODUCTION", "true"
+            buildConfigField packageForStetho + '.IStethoConfigure', 'STETHO', 'new ' + packageForStetho + '.ReleaseStethoHelper()'
         }
     }
 
@@ -55,11 +58,12 @@ android {
 
 }
 
+//TODO DANGEROUS!!!. Please move added dependency in repository: domain/LibrariesRepository.java
 dependencies {
     compile project(path: ':rangepickerdialog')
 
     /*Debug*/
-    compile devDependencies.stetho
+    debugCompile devDependencies.stetho
 
     /*Android support*/
     compile appDependencies.androidSupportDesign
@@ -91,5 +95,4 @@ dependencies {
     compile(devDependencies.crashlytic) {
         transitive = true;
     }
-
 }

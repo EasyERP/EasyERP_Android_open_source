@@ -35,6 +35,7 @@ import com.thinkmobiles.easyerp.domain.UserRepository;
 import com.thinkmobiles.easyerp.presentation.dialogs.ForgotPasswordDialogFragment;
 import com.thinkmobiles.easyerp.presentation.dialogs.ForgotPasswordDialogFragment_;
 import com.thinkmobiles.easyerp.presentation.managers.CookieManager;
+import com.thinkmobiles.easyerp.presentation.screens.web.WebActivity_;
 import com.thinkmobiles.easyerp.presentation.screens.home.HomeActivity_;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
@@ -161,14 +162,20 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
         spannableStringBuilder.setSpan(new ClickableSpan() {
             @Override
             public void onClick(View view) {
-                //TODO open Terms and Conditions
+                WebActivity_.intent(view.getContext())
+                        .title(termsAndConditions)
+                        .url("http://www.thinkmobiles.com")
+                        .start();
             }
         }, termsAndConditionsPos, termsAndConditionsPos + termsAndConditions.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 
         spannableStringBuilder.setSpan(new ClickableSpan() {
             @Override
             public void onClick(View view) {
-                //TODO open Privacy Policy
+                WebActivity_.intent(view.getContext())
+                        .title(privacyPolicy)
+                        .url("http://www.thinkmobiles.com/projects")
+                        .start();
             }
         }, privacyPolicyPos, privacyPolicyPos + privacyPolicy.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 
