@@ -11,6 +11,7 @@ import android.widget.Toast;
 import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.domain.UserRepository;
 import com.thinkmobiles.easyerp.presentation.managers.CookieManager;
+import com.thinkmobiles.easyerp.presentation.managers.GoogleAnalyticHelper;
 
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterViews;
@@ -47,6 +48,7 @@ public class WebActivity extends AppCompatActivity implements WebContract.WebVie
 
     @AfterViews
     protected void initUI() {
+        GoogleAnalyticHelper.trackScreenView(this, getResources().getConfiguration());
         initToolbar();
         wvAbout_AWV.setWebViewClient(new WebViewClient() {
             @Override
@@ -88,6 +90,11 @@ public class WebActivity extends AppCompatActivity implements WebContract.WebVie
     @Override
     public void setPresenter(WebContract.WebPresenter presenter) {
         this.presenter = presenter;
+    }
+
+    @Override
+    public String getScreenName() {
+        return title + " screen";
     }
 
     @OptionsItem(android.R.id.home)

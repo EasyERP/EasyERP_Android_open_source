@@ -142,8 +142,6 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
                     GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_BUTTON, "Login");
                     presenter.login();
                 });
-        RxView.clicks(btnDemoMode_AL)
-                .subscribe(aVoid -> presenter.login());
         RxView.clicks(btnDemoMode_VIFL)
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
                 .subscribe(aVoid -> {
@@ -152,12 +150,14 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
                 });
         RxView.clicks(tvForgotPassword_VIFL)
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
-                .subscribe(aVoid ->
+                .subscribe(aVoid -> {
                         GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_BUTTON, "Forgot password");
                         ForgotPasswordDialogFragment_.builder()
                             .databaseID(etDbId_VIFL.getText().toString())
                             .username(etLogin_VIFL.getText().toString())
-                            .build().show(getFragmentManager(), null));
+                            .build().show(getFragmentManager(), null);
+                });
+
 
         tvTermsAndCondition_VIFL.setText(buildTermsAndConditions());
         tvTermsAndCondition_VIFL.setMovementMethod(LinkMovementMethod.getInstance());

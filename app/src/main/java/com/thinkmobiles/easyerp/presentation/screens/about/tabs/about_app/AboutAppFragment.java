@@ -46,6 +46,11 @@ public class AboutAppFragment extends BaseSupportFragment<AboutUsActivity> imple
         this.presenter = presenter;
     }
 
+    @Override
+    public String getScreenName() {
+        return "About app screen";
+    }
+
     @AfterViews
     protected void initUI() {
         tvVersion_FAUS.setText(Html.fromHtml(String.format("Version: <b>%s (%s)</b>", BuildConfig.VERSION_NAME, BuildConfig.VERSION_CODE)));

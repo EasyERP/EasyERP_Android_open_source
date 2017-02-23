@@ -39,6 +39,11 @@ public class AboutUsActivity extends AppCompatActivity implements AboutUsContrac
 
     }
 
+    @Override
+    public String getScreenName() {
+        return "About us screen";
+    }
+
     @AfterViews
     protected void initUI() {
         initToolbar();
