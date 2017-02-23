@@ -18,6 +18,8 @@ public class EndlessScrollListener extends RecyclerView.OnScrollListener {
     private int previousTotalItemCount = 0;
     // True if we are still waiting for the last set of url to load.
     private boolean loading = true;
+    private int totalItemCount;
+    private int lastVisibleItemPosition;
 
     private LinearLayoutManager mLayoutManager;
     private OnNextPageListener listener;
@@ -32,10 +34,9 @@ public class EndlessScrollListener extends RecyclerView.OnScrollListener {
     // but first we check if we are waiting for the previous load to finish.
     @Override
     public void onScrolled(RecyclerView view, int dx, int dy) {
-        int totalItemCount = mLayoutManager.getItemCount();
+        totalItemCount = mLayoutManager.getItemCount();
 
-        int lastVisibleItemPosition = mLayoutManager.findLastVisibleItemPosition();
-
+        lastVisibleItemPosition = mLayoutManager.findLastVisibleItemPosition();
 
         // If it’s still loading, we check to see if the dataset count has
         // changed, if so we conclude it has finished loading and update the current page

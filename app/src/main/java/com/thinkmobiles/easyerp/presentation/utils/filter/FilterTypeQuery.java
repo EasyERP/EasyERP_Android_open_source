@@ -5,13 +5,13 @@ import java.util.ArrayList;
 
 public class FilterTypeQuery {
 
+    private String type;
     private String key;
-    private String typeFilter;
     private ArrayList<String> values;
 
-    public FilterTypeQuery(String key, String typeFilter) {
+    public FilterTypeQuery(String type, String key) {
+        this.type = type;
         this.key = key;
-        this.typeFilter = typeFilter;
     }
 
     public FilterTypeQuery add(String value) {
@@ -27,15 +27,16 @@ public class FilterTypeQuery {
         return this;
     }
 
-    public String getKey() {
-        return key;
+    public String getType() {
+        return type;
     }
 
-    public String getTypeFilter() {
-        return typeFilter;
+    public String getKey() {
+        return key;
     }
 
     public ArrayList<String> getValues() {
         return values;
     }
+
 }

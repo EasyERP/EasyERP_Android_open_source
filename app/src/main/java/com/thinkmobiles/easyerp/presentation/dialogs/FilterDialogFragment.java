@@ -4,15 +4,14 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.app.Fragment;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -26,31 +25,32 @@ import com.thinkmobiles.easyerp.presentation.adapters.crm.SearchDialogAdapter;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.FilterDH;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
+import org.androidannotations.annotations.AfterInject;
+import org.androidannotations.annotations.Bean;
+import org.androidannotations.annotations.EFragment;
+import org.androidannotations.annotations.FragmentArg;
+import org.androidannotations.annotations.SystemService;
+
 import java.util.ArrayList;
 
-
+@EFragment
 public class FilterDialogFragment extends DialogFragment implements DialogInterface.OnClickListener {
 
     private EditText etSearch;
-    private RecyclerView rvList;
 
-    private SearchDialogAdapter searchAdapter;
+    @Bean
+    protected SearchDialogAdapter searchAdapter;
 
-    private ArrayList<FilterDH> filterList;
-    private String filterName;
+    @FragmentArg
+    protected ArrayList<FilterDH> filterList;
+    @FragmentArg
+    protected String filterName;
 
-    private InputMethodManager inputMethodManager;
+    @SystemService
+    protected InputMethodManager inputMethodManager;
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        inputMethodManager = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-
-        filterList = getArguments().getParcelableArrayList(Constants.KEY_FILTER_LIST);
-        filterName = getArguments().getString(Constants.KEY_FILTER_NAME);
-
-        searchAdapter = new SearchDialogAdapter();
+    @AfterInject
+    public void initDialog() {
         searchAdapter.setOriginList(filterList);
         searchAdapter.setOnCardClickListener((view, position, viewType) -> {
             switch (view.getId()) {
@@ -68,6 +68,7 @@ public class FilterDialogFragment extends DialogFragment implements DialogInterf
         View parent = LayoutInflater.from(getActivity()).inflate(R.layout.dialog_filter, null);
 
         etSearch = (EditText) parent.findViewById(R.id.etSearch_DF);
+        ((Toolbar) parent.findViewById(R.id.toolbar)).setTitle(String.format("%s : %s", getString(R.string.menu_filter), filterName));
         etSearch.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -83,15 +84,13 @@ public class FilterDialogFragment extends DialogFragment implements DialogInterf
                 searchAdapter.getFilter().filter(s);
             }
         });
-        etSearch.setOnClickListener((v) -> etSearch.setText(""));
 
-        rvList = (RecyclerView) parent.findViewById(R.id.rvList_DF);
+        RecyclerView rvList = (RecyclerView) parent.findViewById(R.id.rvList_DF);
         rvList.setLayoutManager(new LinearLayoutManager(getActivity()));
         rvList.setAdapter(searchAdapter);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(), R.style.DefaultTheme_FilterDialogStyle)
                 .setView(parent)
-                .setTitle(String.format("%s : %s", getString(R.string.menu_filter), filterName))
                 .setPositiveButton(R.string.dialog_btn_apply, this)
                 .setNegativeButton(R.string.dialog_btn_cancel, this)
                 .setNeutralButton(R.string.dialog_btn_remove, this);
@@ -101,6 +100,7 @@ public class FilterDialogFragment extends DialogFragment implements DialogInterf
     @Override
     public void onClick(DialogInterface dialog, int which) {
         Fragment target = getTargetFragment();
+        inputMethodManager.hideSoftInputFromWindow(etSearch.getWindowToken(), InputMethodManager.RESULT_HIDDEN);
         switch (which) {
             case DialogInterface.BUTTON_POSITIVE:
                 if (target != null) {
@@ -117,6 +117,6 @@ public class FilterDialogFragment extends DialogFragment implements DialogInterf
                 }
                 break;
         }
-        dialog.dismiss();
     }
+
 }

@@ -1,16 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content">
-
-    <TextView
-        style="@style/RobotoMedium"
-        android:id="@+id/tvLetter_LIL"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="@dimen/text_list_item_medium_16"
-        android:padding="@dimen/default_padding_half">
-
-    </TextView>
-
-</FrameLayout>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/tvLetter_LIL"
+    style="@style/RobotoMedium"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="?android:attr/selectableItemBackground"
+    android:paddingStart="@dimen/default_padding_middle"
+    android:paddingEnd="@dimen/default_padding_middle"
+    android:paddingTop="@dimen/default_padding_half"
+    android:paddingBottom="@dimen/default_padding_half"
+    android:textColor="@color/selector_alphabet_letter"
+    android:textSize="@dimen/text_list_item_medium_16"
+    android:theme="@style/DefaultTheme.ThemeHistory" />

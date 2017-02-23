@@ -3,8 +3,13 @@ package com.thinkmobiles.easyerp.data.services;
 import com.thinkmobiles.easyerp.data.model.crm.payments.ResponseGetPayments;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
+import java.util.List;
+import java.util.Map;
+
 import retrofit2.http.GET;
 import retrofit2.http.Query;
+import retrofit2.http.QueryMap;
+import retrofit2.http.Url;
 import rx.Observable;
 
 /**
@@ -14,9 +19,6 @@ import rx.Observable;
  */
 public interface PaymentsService {
 
-    @GET(Constants.GET_PAYMENTS)
-    Observable<ResponseGetPayments> getPayments(@Query("viewType") String viewType,
-                                                @Query("page") int page,
-                                                @Query("count") int count,
-                                                @Query("contentType") String contentType);
+    @GET
+    Observable<ResponseGetPayments> getFilteredPayments(@Url String url);
 }

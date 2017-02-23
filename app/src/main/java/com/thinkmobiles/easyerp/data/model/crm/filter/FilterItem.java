@@ -1,4 +1,4 @@
-package com.thinkmobiles.easyerp.data.model.crm.leads.filter;
+package com.thinkmobiles.easyerp.data.model.crm.filter;
 
 import android.os.Parcel;
 import android.os.Parcelable;

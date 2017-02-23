@@ -12,6 +12,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 import retrofit2.http.QueryMap;
+import retrofit2.http.Url;
 import rx.Observable;
 
 /**
@@ -20,28 +21,9 @@ import rx.Observable;
 
 public interface LeadService {
 
-    @GET(Constants.GET_LEADS)
-    Observable<ResponseGetLeads> getLeads(@Query("viewType") String viewType,
-                                          @Query("page") int page,
-                                          @Query("count") int count,
-                                          @Query("contentType") String contentType);
-
-    @GET(Constants.GET_LEADS)
-    Observable<ResponseGetLeads> getFilteredLeads(
-            @QueryMap Map<String, String> keys,
-            @Query("filter[contactName][value][]") List<String> contactName,
-            @Query("filter[source][value][]") List<String> source,
-            @Query("filter[workflow][value][]") List<String> workflow,
-            @Query("filter[salesPerson][value][]") List<String> salesPerson,
-            @Query("filter[createdBy][value][]") List<String> createdBy,
-            @Query("page") int page,
-            @Query("count") int count
-    );
+    @GET
+    Observable<ResponseGetLeads> getLeads(@Url String url);
 
     @GET(Constants.GET_LEADS + "/{leadId}")
     Observable<ResponseGetLeadDetails> getLeadDetails(@Path("leadId") String leadId);
-
-    @GET("workflows/")
-    Observable<ResponseGetLeadWorkflow> getLeadWorkflow(@Query("id") String workflowId);
-
 }

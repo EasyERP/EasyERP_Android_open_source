@@ -54,7 +54,7 @@ public class PersonDetailsPresenter implements PersonDetailsContract.PersonDetai
                     currentPerson = responseGetPersonDetails;
                     setData(currentPerson);
                 }, throwable -> {
-                    if(currentPerson != null)
+                    if(currentPerson == null)
                         view.displayErrorState(ErrorManager.getErrorType(throwable));
                     else
                         view.displayErrorToast(ErrorManager.getErrorMessage(throwable));

@@ -1,18 +1,16 @@
 package com.thinkmobiles.easyerp.presentation.screens.crm.leads;
 
 import com.thinkmobiles.easyerp.data.model.crm.leads.LeadItem;
-import com.thinkmobiles.easyerp.data.model.crm.leads.filter.FilterItem;
-import com.thinkmobiles.easyerp.data.model.crm.leads.filter.ResponseGetLeadsFilters;
 import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectablePresenterHelper;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.FilterDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.LeadDH;
 import com.thinkmobiles.easyerp.presentation.managers.ErrorManager;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
-import com.thinkmobiles.easyerp.presentation.utils.filter.FilterQuery;
-import com.thinkmobiles.easyerp.presentation.utils.filter.FilterTypeQuery;
+import com.thinkmobiles.easyerp.presentation.utils.filter.FilterHelper;
 
 import java.util.ArrayList;
 
+import rx.Observable;
 import rx.subscriptions.CompositeSubscription;
 
 /**
@@ -24,24 +22,17 @@ public class LeadsPresenter extends MasterFlowSelectablePresenterHelper<String, 
     private LeadsContract.LeadsView view;
     private LeadsContract.LeadsModel model;
     private CompositeSubscription compositeSubscription;
-
-    private ArrayList<FilterDH> contactName = new ArrayList<>();
-    private ArrayList<FilterDH> assignedTo = new ArrayList<>();
-    private ArrayList<FilterDH> createdBy = new ArrayList<>();
-    private ArrayList<FilterDH> workflow = new ArrayList<>();
-    private ArrayList<FilterDH> source = new ArrayList<>();
-
-    private FilterQuery.Builder queryBuilder;
     private int totalItems = Integer.MAX_VALUE;
 
     private ArrayList<LeadItem> leadItems = new ArrayList<>();
     private int currentPage = 1;
+    private FilterHelper helper;
 
     public LeadsPresenter(LeadsContract.LeadsView view, LeadsContract.LeadsModel model) {
         this.view = view;
         this.model = model;
         compositeSubscription = new CompositeSubscription();
-        queryBuilder = new FilterQuery.Builder();
+        helper = new FilterHelper();
 
         view.setPresenter(this);
     }
@@ -63,18 +54,13 @@ public class LeadsPresenter extends MasterFlowSelectablePresenterHelper<String, 
     private void loadLeads(int page) {
         final boolean needClear = page == 1;
         compositeSubscription.add(
-                model.getFilteredLeads(queryBuilder.build(), page)
+                model.getFilteredLeads(helper, page)
                         .subscribe(
                                 responseGetLeads -> {
                                     currentPage = page;
                                     totalItems = responseGetLeads.total;
                                     saveData(responseGetLeads.data, needClear);
-                                    if(leadItems.isEmpty()) {
-                                        view.displayErrorState(ErrorManager.getErrorType(null));
-                                    } else {
-                                        view.showProgress(Constants.ProgressType.NONE);
-                                        view.displayLeads(prepareLeadDHs(responseGetLeads.data, needClear), needClear);
-                                    }
+                                    setData(responseGetLeads.data, needClear);
                                 }, t -> {
                                     if (leadItems.isEmpty()) {
                                         view.displayErrorState(ErrorManager.getErrorType(t));
@@ -91,15 +77,23 @@ public class LeadsPresenter extends MasterFlowSelectablePresenterHelper<String, 
         this.leadItems.addAll(leadItems);
     }
 
-    private void loadLeadsFilters() {
-        compositeSubscription.add(model.getLeadFilters()
-                .subscribe(responseGetLeadsFilters -> {
-                    prepareFilterDHs(responseGetLeadsFilters);
-                    view.showFilters(true);
-                    view.setContactNames(contactName);
+    private void setData(ArrayList<LeadItem> leadItems, boolean needClear) {
+        view.displayLeads(prepareLeadDHs(leadItems, needClear), needClear);
+        if(this.leadItems.isEmpty()) {
+            view.displayErrorState(ErrorManager.getErrorType(null));
+        } else {
+            view.showProgress(Constants.ProgressType.NONE);
+        }
+    }
+
+    private void loadFilters() {
+        compositeSubscription.add(model.getFilters()
+                .flatMap(responseFilters -> Observable.just(FilterHelper.create(responseFilters)))
+                .subscribe(filterHelper -> {
+                    helper = filterHelper;
+                    view.createMenuFilters(helper);
                 }, t -> {
-                    view.showFilters(false);
-                    view.displayErrorState(ErrorManager.getErrorType(t));
+                    view.displayErrorToast(ErrorManager.getErrorMessage(t));
                 }));
     }
 
@@ -111,28 +105,17 @@ public class LeadsPresenter extends MasterFlowSelectablePresenterHelper<String, 
 
     @Override
     public void subscribe() {
-        if(leadItems.isEmpty() || (contactName.isEmpty() && source.isEmpty() && assignedTo.isEmpty() && workflow.isEmpty() && createdBy.isEmpty())) {
+        if (leadItems.isEmpty() && !helper.isInitialized()) {
             getFirstPage();
-            loadLeadsFilters();
+            loadFilters();
         } else {
-            view.displayLeads(prepareLeadDHs(leadItems, true), true);
-            view.showFilters(true);
-            view.setContactNames(contactName);
+            setData(leadItems, true);
         }
     }
 
     @Override
     public void refresh() {
         loadLeads(1);
-    }
-
-    @Override
-    public void refreshOptionMenu() {
-        view.selectContactNameInFilters(queryBuilder.forContactName().getValues() != null);
-        view.selectWorkflowInFilters(queryBuilder.forWorkflow().getValues() != null);
-        view.selectAssignedToInFilters(queryBuilder.forAssignedTo().getValues() != null);
-        view.selectCreatedByInFilters(queryBuilder.forCreatedBy().getValues() != null);
-        view.selectSourceInFilters(queryBuilder.forSource().getValues() != null);
     }
 
     @Override
@@ -153,165 +136,44 @@ public class LeadsPresenter extends MasterFlowSelectablePresenterHelper<String, 
         return result;
     }
 
-    private void prepareFilterDHs(ResponseGetLeadsFilters responseGetLeadsFilters) {
-        for (FilterItem leadItem : responseGetLeadsFilters.contactName) {
-            FilterDH leadDH = new FilterDH(leadItem);
-            contactName.add(leadDH);
-        }
-        for (FilterItem leadItem : responseGetLeadsFilters.salesPerson) {
-            FilterDH leadDH = new FilterDH(leadItem);
-            assignedTo.add(leadDH);
-        }
-        for (FilterItem leadItem : responseGetLeadsFilters.createdBy) {
-            FilterDH leadDH = new FilterDH(leadItem);
-            createdBy.add(leadDH);
-        }
-        for (FilterItem leadItem : responseGetLeadsFilters.workflow) {
-            FilterDH leadDH = new FilterDH(leadItem);
-            workflow.add(leadDH);
-        }
-        for (FilterItem leadItem : responseGetLeadsFilters.source) {
-            FilterDH leadDH = new FilterDH(leadItem);
-            source.add(leadDH);
-        }
-    }
-
     @Override
-    public void removeAll() {
-        clearFilter(contactName, queryBuilder.forContactName(), isVisible -> view.selectContactNameInFilters(isVisible));
-        clearFilter(workflow, queryBuilder.forWorkflow(), isVisible -> view.selectWorkflowInFilters(isVisible));
-        clearFilter(assignedTo, queryBuilder.forAssignedTo(), isVisible -> view.selectAssignedToInFilters(isVisible));
-        clearFilter(createdBy, queryBuilder.forCreatedBy(), isVisible -> view.selectCreatedByInFilters(isVisible));
-        clearFilter(source, queryBuilder.forSource(), isVisible -> view.selectSourceInFilters(isVisible));
-        view.setTextToSearch("");
+    public void filterBySearchItem(FilterDH filterDH) {
+        helper.filterByItem(filterDH, (position, isVisible) -> view.selectFilter(position, isVisible));
         getFirstPage();
     }
 
     @Override
-    public void filterByContactName(FilterDH filterDH) {
-        for (FilterDH dh : contactName) {
-            dh.selected = dh.equals(filterDH);
-        }
-        queryBuilder.forContactName().removeAll().add(filterDH.id);
-        view.setTextToSearch(filterDH.name);
-        view.selectContactNameInFilters(true);
+    public void filterBySearchText(String name) {
+        helper.filterByText(name, (position, isVisible) -> view.selectFilter(position, isVisible));
         getFirstPage();
-    }
-
-    public void filterBySearchContactName(String name) {
-        FilterTypeQuery contactQuery = queryBuilder.forContactName();
-        contactQuery.removeAll();
-        for (FilterDH dh : contactName) {
-            if(dh.name.toLowerCase().contains(name)) {
-                contactQuery.add(dh.id);
-                dh.selected = true;
-            } else {
-                dh.selected = false;
-            }
-        }
-        view.selectContactNameInFilters(true);
-        getFirstPage();
-    }
-
-    @Override
-    public void changeFilter(int requestCode, String filterName) {
-        switch (requestCode) {
-            case Constants.REQUEST_CODE_FILTER_CONTACT_NAME:
-                view.showFilterDialog(contactName, requestCode, filterName);
-                break;
-            case Constants.REQUEST_CODE_FILTER_WORKFLOW:
-                view.showFilterDialog(workflow, requestCode, filterName);
-                break;
-            case Constants.REQUEST_CODE_FILTER_ASSIGNED_TO:
-                view.showFilterDialog(assignedTo, requestCode, filterName);
-                break;
-            case Constants.REQUEST_CODE_FILTER_CREATED_BY:
-                view.showFilterDialog(createdBy, requestCode, filterName);
-                break;
-            case Constants.REQUEST_CODE_FILTER_SOURCE:
-                view.showFilterDialog(source, requestCode, filterName);
-                break;
-        }
     }
 
     @Override
     public void filterByList(ArrayList<FilterDH> filterDHs, int requestCode) {
-        switch (requestCode) {
-            case Constants.REQUEST_CODE_FILTER_CONTACT_NAME:
-                contactName = filterDHs;
-                filterList(contactName, queryBuilder.forContactName(), isVisible -> view.selectContactNameInFilters(isVisible));
-                view.setTextToSearch("");
-                break;
-            case Constants.REQUEST_CODE_FILTER_WORKFLOW:
-                workflow = filterDHs;
-                filterList(workflow, queryBuilder.forWorkflow(), isVisible -> view.selectWorkflowInFilters(isVisible));
-                break;
-            case Constants.REQUEST_CODE_FILTER_ASSIGNED_TO:
-                assignedTo = filterDHs;
-                filterList(assignedTo, queryBuilder.forAssignedTo(), isVisible -> view.selectAssignedToInFilters(isVisible));
-                break;
-            case Constants.REQUEST_CODE_FILTER_CREATED_BY:
-                createdBy = filterDHs;
-                filterList(createdBy, queryBuilder.forCreatedBy(), isVisible -> view.selectCreatedByInFilters(isVisible));
-                break;
-            case Constants.REQUEST_CODE_FILTER_SOURCE:
-                source = filterDHs;
-                filterList(source, queryBuilder.forSource(), isVisible -> view.selectSourceInFilters(isVisible));
-                break;
-            default:
-                return;
-        }
+        helper.filterByList(filterDHs, requestCode, (position, isVisible) -> view.selectFilter(position, isVisible));
         getFirstPage();
     }
 
     @Override
     public void removeFilter(int requestCode) {
-        switch (requestCode) {
-            case Constants.REQUEST_CODE_FILTER_CONTACT_NAME:
-                clearFilter(contactName, queryBuilder.forContactName(), isVisible -> view.selectContactNameInFilters(isVisible));
-                view.setTextToSearch("");
-                break;
-            case Constants.REQUEST_CODE_FILTER_WORKFLOW:
-                clearFilter(workflow, queryBuilder.forWorkflow(), isVisible -> view.selectWorkflowInFilters(isVisible));
-                break;
-            case Constants.REQUEST_CODE_FILTER_ASSIGNED_TO:
-                clearFilter(assignedTo, queryBuilder.forAssignedTo(), isVisible -> view.selectAssignedToInFilters(isVisible));
-                break;
-            case Constants.REQUEST_CODE_FILTER_CREATED_BY:
-                clearFilter(createdBy, queryBuilder.forCreatedBy(), isVisible -> view.selectCreatedByInFilters(isVisible));
-                break;
-            case Constants.REQUEST_CODE_FILTER_SOURCE:
-                clearFilter(source, queryBuilder.forSource(), isVisible -> view.selectSourceInFilters(isVisible));
-                break;
-            default:
-                return;
-        }
+        helper.removeFilter(requestCode, (position, isVisible) -> view.selectFilter(position, isVisible));
         getFirstPage();
     }
 
-    private void clearFilter(ArrayList<FilterDH> filterDHs, FilterTypeQuery typeQuery, VisibilityCallback callback) {
-        unselectAll(filterDHs);
-        typeQuery.removeAll();
-        callback.setVisibility(false);
+    @Override
+    public void changeFilter(int position, String filterName) {
+        view.showFilterDialog(helper.getFilterList(position), position, filterName);
     }
 
-    private void unselectAll(ArrayList<FilterDH> list) {
-        for (FilterDH dh : list) {
-            dh.selected = false;
-        }
+    @Override
+    public void buildOptionMenu() {
+        view.createMenuFilters(helper);
+        helper.setupMenu((position, isVisible) -> view.selectFilter(position, isVisible));
     }
 
-    private void filterList(ArrayList<FilterDH> filterDHs, FilterTypeQuery typeQuery, VisibilityCallback callback) {
-        typeQuery.removeAll();
-        for (FilterDH dh : filterDHs) {
-            if(dh.selected) {
-                typeQuery.add(dh.id);
-            }
-        }
-        callback.setVisibility(typeQuery.getValues() != null);
-    }
-
-    private interface VisibilityCallback {
-        void setVisibility(boolean isVisible);
+    @Override
+    public void removeAll() {
+        helper.removeAllFilters((position, isVisible) -> view.selectFilter(position, isVisible));
+        getFirstPage();
     }
 }
