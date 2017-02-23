@@ -22,7 +22,7 @@ import com.thinkmobiles.easyerp.domain.crm.PersonsRepository;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.AttachmentAdapter;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.HistoryAdapter;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.OpportunityAndLeadsAdapter;
-import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
+import com.thinkmobiles.easyerp.presentation.base.rules.ErrorType;
 import com.thinkmobiles.easyerp.presentation.base.rules.RefreshFragment;
 import com.thinkmobiles.easyerp.presentation.custom.transformations.CropCircleTransformation;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.AttachmentDH;
@@ -394,8 +394,8 @@ public class PersonDetailsFragment extends RefreshFragment implements PersonDeta
     }
 
     @Override
-    public void displayErrorState(String msg, ErrorViewHelper.ErrorType errorType) {
-        showErrorState(msg, errorType);
+    public void displayErrorState(ErrorType errorType) {
+        showErrorState(errorType);
     }
 
     @Override

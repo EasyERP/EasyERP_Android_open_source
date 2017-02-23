@@ -1,10 +1,9 @@
 package com.thinkmobiles.easyerp.presentation.screens.login;
 
-import android.util.Log;
-
 import com.thinkmobiles.easyerp.data.api.Rest;
 import com.thinkmobiles.easyerp.data.model.ResponseError;
 import com.thinkmobiles.easyerp.presentation.managers.CookieManager;
+import com.thinkmobiles.easyerp.presentation.managers.ErrorManager;
 import com.thinkmobiles.easyerp.presentation.managers.ValidationManager;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
@@ -69,8 +68,7 @@ public class LoginPresenter implements LoginContract.LoginPresenter {
                             view.startHomeScreen(responseGetCurrentUser.user);
                         }, t -> {
                             view.dismissProgress();
-                            view.showErrorToast(t.getMessage());
-                            Log.d("HTTP", "Error: " + t.getMessage());
+                            view.showErrorToast(ErrorManager.getErrorMessage(t));
                         })
         );
     }
@@ -84,19 +82,9 @@ public class LoginPresenter implements LoginContract.LoginPresenter {
                                 getCurrentUser();
                             } else
                                 view.dismissProgress();
-                            Log.d("HTTP", "Response: " + s);
                         }, t -> {
-                            String errMsg = "";
-                            if(t instanceof HttpException) {
-                                HttpException e = (HttpException) t;
-                                ResponseError responseError = Rest.getInstance().parseError(e.response().errorBody());
-                                errMsg = responseError.error;
-                            } else {
-                                errMsg = t.getMessage();
-                            }
                             view.dismissProgress();
-                            view.showErrorToast(errMsg);
-                            Log.d("HTTP", "Error: " + t.getMessage());
+                            view.showErrorToast(ErrorManager.getErrorMessage(t));
                         })
         );
     }
@@ -104,6 +92,21 @@ public class LoginPresenter implements LoginContract.LoginPresenter {
     @Override
     public void clearCookies() {
         cookieManager.clearCookie();
+    }
+
+    @Override
+    public void forgotPassword(final String login, final String dbId) {
+        view.showProgress("Forgot Password. Please wait a second...");
+        compositeSubscription.add(
+                loginModel.forgotPassword(login, dbId)
+                        .subscribe(s -> {
+                            view.dismissProgress();
+                            view.showInfoToast("The new password was sent to your email. Please check it");
+                        }, t -> {
+                            view.dismissProgress();
+                            view.showErrorToast(ErrorManager.getErrorMessage(t));
+                        })
+        );
     }
 
     @Override

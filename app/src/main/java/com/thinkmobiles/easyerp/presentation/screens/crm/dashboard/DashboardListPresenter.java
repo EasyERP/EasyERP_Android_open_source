@@ -1,9 +1,9 @@
 package com.thinkmobiles.easyerp.presentation.screens.crm.dashboard;
 
 import com.thinkmobiles.easyerp.data.model.crm.dashboard.DashboardListItem;
-import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectablePresenterHelper;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.DashboardListDH;
+import com.thinkmobiles.easyerp.presentation.managers.ErrorManager;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
 import java.util.ArrayList;
@@ -52,16 +52,16 @@ public class DashboardListPresenter extends MasterFlowSelectablePresenterHelper<
                         .subscribe(getCRMDashboardCharts -> {
                             charts = getCRMDashboardCharts.get(0).charts;
                             if (charts.isEmpty()) {
-                                view.displayErrorState(null, ErrorViewHelper.ErrorType.LIST_EMPTY);
+                                view.displayErrorState(ErrorManager.getErrorType(null));
                             } else {
                                 view.showProgress(Constants.ProgressType.NONE);
                                 view.displayDashboardChartsList(prepareDashboardDHs(charts, true));
                             }
                         }, t -> {
                             if (charts.isEmpty()) {
-                                view.displayErrorState(t.getMessage(), ErrorViewHelper.ErrorType.NETWORK);
+                                view.displayErrorState(ErrorManager.getErrorType(t));
                             } else {
-                                view.displayErrorToast(t.getMessage());
+                                view.displayErrorToast(ErrorManager.getErrorMessage(t));
                             }
                         })
         );

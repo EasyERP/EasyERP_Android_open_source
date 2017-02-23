@@ -5,11 +5,11 @@ import android.text.TextUtils;
 import com.thinkmobiles.easyerp.data.model.crm.leads.detail.AttachmentItem;
 import com.thinkmobiles.easyerp.data.model.crm.persons.details.OpportunityItem;
 import com.thinkmobiles.easyerp.data.model.crm.persons.details.ResponseGetPersonDetails;
-import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.AttachmentDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.HistoryDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.LeadAndOpportunityDH;
 import com.thinkmobiles.easyerp.presentation.managers.DateManager;
+import com.thinkmobiles.easyerp.presentation.managers.ErrorManager;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
 import java.util.ArrayList;
@@ -54,10 +54,10 @@ public class PersonDetailsPresenter implements PersonDetailsContract.PersonDetai
                     currentPerson = responseGetPersonDetails;
                     setData(currentPerson);
                 }, throwable -> {
-                    if(currentPerson != null)
-                        view.displayErrorState(throwable.getMessage(), ErrorViewHelper.ErrorType.NETWORK);
+                    if(currentPerson == null)
+                        view.displayErrorState(ErrorManager.getErrorType(throwable));
                     else
-                        view.displayErrorToast(throwable.getMessage());
+                        view.displayErrorToast(ErrorManager.getErrorMessage(throwable));
                 }));
     }
 

@@ -2,8 +2,8 @@ package com.thinkmobiles.easyerp.presentation.screens.crm.payments.details;
 
 import com.thinkmobiles.easyerp.data.model.crm.payments.Payment;
 import com.thinkmobiles.easyerp.data.model.user.organization.OrganizationSettings;
-import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.managers.DateManager;
+import com.thinkmobiles.easyerp.presentation.managers.ErrorManager;
 import com.thinkmobiles.easyerp.presentation.screens.crm.dashboard.detail.charts.DollarFormatter;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 import com.thinkmobiles.easyerp.presentation.utils.StringUtil;
@@ -47,7 +47,7 @@ public class PaymentDetailsPresenter implements PaymentDetailsContract.PaymentDe
                         view.showProgress(Constants.ProgressType.NONE);
                         setData();
                     }, t -> {
-                        view.displayErrorState(t.getMessage(), ErrorViewHelper.ErrorType.NETWORK);
+                        view.displayErrorState(ErrorManager.getErrorType(t));
                     }));
         } else {
             view.showProgress(Constants.ProgressType.NONE);
@@ -79,10 +79,16 @@ public class PaymentDetailsPresenter implements PaymentDetailsContract.PaymentDe
         if (currentPayment.order != null) {
             doc = currentPayment.order.name;
         }
-        view.setSourceDocument(String.format("%s %s", "Source Document" , doc));
+        if (doc != null) {
+            view.setSourceDocument(String.format("%s %s", "Source Document", doc));
+        }
         view.setPaymentDate(DateManager.convert(currentPayment.date).setDstPattern(DateManager.PATTERN_DATE_SIMPLE_PREVIEW).toString());
-        view.setBankAccount(currentPayment.paymentMethod.name);
-        view.setAccount(currentPayment.bankAccount.name);
+        if (currentPayment.paymentMethod != null) {
+            view.setBankAccount(currentPayment.paymentMethod.name);
+        }
+        if (currentPayment.bankAccount != null) {
+            view.setAccount(currentPayment.bankAccount.name);
+        }
         if (currentPayment.supplier != null) {
             view.setSupplierName(currentPayment.supplier.fullName);
             view.setSupplierAddress(StringUtil.getAddress(currentPayment.supplier.address));

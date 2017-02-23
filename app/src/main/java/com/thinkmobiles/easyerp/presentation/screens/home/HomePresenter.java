@@ -1,7 +1,11 @@
 package com.thinkmobiles.easyerp.presentation.screens.home;
 
+import com.thinkmobiles.easyerp.data.api.Rest;
+import com.thinkmobiles.easyerp.data.model.ResponseError;
 import com.thinkmobiles.easyerp.presentation.managers.CookieManager;
+import com.thinkmobiles.easyerp.presentation.managers.ErrorManager;
 
+import retrofit2.adapter.rxjava.HttpException;
 import rx.subscriptions.CompositeSubscription;
 
 /**
@@ -47,9 +51,26 @@ public final class HomePresenter implements HomeContract.HomePresenter {
                             view.dismissProgress();
                             view.restartApp();
                         },
-                        error -> {
+                        t -> {
                             view.dismissProgress();
-                            view.showErrorToast(error.getMessage());
+                            view.showErrorToast(ErrorManager.getErrorMessage(t));
+                        }
+                )
+        );
+    }
+
+    @Override
+    public void changePassword(String userId, String oldPass, String newPass) {
+        view.showProgress("Change password. Please wait a second...");
+        subscription.add(
+                model.changePassword(userId, oldPass, newPass).subscribe(
+                        result -> {
+                            view.dismissProgress();
+                            view.showInfoToast("Your password has been changed");
+                        },
+                        t -> {
+                            view.dismissProgress();
+                            view.showErrorToast(ErrorManager.getErrorMessage(t));
                         }
                 )
         );

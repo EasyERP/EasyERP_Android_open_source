@@ -13,6 +13,9 @@ import com.thinkmobiles.easyerp.presentation.custom.views.drawer_menu.MenuDrawer
 import com.thinkmobiles.easyerp.presentation.custom.views.drawer_menu.MenuDrawerState;
 import com.thinkmobiles.easyerp.presentation.custom.views.drawer_menu.MenuDrawerView;
 import com.thinkmobiles.easyerp.presentation.custom.views.drawer_menu.models.MenuConfigs;
+import com.thinkmobiles.easyerp.presentation.dialogs.ChangePasswordDialogFragment;
+import com.thinkmobiles.easyerp.presentation.dialogs.ChangePasswordDialogFragment_;
+import com.thinkmobiles.easyerp.presentation.dialogs.UserProfileDialogFragment;
 import com.thinkmobiles.easyerp.presentation.dialogs.UserProfileDialogFragment_;
 import com.thinkmobiles.easyerp.presentation.managers.CookieManager;
 import com.thinkmobiles.easyerp.presentation.managers.GoogleAnalyticHelper;
@@ -29,7 +32,8 @@ import org.androidannotations.annotations.ViewById;
  */
 
 @EActivity(R.layout.activity_home)
-public class HomeActivity extends BaseMasterFlowActivity implements HomeContract.HomeView, IMenuClickListener {
+public class HomeActivity extends BaseMasterFlowActivity implements HomeContract.HomeView, IMenuClickListener,
+        UserProfileDialogFragment.IUserProfileCallback, ChangePasswordDialogFragment.IChangePasswordCallback {
 
     private HomeContract.HomePresenter presenter;
 
@@ -152,6 +156,11 @@ public class HomeActivity extends BaseMasterFlowActivity implements HomeContract
     }
 
     @Override
+    public void showInfoToast(String msg) {
+        Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
+    }
+
+    @Override
     protected void onDestroy() {
         super.onDestroy();
         presenter.unsubscribe();
@@ -160,5 +169,15 @@ public class HomeActivity extends BaseMasterFlowActivity implements HomeContract
     @Override
     public String getScreenName() {
         return "Home screen";
+    }
+
+    @Override
+    public void showChangeProfile() {
+        ChangePasswordDialogFragment_.builder().build().show(getFragmentManager(), null);
+    }
+
+    @Override
+    public void changePassword(String oldPassword, String newPassword) {
+        presenter.changePassword(userInfo.id, oldPassword, newPassword);
     }
 }

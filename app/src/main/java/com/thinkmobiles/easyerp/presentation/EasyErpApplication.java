@@ -4,11 +4,11 @@ import android.app.Application;
 import android.content.Intent;
 
 import com.crashlytics.android.Crashlytics;
-import com.facebook.stetho.Stetho;
 import com.thinkmobiles.easyerp.BuildConfig;
 import com.thinkmobiles.easyerp.data.api.Rest;
 import com.thinkmobiles.easyerp.presentation.managers.CookieManager;
 import com.thinkmobiles.easyerp.presentation.managers.GoogleAnalyticHelper;
+import com.thinkmobiles.easyerp.presentation.screens.login.LoginActivity_;
 
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EApplication;
@@ -31,14 +31,13 @@ public class EasyErpApplication extends Application {
     public void onCreate() {
         super.onCreate();
         INSTANCE = this;
-        if(BuildConfig.PRODUCTION) {
-            Fabric.with(this, new Crashlytics());
-        } else {
-            Stetho.initializeWithDefaults(this);
-        }
         Rest.getInstance().setCookieManager(cookieManager);
 
         GoogleAnalyticHelper.init(this);
+
+        BuildConfig.STETHO.init(this);
+        if(BuildConfig.PRODUCTION)
+            Fabric.with(this, new Crashlytics());
     }
 
     public static EasyErpApplication getInstance() {
@@ -46,9 +45,8 @@ public class EasyErpApplication extends Application {
     }
 
     public void restartApp() {
-        Intent startIntent = getPackageManager()
-                .getLaunchIntentForPackage(getPackageName())
-                .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(startIntent);
+        LoginActivity_.intent(this)
+                .flags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK)
+                .start();
     }
 }

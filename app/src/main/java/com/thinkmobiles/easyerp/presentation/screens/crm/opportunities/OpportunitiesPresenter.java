@@ -1,14 +1,16 @@
 package com.thinkmobiles.easyerp.presentation.screens.crm.opportunities;
 
 import com.thinkmobiles.easyerp.data.model.crm.opportunities.list_item.OpportunityListItem;
-import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectablePresenterHelper;
+import com.thinkmobiles.easyerp.presentation.holders.data.crm.FilterDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.OpportunityDH;
+import com.thinkmobiles.easyerp.presentation.managers.ErrorManager;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
+import com.thinkmobiles.easyerp.presentation.utils.filter.FilterHelper;
 
 import java.util.ArrayList;
-import java.util.List;
 
+import rx.Observable;
 import rx.subscriptions.CompositeSubscription;
 
 /**
@@ -22,13 +24,15 @@ public class OpportunitiesPresenter extends MasterFlowSelectablePresenterHelper<
     private CompositeSubscription compositeSubscription;
 
     private int currentPage = 1;
-    private int totalItems;
+    private int totalItems = Integer.MAX_VALUE;
     private ArrayList<OpportunityListItem> opportunityItems = new ArrayList<>();
+    private FilterHelper helper;
 
     public OpportunitiesPresenter(OpportunitiesContract.OpportunitiesView view, OpportunitiesContract.OpportunitiesModel model) {
         this.view = view;
         this.model = model;
         compositeSubscription = new CompositeSubscription();
+        helper = new FilterHelper();
 
         view.setPresenter(this);
     }
@@ -36,40 +40,62 @@ public class OpportunitiesPresenter extends MasterFlowSelectablePresenterHelper<
     private void loadOpportunities(int page) {
         final boolean needClear = page == 1;
         compositeSubscription.add(
-                model.getOpportunities(page)
+                model.getOpportunities(helper, page)
                         .subscribe(responseGetOpportunities -> {
                                     currentPage = page;
                                     totalItems = responseGetOpportunities.total;
                                     saveData(responseGetOpportunities.data, needClear);
-                                    if (opportunityItems.isEmpty()) {
-                                        view.displayErrorState(null, ErrorViewHelper.ErrorType.LIST_EMPTY);
-                                    } else {
-                                        view.showProgress(Constants.ProgressType.NONE);
-                                        view.displayOpportunities(prepareOpportunitiesDHs(responseGetOpportunities.data, needClear), needClear);
-                                    }
+                                    setData(responseGetOpportunities.data, needClear);
                                 },
                                 t -> {
                                     if (opportunityItems.isEmpty()) {
-                                        view.displayErrorState(t.getMessage(), ErrorViewHelper.ErrorType.NETWORK);
+                                        view.displayErrorState(ErrorManager.getErrorType(t));
                                     } else {
-                                        view.displayErrorToast(t.getMessage());
+                                        view.displayErrorToast(ErrorManager.getErrorMessage(t));
                                     }
                                 }));
     }
 
+    private void loadFilters() {
+        compositeSubscription.add(model.getOpportunityFilters()
+                .flatMap(responseFilters -> Observable.just(FilterHelper.create(responseFilters)))
+                .subscribe(filterHelper -> {
+                    helper = filterHelper;
+                    view.createMenuFilters(helper);
+                }, t -> {
+                    view.displayErrorToast(ErrorManager.getErrorMessage(t));
+                }));
+    }
 
-    private void saveData(final List<OpportunityListItem> list, boolean needClear) {
+    private void saveData(final ArrayList<OpportunityListItem> list, boolean needClear) {
         if (needClear)
             this.opportunityItems.clear();
         this.opportunityItems.addAll(list);
     }
 
+
+    private void setData(final ArrayList<OpportunityListItem> list, boolean needClear) {
+        view.displayOpportunities(prepareOpportunitiesDHs(list, needClear), needClear);
+        if (opportunityItems.isEmpty()) {
+            view.displayErrorState(ErrorManager.getErrorType(null));
+        } else {
+            view.showProgress(Constants.ProgressType.NONE);
+        }
+    }
+
     @Override
     public void subscribe() {
-        if (opportunityItems.size() == 0) {
-            view.showProgress(Constants.ProgressType.CENTER);
-            refresh();
-        } else view.displayOpportunities(prepareOpportunitiesDHs(opportunityItems, true), true);
+        if (opportunityItems.isEmpty() && !helper.isInitialized()) {
+            getFirstPage();
+            loadFilters();
+        } else {
+            setData(opportunityItems, true);
+        }
+    }
+
+    private void getFirstPage() {
+        view.showProgress(Constants.ProgressType.CENTER);
+        refresh();
     }
 
     @Override
@@ -108,5 +134,46 @@ public class OpportunitiesPresenter extends MasterFlowSelectablePresenterHelper<
     public void selectItem(OpportunityDH dh, int position) {
         if (super.selectItem(dh, position, view))
             view.openOpportunityDetailsScreen(dh.getId());
+    }
+
+    @Override
+    public void filterBySearchItem(FilterDH filterDH) {
+        helper.filterByItem(filterDH, (position, isVisible) -> view.selectFilter(position, isVisible));
+        getFirstPage();
+    }
+
+    @Override
+    public void filterBySearchText(String name) {
+        helper.filterByText(name, (position, isVisible) -> view.selectFilter(position, isVisible));
+        getFirstPage();
+    }
+
+    @Override
+    public void filterByList(ArrayList<FilterDH> filterDHs, int requestCode) {
+        helper.filterByList(filterDHs, requestCode, (position, isVisible) -> view.selectFilter(position, isVisible));
+        getFirstPage();
+    }
+
+    @Override
+    public void removeFilter(int requestCode) {
+        helper.removeFilter(requestCode, (position, isVisible) -> view.selectFilter(position, isVisible));
+        getFirstPage();
+    }
+
+    @Override
+    public void changeFilter(int position, String filterName) {
+        view.showFilterDialog(helper.getFilterList(position), position, filterName);
+    }
+
+    @Override
+    public void buildOptionMenu() {
+        view.createMenuFilters(helper);
+        helper.setupMenu((position, isVisible) -> view.selectFilter(position, isVisible));
+    }
+
+    @Override
+    public void removeAll() {
+        helper.removeAllFilters((position, isVisible) -> view.selectFilter(position, isVisible));
+        getFirstPage();
     }
 }

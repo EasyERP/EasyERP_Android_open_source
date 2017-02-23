@@ -5,7 +5,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import com.thinkmobiles.easyerp.data.model.crm.dashboard.DashboardListItem;
 import com.thinkmobiles.easyerp.domain.crm.DashboardRepository;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.DashboardListAdapter;
-import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
+import com.thinkmobiles.easyerp.presentation.base.rules.ErrorType;
 import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowListSelectableFragment;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.DashboardListDH;
 import com.thinkmobiles.easyerp.presentation.managers.GoogleAnalyticHelper;
@@ -106,8 +106,8 @@ public class DashboardListFragment extends MasterFlowListSelectableFragment impl
     }
 
     @Override
-    public void displayErrorState(String msg, ErrorViewHelper.ErrorType errorType) {
-        showErrorState(msg, errorType);
+    public void displayErrorState(ErrorType errorType) {
+        showErrorState(errorType);
     }
 
     @Override

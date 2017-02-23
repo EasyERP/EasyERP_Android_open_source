@@ -1,14 +1,17 @@
 package com.thinkmobiles.easyerp.presentation.screens.crm.invoices;
 
 import com.thinkmobiles.easyerp.data.model.crm.invoice.Invoice;
-import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectablePresenterHelper;
+import com.thinkmobiles.easyerp.presentation.holders.data.crm.FilterDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.InvoiceDH;
+import com.thinkmobiles.easyerp.presentation.managers.ErrorManager;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
+import com.thinkmobiles.easyerp.presentation.utils.filter.FilterHelper;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import rx.Observable;
 import rx.subscriptions.CompositeSubscription;
 
 /**
@@ -26,21 +29,30 @@ public class InvoicesPresenter extends MasterFlowSelectablePresenterHelper<Strin
     private int currentPage = 1;
     private int totalItems;
     private ArrayList<Invoice> invoices = new ArrayList<>();
+    private FilterHelper helper;
 
     public InvoicesPresenter(InvoicesContract.InvoicesView view, InvoicesContract.InvoicesModel model) {
         this.view = view;
         this.model = model;
         this.compositeSubscription = new CompositeSubscription();
+        this.helper = new FilterHelper();
 
         this.view.setPresenter(this);
     }
 
     @Override
     public void subscribe() {
-        if (invoices.size() == 0) {
-            view.showProgress(Constants.ProgressType.CENTER);
-            refresh();
-        } else view.displayInvoices(prepareInvoiceDHs(invoices, true), true);
+        if (invoices.isEmpty() && !helper.isInitialized()) {
+            getFirstPage();
+            loadFilters();
+        } else {
+            setData(invoices, true);
+        }
+    }
+
+    private void getFirstPage() {
+        view.showProgress(Constants.ProgressType.CENTER);
+        refresh();
     }
 
     @Override
@@ -57,6 +69,17 @@ public class InvoicesPresenter extends MasterFlowSelectablePresenterHelper<Strin
         loadInvoices(currentPage + 1);
     }
 
+    private void loadFilters() {
+        compositeSubscription.add(model.getInvoiceFilters()
+                .flatMap(responseFilters -> Observable.just(FilterHelper.create(responseFilters)))
+                .subscribe(filterHelper -> {
+                    helper = filterHelper;
+                    view.createMenuFilters(helper);
+                }, t -> {
+                    view.displayErrorToast(ErrorManager.getErrorMessage(t));
+                }));
+    }
+
     @Override
     public void unsubscribe() {
         if (compositeSubscription.hasSubscriptions())
@@ -66,23 +89,18 @@ public class InvoicesPresenter extends MasterFlowSelectablePresenterHelper<Strin
     private void loadInvoices(int page) {
         final boolean needClear = page == 1;
         compositeSubscription.add(
-                model.getInvoices(page).subscribe(
+                model.getFilteredInvoices(helper, page).subscribe(
                         responseGetInvoice -> {
                             currentPage = page;
                             totalItems = responseGetInvoice.total;
                             saveData(responseGetInvoice.data, needClear);
-                            if (invoices.isEmpty()) {
-                                view.displayErrorState(null, ErrorViewHelper.ErrorType.LIST_EMPTY);
-                            } else {
-                                view.showProgress(Constants.ProgressType.NONE);
-                                view.displayInvoices(prepareInvoiceDHs(responseGetInvoice.data, needClear), needClear);
-                            }
+                            setData(responseGetInvoice.data, needClear);
                         },
                         throwable -> {
                             if (invoices.isEmpty()) {
-                                view.displayErrorState(throwable.getMessage(), ErrorViewHelper.ErrorType.NETWORK);
+                                view.displayErrorState(ErrorManager.getErrorType(throwable));
                             } else {
-                                view.displayErrorToast(throwable.getMessage());
+                                view.displayErrorToast(ErrorManager.getErrorMessage(throwable));
                             }
                         }
                 )
@@ -93,6 +111,15 @@ public class InvoicesPresenter extends MasterFlowSelectablePresenterHelper<Strin
         if (needClear)
             this.invoices.clear();
         this.invoices.addAll(invoices);
+    }
+
+    private void setData(final List<Invoice> invoices, boolean needClear) {
+        view.displayInvoices(prepareInvoiceDHs(invoices, needClear), needClear);
+        if (this.invoices.isEmpty()) {
+            view.displayErrorState(ErrorManager.getErrorType(null));
+        } else {
+            view.showProgress(Constants.ProgressType.NONE);
+        }
     }
 
     @Override
@@ -111,6 +138,47 @@ public class InvoicesPresenter extends MasterFlowSelectablePresenterHelper<Strin
         }
         selectFirstElementIfNeed(result, view);
         return result;
+    }
+
+    @Override
+    public void filterBySearchItem(FilterDH filterDH) {
+        helper.filterByItem(filterDH, (position, isVisible) -> view.selectFilter(position, isVisible));
+        getFirstPage();
+    }
+
+    @Override
+    public void filterBySearchText(String name) {
+        helper.filterByText(name, (position, isVisible) -> view.selectFilter(position, isVisible));
+        getFirstPage();
+    }
+
+    @Override
+    public void filterByList(ArrayList<FilterDH> filterDHs, int requestCode) {
+        helper.filterByList(filterDHs, requestCode, (position, isVisible) -> view.selectFilter(position, isVisible));
+        getFirstPage();
+    }
+
+    @Override
+    public void removeFilter(int requestCode) {
+        helper.removeFilter(requestCode, (position, isVisible) -> view.selectFilter(position, isVisible));
+        getFirstPage();
+    }
+
+    @Override
+    public void changeFilter(int position, String filterName) {
+        view.showFilterDialog(helper.getFilterList(position), position, filterName);
+    }
+
+    @Override
+    public void buildOptionMenu() {
+        view.createMenuFilters(helper);
+        helper.setupMenu((position, isVisible) -> view.selectFilter(position, isVisible));
+    }
+
+    @Override
+    public void removeAll() {
+        helper.removeAllFilters((position, isVisible) -> view.selectFilter(position, isVisible));
+        getFirstPage();
     }
 
 }

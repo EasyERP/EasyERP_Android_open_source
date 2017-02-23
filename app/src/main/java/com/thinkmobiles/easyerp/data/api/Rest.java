@@ -1,12 +1,14 @@
 package com.thinkmobiles.easyerp.data.api;
 
-import com.facebook.stetho.okhttp3.StethoInterceptor;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.thinkmobiles.easyerp.BuildConfig;
+import com.thinkmobiles.easyerp.data.api.deserializers.FilterDeserializer;
 import com.thinkmobiles.easyerp.data.api.interceptors.AddCookieInterceptor;
 import com.thinkmobiles.easyerp.data.api.interceptors.BadCookieInterceptor;
 import com.thinkmobiles.easyerp.data.api.interceptors.ReceiveCookieInterceptor;
 import com.thinkmobiles.easyerp.data.model.ResponseError;
+import com.thinkmobiles.easyerp.data.model.crm.filter.ResponseFilters;
 import com.thinkmobiles.easyerp.data.services.CompaniesService;
 import com.thinkmobiles.easyerp.data.services.CustomerService;
 import com.thinkmobiles.easyerp.data.services.DashboardService;
@@ -62,16 +64,16 @@ public class Rest {
 
     private Rest() {
         Gson malformedGson = new GsonBuilder()
-            .setLenient()
-            .create();
+                .setLenient()
+                .registerTypeAdapter(ResponseFilters.class, new FilterDeserializer())
+                .create();
 
         receiveCookieInterceptor = new ReceiveCookieInterceptor();
         addCookieInterceptor = new AddCookieInterceptor();
         badCookieInterceptor = new BadCookieInterceptor();
 
-        OkHttpClient.Builder clientBuilder = new OkHttpClient.Builder()
-                .addNetworkInterceptor(new StethoInterceptor())
-                .addInterceptor(receiveCookieInterceptor);
+        OkHttpClient.Builder clientBuilder = new OkHttpClient.Builder().addInterceptor(receiveCookieInterceptor);
+        BuildConfig.STETHO.configureInterceptor(clientBuilder);
 
         Retrofit.Builder builder = new Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create(malformedGson))
@@ -81,7 +83,8 @@ public class Rest {
 
         retrofit = builder.build();
 
-        clientBuilder.addInterceptor(addCookieInterceptor)
+        clientBuilder
+                .addInterceptor(addCookieInterceptor)
                 .addInterceptor(badCookieInterceptor);
 
         retrofitFull = builder
@@ -92,62 +95,55 @@ public class Rest {
     }
 
     public static Rest getInstance() {
-        if(restInstance == null) restInstance = new Rest();
-        return restInstance;
+        return restInstance == null ? restInstance = new Rest() : restInstance;
     }
 
     public LoginService getLoginService() {
-        return loginService == null ? createService(LoginService.class, false) : loginService;
+        return loginService == null ? loginService = createService(LoginService.class, false) : loginService;
     }
 
     public UserService getUserService() {
-        if (userService == null) {
-            userService = createService(UserService.class);
-        }
-        return userService;
+        return userService == null ? userService = createService(UserService.class) : userService;
     }
 
     public LeadService getLeadService() {
-        return leadService == null ? createService(LeadService.class) : leadService;
+        return leadService == null ? leadService = createService(LeadService.class) : leadService;
     }
 
     public DashboardService getDashboardService() {
-        return dashboardService == null ? createService(DashboardService.class) : dashboardService;
+        return dashboardService == null ? dashboardService = createService(DashboardService.class) : dashboardService;
     }
 
     public InvoiceService getInvoiceService() {
-        return invoiceService == null ? createService(InvoiceService.class) : invoiceService;
+        return invoiceService == null ? invoiceService = createService(InvoiceService.class) : invoiceService;
     }
 
     public OrderService getOrderService() {
-        return orderService == null ? createService(OrderService.class) : orderService;
+        return orderService == null ? orderService = createService(OrderService.class) : orderService;
     }
 
     public PaymentsService getPaymentService() {
-        return paymentsService == null ? createService(PaymentsService.class) : paymentsService;
+        return paymentsService == null ? paymentsService = createService(PaymentsService.class) : paymentsService;
     }
 
     public PersonsService getPersonsService() {
-        return personsService == null ? createService(PersonsService.class) : personsService;
+        return personsService == null ? personsService = createService(PersonsService.class) : personsService;
     }
 
     public OpportunityService getOpportunityService() {
-        return opportunityService == null ? createService(OpportunityService.class) : opportunityService;
+        return opportunityService == null ? opportunityService = createService(OpportunityService.class) : opportunityService;
     }
 
     public CompaniesService getCompaniesService() {
-        return companiesService == null ? createService(CompaniesService.class) : companiesService;
+        return companiesService == null ? companiesService = createService(CompaniesService.class) : companiesService;
     }
 
     public CustomerService getCustomerService() {
-        return customerService == null ? createService(CustomerService.class) : customerService;
+        return customerService == null ? customerService = createService(CustomerService.class) : customerService;
     }
 
     public FilterService getFilterService() {
-        if (filterService == null) {
-            filterService = createService(FilterService.class);
-        }
-        return filterService;
+        return filterService == null ? filterService = createService(FilterService.class) : filterService;
     }
 
     public ResponseError parseError(ResponseBody responseBody) {

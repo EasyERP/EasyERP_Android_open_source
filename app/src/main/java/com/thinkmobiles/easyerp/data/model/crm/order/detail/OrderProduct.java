@@ -4,7 +4,7 @@ package com.thinkmobiles.easyerp.data.model.crm.order.detail;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.thinkmobiles.easyerp.data.model.crm.leads.filter.FilterItem;
+import com.thinkmobiles.easyerp.data.model.crm.filter.FilterItem;
 
 import java.util.ArrayList;
 

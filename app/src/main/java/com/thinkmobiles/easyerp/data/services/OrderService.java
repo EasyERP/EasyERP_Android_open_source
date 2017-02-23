@@ -10,6 +10,7 @@ import java.util.List;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
+import retrofit2.http.Url;
 import rx.Observable;
 
 /**
@@ -18,11 +19,8 @@ import rx.Observable;
 
 public interface OrderService {
 
-    @GET(Constants.GET_ORDER)
-    Observable<ResponseGetOrders> getOrder(@Query("viewType") String viewType,
-                                           @Query("page") int page,
-                                           @Query("count") int count,
-                                           @Query("contentType") String contentType);
+    @GET
+    Observable<ResponseGetOrders> getOrders(@Url String url);
 
     @GET(Constants.GET_ORDER_BY_WORKFLOWS)
     Observable<List<OrderItem>> getOrderByWorkflows(

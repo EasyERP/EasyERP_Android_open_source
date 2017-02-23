@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/llInput_VIFL"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:descendantFocusability="beforeDescendants"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical"
+    android:visibility="invisible"
+    tools:visibility="visible">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="@dimen/login_icons_size"
+            android:layout_height="@dimen/login_icons_size"
+            android:layout_marginTop="@dimen/default_padding_small"
+            app:srcCompat="@drawable/ic_login" />
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/tilLogin_VIFL"
+            style="@style/TextInputLayoutStyleLight"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/default_padding">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/etLogin_VIFL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/hint_username"
+                android:inputType="text"
+                android:textColor="@color/white_main_text_color" />
+        </android.support.design.widget.TextInputLayout>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_padding_half"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="@dimen/login_icons_size"
+            android:layout_height="@dimen/login_icons_size"
+            android:layout_marginTop="@dimen/default_padding_small"
+            app:srcCompat="@drawable/ic_password" />
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/tilPassword_VIFL"
+            style="@style/TextInputLayoutStyleLight"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/default_padding">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/etPassword_VIFL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/hint_password"
+                android:inputType="textPassword"
+                android:textColor="@color/white_main_text_color" />
+        </android.support.design.widget.TextInputLayout>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvForgotPassword_VIFL"
+        style="@style/RobotoMedium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_marginTop="@dimen/default_padding_quart"
+        android:padding="@dimen/default_padding_quart"
+        android:text="@string/forgot_password_question"
+        android:textColor="@color/white_main_text_color" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_padding_quart"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="@dimen/login_icons_size"
+            android:layout_height="@dimen/login_icons_size"
+            android:layout_marginTop="@dimen/default_padding_small"
+            app:srcCompat="@drawable/ic_database" />
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/tilDbId_VIFL"
+            style="@style/TextInputLayoutStyleLight"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/default_padding">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/etDbId_VIFL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/hint_database_id"
+                android:inputType="text"
+                android:textColor="@color/white_main_text_color" />
+        </android.support.design.widget.TextInputLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/padding_start_for_credentials_ui"
+        android:layout_marginTop="@dimen/default_padding_big"
+        android:orientation="horizontal">
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/btnLogin_VIFL"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/login"
+            android:theme="@style/DefaultTheme.ButtonLight" />
+
+        <Space
+            android:layout_width="@dimen/default_padding_small"
+            android:layout_height="match_parent" />
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/btnDemoMode_VIFL"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/demo"
+            android:theme="@style/DefaultTheme.ButtonNight" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvTermsAndCondition_VIFL"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/padding_start_for_credentials_ui"
+        android:layout_marginTop="@dimen/default_padding_big"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:maxLines="2"
+        android:textColor="@color/white_main_text_color"
+        android:textSize="@dimen/small_text_size"
+        tools:text="By signing up you agree Terms &amp; conditions and Privacy policy" />
+
+</LinearLayout>

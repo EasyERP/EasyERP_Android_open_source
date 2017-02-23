@@ -22,6 +22,7 @@ allprojects {
         picassoVersion = '2.5.2'
         mpAndroidChartVersion = 'v3.0.1'
         flowLayoutVersion = '1.0'
+        appIndicatorVersion = '1.2.2@aar'
 
         // Development
         stethoVersion = '1.4.2'
@@ -37,6 +38,7 @@ allprojects {
         appDependencies = [
                 androidSupportDesign:       "com.android.support:design:${androidSupportVersion}",
                 androidSupportCardView:     "com.android.support:cardview-v7:${androidSupportVersion}",
+                androidSupportPercent:      "com.android.support:percent:${androidSupportVersion}",
                 androidAnnotations:         "org.androidannotations:androidannotations:${androidAnnotationVersion}",
                 androidAnnotationsApi:      "org.androidannotations:androidannotations-api:${androidAnnotationVersion}",
                 recyclerAdaptersMichenko:   "com.github.alex-michenko:recycleradapters:${recyclerAdaptersVersion}",
@@ -47,7 +49,8 @@ allprojects {
                 retrofitLogInterceptor:     "com.squareup.okhttp3:logging-interceptor:${loggingInterceptorVersion}",
                 picasso:                    "com.squareup.picasso:picasso:${picassoVersion}",
                 mpAndroidChart:             "com.github.PhilJay:MPAndroidChart:${mpAndroidChartVersion}",
-                flowLayout:                 "com.github.ismaeltoe:flowlayout:${flowLayoutVersion}"
+                flowLayout:                 "com.github.ismaeltoe:flowlayout:${flowLayoutVersion}",
+                circleIndicator:            "me.relex:circleindicator:${appIndicatorVersion}"
         ]
     }
 

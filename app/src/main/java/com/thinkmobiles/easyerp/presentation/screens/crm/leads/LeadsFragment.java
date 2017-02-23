@@ -14,7 +14,7 @@ import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.domain.crm.LeadsRepository;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.LeadsAdapter;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.SearchAdapter;
-import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
+import com.thinkmobiles.easyerp.presentation.base.rules.ErrorType;
 import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowListSelectableFragment;
 import com.thinkmobiles.easyerp.presentation.dialogs.FilterDialogFragment;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.FilterDH;
@@ -22,6 +22,7 @@ import com.thinkmobiles.easyerp.presentation.holders.data.crm.LeadDH;
 import com.thinkmobiles.easyerp.presentation.managers.GoogleAnalyticHelper;
 import com.thinkmobiles.easyerp.presentation.screens.crm.leads.details.LeadDetailsFragment_;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
+import com.thinkmobiles.easyerp.presentation.utils.filter.FilterHelper;
 
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterTextChange;
@@ -46,19 +47,6 @@ public class LeadsFragment extends MasterFlowListSelectableFragment implements L
     @Bean
     protected LeadsAdapter leadsAdapter;
 
-    @ViewById
-    protected AppCompatAutoCompleteTextView actSearch;
-
-    @Bean
-    protected SearchAdapter searchAdapter;
-
-    protected MenuItem menuFilter;
-    protected MenuItem menuContactName;
-    protected MenuItem menuAssignedTo;
-    protected MenuItem menuCreatedBy;
-    protected MenuItem menuSource;
-    protected MenuItem menuWorkflow;
-
     @AfterInject
     @Override
     public void initPresenter() {
@@ -80,31 +68,7 @@ public class LeadsFragment extends MasterFlowListSelectableFragment implements L
         GoogleAnalyticHelper.trackScreenView(this, getResources().getConfiguration());
 
         listRecycler.setAdapter(leadsAdapter);
-        leadsAdapter.setOnCardClickListener((view, position, viewType) ->
-                presenter.selectItem(leadsAdapter.getItem(position), position)
-        );
-
-        actSearch.setAdapter(searchAdapter);
-        actSearch.setOnItemClickListener((adapterView, view, i, l) ->
-                presenter.filterByContactName(searchAdapter.getItem(i))
-        );
-
-        actSearch.setOnKeyListener((v, keyCode, event) -> {
-            if (event.getKeyCode() == KeyEvent.KEYCODE_ENTER
-                    && event.getAction() == KeyEvent.ACTION_DOWN) {
-
-                String name = actSearch.getText().toString();
-                if (!name.trim().isEmpty())
-                    presenter.filterBySearchContactName(name);
-
-                hideKeyboard();
-                actSearch.dismissDropDown();
-                listRecycler.requestFocus();
-                return true;
-            }
-            return false;
-        });
-
+        leadsAdapter.setOnCardClickListener((view, position, viewType) -> presenter.selectItem(leadsAdapter.getItem(position), position));
         presenter.subscribe();
     }
 
@@ -116,13 +80,6 @@ public class LeadsFragment extends MasterFlowListSelectableFragment implements L
     @Override
     protected void onRetry() {
         presenter.subscribe();
-    }
-
-    @AfterTextChange(R.id.actSearch)
-    protected void afterSearchChanged(Editable editable) {
-        if (editable.length() > 1) {
-            searchAdapter.getFilter().filter(editable.toString());
-        }
     }
 
     @Override
@@ -144,8 +101,8 @@ public class LeadsFragment extends MasterFlowListSelectableFragment implements L
     }
 
     @Override
-    public void displayErrorState(String msg, ErrorViewHelper.ErrorType errorType) {
-        showErrorState(msg, errorType);
+    public void displayErrorState(ErrorType errorType) {
+        showErrorState(errorType);
     }
 
     @Override
@@ -181,90 +138,66 @@ public class LeadsFragment extends MasterFlowListSelectableFragment implements L
         presenter.unsubscribe();
     }
 
-    @OptionsItem(R.id.menuFilterContactName)
-    protected void clickContactName() {
-        presenter.changeFilter(Constants.REQUEST_CODE_FILTER_CONTACT_NAME, getString(R.string.menu_filter_contact_name));
-    }
-
-    @OptionsItem(R.id.menuFilterStage)
-    protected void clickStage() {
-        presenter.changeFilter(Constants.REQUEST_CODE_FILTER_WORKFLOW, getString(R.string.menu_filter_stage));
-    }
-
-    @OptionsItem(R.id.menuFilterCreatedBy)
-    protected void clickCreatedBy() {
-        presenter.changeFilter(Constants.REQUEST_CODE_FILTER_CREATED_BY, getString(R.string.menu_filter_created_by));
-    }
-
-    @OptionsItem(R.id.menuFilterAssignedTo)
-    protected void clickAssignedTo() {
-        presenter.changeFilter(Constants.REQUEST_CODE_FILTER_ASSIGNED_TO, getString(R.string.menu_filter_assigned_to));
-    }
-
-    @OptionsItem(R.id.menuFilterSource)
-    protected void clickSource() {
-        presenter.changeFilter(Constants.REQUEST_CODE_FILTER_SOURCE, getString(R.string.menu_filter_source));
-    }
-
-    @OptionsItem(R.id.menuFilterRemoveAll)
-    protected void clickRemoveAll() {
-        presenter.removeAll();
+    @Override
+    public void clearSelectedItem() {
+        presenter.clearSelectedInfo();
     }
 
     @Override
-    public void setContactNames(ArrayList<FilterDH> contactNames) {
-        searchAdapter.setItems(contactNames);
+    public int optionsMenuRes() {
+        return R.menu.menu_filters;
     }
 
     @Override
-    public void setTextToSearch(String text) {
-        actSearch.setText(text);
-        actSearch.setSelection(text.length());
-        hideKeyboard();
+    public void optionsMenuInitialized(Menu menu) {
+        super.optionsMenuInitialized(menu);
+        presenter.buildOptionMenu();
     }
 
     @Override
-    public void showFilters(boolean isShow) {
-        actSearch.setVisibility(isShow ? View.VISIBLE : View.GONE);
-        menuFilter.setVisible(isShow);
+    protected void onClickSearchSuggestion(FilterDH item) {
+        presenter.filterBySearchItem(item);
     }
 
     @Override
-    public void selectContactNameInFilters(boolean isSelected) {
-        menuContactName.setChecked(isSelected);
+    protected void onSubmitSearch(String text) {
+        presenter.filterBySearchText(text);
     }
 
     @Override
-    public void selectWorkflowInFilters(boolean isSelected) {
-        menuWorkflow.setChecked(isSelected);
+    public void createMenuFilters(FilterHelper helper) {
+        if (helper.isInitialized()) {
+            menuFilters.setVisible(true);
+            menuSearch.setVisible(true);
+            suggestionAdapter.setItems(helper.getSearchableFilterList());
+            helper.buildMenu(menuFilters.getSubMenu());
+        }
     }
 
     @Override
-    public void selectAssignedToInFilters(boolean isSelected) {
-        menuAssignedTo.setChecked(isSelected);
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menuFilters:
+            case R.id.menuSearch:
+                return false;
+            case R.id.menuFilterRemoveAll:
+                presenter.removeAll();
+                break;
+            default:
+                presenter.changeFilter(item.getItemId(), item.getTitle().toString());
+                break;
+        }
+        return true;
     }
 
     @Override
-    public void selectCreatedByInFilters(boolean isSelected) {
-        menuCreatedBy.setChecked(isSelected);
-    }
-
-    @Override
-    public void selectSourceInFilters(boolean isSelected) {
-        menuSource.setChecked(isSelected);
+    public void selectFilter(int id, boolean isSelected) {
+        menuFilters.getSubMenu().getItem(id).setChecked(isSelected);
     }
 
     @Override
     public void showFilterDialog(ArrayList<FilterDH> filterDHs, int requestCode, String filterName) {
-        actSearch.clearFocus();
-        listRecycler.requestFocus();
-        FilterDialogFragment dialogFragment = new FilterDialogFragment();
-        Bundle bundle = new Bundle();
-        bundle.putParcelableArrayList(Constants.KEY_FILTER_LIST, filterDHs);
-        bundle.putString(Constants.KEY_FILTER_NAME, filterName);
-        dialogFragment.setArguments(bundle);
-        dialogFragment.setTargetFragment(this, requestCode);
-        dialogFragment.show(getFragmentManager(), getClass().getName());
+        showDialogFiltering(filterDHs, requestCode, filterName);
     }
 
     @Override
@@ -276,27 +209,5 @@ public class LeadsFragment extends MasterFlowListSelectableFragment implements L
         } else {
             presenter.removeFilter(requestCode);
         }
-    }
-
-    @Override
-    public int optionsMenuRes() {
-        return R.menu.menu_filters;
-    }
-
-    @Override
-    public void optionsMenuInitialized(Menu menu) {
-        actSearch.dismissDropDown();
-        this.menuFilter = menu.findItem(R.id.menuFilter_MB);
-        this.menuContactName = menu.findItem(R.id.menuFilterContactName);
-        this.menuAssignedTo = menu.findItem(R.id.menuFilterAssignedTo);
-        this.menuCreatedBy = menu.findItem(R.id.menuFilterCreatedBy);
-        this.menuSource = menu.findItem(R.id.menuFilterSource);
-        this.menuWorkflow = menu.findItem(R.id.menuFilterStage);
-        presenter.refreshOptionMenu();
-    }
-
-    @Override
-    public void clearSelectedItem() {
-        presenter.clearSelectedInfo();
     }
 }

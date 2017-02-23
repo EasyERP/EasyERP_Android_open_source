@@ -12,9 +12,19 @@
 
         <item name="android:textViewStyle">@style/DefaultTheme.DefaultBlackTextTheme</item>
         <item name="editTextStyle">@style/DefaultTheme.DefaultBlackEditTextTheme</item>
+        <item name="searchViewStyle">@style/SearchViewStyle</item>
+        <item name="android:dropDownItemStyle">@style/DropDownItemStyle</item>
+        <item name="autoCompleteTextViewStyle">@style/AutoCompleteTextViewStyle</item>
 
         <item name="colorButtonNormal">@color/colorPrimary</item>
+    </style>
 
+    <style name="DefaultTheme.ButtonLight">
+        <item name="colorButtonNormal">@color/colorVintage</item>
+    </style>
+
+    <style name="DefaultTheme.ButtonNight">
+        <item name="colorButtonNormal">@color/colorSuzy</item>
     </style>
 
     <style name="DefaultTheme.ThemeHistory" parent="DefaultTheme">
@@ -28,15 +38,26 @@
     <style name="DefaultTheme.DefaultBlackEditTextTheme" parent="@style/Widget.AppCompat.EditText">
         <item name="android:textColor">@color/color_text_black</item>
         <item name="android:textColorHint">@color/text_grey_hint_color</item>
-        <item name="backgroundTint">@color/colorPrimaryDark</item>
     </style>
 
     <style name="DefaultTheme.InputFields">
-        <item name="android:textColor">@color/colorPrimaryDark</item>
-        <item name="android:textColorHint">@color/colorPrimary</item>
+        <item name="android:textColor">@color/color_text_black</item>
+        <item name="android:textColorHint">@color/text_grey_hint_color</item>
         <item name="colorControlNormal">@color/text_grey_hint_color</item>
         <item name="colorControlActivated">@color/colorPrimary</item>
         <item name="colorControlHighlight">@color/colorPrimaryDark</item>
+    </style>
+
+    <style name="DefaultTheme.InputFieldsLight">
+        <item name="android:textColor">@color/white_main_text_color</item>
+        <item name="android:textColorHint">@color/textColorHint</item>
+        <item name="colorControlNormal">@color/dividerColor</item>
+        <item name="colorControlActivated">@android:color/white</item>
+        <item name="colorControlHighlight">@android:color/white</item>
+    </style>
+
+    <style name="TextInputLayoutStyleLight">
+        <item name="theme">@style/DefaultTheme.InputFieldsLight</item>
     </style>
 
     <style name="TextInputLayoutStyle">
@@ -85,31 +106,38 @@
     <style name="RobotoMedium">
         <item name="android:fontFamily">sans-serif-medium</item>
     </style>
+
     <style name="RobotoRegular">
         <item name="android:fontFamily">sans-serif</item>
     </style>
+
     <style name="RobotoBold">
         <item name="android:fontFamily">sans-serif-light</item>
         <item name="android:textStyle">bold</item>
     </style>
+
     <style name="RobotoCondensedBold">
         <item name="android:fontFamily">sans-serif-condensed</item>
         <item name="android:textStyle">bold</item>
     </style>
+
     <style name="RobotoCondensedRegular">
         <item name="android:fontFamily">sans-serif-condensed</item>
         <item name="android:textStyle">normal</item>
     </style>
+
     <style name="TextHeaderTableProductStyle" parent="RobotoBold">
         <item name="android:textSize">@dimen/text_size_table_12</item>
         <item name="android:textColor">@android:color/white</item>
         <item name="android:padding">@dimen/default_padding_quart</item>
     </style>
+
     <style name="TextTableProductStyle" parent="RobotoBold">
         <item name="android:textSize">@dimen/text_size_table_12</item>
         <item name="android:textColor">@android:color/black</item>
         <item name="android:padding">@dimen/default_padding_quart</item>
     </style>
+
     <style name="RobotoLight">
         <item name="android:fontFamily">sans-serif-light</item>
     </style>
@@ -124,10 +152,12 @@
     </style>
 
     <!-- Dialogs Styles -->
-    <style name="DefaultTheme.NoTitleDialogWithAnimation" parent="Theme.AppCompat.Light.Dialog.Alert" >
+    <style name="DefaultTheme.NoTitleDialogWithAnimation" parent="Theme.AppCompat.Light.Dialog.Alert">
         <item name="colorAccent">@color/colorAccent</item>
         <item name="windowNoTitle">true</item>
-        <item name="android:windowAnimationStyle">@style/DefaultTheme.NoTitleDialogWithAnimation.ScaleWindowAnimation</item>
+        <item name="android:windowAnimationStyle">
+            @style/DefaultTheme.NoTitleDialogWithAnimation.ScaleWindowAnimation
+        </item>
     </style>
 
     <style name="DefaultTheme.NoTitleDialogWithAnimation.ScaleWindowAnimation">
@@ -138,14 +168,46 @@
     <style name="DefaultTheme.FilterDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
         <item name="colorAccent">@color/colorAccent</item>
         <item name="windowNoTitle">true</item>
-        <item name="editTextStyle">@style/DefaultTheme.FilterDialog.SearchFieldStyle</item>
+        <item name="editTextStyle">@style/SearchFieldStyle</item>
     </style>
 
-    <style name="DefaultTheme.FilterDialog.SearchFieldStyle" parent="DefaultTheme.LeadInputFieldStyle">
-        <item name="android:focusable">true</item>
-        <item name="android:textColor">@color/textColorPrimary</item>
+    <style name="SearchFieldStyle">
+        <item name="android:textColor">@color/color_text_black</item>
         <item name="android:textColorHint">@color/textColorHint</item>
-        <item name="backgroundTint">@color/dividerColor</item>
+        <item name="android:padding">@dimen/default_padding</item>
+        <item name="android:drawablePadding">@dimen/default_padding_half</item>
+        <item name="android:drawableStart">@drawable/ic_search_black</item>
+        <item name="android:background">@drawable/bg_search_view_selector</item>
+        <item name="android:hint">@string/list_searchview_hint</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:lines">1</item>
+        <item name="android:searchSuggestThreshold">2</item>
+        <item name="android:focusable">true</item>
+        <item name="android:focusableInTouchMode">true</item>
+        <item name="android:scrollHorizontally">true</item>
+        <item name="android:inputType">text</item>
+        <item name="android:imeOptions">flagNoExtractUi|</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:textSize">@dimen/text_list_item_medium_16</item>
+    </style>
+
+    <style name="SearchViewStyle" parent="Widget.AppCompat.SearchView">
+        <!--Close button icon -->
+        <item name="closeIcon">@drawable/ic_close_white</item>
+        <!--Search button icon -->
+        <item name="searchIcon">@drawable/ic_search_white</item>
+        <item name="queryHint">@string/list_searchview_hint</item>
+        <item name="android:maxWidth">1000dp</item>
+    </style>
+
+    <style name="DropDownItemStyle" parent="Widget.AppCompat.DropDownItem.Spinner">
+        <item name="android:textColor">@color/color_text_black</item>
+        <item name="android:background">@android:color/white</item>
+    </style>
+
+    <style name="AutoCompleteTextViewStyle" parent="Widget.AppCompat.Light.AutoCompleteTextView">
+        <item name="android:popupBackground">#ffffff</item>
     </style>
 
     <!--My the best of the best styles-->
@@ -214,8 +276,14 @@
     </style>
 
     <style name="CustomCheckBox" parent="Widget.AppCompat.CompoundButton.CheckBox">
-        <item name="colorControlNormal">@color/colorPrimary</item>
-        <item name="colorControlActivated">@color/colorPrimary</item>
+        <item name="colorControlNormal">@color/color_text_gray</item>
+        <item name="colorControlActivated">@color/colorAccent</item>
+        <item name="android:textSize">@dimen/text_size_small_14</item>
+        <item name="android:clickable">false</item>
+    </style>
+
+    <style name="CustomCheckBoxStyle" >
+        <item name="android:theme">@style/CustomCheckBox</item>
         <item name="android:textSize">@dimen/text_size_small_14</item>
         <item name="android:clickable">false</item>
     </style>
@@ -282,9 +350,16 @@
         <item name="android:paddingBottom">@dimen/default_padding_quart</item>
         <item name="android:textColor">@android:color/white</item>
     </style>
+    
+    <style name="WhiteButtonStyle" parent="RobotoMedium">
+        <item name="android:textSize">@dimen/text_list_item_large_20</item>
+        <item name="android:padding">@dimen/padding_button_large</item>
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
 
 
-    <style name="PdfStyle.FieldTitleStyle" >
+    <style name="PdfStyle.FieldTitleStyle">
         <item name="android:textColor">@color/color_text_gray</item>
     </style>
 

@@ -7,9 +7,12 @@ import com.thinkmobiles.easyerp.data.model.crm.invoice.detail.ResponseGetInvoice
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
 import java.util.List;
+import java.util.Map;
 
 import retrofit2.http.GET;
 import retrofit2.http.Query;
+import retrofit2.http.QueryMap;
+import retrofit2.http.Url;
 import rx.Observable;
 
 /**
@@ -19,7 +22,7 @@ import rx.Observable;
 public interface InvoiceService {
 
     @GET(Constants.GET_INVOICE)
-    Observable<ResponseGetInvoice> getInvoice(
+    Observable<ResponseGetInvoice> getInvoiceForDashboard(
             @Query("filter[date][value][0]") final String filterDateValueFrom,
             @Query("filter[date][value][1]") final String filterDateValueTo,
             @Query("forSales") final boolean forSales,
@@ -28,6 +31,9 @@ public interface InvoiceService {
             @Query("count") final int count,
             @Query("sort[invoiceDate]") final Integer sort,
             @Query("contentType") final String contentType);
+
+    @GET
+    Observable<ResponseGetInvoice> getInvoices(@Url String url);
 
     @GET(Constants.GET_INVOICE_BY_WORKFLOWS)
     Observable<List<OrderItem>> getInvoiceByWorkflows(

@@ -7,10 +7,10 @@ import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.data.model.crm.leads.detail.AttachmentItem;
 import com.thinkmobiles.easyerp.data.model.crm.leads.detail.ResponseGetLeadDetails;
 import com.thinkmobiles.easyerp.presentation.EasyErpApplication;
-import com.thinkmobiles.easyerp.presentation.base.rules.ErrorViewHelper;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.AttachmentDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.HistoryDH;
 import com.thinkmobiles.easyerp.presentation.managers.DateManager;
+import com.thinkmobiles.easyerp.presentation.managers.ErrorManager;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 import com.thinkmobiles.easyerp.presentation.utils.StringUtil;
 
@@ -56,9 +56,9 @@ public class LeadDetailsPresenter implements LeadDetailsContract.LeadDetailsPres
                     view.showProgress(Constants.ProgressType.NONE);
                 }, throwable -> {
                     if(currentLead != null)
-                        view.displayErrorToast(throwable.getMessage());
+                        view.displayErrorToast(ErrorManager.getErrorMessage(throwable));
                     else
-                        view.displayErrorState(throwable.getMessage(), ErrorViewHelper.ErrorType.NETWORK);
+                        view.displayErrorState(ErrorManager.getErrorType(throwable));
                 }));
     }
 
