@@ -92,4 +92,6 @@ public abstract class Constants {
     public static final String DEMO_LOGIN                   = "superAdmin";
     public static final String DEMO_PASSWORD                = "111111";
     public static final String DEMO_DB_ID                   = "CRM";
+
+    public static final String UXCAM_ACCOUNT_KEY            = "d2bf58cf5b3e5a0";
 }
