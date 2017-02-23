@@ -10,7 +10,6 @@ import java.util.ArrayList;
 /**
  * Created by Lynx on 2/23/2017.
  */
-
 @EBean(scope = EBean.Scope.Singleton)
 public class LibrariesRepository implements LibrariesContract.LibrariesModel {
 

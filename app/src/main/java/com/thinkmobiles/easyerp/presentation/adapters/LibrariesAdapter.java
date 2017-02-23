@@ -10,8 +10,6 @@ import org.androidannotations.annotations.EBean;
 /**
  * Created by Lynx on 2/23/2017.
  */
-
-
 @EBean
 public class LibrariesAdapter extends SimpleRecyclerAdapter<LibraryDH, LibraryVH> {
     @Override

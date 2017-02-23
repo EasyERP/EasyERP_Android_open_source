@@ -45,9 +45,9 @@ public class LibraryVH extends RecyclerVH<LibraryDH> {
     @Override
     public void bindData(LibraryDH data) {
         LibraryInfo info = data.getLibraryInfo();
-        tvLibraryName_VLIL.setText(!TextUtils.isEmpty(info.name) ? info.name : "");
-        tvLibraryVersion_VLIL.setText(!TextUtils.isEmpty(info.version) ? info.version : "");
-        tvLibraryAuthor_VLIL.setText(!TextUtils.isEmpty(info.author) ? info.author : "");
-        tvLibraryLicense_VLIL.setText(!TextUtils.isEmpty(info.license) ? info.license : "");
+        tvLibraryName_VLIL.setText(info.name);
+        tvLibraryVersion_VLIL.setText(info.version);
+        tvLibraryAuthor_VLIL.setText(info.author);
+        tvLibraryLicense_VLIL.setText(info.license);
     }
 }
