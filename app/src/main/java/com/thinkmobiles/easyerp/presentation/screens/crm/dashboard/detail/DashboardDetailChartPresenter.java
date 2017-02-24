@@ -4,21 +4,20 @@ package com.thinkmobiles.easyerp.presentation.screens.crm.dashboard.detail;
 import android.support.v4.util.Pair;
 
 import com.thinkmobiles.easyerp.data.model.crm.dashboard.DashboardListItem;
+import com.thinkmobiles.easyerp.presentation.base.rules.content.ContentPresenterHelper;
+import com.thinkmobiles.easyerp.presentation.base.rules.content.ContentView;
 import com.thinkmobiles.easyerp.presentation.managers.DateManager;
-import com.thinkmobiles.easyerp.presentation.managers.ErrorManager;
 import com.thinkmobiles.easyerp.presentation.utils.AppDefaultStatesPreferences_;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-import rx.subscriptions.CompositeSubscription;
-
 /**
  * @author michael.soyma@thinkmobiles.com (Created on 1/20/2017.)
  */
 
-public class DashboardDetailChartPresenter implements DashboardDetailChartContract.DashboardDetailChartPresenter {
+public class DashboardDetailChartPresenter extends ContentPresenterHelper implements DashboardDetailChartContract.DashboardDetailChartPresenter {
 
     private DashboardDetailChartContract.DashboardDetailChartView view;
     private DashboardDetailChartContract.DashboardDetailChartModel model;
@@ -28,8 +27,6 @@ public class DashboardDetailChartPresenter implements DashboardDetailChartContra
 
     private long customDateFrom, customDateTo;
     private Object chartData;
-
-    private CompositeSubscription compositeSubscription;
 
     public DashboardDetailChartPresenter(
             DashboardDetailChartContract.DashboardDetailChartView view,
@@ -42,8 +39,6 @@ public class DashboardDetailChartPresenter implements DashboardDetailChartContra
         this.workDashboardInfoForChart = workDashboardInfoForChart;
         this.defaultStatesPreferences = defaultStatesPreferences;
 
-        this.compositeSubscription = new CompositeSubscription();
-
         view.setPresenter(this);
     }
 
@@ -55,34 +50,37 @@ public class DashboardDetailChartPresenter implements DashboardDetailChartContra
 
         view.displayDateFilterFromTo(getDateFromToString(getFromToFilterDate()));
         view.displayHeader(workDashboardInfoForChart.name);
-
-        if (chartData == null) {
-            view.showProgress(Constants.ProgressType.CENTER);
-            loadChartInfo();
-        } else {
-            view.displayChart(chartData, workDashboardInfoForChart.getChartType());
-        }
+        super.subscribe();
     }
 
     @Override
-    public void unsubscribe() {
-        if (compositeSubscription.hasSubscriptions())
-            compositeSubscription.clear();
+    protected ContentView getView() {
+        return view;
     }
 
     @Override
-    public void loadChartInfo() {
+    protected boolean hasContent() {
+        return chartData != null;
+    }
+
+    @Override
+    protected void retainInstance() {
+        view.displayChart(chartData, workDashboardInfoForChart.getChartType());
+    }
+
+    @Override
+    public void refresh() {
         final Pair<Calendar, Calendar> fromToFilter = getFromToFilterDate();
         compositeSubscription.add(
                     model.getDashboardChartInfo(
                             workDashboardInfoForChart.dataset,
                             workDashboardInfoForChart.getChartType(),
-                            new DateManager.DateConverter(fromToFilter.first).setDstPattern(DateManager.PATTERN_DASHBOARD_BACKEND).toString(),
-                            new DateManager.DateConverter(fromToFilter.second).setDstPattern(DateManager.PATTERN_DASHBOARD_BACKEND).toString())
+                            DateManager.convert(fromToFilter.first).setDstPattern(DateManager.PATTERN_DASHBOARD_BACKEND).toString(),
+                            DateManager.convert(fromToFilter.second).setDstPattern(DateManager.PATTERN_DASHBOARD_BACKEND).toString())
                             .subscribe(result -> {
                                 view.showProgress(Constants.ProgressType.NONE);
                                 view.displayChart(chartData = result, workDashboardInfoForChart.getChartType());
-                            },throwable -> view.displayErrorState(ErrorManager.getErrorType(throwable))));
+                            }, t -> error(t)));
     }
 
     @Override
@@ -102,7 +100,7 @@ public class DashboardDetailChartPresenter implements DashboardDetailChartContra
             view.chooseCustomDateRangeFromTo(fromToPair.first, fromToPair.second);
         else {
             view.showProgress(Constants.ProgressType.CENTER);
-            loadChartInfo();
+            refresh();
         }
     }
 
@@ -119,7 +117,7 @@ public class DashboardDetailChartPresenter implements DashboardDetailChartContra
         view.displayDateFilterFromTo(getDateFromToString(getFromToFilterDate()));
 
         view.showProgress(Constants.ProgressType.CENTER);
-        loadChartInfo();
+        refresh();
     }
 
     private String getDateFromToString(final Pair<Calendar, Calendar> fromToPair) {

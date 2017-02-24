@@ -71,7 +71,6 @@
     <string name="tags">Tags</string>
     <string name="attachments">Attachments</string>
     <string name="no_attachments">No attachments</string>
-    <string name="no_tags">No tags</string>
     <string name="notes_amp_timeline"><![CDATA[Notes & Timeline]]></string>
 
     <string name="list_searchview_hint">Search</string>
@@ -145,7 +144,6 @@
 
     <string name="profile">Profile:</string>
     <string name="last_access">Last Access:</string>
-    <string name="contact_name">Contact Name</string>
     <string name="order_details_title_order_preview">Order Preview</string>
     <string name="invoice_details_subtitle_payments">Payments</string>
     <string name="invoice_details_subtitle_invoice_preview">Invoice Preview</string>

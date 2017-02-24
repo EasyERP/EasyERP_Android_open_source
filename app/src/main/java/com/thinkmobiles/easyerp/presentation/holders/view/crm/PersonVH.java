@@ -9,7 +9,7 @@ import android.widget.TextView;
 import com.michenko.simpleadapter.OnCardClickListener;
 import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.data.model.crm.persons.person_item.PersonModel;
-import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectableVHHelper;
+import com.thinkmobiles.easyerp.presentation.base.rules.master.selectable.SelectableVHHelper;
 import com.thinkmobiles.easyerp.presentation.custom.transformations.CropCircleTransformation;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.PersonDH;
 import com.thinkmobiles.easyerp.presentation.managers.ImageHelper;
@@ -18,7 +18,7 @@ import com.thinkmobiles.easyerp.presentation.managers.ImageHelper;
  * Created by Lynx on 1/23/2017.
  */
 
-public final class PersonVH extends MasterFlowSelectableVHHelper<PersonDH> {
+public final class PersonVH extends SelectableVHHelper<PersonDH> {
 
     private final ImageView ivPersonImage_VLIP;
     private final TextView tvPersonName_VLIP;

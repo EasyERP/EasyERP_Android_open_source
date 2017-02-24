@@ -4,12 +4,11 @@ package com.thinkmobiles.easyerp.presentation.screens.crm.leads.details;
 import com.thinkmobiles.easyerp.data.model.crm.leads.TagItem;
 import com.thinkmobiles.easyerp.data.model.crm.leads.detail.ResponseGetLeadDetails;
 import com.thinkmobiles.easyerp.presentation.base.BaseModel;
-import com.thinkmobiles.easyerp.presentation.base.BasePresenter;
 import com.thinkmobiles.easyerp.presentation.base.BaseView;
-import com.thinkmobiles.easyerp.presentation.base.rules.ErrorType;
+import com.thinkmobiles.easyerp.presentation.base.rules.content.ContentPresenter;
+import com.thinkmobiles.easyerp.presentation.base.rules.content.ContentView;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.AttachmentDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.HistoryDH;
-import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
 import java.util.ArrayList;
 
@@ -17,11 +16,8 @@ import rx.Observable;
 
 public interface LeadDetailsContract {
 
-    interface LeadDetailsView extends BaseView<LeadDetailsPresenter> {
-        void showProgress(Constants.ProgressType type);
+    interface LeadDetailsView extends BaseView<LeadDetailsPresenter>, ContentView {
         void showHistory(boolean enable);
-        void displayErrorState(ErrorType errorType);
-        void displayErrorToast(String message);
 
         void showContacts(boolean isShown);
         void showCompany(boolean isShown);
@@ -56,9 +52,8 @@ public interface LeadDetailsContract {
         void startUrlIntent(String url);
     }
 
-    interface LeadDetailsPresenter extends BasePresenter {
+    interface LeadDetailsPresenter extends ContentPresenter {
         void changeNotesVisibility();
-        void refresh();
         void startAttachment(int pos);
     }
 

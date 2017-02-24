@@ -82,7 +82,7 @@ public class FilterHelper {
         callback.onCheckedFilter(indexSearchableFilter, true);
     }
 
-    public void filterByText(String text, CheckFilterCallback callback) {
+    public boolean filterByText(String text, CheckFilterCallback callback) {
         FilterTypeQuery contactQuery = params.get(indexSearchableFilter);
         contactQuery.removeAll();
         for (FilterDH dh : filters.get(indexSearchableFilter)) {
@@ -93,7 +93,9 @@ public class FilterHelper {
                 dh.selected = false;
             }
         }
-        callback.onCheckedFilter(indexSearchableFilter, true);
+        boolean needRequest = contactQuery.getValues() != null;
+        callback.onCheckedFilter(indexSearchableFilter, needRequest);
+        return needRequest;
     }
 
     public void filterByList(ArrayList<FilterDH> filterDHs, int position, CheckFilterCallback callback) {

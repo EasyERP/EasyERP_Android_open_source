@@ -9,7 +9,7 @@ import android.widget.TextView;
 import com.michenko.simpleadapter.OnCardClickListener;
 import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.data.model.crm.opportunities.list_item.OpportunityListItem;
-import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectableVHHelper;
+import com.thinkmobiles.easyerp.presentation.base.rules.master.selectable.SelectableVHHelper;
 import com.thinkmobiles.easyerp.presentation.custom.RoundRectDrawable;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.OpportunityDH;
 import com.thinkmobiles.easyerp.presentation.managers.DateManager;
@@ -21,7 +21,7 @@ import com.thinkmobiles.easyerp.presentation.utils.StringUtil;
  * Created by Lynx on 1/30/2017.
  */
 
-public final class OpportunityVH extends MasterFlowSelectableVHHelper<OpportunityDH> {
+public final class OpportunityVH extends SelectableVHHelper<OpportunityDH> {
 
     private final TextView tvOpportunityName_VLIO;
     private final TextView tvStage_VLIO;

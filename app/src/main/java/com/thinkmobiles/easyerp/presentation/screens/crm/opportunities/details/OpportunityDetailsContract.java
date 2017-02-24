@@ -3,13 +3,12 @@ package com.thinkmobiles.easyerp.presentation.screens.crm.opportunities.details;
 import com.thinkmobiles.easyerp.data.model.crm.leads.TagItem;
 import com.thinkmobiles.easyerp.data.model.crm.opportunities.detail.ResponseGetOpportunityDetails;
 import com.thinkmobiles.easyerp.presentation.base.BaseModel;
-import com.thinkmobiles.easyerp.presentation.base.BasePresenter;
 import com.thinkmobiles.easyerp.presentation.base.BaseView;
-import com.thinkmobiles.easyerp.presentation.base.rules.ErrorType;
+import com.thinkmobiles.easyerp.presentation.base.rules.content.ContentPresenter;
+import com.thinkmobiles.easyerp.presentation.base.rules.content.ContentView;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.AttachmentDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.ContactDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.HistoryDH;
-import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
 import java.util.ArrayList;
 
@@ -20,11 +19,8 @@ import rx.Observable;
  */
 
 public interface OpportunityDetailsContract {
-    interface OpportunityDetailsView extends BaseView<OpportunityDetailsPresenter> {
-        void showProgress(Constants.ProgressType type);
+    interface OpportunityDetailsView extends BaseView<OpportunityDetailsPresenter>, ContentView {
         void showHistory(boolean enable);
-        void displayErrorState(ErrorType errorType);
-        void displayErrorToast(String message);
 
         void showContact(boolean isShown);
         void showCompany(boolean isShown);
@@ -54,9 +50,8 @@ public interface OpportunityDetailsContract {
 
         void displayHistory(ArrayList<HistoryDH> history);
     }
-    interface OpportunityDetailsPresenter extends BasePresenter {
+    interface OpportunityDetailsPresenter extends ContentPresenter {
         void changeNotesVisibility();
-        void refresh();
         void startAttachment(int pos);
     }
     interface OpportunityDetailsModel extends BaseModel {

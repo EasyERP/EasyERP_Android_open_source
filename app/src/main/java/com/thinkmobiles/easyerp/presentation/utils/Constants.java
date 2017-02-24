@@ -76,7 +76,6 @@ public abstract class Constants {
 
     //Bundle keys
     public static final String KEY_FILTER_LIST              = "keyFilterList";
-    public static final String KEY_FILTER_NAME              = "keyFilterName";
 
     public enum ErrorCodes {
         OK,
@@ -92,4 +91,8 @@ public abstract class Constants {
     public static final String DEMO_LOGIN                   = "superAdmin";
     public static final String DEMO_PASSWORD                = "111111";
     public static final String DEMO_DB_ID                   = "CRM";
+
+    public enum ErrorType {
+        LIST_EMPTY, NETWORK, UNKNOWN
+    }
 }

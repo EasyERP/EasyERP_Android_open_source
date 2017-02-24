@@ -1,8 +1,12 @@
 package com.thinkmobiles.easyerp.presentation.managers;
 
+import android.support.annotation.DrawableRes;
+import android.support.annotation.StringRes;
+
+import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.data.api.Rest;
 import com.thinkmobiles.easyerp.data.model.ResponseError;
-import com.thinkmobiles.easyerp.presentation.base.rules.ErrorType;
+import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
 import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
@@ -15,12 +19,12 @@ import retrofit2.adapter.rxjava.HttpException;
 
 public abstract class ErrorManager {
 
-    public static ErrorType getErrorType(Throwable t) {
-        if(t == null) return ErrorType.LIST_EMPTY;
+    public static Constants.ErrorType getErrorType(Throwable t) {
+        if(t == null) return Constants.ErrorType.LIST_EMPTY;
         else if(t instanceof UnknownHostException || t instanceof SocketTimeoutException)
-            return ErrorType.NETWORK;
+            return Constants.ErrorType.NETWORK;
         else
-            return ErrorType.UNKNOWN;
+            return Constants.ErrorType.UNKNOWN;
     }
 
     public static String getErrorMessage(Throwable t) {
@@ -35,5 +39,30 @@ public abstract class ErrorManager {
             return "Connection problems. Make sure your internet connection established";
         else
             return "Something going wrong :(";
+    }
+
+    @StringRes
+    public static int getErrorMessage(Constants.ErrorType type) {
+        switch (type) {
+            case LIST_EMPTY:
+                return R.string.list_is_empty;
+            case NETWORK:
+                return R.string.error_connection;
+            case UNKNOWN:
+                return R.string.error_unknown;
+        }
+        return 0;
+    }
+
+    @DrawableRes
+    public static int getErrorIcon(Constants.ErrorType type) {
+        switch (type) {
+            case LIST_EMPTY:
+                return R.drawable.ic_empty_list;
+            case NETWORK:
+            case UNKNOWN:
+                return R.drawable.ic_error;
+        }
+        return 0;
     }
 }

@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import com.michenko.simpleadapter.OnCardClickListener;
 import com.thinkmobiles.easyerp.R;
-import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectableVHHelper;
+import com.thinkmobiles.easyerp.presentation.base.rules.master.selectable.SelectableVHHelper;
 import com.thinkmobiles.easyerp.presentation.custom.RoundRectDrawable;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.LeadDH;
 import com.thinkmobiles.easyerp.presentation.managers.DateManager;
@@ -19,7 +19,7 @@ import com.thinkmobiles.easyerp.presentation.managers.TagHelper;
  * Created by Lynx on 1/16/2017.
  */
 
-public final class LeadVH extends MasterFlowSelectableVHHelper<LeadDH> {
+public final class LeadVH extends SelectableVHHelper<LeadDH> {
 
     private final TextView tvLeadName_LIL;
     private final TextView tvStage_LIL;

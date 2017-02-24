@@ -2,6 +2,8 @@ package com.thinkmobiles.easyerp.presentation.screens.crm.payments.details;
 
 import com.thinkmobiles.easyerp.data.model.crm.payments.Payment;
 import com.thinkmobiles.easyerp.data.model.user.organization.OrganizationSettings;
+import com.thinkmobiles.easyerp.presentation.base.rules.content.ContentPresenterHelper;
+import com.thinkmobiles.easyerp.presentation.base.rules.content.ContentView;
 import com.thinkmobiles.easyerp.presentation.managers.DateManager;
 import com.thinkmobiles.easyerp.presentation.managers.ErrorManager;
 import com.thinkmobiles.easyerp.presentation.screens.crm.dashboard.detail.charts.DollarFormatter;
@@ -10,19 +12,16 @@ import com.thinkmobiles.easyerp.presentation.utils.StringUtil;
 
 import java.text.DecimalFormat;
 
-import rx.subscriptions.CompositeSubscription;
-
 /**
  * @author Alex Michenko (Created on 07.02.17).
  *         Company: Thinkmobiles
  *         Email: alex.michenko@thinkmobiles.com
  */
 
-public class PaymentDetailsPresenter implements PaymentDetailsContract.PaymentDetailsPresenter {
+public class PaymentDetailsPresenter extends ContentPresenterHelper implements PaymentDetailsContract.PaymentDetailsPresenter {
 
     private PaymentDetailsContract.PaymentDetailsView view;
     private PaymentDetailsContract.PaymentDetailsModel model;
-    private CompositeSubscription compositeSubscription;
 
     private Payment currentPayment;
     private OrganizationSettings organizationSettings;
@@ -34,8 +33,22 @@ public class PaymentDetailsPresenter implements PaymentDetailsContract.PaymentDe
         this.currentPayment = currentPayment;
         view.setPresenter(this);
 
-        compositeSubscription = new CompositeSubscription();
         formatter = new DollarFormatter().getFormat();
+    }
+
+    @Override
+    protected ContentView getView() {
+        return view;
+    }
+
+    @Override
+    protected boolean hasContent() {
+        return currentPayment != null;
+    }
+
+    @Override
+    protected void retainInstance() {
+        setData();
     }
 
     @Override
@@ -53,12 +66,6 @@ public class PaymentDetailsPresenter implements PaymentDetailsContract.PaymentDe
             view.showProgress(Constants.ProgressType.NONE);
             setData();
         }
-    }
-
-    @Override
-    public void subscribe() {
-        view.showProgress(Constants.ProgressType.CENTER);
-        refresh();
     }
 
     private void setData() {
@@ -105,10 +112,5 @@ public class PaymentDetailsPresenter implements PaymentDetailsContract.PaymentDe
                 view.setOwnerEmail(organizationSettings.contact.email);
             view.setAdvice(String.format("Payment should be made by bank transfer or check made payable to %s.", organizationSettings.contactName.toUpperCase()));
         }
-    }
-
-    @Override
-    public void unsubscribe() {
-        compositeSubscription.clear();
     }
 }
