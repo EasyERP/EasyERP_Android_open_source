@@ -1,7 +1,6 @@
-package com.thinkmobiles.easyerp.presentation.base.rules;
+package com.thinkmobiles.easyerp.presentation.base.rules.content;
 
 import android.os.Bundle;
-import android.support.annotation.DrawableRes;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
@@ -17,6 +16,7 @@ import android.widget.Toast;
 
 import com.jakewharton.rxbinding.view.RxView;
 import com.thinkmobiles.easyerp.R;
+import com.thinkmobiles.easyerp.presentation.managers.ErrorManager;
 import com.thinkmobiles.easyerp.presentation.base.BaseMasterFlowFragment;
 import com.thinkmobiles.easyerp.presentation.screens.home.HomeActivity;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
@@ -29,12 +29,13 @@ import org.androidannotations.annotations.res.ColorRes;
 import java.util.concurrent.TimeUnit;
 
 /**
- * @author Alex Michenko (Created on 08.02.17).
+ * @author Alex Michenko (Created on 22.02.17).
  *         Company: Thinkmobiles
  *         Email: alex.michenko@thinkmobiles.com
  */
+
 @EFragment
-public abstract class RefreshFragment extends BaseMasterFlowFragment<HomeActivity> {
+public abstract class ContentFragment extends BaseMasterFlowFragment<HomeActivity> implements ContentView {
 
     @ViewById
     protected SwipeRefreshLayout srlHolderRefresh;
@@ -61,10 +62,7 @@ public abstract class RefreshFragment extends BaseMasterFlowFragment<HomeActivit
     protected int colorPrimaryDark;
 
     protected abstract int getLayoutRes();
-
-    protected abstract void onRetry();
-
-    protected abstract void onRefreshData();
+    protected abstract ContentPresenter getPresenter();
 
     @Nullable
     @Override
@@ -76,21 +74,29 @@ public abstract class RefreshFragment extends BaseMasterFlowFragment<HomeActivit
         return parent;
     }
 
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        //Do nothing
-    }
-
     @AfterViews
     protected void initHolderUI() {
         srlHolderRefresh.setColorSchemeColors(colorPrimary, colorPrimaryDark);
         srlHolderRefresh.setOnRefreshListener(this::onRefreshData);
         RxView.clicks(btnHolderTry)
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
-                .subscribe(aVoid -> onRetry());
+                .subscribe(aVoid -> getPresenter().subscribe());
+
+        getPresenter().subscribe();
     }
 
-    protected void showProgressBar(Constants.ProgressType type) {
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        getPresenter().unsubscribe();
+    }
+
+    protected void onRefreshData() {
+        getPresenter().refresh();
+    }
+
+    @Override
+    public void showProgress(Constants.ProgressType type) {
         llHolderError.setVisibility(View.GONE);
         switch (type) {
             case BOTTOM:
@@ -116,48 +122,32 @@ public abstract class RefreshFragment extends BaseMasterFlowFragment<HomeActivit
         return flContent;
     }
 
-    protected void showErrorState(final ErrorType errorType) {
-        showProgressBar(Constants.ProgressType.NONE);
+    @Override
+    public void displayErrorState(final Constants.ErrorType errorType) {
+        showErrorState(errorType);
+    }
+
+    protected boolean showErrorState(final Constants.ErrorType errorType) {
+        showProgress(Constants.ProgressType.NONE);
+        getHiddenView().setVisibility(View.GONE);
         llHolderError.setVisibility(View.VISIBLE);
-        ivHolderIcon.setImageResource(getPlaceholderIcon(errorType));
-        llHolderError.setBackgroundResource(android.R.color.white);
-
+        ivHolderIcon.setImageResource(ErrorManager.getErrorIcon(errorType));
+        tvHolderMessage.setText(ErrorManager.getErrorMessage(errorType));
+        srlHolderRefresh.setEnabled(false);
         switch (errorType) {
-            case LIST_EMPTY:
-                llHolderError.setBackgroundResource(android.R.color.transparent);
-                btnHolderTry.setVisibility(View.GONE);
-                srlHolderRefresh.setEnabled(true);
-                tvHolderMessage.setText(R.string.list_is_empty);
-                break;
+            case UNKNOWN:
             case NETWORK:
                 btnHolderTry.setVisibility(View.VISIBLE);
-                srlHolderRefresh.setEnabled(false);
-                tvHolderMessage.setText(R.string.error_connection);
-                break;
-            case UNKNOWN:
-                btnHolderTry.setVisibility(View.VISIBLE);
-                srlHolderRefresh.setEnabled(false);
-                tvHolderMessage.setText(R.string.error_unknown);
-                break;
+                return true;
+            default:
+                return false;
         }
     }
 
-    protected void showErrorToast(String message) {
-        showProgressBar(Constants.ProgressType.NONE);
-        toast.setText(message);
+    @Override
+    public void displayErrorToast(Constants.ErrorType errorType) {
+        showProgress(Constants.ProgressType.NONE);
+        toast.setText(ErrorManager.getErrorMessage(errorType));
         toast.show();
-    }
-
-    private
-    @DrawableRes
-    int getPlaceholderIcon(final ErrorType errorType) {
-        switch (errorType) {
-            case LIST_EMPTY:
-                return R.drawable.ic_empty_list;
-            case NETWORK:
-            case UNKNOWN:
-                return R.drawable.ic_error;
-        }
-        return 0;
     }
 }

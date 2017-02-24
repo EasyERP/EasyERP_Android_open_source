@@ -22,8 +22,8 @@ import com.thinkmobiles.easyerp.data.model.crm.leads.TagItem;
 import com.thinkmobiles.easyerp.domain.crm.LeadsRepository;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.AttachmentAdapter;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.HistoryAdapter;
-import com.thinkmobiles.easyerp.presentation.base.rules.ErrorType;
-import com.thinkmobiles.easyerp.presentation.base.rules.RefreshFragment;
+import com.thinkmobiles.easyerp.presentation.base.rules.content.ContentFragment;
+import com.thinkmobiles.easyerp.presentation.base.rules.content.ContentPresenter;
 import com.thinkmobiles.easyerp.presentation.custom.RoundRectDrawable;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.AttachmentDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.HistoryDH;
@@ -43,11 +43,16 @@ import java.util.concurrent.TimeUnit;
 
 
 @EFragment
-public class LeadDetailsFragment extends RefreshFragment implements LeadDetailsContract.LeadDetailsView {
+public class LeadDetailsFragment extends ContentFragment implements LeadDetailsContract.LeadDetailsView {
 
     @Override
     protected int getLayoutRes() {
         return R.layout.fragment_lead_details;
+    }
+
+    @Override
+    protected ContentPresenter getPresenter() {
+        return presenter;
     }
 
     private LeadDetailsContract.LeadDetailsPresenter presenter;
@@ -149,8 +154,6 @@ public class LeadDetailsFragment extends RefreshFragment implements LeadDetailsC
                 .subscribe(aVoid -> presenter.changeNotesVisibility());
 
         animationHelper.init(ivIconArrow, rvHistory);
-
-        presenter.subscribe();
     }
 
     public boolean optionsMenuForDetail() {
@@ -160,7 +163,6 @@ public class LeadDetailsFragment extends RefreshFragment implements LeadDetailsC
     @Override
     public void onDestroyView() {
         animationHelper.cancel();
-        presenter.unsubscribe();
         super.onDestroyView();
     }
 
@@ -173,21 +175,6 @@ public class LeadDetailsFragment extends RefreshFragment implements LeadDetailsC
     @Override
     public void setPresenter(LeadDetailsContract.LeadDetailsPresenter presenter) {
         this.presenter = presenter;
-    }
-
-    @Override
-    protected void onRetry() {
-        presenter.subscribe();
-    }
-
-    @Override
-    protected void onRefreshData() {
-        presenter.refresh();
-    }
-
-    @Override
-    public void showProgress(Constants.ProgressType type) {
-        showProgressBar(type);
     }
 
     @Override
@@ -309,16 +296,6 @@ public class LeadDetailsFragment extends RefreshFragment implements LeadDetailsC
         }
         if (!enable && rvHistory.getVisibility() == View.VISIBLE)
             animationHelper.backward(rvHistory.getHeight());
-    }
-
-    @Override
-    public void displayErrorState(ErrorType errorType) {
-        showErrorState(errorType);
-    }
-
-    @Override
-    public void displayErrorToast(String message) {
-        showErrorToast(message);
     }
 
     @Override

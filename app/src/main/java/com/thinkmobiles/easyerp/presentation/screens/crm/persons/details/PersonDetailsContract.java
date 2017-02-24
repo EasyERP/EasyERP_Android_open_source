@@ -2,13 +2,12 @@ package com.thinkmobiles.easyerp.presentation.screens.crm.persons.details;
 
 import com.thinkmobiles.easyerp.data.model.crm.persons.details.ResponseGetPersonDetails;
 import com.thinkmobiles.easyerp.presentation.base.BaseModel;
-import com.thinkmobiles.easyerp.presentation.base.BasePresenter;
 import com.thinkmobiles.easyerp.presentation.base.BaseView;
-import com.thinkmobiles.easyerp.presentation.base.rules.ErrorType;
+import com.thinkmobiles.easyerp.presentation.base.rules.content.ContentPresenter;
+import com.thinkmobiles.easyerp.presentation.base.rules.content.ContentView;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.AttachmentDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.HistoryDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.LeadAndOpportunityDH;
-import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
 import java.util.ArrayList;
 
@@ -19,17 +18,13 @@ import rx.Observable;
  */
 
 public interface PersonDetailsContract {
-    interface PersonDetailsView extends BaseView<PersonDetailsPresenter> {
-        void showProgress(Constants.ProgressType type);
+    interface PersonDetailsView extends BaseView<PersonDetailsPresenter>, ContentView {
         void showHistory(boolean isShow);
 
         void showCompanyInfo(boolean isShow);
         void showSalesPurchasesInfo(boolean isShow);
         void showLeadsAndOpportunities(boolean isShown);
         void showAttachments(boolean isShown);
-
-        void displayErrorState(final ErrorType errorType);
-        void displayErrorToast(final String msg);
 
         void showJobPosition(boolean isShown);
         void showCompany(boolean isShown);
@@ -87,9 +82,8 @@ public interface PersonDetailsContract {
         void startUrlIntent(String url);
 
     }
-    interface PersonDetailsPresenter extends BasePresenter {
+    interface PersonDetailsPresenter extends ContentPresenter {
         void changeNotesVisibility();
-        void refresh();
         void startAttachment(int pos);
     }
     interface PersonDetailsModel extends BaseModel {

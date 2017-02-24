@@ -22,8 +22,8 @@ import com.thinkmobiles.easyerp.domain.crm.PersonsRepository;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.AttachmentAdapter;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.HistoryAdapter;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.OpportunityAndLeadsAdapter;
-import com.thinkmobiles.easyerp.presentation.base.rules.ErrorType;
-import com.thinkmobiles.easyerp.presentation.base.rules.RefreshFragment;
+import com.thinkmobiles.easyerp.presentation.base.rules.content.ContentFragment;
+import com.thinkmobiles.easyerp.presentation.base.rules.content.ContentPresenter;
 import com.thinkmobiles.easyerp.presentation.custom.transformations.CropCircleTransformation;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.AttachmentDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.HistoryDH;
@@ -48,7 +48,7 @@ import java.util.concurrent.TimeUnit;
  */
 
 @EFragment
-public class PersonDetailsFragment extends RefreshFragment implements PersonDetailsContract.PersonDetailsView {
+public class PersonDetailsFragment extends ContentFragment implements PersonDetailsContract.PersonDetailsView {
 
     @Override
     protected int getLayoutRes() {
@@ -185,6 +185,11 @@ public class PersonDetailsFragment extends RefreshFragment implements PersonDeta
     @Bean
     protected AttachmentAdapter attachmentAdapter;
 
+    @Override
+    protected ContentPresenter getPresenter() {
+        return presenter;
+    }
+
     @AfterViews
     protected void initUI() {
         setEmptyData();
@@ -204,24 +209,12 @@ public class PersonDetailsFragment extends RefreshFragment implements PersonDeta
 
         animationHelper.init(ivIconArrow, rvHistory);
 
-        presenter.subscribe();
-    }
-
-    @Override
-    protected void onRetry() {
-        presenter.subscribe();
-    }
-
-    @Override
-    protected void onRefreshData() {
-        presenter.refresh();
     }
 
     @Override
     public void onDestroyView() {
-        animationHelper.cancel();
-        presenter.unsubscribe();
         super.onDestroyView();
+        animationHelper.cancel();
     }
 
     @Override
@@ -385,16 +378,6 @@ public class PersonDetailsFragment extends RefreshFragment implements PersonDeta
     }
 
     @Override
-    public void displayErrorState(ErrorType errorType) {
-        showErrorState(errorType);
-    }
-
-    @Override
-    public void displayErrorToast(String msg) {
-        showErrorToast(msg);
-    }
-
-    @Override
     public void showJobPosition(boolean isShown) {
         tvJobPosition_FPD.setVisibility(isShown ? View.VISIBLE : View.GONE);
     }
@@ -511,11 +494,6 @@ public class PersonDetailsFragment extends RefreshFragment implements PersonDeta
     @Override
     public void displayAttachments(ArrayList<AttachmentDH> attachmentDHs) {
         attachmentAdapter.setListDH(attachmentDHs);
-    }
-
-    @Override
-    public void showProgress(Constants.ProgressType type) {
-        showProgressBar(type);
     }
 
     @Override

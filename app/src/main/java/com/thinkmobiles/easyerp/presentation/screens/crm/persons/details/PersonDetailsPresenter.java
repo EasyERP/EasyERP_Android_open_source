@@ -5,6 +5,8 @@ import android.text.TextUtils;
 import com.thinkmobiles.easyerp.data.model.crm.leads.detail.AttachmentItem;
 import com.thinkmobiles.easyerp.data.model.crm.persons.details.OpportunityItem;
 import com.thinkmobiles.easyerp.data.model.crm.persons.details.ResponseGetPersonDetails;
+import com.thinkmobiles.easyerp.presentation.base.rules.content.ContentPresenterHelper;
+import com.thinkmobiles.easyerp.presentation.base.rules.content.ContentView;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.AttachmentDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.HistoryDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.LeadAndOpportunityDH;
@@ -21,12 +23,11 @@ import rx.subscriptions.CompositeSubscription;
  * Created by Lynx on 1/24/2017.
  */
 
-public class PersonDetailsPresenter implements PersonDetailsContract.PersonDetailsPresenter {
+public class PersonDetailsPresenter extends ContentPresenterHelper implements PersonDetailsContract.PersonDetailsPresenter {
 
     private PersonDetailsContract.PersonDetailsView view;
     private PersonDetailsContract.PersonDetailsModel model;
     private String personID;
-    private CompositeSubscription compositeSubscription;
 
     private ResponseGetPersonDetails currentPerson;
     private boolean isVisibleHistory;
@@ -35,9 +36,23 @@ public class PersonDetailsPresenter implements PersonDetailsContract.PersonDetai
         this.view = view;
         this.model = model;
         this.personID = personID;
-        compositeSubscription = new CompositeSubscription();
 
         view.setPresenter(this);
+    }
+
+    @Override
+    protected ContentView getView() {
+        return view;
+    }
+
+    @Override
+    protected boolean hasContent() {
+        return currentPerson != null;
+    }
+
+    @Override
+    protected void retainInstance() {
+        setData(currentPerson);
     }
 
     @Override
@@ -53,34 +68,13 @@ public class PersonDetailsPresenter implements PersonDetailsContract.PersonDetai
                     view.showProgress(Constants.ProgressType.NONE);
                     currentPerson = responseGetPersonDetails;
                     setData(currentPerson);
-                }, throwable -> {
-                    if(currentPerson == null)
-                        view.displayErrorState(ErrorManager.getErrorType(throwable));
-                    else
-                        view.displayErrorToast(ErrorManager.getErrorMessage(throwable));
-                }));
+                },  t -> error(t)));
     }
 
     @Override
     public void startAttachment(int pos) {
         String url = String.format("%sdownload/%s", Constants.BASE_URL, currentPerson.attachments.get(pos).shortPath);
         view.startUrlIntent(url);
-    }
-
-    @Override
-    public void subscribe() {
-        if (currentPerson == null) {
-            view.showProgress(Constants.ProgressType.CENTER);
-            refresh();
-        } else {
-            setData(currentPerson);
-        }
-    }
-
-    @Override
-    public void unsubscribe() {
-        if (compositeSubscription.hasSubscriptions())
-            compositeSubscription.clear();
     }
 
     private void setData(ResponseGetPersonDetails data) {

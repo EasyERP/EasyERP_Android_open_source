@@ -4,6 +4,8 @@ import android.text.TextUtils;
 
 import com.thinkmobiles.easyerp.data.model.crm.leads.detail.AttachmentItem;
 import com.thinkmobiles.easyerp.data.model.crm.opportunities.detail.ResponseGetOpportunityDetails;
+import com.thinkmobiles.easyerp.presentation.base.rules.content.ContentPresenterHelper;
+import com.thinkmobiles.easyerp.presentation.base.rules.content.ContentView;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.AttachmentDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.ContactDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.HistoryDH;
@@ -21,13 +23,12 @@ import rx.subscriptions.CompositeSubscription;
  * Created by Lynx on 2/1/2017.
  */
 
-public class OpportunityDetailsPresenter implements OpportunityDetailsContract.OpportunityDetailsPresenter {
+public class OpportunityDetailsPresenter extends ContentPresenterHelper implements OpportunityDetailsContract.OpportunityDetailsPresenter {
 
     private OpportunityDetailsContract.OpportunityDetailsView view;
     private OpportunityDetailsContract.OpportunityDetailsModel model;
     private String opportunityID;
     private ResponseGetOpportunityDetails currentOpportunity;
-    private CompositeSubscription compositeSubscription;
     private boolean isVisibleHistory;
 
     public OpportunityDetailsPresenter(OpportunityDetailsContract.OpportunityDetailsView view, OpportunityDetailsContract.OpportunityDetailsModel model, String opportunityID) {
@@ -52,12 +53,7 @@ public class OpportunityDetailsPresenter implements OpportunityDetailsContract.O
                     currentOpportunity = responseGetLeadDetails;
                     setData(currentOpportunity);
                     view.showProgress(Constants.ProgressType.NONE);
-                }, throwable -> {
-                    if(currentOpportunity != null)
-                        view.displayErrorToast(ErrorManager.getErrorMessage(throwable));
-                    else
-                        view.displayErrorState(ErrorManager.getErrorType(throwable));
-                }));
+                },  t -> error(t)));
     }
 
     @Override
@@ -67,18 +63,18 @@ public class OpportunityDetailsPresenter implements OpportunityDetailsContract.O
     }
 
     @Override
-    public void subscribe() {
-        if(currentOpportunity == null) {
-            view.showProgress(Constants.ProgressType.CENTER);
-            refresh();
-        } else {
-            setData(currentOpportunity);
-        }
+    protected ContentView getView() {
+        return view;
     }
 
     @Override
-    public void unsubscribe() {
-        if(compositeSubscription.hasSubscriptions()) compositeSubscription.clear();
+    protected boolean hasContent() {
+        return currentOpportunity != null;
+    }
+
+    @Override
+    protected void retainInstance() {
+        setData(currentOpportunity);
     }
 
     private void setData(ResponseGetOpportunityDetails data) {

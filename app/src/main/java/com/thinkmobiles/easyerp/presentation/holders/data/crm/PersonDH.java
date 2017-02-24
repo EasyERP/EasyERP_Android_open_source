@@ -1,13 +1,13 @@
 package com.thinkmobiles.easyerp.presentation.holders.data.crm;
 
 import com.thinkmobiles.easyerp.data.model.crm.persons.person_item.PersonModel;
-import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectableDHHelper;
+import com.thinkmobiles.easyerp.presentation.base.rules.master.selectable.SelectableDHHelper;
 
 /**
  * Created by Lynx on 1/23/2017.
  */
 
-public final class PersonDH extends MasterFlowSelectableDHHelper<String> {
+public final class PersonDH extends SelectableDHHelper {
     private final String base64Image;
     private final PersonModel personModel;
 

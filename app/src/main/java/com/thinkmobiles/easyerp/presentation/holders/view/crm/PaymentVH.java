@@ -7,7 +7,7 @@ import android.widget.TextView;
 
 import com.michenko.simpleadapter.OnCardClickListener;
 import com.thinkmobiles.easyerp.R;
-import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectableVHHelper;
+import com.thinkmobiles.easyerp.presentation.base.rules.master.selectable.SelectableVHHelper;
 import com.thinkmobiles.easyerp.presentation.custom.RoundRectDrawable;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.PaymentDH;
 import com.thinkmobiles.easyerp.presentation.managers.DateManager;
@@ -20,7 +20,7 @@ import com.thinkmobiles.easyerp.presentation.utils.StringUtil;
  *         Company: Thinkmobiles
  *         Email: michael.soyma@thinkmobiles.com
  */
-public final class PaymentVH extends MasterFlowSelectableVHHelper<PaymentDH> {
+public final class PaymentVH extends SelectableVHHelper<PaymentDH> {
 
     private final TextView tvSourceDocument_VLIP;
     private final TextView tvPaymentCompany_VLIP;

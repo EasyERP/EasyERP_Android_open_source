@@ -21,7 +21,6 @@ import org.androidannotations.annotations.EBean;
 
 import java.util.ArrayList;
 
-import retrofit2.http.Query;
 import rx.Observable;
 
 /**
@@ -42,7 +41,7 @@ public class CompaniesRepository extends NetworkRepository implements CompaniesC
     }
 
     @Override
-    public Observable<ResponseGetAlphabet> getCompaniesAlphabet() {
+    public Observable<ResponseGetAlphabet> getAlphabet() {
         return getNetworkObservable(companiesService.getCompaniesAlphabet("Companies"));
     }
 
@@ -51,6 +50,7 @@ public class CompaniesRepository extends NetworkRepository implements CompaniesC
         return getNetworkObservable(customerService.getCustomerImages(companyIdList));
     }
 
+    @Override
     public Observable<ResponseGetCompanyDetails> getCompanyDetails(String companyID) {
         return getNetworkObservable(companiesService.getCompanyDetails(companyID));
     }

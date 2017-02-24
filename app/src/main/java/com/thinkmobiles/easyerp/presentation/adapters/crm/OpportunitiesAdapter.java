@@ -1,7 +1,7 @@
 package com.thinkmobiles.easyerp.presentation.adapters.crm;
 
 import com.thinkmobiles.easyerp.R;
-import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectableAdapter;
+import com.thinkmobiles.easyerp.presentation.base.rules.master.selectable.SelectableAdapter;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.OpportunityDH;
 import com.thinkmobiles.easyerp.presentation.holders.view.crm.OpportunityVH;
 
@@ -12,7 +12,7 @@ import org.androidannotations.annotations.EBean;
  */
 
 @EBean
-public class OpportunitiesAdapter extends MasterFlowSelectableAdapter<OpportunityDH, OpportunityVH> {
+public class OpportunitiesAdapter extends SelectableAdapter<OpportunityDH, OpportunityVH> {
     @Override
     protected int getItemLayout() {
         return R.layout.view_list_item_opportunity;
