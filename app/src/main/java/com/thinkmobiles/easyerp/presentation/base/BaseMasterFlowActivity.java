@@ -11,6 +11,7 @@ import android.text.TextUtils;
 import android.view.Menu;
 
 import com.thinkmobiles.easyerp.R;
+import com.thinkmobiles.easyerp.presentation.base.rules.master.selectable.SelectableView;
 import com.thinkmobiles.easyerp.presentation.screens.about.AboutUsActivity_;
 import com.thinkmobiles.easyerp.presentation.screens.tutorial.TutorialActivity_;
 
