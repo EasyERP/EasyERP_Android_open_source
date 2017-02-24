@@ -1,5 +1,6 @@
 package com.thinkmobiles.easyerp.presentation.utils;
 
+import org.androidannotations.annotations.sharedpreferences.DefaultBoolean;
 import org.androidannotations.annotations.sharedpreferences.DefaultInt;
 import org.androidannotations.annotations.sharedpreferences.DefaultLong;
 import org.androidannotations.annotations.sharedpreferences.SharedPref;
@@ -20,4 +21,12 @@ public interface AppDefaultStatesPreferences {
     @DefaultLong(-1)
     long customDateFilterToForCRMDashboardCharts();
 
+    @DefaultBoolean(value = false)
+    boolean dontShowRateDialog();
+
+    @DefaultLong(0)
+    long getAppLaunchesCount();
+
+    @DefaultLong(0)
+    long getFirstLaunchTime();
 }
