@@ -1,17 +1,23 @@
 package com.thinkmobiles.easyerp.presentation.managers;
 
+import android.app.Activity;
 import android.app.Application;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.app.AlertDialog;
 
+import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.presentation.utils.AppDefaultStatesPreferences_;
 
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.EBean;
 import org.androidannotations.annotations.RootContext;
+import org.androidannotations.annotations.res.StringRes;
 import org.androidannotations.annotations.sharedpreferences.Pref;
+
+import static com.thinkmobiles.easyerp.presentation.screens.about.tabs.about_app.AboutAppPresenter.LINK_MARKET;
+import static com.thinkmobiles.easyerp.presentation.screens.about.tabs.about_app.AboutAppPresenter.SCHEME_MARKET;
 
 /**
  * Created by Lynx on 2/24/2017.
@@ -24,7 +30,7 @@ public class RateAppManager {
     private final static int LAUNCHES_UNTIL_PROMPT = 7;
 
     @RootContext
-    protected Application application;
+    protected Activity activity;
 
     @Pref
     protected AppDefaultStatesPreferences_ statesPreferences;
@@ -52,17 +58,17 @@ public class RateAppManager {
     }
 
     private void displayRateDialog() {
-        new AlertDialog.Builder(application)
-                .setTitle("Rate this app")
-                .setMessage("If you enjoy using this app, would you mind taking a moment to rate it? It wan't take more than a minute. Thank you for your support!")
-                .setPositiveButton("Rate", (dialog, which) -> startRateAppIntent())
-                .setNegativeButton("No, thanks", (dialog, which) -> {
+        new AlertDialog.Builder(activity, R.style.DefaultTheme_NoTitleDialogWithAnimation)
+                .setTitle(R.string.title_rate_app)
+                .setMessage(R.string.msg_rate_app)
+                .setPositiveButton(R.string.btn_rate, (dialog, which) -> startRateAppIntent())
+                .setNegativeButton(R.string.btn_no_thanks, (dialog, which) -> {
                     statesPreferences.edit()
                             .dontShowRateDialog()
                             .put(true)
                             .apply();
                 })
-                .setNeutralButton("Later", (dialog, which) -> {
+                .setNeutralButton(R.string.btn_later, (dialog, which) -> {
 
                 })
                 .show();
@@ -73,16 +79,13 @@ public class RateAppManager {
                 .dontShowRateDialog()
                 .put(true)
                 .apply();
-        Uri uri = Uri.parse("market://details?id=" + application.getPackageName());
+        Uri uri = Uri.parse(String.format(SCHEME_MARKET, activity.getPackageName()));
         Intent goToMarket = new Intent(Intent.ACTION_VIEW, uri);
-        // To count with Play market backstack, After pressing back button,
-        // to taken back to our application, we need to add following flags to intent.
-        goToMarket.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY | Intent.FLAG_ACTIVITY_NEW_DOCUMENT | Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
         try {
-            application.startActivity(goToMarket);
+            activity.startActivity(goToMarket);
         } catch (ActivityNotFoundException e) {
-            application.startActivity(new Intent(Intent.ACTION_VIEW,
-                    Uri.parse("http://play.google.com/store/apps/details?id=" + application.getPackageName())));
+            activity.startActivity(new Intent(Intent.ACTION_VIEW,
+                    Uri.parse(String.format(LINK_MARKET, activity.getPackageName()))));
         }
     }
 

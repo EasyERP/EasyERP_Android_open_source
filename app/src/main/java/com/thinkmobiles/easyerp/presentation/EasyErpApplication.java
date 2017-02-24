@@ -36,8 +36,6 @@ public class EasyErpApplication extends Application {
 
     @Bean
     protected CookieManager cookieManager;
-    @Bean
-    protected RateAppManager rateAppManager;
 
     @Override
     public void onCreate() {
