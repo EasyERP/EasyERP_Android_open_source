@@ -10,7 +10,6 @@ import android.widget.Toast;
 
 import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.domain.UserRepository;
-import com.thinkmobiles.easyerp.presentation.managers.CookieManager;
 
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterViews;
@@ -19,7 +18,6 @@ import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.Extra;
 import org.androidannotations.annotations.OptionsItem;
 import org.androidannotations.annotations.ViewById;
-import org.androidannotations.annotations.res.BooleanRes;
 
 /**
  * Created by Lynx on 2/17/2017.

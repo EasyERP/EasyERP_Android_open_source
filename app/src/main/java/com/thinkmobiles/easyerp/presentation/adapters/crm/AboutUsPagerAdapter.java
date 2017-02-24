@@ -5,8 +5,8 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import com.thinkmobiles.easyerp.presentation.screens.about.tabs.about_app.AboutAppFragment_;
-import com.thinkmobiles.easyerp.presentation.screens.about.tabs.powered_by.PoweredByFragment_;
 import com.thinkmobiles.easyerp.presentation.screens.about.tabs.libraries.LibrariesFragment_;
+import com.thinkmobiles.easyerp.presentation.screens.about.tabs.powered_by.PoweredByFragment_;
 
 import java.util.Arrays;
 

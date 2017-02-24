@@ -1,7 +1,6 @@
 package com.thinkmobiles.easyerp.data.services;
 
 import com.thinkmobiles.easyerp.data.model.crm.filter.ResponseFilters;
-import com.thinkmobiles.easyerp.data.model.crm.filter.ResponseGetFilters;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
 import retrofit2.http.GET;

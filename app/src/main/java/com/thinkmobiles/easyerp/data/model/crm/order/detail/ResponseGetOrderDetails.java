@@ -6,6 +6,7 @@ import android.os.Parcelable;
 
 import com.google.gson.annotations.SerializedName;
 import com.thinkmobiles.easyerp.data.model.crm.dashboard.detail.order.OrderStatus;
+import com.thinkmobiles.easyerp.data.model.crm.filter.FilterItem;
 import com.thinkmobiles.easyerp.data.model.crm.invoice.Currency;
 import com.thinkmobiles.easyerp.data.model.crm.invoice.PaymentInfo;
 import com.thinkmobiles.easyerp.data.model.crm.leads.Workflow;
@@ -14,7 +15,6 @@ import com.thinkmobiles.easyerp.data.model.crm.leads.detail.CreatedEditedBy;
 import com.thinkmobiles.easyerp.data.model.crm.leads.detail.Groups;
 import com.thinkmobiles.easyerp.data.model.crm.leads.detail.NoteItem;
 import com.thinkmobiles.easyerp.data.model.crm.leads.detail.SalesPerson;
-import com.thinkmobiles.easyerp.data.model.crm.filter.FilterItem;
 import com.thinkmobiles.easyerp.data.model.crm.persons.details.CreatedEditedUserString;
 
 import java.util.ArrayList;

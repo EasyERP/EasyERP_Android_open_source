@@ -7,11 +7,9 @@ import com.thinkmobiles.easyerp.data.model.crm.invoice.detail.ResponseGetInvoice
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
 import java.util.List;
-import java.util.Map;
 
 import retrofit2.http.GET;
 import retrofit2.http.Query;
-import retrofit2.http.QueryMap;
 import retrofit2.http.Url;
 import rx.Observable;
 

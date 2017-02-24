@@ -8,7 +8,6 @@ import com.thinkmobiles.easyerp.presentation.base.rules.master.selectable.Select
 import com.thinkmobiles.easyerp.presentation.screens.crm.leads.details.LeadDetailsFragment_;
 
 import org.androidannotations.annotations.AfterInject;
-import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EFragment;
 

@@ -1,19 +1,13 @@
 package com.thinkmobiles.easyerp.presentation;
 
 import android.app.Application;
-import android.content.ActivityNotFoundException;
 import android.content.Intent;
-import android.net.Uri;
-import android.support.v7.app.AlertDialog;
-import android.text.TextUtils;
 
 import com.crashlytics.android.Crashlytics;
 import com.thinkmobiles.easyerp.BuildConfig;
 import com.thinkmobiles.easyerp.data.api.Rest;
 import com.thinkmobiles.easyerp.presentation.managers.CookieManager;
-import com.thinkmobiles.easyerp.presentation.managers.RateAppManager;
 import com.thinkmobiles.easyerp.presentation.screens.login.LoginActivity_;
-import com.thinkmobiles.easyerp.presentation.utils.AppDefaultStatesPreferences;
 import com.thinkmobiles.easyerp.presentation.utils.AppDefaultStatesPreferences_;
 
 import org.androidannotations.annotations.Bean;
