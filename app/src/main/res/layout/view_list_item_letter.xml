@@ -9,6 +9,6 @@
     android:paddingEnd="@dimen/default_padding_middle"
     android:paddingTop="@dimen/default_padding_half"
     android:paddingBottom="@dimen/default_padding_half"
-    android:textColor="@color/selector_alphabet_letter"
+    android:textColor="@color/selector_color_alphabet"
     android:textSize="@dimen/text_list_item_medium_16"
     android:theme="@style/DefaultTheme.ThemeHistory" />

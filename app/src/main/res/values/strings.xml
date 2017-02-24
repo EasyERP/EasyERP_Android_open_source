@@ -200,4 +200,9 @@
     A Mobile Solutions Company.
     <p>We create customized mobile applications for the most popular mobile platforms: iPhone&iPad, Android and Windows Phone.</p>
     ]]></string>
+    <string name="title_rate_app">Rate this app</string>
+    <string name="msg_rate_app">If you enjoy using this app, would you mind taking a moment to rate it? It wan\'t take more than a minute. Thank you for your support!</string>
+    <string name="btn_rate">Rate</string>
+    <string name="btn_no_thanks">No, thanks</string>
+    <string name="btn_later">Later</string>
 </resources>

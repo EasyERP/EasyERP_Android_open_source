@@ -1,7 +1,6 @@
 package com.thinkmobiles.easyerp.presentation.utils.filter;
 
 import android.net.Uri;
-import android.support.v4.util.Pair;
 import android.util.SparseArray;
 import android.view.Menu;
 
@@ -10,7 +9,6 @@ import com.thinkmobiles.easyerp.data.model.crm.filter.FilterItem;
 import com.thinkmobiles.easyerp.data.model.crm.filter.ResponseFilters;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.FilterDH;
 import com.thinkmobiles.easyerp.presentation.listeners.CheckFilterCallback;
-import com.thinkmobiles.easyerp.presentation.listeners.VisibilityCallback;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
 import java.util.ArrayList;

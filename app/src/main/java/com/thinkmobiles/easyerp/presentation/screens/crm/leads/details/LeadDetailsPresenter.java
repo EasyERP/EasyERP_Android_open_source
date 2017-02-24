@@ -16,8 +16,6 @@ import com.thinkmobiles.easyerp.presentation.utils.StringUtil;
 import java.util.ArrayList;
 import java.util.Collections;
 
-import rx.subscriptions.CompositeSubscription;
-
 public class LeadDetailsPresenter extends ContentPresenterHelper implements LeadDetailsContract.LeadDetailsPresenter {
 
     private LeadDetailsContract.LeadDetailsView view;

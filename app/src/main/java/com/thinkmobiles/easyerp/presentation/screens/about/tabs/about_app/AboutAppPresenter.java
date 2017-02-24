@@ -13,8 +13,8 @@ public class AboutAppPresenter implements AboutAppContract.AboutAppPresenter {
     private static final String LINK_TWITER = "https://twitter.com/easy_erp/";
     private static final String LINK_SKYPE = "skype:live:ligintir";
 
-    private static final String SCHEME_MARKET = "market://details?id=%s";
-    private static final String LINK_MARKET = "http://play.google.com/store/apps/details?id=%s";
+    public static final String SCHEME_MARKET = "market://details?id=%s";
+    public static final String LINK_MARKET = "http://play.google.com/store/apps/details?id=%s";
 
     private static final String CONTACT_US_EMAIL = "info@easyerp.com";
     private static final String CONTACT_US_SUBJECT = "EasyERP Android";

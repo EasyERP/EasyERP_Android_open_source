@@ -15,7 +15,6 @@ import android.text.Spanned;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
@@ -36,8 +35,8 @@ import com.thinkmobiles.easyerp.domain.UserRepository;
 import com.thinkmobiles.easyerp.presentation.dialogs.ForgotPasswordDialogFragment;
 import com.thinkmobiles.easyerp.presentation.dialogs.ForgotPasswordDialogFragment_;
 import com.thinkmobiles.easyerp.presentation.managers.CookieManager;
-import com.thinkmobiles.easyerp.presentation.screens.web.WebActivity_;
 import com.thinkmobiles.easyerp.presentation.screens.home.HomeActivity_;
+import com.thinkmobiles.easyerp.presentation.screens.web.WebActivity_;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
 import org.androidannotations.annotations.AfterInject;

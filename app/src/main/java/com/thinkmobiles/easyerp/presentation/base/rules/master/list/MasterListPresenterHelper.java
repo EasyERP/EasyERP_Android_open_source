@@ -1,7 +1,6 @@
 package com.thinkmobiles.easyerp.presentation.base.rules.master.list;
 
 import com.thinkmobiles.easyerp.presentation.base.rules.content.ContentPresenterHelper;
-import com.thinkmobiles.easyerp.presentation.managers.ErrorManager;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
 /**

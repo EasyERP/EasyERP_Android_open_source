@@ -16,7 +16,6 @@
 
 package com.thinkmobiles.easyerp.presentation.custom.transformations;
 
-import android.util.Log;
 import android.view.View;
 
 public class ZoomOutSlideTransformer extends BaseTransformer {
