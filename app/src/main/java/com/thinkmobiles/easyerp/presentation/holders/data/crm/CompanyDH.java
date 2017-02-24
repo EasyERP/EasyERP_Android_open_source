@@ -1,13 +1,13 @@
 package com.thinkmobiles.easyerp.presentation.holders.data.crm;
 
 import com.thinkmobiles.easyerp.data.model.crm.companies.CompanyListItem;
-import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectableDHHelper;
+import com.thinkmobiles.easyerp.presentation.base.rules.master.selectable.SelectableDHHelper;
 
 /**
  * Created by Lynx on 2/2/2017.
  */
 
-public final class CompanyDH extends MasterFlowSelectableDHHelper<String> {
+public final class CompanyDH extends SelectableDHHelper {
 
     private final CompanyListItem data;
     private final String companyImageBase64;

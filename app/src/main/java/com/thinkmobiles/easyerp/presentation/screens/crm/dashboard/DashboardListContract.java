@@ -3,13 +3,10 @@ package com.thinkmobiles.easyerp.presentation.screens.crm.dashboard;
 import com.thinkmobiles.easyerp.data.model.crm.dashboard.DashboardListItem;
 import com.thinkmobiles.easyerp.data.model.crm.dashboard.ResponseGetCRMDashboardCharts;
 import com.thinkmobiles.easyerp.presentation.base.BaseModel;
-import com.thinkmobiles.easyerp.presentation.base.rules.ErrorType;
-import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectableBasePresenter;
-import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectableBaseView;
-import com.thinkmobiles.easyerp.presentation.holders.data.crm.DashboardListDH;
-import com.thinkmobiles.easyerp.presentation.utils.Constants;
+import com.thinkmobiles.easyerp.presentation.base.BaseView;
+import com.thinkmobiles.easyerp.presentation.base.rules.master.selectable.SelectablePresenter;
+import com.thinkmobiles.easyerp.presentation.base.rules.master.selectable.SelectableView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import rx.Observable;
@@ -19,15 +16,10 @@ import rx.Observable;
  */
 
 public interface DashboardListContract {
-    interface DashboardListView extends MasterFlowSelectableBaseView<DashboardListPresenter> {
-        void displayDashboardChartsList(ArrayList<DashboardListDH> listDashboards);
+    interface DashboardListView extends BaseView<DashboardListPresenter>, SelectableView {
         void openDashboardChartDetail(final DashboardListItem itemChartDashboard);
-        void displayErrorState(final ErrorType errorType);
-        void displayErrorToast(final String msg);
-        void showProgress(Constants.ProgressType type);
     }
-    interface DashboardListPresenter extends MasterFlowSelectableBasePresenter<String, DashboardListDH> {
-        void loadDashboardChartsList();
+    interface DashboardListPresenter extends SelectablePresenter {
     }
     interface DashboardListModel extends BaseModel {
         Observable<List<ResponseGetCRMDashboardCharts>> getDashboardListCharts();

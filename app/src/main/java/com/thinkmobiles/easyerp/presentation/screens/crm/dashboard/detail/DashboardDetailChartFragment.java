@@ -10,13 +10,12 @@ import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.data.model.crm.dashboard.DashboardListItem;
 import com.thinkmobiles.easyerp.data.model.crm.dashboard.detail.DashboardChartType;
 import com.thinkmobiles.easyerp.domain.crm.DashboardRepository;
-import com.thinkmobiles.easyerp.presentation.base.rules.ErrorType;
-import com.thinkmobiles.easyerp.presentation.base.rules.RefreshFragment;
+import com.thinkmobiles.easyerp.presentation.base.rules.content.ContentFragment;
+import com.thinkmobiles.easyerp.presentation.base.rules.content.ContentPresenter;
 import com.thinkmobiles.easyerp.presentation.screens.crm.dashboard.detail.DashboardDetailChartContract.DashboardDetailChartView;
 import com.thinkmobiles.easyerp.presentation.screens.crm.dashboard.detail.charts.ChartViewFabric;
 import com.thinkmobiles.easyerp.presentation.screens.crm.dashboard.detail.charts.IChartView;
 import com.thinkmobiles.easyerp.presentation.utils.AppDefaultStatesPreferences_;
-import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterViews;
@@ -33,7 +32,7 @@ import java.util.GregorianCalendar;
  * @author michael.soyma@thinkmobiles.com (Created on 1/20/2017.)
  */
 @EFragment
-public class DashboardDetailChartFragment extends RefreshFragment implements DashboardDetailChartView {
+public class DashboardDetailChartFragment extends ContentFragment implements DashboardDetailChartView {
 
     @Override
     protected int getLayoutRes() {
@@ -65,24 +64,14 @@ public class DashboardDetailChartFragment extends RefreshFragment implements Das
         presenter = new DashboardDetailChartPresenter(this, dashboardRepository, dashboardConfigsForChart, appDefaultStatesPreferences);
     }
 
-    @AfterViews
-    protected void initUI() {
-        presenter.subscribe();
-    }
-
-    @Override
-    protected void onRetry() {
-        presenter.subscribe();
-    }
-
-    @Override
-    protected void onRefreshData() {
-        presenter.loadChartInfo();
-    }
-
     @Override
     public void setPresenter(DashboardDetailChartContract.DashboardDetailChartPresenter presenter) {
         this.presenter = presenter;
+    }
+
+    @Override
+    protected ContentPresenter getPresenter() {
+        return presenter;
     }
 
     @Override
@@ -115,27 +104,6 @@ public class DashboardDetailChartFragment extends RefreshFragment implements Das
                 dateTo.get(Calendar.DAY_OF_MONTH));
         dateRangePickerFragment.setAccentColor(colorPrimary);
         dateRangePickerFragment.show(getFragmentManager(), SmoothDateRangePickerFragment.class.getSimpleName());
-    }
-
-    @Override
-    public void displayErrorState(ErrorType errorType) {
-        showErrorState(errorType);
-    }
-
-    @Override
-    public void displayErrorToast(String msg) {
-        showErrorToast(msg);
-    }
-
-    @Override
-    public void showProgress(Constants.ProgressType type) {
-        showProgressBar(type);
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        presenter.unsubscribe();
     }
 
     @Override

@@ -9,14 +9,14 @@ import android.widget.TextView;
 import com.michenko.simpleadapter.OnCardClickListener;
 import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.data.model.crm.dashboard.detail.DashboardChartType;
-import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectableVHHelper;
+import com.thinkmobiles.easyerp.presentation.base.rules.master.selectable.SelectableVHHelper;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.DashboardListDH;
 
 /**
  * @author michael.soyma@thinkmobiles.com (Created on 1/18/2017.)
  */
 
-public final class DashboardVH extends MasterFlowSelectableVHHelper<DashboardListDH> {
+public final class DashboardVH extends SelectableVHHelper<DashboardListDH> {
 
     private final TextView tvDashboardName_VLICD;
     private final ImageView ivChartType_VLICD;

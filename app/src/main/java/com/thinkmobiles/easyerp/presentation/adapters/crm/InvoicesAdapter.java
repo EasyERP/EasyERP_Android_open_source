@@ -1,7 +1,7 @@
 package com.thinkmobiles.easyerp.presentation.adapters.crm;
 
 import com.thinkmobiles.easyerp.R;
-import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectableAdapter;
+import com.thinkmobiles.easyerp.presentation.base.rules.master.selectable.SelectableAdapter;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.InvoiceDH;
 import com.thinkmobiles.easyerp.presentation.holders.view.crm.InvoiceVH;
 
@@ -13,7 +13,7 @@ import org.androidannotations.annotations.EBean;
  *         Email: michael.soyma@thinkmobiles.com
  */
 @EBean
-public class InvoicesAdapter extends MasterFlowSelectableAdapter<InvoiceDH, InvoiceVH> {
+public class InvoicesAdapter extends SelectableAdapter<InvoiceDH, InvoiceVH> {
     @Override
     protected int getItemLayout() {
         return R.layout.view_list_item_invoice;

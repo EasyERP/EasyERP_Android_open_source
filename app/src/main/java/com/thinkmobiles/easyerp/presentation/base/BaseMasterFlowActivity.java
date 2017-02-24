@@ -11,7 +11,7 @@ import android.text.TextUtils;
 import android.view.Menu;
 
 import com.thinkmobiles.easyerp.R;
-import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowListSelectableFragment;
+import com.thinkmobiles.easyerp.presentation.base.rules.master.selectable.SelectableView;
 import com.thinkmobiles.easyerp.presentation.screens.about.WebActivity_;
 import com.thinkmobiles.easyerp.presentation.screens.tutorial.TutorialActivity_;
 
@@ -20,7 +20,6 @@ import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.InstanceState;
 import org.androidannotations.annotations.OptionsItem;
-import org.androidannotations.annotations.OptionsMenu;
 import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.res.BooleanRes;
 import org.androidannotations.annotations.res.StringRes;
@@ -155,8 +154,8 @@ public abstract class BaseMasterFlowActivity extends AppCompatActivity {
     private void sendEventClearSelectedItem() {
         final Fragment fragment = getFragmentManager().findFragmentById(contentIdLayout());
         if (fragment != null) {
-            if (fragment instanceof MasterFlowListSelectableFragment) {
-                ((MasterFlowListSelectableFragment) fragment).clearSelectedItem();
+            if (fragment instanceof SelectableView) {
+                ((SelectableView) fragment).clearSelectedItem();
             }
         }
 

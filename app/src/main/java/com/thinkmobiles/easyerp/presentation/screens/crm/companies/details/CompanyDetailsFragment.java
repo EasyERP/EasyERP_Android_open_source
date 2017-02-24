@@ -24,8 +24,8 @@ import com.thinkmobiles.easyerp.presentation.adapters.crm.AttachmentAdapter;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.ContactAdapter;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.HistoryAdapter;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.OpportunityAndLeadsAdapter;
-import com.thinkmobiles.easyerp.presentation.base.rules.ErrorType;
-import com.thinkmobiles.easyerp.presentation.base.rules.RefreshFragment;
+import com.thinkmobiles.easyerp.presentation.base.rules.content.ContentFragment;
+import com.thinkmobiles.easyerp.presentation.base.rules.content.ContentPresenter;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.AttachmentDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.ContactDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.HistoryDH;
@@ -49,7 +49,7 @@ import java.util.concurrent.TimeUnit;
  */
 
 @EFragment
-public class CompanyDetailsFragment extends RefreshFragment implements CompanyDetailsContract.CompanyDetailsView {
+public class CompanyDetailsFragment extends ContentFragment implements CompanyDetailsContract.CompanyDetailsView {
 
     @Override
     protected int getLayoutRes() {
@@ -202,24 +202,6 @@ public class CompanyDetailsFragment extends RefreshFragment implements CompanyDe
                 .subscribe(aVoid -> presenter.changeNotesVisibility());
 
         animationHelper.init(ivIconArrow, rvHistory);
-
-        presenter.subscribe();
-    }
-
-    @Override
-    protected void onRetry() {
-        presenter.subscribe();
-    }
-
-    @Override
-    protected void onRefreshData() {
-        presenter.refresh();
-    }
-    //region Set url
-
-    @Override
-    public void showProgress(Constants.ProgressType type) {
-        showProgressBar(type);
     }
 
     @Override
@@ -229,11 +211,6 @@ public class CompanyDetailsFragment extends RefreshFragment implements CompanyDe
         }
         if (!enable && rvHistory.getVisibility() == View.VISIBLE)
             animationHelper.backward(rvHistory.getHeight());
-    }
-
-    @Override
-    public void displayErrorToast(String msg) {
-        showErrorToast(msg);
     }
 
     @Override
@@ -270,11 +247,6 @@ public class CompanyDetailsFragment extends RefreshFragment implements CompanyDe
     public void showAttachments(boolean isShown) {
         flContainerAttachments_FCD.setVisibility(isShown ? View.VISIBLE : View.GONE);
         tvEmptyAttachments_FCD.setVisibility(isShown ? View.GONE : View.VISIBLE);
-    }
-
-    @Override
-    public void displayErrorState(ErrorType errorType) {
-        showErrorState(errorType);
     }
 
     @Override
@@ -493,9 +465,13 @@ public class CompanyDetailsFragment extends RefreshFragment implements CompanyDe
     }
 
     @Override
+    protected ContentPresenter getPresenter() {
+        return presenter;
+    }
+
+    @Override
     public void onDestroyView() {
         animationHelper.cancel();
-        presenter.unsubscribe();
         super.onDestroyView();
     }
 }

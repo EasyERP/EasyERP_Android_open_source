@@ -5,12 +5,13 @@ import com.thinkmobiles.easyerp.data.model.crm.invoice.detail.ResponseGetInvoice
 import com.thinkmobiles.easyerp.data.model.crm.leads.detail.AttachmentItem;
 import com.thinkmobiles.easyerp.data.model.crm.order.detail.OrderProduct;
 import com.thinkmobiles.easyerp.data.model.user.organization.OrganizationSettings;
+import com.thinkmobiles.easyerp.presentation.base.rules.content.ContentPresenterHelper;
+import com.thinkmobiles.easyerp.presentation.base.rules.content.ContentView;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.AttachmentDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.HistoryDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.InvoicePaymentDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.ProductDH;
 import com.thinkmobiles.easyerp.presentation.managers.DateManager;
-import com.thinkmobiles.easyerp.presentation.managers.ErrorManager;
 import com.thinkmobiles.easyerp.presentation.screens.crm.dashboard.detail.charts.DollarFormatter;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 import com.thinkmobiles.easyerp.presentation.utils.StringUtil;
@@ -26,7 +27,7 @@ import rx.subscriptions.CompositeSubscription;
  *         Email: alex.michenko@thinkmobiles.com
  */
 
-public class InvoiceDetailsPresenter implements InvoiceDetailsContract.InvoiceDetailsPresenter {
+public class InvoiceDetailsPresenter extends ContentPresenterHelper implements InvoiceDetailsContract.InvoiceDetailsPresenter {
 
 
     private InvoiceDetailsContract.InvoiceDetailsView view;
@@ -62,14 +63,7 @@ public class InvoiceDetailsPresenter implements InvoiceDetailsContract.InvoiceDe
                 .subscribe(responseGerOrderDetails -> {
                     view.showProgress(Constants.ProgressType.NONE);
                     setData(responseGerOrderDetails);
-                }, t -> {
-                    t.printStackTrace();
-                    if (currentInvoice == null) {
-                        view.displayErrorState(ErrorManager.getErrorType(t));
-                    } else {
-                        view.displayErrorToast(ErrorManager.getErrorMessage(t));
-                    }
-                }));
+                },  t -> error(t)));
     }
 
     private void getOrganizationSettings() {
@@ -90,15 +84,25 @@ public class InvoiceDetailsPresenter implements InvoiceDetailsContract.InvoiceDe
     }
 
     @Override
-    public void subscribe() {
-        if (currentInvoice == null) {
-            view.showProgress(Constants.ProgressType.CENTER);
-            refresh();
-            getOrganizationSettings();
-        } else {
-            setData(currentInvoice);
-            setOrgData(organizationSettings);
-        }
+    protected ContentView getView() {
+        return view;
+    }
+
+    @Override
+    protected void request() {
+        super.request();
+        getOrganizationSettings();
+    }
+
+    @Override
+    protected boolean hasContent() {
+        return currentInvoice != null;
+    }
+
+    @Override
+    protected void retainInstance() {
+        setData(currentInvoice);
+        setOrgData(organizationSettings);
     }
 
     private void setData(ResponseGetInvoiceDetails response) {
@@ -134,7 +138,7 @@ public class InvoiceDetailsPresenter implements InvoiceDetailsContract.InvoiceDe
         }
 
         if (response.payments != null && !response.payments.isEmpty()) {
-            view.setPayments(preparePaymentsList(response.payments));
+            view.setPayments(prepareList(response.payments));
         }
 
         if (response.products != null) {
@@ -153,16 +157,11 @@ public class InvoiceDetailsPresenter implements InvoiceDetailsContract.InvoiceDe
         return list;
     }
 
-    private ArrayList<InvoicePaymentDH> preparePaymentsList(ArrayList<InvoicePayment> products) {
+    private ArrayList<InvoicePaymentDH> prepareList(ArrayList<InvoicePayment> products) {
         ArrayList<InvoicePaymentDH> list = new ArrayList<>();
         for (InvoicePayment product : products){
             list.add(new InvoicePaymentDH(product));
         }
         return list;
-    }
-
-    @Override
-    public void unsubscribe() {
-        compositeSubscription.clear();
     }
 }

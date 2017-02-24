@@ -2,10 +2,9 @@ package com.thinkmobiles.easyerp.presentation.screens.crm.payments.details;
 
 import com.thinkmobiles.easyerp.data.model.user.organization.ResponseGetOrganizationSettings;
 import com.thinkmobiles.easyerp.presentation.base.BaseModel;
-import com.thinkmobiles.easyerp.presentation.base.BasePresenter;
 import com.thinkmobiles.easyerp.presentation.base.BaseView;
-import com.thinkmobiles.easyerp.presentation.base.rules.ErrorType;
-import com.thinkmobiles.easyerp.presentation.utils.Constants;
+import com.thinkmobiles.easyerp.presentation.base.rules.content.ContentPresenter;
+import com.thinkmobiles.easyerp.presentation.base.rules.content.ContentView;
 
 import rx.Observable;
 
@@ -17,8 +16,7 @@ import rx.Observable;
 
 public interface PaymentDetailsContract {
 
-    interface PaymentDetailsView extends BaseView<PaymentDetailsPresenter> {
-        void showProgress(Constants.ProgressType type);
+    interface PaymentDetailsView extends BaseView<PaymentDetailsPresenter>, ContentView {
 
         void setPaymentStatus(String paymentStatus);
         void setCompanyName(String companyName);
@@ -35,12 +33,9 @@ public interface PaymentDetailsContract {
         void setOwnerSite(String ownerSite);
         void setOwnerEmail(String ownerEmail);
         void setAdvice(String advice);
-
-        void displayErrorState(ErrorType errorType);
     }
 
-    interface PaymentDetailsPresenter extends BasePresenter {
-        void refresh();
+    interface PaymentDetailsPresenter extends ContentPresenter {
     }
 
     interface PaymentDetailsModel extends BaseModel {

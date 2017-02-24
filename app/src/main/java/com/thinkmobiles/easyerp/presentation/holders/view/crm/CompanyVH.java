@@ -9,7 +9,7 @@ import android.widget.TextView;
 import com.michenko.simpleadapter.OnCardClickListener;
 import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.data.model.crm.companies.CompanyListItem;
-import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectableVHHelper;
+import com.thinkmobiles.easyerp.presentation.base.rules.master.selectable.SelectableVHHelper;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.CompanyDH;
 import com.thinkmobiles.easyerp.presentation.managers.ImageHelper;
 
@@ -17,7 +17,7 @@ import com.thinkmobiles.easyerp.presentation.managers.ImageHelper;
  * Created by Lynx on 2/2/2017.
  */
 
-public final class CompanyVH extends MasterFlowSelectableVHHelper<CompanyDH> {
+public final class CompanyVH extends SelectableVHHelper<CompanyDH> {
 
     private final ImageView ivCompanyImage_VLIC;
     private final TextView tvCompanyName_VLIC;

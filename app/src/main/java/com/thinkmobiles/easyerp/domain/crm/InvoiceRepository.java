@@ -36,6 +36,7 @@ public class InvoiceRepository extends NetworkRepository implements InvoicesCont
         filterService = Rest.getInstance().getFilterService();
     }
 
+    @Override
     public Observable<ResponseGetInvoice> getFilteredInvoices(FilterHelper query, int page) {
         return getNetworkObservable(invoiceService.getInvoices(query
                 .createUrl(Constants.GET_INVOICE, "invoice", page)
@@ -54,7 +55,8 @@ public class InvoiceRepository extends NetworkRepository implements InvoicesCont
         return getNetworkObservable(userService.getOrganizationSettings());
     }
 
-    public Observable<ResponseFilters> getInvoiceFilters() {
+    @Override
+    public Observable<ResponseFilters> getFilters() {
         return getNetworkObservable(filterService.getListFilters("invoice"));
     }
 }

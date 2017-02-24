@@ -9,7 +9,6 @@ import rx.schedulers.Schedulers;
  */
 
 public abstract class NetworkRepository {
-    protected final int countListItems = 25;
 
     public  <T> Observable<T> getNetworkObservable(Observable<T> observable) {
         return observable.observeOn(AndroidSchedulers.mainThread())

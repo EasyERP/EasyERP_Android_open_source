@@ -3,13 +3,12 @@ package com.thinkmobiles.easyerp.presentation.screens.crm.orders.details;
 import com.thinkmobiles.easyerp.data.model.crm.order.detail.ResponseGetOrderDetails;
 import com.thinkmobiles.easyerp.data.model.user.organization.ResponseGetOrganizationSettings;
 import com.thinkmobiles.easyerp.presentation.base.BaseModel;
-import com.thinkmobiles.easyerp.presentation.base.BasePresenter;
 import com.thinkmobiles.easyerp.presentation.base.BaseView;
-import com.thinkmobiles.easyerp.presentation.base.rules.ErrorType;
+import com.thinkmobiles.easyerp.presentation.base.rules.content.ContentPresenter;
+import com.thinkmobiles.easyerp.presentation.base.rules.content.ContentView;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.AttachmentDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.HistoryDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.ProductDH;
-import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
 import java.util.ArrayList;
 
@@ -18,8 +17,7 @@ import rx.Observable;
 
 public interface OrderDetailsContract {
 
-    interface OrderDetailsView extends BaseView<OrderDetailsPresenter> {
-        void showProgress(Constants.ProgressType type);
+    interface OrderDetailsView extends BaseView<OrderDetailsPresenter>, ContentView {
         void showHistory(boolean enable);
 
         void setOrderStatusName(String orderStatus);
@@ -48,14 +46,10 @@ public interface OrderDetailsContract {
         void setAdvice(String advice);
         void setHistory(ArrayList<HistoryDH> history);
         void setProducts(ArrayList<ProductDH> products);
-
-        void displayErrorState(final ErrorType errorType);
-        void displayErrorToast(final String msg);
     }
 
-    interface OrderDetailsPresenter extends BasePresenter {
+    interface OrderDetailsPresenter extends ContentPresenter {
         void changeNotesVisibility();
-        void refresh();
     }
 
     interface OrderDetailsModel extends BaseModel {

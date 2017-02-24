@@ -31,6 +31,7 @@ public class OpportunitiesRepository extends NetworkRepository implements Opport
         filterService = Rest.getInstance().getFilterService();
     }
 
+    @Override
     public Observable<ResponseGetOpportunities> getOpportunities(FilterHelper query, int page) {
         return getNetworkObservable(opportunityService.getOpportunities(query
                 .createUrl(Constants.GET_OPPORTUNITIES, "Opportunities", page)
@@ -39,11 +40,13 @@ public class OpportunitiesRepository extends NetworkRepository implements Opport
         ));
     }
 
+    @Override
     public Observable<ResponseGetOpportunityDetails> getOpportunityDetails(String opportunityID) {
         return getNetworkObservable(opportunityService.getOpportunityDetails(opportunityID));
     }
 
-    public Observable<ResponseFilters> getOpportunityFilters() {
+    @Override
+    public Observable<ResponseFilters> getFilters() {
         return getNetworkObservable(filterService.getListFilters("Opportunities"));
     }
 

@@ -2,14 +2,13 @@ package com.thinkmobiles.easyerp.presentation.screens.crm.companies.details;
 
 import com.thinkmobiles.easyerp.data.model.crm.companies.detail.ResponseGetCompanyDetails;
 import com.thinkmobiles.easyerp.presentation.base.BaseModel;
-import com.thinkmobiles.easyerp.presentation.base.BasePresenter;
 import com.thinkmobiles.easyerp.presentation.base.BaseView;
-import com.thinkmobiles.easyerp.presentation.base.rules.ErrorType;
+import com.thinkmobiles.easyerp.presentation.base.rules.content.ContentPresenter;
+import com.thinkmobiles.easyerp.presentation.base.rules.content.ContentView;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.AttachmentDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.ContactDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.HistoryDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.LeadAndOpportunityDH;
-import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
 import java.util.ArrayList;
 
@@ -20,11 +19,8 @@ import rx.Observable;
  */
 
 public interface CompanyDetailsContract {
-    interface CompanyDetailsView extends BaseView<CompanyDetailsPresenter> {
+    interface CompanyDetailsView extends BaseView<CompanyDetailsPresenter>, ContentView {
         void showHistory(boolean isShow);
-        void showProgress(Constants.ProgressType type);
-        void displayErrorState(final ErrorType errorType);
-        void displayErrorToast(final String msg);
 
         void showBillingAddress(boolean isShown);
         void showShippingAddress(boolean isShown);
@@ -74,9 +70,8 @@ public interface CompanyDetailsContract {
         void displayHistory(ArrayList<HistoryDH> historyDHs);
         void startUrlIntent(String url);
     }
-    interface CompanyDetailsPresenter extends BasePresenter {
+    interface CompanyDetailsPresenter extends ContentPresenter {
         void changeNotesVisibility();
-        void refresh();
         void startAttachment(int pos);
     }
     interface CompanyDetailsModel extends BaseModel {

@@ -1,14 +1,12 @@
 package com.thinkmobiles.easyerp.presentation.screens.crm.orders.details;
 
 
-import android.content.res.Resources;
-
-import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.data.model.crm.leads.detail.AttachmentItem;
 import com.thinkmobiles.easyerp.data.model.crm.order.detail.OrderProduct;
 import com.thinkmobiles.easyerp.data.model.crm.order.detail.ResponseGetOrderDetails;
 import com.thinkmobiles.easyerp.data.model.user.organization.OrganizationSettings;
-import com.thinkmobiles.easyerp.presentation.EasyErpApplication;
+import com.thinkmobiles.easyerp.presentation.base.rules.content.ContentPresenterHelper;
+import com.thinkmobiles.easyerp.presentation.base.rules.content.ContentView;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.AttachmentDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.HistoryDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.ProductDH;
@@ -21,20 +19,15 @@ import com.thinkmobiles.easyerp.presentation.utils.StringUtil;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
-import rx.subscriptions.CompositeSubscription;
-
-public class OrderDetailsPresenter implements OrderDetailsContract.OrderDetailsPresenter {
+public class OrderDetailsPresenter extends ContentPresenterHelper implements OrderDetailsContract.OrderDetailsPresenter {
 
     private OrderDetailsContract.OrderDetailsView view;
     private OrderDetailsContract.OrderDetailsModel model;
     private String orderId;
-    private CompositeSubscription compositeSubscription;
 
     private ResponseGetOrderDetails currentOrder;
     private OrganizationSettings organizationSettings;
     private boolean isVisibleHistory;
-    private String notSpecified;
-    private Resources res;
     private DecimalFormat formatter;
 
     public OrderDetailsPresenter(OrderDetailsContract.OrderDetailsView view, OrderDetailsContract.OrderDetailsModel model, String orderId) {
@@ -43,10 +36,29 @@ public class OrderDetailsPresenter implements OrderDetailsContract.OrderDetailsP
         this.orderId = orderId;
         view.setPresenter(this);
 
-        compositeSubscription = new CompositeSubscription();
-        notSpecified = EasyErpApplication.getInstance().getString(R.string.err_not_specified);
-        res = EasyErpApplication.getInstance().getResources();
         formatter = new DollarFormatter().getFormat();
+    }
+
+    @Override
+    protected ContentView getView() {
+        return view;
+    }
+
+    @Override
+    protected boolean hasContent() {
+        return currentOrder != null;
+    }
+
+    @Override
+    protected void retainInstance() {
+        setData(currentOrder);
+        setOrgData(organizationSettings);
+    }
+
+    @Override
+    protected void request() {
+        super.request();
+        getOrganizationSettings();
     }
 
     @Override
@@ -61,14 +73,7 @@ public class OrderDetailsPresenter implements OrderDetailsContract.OrderDetailsP
                 .subscribe(responseGerOrderDetails -> {
                     view.showProgress(Constants.ProgressType.NONE);
                     setData(responseGerOrderDetails);
-                }, t -> {
-                    t.printStackTrace();
-                    if (currentOrder == null) {
-                        view.displayErrorState(ErrorManager.getErrorType(t));
-                    } else {
-                        view.displayErrorToast(t.getMessage());
-                    }
-                }));
+                },  t -> error(t)));
     }
 
     private void getOrganizationSettings() {
@@ -77,20 +82,8 @@ public class OrderDetailsPresenter implements OrderDetailsContract.OrderDetailsP
                     setOrgData(responseGetOrganizationSettings.data);
                 }, t -> {
                     t.printStackTrace();
-                    view.displayErrorToast(t.getMessage());
+                    view.displayErrorToast(ErrorManager.getErrorType(t));
                 }));
-    }
-
-    @Override
-    public void subscribe() {
-        if (currentOrder == null) {
-            view.showProgress(Constants.ProgressType.CENTER);
-            refresh();
-            getOrganizationSettings();
-        } else {
-            setData(currentOrder);
-            setOrgData(organizationSettings);
-        }
     }
 
     private void setOrgData(OrganizationSettings response) {
@@ -156,10 +149,5 @@ public class OrderDetailsPresenter implements OrderDetailsContract.OrderDetailsP
             list.add(new ProductDH(product, symbol));
         }
         return list;
-    }
-
-    @Override
-    public void unsubscribe() {
-        compositeSubscription.clear();
     }
 }

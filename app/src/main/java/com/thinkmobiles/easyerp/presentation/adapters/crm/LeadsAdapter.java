@@ -1,7 +1,7 @@
 package com.thinkmobiles.easyerp.presentation.adapters.crm;
 
 import com.thinkmobiles.easyerp.R;
-import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectableAdapter;
+import com.thinkmobiles.easyerp.presentation.base.rules.master.selectable.SelectableAdapter;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.LeadDH;
 import com.thinkmobiles.easyerp.presentation.holders.view.crm.LeadVH;
 
@@ -12,7 +12,7 @@ import org.androidannotations.annotations.EBean;
  */
 
 @EBean
-public class LeadsAdapter extends MasterFlowSelectableAdapter<LeadDH, LeadVH> {
+public class LeadsAdapter extends SelectableAdapter<LeadDH, LeadVH> {
 
     @Override
     protected int getItemLayout() {
