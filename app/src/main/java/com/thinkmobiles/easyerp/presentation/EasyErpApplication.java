@@ -4,7 +4,6 @@ import android.app.Application;
 import android.content.Intent;
 
 import com.crashlytics.android.Crashlytics;
-import com.facebook.stetho.Stetho;
 import com.thinkmobiles.easyerp.BuildConfig;
 import com.thinkmobiles.easyerp.data.api.Rest;
 import com.thinkmobiles.easyerp.presentation.managers.CookieManager;
@@ -31,12 +30,11 @@ public class EasyErpApplication extends Application {
     public void onCreate() {
         super.onCreate();
         INSTANCE = this;
-        if(BuildConfig.PRODUCTION) {
-            Fabric.with(this, new Crashlytics());
-        } else {
-            Stetho.initializeWithDefaults(this);
-        }
         Rest.getInstance().setCookieManager(cookieManager);
+
+        BuildConfig.STETHO.init(this);
+        if(BuildConfig.PRODUCTION)
+            Fabric.with(this, new Crashlytics());
     }
 
     public static EasyErpApplication getInstance() {

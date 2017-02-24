@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">EasyERP</string>
 
+    <string name="powered_by">Powered By</string>
+    <string name="libraries">Libraries</string>
+
     <string name="no_data">No data</string>
     <string name="hint_username">Username</string>
     <string name="hint_username_or_email">Username or Email</string>
@@ -68,7 +71,6 @@
     <string name="tags">Tags</string>
     <string name="attachments">Attachments</string>
     <string name="no_attachments">No attachments</string>
-    <string name="no_tags">No tags</string>
     <string name="notes_amp_timeline"><![CDATA[Notes & Timeline]]></string>
 
     <string name="list_searchview_hint">Search</string>
@@ -142,13 +144,12 @@
 
     <string name="profile">Profile:</string>
     <string name="last_access">Last Access:</string>
-    <string name="contact_name">Contact Name</string>
     <string name="order_details_title_order_preview">Order Preview</string>
     <string name="invoice_details_subtitle_payments">Payments</string>
     <string name="invoice_details_subtitle_invoice_preview">Invoice Preview</string>
     <string name="demo">Demo</string>
 
-    <string name="about_us">About us</string>
+    <string name="about_us">About Us</string>
 
     <string name="terms_and_conditions_privacy_policy">By signing up you agree Terms &amp; conditions and Privacy policy</string>
     <string name="forgot_password">Forgot Password</string>
@@ -165,4 +166,38 @@
     <string name="tutorial_3"><b>Hold</b> all your working contacts\nnear at hand</string>
     <string name="tutorial_4"><b>Look</b> through sales orders\nwith fulfilled products</string>
     <string name="tutorial_5"><b>Get</b> up-to-date information about\ninvoices and payments</string>
+
+    <string name="app_logo_in_text">Easy<b><font color='#4E86C3'>ERP</font></b></string>
+    <string name="app_description"><![CDATA[
+    We are a software engineering and consulting company which helps you to manage your working processes. <a href="https://easyerp.com">EasyERP</a> is a multichannel e-commerce management solution designed to meet varied operational requirements of the enterprises,  it is ideal for small and medium business.
+    <p>
+    <a href="https://easyerp.com">EasyERP</a> has the next features that can make your work more effective:<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;    1. Customer Relationship Management<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;    2. Reports<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;    3. Purchases and Sales orders management<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;    4. Payments<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;    5. Accounting<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;    6. Human Resource Management<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;    7. Inventory Management<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;    8. Integrations with Magento, Shopify and Etsy
+    </p>
+    <p>
+    The advantages of <a href="https://easyerp.com">EasyERP</a>:<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;    • Super fast and responsive<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;    • Stable for a load of users and big data storage<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;    • User-friendly and flexible<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;    • Highly Secured<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;    • Flexible platform<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;    • Easily customizable<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;    • Open-source
+    </p>
+    ]]></string>
+    <string name="contact_us">Contact Us</string>
+    <string name="rate_the_app">Rate the App</string>
+    <string name="visit_us">Visit us</string>
+    <string name="thinkmobiles_description"><![CDATA[
+    <font color="#4E86C3">Powered by Thinkmobiles ©.</font><br>
+    A Mobile Solutions Company.
+    <p>We create customized mobile applications for the most popular mobile platforms: iPhone&iPad, Android and Windows Phone.</p>
+    ]]></string>
 </resources>

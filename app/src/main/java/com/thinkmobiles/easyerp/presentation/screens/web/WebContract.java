@@ -1,4 +1,4 @@
-package com.thinkmobiles.easyerp.presentation.screens.about;
+package com.thinkmobiles.easyerp.presentation.screens.web;
 
 import com.thinkmobiles.easyerp.presentation.base.BaseModel;
 import com.thinkmobiles.easyerp.presentation.base.BasePresenter;

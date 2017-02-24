@@ -17,7 +17,7 @@ import org.androidannotations.annotations.SystemService;
  */
 
 @EFragment
-public abstract class BaseFragment<T extends BaseMasterFlowActivity> extends Fragment {
+public abstract class BaseMasterFlowFragment<T extends BaseMasterFlowActivity> extends Fragment {
 
     protected T mActivity;
 

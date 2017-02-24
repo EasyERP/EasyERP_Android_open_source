@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:scrollbars="none"
+    tools:background="@android:color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:padding="@dimen/default_padding">
+
+        <TextView
+            style="@style/RobotoRegular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/default_padding_half"
+            android:padding="@dimen/default_padding_half"
+            android:text="@string/app_logo_in_text"
+            android:textSize="68sp" />
+
+        <TextView
+            android:id="@+id/tvVersion_FAUS"
+            style="@style/RobotoRegular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_list_item_medium_16"
+            tools:text="Version: 1.0.1 (3)" />
+
+        <TextView
+            android:id="@+id/tvDescription_FAUS"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/default_padding"
+            android:padding="@dimen/default_padding_half"
+            tools:text="@string/app_description" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/ivFacebook_FAUE"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/default_padding_half"
+                android:padding="@dimen/default_padding_quart"
+                app:srcCompat="@drawable/ic_fb" />
+
+            <ImageView
+                android:id="@+id/ivLinkedIn_FAUE"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/default_padding_half"
+                android:padding="@dimen/default_padding_quart"
+                app:srcCompat="@drawable/ic_linkedin" />
+
+            <ImageView
+                android:id="@+id/ivSkype_FAUE"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/default_padding_half"
+                android:padding="@dimen/default_padding_quart"
+                app:srcCompat="@drawable/ic_skype" />
+
+            <ImageView
+                android:id="@+id/ivTwitter_FAUE"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/default_padding_half"
+                android:padding="@dimen/default_padding_quart"
+                app:srcCompat="@drawable/ic_twitter" />
+
+            <ImageView
+                android:id="@+id/ivYouTube_FAUE"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/default_padding_half"
+                android:padding="@dimen/default_padding_quart"
+                app:srcCompat="@drawable/ic_youtube" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/default_padding"
+            android:orientation="horizontal"
+            android:padding="@dimen/default_padding_half">
+
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/btnContactUs_FAUE"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/contact_us" />
+
+            <Space
+                android:layout_width="@dimen/default_padding_middle"
+                android:layout_height="match_parent" />
+
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/btnRateTheApp_FAUE"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/rate_the_app" />
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

@@ -11,8 +11,7 @@ import android.text.TextUtils;
 import android.view.Menu;
 
 import com.thinkmobiles.easyerp.R;
-import com.thinkmobiles.easyerp.presentation.base.rules.master.selectable.SelectableView;
-import com.thinkmobiles.easyerp.presentation.screens.about.WebActivity_;
+import com.thinkmobiles.easyerp.presentation.screens.about.AboutUsActivity_;
 import com.thinkmobiles.easyerp.presentation.screens.tutorial.TutorialActivity_;
 
 import org.androidannotations.annotations.AfterInject;
@@ -45,8 +44,6 @@ public abstract class BaseMasterFlowActivity extends AppCompatActivity {
 
     @InstanceState
     protected String title;
-    @StringRes(R.string.about_us)
-    protected String aboutUs;
 
     @AfterInject
     protected void listenFragmentBackStack() {
@@ -113,19 +110,19 @@ public abstract class BaseMasterFlowActivity extends AppCompatActivity {
         }
     }
 
-    public void replaceFragmentContent(final BaseFragment fragment, final String title) {
+    public void replaceFragmentContent(final BaseMasterFlowFragment fragment, final String title) {
         setToolbarTitle(title);
         replaceFragmentContentDetail(null);
         replaceFragment(fragment, contentIdLayout(), false);
     }
 
-    public void replaceFragmentContentDetail(final BaseFragment fragment) {
+    public void replaceFragmentContentDetail(final BaseMasterFlowFragment fragment) {
         if (!isPortrait && getFragmentManager().getBackStackEntryCount() > 0)
             getFragmentManager().popBackStackImmediate();
         replaceFragment(fragment, contentDetailIdLayout(), true);
     }
 
-    private void replaceFragment(final BaseFragment fragment, final int containerId, boolean withBackStack) {
+    private void replaceFragment(final BaseMasterFlowFragment fragment, final int containerId, boolean withBackStack) {
         if (fragment != null) {
             final FragmentTransaction ft = getFragmentManager().beginTransaction();
             ft.replace(containerId, fragment, fragment.getClass().getSimpleName());
@@ -163,17 +160,12 @@ public abstract class BaseMasterFlowActivity extends AppCompatActivity {
 
     @OptionsItem(R.id.menuTutorial_MB)
     protected void openTutorialScreen() {
-        TutorialActivity_.intent(this)
-                .isPreview(true)
-                .start();
+        TutorialActivity_.intent(this).isPreview(true).start();
     }
 
     @OptionsItem(R.id.menuAboutUs_MB)
     protected void openAboutUsScreen() {
-        WebActivity_.intent(this)
-                .title(aboutUs)
-                .url("http://www.thinkmobiles.com")
-                .start();
+        AboutUsActivity_.intent(this).start();
     }
 
     @OptionsItem(android.R.id.home)
@@ -186,5 +178,4 @@ public abstract class BaseMasterFlowActivity extends AppCompatActivity {
     protected abstract void onHomeMenuSelect(boolean isHamburger);
     protected abstract @IdRes int contentIdLayout();
     protected abstract @IdRes int contentDetailIdLayout();
-
 }

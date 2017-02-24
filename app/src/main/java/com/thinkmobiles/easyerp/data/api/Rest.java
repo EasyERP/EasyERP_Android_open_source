@@ -1,8 +1,8 @@
 package com.thinkmobiles.easyerp.data.api;
 
-import com.facebook.stetho.okhttp3.StethoInterceptor;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.thinkmobiles.easyerp.BuildConfig;
 import com.thinkmobiles.easyerp.data.api.deserializers.FilterDeserializer;
 import com.thinkmobiles.easyerp.data.api.interceptors.AddCookieInterceptor;
 import com.thinkmobiles.easyerp.data.api.interceptors.BadCookieInterceptor;
@@ -72,9 +72,8 @@ public class Rest {
         addCookieInterceptor = new AddCookieInterceptor();
         badCookieInterceptor = new BadCookieInterceptor();
 
-        OkHttpClient.Builder clientBuilder = new OkHttpClient.Builder()
-                .addNetworkInterceptor(new StethoInterceptor())
-                .addInterceptor(receiveCookieInterceptor);
+        OkHttpClient.Builder clientBuilder = new OkHttpClient.Builder().addInterceptor(receiveCookieInterceptor);
+        BuildConfig.STETHO.configureInterceptor(clientBuilder);
 
         Retrofit.Builder builder = new Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create(malformedGson))
@@ -84,7 +83,8 @@ public class Rest {
 
         retrofit = builder.build();
 
-        clientBuilder.addInterceptor(addCookieInterceptor)
+        clientBuilder
+                .addInterceptor(addCookieInterceptor)
                 .addInterceptor(badCookieInterceptor);
 
         retrofitFull = builder
@@ -95,8 +95,7 @@ public class Rest {
     }
 
     public static Rest getInstance() {
-        if (restInstance == null) restInstance = new Rest();
-        return restInstance;
+        return restInstance == null ? restInstance = new Rest() : restInstance;
     }
 
     public LoginService getLoginService() {
