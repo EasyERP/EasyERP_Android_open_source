@@ -20,7 +20,6 @@ import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.Extra;
 import org.androidannotations.annotations.OptionsItem;
 import org.androidannotations.annotations.ViewById;
-import org.androidannotations.annotations.res.BooleanRes;
 
 /**
  * Created by Lynx on 2/17/2017.

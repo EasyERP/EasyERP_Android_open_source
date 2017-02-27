@@ -1,7 +1,5 @@
 package com.thinkmobiles.easyerp.presentation.screens.web;
 
-import com.thinkmobiles.easyerp.presentation.managers.CookieManager;
-
 import rx.subscriptions.CompositeSubscription;
 
 /**

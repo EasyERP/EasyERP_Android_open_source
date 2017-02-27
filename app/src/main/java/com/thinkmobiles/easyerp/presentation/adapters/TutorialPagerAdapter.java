@@ -15,8 +15,6 @@ import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.EBean;
 import org.androidannotations.annotations.RootContext;
 
-import java.util.regex.Pattern;
-
 /**
  * Created by Lynx on 2/20/2017.
  */

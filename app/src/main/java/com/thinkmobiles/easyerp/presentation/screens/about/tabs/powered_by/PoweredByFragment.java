@@ -1,10 +1,8 @@
 package com.thinkmobiles.easyerp.presentation.screens.about.tabs.powered_by;
 
-import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
 import android.text.Html;
-import android.text.TextUtils;
 import android.widget.TextView;
 
 import com.thinkmobiles.easyerp.R;

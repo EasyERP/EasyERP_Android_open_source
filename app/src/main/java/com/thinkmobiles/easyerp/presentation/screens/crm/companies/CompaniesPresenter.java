@@ -1,128 +1,48 @@
 package com.thinkmobiles.easyerp.presentation.screens.crm.companies;
 
-import android.text.TextUtils;
-
-import com.thinkmobiles.easyerp.data.model.crm.common.alphabet.AlphabetItem;
 import com.thinkmobiles.easyerp.data.model.crm.common.images.CustomerImageItem;
 import com.thinkmobiles.easyerp.data.model.crm.companies.CommonCompaniesResponse;
 import com.thinkmobiles.easyerp.data.model.crm.companies.CompanyListItem;
 import com.thinkmobiles.easyerp.data.model.crm.companies.ResponseGetCompanies;
-import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectablePresenterHelper;
+import com.thinkmobiles.easyerp.presentation.base.rules.master.alphabetical.AlphabeticalModel;
+import com.thinkmobiles.easyerp.presentation.base.rules.master.alphabetical.AlphabeticalView;
+import com.thinkmobiles.easyerp.presentation.base.rules.master.alphabetical.MasterAlphabeticalPresenterHelper;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.CompanyDH;
-import com.thinkmobiles.easyerp.presentation.holders.data.crm.FilterDH;
 import com.thinkmobiles.easyerp.presentation.managers.ErrorManager;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
-import com.thinkmobiles.easyerp.presentation.utils.filter.FilterHelper;
 
 import java.util.ArrayList;
-
-import rx.Observable;
-import rx.subscriptions.CompositeSubscription;
 
 /**
  * Created by Lynx on 2/2/2017.
  */
 
-public class CompaniesPresenter extends MasterFlowSelectablePresenterHelper<String, CompanyDH> implements CompaniesContract.CompaniesPresenter {
+public class CompaniesPresenter extends MasterAlphabeticalPresenterHelper implements CompaniesContract.CompaniesPresenter {
 
     private CompaniesContract.CompaniesView view;
     private CompaniesContract.CompaniesModel model;
-    private CompositeSubscription compositeSubscription;
 
-    private String selectedLetter = "All";
-    private int currentPage = 1;
-    private int totalItems;
-
-    private ArrayList<AlphabetItem> enabledAlphabetItems = new ArrayList<>();
     private CommonCompaniesResponse companiesResponse = null;
-    private FilterHelper helper;
 
     public CompaniesPresenter(CompaniesContract.CompaniesView view, CompaniesContract.CompaniesModel model) {
         this.view = view;
         this.model = model;
-        compositeSubscription = new CompositeSubscription();
-        helper = new FilterHelper();
 
         view.setPresenter(this);
     }
 
     @Override
-    public void selectItem(CompanyDH dh, int position) {
-        if (super.selectItem(dh, position, view))
-            view.openCompanyDetailsScreen(dh.getId());
+    protected AlphabeticalView getView() {
+        return view;
     }
 
     @Override
-    public void setLetter(String letter) {
-        selectedLetter = letter;
-        view.showProgress(Constants.ProgressType.CENTER);
-        refresh();
+    protected AlphabeticalModel getModel() {
+        return model;
     }
 
     @Override
-    public void subscribe() {
-        if (companiesResponse == null && !helper.isInitialized() && enabledAlphabetItems.isEmpty()) {
-            loadFilters();
-            loadAlphabet();
-            getFirstPage();
-        } else {
-            view.displayEnabledLetters(enabledAlphabetItems);
-            setData(companiesResponse, true);
-        }
-    }
-
-    private void getFirstPage() {
-        view.showProgress(Constants.ProgressType.CENTER);
-        refresh();
-    }
-
-    @Override
-    public void refresh() {
-        loadMore(1);
-    }
-
-    @Override
-    public void loadNextPage() {
-        if (view.getCountItemsNow() == totalItems) {
-            return;
-        }
-        view.showProgress(Constants.ProgressType.BOTTOM);
-        loadMore(currentPage + 1);
-    }
-
-    @Override
-    public void unsubscribe() {
-        if (compositeSubscription.hasSubscriptions())
-            compositeSubscription.clear();
-    }
-
-
-    private void loadAlphabet() {
-        compositeSubscription.add(
-                model.getCompaniesAlphabet()
-                        .subscribe(responseGetPersonsAlphabet -> {
-                            enabledAlphabetItems = responseGetPersonsAlphabet.data;
-                            view.displayEnabledLetters(responseGetPersonsAlphabet.data);
-                            view.displaySelectedLetter(selectedLetter);
-                        }, t -> {
-                            t.printStackTrace();
-                            view.displayErrorToast(ErrorManager.getErrorMessage(t));
-                        })
-        );
-    }
-
-    private void loadFilters() {
-        compositeSubscription.add(model.getFilters()
-                .flatMap(responseFilters -> Observable.just(FilterHelper.create(responseFilters)))
-                .subscribe(filterHelper -> {
-                    helper = filterHelper;
-                    view.createMenuFilters(helper);
-                }, t -> {
-                    view.displayErrorToast(ErrorManager.getErrorMessage(t));
-                }));
-    }
-
-    private void loadMore(int page) {
+    protected void loadPage(int page) {
         final boolean needClear = page == 1;
         compositeSubscription.add(
                 model.getCompanies(helper, selectedLetter, page)
@@ -133,16 +53,30 @@ public class CompaniesPresenter extends MasterFlowSelectablePresenterHelper<Stri
                             totalItems = commonCompaniesResponse.responseGetCompanies.total;
                             saveData(commonCompaniesResponse, needClear);
                             setData(commonCompaniesResponse, needClear);
-                        }, this::error)
+                        },  t -> error(t))
         );
     }
 
-    private void error(Throwable t) {
-        if (companiesResponse == null) {
-            view.displayErrorState(ErrorManager.getErrorType(t));
-        } else {
-            view.displayErrorToast(ErrorManager.getErrorMessage(t));
-        }
+    @Override
+    protected int getCountItems() {
+        return companiesResponse.responseGetCompanies.data.size();
+    }
+
+    @Override
+    protected boolean hasContent() {
+        return companiesResponse != null;
+    }
+
+    @Override
+    protected void retainInstance() {
+        setData(companiesResponse, true);
+    }
+
+    @Override
+    public void clickItem(int position) {
+        String id = companiesResponse.responseGetCompanies.data.get(position).id;
+        if (super.selectItem(id, position))
+            view.openDetailsScreen(id);
     }
 
     private void saveData(CommonCompaniesResponse commonPersonsResponse, boolean needClear) {
@@ -155,7 +89,7 @@ public class CompaniesPresenter extends MasterFlowSelectablePresenterHelper<Stri
 
     private void setData(CommonCompaniesResponse commonPersonsResponse, boolean needClear) {
         view.displaySelectedLetter(selectedLetter);
-        view.displayCompanies(prepareDataHolders(commonPersonsResponse, needClear), needClear);
+        view.setDataList(prepareDataHolders(commonPersonsResponse, needClear), needClear);
         if (companiesResponse.responseGetCompanies.data.isEmpty()) {
             view.displayErrorState(ErrorManager.getErrorType(null));
         } else {
@@ -170,12 +104,12 @@ public class CompaniesPresenter extends MasterFlowSelectablePresenterHelper<Stri
             for (CustomerImageItem imageItem : commonCompaniesResponse.responseGetCustomersImages.data) {
                 if (companyListItem.id.equalsIgnoreCase(imageItem.id)) {
                     final CompanyDH companyDH = new CompanyDH(companyListItem, imageItem.imageSrc);
-                    makeSelectedDHIfNeed(companyDH, view, position++, needClear);
+                    makeSelectedDHIfNeed(companyDH, position++, needClear);
                     result.add(companyDH);
                 }
             }
         }
-        selectFirstElementIfNeed(result, view);
+        selectFirstElementIfNeed(result);
         return result;
     }
 
@@ -187,46 +121,5 @@ public class CompaniesPresenter extends MasterFlowSelectablePresenterHelper<Stri
             }
         }
         return companyIDs;
-    }
-
-    @Override
-    public void filterBySearchItem(FilterDH filterDH) {
-        helper.filterByItem(filterDH, (position, isVisible) -> view.selectFilter(position, isVisible));
-        getFirstPage();
-    }
-
-    @Override
-    public void filterBySearchText(String name) {
-        helper.filterByText(name, (position, isVisible) -> view.selectFilter(position, isVisible));
-        getFirstPage();
-    }
-
-    @Override
-    public void filterByList(ArrayList<FilterDH> filterDHs, int requestCode) {
-        helper.filterByList(filterDHs, requestCode, (position, isVisible) -> view.selectFilter(position, isVisible));
-        getFirstPage();
-    }
-
-    @Override
-    public void removeFilter(int requestCode) {
-        helper.removeFilter(requestCode, (position, isVisible) -> view.selectFilter(position, isVisible));
-        getFirstPage();
-    }
-
-    @Override
-    public void changeFilter(int position, String filterName) {
-        view.showFilterDialog(helper.getFilterList(position), position, filterName);
-    }
-
-    @Override
-    public void buildOptionMenu() {
-        view.createMenuFilters(helper);
-        helper.setupMenu((position, isVisible) -> view.selectFilter(position, isVisible));
-    }
-
-    @Override
-    public void removeAll() {
-        helper.removeAllFilters((position, isVisible) -> view.selectFilter(position, isVisible));
-        getFirstPage();
     }
 }

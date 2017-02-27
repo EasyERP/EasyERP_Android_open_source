@@ -1,29 +1,26 @@
 package com.thinkmobiles.easyerp.presentation.screens.crm.dashboard;
 
-import android.support.v7.widget.LinearLayoutManager;
-
 import com.thinkmobiles.easyerp.data.model.crm.dashboard.DashboardListItem;
 import com.thinkmobiles.easyerp.domain.crm.DashboardRepository;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.DashboardListAdapter;
+import com.thinkmobiles.easyerp.presentation.base.rules.master.selectable.MasterSelectableFragment;
+import com.thinkmobiles.easyerp.presentation.base.rules.master.selectable.SelectableAdapter;
+import com.thinkmobiles.easyerp.presentation.base.rules.master.selectable.SelectablePresenter;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorType;
 import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowListSelectableFragment;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.DashboardListDH;
 import com.thinkmobiles.easyerp.presentation.managers.GoogleAnalyticHelper;
 import com.thinkmobiles.easyerp.presentation.screens.crm.dashboard.detail.DashboardDetailChartFragment_;
-import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
 import org.androidannotations.annotations.AfterInject;
-import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EFragment;
-
-import java.util.ArrayList;
 
 /**
  * @author michael.soyma@thinkmobiles.com (Created on 1/18/2017.)
  */
 @EFragment
-public class DashboardListFragment extends MasterFlowListSelectableFragment implements DashboardListContract.DashboardListView {
+public class DashboardListFragment extends MasterSelectableFragment implements DashboardListContract.DashboardListView {
 
     private DashboardListContract.DashboardListPresenter presenter;
 
@@ -52,46 +49,21 @@ public class DashboardListFragment extends MasterFlowListSelectableFragment impl
     protected void initUI() {
         GoogleAnalyticHelper.trackScreenView(this, getResources().getConfiguration());
 
-        listRecycler.setLayoutManager(new LinearLayoutManager(mActivity, LinearLayoutManager.VERTICAL, false));
-        listRecycler.setAdapter(dashboardListAdapter);
         dashboardListAdapter.setOnCardClickListener((view, position, viewType) -> {
             String chartName = dashboardListAdapter.getItem(position).getDashboardListItem().name;
             GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_DASHBOARD_ITEM, chartName);
-            presenter.selectItem(dashboardListAdapter.getItem(position), position);
+            presenter.clickItem(position);
         });
-
-        presenter.subscribe();
     }
 
     @Override
-    public int getCountItemsNow() {
-        return dashboardListAdapter.getItemCount();
+    protected SelectablePresenter getPresenter() {
+        return presenter;
     }
 
     @Override
-    public void changeSelectedItem(int oldPosition, int newPosition) {
-        dashboardListAdapter.replaceSelectedItem(oldPosition, newPosition);
-    }
-
-    @Override
-    protected void onLoadNextPage() {
-
-    }
-
-    @Override
-    protected void onRetry() {
-        presenter.subscribe();
-    }
-
-    @Override
-    public void onRefreshData() {
-        super.onRefreshData();
-        presenter.loadDashboardChartsList();
-    }
-
-    @Override
-    public void displayDashboardChartsList(ArrayList<DashboardListDH> listDashboards) {
-        dashboardListAdapter.setListDH(listDashboards);
+    protected SelectableAdapter getAdapter() {
+        return dashboardListAdapter;
     }
 
     @Override
@@ -103,31 +75,5 @@ public class DashboardListFragment extends MasterFlowListSelectableFragment impl
         } else {
             mActivity.replaceFragmentContentDetail(null);
         }
-    }
-
-    @Override
-    public void displayErrorState(ErrorType errorType) {
-        showErrorState(errorType);
-    }
-
-    @Override
-    public void displayErrorToast(String msg) {
-        showErrorToast(msg);
-    }
-
-    @Override
-    public void showProgress(Constants.ProgressType type) {
-        showProgressBar(type);
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        presenter.unsubscribe();
-    }
-
-    @Override
-    public void clearSelectedItem() {
-        presenter.clearSelectedInfo();
     }
 }

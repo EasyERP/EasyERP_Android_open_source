@@ -3,42 +3,33 @@ package com.thinkmobiles.easyerp.presentation.screens.crm.leads.details;
 
 import android.text.TextUtils;
 
-import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.data.model.crm.leads.detail.AttachmentItem;
 import com.thinkmobiles.easyerp.data.model.crm.leads.detail.ResponseGetLeadDetails;
-import com.thinkmobiles.easyerp.presentation.EasyErpApplication;
+import com.thinkmobiles.easyerp.presentation.base.rules.content.ContentPresenterHelper;
+import com.thinkmobiles.easyerp.presentation.base.rules.content.ContentView;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.AttachmentDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.HistoryDH;
 import com.thinkmobiles.easyerp.presentation.managers.DateManager;
-import com.thinkmobiles.easyerp.presentation.managers.ErrorManager;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 import com.thinkmobiles.easyerp.presentation.utils.StringUtil;
 
 import java.util.ArrayList;
 import java.util.Collections;
 
-import rx.subscriptions.CompositeSubscription;
-
-public class LeadDetailsPresenter implements LeadDetailsContract.LeadDetailsPresenter {
+public class LeadDetailsPresenter extends ContentPresenterHelper implements LeadDetailsContract.LeadDetailsPresenter {
 
     private LeadDetailsContract.LeadDetailsView view;
     private LeadDetailsContract.LeadDetailsModel model;
-    private CompositeSubscription compositeSubscription;
     private String leadId;
 
     private ResponseGetLeadDetails currentLead;
     private boolean isVisibleHistory;
-    private String notSpecified;
 
     public LeadDetailsPresenter(LeadDetailsContract.LeadDetailsView view, LeadDetailsContract.LeadDetailsModel model, String leadId) {
         this.view = view;
         this.model = model;
         this.leadId = leadId;
         view.setPresenter(this);
-
-        compositeSubscription = new CompositeSubscription();
-
-        notSpecified = EasyErpApplication.getInstance().getString(R.string.err_not_specified);
     }
 
     @Override
@@ -54,12 +45,7 @@ public class LeadDetailsPresenter implements LeadDetailsContract.LeadDetailsPres
                     currentLead = responseGetLeadDetails;
                     setData(currentLead);
                     view.showProgress(Constants.ProgressType.NONE);
-                }, throwable -> {
-                    if(currentLead != null)
-                        view.displayErrorToast(ErrorManager.getErrorMessage(throwable));
-                    else
-                        view.displayErrorState(ErrorManager.getErrorType(throwable));
-                }));
+                }, t -> error(t)));
     }
 
     @Override
@@ -78,19 +64,18 @@ public class LeadDetailsPresenter implements LeadDetailsContract.LeadDetailsPres
     }
 
     @Override
-    public void subscribe() {
-        if (currentLead == null) {
-            view.showProgress(Constants.ProgressType.CENTER);
-            refresh();
-        } else {
-            setData(currentLead);
-        }
+    protected ContentView getView() {
+        return view;
     }
 
     @Override
-    public void unsubscribe() {
-        if (compositeSubscription.hasSubscriptions())
-            compositeSubscription.clear();
+    protected boolean hasContent() {
+        return currentLead != null;
+    }
+
+    @Override
+    protected void retainInstance() {
+        setData(currentLead);
     }
 
     private void displayBaseInfo(ResponseGetLeadDetails response) {

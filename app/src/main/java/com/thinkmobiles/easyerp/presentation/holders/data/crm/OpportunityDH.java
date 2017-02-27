@@ -1,13 +1,13 @@
 package com.thinkmobiles.easyerp.presentation.holders.data.crm;
 
 import com.thinkmobiles.easyerp.data.model.crm.opportunities.list_item.OpportunityListItem;
-import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectableDHHelper;
+import com.thinkmobiles.easyerp.presentation.base.rules.master.selectable.SelectableDHHelper;
 
 /**
  * Created by Lynx on 1/30/2017.
  */
 
-public final class OpportunityDH extends MasterFlowSelectableDHHelper<String> {
+public final class OpportunityDH extends SelectableDHHelper {
     private final OpportunityListItem opportunityListItem;
 
     public OpportunityDH(OpportunityListItem opportunityListItem) {

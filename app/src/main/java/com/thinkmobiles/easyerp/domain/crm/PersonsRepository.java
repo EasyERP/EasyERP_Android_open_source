@@ -11,6 +11,7 @@ import com.thinkmobiles.easyerp.data.model.crm.persons.details.ResponseGetPerson
 import com.thinkmobiles.easyerp.data.services.CustomerService;
 import com.thinkmobiles.easyerp.data.services.FilterService;
 import com.thinkmobiles.easyerp.data.services.PersonsService;
+import com.thinkmobiles.easyerp.presentation.base.NetworkRepository;
 import com.thinkmobiles.easyerp.presentation.screens.crm.persons.PersonsContract;
 import com.thinkmobiles.easyerp.presentation.screens.crm.persons.details.PersonDetailsContract;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
@@ -21,15 +22,13 @@ import org.androidannotations.annotations.EBean;
 import java.util.ArrayList;
 
 import rx.Observable;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
 
 /**
  * Created by Lynx on 1/20/2017.
  */
 
 @EBean(scope = EBean.Scope.Singleton)
-public class PersonsRepository implements PersonsContract.PersonsModel, PersonDetailsContract.PersonDetailsModel {
+public class PersonsRepository extends NetworkRepository implements PersonsContract.PersonsModel, PersonDetailsContract.PersonDetailsModel {
 
     private PersonsService personsService;
     private CustomerService customerService;
@@ -41,19 +40,17 @@ public class PersonsRepository implements PersonsContract.PersonsModel, PersonDe
         filterService = Rest.getInstance().getFilterService();
     }
 
-    private <T> Observable<T> getNetworkObservable(Observable<T> observable) {
-        return observable.observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.newThread());
-    }
-
-    public Observable<ResponseGetAlphabet> getPersonsAlphabet() {
+    @Override
+    public Observable<ResponseGetAlphabet> getAlphabet() {
         return getNetworkObservable(personsService.getPersonsAlphabet("Persons"));
     }
 
+    @Override
     public Observable<ResponseGetCustomersImages> getPersonImages(ArrayList<String> customerIdList) {
         return getNetworkObservable(customerService.getCustomerImages(customerIdList));
     }
 
+    @Override
     public Observable<ResponseGetPersonDetails> getPersonDetails(String personID) {
         return getNetworkObservable(personsService.getPersonDetails(personID));
     }

@@ -5,13 +5,15 @@ import android.widget.TextView;
 import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.data.model.crm.payments.Payment;
 import com.thinkmobiles.easyerp.domain.crm.PaymentsRepository;
+import com.thinkmobiles.easyerp.presentation.base.rules.content.ContentFragment;
+import com.thinkmobiles.easyerp.presentation.base.rules.content.ContentPresenter;
+import com.thinkmobiles.easyerp.presentation.managers.GoogleAnalyticHelper;
 import com.thinkmobiles.easyerp.presentation.base.rules.ErrorType;
 import com.thinkmobiles.easyerp.presentation.base.rules.RefreshFragment;
 import com.thinkmobiles.easyerp.presentation.managers.GoogleAnalyticHelper;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
 import org.androidannotations.annotations.AfterInject;
-import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.FragmentArg;
@@ -24,7 +26,7 @@ import org.androidannotations.annotations.ViewById;
  */
 
 @EFragment
-public class PaymentDetailsFragment extends RefreshFragment implements PaymentDetailsContract.PaymentDetailsView {
+public class PaymentDetailsFragment extends ContentFragment implements PaymentDetailsContract.PaymentDetailsView {
 
     @Override
     protected int getLayoutRes() {
@@ -79,26 +81,13 @@ public class PaymentDetailsFragment extends RefreshFragment implements PaymentDe
     }
 
     @AfterViews
-    protected void initUI() {
+    protected void initAnalytics() {
         GoogleAnalyticHelper.trackScreenView(this, getResources().getConfiguration());
-
-        presenter.subscribe();
     }
 
     @Override
-    protected void onRetry() {
-        presenter.subscribe();
-    }
-
-    @Override
-    public void onRefreshData() {
-        presenter.refresh();
-    }
-
-    @Override
-    public void onDestroyView() {
-        presenter.unsubscribe();
-        super.onDestroyView();
+    protected ContentPresenter getPresenter() {
+        return presenter;
     }
 
     @Override
@@ -109,11 +98,6 @@ public class PaymentDetailsFragment extends RefreshFragment implements PaymentDe
     @Override
     public String getScreenName() {
         return "Payment details screen";
-    }
-
-    @Override
-    public void showProgress(Constants.ProgressType type) {
-        showProgressBar(type);
     }
 
     @Override
@@ -190,11 +174,6 @@ public class PaymentDetailsFragment extends RefreshFragment implements PaymentDe
     @Override
     public void setAdvice(String advice) {
         tvAdvice_FPD.setText(advice);
-    }
-
-    @Override
-    public void displayErrorState(ErrorType errorType) {
-        showErrorState(errorType);
     }
 
     @Override

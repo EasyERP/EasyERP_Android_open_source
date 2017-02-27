@@ -17,8 +17,8 @@ import com.thinkmobiles.easyerp.domain.crm.OrderRepository;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.AttachmentAdapter;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.HistoryAdapter;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.ProductAdapter;
-import com.thinkmobiles.easyerp.presentation.base.rules.ErrorType;
-import com.thinkmobiles.easyerp.presentation.base.rules.RefreshFragment;
+import com.thinkmobiles.easyerp.presentation.base.rules.content.ContentFragment;
+import com.thinkmobiles.easyerp.presentation.base.rules.content.ContentPresenter;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.AttachmentDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.HistoryDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.ProductDH;
@@ -39,7 +39,7 @@ import java.util.concurrent.TimeUnit;
 
 
 @EFragment
-public class OrderDetailsFragment extends RefreshFragment implements OrderDetailsContract.OrderDetailsView {
+public class OrderDetailsFragment extends ContentFragment implements OrderDetailsContract.OrderDetailsView {
 
     @Override
     protected int getLayoutRes() {
@@ -155,25 +155,17 @@ public class OrderDetailsFragment extends RefreshFragment implements OrderDetail
                 .subscribe(aVoid -> presenter.changeNotesVisibility());
 
         animationHelper.init(ivIconArrow, rvHistory);
-
-        presenter.subscribe();
     }
 
     @Override
-    protected void onRetry() {
-        presenter.subscribe();
-    }
-
-    @Override
-    protected void onRefreshData() {
-        presenter.refresh();
+    protected ContentPresenter getPresenter() {
+        return presenter;
     }
 
     @Override
     public void onDestroyView() {
-        animationHelper.cancel();
-        presenter.unsubscribe();
         super.onDestroyView();
+        animationHelper.cancel();
     }
 
     public void setPresenter(OrderDetailsContract.OrderDetailsPresenter presenter) {
@@ -183,11 +175,6 @@ public class OrderDetailsFragment extends RefreshFragment implements OrderDetail
     @Override
     public String getScreenName() {
         return "Order details screen";
-    }
-
-    @Override
-    public void showProgress(Constants.ProgressType type) {
-        showProgressBar(type);
     }
 
     @Override
@@ -334,16 +321,6 @@ public class OrderDetailsFragment extends RefreshFragment implements OrderDetail
     @Override
     public void setProducts(ArrayList<ProductDH> products) {
         productAdapter.setListDH(products);
-    }
-
-    @Override
-    public void displayErrorState(ErrorType errorType) {
-        showErrorState(errorType);
-    }
-
-    @Override
-    public void displayErrorToast(String msg) {
-        showErrorToast(msg);
     }
 
     @Override

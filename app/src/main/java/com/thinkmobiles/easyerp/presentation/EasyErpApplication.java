@@ -9,9 +9,11 @@ import com.thinkmobiles.easyerp.data.api.Rest;
 import com.thinkmobiles.easyerp.presentation.managers.CookieManager;
 import com.thinkmobiles.easyerp.presentation.managers.GoogleAnalyticHelper;
 import com.thinkmobiles.easyerp.presentation.screens.login.LoginActivity_;
+import com.thinkmobiles.easyerp.presentation.utils.AppDefaultStatesPreferences_;
 
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EApplication;
+import org.androidannotations.annotations.sharedpreferences.Pref;
 
 import io.fabric.sdk.android.Fabric;
 
@@ -23,6 +25,9 @@ import io.fabric.sdk.android.Fabric;
 public class EasyErpApplication extends Application {
 
     private static EasyErpApplication INSTANCE;
+
+    @Pref
+    protected AppDefaultStatesPreferences_ statesPreferences;
 
     @Bean
     protected CookieManager cookieManager;
@@ -49,4 +54,5 @@ public class EasyErpApplication extends Application {
                 .flags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK)
                 .start();
     }
+
 }

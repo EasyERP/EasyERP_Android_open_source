@@ -71,7 +71,7 @@ public abstract class MenuConfigs {
         menuItems.add(new MenuItem(3, R.drawable.ic_opportunities, "Opportunities", true));
         menuItems.add(new MenuItem(4, R.drawable.ic_persons, "Persons", true));
         menuItems.add(new MenuItem(5, R.drawable.ic_companies, "Companies", true));
-        menuItems.add(new MenuItem(6, R.drawable.ic_reports, "Reports", false));
+        menuItems.add(new MenuItem(6, R.drawable.ic_reports_crm, "Reports", false));
         menuItems.add(new MenuItem(7, R.drawable.ic_orders, "Orders", true));
         menuItems.add(new MenuItem(8, R.drawable.ic_invoices, "Invoices", true));
         menuItems.add(new MenuItem(9, R.drawable.ic_paymens, "Payments", true));

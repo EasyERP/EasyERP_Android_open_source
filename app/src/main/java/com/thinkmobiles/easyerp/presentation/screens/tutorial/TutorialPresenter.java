@@ -1,12 +1,9 @@
 package com.thinkmobiles.easyerp.presentation.screens.tutorial;
 
-import com.thinkmobiles.easyerp.data.api.Rest;
-import com.thinkmobiles.easyerp.data.model.ResponseError;
 import com.thinkmobiles.easyerp.presentation.managers.CookieManager;
 import com.thinkmobiles.easyerp.presentation.managers.ErrorManager;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
-import retrofit2.adapter.rxjava.HttpException;
 import rx.subscriptions.CompositeSubscription;
 
 /**

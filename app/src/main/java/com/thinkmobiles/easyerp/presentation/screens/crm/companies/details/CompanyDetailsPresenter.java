@@ -6,28 +6,26 @@ import com.thinkmobiles.easyerp.data.model.crm.companies.detail.ResponseGetCompa
 import com.thinkmobiles.easyerp.data.model.crm.leads.detail.AttachmentItem;
 import com.thinkmobiles.easyerp.data.model.crm.leads.detail.Customer;
 import com.thinkmobiles.easyerp.data.model.crm.persons.details.OpportunityItem;
+import com.thinkmobiles.easyerp.presentation.base.rules.content.ContentPresenterHelper;
+import com.thinkmobiles.easyerp.presentation.base.rules.content.ContentView;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.AttachmentDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.ContactDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.HistoryDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.LeadAndOpportunityDH;
-import com.thinkmobiles.easyerp.presentation.managers.ErrorManager;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
 import java.util.ArrayList;
 import java.util.Collections;
 
-import rx.subscriptions.CompositeSubscription;
-
 /**
  * Created by Lynx on 2/2/2017.
  */
 
-public class CompanyDetailsPresenter implements CompanyDetailsContract.CompanyDetailsPresenter {
+public class CompanyDetailsPresenter extends ContentPresenterHelper implements CompanyDetailsContract.CompanyDetailsPresenter {
 
     private CompanyDetailsContract.CompanyDetailsView view;
     private CompanyDetailsContract.CompanyDetailsModel model;
     private String companyID;
-    private CompositeSubscription compositeSubscription;
 
     private ResponseGetCompanyDetails currentData;
     private boolean isVisibleHistory;
@@ -36,7 +34,6 @@ public class CompanyDetailsPresenter implements CompanyDetailsContract.CompanyDe
         this.view = view;
         this.model = model;
         this.companyID = companyID;
-        compositeSubscription = new CompositeSubscription();
 
         view.setPresenter(this);
     }
@@ -54,13 +51,7 @@ public class CompanyDetailsPresenter implements CompanyDetailsContract.CompanyDe
                     currentData = responseGetCompanyDetails;
                     view.showProgress(Constants.ProgressType.NONE);
                     setData(currentData);
-                }, throwable -> {
-                    if(currentData != null) {
-                        view.displayErrorToast(ErrorManager.getErrorMessage(throwable));
-                    } else {
-                        view.displayErrorState(ErrorManager.getErrorType(throwable));
-                    }
-                }));
+                },  t -> error(t)));
     }
 
     @Override
@@ -70,18 +61,18 @@ public class CompanyDetailsPresenter implements CompanyDetailsContract.CompanyDe
     }
 
     @Override
-    public void subscribe() {
-        if (currentData == null) {
-            view.showProgress(Constants.ProgressType.CENTER);
-            refresh();
-        } else {
-            setData(currentData);
-        }
+    protected ContentView getView() {
+        return view;
     }
 
     @Override
-    public void unsubscribe() {
-        if(compositeSubscription.hasSubscriptions()) compositeSubscription.clear();
+    protected boolean hasContent() {
+        return currentData != null;
+    }
+
+    @Override
+    protected void retainInstance() {
+        setData(currentData);
     }
 
     private void setData(ResponseGetCompanyDetails data) {

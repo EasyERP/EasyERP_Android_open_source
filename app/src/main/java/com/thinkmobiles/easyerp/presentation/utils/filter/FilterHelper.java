@@ -1,7 +1,6 @@
 package com.thinkmobiles.easyerp.presentation.utils.filter;
 
 import android.net.Uri;
-import android.support.v4.util.Pair;
 import android.util.SparseArray;
 import android.view.Menu;
 
@@ -10,7 +9,6 @@ import com.thinkmobiles.easyerp.data.model.crm.filter.FilterItem;
 import com.thinkmobiles.easyerp.data.model.crm.filter.ResponseFilters;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.FilterDH;
 import com.thinkmobiles.easyerp.presentation.listeners.CheckFilterCallback;
-import com.thinkmobiles.easyerp.presentation.listeners.VisibilityCallback;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
 import java.util.ArrayList;
@@ -82,7 +80,7 @@ public class FilterHelper {
         callback.onCheckedFilter(indexSearchableFilter, true);
     }
 
-    public void filterByText(String text, CheckFilterCallback callback) {
+    public boolean filterByText(String text, CheckFilterCallback callback) {
         FilterTypeQuery contactQuery = params.get(indexSearchableFilter);
         contactQuery.removeAll();
         for (FilterDH dh : filters.get(indexSearchableFilter)) {
@@ -93,7 +91,9 @@ public class FilterHelper {
                 dh.selected = false;
             }
         }
-        callback.onCheckedFilter(indexSearchableFilter, true);
+        boolean needRequest = contactQuery.getValues() != null;
+        callback.onCheckedFilter(indexSearchableFilter, needRequest);
+        return needRequest;
     }
 
     public void filterByList(ArrayList<FilterDH> filterDHs, int position, CheckFilterCallback callback) {

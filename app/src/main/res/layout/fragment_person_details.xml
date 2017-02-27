@@ -467,7 +467,7 @@
                                     android:layout_marginTop="@dimen/default_padding_quart"
                                     android:orientation="horizontal">
 
-                                    <android.support.v7.widget.AppCompatCheckBox
+                                    <CheckBox
                                         android:id="@+id/cbIsCustomer_FPD"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
@@ -476,7 +476,7 @@
                                         style="@style/CustomCheckBoxStyle"
                                         tools:checked="true" />
 
-                                    <android.support.v7.widget.AppCompatCheckBox
+                                    <CheckBox
                                         android:id="@+id/cbIsSupplier_FPD"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"

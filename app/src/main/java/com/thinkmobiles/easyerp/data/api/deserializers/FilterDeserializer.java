@@ -15,9 +15,7 @@ import com.thinkmobiles.easyerp.presentation.utils.filter.FilterComparator;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
-import java.util.function.Predicate;
 
 /**
  * @author Alex Michenko (Created on 16.02.17).

@@ -38,6 +38,7 @@ import com.thinkmobiles.easyerp.presentation.managers.CookieManager;
 import com.thinkmobiles.easyerp.presentation.managers.GoogleAnalyticHelper;
 import com.thinkmobiles.easyerp.presentation.screens.web.WebActivity_;
 import com.thinkmobiles.easyerp.presentation.screens.home.HomeActivity_;
+import com.thinkmobiles.easyerp.presentation.screens.web.WebActivity_;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
 import org.androidannotations.annotations.AfterInject;
@@ -45,6 +46,7 @@ import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
+import org.androidannotations.annotations.res.DimensionRes;
 import org.androidannotations.annotations.res.StringRes;
 
 import java.util.concurrent.TimeUnit;
@@ -80,9 +82,15 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
     @ViewById
     protected EditText etLogin_VIFL;
     @ViewById
+    protected View ivLogin_VIFL;
+    @ViewById
     protected EditText etPassword_VIFL;
     @ViewById
+    protected View ivPassword_VIFL;
+    @ViewById
     protected EditText etDbId_VIFL;
+    @ViewById
+    protected View ivDbId_VIFL;
     @ViewById
     protected Button btnLogin_VIFL;
     @ViewById
@@ -104,6 +112,9 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
     protected String errEmptyDbID;
     @StringRes(R.string.terms_and_conditions_privacy_policy)
     protected String termsAndConditionsString;
+
+    @DimensionRes(R.dimen.default_padding_middle)
+    protected float fixMarginForIcons;
 
     @Bean
     protected LoginRepository loginRepository;
@@ -238,52 +249,66 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
 
     @Override
     public void displayLoginError(Constants.ErrorCodes code) {
+        final LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) ivLogin_VIFL.getLayoutParams();
         switch (code) {
             case FIELD_EMPTY:
                 tilLogin_VIFL.setError(errEmptyLogin);
                 tilLogin_VIFL.setErrorEnabled(true);
+                params.setMargins(params.getMarginStart(), params.topMargin, params.getMarginEnd(), (int) fixMarginForIcons);
                 break;
             case OK:
                 tilLogin_VIFL.setError(null);
                 tilLogin_VIFL.setErrorEnabled(false);
+                params.setMargins(params.getMarginStart(), params.topMargin, params.getMarginEnd(), 0);
                 break;
         }
+        ivLogin_VIFL.setLayoutParams(params);
     }
 
     @Override
     public void displayPasswordError(Constants.ErrorCodes code) {
+        final LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) ivPassword_VIFL.getLayoutParams();
         switch (code) {
             case FIELD_EMPTY:
                 tilPassword_VIFL.setError(errEmptyPassword);
                 tilPassword_VIFL.setErrorEnabled(true);
+                params.setMargins(params.getMarginStart(), params.topMargin, params.getMarginEnd(), (int) fixMarginForIcons);
                 break;
             case INVALID_CHARS:
                 tilPassword_VIFL.setError(errPasswordWrongSymbols);
                 tilPassword_VIFL.setErrorEnabled(true);
+                params.setMargins(params.getMarginStart(), params.topMargin, params.getMarginEnd(), (int) fixMarginForIcons);
                 break;
             case SHORTNESS:
                 tilPassword_VIFL.setError(errPasswordShort);
                 tilPassword_VIFL.setErrorEnabled(true);
+                params.setMargins(params.getMarginStart(), params.topMargin, params.getMarginEnd(), (int) fixMarginForIcons);
                 break;
             case OK:
                 tilPassword_VIFL.setError(null);
                 tilPassword_VIFL.setErrorEnabled(false);
+                params.setMargins(params.getMarginStart(), params.topMargin, params.getMarginEnd(), 0);
                 break;
         }
+        ivPassword_VIFL.setLayoutParams(params);
     }
 
     @Override
     public void displayDbIdError(Constants.ErrorCodes code) {
+        final LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) ivDbId_VIFL.getLayoutParams();
         switch (code) {
             case FIELD_EMPTY:
                 tilDbId_VIFL.setError(errEmptyDbID);
                 tilDbId_VIFL.setErrorEnabled(true);
+                params.setMargins(params.getMarginStart(), params.topMargin, params.getMarginEnd(), (int) fixMarginForIcons);
                 break;
             case OK:
                 tilDbId_VIFL.setError(null);
                 tilDbId_VIFL.setErrorEnabled(false);
+                params.setMargins(params.getMarginStart(), params.topMargin, params.getMarginEnd(), 0);
                 break;
         }
+        ivDbId_VIFL.setLayoutParams(params);
     }
 
     @Override

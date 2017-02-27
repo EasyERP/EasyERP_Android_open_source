@@ -18,8 +18,8 @@ import com.thinkmobiles.easyerp.presentation.adapters.crm.AttachmentAdapter;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.HistoryAdapter;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.InvoicePaymentAdapter;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.ProductAdapter;
-import com.thinkmobiles.easyerp.presentation.base.rules.ErrorType;
-import com.thinkmobiles.easyerp.presentation.base.rules.RefreshFragment;
+import com.thinkmobiles.easyerp.presentation.base.rules.content.ContentFragment;
+import com.thinkmobiles.easyerp.presentation.base.rules.content.ContentPresenter;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.AttachmentDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.HistoryDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.InvoicePaymentDH;
@@ -46,7 +46,7 @@ import java.util.concurrent.TimeUnit;
  */
 
 @EFragment
-public class InvoiceDetailsFragment extends RefreshFragment implements InvoiceDetailsContract.InvoiceDetailsView {
+public class InvoiceDetailsFragment extends ContentFragment implements InvoiceDetailsContract.InvoiceDetailsView {
 
     @Override
     protected int getLayoutRes() {
@@ -161,23 +161,16 @@ public class InvoiceDetailsFragment extends RefreshFragment implements InvoiceDe
                 .subscribe(aVoid -> presenter.changeNotesVisibility());
 
         animationHelper.init(ivIconArrow, rvHistory);
-
-        presenter.subscribe();
-    }
-
-    @Override
-    protected void onRetry() {
-        presenter.subscribe();
-    }
-
-    @Override
-    protected void onRefreshData() {
-        presenter.refresh();
     }
 
     @Override
     public void setPresenter(InvoiceDetailsContract.InvoiceDetailsPresenter presenter) {
         this.presenter = presenter;
+    }
+
+    @Override
+    protected ContentPresenter getPresenter() {
+        return presenter;
     }
 
     @Override
@@ -187,14 +180,8 @@ public class InvoiceDetailsFragment extends RefreshFragment implements InvoiceDe
 
     @Override
     public void onDestroyView() {
-        animationHelper.cancel();
-        presenter.unsubscribe();
         super.onDestroyView();
-    }
-
-    @Override
-    public void showProgress(Constants.ProgressType type) {
-        showProgressBar(type);
+        animationHelper.cancel();
     }
 
     @Override
@@ -312,16 +299,6 @@ public class InvoiceDetailsFragment extends RefreshFragment implements InvoiceDe
     @Override
     public void setProducts(ArrayList<ProductDH> products) {
         productAdapter.setListDH(products);
-    }
-
-    @Override
-    public void displayErrorState(ErrorType errorType) {
-        showErrorState(errorType);
-    }
-
-    @Override
-    public void displayErrorToast(String msg) {
-        showErrorToast(msg);
     }
 
     @Override

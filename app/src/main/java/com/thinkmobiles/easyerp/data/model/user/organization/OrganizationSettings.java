@@ -4,9 +4,9 @@ package com.thinkmobiles.easyerp.data.model.user.organization;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.thinkmobiles.easyerp.data.model.crm.filter.FilterItem;
 import com.thinkmobiles.easyerp.data.model.crm.invoice.CurrencyID;
 import com.thinkmobiles.easyerp.data.model.crm.leads.detail.Address;
-import com.thinkmobiles.easyerp.data.model.crm.filter.FilterItem;
 
 public class OrganizationSettings implements Parcelable {
 

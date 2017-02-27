@@ -1,14 +1,14 @@
 package com.thinkmobiles.easyerp.presentation.holders.data.crm;
 
 import com.thinkmobiles.easyerp.data.model.crm.invoice.Invoice;
-import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowSelectableDHHelper;
+import com.thinkmobiles.easyerp.presentation.base.rules.master.selectable.SelectableDHHelper;
 
 /**
  * @author Michael Soyma (Created on 2/2/2017).
  *         Company: Thinkmobiles
  *         Email: michael.soyma@thinkmobiles.com
  */
-public final class InvoiceDH extends MasterFlowSelectableDHHelper<String> {
+public final class InvoiceDH extends SelectableDHHelper {
     private final Invoice invoice;
 
     public InvoiceDH(Invoice invoice) {

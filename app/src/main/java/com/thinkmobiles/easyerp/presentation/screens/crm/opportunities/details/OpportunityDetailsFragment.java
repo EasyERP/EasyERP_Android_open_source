@@ -25,8 +25,8 @@ import com.thinkmobiles.easyerp.domain.crm.OpportunitiesRepository;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.AttachmentAdapter;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.ContactAdapter;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.HistoryAdapter;
-import com.thinkmobiles.easyerp.presentation.base.rules.ErrorType;
-import com.thinkmobiles.easyerp.presentation.base.rules.RefreshFragment;
+import com.thinkmobiles.easyerp.presentation.base.rules.content.ContentFragment;
+import com.thinkmobiles.easyerp.presentation.base.rules.content.ContentPresenter;
 import com.thinkmobiles.easyerp.presentation.custom.RoundRectDrawable;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.AttachmentDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.ContactDH;
@@ -52,11 +52,16 @@ import java.util.concurrent.TimeUnit;
  */
 
 @EFragment
-public class OpportunityDetailsFragment extends RefreshFragment implements OpportunityDetailsContract.OpportunityDetailsView {
+public class OpportunityDetailsFragment extends ContentFragment implements OpportunityDetailsContract.OpportunityDetailsView {
 
     @Override
     protected int getLayoutRes() {
         return R.layout.fragment_opportunity_details;
+    }
+
+    @Override
+    protected ContentPresenter getPresenter() {
+        return presenter;
     }
 
     private OpportunityDetailsContract.OpportunityDetailsPresenter presenter;
@@ -164,23 +169,6 @@ public class OpportunityDetailsFragment extends RefreshFragment implements Oppor
                 .subscribe(aVoid -> presenter.changeNotesVisibility());
 
         animationHelper.init(ivIconArrow, rvHistory);
-
-        presenter.subscribe();
-    }
-
-    @Override
-    protected void onRetry() {
-        presenter.subscribe();
-    }
-
-    @Override
-    protected void onRefreshData() {
-        presenter.refresh();
-    }
-
-    @Override
-    public void showProgress(Constants.ProgressType type) {
-        showProgressBar(type);
     }
 
     @Override
@@ -191,16 +179,6 @@ public class OpportunityDetailsFragment extends RefreshFragment implements Oppor
         }
         if (!enable && rvHistory.getVisibility() == View.VISIBLE)
             animationHelper.backward(rvHistory.getHeight());
-    }
-
-    @Override
-    public void displayErrorState(ErrorType errorType) {
-        showErrorState(errorType);
-    }
-
-    @Override
-    public void displayErrorToast(String message) {
-        showErrorToast(message);
     }
 
     @Override
