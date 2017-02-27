@@ -48,6 +48,9 @@ public interface LeadDetailsContract {
         void setCompanyCountry(String companyCountry);
         void setHistory(ArrayList<HistoryDH> history);
 
+        void enableEmailActionClick(final String email);
+        void enablePhoneActionClick(final String phone);
+
         void displayAttachments(ArrayList<AttachmentDH> attachmentDHs);
         void startUrlIntent(String url);
     }

@@ -30,7 +30,7 @@ public abstract class BaseMasterFlowFragment<T extends BaseMasterFlowActivity> e
         try {
             mActivity = (T) context;
         } catch (ClassCastException e) {
-            throw new RuntimeException("This fragment should have activity instance");
+            throw new RuntimeException("This fragment should have mActivity instance");
         }
     }
 

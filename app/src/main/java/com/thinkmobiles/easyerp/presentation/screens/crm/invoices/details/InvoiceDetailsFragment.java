@@ -28,6 +28,7 @@ import com.thinkmobiles.easyerp.presentation.managers.GoogleAnalyticHelper;
 import com.thinkmobiles.easyerp.presentation.managers.HistoryAnimationHelper;
 import com.thinkmobiles.easyerp.presentation.managers.TagHelper;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
+import com.thinkmobiles.easyerp.presentation.utils.IntentActionHelper;
 
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterViews;
@@ -303,8 +304,6 @@ public class InvoiceDetailsFragment extends ContentFragment implements InvoiceDe
 
     @Override
     public void startUrlIntent(String url) {
-        Intent intent = new Intent(Intent.ACTION_VIEW);
-        intent.setData(Uri.parse(url));
-        startActivity(intent);
+        IntentActionHelper.callViewIntent(mActivity, url, null);
     }
 }

@@ -140,17 +140,22 @@ public class OpportunityDetailsPresenter extends ContentPresenterHelper implemen
             if(currentOpportunity.company.phones != null) {
                 if(!TextUtils.isEmpty(currentOpportunity.company.phones.phone)) {
                     view.displayCompanyPhone(currentOpportunity.company.phones.phone);
+                    view.enableCompanyPhoneActionClick(currentOpportunity.company.phones.phone);
                     isCompanyInfoAvailable = true;
                 } else if(!TextUtils.isEmpty(currentOpportunity.company.phones.mobile)) {
                     view.displayCompanyPhone(currentOpportunity.company.phones.mobile);
+                    view.enableCompanyPhoneActionClick(currentOpportunity.company.phones.mobile);
                     isCompanyInfoAvailable = true;
                 } else if(!TextUtils.isEmpty(currentOpportunity.company.phones.fax)) {
                     view.displayCompanyPhone(currentOpportunity.company.phones.fax);
+                    view.enableCompanyPhoneActionClick(currentOpportunity.company.phones.fax);
                     isCompanyInfoAvailable = true;
                 }
             }
-            if(!TextUtils.isEmpty(currentOpportunity.company.email))
+            if(!TextUtils.isEmpty(currentOpportunity.company.email)) {
                 view.displayCompanyEmail(currentOpportunity.company.email);
+                view.enableCompanyEmailActionClick(currentOpportunity.company.email);
+            }
         }
         view.showCompany(isCompanyInfoAvailable);
     }

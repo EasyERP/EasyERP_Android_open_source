@@ -1,8 +1,5 @@
 package com.thinkmobiles.easyerp.presentation.screens.crm.companies.details;
 
-import android.content.ActivityNotFoundException;
-import android.content.Intent;
-import android.net.Uri;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -15,7 +12,6 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.jakewharton.rxbinding.view.RxView;
 import com.thinkmobiles.easyerp.R;
@@ -34,6 +30,7 @@ import com.thinkmobiles.easyerp.presentation.managers.GoogleAnalyticHelper;
 import com.thinkmobiles.easyerp.presentation.managers.HistoryAnimationHelper;
 import com.thinkmobiles.easyerp.presentation.managers.ImageHelper;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
+import com.thinkmobiles.easyerp.presentation.utils.IntentActionHelper;
 
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterViews;
@@ -279,43 +276,65 @@ public class CompanyDetailsFragment extends ContentFragment implements CompanyDe
     }
 
     @Override
-    public void enableFacebookButton(String url) {
+    public void enableFacebookButton(String uriPath) {
         ivCompanyFb_FCD.setVisibility(View.VISIBLE);
         RxView.clicks(ivCompanyFb_FCD)
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
                 .subscribe(aVoid -> {
                     GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_SOCIAL_BUTTON, "Facebook");
-                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-                    getActivity().startActivity(intent);
+                    IntentActionHelper.callViewIntent(mActivity, uriPath, null);
                 });
     }
 
     @Override
-    public void enableLinkedInButton(String url) {
+    public void enableLinkedInButton(String uriPath) {
         ivCompanyLinkedIn_FCD.setVisibility(View.VISIBLE);
         RxView.clicks(ivCompanyLinkedIn_FCD)
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
                 .subscribe(aVoid -> {
                     GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_SOCIAL_BUTTON, "Linked In");
-                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.linkedin.com/profile/view?id=" + url));
-                    getActivity().startActivity(intent);
+                    IntentActionHelper.callViewIntent(mActivity, uriPath, null);
                 });
     }
 
     @Override
-    public void enableSkypeButton(String url) {
+    public void enableSkypeButton(String uriPath) {
         ivCompanySkype_FCD.setVisibility(View.VISIBLE);
         RxView.clicks(ivCompanySkype_FCD)
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
                 .subscribe(aVoid -> {
                     GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_SOCIAL_BUTTON, "Skype");
-                    try {
-                        Intent sky = new Intent(Intent.ACTION_VIEW);
-                        sky.setData(Uri.parse("skype:" + url));
-                        getActivity().startActivity(sky);
-                    } catch (ActivityNotFoundException e) {
-                        Toast.makeText(getActivity(), "Skype not found", Toast.LENGTH_SHORT).show();
-                    }
+                    IntentActionHelper.callViewIntent(mActivity, uriPath, null);
+                });
+    }
+
+    @Override
+    public void enableEmailActionClick(String email) {
+        RxView.clicks(tvEmail_FPD)
+                .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
+                .subscribe(aVoid -> {
+                    GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_URL, "Email");
+                    IntentActionHelper.callSendEmailIntent(mActivity, email, null);
+                });
+    }
+
+    @Override
+    public void enablePhoneActionClick(String phone) {
+        RxView.clicks(etPhone_FCD)
+                .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
+                .subscribe(aVoid -> {
+                    GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_URL, "Phone");
+                    IntentActionHelper.callDialIntent(mActivity, phone);
+                });
+    }
+
+    @Override
+    public void enableMobileActionClick(String mobilePhone) {
+        RxView.clicks(etMobile_FCD)
+                .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
+                .subscribe(aVoid -> {
+                    GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_URL, "Mobile");
+                    IntentActionHelper.callDialIntent(mActivity, mobilePhone);
                 });
     }
 
@@ -461,11 +480,8 @@ public class CompanyDetailsFragment extends ContentFragment implements CompanyDe
 
     @Override
     public void startUrlIntent(String url) {
-        Intent intent = new Intent(Intent.ACTION_VIEW);
-        intent.setData(Uri.parse(url));
-        startActivity(intent);
+        IntentActionHelper.callViewIntent(mActivity, url, null);
     }
-    //endregion
 
     @Override
     public boolean optionsMenuForDetail() {

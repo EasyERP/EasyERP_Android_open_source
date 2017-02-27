@@ -160,8 +160,8 @@
     <string name="my_profile">My Profile</string>
     <string name="change_password">Change Password</string>
 
-    <string name="error_connection">Connection problems. Make sure your internet connection established</string>
-    <string name="error_unknown">Something going wrong :(</string>
+    <string name="error_connection">No connection. Make sure your internet connection established</string>
+    <string name="error_unknown">Something went wrong</string>
 
     <string name="tutorial">Tutorial</string>
     <string name="tutorial_1"><b>Keep</b> your finger on the pulse\nof sales in your company</string>
@@ -175,14 +175,14 @@
     We are a software engineering and consulting company which helps you to manage your working processes. <a href="https://easyerp.com">EasyERP</a> is a multichannel e-commerce management solution designed to meet varied operational requirements of the enterprises,  it is ideal for small and medium business.
     <p>
     <a href="https://easyerp.com">EasyERP</a> has the next features that can make your work more effective:<br>
-    &nbsp;&nbsp;&nbsp;&nbsp;    1. Customer Relationship Management<br>
-    &nbsp;&nbsp;&nbsp;&nbsp;    2. Reports<br>
-    &nbsp;&nbsp;&nbsp;&nbsp;    3. Purchases and Sales orders management<br>
-    &nbsp;&nbsp;&nbsp;&nbsp;    4. Payments<br>
-    &nbsp;&nbsp;&nbsp;&nbsp;    5. Accounting<br>
-    &nbsp;&nbsp;&nbsp;&nbsp;    6. Human Resource Management<br>
-    &nbsp;&nbsp;&nbsp;&nbsp;    7. Inventory Management<br>
-    &nbsp;&nbsp;&nbsp;&nbsp;    8. Integrations with Magento, Shopify and Etsy
+    &nbsp;&nbsp;&nbsp;&nbsp;    • Customer Relationship Management<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;    • Reports<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;    • Purchases and Sales orders management<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;    • Payments<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;    • Accounting<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;    • Human Resource Management<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;    • Inventory Management<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;    • Integrations with Magento, Shopify and Etsy
     </p>
     <p>
     The advantages of <a href="https://easyerp.com">EasyERP</a>:<br>

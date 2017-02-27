@@ -32,6 +32,7 @@ import com.thinkmobiles.easyerp.presentation.managers.GoogleAnalyticHelper;
 import com.thinkmobiles.easyerp.presentation.managers.HistoryAnimationHelper;
 import com.thinkmobiles.easyerp.presentation.managers.ImageHelper;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
+import com.thinkmobiles.easyerp.presentation.utils.IntentActionHelper;
 
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterViews;
@@ -275,43 +276,85 @@ public class PersonDetailsFragment extends ContentFragment implements PersonDeta
     }
 
     @Override
-    public void enableSkypeIcon(String skype) {
+    public void enableSkypeIcon(String uriPath) {
         ivSkype_FPD.setVisibility(View.VISIBLE);
         RxView.clicks(ivSkype_FPD)
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
                 .subscribe(aVoid -> {
                     GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_SOCIAL_BUTTON, "Skype");
-                    try {
-                        Intent sky = new Intent(Intent.ACTION_VIEW);
-                        sky.setData(Uri.parse("skype:" + skype));
-                        getActivity().startActivity(sky);
-                    } catch (ActivityNotFoundException e) {
-                        Toast.makeText(getActivity(), "Skype not found", Toast.LENGTH_SHORT).show();
-                    }
+                    IntentActionHelper.callViewIntent(mActivity, uriPath, null);
                 });
     }
 
     @Override
-    public void enableLinkedInIcon(String linkedIn) {
+    public void enableLinkedInIcon(String uriPath) {
         ivLinkedIn_FPD.setVisibility(View.VISIBLE);
         RxView.clicks(ivLinkedIn_FPD)
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
                 .subscribe(aVoid -> {
                     GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_SOCIAL_BUTTON, "Linked In");
-                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.linkedin.com/profile/view?id=" + linkedIn));
-                    getActivity().startActivity(intent);
+                    IntentActionHelper.callViewIntent(mActivity, uriPath, null);
                 });
     }
 
     @Override
-    public void enableFacebookIcon(String facebook) {
+    public void enableFacebookIcon(String uriPath) {
         ivFacebook_FPD.setVisibility(View.VISIBLE);
         RxView.clicks(ivFacebook_FPD)
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
                 .subscribe(aVoid -> {
                     GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_SOCIAL_BUTTON, "Facebook");
-                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(facebook));
-                    getActivity().startActivity(intent);
+                    IntentActionHelper.callViewIntent(mActivity, uriPath, null);
+                });
+    }
+
+    @Override
+    public void enableCompanyEmailActionClick(String email) {
+        RxView.clicks(etCompanyEmail_FPD)
+                .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
+                .subscribe(aVoid -> {
+                    GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_URL, "Email");
+                    IntentActionHelper.callSendEmailIntent(mActivity, email, null);
+                });
+    }
+
+    @Override
+    public void enableCompanyPhoneActionClick(String phone) {
+        RxView.clicks(etCompanyPhone_FPD)
+                .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
+                .subscribe(aVoid -> {
+                    GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_URL, "Phone");
+                    IntentActionHelper.callDialIntent(mActivity, phone);
+                });
+    }
+
+    @Override
+    public void enableEmailActionClick(String email) {
+        RxView.clicks(etEmail_FPD)
+                .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
+                .subscribe(aVoid -> {
+                    GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_URL, "Email");
+                    IntentActionHelper.callSendEmailIntent(mActivity, email, null);
+                });
+    }
+
+    @Override
+    public void enablePhoneActionClick(String phone) {
+        RxView.clicks(etPhone_FPD)
+                .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
+                .subscribe(aVoid -> {
+                    GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_URL, "Phone");
+                    IntentActionHelper.callDialIntent(mActivity, phone);
+                });
+    }
+
+    @Override
+    public void enableMobileActionClick(String mobilePhone) {
+        RxView.clicks(etMobile_FPD)
+                .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
+                .subscribe(aVoid -> {
+                    GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_URL, "Mobile");
+                    IntentActionHelper.callDialIntent(mActivity, mobilePhone);
                 });
     }
 
@@ -525,9 +568,7 @@ public class PersonDetailsFragment extends ContentFragment implements PersonDeta
 
     @Override
     public void startUrlIntent(String url) {
-        Intent intent = new Intent(Intent.ACTION_VIEW);
-        intent.setData(Uri.parse(url));
-        startActivity(intent);
+        IntentActionHelper.callViewIntent(mActivity, url, null);
     }
 
     @Override

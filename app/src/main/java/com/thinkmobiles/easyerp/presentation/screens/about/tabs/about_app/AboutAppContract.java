@@ -10,7 +10,7 @@ import com.thinkmobiles.easyerp.presentation.base.BaseView;
  */
 public interface AboutAppContract {
     interface AboutAppView extends BaseView<AboutAppPresenter> {
-        void sendContactIntent(final String email, final String subject);
+        void sendEmailIntent(final String email, final String subject);
         void sendViewIntent(final String uriPath, final String alternativeUriPath);
     }
     interface AboutAppPresenter extends BasePresenter {

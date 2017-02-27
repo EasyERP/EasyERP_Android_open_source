@@ -10,7 +10,7 @@ import com.thinkmobiles.easyerp.presentation.base.BaseView;
  */
 public interface PoweredByContract {
     interface PoweredByView extends BaseView<PoweredByPresenter> {
-        void visitSite(final String urlSite);
+        void visitSite(final String uriPath);
     }
     interface PoweredByPresenter extends BasePresenter {
         void visitPoweredByCompany();

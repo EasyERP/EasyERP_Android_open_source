@@ -31,6 +31,7 @@ import com.thinkmobiles.easyerp.presentation.managers.GoogleAnalyticHelper;
 import com.thinkmobiles.easyerp.presentation.managers.HistoryAnimationHelper;
 import com.thinkmobiles.easyerp.presentation.managers.TagHelper;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
+import com.thinkmobiles.easyerp.presentation.utils.IntentActionHelper;
 
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterViews;
@@ -251,6 +252,26 @@ public class LeadDetailsFragment extends ContentFragment implements LeadDetailsC
     }
 
     @Override
+    public void enableEmailActionClick(String email) {
+        RxView.clicks(tvEmail_FLD)
+                .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
+                .subscribe(aVoid -> {
+                    GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_URL, "Email");
+                    IntentActionHelper.callSendEmailIntent(mActivity, email, null);
+                });
+    }
+
+    @Override
+    public void enablePhoneActionClick(String phone) {
+        RxView.clicks(tvPhone_FLD)
+                .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
+                .subscribe(aVoid -> {
+                    GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_URL, "Phone");
+                    IntentActionHelper.callDialIntent(mActivity, phone);
+                });
+    }
+
+    @Override
     public void setPhone(String phone) {
         tvPhone_FLD.setText(phone);
     }
@@ -349,8 +370,6 @@ public class LeadDetailsFragment extends ContentFragment implements LeadDetailsC
 
     @Override
     public void startUrlIntent(String url) {
-        Intent intent = new Intent(Intent.ACTION_VIEW);
-        intent.setData(Uri.parse(url));
-        startActivity(intent);
+        IntentActionHelper.callViewIntent(mActivity, url, null);
     }
 }

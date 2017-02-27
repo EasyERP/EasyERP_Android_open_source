@@ -12,6 +12,7 @@ import com.thinkmobiles.easyerp.presentation.adapters.LibrariesAdapter;
 import com.thinkmobiles.easyerp.presentation.base.BaseSupportFragment;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.LibraryDH;
 import com.thinkmobiles.easyerp.presentation.screens.about.AboutUsActivity;
+import com.thinkmobiles.easyerp.presentation.utils.IntentActionHelper;
 
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterViews;
@@ -63,10 +64,8 @@ public class LibrariesFragment extends BaseSupportFragment<AboutUsActivity> impl
     }
 
     @Override
-    public void openLink(String link) {
-        Intent intent = new Intent(Intent.ACTION_VIEW);
-        intent.setData(Uri.parse(link));
-        startActivity(intent);
+    public void openLink(String uriPath) {
+        IntentActionHelper.callViewIntent(mActivity, uriPath, null);
     }
 
     @Override
