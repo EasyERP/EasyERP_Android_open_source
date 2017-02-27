@@ -87,6 +87,7 @@ public class UserProfileDialogFragment extends DialogFragment implements BaseVie
     }
 
     private void changePassword() {
+        GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_BUTTON, "Change password");
         dismiss();
         if (userProfileCallback != null)
             userProfileCallback.showChangeProfile();
