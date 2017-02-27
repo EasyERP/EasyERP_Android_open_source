@@ -8,12 +8,9 @@ import com.thinkmobiles.easyerp.domain.crm.PaymentsRepository;
 import com.thinkmobiles.easyerp.presentation.base.rules.content.ContentFragment;
 import com.thinkmobiles.easyerp.presentation.base.rules.content.ContentPresenter;
 import com.thinkmobiles.easyerp.presentation.managers.GoogleAnalyticHelper;
-import com.thinkmobiles.easyerp.presentation.base.rules.ErrorType;
-import com.thinkmobiles.easyerp.presentation.base.rules.RefreshFragment;
-import com.thinkmobiles.easyerp.presentation.managers.GoogleAnalyticHelper;
-import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
 import org.androidannotations.annotations.AfterInject;
+import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.FragmentArg;

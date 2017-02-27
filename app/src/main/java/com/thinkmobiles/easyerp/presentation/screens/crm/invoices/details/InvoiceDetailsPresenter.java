@@ -63,7 +63,9 @@ public class InvoiceDetailsPresenter extends ContentPresenterHelper implements I
                 .subscribe(responseGerOrderDetails -> {
                     view.showProgress(Constants.ProgressType.NONE);
                     setData(responseGerOrderDetails);
-                },  t -> error(t)));
+                },  t -> {
+                    error(t);
+                }));
     }
 
     @Override

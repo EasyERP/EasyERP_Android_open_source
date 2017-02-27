@@ -36,7 +36,6 @@ import com.thinkmobiles.easyerp.presentation.dialogs.ForgotPasswordDialogFragmen
 import com.thinkmobiles.easyerp.presentation.dialogs.ForgotPasswordDialogFragment_;
 import com.thinkmobiles.easyerp.presentation.managers.CookieManager;
 import com.thinkmobiles.easyerp.presentation.managers.GoogleAnalyticHelper;
-import com.thinkmobiles.easyerp.presentation.screens.web.WebActivity_;
 import com.thinkmobiles.easyerp.presentation.screens.home.HomeActivity_;
 import com.thinkmobiles.easyerp.presentation.screens.web.WebActivity_;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;

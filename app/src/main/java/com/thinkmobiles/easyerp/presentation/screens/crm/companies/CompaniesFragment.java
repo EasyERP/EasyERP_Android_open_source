@@ -4,15 +4,11 @@ import com.thinkmobiles.easyerp.domain.crm.CompaniesRepository;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.CompaniesAdapter;
 import com.thinkmobiles.easyerp.presentation.base.rules.master.alphabetical.MasterAlphabeticalFragment;
 import com.thinkmobiles.easyerp.presentation.base.rules.master.selectable.SelectableAdapter;
-import com.thinkmobiles.easyerp.presentation.base.rules.ErrorType;
-import com.thinkmobiles.easyerp.presentation.base.rules.MasterFlowListSelectableFragment;
-import com.thinkmobiles.easyerp.presentation.custom.views.alphabet_view.AlphabetView;
-import com.thinkmobiles.easyerp.presentation.holders.data.crm.CompanyDH;
 import com.thinkmobiles.easyerp.presentation.managers.GoogleAnalyticHelper;
-import com.thinkmobiles.easyerp.presentation.holders.data.crm.FilterDH;
 import com.thinkmobiles.easyerp.presentation.screens.crm.companies.details.CompanyDetailsFragment_;
 
 import org.androidannotations.annotations.AfterInject;
+import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EFragment;
 

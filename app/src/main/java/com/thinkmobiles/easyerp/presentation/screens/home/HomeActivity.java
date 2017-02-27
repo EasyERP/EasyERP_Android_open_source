@@ -18,8 +18,8 @@ import com.thinkmobiles.easyerp.presentation.dialogs.ChangePasswordDialogFragmen
 import com.thinkmobiles.easyerp.presentation.dialogs.UserProfileDialogFragment;
 import com.thinkmobiles.easyerp.presentation.dialogs.UserProfileDialogFragment_;
 import com.thinkmobiles.easyerp.presentation.managers.CookieManager;
-import com.thinkmobiles.easyerp.presentation.managers.RateAppManager;
 import com.thinkmobiles.easyerp.presentation.managers.GoogleAnalyticHelper;
+import com.thinkmobiles.easyerp.presentation.managers.RateAppManager;
 
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterViews;

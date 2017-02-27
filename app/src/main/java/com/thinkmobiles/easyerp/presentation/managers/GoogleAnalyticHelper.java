@@ -2,7 +2,6 @@ package com.thinkmobiles.easyerp.presentation.managers;
 
 import android.app.Application;
 import android.content.res.Configuration;
-import android.text.TextUtils;
 import android.util.Log;
 
 import com.google.android.gms.analytics.GoogleAnalytics;
@@ -10,12 +9,8 @@ import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.presentation.base.BaseView;
-import com.thinkmobiles.easyerp.presentation.holders.data.crm.FilterDH;
 
-import java.util.ArrayList;
 import java.util.Locale;
-
-import static com.thinkmobiles.easyerp.presentation.managers.GoogleAnalyticHelper.EventType.SET_FILTER;
 
 /**
  * Created by Lynx on 2/15/2017.
