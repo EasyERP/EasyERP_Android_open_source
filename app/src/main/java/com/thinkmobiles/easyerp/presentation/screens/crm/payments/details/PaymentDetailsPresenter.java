@@ -43,7 +43,7 @@ public class PaymentDetailsPresenter extends ContentPresenterHelper implements P
 
     @Override
     protected boolean hasContent() {
-        return currentPayment != null;
+        return organizationSettings != null;
     }
 
     @Override
@@ -53,30 +53,25 @@ public class PaymentDetailsPresenter extends ContentPresenterHelper implements P
 
     @Override
     public void refresh() {
-        if (organizationSettings == null) {
-            compositeSubscription.add(model.getOrganizationSettings()
-                    .subscribe(responseGetOrganizationSettings -> {
-                        organizationSettings = responseGetOrganizationSettings.data;
-                        view.showProgress(Constants.ProgressType.NONE);
-                        setData();
-                    }, t -> {
-                        view.displayErrorState(ErrorManager.getErrorType(t));
-                    }));
-        } else {
-            view.showProgress(Constants.ProgressType.NONE);
-            setData();
-        }
+        compositeSubscription.add(model.getOrganizationSettings()
+                .subscribe(responseGetOrganizationSettings -> {
+                    organizationSettings = responseGetOrganizationSettings.data;
+                    view.showProgress(Constants.ProgressType.NONE);
+                    setData();
+                }, t -> {
+                    view.displayErrorState(ErrorManager.getErrorType(t));
+                }));
     }
 
     private void setData() {
         String prefix = currentPayment.currency != null ? currentPayment.currency.symbol : "$";
         if (currentPayment.refund) {
             view.setPaymentStatus("Refunded");
-            view.setPaymentName(String.format("%s %s", "Refund" , currentPayment.name));
+            view.setPaymentName(String.format("%s %s", "Refund", currentPayment.name));
             view.setAmount(StringUtil.getFormattedPriceFromCent(formatter, -currentPayment.paidAmount, prefix));
         } else {
             view.setPaymentStatus(currentPayment.workflow);
-            view.setPaymentName(String.format("%s %s", currentPayment.order == null ? "Payment" : "Prepayment" , currentPayment.name));
+            view.setPaymentName(String.format("%s %s", currentPayment.order == null ? "Payment" : "Prepayment", currentPayment.name));
             view.setAmount(StringUtil.getFormattedPriceFromCent(formatter, currentPayment.paidAmount, prefix));
         }
         String doc = "";

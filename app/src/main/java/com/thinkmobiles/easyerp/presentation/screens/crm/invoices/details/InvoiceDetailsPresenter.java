@@ -58,17 +58,14 @@ public class InvoiceDetailsPresenter extends ContentPresenterHelper implements I
     @Override
     public void refresh() {
         compositeSubscription.add(model.getInvoiceDetails(invoiceId)
+                .zipWith(model.getOrganizationSettings(), (responseGetOrderDetails, responseGetOrganizationSettings) -> {
+                    setOrgData(responseGetOrganizationSettings.data);
+                    return responseGetOrderDetails;
+                })
                 .subscribe(responseGerOrderDetails -> {
                     view.showProgress(Constants.ProgressType.NONE);
                     setData(responseGerOrderDetails);
                 },  t -> error(t)));
-    }
-
-    private void getOrganizationSettings() {
-        compositeSubscription.add(model.getOrganizationSettings()
-                .subscribe(responseGetOrganizationSettings -> {
-                    setOrgData(responseGetOrganizationSettings.data);
-                }, Throwable::printStackTrace));
     }
 
     private void setOrgData(OrganizationSettings data) {
@@ -84,12 +81,6 @@ public class InvoiceDetailsPresenter extends ContentPresenterHelper implements I
     @Override
     protected ContentView getView() {
         return view;
-    }
-
-    @Override
-    protected void request() {
-        super.request();
-        getOrganizationSettings();
     }
 
     @Override
