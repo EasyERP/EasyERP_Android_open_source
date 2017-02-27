@@ -46,10 +46,13 @@ public interface InvoiceDetailsContract {
         void setPayments(ArrayList<InvoicePaymentDH> payments);
         void setHistory(ArrayList<HistoryDH> history);
         void setProducts(ArrayList<ProductDH> products);
+
+        void startUrlIntent(String url);
     }
 
     interface InvoiceDetailsPresenter extends ContentPresenter {
         void changeNotesVisibility();
+        void startAttachment(int pos);
     }
 
     interface InvoiceDetailsModel extends BaseModel {

@@ -31,9 +31,9 @@ public final class MiniMenuItemViewHolder extends BaseViewHolder<MenuItem> {
     @Override
     public void injectData(MenuItem _data) {
         super.injectData(_data);
-
-        thumbItemView.setImageResource(data.getIconRes());
         itemView.setSelected(data.isSelected());
+        thumbItemView.setEnabled(data.isEnabled());
+        thumbItemView.setImageResource(data.getIconRes());
     }
 
 }

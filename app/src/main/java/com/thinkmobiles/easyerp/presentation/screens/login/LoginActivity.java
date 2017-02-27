@@ -35,6 +35,7 @@ import com.thinkmobiles.easyerp.domain.UserRepository;
 import com.thinkmobiles.easyerp.presentation.dialogs.ForgotPasswordDialogFragment;
 import com.thinkmobiles.easyerp.presentation.dialogs.ForgotPasswordDialogFragment_;
 import com.thinkmobiles.easyerp.presentation.managers.CookieManager;
+import com.thinkmobiles.easyerp.presentation.managers.GoogleAnalyticHelper;
 import com.thinkmobiles.easyerp.presentation.screens.home.HomeActivity_;
 import com.thinkmobiles.easyerp.presentation.screens.web.WebActivity_;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
@@ -134,6 +135,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
 
     @AfterViews
     protected void initUI() {
+        GoogleAnalyticHelper.trackScreenView(this, getResources().getConfiguration());
         flAppIcon_AL.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
             public void onGlobalLayout() {
@@ -146,17 +148,26 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
 
         RxView.clicks(btnLogin_VIFL)
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
-                .subscribe(aVoid -> presenter.login());
+                .subscribe(aVoid -> {
+                    GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_BUTTON, "Login");
+                    presenter.login();
+                });
         RxView.clicks(btnDemoMode_VIFL)
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
-                .subscribe(aVoid -> presenter.launchDemoMode());
+                .subscribe(aVoid -> {
+                    GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_BUTTON, "Demo");
+                    presenter.launchDemoMode();
+                });
         RxView.clicks(tvForgotPassword_VIFL)
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
-                .subscribe(aVoid ->
+                .subscribe(aVoid -> {
+                        GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_BUTTON, "Forgot password");
                         ForgotPasswordDialogFragment_.builder()
                             .databaseID(etDbId_VIFL.getText().toString())
                             .username(etLogin_VIFL.getText().toString())
-                            .build().show(getFragmentManager(), null));
+                            .build().show(getFragmentManager(), null);
+                });
+
 
         tvTermsAndCondition_VIFL.setText(buildTermsAndConditions());
         tvTermsAndCondition_VIFL.setMovementMethod(LinkMovementMethod.getInstance());
@@ -313,6 +324,11 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
     @Override
     public void setPresenter(LoginContract.LoginPresenter presenter) {
         this.presenter = presenter;
+    }
+
+    @Override
+    public String getScreenName() {
+        return "Login screen";
     }
 
     private void runSplashAnimation() {

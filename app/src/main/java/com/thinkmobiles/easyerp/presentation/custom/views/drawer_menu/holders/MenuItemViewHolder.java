@@ -1,5 +1,6 @@
 package com.thinkmobiles.easyerp.presentation.custom.views.drawer_menu.holders;
 
+import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -35,11 +36,12 @@ public final class MenuItemViewHolder extends BaseViewHolder<MenuItem> implement
     public void injectData(MenuItem _data) {
         super.injectData(_data);
 
+        itemView.setSelected(data.isSelected());
+        thumbItemView.setEnabled(data.isEnabled());
+
         thumbItemView.setImageResource(data.getIconRes());
         labelItemView.setText(data.getLabel());
-        labelItemView.setTextColor(itemView.getResources().getColor(data.isEnabled() ? R.color.white_main_text_color : R.color.divider_white_color));
-
-        itemView.setSelected(data.isSelected());
+        labelItemView.setTextColor(ContextCompat.getColor(getItemView().getContext(), data.isEnabled() ? R.color.white_main_text_color : R.color.menu_item_idle_state));
     }
 
     @Override

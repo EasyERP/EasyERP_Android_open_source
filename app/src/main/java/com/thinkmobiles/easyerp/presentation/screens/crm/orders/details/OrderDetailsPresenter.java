@@ -20,8 +20,6 @@ import com.thinkmobiles.easyerp.presentation.utils.StringUtil;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
-import rx.functions.Func2;
-
 public class OrderDetailsPresenter extends ContentPresenterHelper implements OrderDetailsContract.OrderDetailsPresenter {
 
     private OrderDetailsContract.OrderDetailsView view;
@@ -75,6 +73,12 @@ public class OrderDetailsPresenter extends ContentPresenterHelper implements Ord
                     view.showProgress(Constants.ProgressType.NONE);
                     setData(responseGerOrderDetails);
                 },  t -> error(t)));
+    }
+
+    @Override
+    public void startAttachment(int pos) {
+        String url = String.format("%sdownload/%s", Constants.BASE_URL, currentOrder.attachments.get(pos).shortPath);
+        view.startUrlIntent(url);
     }
 
     private void setOrgData(OrganizationSettings response) {

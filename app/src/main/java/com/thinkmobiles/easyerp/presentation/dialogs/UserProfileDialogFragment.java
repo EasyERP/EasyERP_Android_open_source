@@ -15,8 +15,11 @@ import android.widget.TextView;
 
 import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.data.model.user.UserInfo;
+import com.thinkmobiles.easyerp.presentation.base.BasePresenter;
+import com.thinkmobiles.easyerp.presentation.base.BaseView;
 import com.thinkmobiles.easyerp.presentation.custom.transformations.CropCircleTransformation;
 import com.thinkmobiles.easyerp.presentation.managers.DateManager;
+import com.thinkmobiles.easyerp.presentation.managers.GoogleAnalyticHelper;
 import com.thinkmobiles.easyerp.presentation.managers.ImageHelper;
 
 import org.androidannotations.annotations.EFragment;
@@ -28,7 +31,7 @@ import org.androidannotations.annotations.FragmentArg;
  *         Email: michael.soyma@thinkmobiles.com
  */
 @EFragment
-public class UserProfileDialogFragment extends DialogFragment {
+public class UserProfileDialogFragment extends DialogFragment implements BaseView {
 
     private IUserProfileCallback userProfileCallback;
 
@@ -67,6 +70,7 @@ public class UserProfileDialogFragment extends DialogFragment {
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
+        GoogleAnalyticHelper.trackScreenView(this, getResources().getConfiguration());
         View parent = LayoutInflater.from(getActivity()).inflate(R.layout.dialog_me_profile, null);
         initUI(parent);
 
@@ -83,9 +87,25 @@ public class UserProfileDialogFragment extends DialogFragment {
     }
 
     private void changePassword() {
+        GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_BUTTON, "Change password");
         dismiss();
         if (userProfileCallback != null)
             userProfileCallback.showChangeProfile();
+    }
+
+    @Override
+    public void initPresenter() {
+
+    }
+
+    @Override
+    public void setPresenter(BasePresenter presenter) {
+
+    }
+
+    @Override
+    public String getScreenName() {
+        return "User profile screen";
     }
 
     public interface IUserProfileCallback {

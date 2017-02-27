@@ -30,6 +30,7 @@ import com.thinkmobiles.easyerp.presentation.holders.data.crm.AttachmentDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.ContactDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.HistoryDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.LeadAndOpportunityDH;
+import com.thinkmobiles.easyerp.presentation.managers.GoogleAnalyticHelper;
 import com.thinkmobiles.easyerp.presentation.managers.HistoryAnimationHelper;
 import com.thinkmobiles.easyerp.presentation.managers.ImageHelper;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
@@ -184,6 +185,8 @@ public class CompanyDetailsFragment extends ContentFragment implements CompanyDe
 
     @AfterViews
     protected void initUI() {
+        GoogleAnalyticHelper.trackScreenView(this, getResources().getConfiguration());
+
         rvHistory.setLayoutManager(new LinearLayoutManager(getActivity()));
         rvHistory.setAdapter(historyAdapter);
 
@@ -195,7 +198,10 @@ public class CompanyDetailsFragment extends ContentFragment implements CompanyDe
 
         rvAttachments_FCD.setLayoutManager(new GridLayoutManager(getActivity(), 2));
         rvAttachments_FCD.setAdapter(attachmentAdapter);
-        attachmentAdapter.setOnCardClickListener((view, position, viewType) -> presenter.startAttachment(position));
+        attachmentAdapter.setOnCardClickListener((view, position, viewType) -> {
+            GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_ATTACHMENT, "");
+            presenter.startAttachment(position);
+        });
 
         RxView.clicks(btnHistory)
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
@@ -207,6 +213,7 @@ public class CompanyDetailsFragment extends ContentFragment implements CompanyDe
     @Override
     public void showHistory(boolean enable) {
         if (enable && rvHistory.getVisibility() == View.GONE) {
+            GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_BUTTON, "History");
             animationHelper.forward(nsvContent_FCD.getHeight());
         }
         if (!enable && rvHistory.getVisibility() == View.VISIBLE)
@@ -265,7 +272,10 @@ public class CompanyDetailsFragment extends ContentFragment implements CompanyDe
         tvCompanyWebsite_FCD.setText(companyUrl);
         RxView.clicks(tvCompanyWebsite_FCD)
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
-                .subscribe(aVoid -> startUrlIntent(companyUrl));
+                .subscribe(aVoid -> {
+                    GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_URL, "");
+                    startUrlIntent(companyUrl);
+                });
     }
 
     @Override
@@ -274,6 +284,7 @@ public class CompanyDetailsFragment extends ContentFragment implements CompanyDe
         RxView.clicks(ivCompanyFb_FCD)
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
                 .subscribe(aVoid -> {
+                    GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_SOCIAL_BUTTON, "Facebook");
                     Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
                     getActivity().startActivity(intent);
                 });
@@ -285,6 +296,7 @@ public class CompanyDetailsFragment extends ContentFragment implements CompanyDe
         RxView.clicks(ivCompanyLinkedIn_FCD)
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
                 .subscribe(aVoid -> {
+                    GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_SOCIAL_BUTTON, "Linked In");
                     Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.linkedin.com/profile/view?id=" + url));
                     getActivity().startActivity(intent);
                 });
@@ -296,6 +308,7 @@ public class CompanyDetailsFragment extends ContentFragment implements CompanyDe
         RxView.clicks(ivCompanySkype_FCD)
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
                 .subscribe(aVoid -> {
+                    GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_SOCIAL_BUTTON, "Skype");
                     try {
                         Intent sky = new Intent(Intent.ACTION_VIEW);
                         sky.setData(Uri.parse("skype:" + url));
@@ -467,6 +480,11 @@ public class CompanyDetailsFragment extends ContentFragment implements CompanyDe
     @Override
     protected ContentPresenter getPresenter() {
         return presenter;
+    }
+
+    @Override
+    public String getScreenName() {
+        return "Company details screen";
     }
 
     @Override

@@ -5,9 +5,11 @@ import com.thinkmobiles.easyerp.presentation.adapters.crm.InvoicesAdapter;
 import com.thinkmobiles.easyerp.presentation.base.rules.master.filterable.FilterablePresenter;
 import com.thinkmobiles.easyerp.presentation.base.rules.master.filterable.MasterFilterableFragment;
 import com.thinkmobiles.easyerp.presentation.base.rules.master.selectable.SelectableAdapter;
+import com.thinkmobiles.easyerp.presentation.managers.GoogleAnalyticHelper;
 import com.thinkmobiles.easyerp.presentation.screens.crm.invoices.details.InvoiceDetailsFragment_;
 
 import org.androidannotations.annotations.AfterInject;
+import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EFragment;
 
@@ -32,9 +34,19 @@ public class InvoicesFragment extends MasterFilterableFragment implements Invoic
         new InvoicesPresenter(this, invoiceRepository);
     }
 
+    @AfterViews
+    protected void initAnalytics() {
+        GoogleAnalyticHelper.trackScreenView(this, getResources().getConfiguration());
+    }
+
     @Override
     public void setPresenter(InvoicesContract.InvoicesPresenter presenter) {
         this.presenter = presenter;
+    }
+
+    @Override
+    public String getScreenName() {
+        return "Invoice list screen";
     }
 
     @Override

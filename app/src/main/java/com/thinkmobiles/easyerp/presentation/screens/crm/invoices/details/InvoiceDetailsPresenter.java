@@ -65,7 +65,15 @@ public class InvoiceDetailsPresenter extends ContentPresenterHelper implements I
                 .subscribe(responseGerOrderDetails -> {
                     view.showProgress(Constants.ProgressType.NONE);
                     setData(responseGerOrderDetails);
-                },  t -> error(t)));
+                },  t -> {
+                    error(t);
+                }));
+    }
+
+    @Override
+    public void startAttachment(int pos) {
+        String url = String.format("%sdownload/%s", Constants.BASE_URL, currentInvoice.attachments.get(pos).shortPath);
+        view.startUrlIntent(url);
     }
 
     private void setOrgData(OrganizationSettings data) {

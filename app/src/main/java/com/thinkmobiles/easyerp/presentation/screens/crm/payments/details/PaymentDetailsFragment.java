@@ -7,8 +7,10 @@ import com.thinkmobiles.easyerp.data.model.crm.payments.Payment;
 import com.thinkmobiles.easyerp.domain.crm.PaymentsRepository;
 import com.thinkmobiles.easyerp.presentation.base.rules.content.ContentFragment;
 import com.thinkmobiles.easyerp.presentation.base.rules.content.ContentPresenter;
+import com.thinkmobiles.easyerp.presentation.managers.GoogleAnalyticHelper;
 
 import org.androidannotations.annotations.AfterInject;
+import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.FragmentArg;
@@ -75,6 +77,10 @@ public class PaymentDetailsFragment extends ContentFragment implements PaymentDe
         new PaymentDetailsPresenter(this, paymentsRepository, payment);
     }
 
+    @AfterViews
+    protected void initAnalytics() {
+        GoogleAnalyticHelper.trackScreenView(this, getResources().getConfiguration());
+    }
 
     @Override
     protected ContentPresenter getPresenter() {
@@ -86,6 +92,10 @@ public class PaymentDetailsFragment extends ContentFragment implements PaymentDe
         this.presenter = presenter;
     }
 
+    @Override
+    public String getScreenName() {
+        return "Payment details screen";
+    }
 
     @Override
     public void setPaymentStatus(String paymentStatus) {

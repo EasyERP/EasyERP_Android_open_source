@@ -13,6 +13,9 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.thinkmobiles.easyerp.R;
+import com.thinkmobiles.easyerp.presentation.base.BasePresenter;
+import com.thinkmobiles.easyerp.presentation.base.BaseView;
+import com.thinkmobiles.easyerp.presentation.managers.GoogleAnalyticHelper;
 import com.thinkmobiles.easyerp.presentation.managers.ValidationManager;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
@@ -26,7 +29,7 @@ import org.androidannotations.annotations.res.StringRes;
  *         Email: michael.soyma@thinkmobiles.com
  */
 @EFragment
-public class ForgotPasswordDialogFragment extends DialogFragment {
+public class ForgotPasswordDialogFragment extends DialogFragment implements BaseView {
 
     private IForgotPasswordCallback forgotPasswordCallback;
 
@@ -68,6 +71,7 @@ public class ForgotPasswordDialogFragment extends DialogFragment {
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
+        GoogleAnalyticHelper.trackScreenView(this, getResources().getConfiguration());
         View parent = LayoutInflater.from(getActivity()).inflate(R.layout.dialog_forgot_password, null);
         initUI(parent);
 
@@ -84,6 +88,7 @@ public class ForgotPasswordDialogFragment extends DialogFragment {
     }
 
     private void send() {
+        GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_BUTTON, "Send");
         final String dbID = etDbId_DFP.getText().toString();
         final String userNameOrEmail = etUserNameOrEmail_DFP.getText().toString();
         if (!showError(ValidationManager.isDbIDValid(dbID), tilDbId_DFP, errEmptyDbID)) {
@@ -108,6 +113,21 @@ public class ForgotPasswordDialogFragment extends DialogFragment {
             default:
                 return false;
         }
+    }
+
+    @Override
+    public void initPresenter() {
+
+    }
+
+    @Override
+    public void setPresenter(BasePresenter presenter) {
+
+    }
+
+    @Override
+    public String getScreenName() {
+        return "Forgot password screen";
     }
 
     public interface IForgotPasswordCallback {

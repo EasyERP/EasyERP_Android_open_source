@@ -1,5 +1,7 @@
 package com.thinkmobiles.easyerp.presentation.screens.crm.invoices.details;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -22,6 +24,7 @@ import com.thinkmobiles.easyerp.presentation.holders.data.crm.AttachmentDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.HistoryDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.InvoicePaymentDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.ProductDH;
+import com.thinkmobiles.easyerp.presentation.managers.GoogleAnalyticHelper;
 import com.thinkmobiles.easyerp.presentation.managers.HistoryAnimationHelper;
 import com.thinkmobiles.easyerp.presentation.managers.TagHelper;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
@@ -133,6 +136,8 @@ public class InvoiceDetailsFragment extends ContentFragment implements InvoiceDe
 
     @AfterViews
     protected void initUI() {
+        GoogleAnalyticHelper.trackScreenView(this, getResources().getConfiguration());
+
         rvHistory.setAdapter(historyAdapter);
         rvHistory.setLayoutManager(new LinearLayoutManager(getActivity()));
 
@@ -141,6 +146,11 @@ public class InvoiceDetailsFragment extends ContentFragment implements InvoiceDe
 
         rvAttachments_FID.setAdapter(attachmentAdapter);
         rvAttachments_FID.setLayoutManager(new GridLayoutManager(getActivity(), 2));
+        attachmentAdapter.setOnCardClickListener((view, position, viewType) -> {
+            String url = String.format("%sdownload/%s", Constants.BASE_URL, attachmentAdapter.getItem(position).getItem().shortPath);
+            GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_ATTACHMENT, "");
+            presenter.startAttachment(position);
+        });
 
         rvPayments_FID.setAdapter(paymentAdapter);
         rvPayments_FID.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -164,6 +174,11 @@ public class InvoiceDetailsFragment extends ContentFragment implements InvoiceDe
     }
 
     @Override
+    public String getScreenName() {
+        return "Invoice details screen";
+    }
+
+    @Override
     public void onDestroyView() {
         super.onDestroyView();
         animationHelper.cancel();
@@ -172,6 +187,7 @@ public class InvoiceDetailsFragment extends ContentFragment implements InvoiceDe
     @Override
     public void showHistory(boolean enable) {
         if (enable && rvHistory.getVisibility() == View.GONE) {
+            GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_BUTTON, "History");
             animationHelper.forward(nsvContent_FID.getHeight());
         }
         if (!enable && rvHistory.getVisibility() == View.VISIBLE)
@@ -283,5 +299,12 @@ public class InvoiceDetailsFragment extends ContentFragment implements InvoiceDe
     @Override
     public void setProducts(ArrayList<ProductDH> products) {
         productAdapter.setListDH(products);
+    }
+
+    @Override
+    public void startUrlIntent(String url) {
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(Uri.parse(url));
+        startActivity(intent);
     }
 }

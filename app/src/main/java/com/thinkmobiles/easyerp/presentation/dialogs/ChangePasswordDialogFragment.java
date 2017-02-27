@@ -14,6 +14,9 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.thinkmobiles.easyerp.R;
+import com.thinkmobiles.easyerp.presentation.base.BasePresenter;
+import com.thinkmobiles.easyerp.presentation.base.BaseView;
+import com.thinkmobiles.easyerp.presentation.managers.GoogleAnalyticHelper;
 import com.thinkmobiles.easyerp.presentation.managers.ValidationManager;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
@@ -26,7 +29,7 @@ import org.androidannotations.annotations.res.StringRes;
  *         Email: michael.soyma@thinkmobiles.com
  */
 @EFragment
-public class ChangePasswordDialogFragment extends DialogFragment {
+public class ChangePasswordDialogFragment extends DialogFragment implements BaseView {
 
     private IChangePasswordCallback changePasswordCallback;
 
@@ -66,6 +69,7 @@ public class ChangePasswordDialogFragment extends DialogFragment {
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
+        GoogleAnalyticHelper.trackScreenView(this, getResources().getConfiguration());
         View parent = LayoutInflater.from(getActivity()).inflate(R.layout.dialog_change_password, null);
         initUI(parent);
 
@@ -82,6 +86,7 @@ public class ChangePasswordDialogFragment extends DialogFragment {
     }
 
     private void change() {
+        GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_BUTTON, "Change");
         final String oldPassword = etOldPassword_DCP.getText().toString();
         final String newPassword = etNewPassword_DCP.getText().toString();
         final String confirmPassword = etConfirmPassword_DCP.getText().toString();
@@ -119,6 +124,21 @@ public class ChangePasswordDialogFragment extends DialogFragment {
             default:
                 return false;
         }
+    }
+
+    @Override
+    public void initPresenter() {
+
+    }
+
+    @Override
+    public void setPresenter(BasePresenter presenter) {
+
+    }
+
+    @Override
+    public String getScreenName() {
+        return "Change password screen";
     }
 
     public interface IChangePasswordCallback {

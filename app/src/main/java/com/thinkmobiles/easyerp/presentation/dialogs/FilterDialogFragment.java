@@ -14,6 +14,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -22,7 +23,9 @@ import android.widget.EditText;
 
 import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.SearchDialogAdapter;
+import com.thinkmobiles.easyerp.presentation.base.BaseView;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.FilterDH;
+import com.thinkmobiles.easyerp.presentation.managers.GoogleAnalyticHelper;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
 import org.androidannotations.annotations.AfterInject;
@@ -104,6 +107,13 @@ public class FilterDialogFragment extends DialogFragment implements DialogInterf
         switch (which) {
             case DialogInterface.BUTTON_POSITIVE:
                 if (target != null) {
+                    if(target instanceof BaseView) {
+                        BaseView baseViewTarget = (BaseView) target;
+                        GoogleAnalyticHelper.trackClick(baseViewTarget, GoogleAnalyticHelper.EventType.SET_FILTER, filterName);
+                    } else {
+                        Log.d("myLogs", "Filters parent view must implement BaseView interface");
+                    }
+
                     Intent intent = new Intent();
                     intent.putParcelableArrayListExtra(Constants.KEY_FILTER_LIST, filterList);
                     target.onActivityResult(getTargetRequestCode(), Activity.RESULT_OK, intent);

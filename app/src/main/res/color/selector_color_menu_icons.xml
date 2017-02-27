@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:color="@color/white_main_text_color" android:state_selected="true" />
-    <item android:color="@color/divider_white_color" />
+    <item android:color="@color/menu_item_selected_state" android:state_selected="true" />
+    <item android:color="@color/menu_item_disabled_state" android:state_enabled="false" android:state_selected="false" />
+    <item android:color="@color/menu_item_idle_state" android:state_enabled="true" android:state_selected="false" />
 </selector>

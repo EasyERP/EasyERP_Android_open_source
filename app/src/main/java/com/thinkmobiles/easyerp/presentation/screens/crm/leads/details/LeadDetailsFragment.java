@@ -27,6 +27,7 @@ import com.thinkmobiles.easyerp.presentation.base.rules.content.ContentPresenter
 import com.thinkmobiles.easyerp.presentation.custom.RoundRectDrawable;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.AttachmentDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.HistoryDH;
+import com.thinkmobiles.easyerp.presentation.managers.GoogleAnalyticHelper;
 import com.thinkmobiles.easyerp.presentation.managers.HistoryAnimationHelper;
 import com.thinkmobiles.easyerp.presentation.managers.TagHelper;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
@@ -142,12 +143,17 @@ public class LeadDetailsFragment extends ContentFragment implements LeadDetailsC
 
     @AfterViews
     protected void initUI() {
+        GoogleAnalyticHelper.trackScreenView(this, getResources().getConfiguration());
+
         rvHistory.setLayoutManager(new LinearLayoutManager(getActivity()));
         rvHistory.setAdapter(historyAdapter);
 
         rvAttachments_FLD.setLayoutManager(new GridLayoutManager(getActivity(), 2));
         rvAttachments_FLD.setAdapter(attachmentAdapter);
-        attachmentAdapter.setOnCardClickListener((view, position, viewType) -> presenter.startAttachment(position));
+        attachmentAdapter.setOnCardClickListener((view, position, viewType) -> {
+            GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_ATTACHMENT, "");
+            presenter.startAttachment(position);
+        });
 
         RxView.clicks(btnHistory)
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
@@ -175,6 +181,11 @@ public class LeadDetailsFragment extends ContentFragment implements LeadDetailsC
     @Override
     public void setPresenter(LeadDetailsContract.LeadDetailsPresenter presenter) {
         this.presenter = presenter;
+    }
+
+    @Override
+    public String getScreenName() {
+        return "Lead details screen";
     }
 
     @Override
@@ -292,6 +303,7 @@ public class LeadDetailsFragment extends ContentFragment implements LeadDetailsC
     @Override
     public void showHistory(boolean enable) {
         if (enable && rvHistory.getVisibility() == View.GONE) {
+            GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_BUTTON, "History");
             animationHelper.forward(nsvContent_FLD.getHeight());
         }
         if (!enable && rvHistory.getVisibility() == View.VISIBLE)

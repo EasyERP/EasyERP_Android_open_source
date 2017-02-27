@@ -28,6 +28,7 @@ import com.thinkmobiles.easyerp.presentation.custom.transformations.CropCircleTr
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.AttachmentDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.HistoryDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.LeadAndOpportunityDH;
+import com.thinkmobiles.easyerp.presentation.managers.GoogleAnalyticHelper;
 import com.thinkmobiles.easyerp.presentation.managers.HistoryAnimationHelper;
 import com.thinkmobiles.easyerp.presentation.managers.ImageHelper;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
@@ -192,6 +193,8 @@ public class PersonDetailsFragment extends ContentFragment implements PersonDeta
 
     @AfterViews
     protected void initUI() {
+        GoogleAnalyticHelper.trackScreenView(this, getResources().getConfiguration());
+
         setEmptyData();
         rvHistory.setLayoutManager(new LinearLayoutManager(getActivity()));
         rvHistory.setAdapter(historyAdapter);
@@ -201,7 +204,10 @@ public class PersonDetailsFragment extends ContentFragment implements PersonDeta
 
         rvAttachments_FPD.setLayoutManager(new GridLayoutManager(getActivity(), 2));
         rvAttachments_FPD.setAdapter(attachmentAdapter);
-        attachmentAdapter.setOnCardClickListener((view, position, viewType) -> presenter.startAttachment(position));
+        attachmentAdapter.setOnCardClickListener((view, position, viewType) -> {
+            GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_ATTACHMENT, "");
+            presenter.startAttachment(position);
+        });
 
         RxView.clicks(btnHistory)
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
@@ -274,6 +280,7 @@ public class PersonDetailsFragment extends ContentFragment implements PersonDeta
         RxView.clicks(ivSkype_FPD)
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
                 .subscribe(aVoid -> {
+                    GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_SOCIAL_BUTTON, "Skype");
                     try {
                         Intent sky = new Intent(Intent.ACTION_VIEW);
                         sky.setData(Uri.parse("skype:" + skype));
@@ -290,6 +297,7 @@ public class PersonDetailsFragment extends ContentFragment implements PersonDeta
         RxView.clicks(ivLinkedIn_FPD)
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
                 .subscribe(aVoid -> {
+                    GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_SOCIAL_BUTTON, "Linked In");
                     Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.linkedin.com/profile/view?id=" + linkedIn));
                     getActivity().startActivity(intent);
                 });
@@ -301,6 +309,7 @@ public class PersonDetailsFragment extends ContentFragment implements PersonDeta
         RxView.clicks(ivFacebook_FPD)
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
                 .subscribe(aVoid -> {
+                    GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_SOCIAL_BUTTON, "Facebook");
                     Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(facebook));
                     getActivity().startActivity(intent);
                 });
@@ -442,7 +451,10 @@ public class PersonDetailsFragment extends ContentFragment implements PersonDeta
         else url = companyUrl;
         RxView.clicks(tvCompanyTitleUrl_FPD)
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
-                .subscribe(aVoid -> startUrlIntent(url));
+                .subscribe(aVoid -> {
+                    GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_URL, "");
+                    startUrlIntent(url);
+                });
     }
 
     @Override
@@ -499,6 +511,7 @@ public class PersonDetailsFragment extends ContentFragment implements PersonDeta
     @Override
     public void showHistory(boolean enable) {
         if (enable && rvHistory.getVisibility() == View.GONE) {
+            GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_BUTTON, "History");
             animationHelper.forward(nsvContent_FPD.getHeight());
         }
         if (!enable && rvHistory.getVisibility() == View.VISIBLE)
@@ -531,6 +544,11 @@ public class PersonDetailsFragment extends ContentFragment implements PersonDeta
     @Override
     public void setPresenter(PersonDetailsContract.PersonDetailsPresenter presenter) {
         this.presenter = presenter;
+    }
+
+    @Override
+    public String getScreenName() {
+        return "Person details screen";
     }
 
     private void setEmptyData() {

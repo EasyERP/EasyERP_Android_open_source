@@ -31,6 +31,7 @@ import com.thinkmobiles.easyerp.presentation.custom.RoundRectDrawable;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.AttachmentDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.ContactDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.HistoryDH;
+import com.thinkmobiles.easyerp.presentation.managers.GoogleAnalyticHelper;
 import com.thinkmobiles.easyerp.presentation.managers.HistoryAnimationHelper;
 import com.thinkmobiles.easyerp.presentation.managers.ImageHelper;
 import com.thinkmobiles.easyerp.presentation.managers.TagHelper;
@@ -148,6 +149,8 @@ public class OpportunityDetailsFragment extends ContentFragment implements Oppor
 
     @AfterViews
     protected void initUI() {
+        GoogleAnalyticHelper.trackScreenView(this, getResources().getConfiguration());
+
         rvHistory.setLayoutManager(new LinearLayoutManager(getActivity()));
         rvHistory.setAdapter(historyAdapter);
 
@@ -156,7 +159,10 @@ public class OpportunityDetailsFragment extends ContentFragment implements Oppor
 
         rvAttachments_FOD.setLayoutManager(new GridLayoutManager(getActivity(), 2));
         rvAttachments_FOD.setAdapter(attachmentAdapter);
-        attachmentAdapter.setOnCardClickListener((view, position, viewType) -> presenter.startAttachment(position));
+        attachmentAdapter.setOnCardClickListener((view, position, viewType) -> {
+            GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_ATTACHMENT, "");
+            presenter.startAttachment(position);
+        });
 
         RxView.clicks(btnHistory)
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
@@ -168,6 +174,7 @@ public class OpportunityDetailsFragment extends ContentFragment implements Oppor
     @Override
     public void showHistory(boolean enable) {
         if (enable && rvHistory.getVisibility() == View.GONE) {
+            GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_BUTTON, "History");
             animationHelper.forward(nsvContent_FOD.getHeight());
         }
         if (!enable && rvHistory.getVisibility() == View.VISIBLE)
@@ -235,7 +242,10 @@ public class OpportunityDetailsFragment extends ContentFragment implements Oppor
         else url = companyUrl;
         RxView.clicks(tvCompanyTitleUrl_FOD)
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
-                .subscribe(aVoid -> startUrlIntent(url));
+                .subscribe(aVoid -> {
+                    GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_URL, "");
+                    startUrlIntent(url);
+                });
     }
 
     @Override
@@ -315,6 +325,11 @@ public class OpportunityDetailsFragment extends ContentFragment implements Oppor
     @Override
     public void setPresenter(OpportunityDetailsContract.OpportunityDetailsPresenter presenter) {
         this.presenter = presenter;
+    }
+
+    @Override
+    public String getScreenName() {
+        return "Opportunity details screen";
     }
 
     @Override
