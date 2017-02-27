@@ -154,7 +154,7 @@
 
     <string name="about_us">About Us</string>
 
-    <string name="terms_and_conditions_privacy_policy">By signing up you agree Terms &amp; conditions and Privacy policy</string>
+    <string name="terms_and_conditions_privacy_policy">By signing in you agree to the Terms &amp; Conditions and Privacy Policy</string>
     <string name="forgot_password">Forgot Password</string>
     <string name="forgot_password_question">Forgot Password?</string>
     <string name="my_profile">My Profile</string>

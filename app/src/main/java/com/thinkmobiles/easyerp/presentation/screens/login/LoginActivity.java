@@ -175,8 +175,8 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
 
     private Spannable buildTermsAndConditions() {
         final SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(termsAndConditionsString);
-        final String termsAndConditions = "Terms & conditions";
-        final String privacyPolicy = "Privacy policy";
+        final String termsAndConditions = "Terms & Conditions";
+        final String privacyPolicy = "Privacy Policy";
         final int termsAndConditionsPos = termsAndConditionsString.indexOf(termsAndConditions);
         final int privacyPolicyPos = termsAndConditionsString.indexOf(privacyPolicy);
 

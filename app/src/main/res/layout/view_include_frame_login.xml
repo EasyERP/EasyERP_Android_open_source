@@ -158,6 +158,6 @@
         android:maxLines="2"
         android:textColor="@color/white_main_text_color"
         android:textSize="@dimen/small_text_size"
-        tools:text="By signing up you agree Terms &amp; conditions and Privacy policy" />
+        tools:text="By signing in you agree to the Terms &amp; Conditions and Privacy Policy" />
 
 </LinearLayout>
