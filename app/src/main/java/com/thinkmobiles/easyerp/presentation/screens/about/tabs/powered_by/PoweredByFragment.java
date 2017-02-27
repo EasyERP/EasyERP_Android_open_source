@@ -39,6 +39,11 @@ public class PoweredByFragment extends BaseSupportFragment<AboutUsActivity> impl
         this.presenter = presenter;
     }
 
+    @Override
+    public String getScreenName() {
+        return "About us (Powered By) screen";
+    }
+
     @AfterViews
     protected void initUI() {
         tvDescription_FAUPB.setText(Html.fromHtml(getString(R.string.thinkmobiles_description)));

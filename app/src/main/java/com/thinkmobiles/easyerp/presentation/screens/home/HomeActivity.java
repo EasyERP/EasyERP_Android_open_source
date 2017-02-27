@@ -18,6 +18,7 @@ import com.thinkmobiles.easyerp.presentation.dialogs.ChangePasswordDialogFragmen
 import com.thinkmobiles.easyerp.presentation.dialogs.UserProfileDialogFragment;
 import com.thinkmobiles.easyerp.presentation.dialogs.UserProfileDialogFragment_;
 import com.thinkmobiles.easyerp.presentation.managers.CookieManager;
+import com.thinkmobiles.easyerp.presentation.managers.GoogleAnalyticHelper;
 import com.thinkmobiles.easyerp.presentation.managers.RateAppManager;
 
 import org.androidannotations.annotations.AfterInject;
@@ -74,6 +75,7 @@ public class HomeActivity extends BaseMasterFlowActivity implements HomeContract
 
     @Override
     protected void logOut() {
+        GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_MENU_ITEM, "Logout");
         presenter.logOut();
     }
 
@@ -108,16 +110,18 @@ public class HomeActivity extends BaseMasterFlowActivity implements HomeContract
 
     @Override
     public void chooseModule(int moduleId) {
-        //TODO for analytics. Use MenuConfigs.getModuleLabel(moduleId); for tracking label the module
+        GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_SIDE_MENU_MODULE, MenuConfigs.getModuleLabel(moduleId));
     }
 
     @Override
     public void chooseItem(int moduleId, int itemId) {
+        GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_SIDE_MENU_ITEM, MenuConfigs.getItemLabel(moduleId, itemId));
         replaceFragmentContent(MenuConfigs.getFragmentByMenuId(moduleId, itemId), MenuConfigs.getItemLabel(moduleId, itemId));
     }
 
     @Override
     public void onClickUser() {
+        GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_IMAGE, "Side menu user profile");
         UserProfileDialogFragment_.builder().userInfo(userInfo).build().show(getFragmentManager(), null);
     }
 
@@ -162,6 +166,11 @@ public class HomeActivity extends BaseMasterFlowActivity implements HomeContract
     protected void onDestroy() {
         super.onDestroy();
         presenter.unsubscribe();
+    }
+
+    @Override
+    public String getScreenName() {
+        return "Home screen";
     }
 
     @Override

@@ -46,10 +46,15 @@ public interface OrderDetailsContract {
         void setAdvice(String advice);
         void setHistory(ArrayList<HistoryDH> history);
         void setProducts(ArrayList<ProductDH> products);
+
+        void startUrlIntent(String url);
     }
+
+
 
     interface OrderDetailsPresenter extends ContentPresenter {
         void changeNotesVisibility();
+        void startAttachment(int pos);
     }
 
     interface OrderDetailsModel extends BaseModel {

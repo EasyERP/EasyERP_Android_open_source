@@ -12,12 +12,14 @@ import com.thinkmobiles.easyerp.data.model.crm.dashboard.detail.DashboardChartTy
 import com.thinkmobiles.easyerp.domain.crm.DashboardRepository;
 import com.thinkmobiles.easyerp.presentation.base.rules.content.ContentFragment;
 import com.thinkmobiles.easyerp.presentation.base.rules.content.ContentPresenter;
+import com.thinkmobiles.easyerp.presentation.managers.GoogleAnalyticHelper;
 import com.thinkmobiles.easyerp.presentation.screens.crm.dashboard.detail.DashboardDetailChartContract.DashboardDetailChartView;
 import com.thinkmobiles.easyerp.presentation.screens.crm.dashboard.detail.charts.ChartViewFabric;
 import com.thinkmobiles.easyerp.presentation.screens.crm.dashboard.detail.charts.IChartView;
 import com.thinkmobiles.easyerp.presentation.utils.AppDefaultStatesPreferences_;
 
 import org.androidannotations.annotations.AfterInject;
+import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.FragmentArg;
@@ -63,6 +65,11 @@ public class DashboardDetailChartFragment extends ContentFragment implements Das
         presenter = new DashboardDetailChartPresenter(this, dashboardRepository, dashboardConfigsForChart, appDefaultStatesPreferences);
     }
 
+    @AfterViews
+    protected void initAnalytics() {
+        GoogleAnalyticHelper.trackScreenView(this, getResources().getConfiguration());
+    }
+
     @Override
     public void setPresenter(DashboardDetailChartContract.DashboardDetailChartPresenter presenter) {
         this.presenter = presenter;
@@ -71,6 +78,11 @@ public class DashboardDetailChartFragment extends ContentFragment implements Das
     @Override
     protected ContentPresenter getPresenter() {
         return presenter;
+    }
+
+    @Override
+    public String getScreenName() {
+        return "Dashboard details screen";
     }
 
     @Override
@@ -94,7 +106,12 @@ public class DashboardDetailChartFragment extends ContentFragment implements Das
     @Override
     public void chooseCustomDateRangeFromTo(Calendar dateFrom, Calendar dateTo) {
         SmoothDateRangePickerFragment dateRangePickerFragment = SmoothDateRangePickerFragment.newInstance(
-                (rpFragment, y, m, d, yTo, mTo, dTo) -> presenter.setCustomFilterRangeDateFromTo(new GregorianCalendar(y, m, d), new GregorianCalendar(yTo, mTo, dTo)),
+                (rpFragment, y, m, d, yTo, mTo, dTo) -> {
+                    GoogleAnalyticHelper.trackClick(this,
+                            GoogleAnalyticHelper.EventType.SET_CHART_PERIOD,
+                            GoogleAnalyticHelper.getFromToString(y, m, d, yTo, mTo, dTo));
+                    presenter.setCustomFilterRangeDateFromTo(new GregorianCalendar(y, m, d), new GregorianCalendar(yTo, mTo, dTo));
+                },
                 dateFrom.get(Calendar.YEAR),
                 dateFrom.get(Calendar.MONTH),
                 dateFrom.get(Calendar.DAY_OF_MONTH),
@@ -115,18 +132,23 @@ public class DashboardDetailChartFragment extends ContentFragment implements Das
         item.setChecked(true);
         switch (item.getItemId()) {
             case R.id.thisMonth_MCDD:
+                GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.SET_CHART_PERIOD, "This month");
                 presenter.chooseFilterType(DateFilterType.THIS_MONTH);
                 break;
             case R.id.thisFinancialYear_MCDD:
+                GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.SET_CHART_PERIOD, "This financial year");
                 presenter.chooseFilterType(DateFilterType.THIS_FINANCIAL_YEAR);
                 break;
             case R.id.lastMonth_MCDD:
+                GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.SET_CHART_PERIOD, "Last month");
                 presenter.chooseFilterType(DateFilterType.LAST_MONTH);
                 break;
             case R.id.lastQuarter_MCDD:
+                GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.SET_CHART_PERIOD, "Last quarter");
                 presenter.chooseFilterType(DateFilterType.LAST_QUARTER);
                 break;
             case R.id.lastFinancialYear_MCDD:
+                GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.SET_CHART_PERIOD, "Last financial year");
                 presenter.chooseFilterType(DateFilterType.LAST_FINANCIAL_YEAR);
                 break;
             case R.id.customDates_MCDD:

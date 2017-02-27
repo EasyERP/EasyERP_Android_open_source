@@ -5,9 +5,11 @@ import com.thinkmobiles.easyerp.presentation.adapters.crm.OrdersAdapter;
 import com.thinkmobiles.easyerp.presentation.base.rules.master.filterable.FilterablePresenter;
 import com.thinkmobiles.easyerp.presentation.base.rules.master.filterable.MasterFilterableFragment;
 import com.thinkmobiles.easyerp.presentation.base.rules.master.selectable.SelectableAdapter;
+import com.thinkmobiles.easyerp.presentation.managers.GoogleAnalyticHelper;
 import com.thinkmobiles.easyerp.presentation.screens.crm.orders.details.OrderDetailsFragment_;
 
 import org.androidannotations.annotations.AfterInject;
+import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EFragment;
 
@@ -25,6 +27,11 @@ public class OrdersFragment extends MasterFilterableFragment implements OrdersCo
     protected OrderRepository orderRepository;
     @Bean
     protected OrdersAdapter ordersAdapter;
+
+    @AfterViews
+    protected void initAnalytics() {
+        GoogleAnalyticHelper.trackScreenView(this, getResources().getConfiguration());
+    }
 
     @AfterInject
     @Override
@@ -56,5 +63,10 @@ public class OrdersFragment extends MasterFilterableFragment implements OrdersCo
         } else {
             mActivity.replaceFragmentContentDetail(null);
         }
+    }
+
+    @Override
+    public String getScreenName() {
+        return "Order list screen";
     }
 }

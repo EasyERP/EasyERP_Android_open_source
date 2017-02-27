@@ -4,9 +4,11 @@ import com.thinkmobiles.easyerp.domain.crm.CompaniesRepository;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.CompaniesAdapter;
 import com.thinkmobiles.easyerp.presentation.base.rules.master.alphabetical.MasterAlphabeticalFragment;
 import com.thinkmobiles.easyerp.presentation.base.rules.master.selectable.SelectableAdapter;
+import com.thinkmobiles.easyerp.presentation.managers.GoogleAnalyticHelper;
 import com.thinkmobiles.easyerp.presentation.screens.crm.companies.details.CompanyDetailsFragment_;
 
 import org.androidannotations.annotations.AfterInject;
+import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EFragment;
 
@@ -30,6 +32,11 @@ public class CompaniesFragment extends MasterAlphabeticalFragment implements Com
         new CompaniesPresenter(this, companiesRepository);
     }
 
+    @AfterViews
+    protected void initAnalytics() {
+        GoogleAnalyticHelper.trackScreenView(this, getResources().getConfiguration());
+    }
+
     @Override
     public void openDetailsScreen(String companyID) {
         if (companyID != null) {
@@ -49,6 +56,11 @@ public class CompaniesFragment extends MasterAlphabeticalFragment implements Com
     @Override
     public void setPresenter(CompaniesContract.CompaniesPresenter presenter) {
         this.presenter = presenter;
+    }
+
+    @Override
+    public String getScreenName() {
+        return "Company list screen";
     }
 
     @Override

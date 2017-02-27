@@ -32,7 +32,9 @@ public class LibrariesRepository implements LibrariesContract.LibrariesModel {
         result.add(new LibraryInfo("CircleIndicator",           "1.3.0",    "angakeur", "Apache License 2.0", "https://github.com/ongakuer/CircleIndicator"));
 
         result.add(new LibraryInfo("Stetho",                    "1.4.2",    "Facebook", "BSD", "http://facebook.github.io/stetho/"));
-        result.add(new LibraryInfo("Crashlytic",                "2.6.6",    "Twitter", "Apache License 2.0", "http://try.crashlytics.com/"));
+        result.add(new LibraryInfo("Crashlytic",                "2.6.6",    "Twitter", "Apache License 2.0", "http://try.crashlytics.com"));
+        result.add(new LibraryInfo("Google Analytics",          "10.0.1",   "Google Inc.", "Apache License 2.0", "https://developers.google.com/analytics/devguides/collection/android"));
+        result.add(new LibraryInfo("UXCam",                     "2.5.7",    "UXCam Inc.", "MIT", "https://uxcam.com/"));
 
         return result;
     }

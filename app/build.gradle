@@ -55,7 +55,6 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-
 }
 
 //TODO DANGEROUS!!!. Please move added dependency in repository: domain/LibrariesRepository.java
@@ -92,7 +91,30 @@ dependencies {
     compile appDependencies.circleIndicator
 
     /*Analytic tools*/
+    compile devDependencies.analytic
     compile(devDependencies.crashlytic) {
         transitive = true;
     }
+    compile devDependencies.uxcamAnalytic
+}
+
+apply plugin: 'com.google.gms.google-services'
+
+task switchToDebug(type: Copy) {
+    description = 'Switches to DEBUG google-services.json'
+    from "src/debug"
+    include "google-services.json"
+    into "."
+}
+
+task switchToRelease(type: Copy) {
+    description = 'Switches to RELEASE google-services.json'
+    from "src/main"
+    include "google-services.json"
+    into "."
+}
+
+afterEvaluate {
+    processDebugGoogleServices.dependsOn switchToDebug
+    processReleaseGoogleServices.dependsOn switchToRelease
 }

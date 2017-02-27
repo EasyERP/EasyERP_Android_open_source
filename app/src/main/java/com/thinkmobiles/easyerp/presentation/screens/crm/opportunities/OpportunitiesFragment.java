@@ -5,9 +5,11 @@ import com.thinkmobiles.easyerp.presentation.adapters.crm.OpportunitiesAdapter;
 import com.thinkmobiles.easyerp.presentation.base.rules.master.filterable.FilterablePresenter;
 import com.thinkmobiles.easyerp.presentation.base.rules.master.filterable.MasterFilterableFragment;
 import com.thinkmobiles.easyerp.presentation.base.rules.master.selectable.SelectableAdapter;
+import com.thinkmobiles.easyerp.presentation.managers.GoogleAnalyticHelper;
 import com.thinkmobiles.easyerp.presentation.screens.crm.opportunities.details.OpportunityDetailsFragment_;
 
 import org.androidannotations.annotations.AfterInject;
+import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EFragment;
 
@@ -24,6 +26,11 @@ public class OpportunitiesFragment extends MasterFilterableFragment implements O
     protected OpportunitiesRepository opportunitiesRepository;
     @Bean
     protected OpportunitiesAdapter opportunitiesAdapter;
+
+    @AfterViews
+    protected void initAnalytics() {
+        GoogleAnalyticHelper.trackScreenView(this, getResources().getConfiguration());
+    }
 
     @AfterInject
     @Override
@@ -55,5 +62,10 @@ public class OpportunitiesFragment extends MasterFilterableFragment implements O
     @Override
     public void setPresenter(OpportunitiesContract.OpportunitiesPresenter presenter) {
         this.presenter = presenter;
+    }
+
+    @Override
+    public String getScreenName() {
+        return "Opportunity list screen";
     }
 }

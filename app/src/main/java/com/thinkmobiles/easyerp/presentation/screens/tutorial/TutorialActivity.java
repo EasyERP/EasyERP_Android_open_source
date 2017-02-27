@@ -16,6 +16,7 @@ import com.thinkmobiles.easyerp.domain.UserRepository;
 import com.thinkmobiles.easyerp.presentation.adapters.TutorialPagerAdapter;
 import com.thinkmobiles.easyerp.presentation.custom.transformations.ZoomOutSlideTransformer;
 import com.thinkmobiles.easyerp.presentation.managers.CookieManager;
+import com.thinkmobiles.easyerp.presentation.managers.GoogleAnalyticHelper;
 import com.thinkmobiles.easyerp.presentation.screens.home.HomeActivity_;
 import com.thinkmobiles.easyerp.presentation.screens.login.LoginActivity_;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
@@ -71,6 +72,8 @@ public class TutorialActivity extends AppCompatActivity implements TutorialContr
 
     @AfterViews
     protected void initUI() {
+        GoogleAnalyticHelper.trackScreenView(this, getResources().getConfiguration());
+
         vpTutorial_AT.setAdapter(tutorialPagerAdapter);
         ciTutorial_AT.setViewPager(vpTutorial_AT);
         vpTutorial_AT.setPageTransformer(true, new ZoomOutSlideTransformer());
@@ -80,10 +83,16 @@ public class TutorialActivity extends AppCompatActivity implements TutorialContr
 
         RxView.clicks(btnLogin_AT)
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
-                .subscribe(aVoid -> presenter.login());
+                .subscribe(aVoid -> {
+                    GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_BUTTON, "Login");
+                    presenter.login();
+                });
         RxView.clicks(btnDemo_AT)
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
-                .subscribe(aVoid -> presenter.demo());
+                .subscribe(aVoid -> {
+                    GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_BUTTON, "Demo");
+                    presenter.demo();
+                });
     }
 
     @Override
@@ -125,5 +134,10 @@ public class TutorialActivity extends AppCompatActivity implements TutorialContr
     @Override
     public void setPresenter(TutorialContract.TutorialPresenter presenter) {
         this.presenter = presenter;
+    }
+
+    @Override
+    public String getScreenName() {
+        return "Tutorial screen";
     }
 }

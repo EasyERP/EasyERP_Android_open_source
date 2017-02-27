@@ -75,6 +75,11 @@ public class LibrariesFragment extends BaseSupportFragment<AboutUsActivity> impl
     }
 
     @Override
+    public String getScreenName() {
+        return "About us (Libraries) screen";
+    }
+
+    @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         glm.setSpanCount(newConfig.orientation == Configuration.ORIENTATION_PORTRAIT ? 2 : 3);
