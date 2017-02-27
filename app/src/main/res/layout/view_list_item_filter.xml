@@ -8,9 +8,9 @@
 
     <android.support.v7.widget.AppCompatCheckBox
         android:id="@+id/cbItem"
+        android:theme="@style/CustomCheckBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="@style/CustomCheckBoxStyle"
         android:paddingStart="@dimen/default_dimen_32"
         tools:text="text 1"
         android:textSize="@dimen/text_list_item_medium_16"

@@ -472,7 +472,6 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:text="@string/customer"
-                                        android:textColor="@color/text_grey_hint_color"
                                         style="@style/CustomCheckBoxStyle"
                                         tools:checked="true" />
 
@@ -482,7 +481,6 @@
                                         android:layout_height="wrap_content"
                                         android:layout_marginStart="@dimen/default_padding_half"
                                         android:text="@string/supplier"
-                                        android:textColor="@color/text_grey_hint_color"
                                         style="@style/CustomCheckBoxStyle"
                                         tools:checked="false" />
 
