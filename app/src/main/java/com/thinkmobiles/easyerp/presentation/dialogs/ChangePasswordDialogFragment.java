@@ -11,6 +11,7 @@ import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.thinkmobiles.easyerp.R;
@@ -21,6 +22,7 @@ import com.thinkmobiles.easyerp.presentation.managers.ValidationManager;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
 import org.androidannotations.annotations.EFragment;
+import org.androidannotations.annotations.res.DimensionRes;
 import org.androidannotations.annotations.res.StringRes;
 
 /**
@@ -34,16 +36,23 @@ public class ChangePasswordDialogFragment extends DialogFragment implements Base
     private IChangePasswordCallback changePasswordCallback;
 
     private TextInputLayout tilOldPassword_DCP, tilNewPassword_DCP, tilConfirmPassword_DCP;
+    private View ivOldPassword_DCP, ivNewPassword_DCP, ivConfirmPassword_DCP;
     private EditText etOldPassword_DCP, etNewPassword_DCP, etConfirmPassword_DCP;
 
-    @StringRes(R.string.err_password_required)
-    protected String errPasswordRequired;
+    @StringRes(R.string.err_password_old_required)
+    protected String errPasswordOldRequired;
+    @StringRes(R.string.err_password_new_required)
+    protected String errPasswordNewRequired;
+    @StringRes(R.string.err_password_confirm_required)
+    protected String errPasswordConfirmRequired;
     @StringRes(R.string.err_password_confirm_equal)
     protected String errPasswordConfirmEqual;
     @StringRes(R.string.err_password_wrong_symbols)
     protected String errPasswordWrongSymbols;
     @StringRes(R.string.err_password_short)
     protected String errPasswordShort;
+    @DimensionRes(R.dimen.default_padding_middle)
+    protected float fixMarginForIcons;
 
     @Override
     public void onAttach(Activity activity) {
@@ -60,6 +69,10 @@ public class ChangePasswordDialogFragment extends DialogFragment implements Base
         tilOldPassword_DCP = (TextInputLayout) rootView.findViewById(R.id.tilOldPassword_DCP);
         tilNewPassword_DCP = (TextInputLayout) rootView.findViewById(R.id.tilNewPassword_DCP);
         tilConfirmPassword_DCP = (TextInputLayout) rootView.findViewById(R.id.tilConfirmPassword_DCP);
+
+        ivOldPassword_DCP = rootView.findViewById(R.id.ivOldPassword_DCP);
+        ivNewPassword_DCP = rootView.findViewById(R.id.ivNewPassword_DCP);
+        ivConfirmPassword_DCP = rootView.findViewById(R.id.ivConfirmPassword_DCP);
 
         etOldPassword_DCP = (EditText) rootView.findViewById(R.id.etOldPassword_DCP);
         etNewPassword_DCP = (EditText) rootView.findViewById(R.id.etNewPassword_DCP);
@@ -90,9 +103,9 @@ public class ChangePasswordDialogFragment extends DialogFragment implements Base
         final String oldPassword = etOldPassword_DCP.getText().toString();
         final String newPassword = etNewPassword_DCP.getText().toString();
         final String confirmPassword = etConfirmPassword_DCP.getText().toString();
-        if (!showError(ValidationManager.isPasswordValid(oldPassword), tilOldPassword_DCP)) {
-            if (!showError(ValidationManager.isPasswordValid(newPassword), tilNewPassword_DCP)) {
-                if (!showError(ValidationManager.isPasswordValid(confirmPassword), tilConfirmPassword_DCP)) {
+        if (!showError(ValidationManager.isPasswordValid(oldPassword), tilOldPassword_DCP, ivOldPassword_DCP, errPasswordOldRequired)) {
+            if (!showError(ValidationManager.isPasswordValid(newPassword), tilNewPassword_DCP, ivNewPassword_DCP, errPasswordNewRequired)) {
+                if (!showError(ValidationManager.isPasswordValid(confirmPassword), tilConfirmPassword_DCP, ivConfirmPassword_DCP, errPasswordConfirmRequired)) {
                     if (newPassword.equals(confirmPassword)) {
                         dismiss();
                         if (changePasswordCallback != null)
@@ -103,27 +116,41 @@ public class ChangePasswordDialogFragment extends DialogFragment implements Base
         }
     }
 
-    private boolean showError(final Constants.ErrorCodes errorCode, final TextInputLayout textInputLayout) {
+    private boolean showError(final Constants.ErrorCodes errorCode, final TextInputLayout textInputLayout, final View imageInfoView, final String emptyMsg) {
+        final LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) imageInfoView.getLayoutParams();
+        boolean hasError;
         switch (errorCode) {
             case INVALID_CHARS:
                 textInputLayout.setError(errPasswordWrongSymbols);
                 textInputLayout.setErrorEnabled(true);
-                return true;
+                params.setMargins(params.getMarginStart(), params.topMargin, params.getMarginEnd(), (int) fixMarginForIcons);
+                hasError = true;
+                break;
             case SHORTNESS:
                 textInputLayout.setError(errPasswordShort);
                 textInputLayout.setErrorEnabled(true);
-                return true;
+                params.setMargins(params.getMarginStart(), params.topMargin, params.getMarginEnd(), (int) fixMarginForIcons);
+                hasError = true;
+                break;
             case FIELD_EMPTY:
-                textInputLayout.setError(errPasswordRequired);
+                textInputLayout.setError(emptyMsg);
                 textInputLayout.setErrorEnabled(true);
-                return true;
+                params.setMargins(params.getMarginStart(), params.topMargin, params.getMarginEnd(), (int) fixMarginForIcons);
+                hasError = true;
+                break;
             case OK:
                 textInputLayout.setError(null);
                 textInputLayout.setErrorEnabled(false);
-                return false;
+                params.setMargins(params.getMarginStart(), params.topMargin, params.getMarginEnd(), 0);
+                hasError = false;
+                break;
             default:
-                return false;
+                params.setMargins(params.getMarginStart(), params.topMargin, params.getMarginEnd(), 0);
+                hasError = false;
+                break;
         }
+        imageInfoView.setLayoutParams(params);
+        return hasError;
     }
 
     @Override

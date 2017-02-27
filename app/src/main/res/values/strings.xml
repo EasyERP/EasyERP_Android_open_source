@@ -25,6 +25,9 @@
     <string name="err_not_specified">Not specified</string>
     <string name="err_login_required">Login is required</string>
     <string name="err_password_required">Password is required</string>
+    <string name="err_password_old_required">Old password is required</string>
+    <string name="err_password_new_required">New password is required</string>
+    <string name="err_password_confirm_required">Confirm password is required</string>
     <string name="err_password_confirm_equal">Passwords do not match</string>
     <string name="err_password_wrong_symbols">Only A–Z, a–z, 0-9, _ @ symbols allowed</string>
     <string name="err_password_short">Should be at least 3 characters long</string>
