@@ -1,7 +1,5 @@
 package com.thinkmobiles.easyerp.presentation.screens.crm.leads.details;
 
-import android.content.Intent;
-import android.net.Uri;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.graphics.ColorUtils;
 import android.support.v4.widget.NestedScrollView;

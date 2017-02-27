@@ -1,7 +1,6 @@
 package com.thinkmobiles.easyerp.presentation.managers;
 
 import android.app.Activity;
-import android.net.Uri;
 import android.support.v7.app.AlertDialog;
 
 import com.thinkmobiles.easyerp.BuildConfig;

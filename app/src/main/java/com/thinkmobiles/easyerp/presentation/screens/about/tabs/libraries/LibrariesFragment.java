@@ -1,8 +1,6 @@
 package com.thinkmobiles.easyerp.presentation.screens.about.tabs.libraries;
 
-import android.content.Intent;
 import android.content.res.Configuration;
-import android.net.Uri;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 

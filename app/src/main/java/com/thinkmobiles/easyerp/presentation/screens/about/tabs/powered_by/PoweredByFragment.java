@@ -1,7 +1,5 @@
 package com.thinkmobiles.easyerp.presentation.screens.about.tabs.powered_by;
 
-import android.content.Intent;
-import android.net.Uri;
 import android.text.Html;
 import android.widget.TextView;
 

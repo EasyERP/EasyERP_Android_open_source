@@ -36,7 +36,7 @@ public class OverViewChartViewImpl implements IChartView<ArrayList<DashboardOver
         final View targetView = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_chart_overview, parent, false);
         final ArrayList<DashboardOverviewChartDH> dataWorkflows = prepareData(data);
 
-        displayAFS(targetView.findViewById(R.id.llAFSInfoLayout_VCO));
+        displayAFS(targetView.findViewById(R.id.cvAFSInfo_VCO));
         ((TextView) targetView.findViewById(R.id.tvTotalCountValue_VCO)).setText(String.valueOf(totalCount));
         ((TextView) targetView.findViewById(R.id.tvTotalRevenueValue_VCO )).setText(StringUtil.getFormattedPrice(new DollarFormatter().getFormat(), totalRevenue));
 

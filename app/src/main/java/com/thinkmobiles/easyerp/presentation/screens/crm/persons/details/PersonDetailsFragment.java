@@ -1,8 +1,5 @@
 package com.thinkmobiles.easyerp.presentation.screens.crm.persons.details;
 
-import android.content.ActivityNotFoundException;
-import android.content.Intent;
-import android.net.Uri;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -14,7 +11,6 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.jakewharton.rxbinding.view.RxView;
 import com.thinkmobiles.easyerp.R;
