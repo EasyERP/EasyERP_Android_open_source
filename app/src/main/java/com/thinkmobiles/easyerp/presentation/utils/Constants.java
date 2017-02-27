@@ -76,6 +76,7 @@ public abstract class Constants {
 
     //Bundle keys
     public static final String KEY_FILTER_LIST              = "keyFilterList";
+    public static final String KEY_FILTER_NAME              = "keyFilterName";
 
     public enum ErrorCodes {
         OK,
@@ -95,4 +96,6 @@ public abstract class Constants {
     public enum ErrorType {
         LIST_EMPTY, NETWORK, UNKNOWN
     }
+
+    public static final String UXCAM_ACCOUNT_KEY            = "d2bf58cf5b3e5a0";
 }

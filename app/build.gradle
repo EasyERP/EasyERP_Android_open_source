@@ -95,6 +95,7 @@ dependencies {
     compile(devDependencies.crashlytic) {
         transitive = true;
     }
+    compile devDependencies.uxcamAnalytic
 }
 
 apply plugin: 'com.google.gms.google-services'

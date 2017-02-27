@@ -10,6 +10,8 @@ import com.thinkmobiles.easyerp.presentation.managers.CookieManager;
 import com.thinkmobiles.easyerp.presentation.managers.GoogleAnalyticHelper;
 import com.thinkmobiles.easyerp.presentation.screens.login.LoginActivity_;
 import com.thinkmobiles.easyerp.presentation.utils.AppDefaultStatesPreferences_;
+import com.thinkmobiles.easyerp.presentation.utils.Constants;
+import com.uxcam.UXCam;
 
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EApplication;
@@ -43,6 +45,8 @@ public class EasyErpApplication extends Application {
         BuildConfig.STETHO.init(this);
         if(BuildConfig.PRODUCTION)
             Fabric.with(this, new Crashlytics());
+
+        UXCam.startWithKey(Constants.UXCAM_ACCOUNT_KEY);
     }
 
     public static EasyErpApplication getInstance() {

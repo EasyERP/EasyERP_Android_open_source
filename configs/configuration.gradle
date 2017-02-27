@@ -28,11 +28,13 @@ allprojects {
         stethoVersion = '1.4.2'
         gmsVersion = '10.0.1'
         crashlyticVersion = '2.6.6@aar'
+        uxcamVersion = '2.5.7@aar'
 
         devDependencies = [
                 stetho:                     "com.facebook.stetho:stetho-okhttp3:${stethoVersion}",
                 analytic:                   "com.google.android.gms:play-services-analytics:${gmsVersion}",
                 crashlytic:                 "com.crashlytics.sdk.android:crashlytics:${crashlyticVersion}"
+                uxcamAnalytic:              "com.uxcam:uxcam:${uxcamVersion}"
         ]
 
         appDependencies = [
@@ -57,6 +59,7 @@ allprojects {
     repositories {
         maven { url "https://jitpack.io" }
         maven { url 'https://maven.fabric.io/public' }
+        maven { url 'http://sdk.uxcam.com/android/' }
         jcenter()
     }
 }
