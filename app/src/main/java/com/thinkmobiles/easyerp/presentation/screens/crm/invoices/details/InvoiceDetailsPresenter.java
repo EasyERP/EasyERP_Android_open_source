@@ -33,7 +33,6 @@ public class InvoiceDetailsPresenter extends ContentPresenterHelper implements I
     private InvoiceDetailsContract.InvoiceDetailsView view;
     private InvoiceDetailsContract.InvoiceDetailsModel model;
     private String invoiceId;
-    private CompositeSubscription compositeSubscription;
 
     private ResponseGetInvoiceDetails currentInvoice;
     private OrganizationSettings organizationSettings;
@@ -47,7 +46,6 @@ public class InvoiceDetailsPresenter extends ContentPresenterHelper implements I
         this.invoiceId = invoiceId;
         view.setPresenter(this);
 
-        compositeSubscription = new CompositeSubscription();
         formatter = new DollarFormatter().getFormat();
     }
 
