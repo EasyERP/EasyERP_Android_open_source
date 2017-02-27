@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public interface LibrariesContract {
     interface LibrariesView extends BaseView<LibrariesPresenter> {
         void displayLibraries(ArrayList<LibraryDH> libraryDHs);
-        void openLink(String link);
+        void openLink(String uriPath);
     }
     interface LibrariesPresenter extends BasePresenter {
         void openGithubLink(String link);
