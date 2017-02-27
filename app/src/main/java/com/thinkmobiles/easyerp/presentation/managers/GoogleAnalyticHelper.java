@@ -21,7 +21,7 @@ public abstract class GoogleAnalyticHelper {
 
     public static void init(Application application) {
         GoogleAnalytics analytics = GoogleAnalytics.getInstance(application);
-        tracker = analytics.newTracker(R.xml.my_custom_tracker);
+        tracker = analytics.newTracker(R.xml.global_tracker);
     }
 
     public static void trackScreenView(BaseView baseView, Configuration configuration) {

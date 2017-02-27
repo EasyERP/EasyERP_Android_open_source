@@ -26,12 +26,12 @@ allprojects {
 
         // Development
         stethoVersion = '1.4.2'
-        analyticVersion = '10.0.1'
+        gmsVersion = '10.0.1'
         crashlyticVersion = '2.6.6@aar'
 
         devDependencies = [
                 stetho:                     "com.facebook.stetho:stetho-okhttp3:${stethoVersion}",
-                analytic:                   "com.google.android.gms:play-services-analytics:${analyticVersion}",
+                analytic:                   "com.google.android.gms:play-services-analytics:${gmsVersion}",
                 crashlytic:                 "com.crashlytics.sdk.android:crashlytics:${crashlyticVersion}"
         ]
 
