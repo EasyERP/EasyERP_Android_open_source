@@ -43,10 +43,10 @@ public class EasyErpApplication extends Application {
         GoogleAnalyticHelper.init(this);
 
         BuildConfig.STETHO.init(this);
-        if(BuildConfig.PRODUCTION)
+        if (BuildConfig.PRODUCTION) {
             Fabric.with(this, new Crashlytics());
-
-        UXCam.startWithKey(Constants.UXCAM_ACCOUNT_KEY);
+            UXCam.startWithKey(Constants.UXCAM_ACCOUNT_KEY);
+        }
     }
 
     public static EasyErpApplication getInstance() {

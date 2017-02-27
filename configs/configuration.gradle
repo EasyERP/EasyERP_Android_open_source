@@ -33,7 +33,7 @@ allprojects {
         devDependencies = [
                 stetho:                     "com.facebook.stetho:stetho-okhttp3:${stethoVersion}",
                 analytic:                   "com.google.android.gms:play-services-analytics:${gmsVersion}",
-                crashlytic:                 "com.crashlytics.sdk.android:crashlytics:${crashlyticVersion}"
+                crashlytic:                 "com.crashlytics.sdk.android:crashlytics:${crashlyticVersion}",
                 uxcamAnalytic:              "com.uxcam:uxcam:${uxcamVersion}"
         ]
 
