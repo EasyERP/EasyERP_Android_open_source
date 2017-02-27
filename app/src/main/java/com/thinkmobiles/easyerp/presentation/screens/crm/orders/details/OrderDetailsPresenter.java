@@ -5,6 +5,7 @@ import com.thinkmobiles.easyerp.data.model.crm.leads.detail.AttachmentItem;
 import com.thinkmobiles.easyerp.data.model.crm.order.detail.OrderProduct;
 import com.thinkmobiles.easyerp.data.model.crm.order.detail.ResponseGetOrderDetails;
 import com.thinkmobiles.easyerp.data.model.user.organization.OrganizationSettings;
+import com.thinkmobiles.easyerp.data.model.user.organization.ResponseGetOrganizationSettings;
 import com.thinkmobiles.easyerp.presentation.base.rules.content.ContentPresenterHelper;
 import com.thinkmobiles.easyerp.presentation.base.rules.content.ContentView;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.AttachmentDH;
@@ -56,12 +57,6 @@ public class OrderDetailsPresenter extends ContentPresenterHelper implements Ord
     }
 
     @Override
-    protected void request() {
-        super.request();
-        getOrganizationSettings();
-    }
-
-    @Override
     public void changeNotesVisibility() {
         isVisibleHistory = !isVisibleHistory;
         view.showHistory(isVisibleHistory);
@@ -70,6 +65,10 @@ public class OrderDetailsPresenter extends ContentPresenterHelper implements Ord
     @Override
     public void refresh() {
         compositeSubscription.add(model.getOrderDetails(orderId)
+                .zipWith(model.getOrganizationSettings(), (responseGetOrderDetails, responseGetOrganizationSettings) -> {
+                    setOrgData(responseGetOrganizationSettings.data);
+                    return responseGetOrderDetails;
+                })
                 .subscribe(responseGerOrderDetails -> {
                     view.showProgress(Constants.ProgressType.NONE);
                     setData(responseGerOrderDetails);
@@ -80,16 +79,6 @@ public class OrderDetailsPresenter extends ContentPresenterHelper implements Ord
     public void startAttachment(int pos) {
         String url = String.format("%sdownload/%s", Constants.BASE_URL, currentOrder.attachments.get(pos).shortPath);
         view.startUrlIntent(url);
-    }
-
-    private void getOrganizationSettings() {
-        compositeSubscription.add(model.getOrganizationSettings()
-                .subscribe(responseGetOrganizationSettings -> {
-                    setOrgData(responseGetOrganizationSettings.data);
-                }, t -> {
-                    t.printStackTrace();
-                    view.displayErrorToast(ErrorManager.getErrorType(t));
-                }));
     }
 
     private void setOrgData(OrganizationSettings response) {

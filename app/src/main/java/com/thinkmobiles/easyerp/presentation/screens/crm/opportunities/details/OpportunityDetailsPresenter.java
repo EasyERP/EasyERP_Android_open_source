@@ -34,7 +34,6 @@ public class OpportunityDetailsPresenter extends ContentPresenterHelper implemen
         this.view = view;
         this.model = model;
         this.opportunityID = opportunityID;
-        compositeSubscription = new CompositeSubscription();
 
         view.setPresenter(this);
     }

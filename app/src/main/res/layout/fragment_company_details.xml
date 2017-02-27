@@ -471,23 +471,23 @@
                                     android:layout_marginTop="@dimen/default_padding_quart"
                                     android:orientation="horizontal">
 
-                                    <CheckBox
+                                    <android.support.v7.widget.AppCompatCheckBox
                                         android:id="@+id/cbIsCustomer_FCD"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:text="@string/customer"
                                         android:textColor="@color/text_grey_hint_color"
-                                        android:theme="@style/CustomCheckBox"
+                                        style="@style/CustomCheckBoxStyle"
                                         tools:checked="true"/>
 
-                                    <CheckBox
+                                    <android.support.v7.widget.AppCompatCheckBox
                                         android:id="@+id/cbIsSupplier_FCD"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_marginStart="@dimen/default_padding_half"
                                         android:text="@string/supplier"
                                         android:textColor="@color/text_grey_hint_color"
-                                        android:theme="@style/CustomCheckBox"
+                                        style="@style/CustomCheckBoxStyle"
                                         tools:checked="false"/>
 
                                 </LinearLayout>

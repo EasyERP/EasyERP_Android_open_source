@@ -3,6 +3,7 @@ package com.thinkmobiles.easyerp.presentation.base.rules.content;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,7 +41,7 @@ public abstract class ContentFragment extends BaseMasterFlowFragment<HomeActivit
     @ViewById
     protected SwipeRefreshLayout srlHolderRefresh;
     @ViewById
-    protected LinearLayout llHolderError;
+    protected View llHolderError;
     @ViewById
     protected ImageView ivHolderIcon;
     @ViewById

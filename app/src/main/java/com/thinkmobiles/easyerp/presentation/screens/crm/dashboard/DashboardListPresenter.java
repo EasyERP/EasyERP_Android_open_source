@@ -67,12 +67,6 @@ public class DashboardListPresenter extends MasterSelectablePresenterHelper impl
             view.openDashboardChartDetail(item);
     }
 
-    @Override
-    public void unsubscribe() {
-        if (compositeSubscription.hasSubscriptions())
-            compositeSubscription.clear();
-    }
-
     private void setData() {
         if (charts.isEmpty()) {
             view.displayErrorState(ErrorManager.getErrorType(null));

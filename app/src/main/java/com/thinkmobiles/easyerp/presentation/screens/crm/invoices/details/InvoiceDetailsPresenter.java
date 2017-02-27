@@ -33,7 +33,6 @@ public class InvoiceDetailsPresenter extends ContentPresenterHelper implements I
     private InvoiceDetailsContract.InvoiceDetailsView view;
     private InvoiceDetailsContract.InvoiceDetailsModel model;
     private String invoiceId;
-    private CompositeSubscription compositeSubscription;
 
     private ResponseGetInvoiceDetails currentInvoice;
     private OrganizationSettings organizationSettings;
@@ -47,7 +46,6 @@ public class InvoiceDetailsPresenter extends ContentPresenterHelper implements I
         this.invoiceId = invoiceId;
         view.setPresenter(this);
 
-        compositeSubscription = new CompositeSubscription();
         formatter = new DollarFormatter().getFormat();
     }
 
@@ -60,6 +58,10 @@ public class InvoiceDetailsPresenter extends ContentPresenterHelper implements I
     @Override
     public void refresh() {
         compositeSubscription.add(model.getInvoiceDetails(invoiceId)
+                .zipWith(model.getOrganizationSettings(), (responseGetOrderDetails, responseGetOrganizationSettings) -> {
+                    setOrgData(responseGetOrganizationSettings.data);
+                    return responseGetOrderDetails;
+                })
                 .subscribe(responseGerOrderDetails -> {
                     view.showProgress(Constants.ProgressType.NONE);
                     setData(responseGerOrderDetails);
@@ -72,13 +74,6 @@ public class InvoiceDetailsPresenter extends ContentPresenterHelper implements I
     public void startAttachment(int pos) {
         String url = String.format("%sdownload/%s", Constants.BASE_URL, currentInvoice.attachments.get(pos).shortPath);
         view.startUrlIntent(url);
-    }
-
-    private void getOrganizationSettings() {
-        compositeSubscription.add(model.getOrganizationSettings()
-                .subscribe(responseGetOrganizationSettings -> {
-                    setOrgData(responseGetOrganizationSettings.data);
-                }, Throwable::printStackTrace));
     }
 
     private void setOrgData(OrganizationSettings data) {
@@ -94,12 +89,6 @@ public class InvoiceDetailsPresenter extends ContentPresenterHelper implements I
     @Override
     protected ContentView getView() {
         return view;
-    }
-
-    @Override
-    protected void request() {
-        super.request();
-        getOrganizationSettings();
     }
 
     @Override
