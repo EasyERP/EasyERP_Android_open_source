@@ -41,7 +41,7 @@ public abstract class ContentFragment extends BaseMasterFlowFragment<HomeActivit
     @ViewById
     protected SwipeRefreshLayout srlHolderRefresh;
     @ViewById
-    protected LinearLayout llHolderError;
+    protected View llHolderError;
     @ViewById
     protected ImageView ivHolderIcon;
     @ViewById
