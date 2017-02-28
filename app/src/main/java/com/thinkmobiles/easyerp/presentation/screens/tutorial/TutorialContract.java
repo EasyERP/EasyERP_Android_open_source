@@ -26,7 +26,7 @@ public interface TutorialContract {
         void demo();
     }
     interface TutorialModel extends BaseModel {
-        Observable<String> login(String login, String password, String dbId);
+        Observable<?> login(String login, String password, String dbId);
     }
     interface UserModel extends BaseModel {
         Observable<ResponseGetCurrentUser> getCurrentUser();

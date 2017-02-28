@@ -1,11 +1,16 @@
 package com.thinkmobiles.easyerp.presentation.utils;
 
+import static com.thinkmobiles.easyerp.BuildConfig.PRODUCTION;
+
 /**
  * Created by Lynx on 1/13/2017.
  */
 
 public abstract class Constants {
-    public static final String BASE_URL                     = "https://testdemo.easyerp.com/";
+    private static final String BASE_TEST_URL               = "https://testdemo.easyerp.com/";
+    private static final String BASE_RELEASE_URL            = "https://demo.easyerp.com/";
+    public static final String BASE_URL                     = PRODUCTION ? BASE_RELEASE_URL : BASE_TEST_URL;
+
     public static final String HEADER_SET_COOKIE            = "Set-Cookie";
     public static final String HEADER_COOKIE                = "Cookie";
 

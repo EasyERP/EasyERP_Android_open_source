@@ -273,6 +273,7 @@
         <item name="android:textSize">@dimen/text_size_small_14</item>
         <item name="android:textColor">@color/text_grey_hint_color</item>
         <item name="android:clickable">false</item>
+        <item name="android:enabled">false</item>
     </style>
 
     <style name="SmallChipsStyle" parent="RobotoMedium">

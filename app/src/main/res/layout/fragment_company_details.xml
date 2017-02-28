@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:app="http://schemas.android.com/apk/res-auto"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="vertical"
-              tools:background="@android:color/white">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:background="@android:color/white">
 
     <android.support.v4.widget.NestedScrollView
         android:id="@+id/nsvContent_FCD"
@@ -36,7 +36,7 @@
                         android:id="@+id/ivCompanyAvatar_FCD"
                         android:layout_width="@dimen/image_size_large"
                         android:layout_height="@dimen/image_size_large"
-                        android:scaleType="centerCrop"/>
+                        android:scaleType="centerCrop" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -50,7 +50,7 @@
                             style="@style/TextLargeTitleStyle"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            tools:text="Pricewaterhouse Coopers"/>
+                            tools:text="Pricewaterhouse Coopers" />
 
                         <TextView
                             android:id="@+id/tvCompanyWebsite_FCD"
@@ -59,7 +59,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/default_padding_small"
                             android:textSize="@dimen/text_size_big_24"
-                            tools:text="yahoo.com"/>
+                            tools:text="yahoo.com" />
 
                         <TextView
                             android:id="@+id/tvEmail_FPD"
@@ -67,7 +67,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/default_padding_quart"
-                            tools:text="PricewaterhouseCoopers Corp."/>
+                            tools:text="PricewaterhouseCoopers Corp." />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -81,7 +81,7 @@
                                 android:padding="@dimen/default_padding_half"
                                 android:visibility="gone"
                                 app:srcCompat="@drawable/ic_fb"
-                                tools:visibility="visible"/>
+                                tools:visibility="visible" />
 
                             <ImageView
                                 android:id="@+id/ivCompanyLinkedIn_FCD"
@@ -90,7 +90,7 @@
                                 android:padding="@dimen/default_padding_half"
                                 android:visibility="gone"
                                 app:srcCompat="@drawable/ic_linkedin"
-                                tools:visibility="visible"/>
+                                tools:visibility="visible" />
 
                             <ImageView
                                 android:id="@+id/ivCompanySkype_FCD"
@@ -99,7 +99,7 @@
                                 android:padding="@dimen/default_padding_half"
                                 android:visibility="gone"
                                 app:srcCompat="@drawable/ic_skype"
-                                tools:visibility="visible"/>
+                                tools:visibility="visible" />
 
                         </LinearLayout>
 
@@ -111,7 +111,7 @@
                     style="@style/TextContentTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/general_information"/>
+                    android:text="@string/general_information" />
 
 
                 <LinearLayout
@@ -126,7 +126,8 @@
                         <EditText
                             android:id="@+id/etLinkedIn_FCD"
                             style="@style/DefaultTheme.LeadInputFieldStyle"
-                            android:hint="@string/linkedin"/>
+                            android:hint="@string/linkedin"
+                            android:text="@string/err_not_specified" />
 
                     </android.support.design.widget.TextInputLayout>
 
@@ -137,7 +138,8 @@
                         <EditText
                             android:id="@+id/etFacebook_FCD"
                             style="@style/DefaultTheme.LeadInputFieldStyle"
-                            android:hint="@string/facebook"/>
+                            android:hint="@string/facebook"
+                            android:text="@string/err_not_specified" />
 
                     </android.support.design.widget.TextInputLayout>
 
@@ -155,7 +157,9 @@
                         <EditText
                             android:id="@+id/etPhone_FCD"
                             style="@style/DefaultTheme.LeadInputFieldStyle"
-                            android:hint="@string/phone"/>
+                            android:hint="@string/phone"
+                            android:inputType="phone"
+                            android:text="@string/err_not_specified" />
 
                     </android.support.design.widget.TextInputLayout>
 
@@ -166,7 +170,9 @@
                         <EditText
                             android:id="@+id/etMobile_FCD"
                             style="@style/DefaultTheme.LeadInputFieldStyle"
-                            android:hint="@string/mobile"/>
+                            android:text="@string/err_not_specified"
+                            android:inputType="phone"
+                            android:hint="@string/mobile" />
 
                     </android.support.design.widget.TextInputLayout>
 
@@ -185,7 +191,8 @@
                         <EditText
                             android:id="@+id/etAssignedTo_FCD"
                             style="@style/DefaultTheme.LeadInputFieldStyle"
-                            android:hint="@string/assigned_to"/>
+                            android:text="@string/err_not_specified"
+                            android:hint="@string/assigned_to" />
 
                     </android.support.design.widget.TextInputLayout>
 
@@ -193,7 +200,7 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_marginStart="@dimen/default_padding_half"
-                        android:layout_weight="1"/>
+                        android:layout_weight="1" />
 
                 </LinearLayout>
 
@@ -201,7 +208,7 @@
                     style="@style/TextContentTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/billing_address"/>
+                    android:text="@string/billing_address" />
 
                 <TextView
                     android:id="@+id/tvEmptyBillingAddress_FPD"
@@ -210,7 +217,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/default_padding_3dp"
                     android:layout_marginTop="@dimen/default_padding"
-                    tools:visibility="visible"/>
+                    tools:visibility="visible" />
 
                 <LinearLayout
                     android:id="@+id/llContainerBillingAddress_FCD"
@@ -230,7 +237,8 @@
                             <EditText
                                 android:id="@+id/etBillingStreet_FCD"
                                 style="@style/DefaultTheme.LeadInputFieldStyle"
-                                android:hint="@string/street"/>
+                                android:text="@string/err_not_specified"
+                                android:hint="@string/street" />
 
                         </android.support.design.widget.TextInputLayout>
 
@@ -241,7 +249,8 @@
                             <EditText
                                 android:id="@+id/etBillingCity_FCD"
                                 style="@style/DefaultTheme.LeadInputFieldStyle"
-                                android:hint="@string/hint_city"/>
+                                android:text="@string/err_not_specified"
+                                android:hint="@string/hint_city" />
 
                         </android.support.design.widget.TextInputLayout>
 
@@ -259,7 +268,8 @@
                             <EditText
                                 android:id="@+id/etBillingState_FCD"
                                 style="@style/DefaultTheme.LeadInputFieldStyle"
-                                android:hint="@string/state"/>
+                                android:text="@string/err_not_specified"
+                                android:hint="@string/state" />
 
                         </android.support.design.widget.TextInputLayout>
 
@@ -270,7 +280,8 @@
                             <EditText
                                 android:id="@+id/etBillingZip_FCD"
                                 style="@style/DefaultTheme.LeadInputFieldStyle"
-                                android:hint="@string/zip"/>
+                                android:text="@string/err_not_specified"
+                                android:hint="@string/zip" />
 
                         </android.support.design.widget.TextInputLayout>
 
@@ -288,7 +299,8 @@
                             <EditText
                                 android:id="@+id/etBillingCountry_FCD"
                                 style="@style/DefaultTheme.LeadInputFieldStyle"
-                                android:hint="@string/country"/>
+                                android:text="@string/err_not_specified"
+                                android:hint="@string/country" />
 
                         </android.support.design.widget.TextInputLayout>
 
@@ -296,7 +308,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/default_padding_half"
-                            android:layout_weight="1"/>
+                            android:layout_weight="1" />
 
                     </LinearLayout>
 
@@ -306,7 +318,7 @@
                     style="@style/TextContentTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/shipping_address"/>
+                    android:text="@string/shipping_address" />
 
                 <TextView
                     android:id="@+id/tvEmptyShippingAddress_FPD"
@@ -315,7 +327,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/default_padding_3dp"
                     android:layout_marginTop="@dimen/default_padding"
-                    tools:visibility="visible"/>
+                    tools:visibility="visible" />
 
                 <LinearLayout
                     android:id="@+id/llContainerShippingAddress_FDC"
@@ -335,7 +347,8 @@
                             <EditText
                                 android:id="@+id/etShippingFullname_FCD"
                                 style="@style/DefaultTheme.LeadInputFieldStyle"
-                                android:hint="@string/full_name"/>
+                                android:text="@string/err_not_specified"
+                                android:hint="@string/full_name" />
 
                         </android.support.design.widget.TextInputLayout>
 
@@ -346,7 +359,8 @@
                             <EditText
                                 android:id="@+id/etShippingStreet_FCD"
                                 style="@style/DefaultTheme.LeadInputFieldStyle"
-                                android:hint="@string/street"/>
+                                android:text="@string/err_not_specified"
+                                android:hint="@string/street" />
 
                         </android.support.design.widget.TextInputLayout>
 
@@ -364,7 +378,8 @@
                             <EditText
                                 android:id="@+id/etShippingCity_FCD"
                                 style="@style/DefaultTheme.LeadInputFieldStyle"
-                                android:hint="@string/hint_city"/>
+                                android:text="@string/err_not_specified"
+                                android:hint="@string/hint_city" />
 
                         </android.support.design.widget.TextInputLayout>
 
@@ -375,7 +390,8 @@
                             <EditText
                                 android:id="@+id/etShippingState_FCD"
                                 style="@style/DefaultTheme.LeadInputFieldStyle"
-                                android:hint="@string/state"/>
+                                android:text="@string/err_not_specified"
+                                android:hint="@string/state" />
 
                         </android.support.design.widget.TextInputLayout>
 
@@ -393,7 +409,8 @@
                             <EditText
                                 android:id="@+id/etShippingZip_FCD"
                                 style="@style/DefaultTheme.LeadInputFieldStyle"
-                                android:hint="@string/zip"/>
+                                android:text="@string/err_not_specified"
+                                android:hint="@string/zip" />
 
                         </android.support.design.widget.TextInputLayout>
 
@@ -404,7 +421,8 @@
                             <EditText
                                 android:id="@+id/etShippingCountry_FCD"
                                 style="@style/DefaultTheme.LeadInputFieldStyle"
-                                android:hint="@string/country"/>
+                                android:text="@string/err_not_specified"
+                                android:hint="@string/country" />
 
                         </android.support.design.widget.TextInputLayout>
 
@@ -416,145 +434,150 @@
                     style="@style/TextContentTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/sales_amp_purchases"/>
+                    android:text="@string/sales_amp_purchases" />
 
-                    <TextView
-                        android:id="@+id/tvEmptySalesAndPurchases_FPD"
-                        style="@style/TextNoDataStyle"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/default_padding_3dp"
-                        android:layout_marginTop="@dimen/default_padding"
-                        tools:visibility="visible"/>
+                <TextView
+                    android:id="@+id/tvEmptySalesAndPurchases_FPD"
+                    style="@style/TextNoDataStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/default_padding_3dp"
+                    android:layout_marginTop="@dimen/default_padding"
+                    tools:visibility="visible" />
+
+                <LinearLayout
+                    android:id="@+id/llContainerSalesPurchases_FPD"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
                     <LinearLayout
-                        android:id="@+id/llContainerSalesPurchases_FPD"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                        android:orientation="horizontal">
+
+                        <android.support.design.widget.TextInputLayout
+                            style="@style/DefaultTheme.LeadTextInputLayoutStyle"
+                            android:layout_marginEnd="@dimen/default_padding_half">
+
+                            <EditText
+                                android:id="@+id/etReference_FCD"
+                                style="@style/DefaultTheme.LeadInputFieldStyle"
+                                android:text="@string/err_not_specified"
+                                android:hint="@string/reference" />
+
+                        </android.support.design.widget.TextInputLayout>
 
                         <LinearLayout
-                            android:layout_width="match_parent"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal">
+                            android:layout_marginStart="@dimen/default_padding_half"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
 
-                            <android.support.design.widget.TextInputLayout
-                                style="@style/DefaultTheme.LeadTextInputLayoutStyle"
-                                android:layout_marginEnd="@dimen/default_padding_half">
-
-                                <EditText
-                                    android:id="@+id/etReference_FCD"
-                                    style="@style/DefaultTheme.LeadInputFieldStyle"
-                                    android:hint="@string/reference"/>
-
-                            </android.support.design.widget.TextInputLayout>
+                            <TextView
+                                style="@style/RobotoRegular"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/default_padding_medium"
+                                android:text="@string/contractor_type"
+                                android:textColor="@color/color_text_gray"
+                                android:textSize="@dimen/small_text_size" />
 
                             <LinearLayout
-                                android:layout_width="0dp"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginStart="@dimen/default_padding_half"
-                                android:layout_weight="1"
-                                android:orientation="vertical">
+                                android:layout_marginTop="@dimen/default_padding_quart"
+                                android:orientation="horizontal">
 
-                                <TextView
-                                    style="@style/RobotoRegular"
-                                    android:layout_width="match_parent"
+                                <android.support.v7.widget.AppCompatCheckBox
+                                    android:id="@+id/cbIsCustomer_FCD"
+                                    style="@style/CustomCheckBoxStyle"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginTop="@dimen/default_padding_medium"
-                                    android:text="@string/contractor_type"
-                                    android:textColor="@color/color_text_gray"
-                                    android:textSize="@dimen/small_text_size"/>
+                                    android:text="@string/customer"
+                                    android:textColor="@color/text_grey_hint_color"
+                                    tools:checked="true" />
 
-                                <LinearLayout
-                                    android:layout_width="match_parent"
+                                <android.support.v7.widget.AppCompatCheckBox
+                                    android:id="@+id/cbIsSupplier_FCD"
+                                    style="@style/CustomCheckBoxStyle"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginTop="@dimen/default_padding_quart"
-                                    android:orientation="horizontal">
-
-                                    <android.support.v7.widget.AppCompatCheckBox
-                                        android:id="@+id/cbIsCustomer_FCD"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="@string/customer"
-                                        android:textColor="@color/text_grey_hint_color"
-                                        style="@style/CustomCheckBoxStyle"
-                                        tools:checked="true"/>
-
-                                    <android.support.v7.widget.AppCompatCheckBox
-                                        android:id="@+id/cbIsSupplier_FCD"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginStart="@dimen/default_padding_half"
-                                        android:text="@string/supplier"
-                                        android:textColor="@color/text_grey_hint_color"
-                                        style="@style/CustomCheckBoxStyle"
-                                        tools:checked="false"/>
-
-                                </LinearLayout>
+                                    android:layout_marginStart="@dimen/default_padding_half"
+                                    android:text="@string/supplier"
+                                    android:textColor="@color/text_grey_hint_color"
+                                    tools:checked="false" />
 
                             </LinearLayout>
 
                         </LinearLayout>
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal">
+                    </LinearLayout>
 
-                            <android.support.design.widget.TextInputLayout
-                                style="@style/DefaultTheme.LeadTextInputLayoutStyle"
-                                android:layout_marginEnd="@dimen/default_padding_half">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
 
-                                <EditText
-                                    android:id="@+id/etSalesTeam_FCD"
-                                    style="@style/DefaultTheme.LeadInputFieldStyle"
-                                    android:hint="@string/sales_team"/>
+                        <android.support.design.widget.TextInputLayout
+                            style="@style/DefaultTheme.LeadTextInputLayoutStyle"
+                            android:layout_marginEnd="@dimen/default_padding_half">
 
-                            </android.support.design.widget.TextInputLayout>
+                            <EditText
+                                android:id="@+id/etSalesTeam_FCD"
+                                style="@style/DefaultTheme.LeadInputFieldStyle"
+                                android:text="@string/err_not_specified"
+                                android:hint="@string/sales_team" />
 
-                            <android.support.design.widget.TextInputLayout
-                                style="@style/DefaultTheme.LeadTextInputLayoutStyle"
-                                android:layout_marginStart="@dimen/default_padding_half">
+                        </android.support.design.widget.TextInputLayout>
 
-                                <EditText
-                                    android:id="@+id/etSalesPerson_FCD"
-                                    style="@style/DefaultTheme.LeadInputFieldStyle"
-                                    android:hint="@string/sales_person"/>
+                        <android.support.design.widget.TextInputLayout
+                            style="@style/DefaultTheme.LeadTextInputLayoutStyle"
+                            android:layout_marginStart="@dimen/default_padding_half">
 
-                            </android.support.design.widget.TextInputLayout>
+                            <EditText
+                                android:id="@+id/etSalesPerson_FCD"
+                                style="@style/DefaultTheme.LeadInputFieldStyle"
+                                android:text="@string/err_not_specified"
+                                android:hint="@string/sales_person" />
 
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal">
-
-                            <android.support.design.widget.TextInputLayout
-                                style="@style/DefaultTheme.LeadTextInputLayoutStyle"
-                                android:layout_marginEnd="@dimen/default_padding_half">
-
-                                <EditText
-                                    android:id="@+id/etImplementedBy_FCD"
-                                    style="@style/DefaultTheme.LeadInputFieldStyle"
-                                    android:hint="@string/implemented_by"/>
-
-                            </android.support.design.widget.TextInputLayout>
-
-                            <android.support.design.widget.TextInputLayout
-                                style="@style/DefaultTheme.LeadTextInputLayoutStyle"
-                                android:layout_marginStart="@dimen/default_padding_half">
-
-                                <EditText
-                                    android:id="@+id/etLanguage_FCD"
-                                    style="@style/DefaultTheme.LeadInputFieldStyle"
-                                    android:hint="@string/language"/>
-
-                            </android.support.design.widget.TextInputLayout>
-
-                        </LinearLayout>
+                        </android.support.design.widget.TextInputLayout>
 
                     </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <android.support.design.widget.TextInputLayout
+                            style="@style/DefaultTheme.LeadTextInputLayoutStyle"
+                            android:layout_marginEnd="@dimen/default_padding_half">
+
+                            <EditText
+                                android:id="@+id/etImplementedBy_FCD"
+                                style="@style/DefaultTheme.LeadInputFieldStyle"
+                                android:text="@string/err_not_specified"
+                                android:hint="@string/implemented_by" />
+
+                        </android.support.design.widget.TextInputLayout>
+
+                        <android.support.design.widget.TextInputLayout
+                            style="@style/DefaultTheme.LeadTextInputLayoutStyle"
+                            android:layout_marginStart="@dimen/default_padding_half">
+
+                            <EditText
+                                android:id="@+id/etLanguage_FCD"
+                                style="@style/DefaultTheme.LeadInputFieldStyle"
+                                android:text="@string/err_not_specified"
+                                android:hint="@string/language" />
+
+                        </android.support.design.widget.TextInputLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
 
             </LinearLayout>
 
@@ -564,17 +587,17 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/default_padding"
                 android:layout_marginStart="@dimen/default_padding"
-                android:text="@string/contacts"/>
+                android:text="@string/contacts" />
 
             <TextView
                 android:id="@+id/tvEmptyContacts_FPD"
                 style="@style/TextNoDataStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/default_padding_fixed"
                 android:layout_marginEnd="@dimen/default_padding"
+                android:layout_marginStart="@dimen/default_padding_fixed"
                 android:layout_marginTop="@dimen/default_padding"
-                tools:visibility="visible"/>
+                tools:visibility="visible" />
 
             <FrameLayout
                 android:id="@+id/flContainerContacts_FCD"
@@ -589,7 +612,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/default_padding_half"
                     android:nestedScrollingEnabled="false"
-                    android:overScrollMode="never"/>
+                    android:overScrollMode="never" />
 
             </FrameLayout>
 
@@ -599,16 +622,16 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/default_padding"
                 android:layout_marginStart="@dimen/default_padding"
-                android:text="@string/leads_amp_opportunities"/>
+                android:text="@string/leads_amp_opportunities" />
 
             <TextView
                 android:id="@+id/tvEmptyLeadsAndOpportunities_FCD"
                 style="@style/TextNoDataStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/default_padding_fixed"
                 android:layout_marginEnd="@dimen/default_padding"
-                android:layout_marginTop="@dimen/default_padding"/>
+                android:layout_marginStart="@dimen/default_padding_fixed"
+                android:layout_marginTop="@dimen/default_padding" />
 
             <FrameLayout
                 android:id="@+id/flContainerLeadsAndOpportunities_FCD"
@@ -623,7 +646,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/default_padding_half"
                     android:nestedScrollingEnabled="false"
-                    android:overScrollMode="never"/>
+                    android:overScrollMode="never" />
 
             </FrameLayout>
 
@@ -633,7 +656,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/default_padding"
                 android:layout_marginStart="@dimen/default_padding"
-                android:text="@string/attachments"/>
+                android:text="@string/attachments" />
 
             <TextView
                 android:id="@+id/tvEmptyAttachments_FCD"
@@ -642,22 +665,22 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/default_padding"
                 android:layout_marginStart="@dimen/default_padding_fixed"
-                android:layout_marginTop="@dimen/default_padding"/>
+                android:layout_marginTop="@dimen/default_padding" />
 
             <FrameLayout
                 android:id="@+id/flContainerAttachments_FCD"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/default_padding"
-                android:layout_marginEnd="@dimen/default_padding">
+                android:layout_marginEnd="@dimen/default_padding"
+                android:layout_marginStart="@dimen/default_padding">
 
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/rvAttachments_FCD"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/default_padding_half"
-                    android:overScrollMode="never"
-                    android:nestedScrollingEnabled="false"/>
+                    android:nestedScrollingEnabled="false"
+                    android:overScrollMode="never" />
 
             </FrameLayout>
 
@@ -665,6 +688,6 @@
 
     </android.support.v4.widget.NestedScrollView>
 
-    <include layout="@layout/view_bottom_history"/>
+    <include layout="@layout/view_bottom_history" />
 
 </LinearLayout>
