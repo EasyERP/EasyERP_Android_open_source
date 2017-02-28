@@ -179,7 +179,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
             public void onClick(View view) {
                 WebActivity_.intent(view.getContext())
                         .title(termsAndConditions)
-                        .url("http://www.thinkmobiles.com")
+                        .url(Constants.TERMS_AND_CONDITIONS)
                         .start();
             }
         }, termsAndConditionsPos, termsAndConditionsPos + termsAndConditions.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
@@ -189,7 +189,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
             public void onClick(View view) {
                 WebActivity_.intent(view.getContext())
                         .title(privacyPolicy)
-                        .url("http://www.thinkmobiles.com/projects")
+                        .url(Constants.PRIVACY_POLICY)
                         .start();
             }
         }, privacyPolicyPos, privacyPolicyPos + privacyPolicy.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);

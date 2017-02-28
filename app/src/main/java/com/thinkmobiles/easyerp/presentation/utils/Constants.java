@@ -11,6 +11,9 @@ public abstract class Constants {
     private static final String BASE_RELEASE_URL            = "https://demo.easyerp.com/";
     public static final String BASE_URL                     = PRODUCTION ? BASE_RELEASE_URL : BASE_TEST_URL;
 
+    public static final String PRIVACY_POLICY               = "https://easyerp.com/privacy-policy/?content=show";
+    public static final String TERMS_AND_CONDITIONS         = "https://easyerp.com/terms-and-conditions/?content=show";
+
     public static final String HEADER_SET_COOKIE            = "Set-Cookie";
     public static final String HEADER_COOKIE                = "Cookie";
 
