@@ -253,4 +253,16 @@ public class CompanyDetailsPresenter extends ContentPresenterHelper implements C
         view.displayHistory(HistoryDH.convert(data.notes));
         view.showHistory(isVisibleHistory);
     }
+
+    @Override
+    public void showOpportunityDetails(int pos) {
+        OpportunityItem item = currentData.opportunities.get(pos);
+        view.openOpportunityDetails(item._id, item.name);
+    }
+
+    @Override
+    public void showPersonDetails(int pos) {
+        Customer item = currentData.contacts.get(pos);
+        view.openPersonDetails(item._id, item.fullName);
+    }
 }

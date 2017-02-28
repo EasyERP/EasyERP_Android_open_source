@@ -3,6 +3,7 @@ package com.thinkmobiles.easyerp.presentation.screens.crm.opportunities.details;
 import android.text.TextUtils;
 
 import com.thinkmobiles.easyerp.data.model.crm.leads.detail.AttachmentItem;
+import com.thinkmobiles.easyerp.data.model.crm.leads.detail.Customer;
 import com.thinkmobiles.easyerp.data.model.crm.opportunities.detail.ResponseGetOpportunityDetails;
 import com.thinkmobiles.easyerp.presentation.base.rules.content.ContentPresenterHelper;
 import com.thinkmobiles.easyerp.presentation.base.rules.content.ContentView;
@@ -190,5 +191,15 @@ public class OpportunityDetailsPresenter extends ContentPresenterHelper implemen
         Collections.reverse(currentOpportunity.notes);
         view.displayHistory(HistoryDH.convert(currentOpportunity.notes));
         view.showHistory(isVisibleHistory);
+    }
+
+    @Override
+    public void showPersonDetails(int pos) {
+        view.openPersonDetails(currentOpportunity.customer._id, currentOpportunity.customer.fullName);
+    }
+
+    @Override
+    public void showCompanyDetails() {
+        view.openCompanyDetails(currentOpportunity.company._id, currentOpportunity.company.fullName);
     }
 }

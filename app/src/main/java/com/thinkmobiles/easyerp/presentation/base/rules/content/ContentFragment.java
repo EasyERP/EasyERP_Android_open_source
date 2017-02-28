@@ -36,7 +36,7 @@ import java.util.concurrent.TimeUnit;
  */
 
 @EFragment
-public abstract class ContentFragment extends BaseMasterFlowFragment<HomeActivity> implements ContentView {
+public abstract class ContentFragment extends BaseMasterFlowFragment implements ContentView {
 
     @ViewById
     protected SwipeRefreshLayout srlHolderRefresh;

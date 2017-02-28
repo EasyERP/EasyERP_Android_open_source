@@ -1,5 +1,7 @@
 package com.thinkmobiles.easyerp.presentation.screens.crm.companies.details;
 
+import android.os.Bundle;
+
 import com.thinkmobiles.easyerp.data.model.crm.companies.detail.ResponseGetCompanyDetails;
 import com.thinkmobiles.easyerp.presentation.base.BaseModel;
 import com.thinkmobiles.easyerp.presentation.base.BaseView;
@@ -9,6 +11,7 @@ import com.thinkmobiles.easyerp.presentation.holders.data.crm.AttachmentDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.ContactDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.HistoryDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.LeadAndOpportunityDH;
+import com.thinkmobiles.easyerp.presentation.listeners.IFragmentInstance;
 
 import java.util.ArrayList;
 
@@ -73,10 +76,15 @@ public interface CompanyDetailsContract {
         void displayAttachments(ArrayList<AttachmentDH> attachmentDHs);
         void displayHistory(ArrayList<HistoryDH> historyDHs);
         void startUrlIntent(String url);
+
+        void openPersonDetails(String id, String title);
+        void openOpportunityDetails(String id, String title);
     }
     interface CompanyDetailsPresenter extends ContentPresenter {
         void changeNotesVisibility();
         void startAttachment(int pos);
+        void showOpportunityDetails(int pos);
+        void showPersonDetails(int pos);
     }
     interface CompanyDetailsModel extends BaseModel {
         Observable<ResponseGetCompanyDetails> getCompanyDetails(String companyID);

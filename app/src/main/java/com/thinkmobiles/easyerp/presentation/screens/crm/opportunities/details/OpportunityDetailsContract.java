@@ -52,10 +52,15 @@ public interface OpportunityDetailsContract {
         void startUrlIntent(String url);
 
         void displayHistory(ArrayList<HistoryDH> history);
+
+        void openPersonDetails(String id, String title);
+        void openCompanyDetails(String id, String title);
     }
     interface OpportunityDetailsPresenter extends ContentPresenter {
         void changeNotesVisibility();
         void startAttachment(int pos);
+        void showPersonDetails(int pos);
+        void showCompanyDetails();
     }
     interface OpportunityDetailsModel extends BaseModel {
         Observable<ResponseGetOpportunityDetails> getOpportunityDetails(String opportunityID);

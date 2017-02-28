@@ -258,4 +258,15 @@ public class PersonDetailsPresenter extends ContentPresenterHelper implements Pe
             view.showHistory(isVisibleHistory);
         }
     }
+
+    @Override
+    public void showOpportunityDetails(int pos) {
+        OpportunityItem item = currentPerson.opportunities.get(pos);
+        view.openOpportunityDetails(item._id, item.name);
+    }
+
+    @Override
+    public void showCompanyDetails() {
+        view.openCompanyDetails(currentPerson.company.id, currentPerson.company.fullName);
+    }
 }

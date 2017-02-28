@@ -24,9 +24,15 @@ import com.thinkmobiles.easyerp.presentation.custom.transformations.CropCircleTr
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.AttachmentDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.HistoryDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.LeadAndOpportunityDH;
+import com.thinkmobiles.easyerp.presentation.listeners.IFragmentInstance;
 import com.thinkmobiles.easyerp.presentation.managers.GoogleAnalyticHelper;
 import com.thinkmobiles.easyerp.presentation.managers.HistoryAnimationHelper;
 import com.thinkmobiles.easyerp.presentation.managers.ImageHelper;
+import com.thinkmobiles.easyerp.presentation.screens.crm.companies.details.CompanyDetailsFragment;
+import com.thinkmobiles.easyerp.presentation.screens.crm.companies.details.CompanyDetailsFragment_;
+import com.thinkmobiles.easyerp.presentation.screens.crm.opportunities.details.OpportunityDetailsFragment;
+import com.thinkmobiles.easyerp.presentation.screens.crm.opportunities.details.OpportunityDetailsFragment_;
+import com.thinkmobiles.easyerp.presentation.screens.details.DetailsActivity_;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 import com.thinkmobiles.easyerp.presentation.utils.IntentActionHelper;
 
@@ -47,6 +53,10 @@ import java.util.concurrent.TimeUnit;
 
 @EFragment
 public class PersonDetailsFragment extends ContentFragment implements PersonDetailsContract.PersonDetailsView {
+
+    public static IFragmentInstance getCreator() {
+        return (IFragmentInstance) args -> PersonDetailsFragment_.builder().arg(args).build();
+    }
 
     @Override
     protected int getLayoutRes() {
@@ -198,6 +208,7 @@ public class PersonDetailsFragment extends ContentFragment implements PersonDeta
 
         rvLeadsAndOpportunities_FPD.setLayoutManager(new GridLayoutManager(getActivity(), 2));
         rvLeadsAndOpportunities_FPD.setAdapter(opportunityAndLeadsAdapter);
+        opportunityAndLeadsAdapter.setOnCardClickListener((view, position, viewType) -> presenter.showOpportunityDetails(position));
 
         rvAttachments_FPD.setLayoutManager(new GridLayoutManager(getActivity(), 2));
         rvAttachments_FPD.setAdapter(attachmentAdapter);
@@ -210,8 +221,11 @@ public class PersonDetailsFragment extends ContentFragment implements PersonDeta
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
                 .subscribe(aVoid -> presenter.changeNotesVisibility());
 
-        animationHelper.init(ivIconArrow, rvHistory);
+        RxView.clicks(ivCompanyImage_FPD)
+                .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
+                .subscribe(aVoid -> presenter.showCompanyDetails());
 
+        animationHelper.init(ivIconArrow, rvHistory);
     }
 
     @Override
@@ -586,6 +600,24 @@ public class PersonDetailsFragment extends ContentFragment implements PersonDeta
     @Override
     public String getScreenName() {
         return "Person details screen";
+    }
+
+    @Override
+    public void openOpportunityDetails(String id, String title) {
+        DetailsActivity_.intent(this)
+                .bundle(OpportunityDetailsFragment_.builder().opportunityID(id).args())
+                .creator(OpportunityDetailsFragment.getCreator())
+                .titleDetails(title)
+                .start();
+    }
+
+    @Override
+    public void openCompanyDetails(String id, String title) {
+        DetailsActivity_.intent(this)
+                .bundle(CompanyDetailsFragment_.builder().companyID(id).args())
+                .creator(CompanyDetailsFragment.getCreator())
+                .titleDetails(title)
+                .start();
     }
 
     private void setEmptyData() {
