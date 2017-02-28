@@ -1,16 +1,19 @@
 package com.thinkmobiles.easyerp.presentation.utils;
 
-import android.support.annotation.IntDef;
-
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
+import static com.thinkmobiles.easyerp.BuildConfig.PRODUCTION;
 
 /**
  * Created by Lynx on 1/13/2017.
  */
 
 public abstract class Constants {
-    public static final String BASE_URL                     = "https://testdemo.easyerp.com/";
+    private static final String BASE_TEST_URL               = "https://testdemo.easyerp.com/";
+    private static final String BASE_RELEASE_URL            = "https://demo.easyerp.com/";
+    public static final String BASE_URL                     = PRODUCTION ? BASE_RELEASE_URL : BASE_TEST_URL;
+
+    public static final String PRIVACY_POLICY               = "https://easyerp.com/privacy-policy/?content=show";
+    public static final String TERMS_AND_CONDITIONS         = "https://easyerp.com/terms-and-conditions/?content=show";
+
     public static final String HEADER_SET_COOKIE            = "Set-Cookie";
     public static final String HEADER_COOKIE                = "Cookie";
 
@@ -100,14 +103,6 @@ public abstract class Constants {
     public enum ErrorType {
         LIST_EMPTY, NETWORK, UNKNOWN
     }
-
-    public interface TypeDetails {
-        int CRM_PERSON = 0;
-        int CRM_COMPANY = 1;
-        int CRM_LEAD = 2;
-        int CRM_OPPORTUNITY = 3;
-    }
-
 
     public static final String UXCAM_ACCOUNT_KEY            = "d2bf58cf5b3e5a0";
 }

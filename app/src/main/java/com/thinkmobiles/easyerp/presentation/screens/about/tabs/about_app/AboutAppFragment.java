@@ -1,10 +1,6 @@
 package com.thinkmobiles.easyerp.presentation.screens.about.tabs.about_app;
 
-import android.content.ActivityNotFoundException;
-import android.content.Intent;
-import android.net.Uri;
 import android.text.Html;
-import android.text.TextUtils;
 import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.widget.TextView;
@@ -13,6 +9,7 @@ import com.thinkmobiles.easyerp.BuildConfig;
 import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.presentation.base.BaseSupportFragment;
 import com.thinkmobiles.easyerp.presentation.screens.about.AboutUsActivity;
+import com.thinkmobiles.easyerp.presentation.utils.IntentActionHelper;
 
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterViews;
@@ -91,26 +88,13 @@ public class AboutAppFragment extends BaseSupportFragment<AboutUsActivity> imple
     }
 
     @Override
-    public void sendContactIntent(String email, String subject) {
-        Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
-        emailIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        emailIntent.setType("vnd.android.cursor.item/email");
-        emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[] {email});
-        emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, subject);
-        startActivity(emailIntent);
+    public void sendEmailIntent(String email, String subject) {
+        IntentActionHelper.callSendEmailIntent(mActivity, email, subject);
     }
 
     @Override
     public void sendViewIntent(String uriPath, String alternativeUriPath) {
-        Uri uri = Uri.parse(uriPath);
-        Uri uriAlternative = TextUtils.isEmpty(alternativeUriPath) ? null : Uri.parse(alternativeUriPath);
-        Intent sendIntent = new Intent(Intent.ACTION_VIEW, uri);
-        try {
-            startActivity(sendIntent);
-        } catch (ActivityNotFoundException e) {
-            if (uriAlternative != null)
-                startActivity(new Intent(Intent.ACTION_VIEW, uriAlternative));
-        }
+        IntentActionHelper.callViewIntent(mActivity, uriPath, alternativeUriPath);
     }
 
     @Override

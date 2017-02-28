@@ -38,7 +38,7 @@ public interface LoginContract {
         void forgotPassword(final String login, final String dbId);
     }
     interface LoginModel extends BaseModel {
-        Observable<String> login(String login, String password, String dbId);
+        Observable<?> login(String login, String password, String dbId);
         Observable<?> forgotPassword(String login, String dbId);
     }
     interface UserModel extends BaseModel {

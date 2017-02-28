@@ -35,10 +35,14 @@ public interface CompanyDetailsContract {
         void displayCompanyImage(String base64Image);
         void displayCompanyName(String companyName);
         void displayCompanyUrl(String companyUrl);
-        void displayEmail(String email);
-        void enableFacebookButton(String url);
-        void enableLinkedInButton(String url);
-        void enableSkypeButton(String url);
+        void displayEmail(final String email);
+
+        void enableFacebookButton(final String uriPath);
+        void enableLinkedInButton(final String uriPath);
+        void enableSkypeButton(final String uriPath);
+        void enableEmailActionClick(final String email);
+        void enablePhoneActionClick(final String phone);
+        void enableMobileActionClick(final String mobilePhone);
 
         void displayAssignedTo(String assignedTo);
         void displayLinkedIn(String linkedIn);

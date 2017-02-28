@@ -1,33 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:fillViewport="true"
     tools:background="@android:color/white">
 
-    <android.support.v7.widget.CardView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/default_padding_half"
-        app:cardBackgroundColor="@android:color/white">
+        android:orientation="vertical">
 
-        <LinearLayout
+        <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingBottom="@dimen/default_padding_big"
-            android:paddingEnd="@dimen/default_padding_quart"
-            android:paddingStart="@dimen/default_padding_quart"
-            android:paddingTop="@dimen/default_padding_big">
+            android:layout_margin="@dimen/default_padding_half"
+            app:cardBackgroundColor="@android:color/white">
 
             <LinearLayout
-                android:id="@+id/llAFSInfoLayout_VCO"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingBottom="@dimen/default_padding_big"
+                android:paddingEnd="@dimen/default_padding_quart"
+                android:paddingStart="@dimen/default_padding_quart"
+                android:paddingTop="@dimen/default_padding_big">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="@dimen/default_padding_quart">
+
+                    <TextView
+                        android:id="@+id/tvTotalCountValue_VCO"
+                        style="@style/ChartValueTextStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text="205692" />
+
+                    <TextView
+                        style="@style/TextListInfoStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="@dimen/default_padding_small"
+                        android:drawableStart="@drawable/ic_chart_overview_total"
+                        android:text="@string/total_count" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="@dimen/default_padding_quart">
+
+                    <TextView
+                        android:id="@+id/tvTotalRevenueValue_VCO"
+                        style="@style/ChartValueTextStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text="$ 403 612" />
+
+                    <TextView
+                        style="@style/TextListInfoStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="@dimen/default_padding_small"
+                        android:drawableStart="@drawable/ic_chart_overview_revenue"
+                        android:text="@string/total_revenue" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/cvAFSInfo_VCO"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/default_padding_half"
+            app:cardBackgroundColor="@android:color/white">
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:paddingBottom="@dimen/default_padding_big"
+                android:paddingEnd="@dimen/default_padding_quart"
+                android:paddingStart="@dimen/default_padding_quart"
+                android:paddingTop="@dimen/default_padding_big">
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -103,72 +169,14 @@
 
             </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/llRevenueTotalLayout_VCO"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="horizontal">
+        </android.support.v7.widget.CardView>
 
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="2"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:padding="@dimen/default_padding_quart">
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rvWorkflows_VCO"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:overScrollMode="never"
+            android:scrollbars="none" />
 
-                    <TextView
-                        android:id="@+id/tvTotalCountValue_VCO"
-                        style="@style/ChartValueTextStyle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        tools:text="205692" />
-
-                    <TextView
-                        style="@style/TextListInfoStyle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:drawablePadding="@dimen/default_padding_small"
-                        android:drawableStart="@drawable/ic_chart_overview_total"
-                        android:text="@string/total_count" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="3"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:padding="@dimen/default_padding_quart">
-
-                    <TextView
-                        android:id="@+id/tvTotalRevenueValue_VCO"
-                        style="@style/ChartValueTextStyle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        tools:text="$ 403 612" />
-
-                    <TextView
-                        style="@style/TextListInfoStyle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:drawablePadding="@dimen/default_padding_small"
-                        android:drawableStart="@drawable/ic_chart_overview_revenue"
-                        android:text="@string/total_revenue" />
-                </LinearLayout>
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-    </android.support.v7.widget.CardView>
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rvWorkflows_VCO"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:overScrollMode="never"
-        android:scrollbars="none" />
-
-</LinearLayout>
+    </LinearLayout>
+</ScrollView>

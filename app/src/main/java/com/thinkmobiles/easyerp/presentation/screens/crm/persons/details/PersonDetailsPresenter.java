@@ -12,6 +12,7 @@ import com.thinkmobiles.easyerp.presentation.holders.data.crm.HistoryDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.LeadAndOpportunityDH;
 import com.thinkmobiles.easyerp.presentation.managers.DateManager;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
+import com.thinkmobiles.easyerp.presentation.utils.IntentActionHelper;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -65,7 +66,7 @@ public class PersonDetailsPresenter extends ContentPresenterHelper implements Pe
                     view.showProgress(Constants.ProgressType.NONE);
                     currentPerson = responseGetPersonDetails;
                     setData(currentPerson);
-                },  t -> error(t)));
+                }, t -> error(t)));
     }
 
     @Override
@@ -86,74 +87,99 @@ public class PersonDetailsPresenter extends ContentPresenterHelper implements Pe
     }
 
     private void setBasicInfo(ResponseGetPersonDetails data) {
-        if(!TextUtils.isEmpty(data.fullName)) view.displayPersonName(data.fullName);
-        if(!TextUtils.isEmpty(data.imageSrc)) view.displayPersonAvatar(data.imageSrc);
+        if (!TextUtils.isEmpty(data.fullName)) view.displayPersonName(data.fullName);
+        if (!TextUtils.isEmpty(data.imageSrc)) view.displayPersonAvatar(data.imageSrc);
 
-        if(!TextUtils.isEmpty(data.jobPosition)) {
+        if (!TextUtils.isEmpty(data.jobPosition)) {
             view.showJobPosition(true);
             view.displayJobPosition(data.jobPosition);
         } else
             view.showJobPosition(false);
 
-        if(!TextUtils.isEmpty(data.email)) view.displayEmail(data.email);
-        if(!TextUtils.isEmpty(data.skype)) view.displaySkype(data.skype);
-        if(data.phones != null) {
-            if(!TextUtils.isEmpty(data.phones.phone)) view.displayPhone(data.phones.phone);
-            if(!TextUtils.isEmpty(data.phones.mobile)) view.displayMobile(data.phones.mobile);
+        if (!TextUtils.isEmpty(data.email)) {
+            view.displayEmail(data.email);
+            view.enableEmailActionClick(data.email);
         }
-        if(!TextUtils.isEmpty(data.dateBirth)) {
+        if (data.phones != null) {
+            if (!TextUtils.isEmpty(data.phones.phone)) {
+                view.displayPhone(data.phones.phone);
+                view.enablePhoneActionClick(data.phones.phone);
+            }
+            if (!TextUtils.isEmpty(data.phones.mobile)) {
+                view.displayMobile(data.phones.mobile);
+                view.enableMobileActionClick(data.phones.mobile);
+            }
+        }
+        if (!TextUtils.isEmpty(data.dateBirth)) {
             view.displayDateOfBirth(DateManager.convert(data.dateBirth)
                     .setDstPattern(DateManager.PATTERN_DATE_SIMPLE_PREVIEW)
                     .toString());
         }
-        if(!TextUtils.isEmpty(data.skype)) view.enableSkypeIcon(data.skype);
+
+        if (!TextUtils.isEmpty(data.skype)) {
+            view.displaySkype(data.skype);
+            view.enableSkypeIcon(String.format(IntentActionHelper.FORMAT_SKYPE, data.skype));
+        }
     }
 
     private void setSocialInfo(ResponseGetPersonDetails data) {
-        if(data.social != null) {
-            if(!TextUtils.isEmpty(data.social.linkedIn)) view.displayLinkedIn(data.social.linkedIn);
-            if(!TextUtils.isEmpty(data.social.facebook)) view.displayFacebook(data.social.facebook);
-            if(!TextUtils.isEmpty(data.social.linkedIn)) view.enableLinkedInIcon(data.social.linkedIn);
-            if(!TextUtils.isEmpty(data.social.facebook)) view.enableFacebookIcon(data.social.facebook);
+        if (data.social != null) {
+            if (!TextUtils.isEmpty(data.social.linkedIn)) {
+                view.displayLinkedIn(data.social.linkedIn);
+                view.enableLinkedInIcon(data.social.linkedIn);
+            }
+            if (!TextUtils.isEmpty(data.social.facebook)) {
+                view.displayFacebook(data.social.facebook);
+                view.enableFacebookIcon(data.social.facebook);
+            }
         }
     }
 
     private void setAddress(ResponseGetPersonDetails data) {
-        if(data.address != null) {
-            if(!TextUtils.isEmpty(data.address.street)) view.displayBillingStreet(data.address.street);
-            if(!TextUtils.isEmpty(data.address.city)) view.displayBillingCity(data.address.city);
-            if(!TextUtils.isEmpty(data.address.state)) view.displayBillingState(data.address.state);
-            if(!TextUtils.isEmpty(data.address.zip)) view.displayBillingZipcode(data.address.zip);
-            if(!TextUtils.isEmpty(data.address.country)) view.displayBillingCountry(data.address.country);
+        if (data.address != null) {
+            if (!TextUtils.isEmpty(data.address.street))
+                view.displayBillingStreet(data.address.street);
+            if (!TextUtils.isEmpty(data.address.city)) view.displayBillingCity(data.address.city);
+            if (!TextUtils.isEmpty(data.address.state))
+                view.displayBillingState(data.address.state);
+            if (!TextUtils.isEmpty(data.address.zip)) view.displayBillingZipcode(data.address.zip);
+            if (!TextUtils.isEmpty(data.address.country))
+                view.displayBillingCountry(data.address.country);
         }
-        if(data.shippingAddress != null) {
-            if(!TextUtils.isEmpty(data.shippingAddress.name)) view.displayShippingFullName(data.shippingAddress.name);
-            if(!TextUtils.isEmpty(data.shippingAddress.street)) view.displayShippingStreet(data.shippingAddress.street);
-            if(!TextUtils.isEmpty(data.shippingAddress.city)) view.displayShippingCity(data.shippingAddress.city);
-            if(!TextUtils.isEmpty(data.shippingAddress.state)) view.displayShippingState(data.shippingAddress.state);
-            if(!TextUtils.isEmpty(data.shippingAddress.zip)) view.displayShippingZipcode(data.shippingAddress.zip);
-            if(!TextUtils.isEmpty(data.shippingAddress.country)) view.displayShippingCountry(data.shippingAddress.country);
+        if (data.shippingAddress != null) {
+            if (!TextUtils.isEmpty(data.shippingAddress.name))
+                view.displayShippingFullName(data.shippingAddress.name);
+            if (!TextUtils.isEmpty(data.shippingAddress.street))
+                view.displayShippingStreet(data.shippingAddress.street);
+            if (!TextUtils.isEmpty(data.shippingAddress.city))
+                view.displayShippingCity(data.shippingAddress.city);
+            if (!TextUtils.isEmpty(data.shippingAddress.state))
+                view.displayShippingState(data.shippingAddress.state);
+            if (!TextUtils.isEmpty(data.shippingAddress.zip))
+                view.displayShippingZipcode(data.shippingAddress.zip);
+            if (!TextUtils.isEmpty(data.shippingAddress.country))
+                view.displayShippingCountry(data.shippingAddress.country);
         }
     }
 
     private void setSalesPurchasesInfo(ResponseGetPersonDetails data) {
-        if(data.salesPurchases != null && (data.salesPurchases.isCustomer || data.salesPurchases.isSupplier)) {
+        if (data.salesPurchases != null && (data.salesPurchases.isCustomer || data.salesPurchases.isSupplier)) {
             view.showSalesPurchasesInfo(true);
             view.displayIsCustomer(data.salesPurchases.isCustomer);
             view.displayIsSupplier(data.salesPurchases.isSupplier);
-            if(data.salesPurchases.salesTeam != null && !TextUtils.isEmpty(data.salesPurchases.salesTeam.name)) {
+            if (data.salesPurchases.salesTeam != null && !TextUtils.isEmpty(data.salesPurchases.salesTeam.name)) {
                 view.displaySalesTeam(data.salesPurchases.salesTeam.name);
             }
-            if(data.salesPurchases.salesPerson != null && !TextUtils.isEmpty(data.salesPurchases.salesPerson.fullName)) {
+            if (data.salesPurchases.salesPerson != null && !TextUtils.isEmpty(data.salesPurchases.salesPerson.fullName)) {
                 view.displaySalesPerson(data.salesPurchases.salesPerson.fullName);
             }
-            if(data.salesPurchases.implementedBy != null && !TextUtils.isEmpty(data.salesPurchases.implementedBy.fullName)) {
+            if (data.salesPurchases.implementedBy != null && !TextUtils.isEmpty(data.salesPurchases.implementedBy.fullName)) {
                 view.displaySalesImplementedBy(data.salesPurchases.implementedBy.fullName);
             }
-            if(!TextUtils.isEmpty(data.salesPurchases.reference)) {
+            if (!TextUtils.isEmpty(data.salesPurchases.reference)) {
                 view.displaySalesReference(data.salesPurchases.reference);
             }
-            if(!TextUtils.isEmpty(data.salesPurchases.language)) {
+            if (!TextUtils.isEmpty(data.salesPurchases.language)) {
                 view.displaySalesLanguage(data.salesPurchases.language);
             }
         } else
@@ -161,25 +187,44 @@ public class PersonDetailsPresenter extends ContentPresenterHelper implements Pe
     }
 
     private void setCompanyInfo(ResponseGetPersonDetails data) {
-        if(data.company != null && !TextUtils.isEmpty(data.company.fullName)) {
+        if (data.company != null && !TextUtils.isEmpty(data.company.fullName)) {
             view.showCompanyInfo(true);
             view.showCompany(true);
             view.displayCompanyName(data.company.fullName);
-            if(!TextUtils.isEmpty(data.company.imageSrc)) view.displayCompanyImage(data.company.imageSrc);
-            if(!TextUtils.isEmpty(data.company.website)) view.displayCompanyUrl(data.company.website);
-            if(data.company.address != null) {
-                if(!TextUtils.isEmpty(data.company.address.street)) view.displayCompanyStreet(data.company.address.street);
-                if(!TextUtils.isEmpty(data.company.address.city)) view.displayCompanyCity(data.company.address.city);
-                if(!TextUtils.isEmpty(data.company.address.state)) view.displayCompanyState(data.company.address.state);
-                if(!TextUtils.isEmpty(data.company.address.zip)) view.displayCompanyZipcode(data.company.address.zip);
-                if(!TextUtils.isEmpty(data.company.address.country)) view.displayCompanyCountry(data.company.address.country);
+            if (!TextUtils.isEmpty(data.company.imageSrc))
+                view.displayCompanyImage(data.company.imageSrc);
+            if (!TextUtils.isEmpty(data.company.website))
+                view.displayCompanyUrl(data.company.website);
+            if (data.company.address != null) {
+                if (!TextUtils.isEmpty(data.company.address.street))
+                    view.displayCompanyStreet(data.company.address.street);
+                if (!TextUtils.isEmpty(data.company.address.city))
+                    view.displayCompanyCity(data.company.address.city);
+                if (!TextUtils.isEmpty(data.company.address.state))
+                    view.displayCompanyState(data.company.address.state);
+                if (!TextUtils.isEmpty(data.company.address.zip))
+                    view.displayCompanyZipcode(data.company.address.zip);
+                if (!TextUtils.isEmpty(data.company.address.country))
+                    view.displayCompanyCountry(data.company.address.country);
             }
-            if(data.company.phones != null) {
-                if(!TextUtils.isEmpty(data.company.phones.phone)) view.displayCompanyPhone(data.company.phones.phone);
-                else if(!TextUtils.isEmpty(data.company.phones.mobile)) view.displayCompanyPhone(data.company.phones.mobile);
-                else if(!TextUtils.isEmpty(data.company.phones.fax)) view.displayCompanyPhone(data.company.phones.fax);
+            if (data.company.phones != null) {
+                if (!TextUtils.isEmpty(data.company.phones.phone)) {
+                    view.displayCompanyPhone(data.company.phones.phone);
+                    view.enableCompanyPhoneActionClick(data.company.phones.phone);
+                }
+                else if (!TextUtils.isEmpty(data.company.phones.mobile)) {
+                    view.displayCompanyPhone(data.company.phones.mobile);
+                    view.enableCompanyPhoneActionClick(data.company.phones.mobile);
+                }
+                else if (!TextUtils.isEmpty(data.company.phones.fax)) {
+                    view.displayCompanyPhone(data.company.phones.fax);
+                    view.enableCompanyPhoneActionClick(data.company.phones.fax);
+                }
             }
-            if(!TextUtils.isEmpty(data.company.email)) view.displayCompanyEmail(data.company.email);
+            if (!TextUtils.isEmpty(data.company.email)) {
+                view.displayCompanyEmail(data.company.email);
+                view.enableCompanyEmailActionClick(data.company.email);
+            }
         } else {
             view.showCompany(false);
             view.showCompanyInfo(false);
@@ -187,28 +232,27 @@ public class PersonDetailsPresenter extends ContentPresenterHelper implements Pe
     }
 
     private void setLeadsAndOpportunities(ResponseGetPersonDetails data) {
-        if(data.opportunities != null && !data.opportunities.isEmpty()) {
+        if (data.opportunities != null && !data.opportunities.isEmpty()) {
             ArrayList<LeadAndOpportunityDH> result = new ArrayList<>();
-            for(OpportunityItem opportunityItem : data.opportunities) {
+            for (OpportunityItem opportunityItem : data.opportunities) {
                 result.add(new LeadAndOpportunityDH(opportunityItem));
             }
             view.displayLeadAndOpportunity(result);
-        }
-        else
+        } else
             view.showLeadsAndOpportunities(false);
     }
 
     private void setAttachments(ResponseGetPersonDetails data) {
         ArrayList<AttachmentDH> result = new ArrayList<>();
-        if(data.attachments != null && !data.attachments.isEmpty()) {
-            for(AttachmentItem item : data.attachments) result.add(new AttachmentDH(item));
+        if (data.attachments != null && !data.attachments.isEmpty()) {
+            for (AttachmentItem item : data.attachments) result.add(new AttachmentDH(item));
             view.displayAttachments(result);
         } else
             view.showAttachments(false);
     }
 
     private void setHistory(ResponseGetPersonDetails data) {
-        if(data.notes != null && !data.notes.isEmpty()) {
+        if (data.notes != null && !data.notes.isEmpty()) {
             Collections.reverse(data.notes);
             view.displayHistory(HistoryDH.convert(data.notes));
             view.showHistory(isVisibleHistory);

@@ -1,5 +1,6 @@
 package com.thinkmobiles.easyerp.presentation.screens.login;
 
+import com.thinkmobiles.easyerp.BuildConfig;
 import com.thinkmobiles.easyerp.presentation.managers.CookieManager;
 import com.thinkmobiles.easyerp.presentation.managers.ErrorManager;
 import com.thinkmobiles.easyerp.presentation.managers.ValidationManager;
@@ -53,7 +54,9 @@ public class LoginPresenter implements LoginContract.LoginPresenter {
 
     @Override
     public void launchDemoMode() {
-        login(Constants.DEMO_LOGIN, Constants.DEMO_PASSWORD, Constants.DEMO_DB_ID);
+        if (BuildConfig.PRODUCTION)
+            login(null, null, null);
+        else login(Constants.DEMO_LOGIN, Constants.DEMO_PASSWORD, Constants.DEMO_DB_ID);
     }
 
     @Override
@@ -75,10 +78,7 @@ public class LoginPresenter implements LoginContract.LoginPresenter {
         compositeSubscription.add(
                 loginModel.login(login, password, databaseId)
                         .subscribe(s -> {
-                            if(s.equalsIgnoreCase("OK")) {
-                                getCurrentUser();
-                            } else
-                                view.dismissProgress();
+                            getCurrentUser();
                         }, t -> {
                             view.dismissProgress();
                             view.showErrorToast(ErrorManager.getErrorMessage(t));

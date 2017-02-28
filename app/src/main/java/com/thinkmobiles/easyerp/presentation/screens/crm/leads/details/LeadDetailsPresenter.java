@@ -115,19 +115,23 @@ public class LeadDetailsPresenter extends ContentPresenterHelper implements Lead
         }
         if(!TextUtils.isEmpty(response.email)) {
             view.setEmail(response.email);
+            view.enableEmailActionClick(response.email);
             contactInfoAvailable = true;
         }
         if(response.phones != null) {
             if(!TextUtils.isEmpty(response.phones.phone)) {
                 view.setPhone(response.phones.phone);
+                view.enablePhoneActionClick(response.phones.phone);
                 contactInfoAvailable = true;
             }
             else if(!TextUtils.isEmpty(response.phones.mobile)) {
                 view.setPhone(response.phones.mobile);
+                view.enablePhoneActionClick(response.phones.mobile);
                 contactInfoAvailable = true;
             }
             else if(!TextUtils.isEmpty(response.phones.fax)) {
                 view.setPhone(response.phones.fax);
+                view.enablePhoneActionClick(response.phones.fax);
                 contactInfoAvailable = true;
             }
         }

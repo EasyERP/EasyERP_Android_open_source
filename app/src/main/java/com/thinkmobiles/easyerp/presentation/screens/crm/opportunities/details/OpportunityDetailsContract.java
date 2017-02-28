@@ -44,6 +44,9 @@ public interface OpportunityDetailsContract {
         void displayCompanyPhone(String companyPhone);
         void displayCompanyEmail(String companyEmail);
 
+        void enableCompanyEmailActionClick(final String email);
+        void enableCompanyPhoneActionClick(final String phone);
+
         void setTags(ArrayList<TagItem> tags);
         void displayAttachments(ArrayList<AttachmentDH> attachmentDHs);
         void startUrlIntent(String url);

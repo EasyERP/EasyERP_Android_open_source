@@ -1,5 +1,6 @@
 package com.thinkmobiles.easyerp.presentation.screens.tutorial;
 
+import com.thinkmobiles.easyerp.BuildConfig;
 import com.thinkmobiles.easyerp.presentation.managers.CookieManager;
 import com.thinkmobiles.easyerp.presentation.managers.ErrorManager;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
@@ -37,14 +38,17 @@ public class TutorialPresenter implements TutorialContract.TutorialPresenter {
 
     @Override
     public void demo() {
+        if (BuildConfig.PRODUCTION)
+            login(null, null, null);
+        else login(Constants.DEMO_LOGIN, Constants.DEMO_PASSWORD, Constants.DEMO_DB_ID);
+    }
+
+    private void login(final String login, final String password, final String databaseId) {
         view.showProgress("Login. Please wait a second...");
         compositeSubscription.add(
-                tutorialModel.login(Constants.DEMO_LOGIN, Constants.DEMO_PASSWORD, Constants.DEMO_DB_ID)
+                tutorialModel.login(login, password, databaseId)
                         .subscribe(s -> {
-                            if(s.equalsIgnoreCase("OK")) {
-                                getCurrentUser();
-                            } else
-                                view.dismissProgress();
+                            getCurrentUser();
                         }, t -> {
                             view.dismissProgress();
                             view.showInfoToast(ErrorManager.getErrorMessage(t));

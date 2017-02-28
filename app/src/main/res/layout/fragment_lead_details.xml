@@ -256,6 +256,7 @@
 
                             <EditText
                                 android:id="@+id/tvPhone_FLD"
+                                android:inputType="phone"
                                 style="@style/DefaultTheme.LeadInputFieldStyle"
                                 android:text="@string/err_not_specified" />
 

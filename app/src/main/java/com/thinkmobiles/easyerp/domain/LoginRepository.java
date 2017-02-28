@@ -23,7 +23,8 @@ public class LoginRepository extends NetworkRepository implements LoginContract.
         loginService = Rest.getInstance().getLoginService();
     }
 
-    public Observable<String> login(String login, String pass, String dbId) {
+    @Override
+    public Observable<?> login(String login, String pass, String dbId) {
         return getNetworkObservable(loginService.login(login, pass, dbId, true));
     }
 

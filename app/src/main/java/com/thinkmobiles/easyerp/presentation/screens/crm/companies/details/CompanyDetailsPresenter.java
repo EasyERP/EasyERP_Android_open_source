@@ -13,6 +13,7 @@ import com.thinkmobiles.easyerp.presentation.holders.data.crm.ContactDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.HistoryDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.LeadAndOpportunityDH;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
+import com.thinkmobiles.easyerp.presentation.utils.IntentActionHelper;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -93,23 +94,34 @@ public class CompanyDetailsPresenter extends ContentPresenterHelper implements C
             if(!data.website.startsWith("http://")) data.website = "http://" + data.website;
             view.displayCompanyUrl(data.website);
         }
-        if(!TextUtils.isEmpty(data.skype)) view.enableSkypeButton(data.skype);
+        if(!TextUtils.isEmpty(data.skype)) {
+            view.enableSkypeButton(String.format(IntentActionHelper.FORMAT_SKYPE, data.skype));
+        }
         if(data.social != null) {
-            if(!TextUtils.isEmpty(data.social.facebook)) {
-                view.enableFacebookButton(data.social.facebook);
-                view.displayFacebook(data.social.facebook);
-            }
             if(!TextUtils.isEmpty(data.social.linkedIn)) {
-                view.enableLinkedInButton(data.social.linkedIn);
                 view.displayLinkedIn(data.social.linkedIn);
+                view.enableLinkedInButton(data.social.linkedIn);
+            }
+            if(!TextUtils.isEmpty(data.social.facebook)) {
+                view.displayFacebook(data.social.facebook);
+                view.enableFacebookButton(data.social.facebook);
             }
         }
-        if(!TextUtils.isEmpty(data.email)) view.displayEmail(data.email);
+        if(!TextUtils.isEmpty(data.email)) {
+            view.displayEmail(data.email);
+            view.enableEmailActionClick(data.email);
+        }
         if(data.salesPurchases != null && data.salesPurchases.salesPerson != null && !TextUtils.isEmpty(data.salesPurchases.salesPerson.fullName)) {
             view.displayAssignedTo(data.salesPurchases.salesPerson.fullName);
         }
-        if(data.phones != null && !TextUtils.isEmpty(data.phones.phone)) view.displayPhone(data.phones.phone);
-        if(data.phones != null && !TextUtils.isEmpty(data.phones.mobile)) view.displayMobile(data.phones.mobile);
+        if(data.phones != null && !TextUtils.isEmpty(data.phones.phone)) {
+            view.displayPhone(data.phones.phone);
+            view.enablePhoneActionClick(data.phones.phone);
+        }
+        if(data.phones != null && !TextUtils.isEmpty(data.phones.mobile)) {
+            view.displayMobile(data.phones.mobile);
+            view.enableMobileActionClick(data.phones.mobile);
+        }
     }
 
     private void setBillingAddress(ResponseGetCompanyDetails data) {

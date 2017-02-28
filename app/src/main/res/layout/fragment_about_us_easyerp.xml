@@ -15,14 +15,11 @@
         android:orientation="vertical"
         android:padding="@dimen/default_padding">
 
-        <TextView
-            style="@style/RobotoRegular"
+        <ImageView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/default_padding_half"
-            android:padding="@dimen/default_padding_half"
-            android:text="@string/app_logo_in_text"
-            android:textSize="68sp" />
+            android:layout_height="70dp"
+            android:layout_margin="@dimen/default_padding_big"
+            app:srcCompat="@drawable/ic_logo_black_text" />
 
         <TextView
             android:id="@+id/tvVersion_FAUS"

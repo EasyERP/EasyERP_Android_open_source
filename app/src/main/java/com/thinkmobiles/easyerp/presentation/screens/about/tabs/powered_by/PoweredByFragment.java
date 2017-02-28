@@ -1,13 +1,12 @@
 package com.thinkmobiles.easyerp.presentation.screens.about.tabs.powered_by;
 
-import android.content.Intent;
-import android.net.Uri;
 import android.text.Html;
 import android.widget.TextView;
 
 import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.presentation.base.BaseSupportFragment;
 import com.thinkmobiles.easyerp.presentation.screens.about.AboutUsActivity;
+import com.thinkmobiles.easyerp.presentation.utils.IntentActionHelper;
 
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterViews;
@@ -56,10 +55,8 @@ public class PoweredByFragment extends BaseSupportFragment<AboutUsActivity> impl
     }
 
     @Override
-    public void visitSite(String urlSite) {
-        Uri uri = Uri.parse(urlSite);
-        Intent sendIntent = new Intent(Intent.ACTION_VIEW, uri);
-        startActivity(sendIntent);
+    public void visitSite(String uriPath) {
+        IntentActionHelper.callViewIntent(mActivity, uriPath, null);
     }
 
     @Override

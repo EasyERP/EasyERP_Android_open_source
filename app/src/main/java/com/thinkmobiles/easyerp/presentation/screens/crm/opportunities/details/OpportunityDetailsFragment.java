@@ -1,7 +1,5 @@
 package com.thinkmobiles.easyerp.presentation.screens.crm.opportunities.details;
 
-import android.content.Intent;
-import android.net.Uri;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.graphics.ColorUtils;
 import android.support.v4.widget.NestedScrollView;
@@ -42,6 +40,7 @@ import com.thinkmobiles.easyerp.presentation.screens.crm.persons.details.PersonD
 import com.thinkmobiles.easyerp.presentation.screens.crm.persons.details.PersonDetailsFragment_;
 import com.thinkmobiles.easyerp.presentation.screens.details.DetailsActivity_;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
+import com.thinkmobiles.easyerp.presentation.utils.IntentActionHelper;
 
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterViews;
@@ -304,6 +303,26 @@ public class OpportunityDetailsFragment extends ContentFragment implements Oppor
     }
 
     @Override
+    public void enableCompanyEmailActionClick(String email) {
+        RxView.clicks(etCompanyEmail_FOD)
+                .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
+                .subscribe(aVoid -> {
+                    GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_URL, "Email");
+                    IntentActionHelper.callSendEmailIntent(mActivity, email, null);
+                });
+    }
+
+    @Override
+    public void enableCompanyPhoneActionClick(String phone) {
+        RxView.clicks(etCompanyPhone_FOD)
+                .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
+                .subscribe(aVoid -> {
+                    GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_URL, "Phone");
+                    IntentActionHelper.callDialIntent(mActivity, phone);
+                });
+    }
+
+    @Override
     public void setTags(ArrayList<TagItem> tags) {
         flowLayoutTags_FOD.removeAllViews();
         LayoutInflater inflater = LayoutInflater.from(getActivity());
@@ -322,9 +341,7 @@ public class OpportunityDetailsFragment extends ContentFragment implements Oppor
 
     @Override
     public void startUrlIntent(String url) {
-        Intent intent = new Intent(Intent.ACTION_VIEW);
-        intent.setData(Uri.parse(url));
-        startActivity(intent);
+        IntentActionHelper.callViewIntent(mActivity, url, null);
     }
 
     @Override
