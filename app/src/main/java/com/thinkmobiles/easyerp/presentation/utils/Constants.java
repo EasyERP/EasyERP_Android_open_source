@@ -1,5 +1,10 @@
 package com.thinkmobiles.easyerp.presentation.utils;
 
+import android.support.annotation.IntDef;
+
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+
 /**
  * Created by Lynx on 1/13/2017.
  */
@@ -76,7 +81,6 @@ public abstract class Constants {
 
     //Bundle keys
     public static final String KEY_FILTER_LIST              = "keyFilterList";
-    public static final String KEY_FILTER_NAME              = "keyFilterName";
 
     public enum ErrorCodes {
         OK,
@@ -96,6 +100,14 @@ public abstract class Constants {
     public enum ErrorType {
         LIST_EMPTY, NETWORK, UNKNOWN
     }
+
+    public interface TypeDetails {
+        int CRM_PERSON = 0;
+        int CRM_COMPANY = 1;
+        int CRM_LEAD = 2;
+        int CRM_OPPORTUNITY = 3;
+    }
+
 
     public static final String UXCAM_ACCOUNT_KEY            = "d2bf58cf5b3e5a0";
 }

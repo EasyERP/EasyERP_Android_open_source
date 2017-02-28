@@ -81,10 +81,14 @@ public interface PersonDetailsContract {
         void displayHistory(ArrayList<HistoryDH> historyDHs);
         void startUrlIntent(String url);
 
+        void openOpportunityDetails(String id, String title);
+        void openCompanyDetails(String id, String title);
     }
     interface PersonDetailsPresenter extends ContentPresenter {
         void changeNotesVisibility();
         void startAttachment(int pos);
+        void showOpportunityDetails(int pos);
+        void showCompanyDetails();
     }
     interface PersonDetailsModel extends BaseModel {
         Observable<ResponseGetPersonDetails> getPersonDetails(String personID);

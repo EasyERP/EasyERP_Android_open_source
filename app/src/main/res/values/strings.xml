@@ -205,4 +205,5 @@
     <string name="btn_rate">Rate</string>
     <string name="btn_no_thanks">No, thanks</string>
     <string name="btn_later">Later</string>
+    <string name="dialog_logout_message">Logout. Please wait a second...</string>
 </resources>

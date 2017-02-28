@@ -31,10 +31,16 @@ import com.thinkmobiles.easyerp.presentation.custom.RoundRectDrawable;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.AttachmentDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.ContactDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.HistoryDH;
+import com.thinkmobiles.easyerp.presentation.listeners.IFragmentInstance;
 import com.thinkmobiles.easyerp.presentation.managers.GoogleAnalyticHelper;
 import com.thinkmobiles.easyerp.presentation.managers.HistoryAnimationHelper;
 import com.thinkmobiles.easyerp.presentation.managers.ImageHelper;
 import com.thinkmobiles.easyerp.presentation.managers.TagHelper;
+import com.thinkmobiles.easyerp.presentation.screens.crm.companies.details.CompanyDetailsFragment;
+import com.thinkmobiles.easyerp.presentation.screens.crm.companies.details.CompanyDetailsFragment_;
+import com.thinkmobiles.easyerp.presentation.screens.crm.persons.details.PersonDetailsFragment;
+import com.thinkmobiles.easyerp.presentation.screens.crm.persons.details.PersonDetailsFragment_;
+import com.thinkmobiles.easyerp.presentation.screens.details.DetailsActivity_;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
 import org.androidannotations.annotations.AfterInject;
@@ -68,6 +74,10 @@ public class OpportunityDetailsFragment extends ContentFragment implements Oppor
 
     @FragmentArg
     protected String opportunityID;
+
+    public static IFragmentInstance getCreator() {
+        return (IFragmentInstance) args -> OpportunityDetailsFragment_.builder().arg(args).build();
+    }
 
     @ViewById
     protected LinearLayout llMainContent_FOD;
@@ -156,6 +166,7 @@ public class OpportunityDetailsFragment extends ContentFragment implements Oppor
 
         rvContacts_FOD.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
         rvContacts_FOD.setAdapter(contactAdapter);
+        contactAdapter.setOnCardClickListener((view, position, viewType) -> presenter.showPersonDetails(position));
 
         rvAttachments_FOD.setLayoutManager(new GridLayoutManager(getActivity(), 2));
         rvAttachments_FOD.setAdapter(attachmentAdapter);
@@ -167,6 +178,10 @@ public class OpportunityDetailsFragment extends ContentFragment implements Oppor
         RxView.clicks(btnHistory)
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
                 .subscribe(aVoid -> presenter.changeNotesVisibility());
+
+        RxView.clicks(ivCompanyImage_FOD)
+                .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
+                .subscribe(aVoid -> presenter.showCompanyDetails());
 
         animationHelper.init(ivIconArrow, rvHistory);
     }
@@ -335,7 +350,24 @@ public class OpportunityDetailsFragment extends ContentFragment implements Oppor
     @Override
     public void onDestroyView() {
         animationHelper.cancel();
-        presenter.unsubscribe();
         super.onDestroyView();
+    }
+
+    @Override
+    public void openPersonDetails(String id, String title) {
+        DetailsActivity_.intent(this)
+                .bundle(PersonDetailsFragment_.builder().personID(id).args())
+                .creator(PersonDetailsFragment.getCreator())
+                .titleDetails(title)
+                .start();
+    }
+
+    @Override
+    public void openCompanyDetails(String id, String title) {
+        DetailsActivity_.intent(this)
+                .bundle(CompanyDetailsFragment_.builder().companyID(id).args())
+                .creator(CompanyDetailsFragment.getCreator())
+                .titleDetails(title)
+                .start();
     }
 }

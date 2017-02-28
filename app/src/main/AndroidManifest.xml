@@ -43,6 +43,11 @@
             android:windowSoftInputMode="stateHidden" />
 
         <activity
+            android:name=".presentation.screens.details.DetailsActivity_"
+            android:screenOrientation="sensor"
+            android:windowSoftInputMode="stateHidden" />
+
+        <activity
             android:name=".presentation.screens.web.WebActivity_"
             android:screenOrientation="sensor"
             android:windowSoftInputMode="stateHidden" />

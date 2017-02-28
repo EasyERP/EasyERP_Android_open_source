@@ -3,6 +3,7 @@ package com.thinkmobiles.easyerp.presentation.screens.crm.companies.details;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Bundle;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -30,9 +31,15 @@ import com.thinkmobiles.easyerp.presentation.holders.data.crm.AttachmentDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.ContactDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.HistoryDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.LeadAndOpportunityDH;
+import com.thinkmobiles.easyerp.presentation.listeners.IFragmentInstance;
 import com.thinkmobiles.easyerp.presentation.managers.GoogleAnalyticHelper;
 import com.thinkmobiles.easyerp.presentation.managers.HistoryAnimationHelper;
 import com.thinkmobiles.easyerp.presentation.managers.ImageHelper;
+import com.thinkmobiles.easyerp.presentation.screens.crm.opportunities.details.OpportunityDetailsFragment;
+import com.thinkmobiles.easyerp.presentation.screens.crm.opportunities.details.OpportunityDetailsFragment_;
+import com.thinkmobiles.easyerp.presentation.screens.crm.persons.details.PersonDetailsFragment;
+import com.thinkmobiles.easyerp.presentation.screens.crm.persons.details.PersonDetailsFragment_;
+import com.thinkmobiles.easyerp.presentation.screens.details.DetailsActivity_;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
 import org.androidannotations.annotations.AfterInject;
@@ -55,6 +62,10 @@ public class CompanyDetailsFragment extends ContentFragment implements CompanyDe
     @Override
     protected int getLayoutRes() {
         return R.layout.fragment_company_details;
+    }
+
+    public static IFragmentInstance getCreator() {
+        return (IFragmentInstance) args -> CompanyDetailsFragment_.builder().arg(args).build();
     }
 
     private CompanyDetailsContract.CompanyDetailsPresenter presenter;
@@ -192,9 +203,11 @@ public class CompanyDetailsFragment extends ContentFragment implements CompanyDe
 
         rvContacts_FCD.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
         rvContacts_FCD.setAdapter(contactAdapter);
+        contactAdapter.setOnCardClickListener((view, position, viewType) -> presenter.showPersonDetails(position));
 
         rvLeadsAndOpportunities_FCD.setLayoutManager(new GridLayoutManager(getActivity(), 2));
         rvLeadsAndOpportunities_FCD.setAdapter(opportunityAndLeadsAdapter);
+        opportunityAndLeadsAdapter.setOnCardClickListener((view, position, viewType) -> presenter.showOpportunityDetails(position));
 
         rvAttachments_FCD.setLayoutManager(new GridLayoutManager(getActivity(), 2));
         rvAttachments_FCD.setAdapter(attachmentAdapter);
@@ -491,5 +504,23 @@ public class CompanyDetailsFragment extends ContentFragment implements CompanyDe
     public void onDestroyView() {
         animationHelper.cancel();
         super.onDestroyView();
+    }
+
+    @Override
+    public void openPersonDetails(String id, String title) {
+        DetailsActivity_.intent(this)
+                .bundle(PersonDetailsFragment_.builder().personID(id).args())
+                .creator(PersonDetailsFragment.getCreator())
+                .titleDetails(title)
+                .start();
+    }
+
+    @Override
+    public void openOpportunityDetails(String id, String title) {
+        DetailsActivity_.intent(this)
+                .bundle(OpportunityDetailsFragment_.builder().opportunityID(id).args())
+                .creator(OpportunityDetailsFragment.getCreator())
+                .titleDetails(title)
+                .start();
     }
 }

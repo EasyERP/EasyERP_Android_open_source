@@ -8,11 +8,10 @@
         android:background="@color/color_divider" />
 
     <FrameLayout
-        android:theme="@style/DefaultTheme.ThemeHistory"
+        style="@style/ViewWithRippleStyle"
         android:id="@+id/btnHistory"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?android:attr/selectableItemBackground"
         android:padding="@dimen/default_padding">
 
         <TextView

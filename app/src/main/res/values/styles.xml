@@ -31,6 +31,11 @@
         <item name="colorControlHighlight">@color/color_ripple</item>
     </style>
 
+    <style name="ViewWithRippleStyle">
+        <item name="android:theme">@style/DefaultTheme.ThemeHistory</item>
+        <item name="android:foreground">?android:attr/selectableItemBackground</item>
+    </style>
+
     <style name="DefaultTheme.DefaultBlackTextTheme">
         <item name="android:textColor">@android:color/black</item>
     </style>

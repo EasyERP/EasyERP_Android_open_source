@@ -70,7 +70,7 @@ public abstract class BaseMasterFlowActivity extends AppCompatActivity {
             getSupportActionBar().setHomeAsUpIndicator(getHomeIcon());
     }
 
-    private @DrawableRes int getHomeIcon() {
+    protected @DrawableRes int getHomeIcon() {
         if (getFragmentManager().getBackStackEntryCount() == 0 || (isTablet && !isPortrait))
             return R.drawable.ic_hamburger_menu;
         else return R.drawable.ic_back;

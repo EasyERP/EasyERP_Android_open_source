@@ -8,6 +8,7 @@
     <color name="colorSuzy">#556f89</color>
 
     <color name="textColorHint">#bdbdbd</color>
+    <color name="bg_color_activity_details">#ececec</color>
 
     <color name="text_grey_hint_color">#99000000</color>
 
