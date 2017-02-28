@@ -62,13 +62,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
     private UserInfo userInfo;
 
     @ViewById
-    protected RelativeLayout rvContainer_AL;
-    @ViewById
-    protected View vBgTriangle_AL;
-    @ViewById
     protected View vAppIcon_AL;
-    @ViewById
-    protected View flAppIcon_AL;
     @ViewById
     protected LinearLayout llInput_VIFL;
 
@@ -136,10 +130,10 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
     @AfterViews
     protected void initUI() {
         GoogleAnalyticHelper.trackScreenView(this, getResources().getConfiguration());
-        flAppIcon_AL.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+        vAppIcon_AL.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
             public void onGlobalLayout() {
-                flAppIcon_AL.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                vAppIcon_AL.getViewTreeObserver().removeOnGlobalLayoutListener(this);
                 runSplashAnimation();
                 if(cookieManager.isCookieExists())
                     presenter.getCurrentUser();
@@ -333,33 +327,26 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
 
     private void runSplashAnimation() {
         ObjectAnimator iconFade = ObjectAnimator.ofFloat(vAppIcon_AL, View.ALPHA, 0.4f, 1f);
-        ObjectAnimator iconScaleX = ObjectAnimator.ofFloat(flAppIcon_AL, View.SCALE_X, 0.5f, 1f);
-        ObjectAnimator iconScaleY = ObjectAnimator.ofFloat(flAppIcon_AL, View.SCALE_Y, 0.5f, 1f);
+        ObjectAnimator iconScaleX = ObjectAnimator.ofFloat(vAppIcon_AL, View.SCALE_X, 0.5f, 1f);
+        ObjectAnimator iconScaleY = ObjectAnimator.ofFloat(vAppIcon_AL, View.SCALE_Y, 0.5f, 1f);
         iconFade.setDuration(1200);
         iconScaleX.setDuration(1200);
         iconScaleY.setDuration(1200);
 
-        ObjectAnimator triangleAnim;
-        ObjectAnimator iconTranslateX;
+        ObjectAnimator iconTranslate;
         if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            vBgTriangle_AL.setPivotX(0f);
-            triangleAnim = ObjectAnimator.ofFloat(vBgTriangle_AL, View.SCALE_X, 1f, .6f);
-            iconTranslateX = ObjectAnimator.ofFloat(flAppIcon_AL, View.X, flAppIcon_AL.getX() - .4f * .5f * getResources().getDisplayMetrics().widthPixels);
+            iconTranslate = ObjectAnimator.ofFloat(vAppIcon_AL, View.X, vAppIcon_AL.getX() - .25f * getResources().getDisplayMetrics().widthPixels);
         } else {
-            vBgTriangle_AL.setPivotY(0f);
-            triangleAnim = ObjectAnimator.ofFloat(vBgTriangle_AL, View.SCALE_Y, 1f, .6f);
-            iconTranslateX = ObjectAnimator.ofFloat(flAppIcon_AL, View.Y, flAppIcon_AL.getY() - .4f * .5f * getResources().getDisplayMetrics().heightPixels);
+            iconTranslate = ObjectAnimator.ofFloat(vAppIcon_AL, View.Y, vAppIcon_AL.getY() - .25f * getResources().getDisplayMetrics().heightPixels);
         }
         ObjectAnimator containerFade = ObjectAnimator.ofFloat(llInput_VIFL, View.ALPHA, 0f, 1f);
-        triangleAnim.setDuration(1000);
-        iconTranslateX.setDuration(1000);
+        iconTranslate.setDuration(1000);
         containerFade.setDuration(500);
 
         iconScaleX.setInterpolator(new OvershootInterpolator());
         iconScaleY.setInterpolator(new OvershootInterpolator());
         iconFade.setInterpolator(new LinearInterpolator());
-        triangleAnim.setInterpolator(new DecelerateInterpolator());
-        iconTranslateX.setInterpolator(new DecelerateInterpolator());
+        iconTranslate.setInterpolator(new DecelerateInterpolator());
         containerFade.setInterpolator(new AccelerateInterpolator());
 
         containerFade.addListener(new AnimatorListenerAdapter() {
@@ -373,7 +360,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
         animatorSet1 = new AnimatorSet();
         animatorSet1.playTogether(iconFade, iconScaleX, iconScaleY);
         animatorSet2 = new AnimatorSet();
-        animatorSet2.play(triangleAnim).with(iconTranslateX).before(containerFade);
+        animatorSet2.play(iconTranslate).before(containerFade);
 
         animatorSet1.addListener(new AnimatorListenerAdapter() {
             @Override
