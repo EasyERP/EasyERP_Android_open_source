@@ -71,6 +71,7 @@ public class AttachmentVH extends RecyclerVH<AttachmentDH> {
 
         ivAttachmentIcon_VLIA.setImageDrawable(image);
         tvAttachmentName_VLIA.setText(fileName);
+        tvAttachmentName_VLIA.requestLayout();
         tvAttachmentType_VLIA.setText(TextUtils.isEmpty(fileExtension)? "" : "." + fileExtension);
     }
 }

@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:background="@android:color/white"
-              android:orientation="horizontal"
-              android:paddingBottom="@dimen/default_padding_3dp"
-              android:paddingEnd="@dimen/default_padding"
-              android:paddingTop="@dimen/default_padding_3dp">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/white"
+    android:orientation="horizontal"
+    android:paddingBottom="@dimen/default_padding_3dp"
+    android:paddingEnd="@dimen/default_padding"
+    android:paddingTop="@dimen/default_padding_3dp">
 
     <ImageView
         android:id="@+id/ivAttachmentIcon_VLIA"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:scaleType="centerCrop"
-        tools:src="@drawable/ic_mime_video"/>
+        tools:src="@drawable/ic_mime_video" />
 
     <FrameLayout
         android:layout_width="0dp"
@@ -24,6 +24,7 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/default_padding_half"
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
@@ -32,13 +33,12 @@
                 style="@style/RobotoMedium"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/default_padding_half"
                 android:layout_weight="1"
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:textColor="@color/colorAccent"
                 android:textSize="@dimen/text_size_small_14"
-                tools:text="DocumtDnumenrstDocument FirstDocumenumennt First"/>
+                tools:text="DocumtDnumenrstDocument FirstDocumenumennt First" />
 
             <TextView
                 android:id="@+id/tvAttachmentType_VLIA"
@@ -47,7 +47,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/colorAccent"
                 android:textSize="@dimen/text_size_small_14"
-                tools:text=".exe"/>
+                tools:text=".exe" />
 
         </LinearLayout>
 
