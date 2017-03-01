@@ -109,7 +109,7 @@ public class CompanyDetailsPresenter extends ContentPresenterHelper implements C
         }
         if(!TextUtils.isEmpty(data.email)) {
             view.displayEmail(data.email);
-            view.enableEmailActionClick(data.email);
+            view.enableEmailButton(data.email);
         }
         if(data.salesPurchases != null && data.salesPurchases.salesPerson != null && !TextUtils.isEmpty(data.salesPurchases.salesPerson.fullName)) {
             view.displayAssignedTo(data.salesPurchases.salesPerson.fullName);

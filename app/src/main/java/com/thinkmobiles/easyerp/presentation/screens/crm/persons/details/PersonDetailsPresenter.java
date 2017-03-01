@@ -98,7 +98,7 @@ public class PersonDetailsPresenter extends ContentPresenterHelper implements Pe
 
         if (!TextUtils.isEmpty(data.email)) {
             view.displayEmail(data.email);
-            view.enableEmailActionClick(data.email);
+            view.enableEmailIcon(data.email);
         }
         if (data.phones != null) {
             if (!TextUtils.isEmpty(data.phones.phone)) {
