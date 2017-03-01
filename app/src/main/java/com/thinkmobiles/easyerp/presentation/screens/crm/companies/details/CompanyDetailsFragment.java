@@ -91,6 +91,8 @@ public class CompanyDetailsFragment extends ContentFragment implements CompanyDe
     @ViewById
     protected ImageView ivCompanySkype_FCD;
     @ViewById
+    protected ImageView ivCompanyEmail_FCD;
+    @ViewById
     protected EditText etAssignedTo_FCD;
     @ViewById
     protected EditText etLinkedIn_FCD;
@@ -325,11 +327,12 @@ public class CompanyDetailsFragment extends ContentFragment implements CompanyDe
     }
 
     @Override
-    public void enableEmailActionClick(String email) {
-        RxView.clicks(tvEmail_FPD)
+    public void enableEmailButton(String email) {
+        ivCompanyEmail_FCD.setVisibility(View.VISIBLE);
+        RxView.clicks(ivCompanyEmail_FCD)
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
                 .subscribe(aVoid -> {
-                    GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_URL, "Email");
+                    GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_SOCIAL_BUTTON, "Email");
                     IntentActionHelper.callSendEmailIntent(mActivity, email, null);
                 });
     }

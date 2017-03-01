@@ -40,7 +40,7 @@ public interface CompanyDetailsContract {
         void enableFacebookButton(final String uriPath);
         void enableLinkedInButton(final String uriPath);
         void enableSkypeButton(final String uriPath);
-        void enableEmailActionClick(final String email);
+        void enableEmailButton(final String email);
         void enablePhoneActionClick(final String phone);
         void enableMobileActionClick(final String mobilePhone);
 
