@@ -12,7 +12,7 @@ import org.androidannotations.annotations.sharedpreferences.SharedPref;
 @SharedPref(value = SharedPref.Scope.APPLICATION_DEFAULT)
 public interface AppDefaultStatesPreferences {
 
-    @DefaultInt(0)
+    @DefaultInt(4)
     int defaultDateFilterTypeForCRMDashboardCharts();
 
     @DefaultLong(-1)
