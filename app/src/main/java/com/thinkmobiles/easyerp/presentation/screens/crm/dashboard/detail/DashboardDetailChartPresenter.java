@@ -46,7 +46,8 @@ public class DashboardDetailChartPresenter extends ContentPresenterHelper implem
     public void subscribe() {
         customDateFrom = defaultStatesPreferences.customDateFilterFromForCRMDashboardCharts().get();
         customDateTo = defaultStatesPreferences.customDateFilterToForCRMDashboardCharts().get();
-        dateFilterType = DateFilterType.valueOf(defaultStatesPreferences.defaultDateFilterTypeForCRMDashboardCharts().get());
+//        dateFilterType = DateFilterType.valueOf(defaultStatesPreferences.defaultDateFilterTypeForCRMDashboardCharts().get());
+        dateFilterType = DateFilterType.LAST_FINANCIAL_YEAR;
 
         view.displayDateFilterFromTo(getDateFromToString(getFromToFilterDate()));
         view.displayHeader(workDashboardInfoForChart.name);
@@ -91,7 +92,7 @@ public class DashboardDetailChartPresenter extends ContentPresenterHelper implem
     @Override
     public void chooseFilterType(DateFilterType dateFilterType) {
         this.dateFilterType = dateFilterType;
-        defaultStatesPreferences.edit().defaultDateFilterTypeForCRMDashboardCharts().put(this.dateFilterType.getType()).apply();
+//        defaultStatesPreferences.edit().defaultDateFilterTypeForCRMDashboardCharts().put(this.dateFilterType.getType()).apply();
 
         final Pair<Calendar, Calendar> fromToPair = getFromToFilterDate();
         view.displayDateFilterFromTo(getDateFromToString(fromToPair));
