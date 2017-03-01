@@ -97,6 +97,8 @@ public class PersonDetailsFragment extends ContentFragment implements PersonDeta
     @ViewById
     protected ImageView ivFacebook_FPD;
     @ViewById
+    protected ImageView ivEmail_FPD;
+    @ViewById
     protected LinearLayout llContainerSalesPurchases_FPD;
     @ViewById
     protected CheckBox cbIsCustomer_FPD;
@@ -319,6 +321,17 @@ public class PersonDetailsFragment extends ContentFragment implements PersonDeta
     }
 
     @Override
+    public void enableEmailIcon(String email) {
+        ivEmail_FPD.setVisibility(View.VISIBLE);
+        RxView.clicks(ivEmail_FPD)
+                .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
+                .subscribe(aVoid -> {
+                    GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_SOCIAL_BUTTON, "Email");
+                    IntentActionHelper.callSendEmailIntent(mActivity, email, null);
+                });
+    }
+
+    @Override
     public void enableCompanyEmailActionClick(String email) {
         RxView.clicks(etCompanyEmail_FPD)
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
@@ -335,16 +348,6 @@ public class PersonDetailsFragment extends ContentFragment implements PersonDeta
                 .subscribe(aVoid -> {
                     GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_URL, "Phone");
                     IntentActionHelper.callDialIntent(mActivity, phone);
-                });
-    }
-
-    @Override
-    public void enableEmailActionClick(String email) {
-        RxView.clicks(etEmail_FPD)
-                .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
-                .subscribe(aVoid -> {
-                    GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_URL, "Email");
-                    IntentActionHelper.callSendEmailIntent(mActivity, email, null);
                 });
     }
 

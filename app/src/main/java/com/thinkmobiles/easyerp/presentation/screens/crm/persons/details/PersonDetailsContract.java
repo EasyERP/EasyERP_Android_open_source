@@ -43,9 +43,9 @@ public interface PersonDetailsContract {
         void enableSkypeIcon(final String uriPath);
         void enableLinkedInIcon(final String uriPath);
         void enableFacebookIcon(final String uriPath);
+        void enableEmailIcon(final String email);
         void enableCompanyEmailActionClick(final String email);
         void enableCompanyPhoneActionClick(final String phone);
-        void enableEmailActionClick(final String email);
         void enablePhoneActionClick(final String phone);
         void enableMobileActionClick(final String mobilePhone);
 
