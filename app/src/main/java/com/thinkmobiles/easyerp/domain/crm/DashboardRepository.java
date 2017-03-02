@@ -4,6 +4,7 @@ import com.thinkmobiles.easyerp.data.api.Rest;
 import com.thinkmobiles.easyerp.data.model.crm.dashboard.ResponseGetCRMDashboardCharts;
 import com.thinkmobiles.easyerp.data.model.crm.dashboard.detail.DashboardChartType;
 import com.thinkmobiles.easyerp.data.services.DashboardService;
+import com.thinkmobiles.easyerp.presentation.EasyErpApplication;
 import com.thinkmobiles.easyerp.presentation.base.NetworkRepository;
 import com.thinkmobiles.easyerp.presentation.screens.crm.dashboard.DashboardListContract;
 import com.thinkmobiles.easyerp.presentation.screens.crm.dashboard.detail.DashboardDetailChartContract;
@@ -20,20 +21,26 @@ import rx.Observable;
  * Created by Lynx on 1/16/2017.
  */
 
-@EBean(scope = EBean.Scope.Singleton)
 public class DashboardRepository extends NetworkRepository implements DashboardListContract.DashboardListModel, DashboardDetailChartContract.DashboardDetailChartModel {
 
-    @Bean
     protected DashboardChartsLayerRepository dashboardChartsLayerRepository;
 
     private DashboardService dashboardService;
+
+    private String contentType;
+
+    public DashboardRepository(String contentType) {
+        this.contentType = contentType;
+        dashboardChartsLayerRepository = new  DashboardChartsLayerRepository();
+        dashboardService = Rest.getInstance().getDashboardService();
+    }
 
     public DashboardRepository() {
         dashboardService = Rest.getInstance().getDashboardService();
     }
 
     public Observable<List<ResponseGetCRMDashboardCharts>> getDashboardListCharts(/*Dashboard id: String*/) {
-        return getNetworkObservable(dashboardService.getDashboardListCharts(Constants.CRM_DASHBOARD_BASE_ID, "reportsDashboard"));
+        return getNetworkObservable(dashboardService.getDashboardListCharts(Constants.CRM_DASHBOARD_BASE_ID, contentType));
     }
 
     @Override

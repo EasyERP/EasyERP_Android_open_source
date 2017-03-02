@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.jakewharton.rxbinding.view.RxView;
 import com.thinkmobiles.easyerp.R;
+import com.thinkmobiles.easyerp.domain.DomainHelper;
 import com.thinkmobiles.easyerp.domain.crm.InvoiceRepository;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.AttachmentAdapter;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.HistoryAdapter;
@@ -18,6 +19,7 @@ import com.thinkmobiles.easyerp.presentation.adapters.crm.InvoicePaymentAdapter;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.ProductAdapter;
 import com.thinkmobiles.easyerp.presentation.base.rules.content.ContentFragment;
 import com.thinkmobiles.easyerp.presentation.base.rules.content.ContentPresenter;
+import com.thinkmobiles.easyerp.presentation.custom.views.drawer_menu.models.MenuConfigs;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.AttachmentDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.HistoryDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.InvoicePaymentDH;
@@ -54,6 +56,8 @@ public class InvoiceDetailsFragment extends ContentFragment implements InvoiceDe
 
     @FragmentArg
     protected String invoiceId;
+    @FragmentArg
+    protected int moduleId;
 
     @ViewById
     protected NestedScrollView nsvContent_FID;
@@ -112,7 +116,6 @@ public class InvoiceDetailsFragment extends ContentFragment implements InvoiceDe
     @ViewById
     protected RecyclerView rvHistory;
 
-    @Bean
     protected InvoiceRepository invoiceRepository;
     @Bean
     protected HistoryAdapter historyAdapter;
@@ -130,6 +133,7 @@ public class InvoiceDetailsFragment extends ContentFragment implements InvoiceDe
     @AfterInject
     @Override
     public void initPresenter() {
+        invoiceRepository = DomainHelper.getInvoiceRepository(moduleId);
         new InvoiceDetailsPresenter(this, invoiceRepository, invoiceId);
     }
 
@@ -146,7 +150,6 @@ public class InvoiceDetailsFragment extends ContentFragment implements InvoiceDe
         rvAttachments_FID.setAdapter(attachmentAdapter);
         rvAttachments_FID.setLayoutManager(new GridLayoutManager(getActivity(), 2));
         attachmentAdapter.setOnCardClickListener((view, position, viewType) -> {
-            String url = String.format("%sdownload/%s", Constants.BASE_URL, attachmentAdapter.getItem(position).getItem().shortPath);
             GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_ATTACHMENT, "");
             presenter.startAttachment(position);
         });
@@ -174,7 +177,7 @@ public class InvoiceDetailsFragment extends ContentFragment implements InvoiceDe
 
     @Override
     public String getScreenName() {
-        return "Invoice details screen";
+        return String.format("%s Invoice details screen", MenuConfigs.getModuleLabel(moduleId));
     }
 
     @Override

@@ -1,10 +1,12 @@
 package com.thinkmobiles.easyerp.presentation.screens.crm.invoices;
 
+import com.thinkmobiles.easyerp.domain.DomainHelper;
 import com.thinkmobiles.easyerp.domain.crm.InvoiceRepository;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.InvoicesAdapter;
 import com.thinkmobiles.easyerp.presentation.base.rules.master.filterable.FilterablePresenter;
 import com.thinkmobiles.easyerp.presentation.base.rules.master.filterable.MasterFilterableFragment;
 import com.thinkmobiles.easyerp.presentation.base.rules.master.selectable.SelectableAdapter;
+import com.thinkmobiles.easyerp.presentation.custom.views.drawer_menu.models.MenuConfigs;
 import com.thinkmobiles.easyerp.presentation.managers.GoogleAnalyticHelper;
 import com.thinkmobiles.easyerp.presentation.screens.crm.invoices.details.InvoiceDetailsFragment_;
 
@@ -12,6 +14,7 @@ import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EFragment;
+import org.androidannotations.annotations.FragmentArg;
 
 /**
  * @author Michael Soyma (Created on 2/2/2017).
@@ -23,7 +26,9 @@ public class InvoicesFragment extends MasterFilterableFragment implements Invoic
 
     private InvoicesContract.InvoicesPresenter presenter;
 
-    @Bean
+    @FragmentArg
+    protected int moduleId;
+
     protected InvoiceRepository invoiceRepository;
     @Bean
     protected InvoicesAdapter invoicesAdapter;
@@ -31,6 +36,7 @@ public class InvoicesFragment extends MasterFilterableFragment implements Invoic
     @AfterInject
     @Override
     public void initPresenter() {
+        invoiceRepository = DomainHelper.getInvoiceRepository(moduleId);
         new InvoicesPresenter(this, invoiceRepository);
     }
 
@@ -46,7 +52,7 @@ public class InvoicesFragment extends MasterFilterableFragment implements Invoic
 
     @Override
     public String getScreenName() {
-        return "Invoice list screen";
+        return String.format("%s Invoice list screen", MenuConfigs.getModuleLabel(moduleId));
     }
 
     @Override
@@ -64,6 +70,7 @@ public class InvoicesFragment extends MasterFilterableFragment implements Invoic
         if (invoiceID != null) {
             mActivity.replaceFragmentContentDetail(InvoiceDetailsFragment_.builder()
                     .invoiceId(invoiceID)
+                    .moduleId(moduleId)
                     .build());
         } else {
             mActivity.replaceFragmentContentDetail(null);

@@ -26,16 +26,16 @@ public abstract class MenuConfigs {
     public static Map<Integer, List<MenuItem>> menuModuleItems = new HashMap<>();
 
     static {
-        menuModules.add(new MenuItem(0, R.drawable.ic_reports, "Reports"));
-        menuModules.add(new MenuItem(1, R.drawable.ic_crm, "CRM"));
-        menuModules.add(new MenuItem(2, R.drawable.ic_project, "Project"));
-        menuModules.add(new MenuItem(3, R.drawable.ic_hr, "HR"));
-        menuModules.add(new MenuItem(4, R.drawable.ic_purchases, "Purchases"));
-        menuModules.add(new MenuItem(5, R.drawable.ic_accounting, "Accounting"));
-        menuModules.add(new MenuItem(6, R.drawable.ic_payroll, "Payroll"));
-        menuModules.add(new MenuItem(7, R.drawable.ic_expenses, "Expenses"));
-        menuModules.add(new MenuItem(8, R.drawable.ic_inventory, "Inventory"));
-        menuModules.add(new MenuItem(9, R.drawable.ic_settings, "Settings"));
+        menuModules.add(new MenuItem(0, R.drawable.ic_reports, "Reports", false));
+        menuModules.add(new MenuItem(1, R.drawable.ic_crm, "CRM", true));
+        menuModules.add(new MenuItem(2, R.drawable.ic_project, "Project", false));
+        menuModules.add(new MenuItem(3, R.drawable.ic_hr, "HR", false));
+        menuModules.add(new MenuItem(4, R.drawable.ic_purchases, "Purchases", true));
+        menuModules.add(new MenuItem(5, R.drawable.ic_accounting, "Accounting", false));
+        menuModules.add(new MenuItem(6, R.drawable.ic_payroll, "Payroll", false));
+        menuModules.add(new MenuItem(7, R.drawable.ic_expenses, "Expenses", false));
+        menuModules.add(new MenuItem(8, R.drawable.ic_inventory, "Inventory", false));
+        menuModules.add(new MenuItem(9, R.drawable.ic_settings, "Settings", false));
 
         menuModuleItems.put(0, getReportsModule());
         menuModuleItems.put(1, getCRMModule());
@@ -107,9 +107,10 @@ public abstract class MenuConfigs {
 
     private static List<MenuItem> getPurchasesModule() {
         final List<MenuItem> menuItems = new ArrayList<>();
-        menuItems.add(new MenuItem(0, R.drawable.ic_menu_item_placeholder, "Orders", false));
-        menuItems.add(new MenuItem(1, R.drawable.ic_menu_item_placeholder, "Invoices", false));
-        menuItems.add(new MenuItem(2, R.drawable.ic_menu_item_placeholder, "Payments", false));
+        menuItems.add(new MenuItem(-1, R.drawable.ic_dashboard, "Dashboard", true));
+        menuItems.add(new MenuItem(0, R.drawable.ic_orders, "Orders", true));
+        menuItems.add(new MenuItem(1, R.drawable.ic_invoices, "Invoices", true));
+        menuItems.add(new MenuItem(2, R.drawable.ic_paymens, "Payments", true));
         return menuItems;
     }
 
@@ -179,6 +180,7 @@ public abstract class MenuConfigs {
     public static BaseMasterFlowFragment getFragmentByMenuId(final int moduleId, final int itemId) {
         switch (moduleId) {
             case 1: return getFragmentByIdWithCRMModule(itemId);
+            case 4: return getFragmentByIdWithPurchaseModule(itemId);
         }
         return null;
     }
@@ -198,19 +200,31 @@ public abstract class MenuConfigs {
     }
 
     private static BaseMasterFlowFragment getFragmentByIdWithCRMModule(final int itemId) {
+        final int crmModuleId = 1;
         switch (itemId) {
-           case 0: return DashboardListFragment_.builder().build();
+           case 0: return DashboardListFragment_.builder().moduleId(crmModuleId).build();
            case 1: return null;
            case 2: return LeadsFragment_.builder().build();
            case 3: return OpportunitiesFragment_.builder().build();
            case 4: return PersonsFragment_.builder().build();
            case 5: return CompaniesFragment_.builder().build();
            case 6: return null;
-           case 7: return OrdersFragment_.builder().build();
-           case 8: return InvoicesFragment_.builder().build();
-           case 9: return PaymentsFragment_.builder().build();
+           case 7: return OrdersFragment_.builder().moduleId(crmModuleId).build();
+           case 8: return InvoicesFragment_.builder().moduleId(crmModuleId).build();
+           case 9: return PaymentsFragment_.builder().moduleId(crmModuleId).build();
            case 10: return null;
            case 11: return null;
+        }
+        return null;
+    }
+
+    private static BaseMasterFlowFragment getFragmentByIdWithPurchaseModule(final int itemId) {
+        final int purchaseModuleId = 4;
+        switch (itemId) {
+            case -1: return DashboardListFragment_.builder().moduleId(purchaseModuleId).build();
+            case 0: return OrdersFragment_.builder().moduleId(purchaseModuleId).build();
+            case 1: return InvoicesFragment_.builder().moduleId(purchaseModuleId).build();
+            case 2: return PaymentsFragment_.builder().moduleId(purchaseModuleId).build();
         }
         return null;
     }

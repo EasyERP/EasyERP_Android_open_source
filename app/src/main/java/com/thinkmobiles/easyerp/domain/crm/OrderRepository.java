@@ -22,14 +22,18 @@ import rx.Observable;
  * Created by Lynx on 1/16/2017.
  */
 
-@EBean(scope = EBean.Scope.Singleton)
 public class OrderRepository extends NetworkRepository implements OrdersContract.OrdersModel, OrderDetailsContract.OrderDetailsModel {
 
     private OrderService orderService;
     private UserService userService;
     private FilterService filterService;
 
-    public OrderRepository() {
+    private String path;
+    private String contentType;
+
+    public OrderRepository(String path, String contentType) {
+        this.path = path;
+        this.contentType = contentType;
         orderService = Rest.getInstance().getOrderService();
         userService = Rest.getInstance().getUserService();
         filterService = Rest.getInstance().getFilterService();
@@ -38,7 +42,7 @@ public class OrderRepository extends NetworkRepository implements OrdersContract
     @Override
     public Observable<ResponseGetOrders> getOrders(FilterHelper query, final int page) {
         return getNetworkObservable(orderService.getOrders(query
-                .createUrl(Constants.GET_ORDER, "order", page)
+                .createUrl(path, contentType, page)
                 .build()
                 .toString()
         ));
@@ -46,7 +50,7 @@ public class OrderRepository extends NetworkRepository implements OrdersContract
 
     @Override
     public Observable<ResponseFilters> getFilters() {
-        return getNetworkObservable(filterService.getListFilters("order"));
+        return getNetworkObservable(filterService.getListFilters(contentType));
     }
 
     @Override

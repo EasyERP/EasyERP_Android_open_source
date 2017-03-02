@@ -1,11 +1,13 @@
 package com.thinkmobiles.easyerp.presentation.screens.crm.dashboard;
 
 import com.thinkmobiles.easyerp.data.model.crm.dashboard.DashboardListItem;
+import com.thinkmobiles.easyerp.domain.DomainHelper;
 import com.thinkmobiles.easyerp.domain.crm.DashboardRepository;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.DashboardListAdapter;
 import com.thinkmobiles.easyerp.presentation.base.rules.master.selectable.MasterSelectableFragment;
 import com.thinkmobiles.easyerp.presentation.base.rules.master.selectable.SelectableAdapter;
 import com.thinkmobiles.easyerp.presentation.base.rules.master.selectable.SelectablePresenter;
+import com.thinkmobiles.easyerp.presentation.custom.views.drawer_menu.models.MenuConfigs;
 import com.thinkmobiles.easyerp.presentation.managers.GoogleAnalyticHelper;
 import com.thinkmobiles.easyerp.presentation.screens.crm.dashboard.detail.DashboardDetailChartFragment_;
 
@@ -13,6 +15,7 @@ import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EFragment;
+import org.androidannotations.annotations.FragmentArg;
 
 /**
  * @author michael.soyma@thinkmobiles.com (Created on 1/18/2017.)
@@ -22,7 +25,9 @@ public class DashboardListFragment extends MasterSelectableFragment implements D
 
     private DashboardListContract.DashboardListPresenter presenter;
 
-    @Bean
+    @FragmentArg
+    protected int moduleId;
+
     protected DashboardRepository dashboardRepository;
     @Bean
     protected DashboardListAdapter dashboardListAdapter;
@@ -30,6 +35,7 @@ public class DashboardListFragment extends MasterSelectableFragment implements D
     @AfterInject
     @Override
     public void initPresenter() {
+        dashboardRepository = DomainHelper.getDashboardRepository(moduleId);
         presenter = new DashboardListPresenter(this, dashboardRepository);
     }
 
@@ -40,7 +46,7 @@ public class DashboardListFragment extends MasterSelectableFragment implements D
 
     @Override
     public String getScreenName() {
-        return "Dashboard list screen";
+        return String.format("%s Dashboard list screen", MenuConfigs.getModuleLabel(moduleId));
     }
 
     @AfterViews
@@ -68,8 +74,9 @@ public class DashboardListFragment extends MasterSelectableFragment implements D
     public void openDashboardChartDetail(DashboardListItem itemChartDashboard) {
         if (itemChartDashboard != null) {
             mActivity.replaceFragmentContentDetail(DashboardDetailChartFragment_.builder()
-                            .dashboardConfigsForChart(itemChartDashboard)
-                            .build());
+                    .dashboardConfigsForChart(itemChartDashboard)
+                    .moduleId(moduleId)
+                    .build());
         } else {
             mActivity.replaceFragmentContentDetail(null);
         }

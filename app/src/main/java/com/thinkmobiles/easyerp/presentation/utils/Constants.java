@@ -59,6 +59,7 @@ public abstract class Constants {
 
     //Invoice
     public static final String GET_INVOICE                  = "invoice";
+    public static final String GET_PURCHASE_INVOICE         = "purchaseInvoices";
     public static final String GET_INVOICE_BY_WORKFLOWS     = "invoice/getInvoiceByWorkflows";
     public static final String GET_REVENUE_BY_SALES         = "invoice/revenueBySales";
     public static final String GET_REVENUE_BY_CUSTOMER      = "invoice/revenueByCustomer";
@@ -67,6 +68,7 @@ public abstract class Constants {
 
     //Order
     public static final String GET_ORDER                    = "order";
+    public static final String GET_PURCHASE_ORDER           = "purchaseOrders";
     public static final String GET_ORDER_BY_WORKFLOWS       = "order/getByWorkflows";
     //End Order
 

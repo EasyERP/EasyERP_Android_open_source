@@ -9,6 +9,7 @@ import com.leavjenn.smoothdaterangepicker.date.SmoothDateRangePickerFragment;
 import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.data.model.crm.dashboard.DashboardListItem;
 import com.thinkmobiles.easyerp.data.model.crm.dashboard.detail.DashboardChartType;
+import com.thinkmobiles.easyerp.domain.DomainHelper;
 import com.thinkmobiles.easyerp.domain.crm.DashboardRepository;
 import com.thinkmobiles.easyerp.presentation.base.rules.content.ContentFragment;
 import com.thinkmobiles.easyerp.presentation.base.rules.content.ContentPresenter;
@@ -42,7 +43,6 @@ public class DashboardDetailChartFragment extends ContentFragment implements Das
 
     private DashboardDetailChartContract.DashboardDetailChartPresenter presenter;
 
-    @Bean
     protected DashboardRepository dashboardRepository;
 
     @FragmentArg
@@ -58,10 +58,13 @@ public class DashboardDetailChartFragment extends ContentFragment implements Das
     @Pref
     protected AppDefaultStatesPreferences_ appDefaultStatesPreferences;
 
+    @FragmentArg
+    protected int moduleId;
 
     @AfterInject
     @Override
     public void initPresenter() {
+        dashboardRepository = DomainHelper.getDashboardRepository(moduleId);
         presenter = new DashboardDetailChartPresenter(this, dashboardRepository, dashboardConfigsForChart, appDefaultStatesPreferences);
     }
 

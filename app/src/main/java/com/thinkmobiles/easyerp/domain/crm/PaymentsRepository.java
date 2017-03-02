@@ -22,14 +22,18 @@ import rx.Observable;
  *         Company: Thinkmobiles
  *         Email: michael.soyma@thinkmobiles.com
  */
-@EBean
 public class PaymentsRepository extends NetworkRepository implements PaymentsContract.PaymentsModel, PaymentDetailsContract.PaymentDetailsModel {
 
     private PaymentsService paymentsService;
     private UserService userService;
     private FilterService filterService;
 
-    public PaymentsRepository() {
+    private String path;
+    private String contentType;
+
+    public PaymentsRepository(String path, String contentType) {
+        this.path = path;
+        this.contentType = contentType;
         paymentsService = Rest.getInstance().getPaymentService();
         userService = Rest.getInstance().getUserService();
         filterService = Rest.getInstance().getFilterService();
@@ -38,7 +42,7 @@ public class PaymentsRepository extends NetworkRepository implements PaymentsCon
     @Override
     public Observable<ResponseGetPayments> getFilteredPayments(FilterHelper helper, int page) {
         return getNetworkObservable(paymentsService.getFilteredPayments(helper
-                .createUrl(Constants.GET_PAYMENTS, "customerPayments", page)
+                .createUrl(path, contentType, page)
                 .build()
                 .toString()
         ));
@@ -46,7 +50,7 @@ public class PaymentsRepository extends NetworkRepository implements PaymentsCon
 
     @Override
     public Observable<ResponseFilters> getFilters() {
-        return getNetworkObservable(filterService.getListFilters("customerPayments"));
+        return getNetworkObservable(filterService.getListFilters(contentType));
     }
 
     @Override

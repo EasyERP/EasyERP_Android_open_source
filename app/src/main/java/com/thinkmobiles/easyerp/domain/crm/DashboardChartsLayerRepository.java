@@ -12,7 +12,6 @@ import rx.Observable;
 /**
  * @author michael.soyma@thinkmobiles.com (Created on 1/19/2017.)
  */
-@EBean(scope = EBean.Scope.Singleton)
 class DashboardChartsLayerRepository {
 
     private InvoiceService invoiceService;

@@ -11,12 +11,14 @@ import android.widget.TextView;
 
 import com.jakewharton.rxbinding.view.RxView;
 import com.thinkmobiles.easyerp.R;
+import com.thinkmobiles.easyerp.domain.DomainHelper;
 import com.thinkmobiles.easyerp.domain.crm.OrderRepository;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.AttachmentAdapter;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.HistoryAdapter;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.ProductAdapter;
 import com.thinkmobiles.easyerp.presentation.base.rules.content.ContentFragment;
 import com.thinkmobiles.easyerp.presentation.base.rules.content.ContentPresenter;
+import com.thinkmobiles.easyerp.presentation.custom.views.drawer_menu.models.MenuConfigs;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.AttachmentDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.HistoryDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.ProductDH;
@@ -47,6 +49,8 @@ public class OrderDetailsFragment extends ContentFragment implements OrderDetail
 
     @FragmentArg
     protected String orderId;
+    @FragmentArg
+    protected int moduleId;
 
     @ViewById
     protected NestedScrollView nsvContent_FOD;
@@ -113,7 +117,6 @@ public class OrderDetailsFragment extends ContentFragment implements OrderDetail
     @ViewById
     protected RecyclerView rvHistory;
 
-    @Bean
     protected OrderRepository orderRepository;
     @Bean
     protected HistoryAdapter historyAdapter;
@@ -129,6 +132,7 @@ public class OrderDetailsFragment extends ContentFragment implements OrderDetail
     @AfterInject
     @Override
     public void initPresenter() {
+        orderRepository = DomainHelper.getOrderRepository(moduleId);
         new OrderDetailsPresenter(this, orderRepository, orderId);
     }
 
@@ -173,7 +177,7 @@ public class OrderDetailsFragment extends ContentFragment implements OrderDetail
 
     @Override
     public String getScreenName() {
-        return "Order details screen";
+        return String.format("%s Order details screen", MenuConfigs.getModuleLabel(moduleId));
     }
 
     @Override
