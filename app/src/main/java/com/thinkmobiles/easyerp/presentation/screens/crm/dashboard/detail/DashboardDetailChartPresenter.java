@@ -2,6 +2,7 @@ package com.thinkmobiles.easyerp.presentation.screens.crm.dashboard.detail;
 
 
 import android.support.v4.util.Pair;
+import android.util.Log;
 
 import com.thinkmobiles.easyerp.data.model.crm.dashboard.DashboardListItem;
 import com.thinkmobiles.easyerp.presentation.base.rules.content.ContentPresenterHelper;
@@ -129,8 +130,8 @@ public class DashboardDetailChartPresenter extends ContentPresenterHelper implem
 
     private Pair<Calendar, Calendar> getFromToFilterDate() {
         final Calendar currentCalendar = GregorianCalendar.getInstance();
-        final Calendar from = new GregorianCalendar(0, 0, 0, 0, 0, 0);
-        final Calendar to = new GregorianCalendar(0, 0, 0, 0, 0, 0);
+        final Calendar from = new GregorianCalendar(0, 0, 1, 0, 0, 0);
+        final Calendar to = new GregorianCalendar(0, 0, 1, 0, 0, 0);
         switch (dateFilterType) {
             case THIS_MONTH:
                 from.set(currentCalendar.get(Calendar.YEAR), currentCalendar.get(Calendar.MONTH), 1);
@@ -155,7 +156,7 @@ public class DashboardDetailChartPresenter extends ContentPresenterHelper implem
 
                 to.set(Calendar.YEAR, year);
                 to.set(Calendar.MONTH, month == 0 ? Calendar.DECEMBER : month - 1);
-                to.set(Calendar.DAY_OF_MONTH, to.getMaximum(Calendar.DAY_OF_MONTH));
+                to.set(Calendar.DAY_OF_MONTH, to.getActualMaximum(Calendar.DAY_OF_MONTH));
                 break;
             case LAST_QUARTER:
                 final int currentQuarter = currentCalendar.get(Calendar.MONTH) / 3 + 1;
@@ -168,7 +169,7 @@ public class DashboardDetailChartPresenter extends ContentPresenterHelper implem
 
                 to.set(Calendar.YEAR, yearForPreviousQuarter);
                 to.set(Calendar.MONTH, previousQuarter * 3 - 1);
-                to.set(Calendar.DAY_OF_MONTH, to.getMaximum(Calendar.DAY_OF_MONTH));
+                to.set(Calendar.DAY_OF_MONTH, to.getActualMaximum(Calendar.DAY_OF_MONTH));
                 break;
             case LAST_FINANCIAL_YEAR:
                 from.set(Calendar.YEAR, currentCalendar.get(Calendar.YEAR) - 1);
@@ -177,14 +178,14 @@ public class DashboardDetailChartPresenter extends ContentPresenterHelper implem
 
                 to.set(Calendar.YEAR, currentCalendar.get(Calendar.YEAR) - 1);
                 to.set(Calendar.MONTH, Calendar.DECEMBER);
-                to.set(Calendar.DAY_OF_MONTH, to.getMaximum(Calendar.DAY_OF_MONTH));
+                to.set(Calendar.DAY_OF_MONTH, to.getActualMaximum(Calendar.DAY_OF_MONTH));
                 break;
             case CUSTOM_DATES:
                 from.setTimeInMillis(customDateFrom = (customDateFrom < 0 ? currentCalendar.getTimeInMillis() : customDateFrom));
                 to.setTimeInMillis(customDateTo = (customDateTo < 0 ? currentCalendar.getTimeInMillis() : (customDateTo < customDateFrom ? customDateFrom : customDateTo)));
                 break;
         }
+        Log.d("TAG", String.format("From: %s | To: %s", from.getTime().toString(), to.getTime().toString()));
         return Pair.create(from, to);
     }
-
 }
