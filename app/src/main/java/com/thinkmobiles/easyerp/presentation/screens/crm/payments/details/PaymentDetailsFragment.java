@@ -4,6 +4,7 @@ import android.widget.TextView;
 
 import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.data.model.crm.payments.Payment;
+import com.thinkmobiles.easyerp.domain.DomainHelper;
 import com.thinkmobiles.easyerp.domain.UserRepository;
 import com.thinkmobiles.easyerp.domain.crm.PaymentsRepository;
 import com.thinkmobiles.easyerp.presentation.base.rules.content.ContentFragment;
@@ -72,13 +73,13 @@ public class PaymentDetailsFragment extends ContentFragment implements PaymentDe
 
     private PaymentDetailsContract.PaymentDetailsPresenter presenter;
 
-    @Bean
-    protected UserRepository userRepository;
+    protected PaymentsRepository paymentsRepository;
 
     @AfterInject
     @Override
     public void initPresenter() {
-        new PaymentDetailsPresenter(this, userRepository, payment);
+        paymentsRepository = DomainHelper.getPaymentsRepository(moduleId);
+        new PaymentDetailsPresenter(this, paymentsRepository, payment);
     }
 
     @AfterViews

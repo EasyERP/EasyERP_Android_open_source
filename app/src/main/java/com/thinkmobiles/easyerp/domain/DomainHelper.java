@@ -17,7 +17,7 @@ public abstract class DomainHelper {
     public static InvoiceRepository getInvoiceRepository(int moduleId) {
         switch (moduleId) {
             case 4:
-                return new InvoiceRepository("purchaseInvoices", "purchaseInvoices");
+                return new InvoiceRepository(Constants.GET_PURCHASE_INVOICE, "purchaseInvoices");
             case 1:
             default:
                 return new InvoiceRepository(Constants.GET_INVOICE, "invoice");
@@ -27,7 +27,7 @@ public abstract class DomainHelper {
     public static OrderRepository getOrderRepository(int moduleId) {
         switch (moduleId) {
             case 4:
-                return new OrderRepository("purchaseOrders", "purchaseOrders");
+                return new OrderRepository(Constants.GET_PURCHASE_ORDER, "purchaseOrders");
             case 1:
             default:
                 return new OrderRepository(Constants.GET_ORDER, "order");
@@ -37,7 +37,7 @@ public abstract class DomainHelper {
     public static PaymentsRepository getPaymentsRepository(int moduleId) {
         switch (moduleId) {
             case 4:
-                return new PaymentsRepository("payments", "purchasePayments");
+                return new PaymentsRepository(Constants.GET_PAYMENTS, "purchasePayments");
             case 1:
             default:
                 return new PaymentsRepository(Constants.GET_PAYMENTS, "customerPayments");

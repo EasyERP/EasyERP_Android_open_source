@@ -22,7 +22,7 @@ import rx.Observable;
 
 @EBean(scope = EBean.Scope.Singleton)
 public class UserRepository extends NetworkRepository implements LoginContract.UserModel,
-        HomeContract.HomeModel, WebContract.WebModel, TutorialContract.UserModel, DetailsContract.DetailsModel, PaymentDetailsContract.PaymentDetailsModel {
+        HomeContract.HomeModel, WebContract.WebModel, TutorialContract.UserModel, DetailsContract.DetailsModel {
 
     private UserService userService;
 
@@ -42,10 +42,5 @@ public class UserRepository extends NetworkRepository implements LoginContract.U
     @Override
     public Observable<?> changePassword(String userId, String oldPass, String newPass) {
         return getNetworkObservable(userService.changePassword(userId, oldPass, newPass));
-    }
-
-    @Override
-    public Observable<ResponseGetOrganizationSettings> getOrganizationSettings() {
-        return getNetworkObservable(userService.getOrganizationSettings());
     }
 }
