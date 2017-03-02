@@ -23,14 +23,19 @@ import rx.Observable;
  *         Company: Thinkmobiles
  *         Email: michael.soyma@thinkmobiles.com
  */
-@EBean(scope = EBean.Scope.Singleton)
+
 public class InvoiceRepository extends NetworkRepository implements InvoicesContract.InvoicesModel, InvoiceDetailsContract.InvoiceDetailsModel{
 
     private InvoiceService invoiceService;
     private UserService userService;
     private FilterService filterService;
 
-    public InvoiceRepository() {
+    private String path;
+    private String contentType;
+
+    public InvoiceRepository(String path, String contentType) {
+        this.path = path;
+        this.contentType = contentType;
         invoiceService = Rest.getInstance().getInvoiceService();
         userService = Rest.getInstance().getUserService();
         filterService = Rest.getInstance().getFilterService();
@@ -39,7 +44,7 @@ public class InvoiceRepository extends NetworkRepository implements InvoicesCont
     @Override
     public Observable<ResponseGetInvoice> getFilteredInvoices(FilterHelper query, int page) {
         return getNetworkObservable(invoiceService.getInvoices(query
-                .createUrl(Constants.GET_INVOICE, "invoice", page)
+                .createUrl(path, contentType, page)
                 .build()
                 .toString()
         ));
@@ -57,6 +62,6 @@ public class InvoiceRepository extends NetworkRepository implements InvoicesCont
 
     @Override
     public Observable<ResponseFilters> getFilters() {
-        return getNetworkObservable(filterService.getListFilters("invoice"));
+        return getNetworkObservable(filterService.getListFilters(contentType));
     }
 }

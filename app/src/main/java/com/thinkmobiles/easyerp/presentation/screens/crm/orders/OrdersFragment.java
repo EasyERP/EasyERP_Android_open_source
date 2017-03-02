@@ -1,10 +1,12 @@
 package com.thinkmobiles.easyerp.presentation.screens.crm.orders;
 
+import com.thinkmobiles.easyerp.domain.DomainHelper;
 import com.thinkmobiles.easyerp.domain.crm.OrderRepository;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.OrdersAdapter;
 import com.thinkmobiles.easyerp.presentation.base.rules.master.filterable.FilterablePresenter;
 import com.thinkmobiles.easyerp.presentation.base.rules.master.filterable.MasterFilterableFragment;
 import com.thinkmobiles.easyerp.presentation.base.rules.master.selectable.SelectableAdapter;
+import com.thinkmobiles.easyerp.presentation.custom.views.drawer_menu.models.MenuConfigs;
 import com.thinkmobiles.easyerp.presentation.managers.GoogleAnalyticHelper;
 import com.thinkmobiles.easyerp.presentation.screens.crm.orders.details.OrderDetailsFragment_;
 
@@ -12,6 +14,7 @@ import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EFragment;
+import org.androidannotations.annotations.FragmentArg;
 
 /**
  * @author Michael Soyma (Created on 2/1/2017).
@@ -23,7 +26,9 @@ public class OrdersFragment extends MasterFilterableFragment implements OrdersCo
 
     private OrdersContract.OrdersPresenter presenter;
 
-    @Bean
+    @FragmentArg
+    protected int moduleId;
+
     protected OrderRepository orderRepository;
     @Bean
     protected OrdersAdapter ordersAdapter;
@@ -36,6 +41,7 @@ public class OrdersFragment extends MasterFilterableFragment implements OrdersCo
     @AfterInject
     @Override
     public void initPresenter() {
+        orderRepository = DomainHelper.getOrderRepository(moduleId);
         new OrdersPresenter(this, orderRepository);
     }
 
@@ -59,6 +65,7 @@ public class OrdersFragment extends MasterFilterableFragment implements OrdersCo
         if (orderID != null) {
             mActivity.replaceFragmentContentDetail(OrderDetailsFragment_.builder()
                     .orderId(orderID)
+                    .moduleId(moduleId)
                     .build());
         } else {
             mActivity.replaceFragmentContentDetail(null);
@@ -67,6 +74,6 @@ public class OrdersFragment extends MasterFilterableFragment implements OrdersCo
 
     @Override
     public String getScreenName() {
-        return "Order list screen";
+        return String.format("%s Order list screen", MenuConfigs.getModuleLabel(moduleId));
     }
 }

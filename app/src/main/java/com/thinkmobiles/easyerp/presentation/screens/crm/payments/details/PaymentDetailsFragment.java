@@ -4,9 +4,11 @@ import android.widget.TextView;
 
 import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.data.model.crm.payments.Payment;
+import com.thinkmobiles.easyerp.domain.UserRepository;
 import com.thinkmobiles.easyerp.domain.crm.PaymentsRepository;
 import com.thinkmobiles.easyerp.presentation.base.rules.content.ContentFragment;
 import com.thinkmobiles.easyerp.presentation.base.rules.content.ContentPresenter;
+import com.thinkmobiles.easyerp.presentation.custom.views.drawer_menu.models.MenuConfigs;
 import com.thinkmobiles.easyerp.presentation.managers.GoogleAnalyticHelper;
 
 import org.androidannotations.annotations.AfterInject;
@@ -32,6 +34,8 @@ public class PaymentDetailsFragment extends ContentFragment implements PaymentDe
 
     @FragmentArg
     protected Payment payment;
+    @FragmentArg
+    protected int moduleId;
 
     @ViewById
     protected TextView tvTitlePayment_FPD;
@@ -69,12 +73,12 @@ public class PaymentDetailsFragment extends ContentFragment implements PaymentDe
     private PaymentDetailsContract.PaymentDetailsPresenter presenter;
 
     @Bean
-    protected PaymentsRepository paymentsRepository;
+    protected UserRepository userRepository;
 
     @AfterInject
     @Override
     public void initPresenter() {
-        new PaymentDetailsPresenter(this, paymentsRepository, payment);
+        new PaymentDetailsPresenter(this, userRepository, payment);
     }
 
     @AfterViews
@@ -94,7 +98,7 @@ public class PaymentDetailsFragment extends ContentFragment implements PaymentDe
 
     @Override
     public String getScreenName() {
-        return "Payment details screen";
+        return String.format("%s Payment details  screen", MenuConfigs.getModuleLabel(moduleId));
     }
 
     @Override

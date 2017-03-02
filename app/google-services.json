@@ -1,12 +1,12 @@
 {
   "project_info": {
-    "project_number": "115004546787",
-    "project_id": "easyerpandroid"
+    "project_number": "642326708291",
+    "project_id": "easyerpandroid-158811"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:115004546787:android:39526700d0935e53",
+        "mobilesdk_app_id": "1:642326708291:android:39526700d0935e53",
         "android_client_info": {
           "package_name": "com.thinkmobiles.easyerp"
         }
@@ -14,14 +14,14 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyD4KLkY_G1tD8yTANqOA2g8FJkOw8tjHxY"
+          "current_key": "AIzaSyCJvrWSpIAg-mwFp12yLRHGyfwxn1nXBE0"
         }
       ],
       "services": {
         "analytics_service": {
           "status": 2,
           "analytics_property": {
-            "tracking_id": "UA-92034912-1"
+            "tracking_id": "UA-92035026-1"
           }
         },
         "appinvite_service": {

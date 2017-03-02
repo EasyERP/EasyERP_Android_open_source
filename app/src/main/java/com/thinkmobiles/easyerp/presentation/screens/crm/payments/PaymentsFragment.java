@@ -1,11 +1,13 @@
 package com.thinkmobiles.easyerp.presentation.screens.crm.payments;
 
 import com.thinkmobiles.easyerp.data.model.crm.payments.Payment;
+import com.thinkmobiles.easyerp.domain.DomainHelper;
 import com.thinkmobiles.easyerp.domain.crm.PaymentsRepository;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.PaymentsAdapter;
 import com.thinkmobiles.easyerp.presentation.base.rules.master.filterable.FilterablePresenter;
 import com.thinkmobiles.easyerp.presentation.base.rules.master.filterable.MasterFilterableFragment;
 import com.thinkmobiles.easyerp.presentation.base.rules.master.selectable.SelectableAdapter;
+import com.thinkmobiles.easyerp.presentation.custom.views.drawer_menu.models.MenuConfigs;
 import com.thinkmobiles.easyerp.presentation.managers.GoogleAnalyticHelper;
 import com.thinkmobiles.easyerp.presentation.screens.crm.payments.details.PaymentDetailsFragment_;
 
@@ -13,6 +15,7 @@ import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EFragment;
+import org.androidannotations.annotations.FragmentArg;
 
 /**
  * @author Michael Soyma (Created on 2/2/2017).
@@ -25,7 +28,10 @@ public class PaymentsFragment extends MasterFilterableFragment implements Paymen
 
     private PaymentsContract.PaymentsPresenter presenter;
 
-    @Bean
+
+    @FragmentArg
+    protected int moduleId;
+
     protected PaymentsRepository paymentsRepository;
     @Bean
     protected PaymentsAdapter paymentsAdapter;
@@ -33,6 +39,7 @@ public class PaymentsFragment extends MasterFilterableFragment implements Paymen
     @AfterInject
     @Override
     public void initPresenter() {
+        paymentsRepository = DomainHelper.getPaymentsRepository(moduleId);
         new PaymentsPresenter(this, paymentsRepository);
     }
 
@@ -43,7 +50,7 @@ public class PaymentsFragment extends MasterFilterableFragment implements Paymen
 
     @Override
     public String getScreenName() {
-        return "Payment list screen";
+        return String.format("%s Payment list screen", MenuConfigs.getModuleLabel(moduleId));
     }
 
     @AfterViews
@@ -66,6 +73,7 @@ public class PaymentsFragment extends MasterFilterableFragment implements Paymen
         if (payment != null) {
             mActivity.replaceFragmentContentDetail(PaymentDetailsFragment_.builder()
                     .payment(payment)
+                    .moduleId(moduleId)
                     .build());
         } else {
             mActivity.replaceFragmentContentDetail(null);

@@ -2,8 +2,10 @@ package com.thinkmobiles.easyerp.domain;
 
 import com.thinkmobiles.easyerp.data.api.Rest;
 import com.thinkmobiles.easyerp.data.model.user.ResponseGetCurrentUser;
+import com.thinkmobiles.easyerp.data.model.user.organization.ResponseGetOrganizationSettings;
 import com.thinkmobiles.easyerp.data.services.UserService;
 import com.thinkmobiles.easyerp.presentation.base.NetworkRepository;
+import com.thinkmobiles.easyerp.presentation.screens.crm.payments.details.PaymentDetailsContract;
 import com.thinkmobiles.easyerp.presentation.screens.details.DetailsContract;
 import com.thinkmobiles.easyerp.presentation.screens.home.HomeContract;
 import com.thinkmobiles.easyerp.presentation.screens.login.LoginContract;
@@ -20,7 +22,7 @@ import rx.Observable;
 
 @EBean(scope = EBean.Scope.Singleton)
 public class UserRepository extends NetworkRepository implements LoginContract.UserModel,
-        HomeContract.HomeModel, WebContract.WebModel, TutorialContract.UserModel , DetailsContract.DetailsModel {
+        HomeContract.HomeModel, WebContract.WebModel, TutorialContract.UserModel, DetailsContract.DetailsModel, PaymentDetailsContract.PaymentDetailsModel {
 
     private UserService userService;
 
@@ -40,5 +42,10 @@ public class UserRepository extends NetworkRepository implements LoginContract.U
     @Override
     public Observable<?> changePassword(String userId, String oldPass, String newPass) {
         return getNetworkObservable(userService.changePassword(userId, oldPass, newPass));
+    }
+
+    @Override
+    public Observable<ResponseGetOrganizationSettings> getOrganizationSettings() {
+        return getNetworkObservable(userService.getOrganizationSettings());
     }
 }
