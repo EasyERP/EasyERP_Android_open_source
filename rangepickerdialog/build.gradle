@@ -10,6 +10,17 @@ android {
         versionCode 2
         versionName "0.2.0"
     }
+
+    buildTypes {
+        debug {
+
+        }
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
 }
 // TODO maybe change this library, because I remove signing developer for this library
 dependencies {
