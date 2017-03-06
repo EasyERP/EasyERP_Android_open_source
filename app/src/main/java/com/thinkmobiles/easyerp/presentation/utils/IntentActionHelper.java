@@ -44,7 +44,11 @@ public abstract class IntentActionHelper {
         emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[] {email});
         if (subject != null)
             emailIntent.putExtra(Intent.EXTRA_SUBJECT, subject);
-        context.startActivity(emailIntent);
+        try {
+            context.startActivity(emailIntent);
+        } catch (ActivityNotFoundException e) {
+            Toast.makeText(context, "You don't have the application to perform this operation", Toast.LENGTH_SHORT).show();
+        }
     }
 
     public static void callDialIntent(final Context context, final String phoneNumber) {
