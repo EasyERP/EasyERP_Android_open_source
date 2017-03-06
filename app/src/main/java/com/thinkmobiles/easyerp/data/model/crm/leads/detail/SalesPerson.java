@@ -24,18 +24,6 @@ public class SalesPerson implements Parcelable {
     public String fullName;
 
 
-    public static final Creator<SalesPerson> CREATOR = new Creator<SalesPerson>() {
-        @Override
-        public SalesPerson createFromParcel(Parcel in) {
-            return new SalesPerson(in);
-        }
-
-        @Override
-        public SalesPerson[] newArray(int size) {
-            return new SalesPerson[size];
-        }
-    };
-
     @Override
     public int describeContents() {
         return 0;
