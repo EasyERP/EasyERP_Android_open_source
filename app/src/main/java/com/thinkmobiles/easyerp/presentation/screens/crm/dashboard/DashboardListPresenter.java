@@ -38,8 +38,8 @@ public class DashboardListPresenter extends MasterSelectablePresenterHelper impl
         compositeSubscription.add(
                 model.getDashboardListCharts()
                         .subscribe(getCRMDashboardCharts -> {
-                            totalItems = 1;
                             charts = getCRMDashboardCharts.get(0).charts;
+                            totalItems = charts.size();
                             setData();
                         },  t -> error(t))
         );
