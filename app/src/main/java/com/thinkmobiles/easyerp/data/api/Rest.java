@@ -13,6 +13,7 @@ import com.thinkmobiles.easyerp.data.services.CompaniesService;
 import com.thinkmobiles.easyerp.data.services.CustomerService;
 import com.thinkmobiles.easyerp.data.services.DashboardService;
 import com.thinkmobiles.easyerp.data.services.FilterService;
+import com.thinkmobiles.easyerp.data.services.GoodsOutNotesService;
 import com.thinkmobiles.easyerp.data.services.InvoiceService;
 import com.thinkmobiles.easyerp.data.services.LeadService;
 import com.thinkmobiles.easyerp.data.services.LoginService;
@@ -59,6 +60,8 @@ public class Rest {
     private FilterService filterService;
     private CompaniesService companiesService;
     private CustomerService customerService;
+
+    private GoodsOutNotesService goodsOutNotesService;
 
     private Converter<ResponseBody, ResponseError> converter;
 
@@ -144,6 +147,10 @@ public class Rest {
 
     public FilterService getFilterService() {
         return filterService == null ? filterService = createService(FilterService.class) : filterService;
+    }
+
+    public GoodsOutNotesService getGoodsOutNotesService() {
+        return goodsOutNotesService == null ? goodsOutNotesService = createService(GoodsOutNotesService.class) : goodsOutNotesService;
     }
 
     public ResponseError parseError(ResponseBody responseBody) {
