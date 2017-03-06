@@ -82,6 +82,10 @@ public abstract class Constants {
 
     //------------------------------------------------------ END CRM
 
+    //region INVENTORY
+    public static final String GET_GOODS_OUT_NOTES          = "goodsOutNotes";
+    //endregion
+
     public static final int DELAY_CLICK                     = 600;
 
     //Bundle keys
