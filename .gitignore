@@ -6,6 +6,7 @@
 /captures
 *.iml
 gradle.xml
+/KeystoreCredentials.properties
 
 # User-specific configurations
 .idea/libraries/

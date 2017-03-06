@@ -20,6 +20,9 @@ android {
         vectorDrawables.useSupportLibrary = true
     }
 
+    def prop = new Properties();
+    prop.load(new FileInputStream("KeystoreCredentials.properties"))
+
     signingConfigs {
         debug {
             keyAlias 'easyERP'
@@ -28,10 +31,10 @@ android {
             storePassword 'thinkmobiles'
         }
         release {
-            keyAlias 'easyERP'
-            keyPassword 'thinkmobiles'
-            storeFile file('keystores/debug.jks')
-            storePassword 'thinkmobiles'
+            keyAlias prop.getProperty("ALIAS")
+            keyPassword prop.getProperty("PASSWORD_ALIAS")
+            storeFile file('keystores/eerp.jks')
+            storePassword prop.getProperty("PASSWORD_STORE")
         }
     }
 
