@@ -9,7 +9,7 @@ import java.util.ArrayList;
  * Created by Lynx on 3/6/2017.
  */
 
-public class GoodsOutNotesResponse implements Parcelable {
+public class ResponseGoodsOutNotes implements Parcelable {
     public int total;
     public ArrayList<GoodOutNoteItem> data;
 
@@ -24,23 +24,23 @@ public class GoodsOutNotesResponse implements Parcelable {
         dest.writeTypedList(this.data);
     }
 
-    public GoodsOutNotesResponse() {
+    public ResponseGoodsOutNotes() {
     }
 
-    protected GoodsOutNotesResponse(Parcel in) {
+    protected ResponseGoodsOutNotes(Parcel in) {
         this.total = in.readInt();
         this.data = in.createTypedArrayList(GoodOutNoteItem.CREATOR);
     }
 
-    public static final Parcelable.Creator<GoodsOutNotesResponse> CREATOR = new Parcelable.Creator<GoodsOutNotesResponse>() {
+    public static final Parcelable.Creator<ResponseGoodsOutNotes> CREATOR = new Parcelable.Creator<ResponseGoodsOutNotes>() {
         @Override
-        public GoodsOutNotesResponse createFromParcel(Parcel source) {
-            return new GoodsOutNotesResponse(source);
+        public ResponseGoodsOutNotes createFromParcel(Parcel source) {
+            return new ResponseGoodsOutNotes(source);
         }
 
         @Override
-        public GoodsOutNotesResponse[] newArray(int size) {
-            return new GoodsOutNotesResponse[size];
+        public ResponseGoodsOutNotes[] newArray(int size) {
+            return new ResponseGoodsOutNotes[size];
         }
     };
 }

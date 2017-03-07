@@ -1,6 +1,6 @@
 package com.thinkmobiles.easyerp.data.services;
 
-import com.thinkmobiles.easyerp.data.model.inventory.goods_out_notes.GoodsOutNotesResponse;
+import com.thinkmobiles.easyerp.data.model.inventory.goods_out_notes.ResponseGoodsOutNotes;
 
 import retrofit2.http.GET;
 import retrofit2.http.Url;
@@ -13,6 +13,6 @@ import rx.Observable;
 public interface GoodsOutNotesService {
 
     @GET
-    Observable<GoodsOutNotesResponse> getGoodsOutNotes(@Url String url);
+    Observable<ResponseGoodsOutNotes> getGoodsOutNotes(@Url String url);
 
 }
