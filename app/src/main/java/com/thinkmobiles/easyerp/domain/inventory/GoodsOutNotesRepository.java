@@ -3,7 +3,6 @@ package com.thinkmobiles.easyerp.domain.inventory;
 import com.thinkmobiles.easyerp.data.api.Rest;
 import com.thinkmobiles.easyerp.data.model.crm.filter.ResponseFilters;
 import com.thinkmobiles.easyerp.data.model.inventory.goods_out_notes.ResponseGoodsOutNotes;
-import com.thinkmobiles.easyerp.data.model.inventory.goods_out_notes.GoodsOutNotesResponse;
 import com.thinkmobiles.easyerp.data.model.inventory.goods_out_notes.details.ResponseGetNoteDetails;
 import com.thinkmobiles.easyerp.data.model.user.organization.ResponseGetOrganizationSettings;
 import com.thinkmobiles.easyerp.data.services.FilterService;

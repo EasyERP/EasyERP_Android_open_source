@@ -66,14 +66,17 @@ public class GoodsOutNotesDetailsPresenter extends ContentPresenterHelper implem
         noteDetails = response;
         view.setName(response.name);
         view.setTitle(String.format("Goods-out Notes #%s", response.name));
-        view.setPrint(DateManager.convert(response.status.printedOn).setSrcPattern(DateManager.PATTERN_DATE_SIMPLE_PREVIEW).toString());
-        view.setPick(DateManager.convert(response.status.pickedOn).setSrcPattern(DateManager.PATTERN_DATE_SIMPLE_PREVIEW).toString());
-        view.setPack(DateManager.convert(response.status.packedOn).setSrcPattern(DateManager.PATTERN_DATE_SIMPLE_PREVIEW).toString());
-        view.setShip(DateManager.convert(response.status.shippedOn).setSrcPattern(DateManager.PATTERN_DATE_SIMPLE_PREVIEW).toString());
+        view.setPrint(DateManager.convert(response.status.printedOn).setDstPattern(DateManager.PATTERN_DATE_SIMPLE_PREVIEW).toString());
+        view.setPick(DateManager.convert(response.status.pickedOn).setDstPattern(DateManager.PATTERN_DATE_SIMPLE_PREVIEW).toString());
+        view.setPack(DateManager.convert(response.status.packedOn).setDstPattern(DateManager.PATTERN_DATE_SIMPLE_PREVIEW).toString());
+        view.setShip(DateManager.convert(response.status.shippedOn).setDstPattern(DateManager.PATTERN_DATE_SIMPLE_PREVIEW).toString());
         if (response.order != null && response.order.supplier != null) {
             view.setSupplierName(response.order.supplier.fullName);
-            view.setSupplierName(StringUtil.getAddress(response.order.supplier.address));
+            view.setSupplierAddress(StringUtil.getAddress(response.order.supplier.address));
         }
+        if (response.shippingMethod != null)
+            view.setShipping(response.shippingMethod.name);
+        view.setReference(response.reference);
         view.setProducts(prepareList(response.orderRows));
     }
 

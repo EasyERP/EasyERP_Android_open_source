@@ -29,6 +29,9 @@ public interface GoodsOutNotesDetailsContract {
         void setPick(String pick);
         void setPack(String pack);
         void setShip(String ship);
+        void setReference(String reference);
+        void setShipping(String shipping);
+        void setDate(String date);
         void setProducts(ArrayList<OrderRowDH> rowDHs);
     }
 

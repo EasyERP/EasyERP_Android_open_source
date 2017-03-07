@@ -42,6 +42,20 @@
                     style="@style/PdfStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:text="Tracking ref" />
+
+                <TextView
+                    style="@style/PdfStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/default_padding"
+                    android:text="Shipping method" />
+
+                <TextView
+                    style="@style/PdfStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/default_padding"
                     android:text="Print" />
 
                 <TextView
@@ -74,10 +88,26 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/tvReference_FGOND"
+                    style="@style/PdfStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="10058620.00" />
+
+                <TextView
+                    android:id="@+id/tvShipping_FGOND"
+                    style="@style/PdfStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/default_padding"
+                    tools:text="10058620.00" />
+
+                <TextView
                     android:id="@+id/tvPrint_FGOND"
                     style="@style/PdfStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/default_padding"
                     tools:text="10058620.00" />
 
                 <TextView
@@ -183,6 +213,27 @@
                     </LinearLayout>
 
                 </LinearLayout>
+
+                <TextView
+                    style="@style/PdfStyle.BoldText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_marginEnd="@dimen/default_padding"
+                    android:layout_marginStart="@dimen/default_padding"
+                    android:gravity="end"
+                    android:text="Date" />
+
+                <TextView
+                    android:id="@+id/tvDate_FGOND"
+                    style="@style/PdfStyle.BoldText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_marginEnd="@dimen/default_padding"
+                    android:layout_marginStart="@dimen/default_padding"
+                    android:gravity="end"
+                    tools:text="10058620.00" />
 
                 <LinearLayout
                     android:layout_width="match_parent"

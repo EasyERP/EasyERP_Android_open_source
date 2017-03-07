@@ -1,9 +1,8 @@
 package com.thinkmobiles.easyerp.data.services;
 
-import com.thinkmobiles.easyerp.data.model.inventory.goods_out_notes.GoodsOutNotesResponse;
+import com.thinkmobiles.easyerp.data.model.inventory.goods_out_notes.ResponseGoodsOutNotes;
 import com.thinkmobiles.easyerp.data.model.inventory.goods_out_notes.details.ResponseGetNoteDetails;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
-import com.thinkmobiles.easyerp.data.model.inventory.goods_out_notes.ResponseGoodsOutNotes;
 
 import retrofit2.http.GET;
 import retrofit2.http.Path;

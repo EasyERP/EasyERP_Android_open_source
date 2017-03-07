@@ -49,6 +49,12 @@ public class GoodsOutNotesDetailsFragment extends ContentFragment implements Goo
     @ViewById
     protected TextView tvShip_FGOND;
     @ViewById
+    protected TextView tvReference_FGOND;
+    @ViewById
+    protected TextView tvShipping_FGOND;
+    @ViewById
+    protected TextView tvDate_FGOND;
+    @ViewById
     protected RecyclerView rvProductList_FGOND;
 
     @FragmentArg
@@ -139,6 +145,21 @@ public class GoodsOutNotesDetailsFragment extends ContentFragment implements Goo
     @Override
     public void setShip(String ship) {
         tvShip_FGOND.setText(ship);
+    }
+
+    @Override
+    public void setReference(String reference) {
+        tvReference_FGOND.setText(reference);
+    }
+
+    @Override
+    public void setShipping(String shipping) {
+        tvShipping_FGOND.setText(shipping);
+    }
+
+    @Override
+    public void setDate(String date) {
+        tvDate_FGOND.setText(date);
     }
 
     @Override

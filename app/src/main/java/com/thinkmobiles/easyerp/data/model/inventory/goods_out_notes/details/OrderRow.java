@@ -20,7 +20,7 @@ public class OrderRow implements Parcelable {
     @SerializedName("_id")
     public String id;
     public String description;
-    public int totalTaxes;
+    public Float totalTaxes;
     public String channel;
     public String creditAccount;
     public String debitAccount;
@@ -36,8 +36,12 @@ public class OrderRow implements Parcelable {
     public SubProduct product;
     public int shipped;
     public int selectedQuantity;
-    public ArrayList<LocationDeliver> locationDeliver;
+    public ArrayList<LocationDeliver> locationsDeliver;
 
+
+
+    public OrderRow() {
+    }
 
     @Override
     public int describeContents() {
@@ -48,7 +52,7 @@ public class OrderRow implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(this.id);
         dest.writeString(this.description);
-        dest.writeInt(this.totalTaxes);
+        dest.writeValue(this.totalTaxes);
         dest.writeString(this.channel);
         dest.writeString(this.creditAccount);
         dest.writeString(this.debitAccount);
@@ -64,16 +68,13 @@ public class OrderRow implements Parcelable {
         dest.writeParcelable(this.product, flags);
         dest.writeInt(this.shipped);
         dest.writeInt(this.selectedQuantity);
-        dest.writeTypedList(this.locationDeliver);
-    }
-
-    public OrderRow() {
+        dest.writeTypedList(this.locationsDeliver);
     }
 
     protected OrderRow(Parcel in) {
         this.id = in.readString();
         this.description = in.readString();
-        this.totalTaxes = in.readInt();
+        this.totalTaxes = (Float) in.readValue(Float.class.getClassLoader());
         this.channel = in.readString();
         this.creditAccount = in.readString();
         this.debitAccount = in.readString();
@@ -89,10 +90,10 @@ public class OrderRow implements Parcelable {
         this.product = in.readParcelable(SubProduct.class.getClassLoader());
         this.shipped = in.readInt();
         this.selectedQuantity = in.readInt();
-        this.locationDeliver = in.createTypedArrayList(LocationDeliver.CREATOR);
+        this.locationsDeliver = in.createTypedArrayList(LocationDeliver.CREATOR);
     }
 
-    public static final Parcelable.Creator<OrderRow> CREATOR = new Parcelable.Creator<OrderRow>() {
+    public static final Creator<OrderRow> CREATOR = new Creator<OrderRow>() {
         @Override
         public OrderRow createFromParcel(Parcel source) {
             return new OrderRow(source);

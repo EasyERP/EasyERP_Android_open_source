@@ -44,10 +44,10 @@ public class OrderRowVH extends RecyclerVH<OrderRowDH> {
         tvName_LIOR.setText(model.description);
         if (model.product != null && model.product.info != null)
             tvSku_LIOR.setText(model.product.info.SKU);
-        if (model.locationDeliver != null)
-            tvLocation_LIOR.setText(model.locationDeliver.get(0).name);
+        if (model.locationsDeliver != null)
+            tvLocation_LIOR.setText(model.locationsDeliver.get(0).name);
         tvShipped_LIOR.setText(String.valueOf(model.shipped));
         tvShipment_LIOR.setText(null);
-        tvFollow_LIOR.setText(model.quantity);
+        tvFollow_LIOR.setText(String.valueOf(model.quantity));
     }
 }

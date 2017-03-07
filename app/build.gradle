@@ -121,7 +121,15 @@ task switchToRelease(type: Copy) {
     into "."
 }
 
-afterEvaluate {
-    processDebugGoogleServices.dependsOn switchToDebug
-    processReleaseGoogleServices.dependsOn switchToRelease
+tasks.whenTaskAdded { task ->
+    if (task.name == 'processDebugGoogleServices') {
+        task.dependsOn switchToDebug
+    }
+    if (task.name == 'processReleaseGoogleServices') {
+        task.dependsOn switchToRelease
+    }
 }
+//afterEvaluate {
+//    processDebugGoogleServices.dependsOn switchToDebug
+//    processReleaseGoogleServices.dependsOn switchToRelease
+//}

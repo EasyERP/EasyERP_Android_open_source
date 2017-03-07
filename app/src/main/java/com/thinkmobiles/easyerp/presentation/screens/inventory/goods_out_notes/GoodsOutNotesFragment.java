@@ -9,6 +9,8 @@ import com.thinkmobiles.easyerp.presentation.base.rules.master.filterable.Master
 import com.thinkmobiles.easyerp.presentation.base.rules.master.selectable.SelectableAdapter;
 import com.thinkmobiles.easyerp.presentation.custom.views.drawer_menu.models.MenuConfigs;
 import com.thinkmobiles.easyerp.presentation.managers.GoogleAnalyticHelper;
+import com.thinkmobiles.easyerp.presentation.screens.inventory.goods_out_notes.detail.GoodsOutNotesDetailsFragment;
+import com.thinkmobiles.easyerp.presentation.screens.inventory.goods_out_notes.detail.GoodsOutNotesDetailsFragment_;
 
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterViews;
@@ -58,7 +60,9 @@ public class GoodsOutNotesFragment extends MasterFilterableFragment implements G
 
     @Override
     public void openDetailsScreen(String goodOutNoteID) {
-        Toast.makeText(getActivity(), "Open details ID = " + goodOutNoteID, Toast.LENGTH_SHORT).show();
+        mActivity.replaceFragmentContentDetail(GoodsOutNotesDetailsFragment_.builder()
+                .id(goodOutNoteID)
+                .build());
     }
 
     @Override
