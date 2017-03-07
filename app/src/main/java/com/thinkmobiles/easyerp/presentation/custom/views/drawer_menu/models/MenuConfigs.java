@@ -11,6 +11,7 @@ import com.thinkmobiles.easyerp.presentation.screens.crm.orders.OrdersFragment_;
 import com.thinkmobiles.easyerp.presentation.screens.crm.payments.PaymentsFragment_;
 import com.thinkmobiles.easyerp.presentation.screens.crm.persons.PersonsFragment_;
 import com.thinkmobiles.easyerp.presentation.screens.inventory.goods_out_notes.GoodsOutNotesFragment_;
+import com.thinkmobiles.easyerp.presentation.screens.inventory.stock_corrections.StockCorrectionsListFragment_;
 import com.thinkmobiles.easyerp.presentation.screens.inventory.stock_returns.StockReturnsListFragment_;
 
 import java.util.ArrayList;
@@ -159,7 +160,7 @@ public abstract class MenuConfigs {
         menuItems.add(new MenuItem(0, R.drawable.ic_menu_item_placeholder, "Products", false));
         menuItems.add(new MenuItem(1, R.drawable.ic_menu_item_placeholder, "Goods-Out Notes", true));
         menuItems.add(new MenuItem(2, R.drawable.ic_menu_item_placeholder, "Stock Returns", true));
-        menuItems.add(new MenuItem(3, R.drawable.ic_menu_item_placeholder, "Stock Correction", false));
+        menuItems.add(new MenuItem(3, R.drawable.ic_menu_item_placeholder, "Stock Correction", true));
         menuItems.add(new MenuItem(4, R.drawable.ic_menu_item_placeholder, "Transfers", false));
         return menuItems;
     }
@@ -236,6 +237,7 @@ public abstract class MenuConfigs {
         switch (itemId) {
             case 1: return GoodsOutNotesFragment_.builder().build();
             case 2: return StockReturnsListFragment_.builder().build();
+            case 3: return StockCorrectionsListFragment_.builder().build();
         }
         return null;
     }

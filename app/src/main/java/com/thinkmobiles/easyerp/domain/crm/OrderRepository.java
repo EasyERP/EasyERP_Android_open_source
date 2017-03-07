@@ -11,10 +11,7 @@ import com.thinkmobiles.easyerp.data.services.UserService;
 import com.thinkmobiles.easyerp.presentation.base.NetworkRepository;
 import com.thinkmobiles.easyerp.presentation.screens.crm.orders.OrdersContract;
 import com.thinkmobiles.easyerp.presentation.screens.crm.orders.details.OrderDetailsContract;
-import com.thinkmobiles.easyerp.presentation.utils.Constants;
 import com.thinkmobiles.easyerp.presentation.utils.filter.FilterHelper;
-
-import org.androidannotations.annotations.EBean;
 
 import rx.Observable;
 

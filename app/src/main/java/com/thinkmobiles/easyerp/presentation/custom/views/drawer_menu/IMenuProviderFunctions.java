@@ -12,7 +12,7 @@ import java.util.List;
 public interface IMenuProviderFunctions {
 
     void setHeaderUserData(final UserInfo userInfo);
-    boolean selectModule(final int moduleId);
+    void selectModule(final int moduleId);
     void selectItem(final int moduleId, final int itemId, final boolean withUI);
     void selectItem(final int itemId, final boolean withUI);
     void buildMenuItems(final List<MenuItem> menuItems);

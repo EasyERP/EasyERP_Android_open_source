@@ -9,7 +9,6 @@ public class CreatedEditedBy implements Parcelable {
     public String date;
     public User user;
 
-
     @Override
     public int describeContents() {
         return 0;

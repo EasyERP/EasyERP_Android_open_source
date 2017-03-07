@@ -14,7 +14,6 @@ import java.util.List;
 
 public abstract class MasterSelectablePresenterHelper extends MasterListPresenterHelper {
 
-
     protected abstract SelectableView getView();
 
     private Pair<Integer, String> selectedInfo;
