@@ -10,9 +10,9 @@ import rx.Observable;
  * Created by Lynx on 3/7/2017.
  */
 
-public interface TransactionsService {
+public interface TransfersService {
 
     @GET
-    Observable<ResponseGetTransfers> getTransactions(@Url String url);
+    Observable<ResponseGetTransfers> getTransfers(@Url String url);
 
 }

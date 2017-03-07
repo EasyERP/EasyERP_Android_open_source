@@ -3,8 +3,9 @@ package com.thinkmobiles.easyerp.domain.inventory;
 import com.thinkmobiles.easyerp.data.api.Rest;
 import com.thinkmobiles.easyerp.data.model.crm.filter.ResponseFilters;
 import com.thinkmobiles.easyerp.data.model.inventory.transfers.ResponseGetTransfers;
+import com.thinkmobiles.easyerp.data.model.inventory.transfers.TransferItem;
 import com.thinkmobiles.easyerp.data.services.FilterService;
-import com.thinkmobiles.easyerp.data.services.TransactionsService;
+import com.thinkmobiles.easyerp.data.services.TransfersService;
 import com.thinkmobiles.easyerp.presentation.base.NetworkRepository;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 import com.thinkmobiles.easyerp.presentation.utils.filter.FilterHelper;
@@ -18,22 +19,21 @@ import rx.Observable;
  */
 
 @EBean(scope = EBean.Scope.Singleton)
-public class TransactionsRepository extends NetworkRepository {
+public class TransfersRepository extends NetworkRepository {
 
-    private TransactionsService transactionsService;
+    private TransfersService transfersService;
     private FilterService filterService;
 
-    public TransactionsRepository() {
-        transactionsService = Rest.getInstance().getTransactionsService();
+    public TransfersRepository() {
+        transfersService = Rest.getInstance().getTransfersService();
         filterService = Rest.getInstance().getFilterService();
     }
 
-    public Observable<ResponseGetTransfers> getFilteredTransactions(FilterHelper query, int page) {
-        return getNetworkObservable(transactionsService.getTransactions(query
+    public Observable<ResponseGetTransfers> getFilteredTransfers(FilterHelper query, int page) {
+        return getNetworkObservable(transfersService.getTransfers(query
                 .createUrl(Constants.GET_TRANSACTIONS, "stockTransactions", page)
                 .build()
                 .toString()
-
         ));
     }
 

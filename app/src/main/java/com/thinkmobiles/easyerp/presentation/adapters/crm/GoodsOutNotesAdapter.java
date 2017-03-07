@@ -2,7 +2,7 @@ package com.thinkmobiles.easyerp.presentation.adapters.crm;
 
 import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.presentation.base.rules.master.selectable.SelectableAdapter;
-import com.thinkmobiles.easyerp.presentation.holders.data.crm.GoodOutNoteDH;
+import com.thinkmobiles.easyerp.presentation.holders.data.inventory.GoodOutNoteDH;
 import com.thinkmobiles.easyerp.presentation.holders.view.crm.GoodOutNoteVH;
 
 import org.androidannotations.annotations.EBean;

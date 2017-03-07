@@ -4,7 +4,7 @@ import com.thinkmobiles.easyerp.data.model.inventory.goods_out_notes.GoodOutNote
 import com.thinkmobiles.easyerp.presentation.base.rules.master.filterable.FilterableModel;
 import com.thinkmobiles.easyerp.presentation.base.rules.master.filterable.FilterableView;
 import com.thinkmobiles.easyerp.presentation.base.rules.master.filterable.MasterFilterablePresenterHelper;
-import com.thinkmobiles.easyerp.presentation.holders.data.crm.GoodOutNoteDH;
+import com.thinkmobiles.easyerp.presentation.holders.data.inventory.GoodOutNoteDH;
 import com.thinkmobiles.easyerp.presentation.managers.ErrorManager;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 

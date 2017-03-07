@@ -1,4 +1,4 @@
-package com.thinkmobiles.easyerp.presentation.holders.data.crm;
+package com.thinkmobiles.easyerp.presentation.holders.data.inventory;
 
 import com.thinkmobiles.easyerp.data.model.inventory.goods_out_notes.GoodOutNoteItem;
 import com.thinkmobiles.easyerp.presentation.base.rules.master.selectable.SelectableDHHelper;

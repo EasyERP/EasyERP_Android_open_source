@@ -12,7 +12,7 @@ import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.data.model.inventory.goods_out_notes.GoodOutNoteItem;
 import com.thinkmobiles.easyerp.presentation.base.rules.master.selectable.SelectableVHHelper;
 import com.thinkmobiles.easyerp.presentation.custom.RoundRectDrawable;
-import com.thinkmobiles.easyerp.presentation.holders.data.crm.GoodOutNoteDH;
+import com.thinkmobiles.easyerp.presentation.holders.data.inventory.GoodOutNoteDH;
 import com.thinkmobiles.easyerp.presentation.managers.DateManager;
 import com.thinkmobiles.easyerp.presentation.managers.TagHelper;
 

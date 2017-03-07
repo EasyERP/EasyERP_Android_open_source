@@ -7,7 +7,7 @@ import android.os.Parcelable;
  * Created by Lynx on 3/7/2017.
  */
 
-public class TransactionStatus implements Parcelable {
+public class TransferStatus implements Parcelable {
     /**
      * printedById: "52203e707d4dba8813000003",
      shippedById: null,
@@ -39,10 +39,10 @@ public class TransactionStatus implements Parcelable {
         dest.writeByte(this.printed ? (byte) 1 : (byte) 0);
     }
 
-    public TransactionStatus() {
+    public TransferStatus() {
     }
 
-    protected TransactionStatus(Parcel in) {
+    protected TransferStatus(Parcel in) {
         this.printedById = in.readString();
         this.shippedById = in.readString();
         this.packedById = in.readString();
@@ -51,15 +51,15 @@ public class TransactionStatus implements Parcelable {
         this.printed = in.readByte() != 0;
     }
 
-    public static final Parcelable.Creator<TransactionStatus> CREATOR = new Parcelable.Creator<TransactionStatus>() {
+    public static final Parcelable.Creator<TransferStatus> CREATOR = new Parcelable.Creator<TransferStatus>() {
         @Override
-        public TransactionStatus createFromParcel(Parcel source) {
-            return new TransactionStatus(source);
+        public TransferStatus createFromParcel(Parcel source) {
+            return new TransferStatus(source);
         }
 
         @Override
-        public TransactionStatus[] newArray(int size) {
-            return new TransactionStatus[size];
+        public TransferStatus[] newArray(int size) {
+            return new TransferStatus[size];
         }
     };
 }
