@@ -5,6 +5,8 @@ import android.os.Parcelable;
 
 import com.thinkmobiles.easyerp.data.model.crm.dashboard.detail.order.OrderBase;
 import com.thinkmobiles.easyerp.data.model.crm.filter.FilterItem;
+import com.thinkmobiles.easyerp.data.model.crm.leads.Workflow;
+import com.thinkmobiles.easyerp.data.model.crm.persons.details.CreatedEditedUserString;
 
 /**
  * Created by Lynx on 3/6/2017.
@@ -17,14 +19,17 @@ public class GoodOutNoteItem implements Parcelable {
     public OrderBase order;
     public GoodOutNoteStatus status;
     public FilterItem warehouse;
-    public FilterItem workflow;
+    public Workflow workflow;
     public FilterItem customer;
-    public FilterItem createdBy;
+    public CreatedEditedUserString createdBy;
     public String date;
     public boolean shipped;
     public boolean printed;
     public boolean picked;
     public boolean packed;
+
+    public GoodOutNoteItem() {
+    }
 
     @Override
     public int describeContents() {
@@ -49,9 +54,6 @@ public class GoodOutNoteItem implements Parcelable {
         dest.writeByte(this.packed ? (byte) 1 : (byte) 0);
     }
 
-    public GoodOutNoteItem() {
-    }
-
     protected GoodOutNoteItem(Parcel in) {
         this._id = in.readString();
         this.total = in.readInt();
@@ -59,9 +61,9 @@ public class GoodOutNoteItem implements Parcelable {
         this.order = in.readParcelable(OrderBase.class.getClassLoader());
         this.status = in.readParcelable(GoodOutNoteStatus.class.getClassLoader());
         this.warehouse = in.readParcelable(FilterItem.class.getClassLoader());
-        this.workflow = in.readParcelable(FilterItem.class.getClassLoader());
+        this.workflow = in.readParcelable(Workflow.class.getClassLoader());
         this.customer = in.readParcelable(FilterItem.class.getClassLoader());
-        this.createdBy = in.readParcelable(FilterItem.class.getClassLoader());
+        this.createdBy = in.readParcelable(CreatedEditedUserString.class.getClassLoader());
         this.date = in.readString();
         this.shipped = in.readByte() != 0;
         this.printed = in.readByte() != 0;
@@ -69,7 +71,7 @@ public class GoodOutNoteItem implements Parcelable {
         this.packed = in.readByte() != 0;
     }
 
-    public static final Parcelable.Creator<GoodOutNoteItem> CREATOR = new Parcelable.Creator<GoodOutNoteItem>() {
+    public static final Creator<GoodOutNoteItem> CREATOR = new Creator<GoodOutNoteItem>() {
         @Override
         public GoodOutNoteItem createFromParcel(Parcel source) {
             return new GoodOutNoteItem(source);

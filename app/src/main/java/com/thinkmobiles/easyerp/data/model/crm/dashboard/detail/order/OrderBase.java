@@ -41,15 +41,4 @@ public class OrderBase implements Parcelable {
         this.name = in.readString();
     }
 
-    public static final Creator<OrderBase> CREATOR = new Creator<OrderBase>() {
-        @Override
-        public OrderBase createFromParcel(Parcel source) {
-            return new OrderBase(source);
-        }
-
-        @Override
-        public OrderBase[] newArray(int size) {
-            return new OrderBase[size];
-        }
-    };
 }
