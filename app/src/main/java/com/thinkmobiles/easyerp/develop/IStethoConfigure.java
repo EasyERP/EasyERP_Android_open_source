@@ -1,4 +1,4 @@
-package com.thinkmobiles.easyerp.debug;
+package com.thinkmobiles.easyerp.develop;
 
 import android.app.Application;
 

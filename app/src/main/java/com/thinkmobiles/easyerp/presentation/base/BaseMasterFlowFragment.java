@@ -2,6 +2,7 @@ package com.thinkmobiles.easyerp.presentation.base;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.content.Context;
 import android.support.annotation.MenuRes;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -30,7 +31,7 @@ public abstract class BaseMasterFlowFragment<T extends BaseMasterFlowActivity> e
         try {
             mActivity = (T) context;
         } catch (ClassCastException e) {
-            throw new RuntimeException("This fragment should have mActivity instance");
+            throw new RuntimeException("This fragment should have Activity instance");
         }
     }
 
