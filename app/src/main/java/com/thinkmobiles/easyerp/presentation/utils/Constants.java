@@ -82,6 +82,15 @@ public abstract class Constants {
 
     //------------------------------------------------------ END CRM
 
+
+    //------------------------------------------------------ INVENTORY
+
+    //StockReturn
+    public static final String GET_STOCK_RETURNS            = "stockReturns";
+    //End StockReturn
+
+    //------------------------------------------------------ END INVENTORY
+
     public static final int DELAY_CLICK                     = 600;
 
     //Bundle keys
