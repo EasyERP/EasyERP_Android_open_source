@@ -49,6 +49,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/default_padding_quart"
+        android:layout_marginBottom="@dimen/default_padding_quart"
         android:orientation="horizontal">
 
         <TextView
@@ -74,7 +75,6 @@
         style="@style/TextListInfoGreyStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/default_padding_half"
         tools:text="Last Edited: Today, at 2:45 PM by Test Admin"/>
 
 </LinearLayout>

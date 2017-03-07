@@ -43,13 +43,15 @@ public class StockReturnsListPresenter extends MasterSelectablePresenterHelper i
 
     @Override
     protected void loadPage(int page) {
+        final boolean needClear = page == 1;
         compositeSubscription.add(
                 model.getStockReturns(page)
                 .subscribe(
                         stockReturns -> {
-                            totalItems = 1;
-                            this.stockReturns = stockReturns;
-                            setData();
+                            currentPage = page;
+                            totalItems = stockReturns.size();
+                            saveData(stockReturns, needClear);
+                            setData(stockReturns, needClear);
                         },
                         t -> error(t))
         );
@@ -67,15 +69,21 @@ public class StockReturnsListPresenter extends MasterSelectablePresenterHelper i
 
     @Override
     protected void retainInstance() {
-        setData();
+        setData(stockReturns, true);
     }
 
-    private void setData() {
-        if (stockReturns.isEmpty()) {
+    private void saveData(final List<StockReturn> stockReturns, boolean needClear) {
+        if (needClear)
+            this.stockReturns.clear();
+        this.stockReturns.addAll(stockReturns);
+    }
+
+    public void setData(final List<StockReturn> stockReturns, boolean needClear) {
+        view.setDataList(prepareStockReturnDHs(stockReturns, needClear), needClear);
+        if (this.stockReturns.isEmpty()) {
             view.displayErrorState(ErrorManager.getErrorType(null));
         } else {
             view.showProgress(Constants.ProgressType.NONE);
-            view.setDataList(prepareStockReturnDHs(stockReturns, true), true);
         }
     }
 

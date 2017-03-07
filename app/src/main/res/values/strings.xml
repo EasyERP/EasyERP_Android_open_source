@@ -145,6 +145,7 @@
     <string name="pattern_last_edited" formatted="false">Last Edited: %s at %s</string>
     <string name="pattern_order_date">Order Date: %s</string>
     <string name="pattern_received_date" formatted="false">Received Date: %s at %s</string>
+    <string name="pattern_created_date" formatted="false">Created Date: %s at %s</string>
 
     <string name="profile">Profile:</string>
     <string name="last_access">Last Access:</string>

@@ -4,14 +4,10 @@ import com.thinkmobiles.easyerp.data.api.Rest;
 import com.thinkmobiles.easyerp.data.model.crm.dashboard.ResponseGetCRMDashboardCharts;
 import com.thinkmobiles.easyerp.data.model.crm.dashboard.detail.DashboardChartType;
 import com.thinkmobiles.easyerp.data.services.DashboardService;
-import com.thinkmobiles.easyerp.presentation.EasyErpApplication;
 import com.thinkmobiles.easyerp.presentation.base.NetworkRepository;
 import com.thinkmobiles.easyerp.presentation.screens.crm.dashboard.DashboardListContract;
 import com.thinkmobiles.easyerp.presentation.screens.crm.dashboard.detail.DashboardDetailChartContract;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
-
-import org.androidannotations.annotations.Bean;
-import org.androidannotations.annotations.EBean;
 
 import java.util.List;
 

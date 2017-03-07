@@ -24,9 +24,11 @@ public final class MenuHeaderViewHolder extends BaseViewHolder<UserInfo> impleme
     private View dividerView;
     private TextView moduleLabelView;
 
-    private int currentChosenModuleId = -1;
-    private int currentChosenItemId = -1;
-    private int currentChosenItemForModuleId = -1;
+    public static final int UNKNOWN_ID = -1;
+
+    private int currentChosenModuleId = UNKNOWN_ID;
+    private int currentChosenItemId = UNKNOWN_ID;
+    private int currentChosenItemForModuleId = UNKNOWN_ID;
 
     private float sizeFullAvatar, sizeMiniAvatar;
 

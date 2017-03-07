@@ -106,24 +106,30 @@ public class MenuDrawerView extends FrameLayout implements IMenuProviderFunction
     }
 
     @Override
-    public boolean selectModule(int moduleId) {
+    public void selectModule(int moduleId) {
         if (contentMenuState.equals(ContentMenuState.FULL_MODULES) || menuHeaderViewHolder.getCurrentChosenModuleId() != moduleId) {
             menuHeaderViewHolder.setCurrentChosenModuleId(moduleId);
 
             buildMenuItems(MenuConfigs.menuModuleItems.get(moduleId));
             buildMiniMenuItems(MenuConfigs.menuModuleItems.get(moduleId));
-            return true;
         }
-        return false;
     }
 
     @Override
     public void selectItem(int moduleId, int itemId, boolean withUI) {
-        if (selectModule(moduleId) || moduleId != menuHeaderViewHolder.getCurrentChosenItemForModuleId() || menuHeaderViewHolder.getCurrentChosenItemId() != itemId) {
+        final boolean isDifferentItems = moduleId != menuHeaderViewHolder.getCurrentChosenItemForModuleId() || menuHeaderViewHolder.getCurrentChosenItemId() != itemId;
+        final boolean humanClickedItem = isDifferentItems && withUI;
+
+        if (isDifferentItems && menuHeaderViewHolder.getCurrentChosenItemId() == MenuHeaderViewHolder.UNKNOWN_ID)
+            menuHeaderViewHolder.setCurrentChosenItemId(moduleId, itemId);
+
+        selectModule(moduleId);
+
+        if (humanClickedItem) {
             menuHeaderViewHolder.setCurrentChosenItemId(moduleId, itemId);
             selectItemWithId(itemId);
             selectMiniItemWithId(itemId);
-            if (menuClickListener != null && withUI)
+            if (menuClickListener != null)
                 menuClickListener.chooseItem(moduleId, itemId);
         }
     }

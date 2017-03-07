@@ -3,7 +3,6 @@ package com.thinkmobiles.easyerp.presentation.screens.crm.opportunities.details;
 import android.text.TextUtils;
 
 import com.thinkmobiles.easyerp.data.model.crm.leads.detail.AttachmentItem;
-import com.thinkmobiles.easyerp.data.model.crm.leads.detail.Customer;
 import com.thinkmobiles.easyerp.data.model.crm.opportunities.detail.ResponseGetOpportunityDetails;
 import com.thinkmobiles.easyerp.presentation.base.rules.content.ContentPresenterHelper;
 import com.thinkmobiles.easyerp.presentation.base.rules.content.ContentView;
@@ -16,8 +15,6 @@ import com.thinkmobiles.easyerp.presentation.utils.Constants;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Locale;
-
-import rx.subscriptions.CompositeSubscription;
 
 /**
  * Created by Lynx on 2/1/2017.
