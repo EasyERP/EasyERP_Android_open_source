@@ -16,6 +16,6 @@ import org.androidannotations.annotations.EBean;
 public class StockReturnsAdapter extends SelectableAdapter<StockReturnDH, StockReturnVH> {
     @Override
     protected int getItemLayout() {
-        return R.layout.view_chart_overview;
+        return R.layout.view_list_item_stock_return;
     }
 }

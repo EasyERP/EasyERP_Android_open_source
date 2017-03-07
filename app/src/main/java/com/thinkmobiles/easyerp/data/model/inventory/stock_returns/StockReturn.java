@@ -4,7 +4,6 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import com.google.gson.annotations.SerializedName;
-import com.thinkmobiles.easyerp.data.model.crm.order.Order;
 
 /**
  * @author Michael Soyma (Created on 3/6/2017).
