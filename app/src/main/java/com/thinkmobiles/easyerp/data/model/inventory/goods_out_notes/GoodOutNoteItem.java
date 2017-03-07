@@ -17,7 +17,7 @@ public class GoodOutNoteItem implements Parcelable {
     public int total;
     public String name;
     public OrderBase order;
-    public GoodOutNoteStatus status;
+    public InventoryStatus status;
     public FilterItem warehouse;
     public Workflow workflow;
     public FilterItem customer;
@@ -59,7 +59,7 @@ public class GoodOutNoteItem implements Parcelable {
         this.total = in.readInt();
         this.name = in.readString();
         this.order = in.readParcelable(OrderBase.class.getClassLoader());
-        this.status = in.readParcelable(GoodOutNoteStatus.class.getClassLoader());
+        this.status = in.readParcelable(InventoryStatus.class.getClassLoader());
         this.warehouse = in.readParcelable(FilterItem.class.getClassLoader());
         this.workflow = in.readParcelable(Workflow.class.getClassLoader());
         this.customer = in.readParcelable(FilterItem.class.getClassLoader());

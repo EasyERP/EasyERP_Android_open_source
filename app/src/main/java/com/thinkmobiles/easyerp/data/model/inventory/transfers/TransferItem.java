@@ -4,6 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import com.thinkmobiles.easyerp.data.model.crm.leads.detail.CreatedEditedBy;
+import com.thinkmobiles.easyerp.data.model.inventory.goods_out_notes.InventoryStatus;
 
 /**
  * Created by Lynx on 3/7/2017.
@@ -16,9 +17,12 @@ public class TransferItem implements Parcelable {
     public WarehouseInfo warehouse;
     public WarehouseInfo warehouseTo;
     public CreatedEditedBy createdBy;
-    public TransferStatus status;
+    public InventoryStatus status;
     public String description;
     public boolean notRemovable;
+
+    public TransferItem() {
+    }
 
     @Override
     public int describeContents() {
@@ -38,9 +42,6 @@ public class TransferItem implements Parcelable {
         dest.writeByte(this.notRemovable ? (byte) 1 : (byte) 0);
     }
 
-    public TransferItem() {
-    }
-
     protected TransferItem(Parcel in) {
         this._id = in.readString();
         this.total = in.readInt();
@@ -48,12 +49,12 @@ public class TransferItem implements Parcelable {
         this.warehouse = in.readParcelable(WarehouseInfo.class.getClassLoader());
         this.warehouseTo = in.readParcelable(WarehouseInfo.class.getClassLoader());
         this.createdBy = in.readParcelable(CreatedEditedBy.class.getClassLoader());
-        this.status = in.readParcelable(TransferStatus.class.getClassLoader());
+        this.status = in.readParcelable(InventoryStatus.class.getClassLoader());
         this.description = in.readString();
         this.notRemovable = in.readByte() != 0;
     }
 
-    public static final Parcelable.Creator<TransferItem> CREATOR = new Parcelable.Creator<TransferItem>() {
+    public static final Creator<TransferItem> CREATOR = new Creator<TransferItem>() {
         @Override
         public TransferItem createFromParcel(Parcel source) {
             return new TransferItem(source);

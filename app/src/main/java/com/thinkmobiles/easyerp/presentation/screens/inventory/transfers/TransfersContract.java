@@ -1,5 +1,6 @@
 package com.thinkmobiles.easyerp.presentation.screens.inventory.transfers;
 
+import com.thinkmobiles.easyerp.data.model.inventory.transfers.ResponseGetTransfers;
 import com.thinkmobiles.easyerp.data.model.inventory.transfers.TransferItem;
 import com.thinkmobiles.easyerp.presentation.base.BaseModel;
 import com.thinkmobiles.easyerp.presentation.base.BaseView;
@@ -22,6 +23,6 @@ public interface TransfersContract {
 
     }
     interface TransfersModel extends BaseModel, FilterableModel {
-        Observable<TransferItem> getFilteredTransfers(FilterHelper query, int page);
+        Observable<ResponseGetTransfers> getFilteredTransfers(FilterHelper query, int page);
     }
 }

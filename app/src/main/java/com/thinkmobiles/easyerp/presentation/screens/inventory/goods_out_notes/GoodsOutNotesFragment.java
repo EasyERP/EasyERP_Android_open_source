@@ -3,18 +3,16 @@ package com.thinkmobiles.easyerp.presentation.screens.inventory.goods_out_notes;
 import android.widget.Toast;
 
 import com.thinkmobiles.easyerp.domain.inventory.GoodsOutNotesRepository;
-import com.thinkmobiles.easyerp.presentation.adapters.crm.GoodsOutNotesAdapter;
+import com.thinkmobiles.easyerp.presentation.adapters.inventory.GoodsOutNotesAdapter;
 import com.thinkmobiles.easyerp.presentation.base.rules.master.filterable.FilterablePresenter;
 import com.thinkmobiles.easyerp.presentation.base.rules.master.filterable.MasterFilterableFragment;
 import com.thinkmobiles.easyerp.presentation.base.rules.master.selectable.SelectableAdapter;
-import com.thinkmobiles.easyerp.presentation.custom.views.drawer_menu.models.MenuConfigs;
 import com.thinkmobiles.easyerp.presentation.managers.GoogleAnalyticHelper;
 
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EFragment;
-import org.androidannotations.annotations.FragmentArg;
 
 /**
  * Created by Lynx on 3/6/2017.

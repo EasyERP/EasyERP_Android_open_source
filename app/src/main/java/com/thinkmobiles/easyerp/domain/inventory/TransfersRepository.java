@@ -7,6 +7,7 @@ import com.thinkmobiles.easyerp.data.model.inventory.transfers.TransferItem;
 import com.thinkmobiles.easyerp.data.services.FilterService;
 import com.thinkmobiles.easyerp.data.services.TransfersService;
 import com.thinkmobiles.easyerp.presentation.base.NetworkRepository;
+import com.thinkmobiles.easyerp.presentation.screens.inventory.transfers.TransfersContract;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 import com.thinkmobiles.easyerp.presentation.utils.filter.FilterHelper;
 
@@ -19,7 +20,7 @@ import rx.Observable;
  */
 
 @EBean(scope = EBean.Scope.Singleton)
-public class TransfersRepository extends NetworkRepository {
+public class TransfersRepository extends NetworkRepository implements TransfersContract.TransfersModel {
 
     private TransfersService transfersService;
     private FilterService filterService;

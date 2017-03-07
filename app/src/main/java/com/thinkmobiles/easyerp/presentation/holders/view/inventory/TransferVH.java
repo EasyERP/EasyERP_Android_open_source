@@ -29,6 +29,8 @@ public class TransferVH extends SelectableVHHelper<TransferDH> {
     private TextView tvWarehouseTo_VLIT;
     private TextView tvDescription_VLIP;
 
+    private String not_assigned;
+
     public TransferVH(View itemView, @Nullable OnCardClickListener listener, int viewType) {
         super(itemView, listener, viewType);
 
@@ -41,6 +43,8 @@ public class TransferVH extends SelectableVHHelper<TransferDH> {
         tvWarehouseFrom_VLIT = findView(R.id.tvWarehouseFrom_VLIT);
         tvWarehouseTo_VLIT = findView(R.id.tvWarehouseTo_VLIT);
         tvDescription_VLIP = findView(R.id.tvDescription_VLIP);
+
+        not_assigned = itemView.getContext().getString(R.string.not_assigned);
     }
 
     @Override
@@ -56,5 +60,24 @@ public class TransferVH extends SelectableVHHelper<TransferDH> {
         } else {
             tvDate_VLIT.setText(null);
         }
+
+        if(item.status != null) {
+            ivPrinted_VLIT.setImageResource(item.status.printed ? R.drawable.ic_print : R.drawable.ic_print_off);
+            ivPacked_VLIT.setImageResource(item.status.packed ? R.drawable.ic_fulfilled : R.drawable.ic_fulfilled_off);
+            ivShipped_VLIT.setImageResource(item.status.shipped ? R.drawable.ic_shipped : R.drawable.ic_shipped_off);
+            ivReceived_VLIT.setImageResource(item.status.shipped ? R.drawable.ic_shipped : R.drawable.ic_shipped_off);
+        }
+
+        if(item.warehouse != null && !TextUtils.isEmpty(item.warehouse.name)) {
+            tvWarehouseFrom_VLIT.setText(item.warehouse.name);
+        } else {
+            tvWarehouseFrom_VLIT.setText(not_assigned);
+        }
+        if(item.warehouseTo != null && !TextUtils.isEmpty(item.warehouseTo.name)) {
+            tvWarehouseTo_VLIT.setText(item.warehouseTo.name);
+        } else {
+            tvWarehouseTo_VLIT.setText(not_assigned);
+        }
+        tvDescription_VLIP.setText(item.description);
     }
 }
