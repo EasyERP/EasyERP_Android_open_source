@@ -23,9 +23,6 @@ import org.androidannotations.annotations.FragmentArg;
 @EFragment
 public class GoodsOutNotesFragment extends MasterFilterableFragment implements GoodsOutNotesContract.GoodsOutNotesView {
 
-    @FragmentArg
-    protected int moduleId;
-
     private GoodsOutNotesContract.GoodsOutNotesPresenter presenter;
 
     @Bean
@@ -51,7 +48,7 @@ public class GoodsOutNotesFragment extends MasterFilterableFragment implements G
 
     @Override
     public String getScreenName() {
-        return String.format("%s Goods Out Notes list screen", MenuConfigs.getModuleLabel(moduleId));
+        return "Goods Out Notes list screen";
     }
 
     @Override
@@ -61,7 +58,7 @@ public class GoodsOutNotesFragment extends MasterFilterableFragment implements G
 
     @Override
     public void openDetailsScreen(String goodOutNoteID) {
-        Toast.makeText(getActivity(), "Open detailss ID = " + goodOutNoteID, Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity(), "Open details ID = " + goodOutNoteID, Toast.LENGTH_SHORT).show();
     }
 
     @Override

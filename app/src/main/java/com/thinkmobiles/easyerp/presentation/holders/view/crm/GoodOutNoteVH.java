@@ -60,8 +60,7 @@ public class GoodOutNoteVH extends SelectableVHHelper<GoodOutNoteDH> {
         tvId_VLIGON.setText(item.name);
         tvStatus_VLIGON.setText(item.workflow.name);
         //TODO uncomment when status appears
-        tvStatus_VLIGON.setBackgroundDrawable(new RoundRectDrawable(ContextCompat.getColor(itemView.getContext(), TagHelper.getColorResIdByName("New"))));
-//        tvStatus_VLIGON.setBackgroundDrawable(new RoundRectDrawable(ContextCompat.getColor(itemView.getContext(), TagHelper.getColorResIdByName(item.workflow.status))));
+        tvStatus_VLIGON.setBackgroundDrawable(new RoundRectDrawable(ContextCompat.getColor(itemView.getContext(), TagHelper.getColorResIdByName(item.workflow.status))));
 
         ivPrinted_VLIGON.setImageResource(item.printed ? R.drawable.ic_allocated : R.drawable.ic_allocated_off);
         ivPicked_VLIGON.setImageResource(item.picked ? R.drawable.ic_fulfilled : R.drawable.ic_fulfilled_off);
