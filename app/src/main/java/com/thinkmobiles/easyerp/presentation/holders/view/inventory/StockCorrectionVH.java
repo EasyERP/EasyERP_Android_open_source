@@ -19,7 +19,7 @@ import com.thinkmobiles.easyerp.presentation.managers.DateManager;
  */
 public class StockCorrectionVH extends SelectableVHHelper<StockCorrectionDH> {
 
-    private TextView tvReason_VLISC, tvWarehouse_VLISC, tvAdjustedBy_VLISC, tvCreatedDate_VLISC;
+    private TextView tvReason_VLISC, tvWarehouse_VLISC, tvCreatedDate_VLISC;
 
     private final String createdDateFormatter;
 
@@ -28,7 +28,6 @@ public class StockCorrectionVH extends SelectableVHHelper<StockCorrectionDH> {
 
         tvReason_VLISC = findView(R.id.tvReason_VLISC);
         tvWarehouse_VLISC = findView(R.id.tvWarehouse_VLISC);
-        tvAdjustedBy_VLISC = findView(R.id.tvAdjustedBy_VLISC);
         tvCreatedDate_VLISC = findView(R.id.tvCreatedDate_VLISC);
 
         createdDateFormatter = itemView.getResources().getString(R.string.pattern_created_date);
@@ -41,7 +40,10 @@ public class StockCorrectionVH extends SelectableVHHelper<StockCorrectionDH> {
         final StockCorrection stockCorrection = data.getStockCorrection();
         tvReason_VLISC.setText(TextUtils.isEmpty(stockCorrection.description) ? "-" : stockCorrection.description);
         tvWarehouse_VLISC.setText(stockCorrection.warehouse.name);
-        tvAdjustedBy_VLISC.setText(stockCorrection.createdBy.user.login);
-        tvCreatedDate_VLISC.setText(String.format(createdDateFormatter, new DateManager.DateConverter(stockCorrection.createdBy.date).toString()));
+
+        String out = String.format(createdDateFormatter, DateManager.getDateToNow(stockCorrection.createdBy.date), DateManager.getTime(stockCorrection.createdBy.date));
+        if(!TextUtils.isEmpty(stockCorrection.createdBy.user.login))
+            out = out + " by " + stockCorrection.createdBy.user.login;
+        tvCreatedDate_VLISC.setText(out);
     }
 }
