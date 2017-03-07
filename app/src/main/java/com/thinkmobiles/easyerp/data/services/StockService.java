@@ -1,5 +1,7 @@
 package com.thinkmobiles.easyerp.data.services;
 
+import com.thinkmobiles.easyerp.data.model.ResponseGetTotalItems;
+import com.thinkmobiles.easyerp.data.model.inventory.stock_correction.StockCorrection;
 import com.thinkmobiles.easyerp.data.model.inventory.stock_returns.StockReturn;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
@@ -14,11 +16,17 @@ import rx.Observable;
  *         Company: Thinkmobiles
  *         Email: michael.soyma@thinkmobiles.com
  */
-public interface StockReturnService {
+public interface StockService {
 
     @GET(Constants.GET_STOCK_RETURNS)
     Observable<List<StockReturn>> getStockReturns(@Query("viewType") String viewType,
                                                   @Query("count") int count,
                                                   @Query("contentType") String contentType,
                                                   @Query("page") int page);
+
+    @GET(Constants.GET_STOCK_CORRECTION)
+    Observable<ResponseGetTotalItems<StockCorrection>> getStockCorrection(@Query("viewType") String viewType,
+                                                                                @Query("count") int count,
+                                                                                @Query("contentType") String contentType,
+                                                                                @Query("page") int page);
 }

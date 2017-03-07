@@ -10,10 +10,7 @@ import com.thinkmobiles.easyerp.data.services.UserService;
 import com.thinkmobiles.easyerp.presentation.base.NetworkRepository;
 import com.thinkmobiles.easyerp.presentation.screens.crm.payments.PaymentsContract;
 import com.thinkmobiles.easyerp.presentation.screens.crm.payments.details.PaymentDetailsContract;
-import com.thinkmobiles.easyerp.presentation.utils.Constants;
 import com.thinkmobiles.easyerp.presentation.utils.filter.FilterHelper;
-
-import org.androidannotations.annotations.EBean;
 
 import rx.Observable;
 
