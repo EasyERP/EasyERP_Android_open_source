@@ -1,4 +1,4 @@
-package com.thinkmobiles.easyerp.presentation.holders.view.crm;
+package com.thinkmobiles.easyerp.presentation.holders.view.inventory;
 
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;

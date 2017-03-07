@@ -1,5 +1,6 @@
 package com.thinkmobiles.easyerp.presentation.holders.data.inventory;
 
+import com.thinkmobiles.easyerp.data.model.inventory.transfers.TransferItem;
 import com.thinkmobiles.easyerp.presentation.base.rules.master.selectable.SelectableDHHelper;
 
 /**
@@ -8,6 +9,15 @@ import com.thinkmobiles.easyerp.presentation.base.rules.master.selectable.Select
 
 public class TransferDH extends SelectableDHHelper {
 
+    private TransferItem item;
+
+    public TransferDH(TransferItem item) {
+        this.item = item;
+    }
+
+    public TransferItem getItem() {
+        return item;
+    }
 
     @Override
     public String getId() {
