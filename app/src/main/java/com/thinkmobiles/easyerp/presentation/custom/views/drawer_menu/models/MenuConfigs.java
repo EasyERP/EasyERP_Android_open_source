@@ -10,8 +10,8 @@ import com.thinkmobiles.easyerp.presentation.screens.crm.opportunities.Opportuni
 import com.thinkmobiles.easyerp.presentation.screens.crm.orders.OrdersFragment_;
 import com.thinkmobiles.easyerp.presentation.screens.crm.payments.PaymentsFragment_;
 import com.thinkmobiles.easyerp.presentation.screens.crm.persons.PersonsFragment_;
-import com.thinkmobiles.easyerp.presentation.screens.inventory.goods_out_notes.GoodsOutNotesFragment;
 import com.thinkmobiles.easyerp.presentation.screens.inventory.goods_out_notes.GoodsOutNotesFragment_;
+import com.thinkmobiles.easyerp.presentation.screens.inventory.stock_returns.StockReturnsListFragment_;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -109,10 +109,10 @@ public abstract class MenuConfigs {
 
     private static List<MenuItem> getPurchasesModule() {
         final List<MenuItem> menuItems = new ArrayList<>();
-        menuItems.add(new MenuItem(-1, R.drawable.ic_dashboard, "Dashboard", true));
-        menuItems.add(new MenuItem(0, R.drawable.ic_orders, "Orders", true));
-        menuItems.add(new MenuItem(1, R.drawable.ic_invoices, "Invoices", true));
-        menuItems.add(new MenuItem(2, R.drawable.ic_paymens, "Payments", true));
+        menuItems.add(new MenuItem(0, R.drawable.ic_dashboard, "Dashboard", true));
+        menuItems.add(new MenuItem(1, R.drawable.ic_orders, "Orders", true));
+        menuItems.add(new MenuItem(2, R.drawable.ic_invoices, "Invoices", true));
+        menuItems.add(new MenuItem(3, R.drawable.ic_paymens, "Payments", true));
         return menuItems;
     }
 
@@ -157,10 +157,10 @@ public abstract class MenuConfigs {
     private static List<MenuItem> getInventoryModule() {
         final List<MenuItem> menuItems = new ArrayList<>();
         menuItems.add(new MenuItem(0, R.drawable.ic_menu_item_placeholder, "Products", false));
-        menuItems.add(new MenuItem(1, R.drawable.ic_menu_item_placeholder, "Goods-out Notes", true));
-        menuItems.add(new MenuItem(2, R.drawable.ic_menu_item_placeholder, "Stock Correction", false));
-        menuItems.add(new MenuItem(3, R.drawable.ic_menu_item_placeholder, "Transactions", false));
-        menuItems.add(new MenuItem(4, R.drawable.ic_menu_item_placeholder, "Stock Detail", false));
+        menuItems.add(new MenuItem(1, R.drawable.ic_menu_item_placeholder, "Goods-Out Notes", true));
+        menuItems.add(new MenuItem(2, R.drawable.ic_menu_item_placeholder, "Stock Returns", true));
+        menuItems.add(new MenuItem(3, R.drawable.ic_menu_item_placeholder, "Stock Correction", false));
+        menuItems.add(new MenuItem(4, R.drawable.ic_menu_item_placeholder, "Transfers", false));
         return menuItems;
     }
 
@@ -224,24 +224,19 @@ public abstract class MenuConfigs {
     private static BaseMasterFlowFragment getFragmentByIdWithPurchaseModule(final int itemId) {
         final int purchaseModuleId = 4;
         switch (itemId) {
-            case -1: return DashboardListFragment_.builder().moduleId(purchaseModuleId).build();
-            case 0: return OrdersFragment_.builder().moduleId(purchaseModuleId).build();
-            case 1: return InvoicesFragment_.builder().moduleId(purchaseModuleId).build();
-            case 2: return PaymentsFragment_.builder().moduleId(purchaseModuleId).build();
+            case 0: return DashboardListFragment_.builder().moduleId(purchaseModuleId).build();
+            case 1: return OrdersFragment_.builder().moduleId(purchaseModuleId).build();
+            case 2: return InvoicesFragment_.builder().moduleId(purchaseModuleId).build();
+            case 3: return PaymentsFragment_.builder().moduleId(purchaseModuleId).build();
         }
         return null;
     }
 
     private static BaseMasterFlowFragment getFragmentByIdWithInventoryModule(final int itemId) {
-        final int inventoryModuleId = 8;
         switch (itemId) {
-            case 0: return null;
             case 1: return GoodsOutNotesFragment_.builder().build();
-            case 2: return null;
-            case 3: return null;
-            case 4: return null;
+            case 2: return StockReturnsListFragment_.builder().build();
         }
         return null;
     }
-
 }

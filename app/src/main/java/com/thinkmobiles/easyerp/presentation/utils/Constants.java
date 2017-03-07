@@ -82,9 +82,18 @@ public abstract class Constants {
 
     //------------------------------------------------------ END CRM
 
-    //region INVENTORY
+
+    //------------------------------------------------------ INVENTORY
+
+    //GoodsOutNotes
     public static final String GET_GOODS_OUT_NOTES          = "goodsOutNotes";
-    //endregion
+    //End GoodsOutNotes
+
+    //StockReturn
+    public static final String GET_STOCK_RETURNS            = "stockReturns";            = "stockReturns";
+    //End StockReturn
+
+    //------------------------------------------------------ END INVENTORY
 
     public static final int DELAY_CLICK                     = 600;
 

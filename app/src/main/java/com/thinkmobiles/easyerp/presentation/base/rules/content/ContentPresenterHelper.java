@@ -1,5 +1,7 @@
 package com.thinkmobiles.easyerp.presentation.base.rules.content;
 
+import android.util.Log;
+
 import com.thinkmobiles.easyerp.presentation.managers.ErrorManager;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
@@ -45,6 +47,7 @@ public abstract class ContentPresenterHelper implements ContentPresenter {
     }
 
     protected void error(Throwable t) {
+        t.printStackTrace();
         if (hasContent()) {
             getView().displayErrorToast(ErrorManager.getErrorType(t));
         } else {

@@ -10,7 +10,7 @@ import rx.schedulers.Schedulers;
 
 public abstract class NetworkRepository {
 
-    public  <T> Observable<T> getNetworkObservable(Observable<T> observable) {
+    public <T> Observable<T> getNetworkObservable(Observable<T> observable) {
         return observable.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.newThread());
     }
