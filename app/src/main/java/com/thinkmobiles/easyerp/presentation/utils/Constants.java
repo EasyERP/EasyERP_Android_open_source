@@ -97,6 +97,10 @@ public abstract class Constants {
     public static final String GET_TRANSACTIONS             = "stockTransactions";
     //End Transactions
 
+    //StockCorrection
+    public static final String GET_STOCK_CORRECTION         = "warehouse/stockCorrection";
+    //End StockCorrection
+
     //------------------------------------------------------ END INVENTORY
 
     public static final int DELAY_CLICK                     = 600;

@@ -39,7 +39,7 @@ android {
     }
 
     buildTypes {
-        def packageForStetho = 'com.thinkmobiles.easyerp.debug'
+        def packageForStetho = 'com.thinkmobiles.easyerp.develop'
         debug {
             signingConfig signingConfigs.debug
             buildConfigField "boolean", "PRODUCTION", "false"

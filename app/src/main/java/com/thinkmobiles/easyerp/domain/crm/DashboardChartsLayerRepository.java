@@ -5,8 +5,6 @@ import com.thinkmobiles.easyerp.data.model.crm.dashboard.detail.DashboardChartTy
 import com.thinkmobiles.easyerp.data.services.InvoiceService;
 import com.thinkmobiles.easyerp.data.services.OrderService;
 
-import org.androidannotations.annotations.EBean;
-
 import rx.Observable;
 
 /**
