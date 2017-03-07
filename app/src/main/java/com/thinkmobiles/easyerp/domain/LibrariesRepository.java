@@ -24,7 +24,7 @@ public class LibrariesRepository implements LibrariesContract.LibrariesModel {
         result.add(new LibraryInfo("RxJava",                    "1.1.6",    "ReactiveX", "Apache License 2.0", "https://github.com/ReactiveX/RxJava"));
         result.add(new LibraryInfo("RxBinding",                 "0.2.0",    "JakeWharton", "Apache License 2.0", "https://github.com/JakeWharton/RxBinding"));
         result.add(new LibraryInfo("Retrofit|ConverterGson",    "2.1.0",    "Square", "Apache License 2.0", "https://github.com/square/retrofit/wiki/Converters"));
-        result.add(new LibraryInfo("Retrofit|AdapterRxJava",    "2.1.0",    "Square", "Apache License 2.0", "https://mvnrepository.com/artifact/com.squareup.retrofit2/adapter-rxjava/2.0.0-beta3"));
+        result.add(new LibraryInfo("Retrofit|AdapterRxJava",    "2.1.0",    "Square", "Apache License 2.0", "https://mvnrepository.com/artifact/com.squareup.retrofit2/rowAdapter-rxjava/2.0.0-beta3"));
         result.add(new LibraryInfo("Logging-interceptor",       "3.4.1",    "Square", "Apache License 2.0", "https://github.com/square/okhttp/tree/master/okhttp-logging-interceptor"));
         result.add(new LibraryInfo("Picasso",                   "2.5.2",    "Square", "Apache License 2.0", "https://github.com/square/picasso"));
         result.add(new LibraryInfo("MPAndroidChart",            "2.0.8",    "PhilJay", "Apache License 2.0", "https://github.com/PhilJay/MPAndroidChart"));

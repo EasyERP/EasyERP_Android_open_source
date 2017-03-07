@@ -84,6 +84,7 @@ public abstract class Constants {
 
     //region INVENTORY
     public static final String GET_GOODS_OUT_NOTES          = "goodsOutNotes";
+    public static final String GET_GOODS_OUT_NOTES_DETAILS  = "goodsOutNotes/{id}";
     //endregion
 
     public static final int DELAY_CLICK                     = 600;
