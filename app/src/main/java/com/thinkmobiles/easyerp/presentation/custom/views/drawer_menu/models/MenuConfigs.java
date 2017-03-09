@@ -159,11 +159,11 @@ public abstract class MenuConfigs {
 
     private static List<MenuItem> getInventoryModule() {
         final List<MenuItem> menuItems = new ArrayList<>();
-        menuItems.add(new MenuItem(0, R.drawable.ic_menu_item_placeholder, "Products", false));
-        menuItems.add(new MenuItem(1, R.drawable.ic_menu_item_placeholder, "Goods-Out Notes", true));
-        menuItems.add(new MenuItem(2, R.drawable.ic_menu_item_placeholder, "Stock Returns", true));
-        menuItems.add(new MenuItem(3, R.drawable.ic_menu_item_placeholder, "Stock Correction", true));
-        menuItems.add(new MenuItem(4, R.drawable.ic_menu_item_placeholder, "Transfers", true));
+        menuItems.add(new MenuItem(0, R.drawable.ic_products, "Products", false));
+        menuItems.add(new MenuItem(1, R.drawable.ic_goods_out_notes, "Goods-Out Notes", true));
+        menuItems.add(new MenuItem(2, R.drawable.ic_stock_returns, "Stock Returns", true));
+        menuItems.add(new MenuItem(3, R.drawable.ic_stock_corrections, "Stock Correction", true));
+        menuItems.add(new MenuItem(4, R.drawable.ic_transfers, "Transfers", true));
         return menuItems;
     }
 

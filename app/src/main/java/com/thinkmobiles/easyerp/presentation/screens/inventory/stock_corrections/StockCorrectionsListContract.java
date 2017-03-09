@@ -2,6 +2,7 @@ package com.thinkmobiles.easyerp.presentation.screens.inventory.stock_correction
 
 import com.thinkmobiles.easyerp.data.model.ResponseGetTotalItems;
 import com.thinkmobiles.easyerp.data.model.inventory.stock_correction.StockCorrection;
+import com.thinkmobiles.easyerp.presentation.base.BaseModel;
 import com.thinkmobiles.easyerp.presentation.base.BaseView;
 import com.thinkmobiles.easyerp.presentation.base.rules.master.selectable.SelectablePresenter;
 import com.thinkmobiles.easyerp.presentation.base.rules.master.selectable.SelectableView;
@@ -20,7 +21,7 @@ public interface StockCorrectionsListContract {
     interface StockCorrectionsListPresenter extends SelectablePresenter {
 
     }
-    interface StockCorrectionsListModel {
+    interface StockCorrectionsListModel extends BaseModel {
         Observable<ResponseGetTotalItems<StockCorrection>> getStockCorrections(final int page);
     }
 }
