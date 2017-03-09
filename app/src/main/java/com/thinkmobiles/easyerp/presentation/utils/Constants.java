@@ -85,6 +85,10 @@ public abstract class Constants {
 
     //------------------------------------------------------ INVENTORY
 
+    //GoodsOutNotes
+    public static final String GET_GOODS_OUT_NOTES          = "goodsOutNotes";
+    //End GoodsOutNotes
+
     //StockReturn
     public static final String GET_STOCK_RETURNS            = "stockReturns";
     //End StockReturn
