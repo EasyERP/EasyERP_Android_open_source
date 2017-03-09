@@ -31,7 +31,7 @@ public class TransfersPresenter extends MasterFilterablePresenterHelper implemen
 
     @Override
     public void clickItem(int position) {
-        String id = listOfItems.get(position)._id;
+        String id = listOfItems.get(position).id;
         if (super.selectItem(id, position))
             view.openDetailsScreen(id);
     }

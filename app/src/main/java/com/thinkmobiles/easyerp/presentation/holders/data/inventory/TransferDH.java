@@ -21,6 +21,6 @@ public class TransferDH extends SelectableDHHelper {
 
     @Override
     public String getId() {
-        return item._id;
+        return item.id;
     }
 }
