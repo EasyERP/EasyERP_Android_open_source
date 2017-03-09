@@ -13,6 +13,8 @@ import com.thinkmobiles.easyerp.presentation.screens.crm.persons.PersonsFragment
 import com.thinkmobiles.easyerp.presentation.screens.inventory.goods_out_notes.GoodsOutNotesFragment_;
 import com.thinkmobiles.easyerp.presentation.screens.inventory.stock_corrections.StockCorrectionsListFragment_;
 import com.thinkmobiles.easyerp.presentation.screens.inventory.stock_returns.StockReturnsListFragment_;
+import com.thinkmobiles.easyerp.presentation.screens.inventory.transfers.TransfersFragment;
+import com.thinkmobiles.easyerp.presentation.screens.inventory.transfers.TransfersFragment_;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -157,11 +159,11 @@ public abstract class MenuConfigs {
 
     private static List<MenuItem> getInventoryModule() {
         final List<MenuItem> menuItems = new ArrayList<>();
-        menuItems.add(new MenuItem(0, R.drawable.ic_menu_item_placeholder, "Products", false));
-        menuItems.add(new MenuItem(1, R.drawable.ic_menu_item_placeholder, "Goods-Out Notes", true));
-        menuItems.add(new MenuItem(2, R.drawable.ic_menu_item_placeholder, "Stock Returns", true));
-        menuItems.add(new MenuItem(3, R.drawable.ic_menu_item_placeholder, "Stock Correction", true));
-        menuItems.add(new MenuItem(4, R.drawable.ic_menu_item_placeholder, "Transfers", false));
+        menuItems.add(new MenuItem(0, R.drawable.ic_products, "Products", false));
+        menuItems.add(new MenuItem(1, R.drawable.ic_goods_out_notes, "Goods-Out Notes", true));
+        menuItems.add(new MenuItem(2, R.drawable.ic_stock_returns, "Stock Returns", true));
+        menuItems.add(new MenuItem(3, R.drawable.ic_stock_corrections, "Stock Correction", true));
+        menuItems.add(new MenuItem(4, R.drawable.ic_transfers, "Transfers", true));
         return menuItems;
     }
 
@@ -238,6 +240,7 @@ public abstract class MenuConfigs {
             case 1: return GoodsOutNotesFragment_.builder().build();
             case 2: return StockReturnsListFragment_.builder().build();
             case 3: return StockCorrectionsListFragment_.builder().build();
+            case 4: return TransfersFragment_.builder().build();
         }
         return null;
     }

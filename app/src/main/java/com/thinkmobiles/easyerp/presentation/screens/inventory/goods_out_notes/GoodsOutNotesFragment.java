@@ -1,7 +1,7 @@
 package com.thinkmobiles.easyerp.presentation.screens.inventory.goods_out_notes;
 
 import com.thinkmobiles.easyerp.domain.inventory.GoodsOutNotesRepository;
-import com.thinkmobiles.easyerp.presentation.adapters.crm.GoodsOutNotesAdapter;
+import com.thinkmobiles.easyerp.presentation.adapters.inventory.GoodsOutNotesAdapter;
 import com.thinkmobiles.easyerp.presentation.base.rules.master.filterable.FilterablePresenter;
 import com.thinkmobiles.easyerp.presentation.base.rules.master.filterable.MasterFilterableFragment;
 import com.thinkmobiles.easyerp.presentation.base.rules.master.selectable.SelectableAdapter;

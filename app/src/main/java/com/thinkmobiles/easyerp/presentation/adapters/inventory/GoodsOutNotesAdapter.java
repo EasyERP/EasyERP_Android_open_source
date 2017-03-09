@@ -1,4 +1,4 @@
-package com.thinkmobiles.easyerp.presentation.adapters.crm;
+package com.thinkmobiles.easyerp.presentation.adapters.inventory;
 
 import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.presentation.base.rules.master.selectable.SelectableAdapter;

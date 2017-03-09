@@ -21,6 +21,7 @@ import com.thinkmobiles.easyerp.data.services.OpportunityService;
 import com.thinkmobiles.easyerp.data.services.OrderService;
 import com.thinkmobiles.easyerp.data.services.PaymentsService;
 import com.thinkmobiles.easyerp.data.services.PersonsService;
+import com.thinkmobiles.easyerp.data.services.TransfersService;
 import com.thinkmobiles.easyerp.data.services.StockService;
 import com.thinkmobiles.easyerp.data.services.UserService;
 import com.thinkmobiles.easyerp.presentation.managers.CookieManager;
@@ -61,9 +62,10 @@ public class Rest {
     private FilterService filterService;
     private CompaniesService companiesService;
     private CustomerService customerService;
-    private StockService stockService;
 
+    private StockService stockService;
     private GoodsOutNotesService goodsOutNotesService;
+    private TransfersService transfersService;
 
     private Converter<ResponseBody, ResponseError> converter;
 
@@ -157,6 +159,10 @@ public class Rest {
 
     public GoodsOutNotesService getGoodsOutNotesService() {
         return goodsOutNotesService == null ? goodsOutNotesService = createService(GoodsOutNotesService.class) : goodsOutNotesService;
+    }
+
+    public TransfersService getTransfersService() {
+        return transfersService == null ? transfersService = createService(TransfersService.class) : transfersService;
     }
 
     public ResponseError parseError(ResponseBody responseBody) {
