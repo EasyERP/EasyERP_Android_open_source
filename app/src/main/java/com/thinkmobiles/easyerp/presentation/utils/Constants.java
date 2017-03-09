@@ -87,6 +87,7 @@ public abstract class Constants {
 
     //GoodsOutNotes
     public static final String GET_GOODS_OUT_NOTES          = "goodsOutNotes";
+    public static final String GET_GOODS_OUT_NOTES_DETAILS  = "goodsOutNotes/{id}";
     //End GoodsOutNotes
 
     //StockReturn

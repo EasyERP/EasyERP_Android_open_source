@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import com.michenko.simpleadapter.OnCardClickListener;
 import com.thinkmobiles.easyerp.R;
-import com.thinkmobiles.easyerp.data.model.inventory.goods_out_notes.GoodOutNoteItem;
+import com.thinkmobiles.easyerp.data.model.inventory.goods_out_notes.GoodsOutNoteItem;
 import com.thinkmobiles.easyerp.presentation.base.rules.master.selectable.SelectableVHHelper;
 import com.thinkmobiles.easyerp.presentation.custom.RoundRectDrawable;
 import com.thinkmobiles.easyerp.presentation.holders.data.inventory.GoodsOutNoteDH;
@@ -55,7 +55,7 @@ public class GoodsOutNoteVH extends SelectableVHHelper<GoodsOutNoteDH> {
     @Override
     public void bindData(GoodsOutNoteDH data) {
         super.bindData(data);
-        GoodOutNoteItem item = data.getItem();
+        GoodsOutNoteItem item = data.getItem();
 
         tvId_VLIGON.setText(item.name);
         tvStatus_VLIGON.setText(item.workflow.name);

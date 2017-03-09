@@ -24,17 +24,8 @@ public class SalesPerson implements Parcelable {
     public String fullName;
 
 
-    public static final Creator<SalesPerson> CREATOR = new Creator<SalesPerson>() {
-        @Override
-        public SalesPerson createFromParcel(Parcel in) {
-            return new SalesPerson(in);
-        }
-
-        @Override
-        public SalesPerson[] newArray(int size) {
-            return new SalesPerson[size];
-        }
-    };
+    public SalesPerson() {
+    }
 
     @Override
     public int describeContents() {
@@ -49,9 +40,6 @@ public class SalesPerson implements Parcelable {
         dest.writeString(this.fullName);
     }
 
-    public SalesPerson() {
-    }
-
     protected SalesPerson(Parcel in) {
         this._id = in.readString();
         this.id = in.readString();
@@ -59,4 +47,15 @@ public class SalesPerson implements Parcelable {
         this.fullName = in.readString();
     }
 
+    public static final Creator<SalesPerson> CREATOR = new Creator<SalesPerson>() {
+        @Override
+        public SalesPerson createFromParcel(Parcel source) {
+            return new SalesPerson(source);
+        }
+
+        @Override
+        public SalesPerson[] newArray(int size) {
+            return new SalesPerson[size];
+        }
+    };
 }

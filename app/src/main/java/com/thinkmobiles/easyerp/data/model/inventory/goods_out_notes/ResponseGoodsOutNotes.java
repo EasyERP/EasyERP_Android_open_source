@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class ResponseGoodsOutNotes implements Parcelable {
     public int total;
-    public ArrayList<GoodOutNoteItem> data;
+    public ArrayList<GoodsOutNoteItem> data;
 
     @Override
     public int describeContents() {
@@ -29,7 +29,7 @@ public class ResponseGoodsOutNotes implements Parcelable {
 
     protected ResponseGoodsOutNotes(Parcel in) {
         this.total = in.readInt();
-        this.data = in.createTypedArrayList(GoodOutNoteItem.CREATOR);
+        this.data = in.createTypedArrayList(GoodsOutNoteItem.CREATOR);
     }
 
     public static final Parcelable.Creator<ResponseGoodsOutNotes> CREATOR = new Parcelable.Creator<ResponseGoodsOutNotes>() {

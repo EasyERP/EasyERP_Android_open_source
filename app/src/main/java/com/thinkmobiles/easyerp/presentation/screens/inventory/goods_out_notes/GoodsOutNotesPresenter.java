@@ -1,6 +1,6 @@
 package com.thinkmobiles.easyerp.presentation.screens.inventory.goods_out_notes;
 
-import com.thinkmobiles.easyerp.data.model.inventory.goods_out_notes.GoodOutNoteItem;
+import com.thinkmobiles.easyerp.data.model.inventory.goods_out_notes.GoodsOutNoteItem;
 import com.thinkmobiles.easyerp.presentation.base.rules.master.filterable.FilterableModel;
 import com.thinkmobiles.easyerp.presentation.base.rules.master.filterable.FilterableView;
 import com.thinkmobiles.easyerp.presentation.base.rules.master.filterable.MasterFilterablePresenterHelper;
@@ -20,7 +20,7 @@ public class GoodsOutNotesPresenter extends MasterFilterablePresenterHelper impl
     private GoodsOutNotesContract.GoodsOutNotesView view;
     private GoodsOutNotesContract.GoodsOutNotesModel model;
 
-    private ArrayList<GoodOutNoteItem> goodOutNotesList = new ArrayList<>();
+    private ArrayList<GoodsOutNoteItem> goodOutNotesList = new ArrayList<>();
 
     public GoodsOutNotesPresenter(GoodsOutNotesContract.GoodsOutNotesView view, GoodsOutNotesContract.GoodsOutNotesModel model) {
         this.view = view;
@@ -31,7 +31,7 @@ public class GoodsOutNotesPresenter extends MasterFilterablePresenterHelper impl
 
     @Override
     public void clickItem(int position) {
-        String id = goodOutNotesList.get(position)._id;
+        String id = goodOutNotesList.get(position).id;
         if (super.selectItem(id, position))
             view.openDetailsScreen(id);
     }
@@ -74,14 +74,14 @@ public class GoodsOutNotesPresenter extends MasterFilterablePresenterHelper impl
         return model;
     }
 
-    private void saveData(final List<GoodOutNoteItem> goodOutNoteItems, boolean needClear) {
+    private void saveData(final List<GoodsOutNoteItem> goodsOutNoteItems, boolean needClear) {
         if (needClear)
             goodOutNotesList.clear();
-        goodOutNotesList.addAll(goodOutNoteItems);
+        goodOutNotesList.addAll(goodsOutNoteItems);
     }
 
-    private void setData(final List<GoodOutNoteItem> goodOutNoteItems, boolean needClear) {
-        view.setDataList(prepareGoodsOutNotesDHs(goodOutNoteItems, needClear), needClear);
+    private void setData(final List<GoodsOutNoteItem> goodsOutNoteItems, boolean needClear) {
+        view.setDataList(prepareGoodsOutNotesDHs(goodsOutNoteItems, needClear), needClear);
         if (goodOutNotesList.isEmpty()) {
             view.displayErrorState(ErrorManager.getErrorType(null));
         } else {
@@ -89,10 +89,10 @@ public class GoodsOutNotesPresenter extends MasterFilterablePresenterHelper impl
         }
     }
 
-    private ArrayList<GoodsOutNoteDH> prepareGoodsOutNotesDHs(final List<GoodOutNoteItem> goodOutNoteItems, boolean needClear) {
+    private ArrayList<GoodsOutNoteDH> prepareGoodsOutNotesDHs(final List<GoodsOutNoteItem> goodsOutNoteItems, boolean needClear) {
         int position = 0;
         final ArrayList<GoodsOutNoteDH> result = new ArrayList<>();
-        for (GoodOutNoteItem item : goodOutNoteItems) {
+        for (GoodsOutNoteItem item : goodsOutNoteItems) {
             final GoodsOutNoteDH goodsOutNoteDH = new GoodsOutNoteDH(item);
             makeSelectedDHIfNeed(goodsOutNoteDH, position++, needClear);
             result.add(goodsOutNoteDH);

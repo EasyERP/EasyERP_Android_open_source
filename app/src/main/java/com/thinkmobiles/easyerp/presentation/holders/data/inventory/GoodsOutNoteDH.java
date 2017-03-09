@@ -1,6 +1,6 @@
 package com.thinkmobiles.easyerp.presentation.holders.data.inventory;
 
-import com.thinkmobiles.easyerp.data.model.inventory.goods_out_notes.GoodOutNoteItem;
+import com.thinkmobiles.easyerp.data.model.inventory.goods_out_notes.GoodsOutNoteItem;
 import com.thinkmobiles.easyerp.presentation.base.rules.master.selectable.SelectableDHHelper;
 
 /**
@@ -9,18 +9,18 @@ import com.thinkmobiles.easyerp.presentation.base.rules.master.selectable.Select
 
 public class GoodsOutNoteDH extends SelectableDHHelper {
 
-    private GoodOutNoteItem item;
+    private GoodsOutNoteItem item;
 
-    public GoodsOutNoteDH(GoodOutNoteItem item) {
+    public GoodsOutNoteDH(GoodsOutNoteItem item) {
         this.item = item;
     }
 
-    public GoodOutNoteItem getItem() {
+    public GoodsOutNoteItem getItem() {
         return item;
     }
 
     @Override
     public String getId() {
-        return item._id;
+        return item.id;
     }
 }
