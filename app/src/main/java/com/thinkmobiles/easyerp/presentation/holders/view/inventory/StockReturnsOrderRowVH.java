@@ -16,41 +16,41 @@ import com.thinkmobiles.easyerp.presentation.holders.data.inventory.OrderRowDH;
 
 public final class StockReturnsOrderRowVH extends RecyclerVH<OrderRowDH> {
 
-    private final TextView tvNumber_LIOR;
-    private final TextView tvName_LIOR;
-    private final TextView tvSku_LIOR;
-    private final TextView tvCost_LIOR;
-    private final TextView tvNote_LIOR;
-    private final TextView tvWarehouse_LIOR;
-    private final TextView tvQty_LIOR;
+    private final TextView tvNumber_LISROR;
+    private final TextView tvName_LISROR;
+    private final TextView tvSku_LISROR;
+    private final TextView tvCost_LISROR;
+    private final TextView tvNote_LISROR;
+    private final TextView tvWarehouse_LISROR;
+    private final TextView tvQty_LISROR;
 
     public StockReturnsOrderRowVH(View itemView, @Nullable OnCardClickListener listener, int viewType) {
         super(itemView, listener, viewType);
 
-        tvNumber_LIOR = findView(R.id.tvNumber_LIOR);
-        tvName_LIOR = findView(R.id.tvName_LIOR);
-        tvSku_LIOR = findView(R.id.tvSku_LIOR);
-        tvCost_LIOR = findView(R.id.tvCost_LIOR);
-        tvNote_LIOR = findView(R.id.tvNote_LIOR);
-        tvWarehouse_LIOR = findView(R.id.tvWarehouse_LIOR);
-        tvQty_LIOR = findView(R.id.tvQty_LIOR);
+        tvNumber_LISROR = findView(R.id.tvNumber_LISROR);
+        tvName_LISROR = findView(R.id.tvName_LISROR);
+        tvSku_LISROR = findView(R.id.tvSku_LISROR);
+        tvCost_LISROR = findView(R.id.tvCost_LISROR);
+        tvNote_LISROR = findView(R.id.tvNote_LISROR);
+        tvWarehouse_LISROR = findView(R.id.tvWarehouse_LISROR);
+        tvQty_LISROR = findView(R.id.tvQty_LISROR);
     }
 
     @Override
     public void bindData(OrderRowDH data) {
         OrderRow model = data.getModel();
-        tvNumber_LIOR.setText(String.valueOf(getAdapterPosition() + 1));
+        tvNumber_LISROR.setText(String.valueOf(getAdapterPosition() + 1));
         if (model.product != null && model.product.info != null) {
-            tvName_LIOR.setText(model.product.name);
-            tvSku_LIOR.setText(model.product.info.SKU);
+            tvName_LISROR.setText(model.product.name);
+            tvSku_LISROR.setText(model.product.info.SKU);
         }
-        tvCost_LIOR.setText(String.valueOf(model.cost));
+        tvCost_LISROR.setText(String.valueOf(model.cost));
         if (model.goodsOutNote != null) {
-            tvNote_LIOR.setText(model.goodsOutNote.name);
+            tvNote_LISROR.setText(model.goodsOutNote.name);
         }
         if (model.warehouse != null) {
-            tvWarehouse_LIOR.setText(String.valueOf(model.warehouse.name));
+            tvWarehouse_LISROR.setText(String.valueOf(model.warehouse.name));
         }
-        tvQty_LIOR.setText(String.valueOf(model.quantity));
+        tvQty_LISROR.setText(String.valueOf(model.quantity));
     }
 }

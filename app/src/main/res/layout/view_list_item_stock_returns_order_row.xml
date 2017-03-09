@@ -7,14 +7,14 @@
     android:gravity="center_vertical">
 
     <TextView
-        android:id="@+id/tvNumber_LIOR"
+        android:id="@+id/tvNumber_LISROR"
         style="@style/PdfStyle.TableStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tools:text="@string/item_product_number" />
 
     <TextView
-        android:id="@+id/tvName_LIOR"
+        android:id="@+id/tvName_LISROR"
         style="@style/PdfStyle.TableStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -22,7 +22,7 @@
         tools:text="Item name" />
 
     <TextView
-        android:id="@+id/tvSku_LIOR"
+        android:id="@+id/tvSku_LISROR"
         style="@style/PdfStyle.TableStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -30,7 +30,7 @@
         tools:text="@string/item_product_sku" />
 
     <TextView
-        android:id="@+id/tvCost_LIOR"
+        android:id="@+id/tvCost_LISROR"
         style="@style/PdfStyle.TableStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -39,7 +39,7 @@
         tools:text="Location" />
 
     <TextView
-        android:id="@+id/tvNote_LIOR"
+        android:id="@+id/tvNote_LISROR"
         style="@style/PdfStyle.TableStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -48,7 +48,7 @@
         tools:text="Shipped" />
 
     <TextView
-        android:id="@+id/tvWarehouse_LIOR"
+        android:id="@+id/tvWarehouse_LISROR"
         style="@style/PdfStyle.TableStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -57,7 +57,7 @@
         tools:text="This shipment" />
 
     <TextView
-        android:id="@+id/tvQty_LIOR"
+        android:id="@+id/tvQty_LISROR"
         style="@style/PdfStyle.TableStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

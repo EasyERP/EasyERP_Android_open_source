@@ -14,6 +14,6 @@ import org.androidannotations.annotations.EBean;
 public class StockReturnsOrderRowAdapter extends SimpleRecyclerAdapter<OrderRowDH, StockReturnsOrderRowVH> {
     @Override
     protected int getItemLayout() {
-        return R.layout.view_list_item_returns_order_row;
+        return R.layout.view_list_item_stock_returns_order_row;
     }
 }
