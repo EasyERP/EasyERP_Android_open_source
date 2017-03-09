@@ -54,28 +54,28 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/default_padding_small"
-            app:srcCompat="@drawable/ic_allocated" />
+            tools:src="@drawable/ic_allocated" />
 
         <ImageView
             android:id="@+id/ivPacked_VLIT"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/default_padding_small"
-            app:srcCompat="@drawable/ic_fulfilled" />
+            tools:src="@drawable/ic_fulfilled" />
 
         <ImageView
             android:id="@+id/ivShipped_VLIT"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/default_padding_small"
-            app:srcCompat="@drawable/ic_shipped" />
+            tools:src="@drawable/ic_shipped" />
 
         <ImageView
             android:id="@+id/ivReceived_VLIT"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/default_padding_small"
-            app:srcCompat="@drawable/ic_received" />
+            tools:src="@drawable/ic_received" />
 
     </LinearLayout>
 
