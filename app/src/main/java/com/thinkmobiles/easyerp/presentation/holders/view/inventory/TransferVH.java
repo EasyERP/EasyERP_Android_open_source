@@ -65,7 +65,7 @@ public class TransferVH extends SelectableVHHelper<TransferDH> {
             ivPrinted_VLIT.setImageResource(item.status.printed ? R.drawable.ic_print : R.drawable.ic_print_off);
             ivPacked_VLIT.setImageResource(item.status.packed ? R.drawable.ic_fulfilled : R.drawable.ic_fulfilled_off);
             ivShipped_VLIT.setImageResource(item.status.shipped ? R.drawable.ic_shipped : R.drawable.ic_shipped_off);
-            ivReceived_VLIT.setImageResource(item.status.shipped ? R.drawable.ic_shipped : R.drawable.ic_shipped_off);
+            ivReceived_VLIT.setImageResource(item.status.received ? R.drawable.ic_received : R.drawable.ic_received_off);
         }
 
         if(item.warehouse != null && !TextUtils.isEmpty(item.warehouse.name)) {

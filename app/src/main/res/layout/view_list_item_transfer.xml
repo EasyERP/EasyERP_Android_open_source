@@ -75,7 +75,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/default_padding_small"
-            app:srcCompat="@drawable/ic_shipped" />
+            app:srcCompat="@drawable/ic_received" />
 
     </LinearLayout>
 
@@ -100,7 +100,7 @@
             android:layout_height="wrap_content"
             android:textColor="@color/color_text_black"
             android:textSize="@dimen/text_list_item_medium_16"
-            android:text=" -> "
+            android:text="@string/unicode_arrow"
             android:layout_marginRight="@dimen/default_padding_half"
             android:layout_marginLeft="@dimen/default_padding_half"/>
 
