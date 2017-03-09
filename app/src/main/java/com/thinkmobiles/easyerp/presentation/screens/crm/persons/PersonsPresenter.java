@@ -89,7 +89,7 @@ public class PersonsPresenter extends MasterAlphabeticalPresenterHelper implemen
 
     private void setData(CommonPersonsResponse commonPersonsResponse, boolean needClear) {
         view.displaySelectedLetter(selectedLetter);
-        view.setDataList(prepareDataHolders(commonPersonsResponse, needClear), needClear);
+        view.setDataList(prepareDataHolders(commonPersonsResponse), needClear);
         if (personsResponse.responseGetPersons.data.isEmpty()) {
             view.displayErrorState(ErrorManager.getErrorType(null));
         } else {
@@ -97,14 +97,13 @@ public class PersonsPresenter extends MasterAlphabeticalPresenterHelper implemen
         }
     }
 
-    private ArrayList<PersonDH> prepareDataHolders(CommonPersonsResponse commonPersonsResponse, boolean needClear) {
-        int position = 0;
+    private ArrayList<PersonDH> prepareDataHolders(CommonPersonsResponse commonPersonsResponse) {
         ArrayList<PersonDH> result = new ArrayList<>();
         for (PersonModel personModel : commonPersonsResponse.responseGetPersons.data) {
             for (CustomerImageItem imageItem : commonPersonsResponse.responseGetCustomersImages.data) {
                 if (personModel.id.equalsIgnoreCase(imageItem.id)) {
                     final PersonDH personDH = new PersonDH(imageItem.imageSrc, personModel);
-                    makeSelectedDHIfNeed(personDH, position++, needClear);
+                    makeSelectedDHIfNeed(personDH, personsResponse.responseGetPersons.data.indexOf(personModel));
                     result.add(personDH);
                 }
             }

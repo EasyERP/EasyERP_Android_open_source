@@ -44,7 +44,7 @@ public abstract class MasterListFragment extends ContentFragment implements Mast
         LinearLayoutManager recyclerLayoutManager = new LinearLayoutManager(getActivity());
 
         scrollListener = new EndlessScrollListener(recyclerLayoutManager, () -> {
-            if (srlHolderRefresh.isRefreshing()) {
+            if (srlHolderRefresh.isRefreshing() || getCurrentProgressType() == Constants.ProgressType.BOTTOM) {
                 return false;
             } else {
                 getPresenter().loadNextPage();

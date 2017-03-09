@@ -53,6 +53,7 @@ public abstract class ContentFragment extends BaseMasterFlowFragment implements 
     protected FrameLayout flContent;
 
     private Toast toast;
+    private Constants.ProgressType currentProgressType = Constants.ProgressType.NONE;
 
     @ColorRes
     protected int colorPrimary;
@@ -95,6 +96,7 @@ public abstract class ContentFragment extends BaseMasterFlowFragment implements 
 
     @Override
     public void showProgress(Constants.ProgressType type) {
+        currentProgressType = type;
         llHolderError.setVisibility(View.GONE);
         switch (type) {
             case BOTTOM:
@@ -147,5 +149,9 @@ public abstract class ContentFragment extends BaseMasterFlowFragment implements 
         showProgress(Constants.ProgressType.NONE);
         toast.setText(ErrorManager.getErrorMessage(errorType));
         toast.show();
+    }
+
+    public Constants.ProgressType getCurrentProgressType() {
+        return currentProgressType;
     }
 }

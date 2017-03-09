@@ -81,7 +81,7 @@ public class GoodsOutNotesPresenter extends MasterFilterablePresenterHelper impl
     }
 
     private void setData(final List<GoodsOutNoteItem> goodsOutNoteItems, boolean needClear) {
-        view.setDataList(prepareGoodsOutNotesDHs(goodsOutNoteItems, needClear), needClear);
+        view.setDataList(prepareGoodsOutNotesDHs(goodsOutNoteItems), needClear);
         if (goodOutNotesList.isEmpty()) {
             view.displayErrorState(ErrorManager.getErrorType(null));
         } else {
@@ -89,12 +89,11 @@ public class GoodsOutNotesPresenter extends MasterFilterablePresenterHelper impl
         }
     }
 
-    private ArrayList<GoodsOutNoteDH> prepareGoodsOutNotesDHs(final List<GoodsOutNoteItem> goodsOutNoteItems, boolean needClear) {
-        int position = 0;
+    private ArrayList<GoodsOutNoteDH> prepareGoodsOutNotesDHs(final List<GoodsOutNoteItem> goodsOutNoteItems) {
         final ArrayList<GoodsOutNoteDH> result = new ArrayList<>();
         for (GoodsOutNoteItem item : goodsOutNoteItems) {
             final GoodsOutNoteDH goodsOutNoteDH = new GoodsOutNoteDH(item);
-            makeSelectedDHIfNeed(goodsOutNoteDH, position++, needClear);
+            makeSelectedDHIfNeed(goodsOutNoteDH, goodOutNotesList.indexOf(item));
             result.add(goodsOutNoteDH);
         }
         selectFirstElementIfNeed(result);

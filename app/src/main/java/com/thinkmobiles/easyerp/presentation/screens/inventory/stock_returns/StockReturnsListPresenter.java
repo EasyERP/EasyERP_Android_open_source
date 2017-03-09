@@ -79,7 +79,7 @@ public class StockReturnsListPresenter extends MasterSelectablePresenterHelper i
     }
 
     public void setData(final List<StockReturn> stockReturns, boolean needClear) {
-        view.setDataList(prepareStockReturnDHs(stockReturns, needClear), needClear);
+        view.setDataList(prepareStockReturnDHs(stockReturns), needClear);
         if (this.stockReturns.isEmpty()) {
             view.displayErrorState(ErrorManager.getErrorType(null));
         } else {
@@ -87,12 +87,11 @@ public class StockReturnsListPresenter extends MasterSelectablePresenterHelper i
         }
     }
 
-    private ArrayList<StockReturnDH> prepareStockReturnDHs(final List<StockReturn> stockReturnItems, boolean needClear) {
-        int position = 0;
+    private ArrayList<StockReturnDH> prepareStockReturnDHs(final List<StockReturn> stockReturnItems) {
         final ArrayList<StockReturnDH> result = new ArrayList<>();
         for (StockReturn stockReturn : stockReturnItems) {
             final StockReturnDH stockReturnDH = new StockReturnDH(stockReturn);
-            makeSelectedDHIfNeed(stockReturnDH, position++, needClear);
+            makeSelectedDHIfNeed(stockReturnDH, stockReturns.indexOf(stockReturn));
             result.add(stockReturnDH);
         }
         selectFirstElementIfNeed(result);

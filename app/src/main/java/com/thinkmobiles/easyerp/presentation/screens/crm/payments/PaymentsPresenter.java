@@ -93,7 +93,7 @@ public class PaymentsPresenter extends MasterFilterablePresenterHelper implement
     }
 
     private void setData(final List<Payment> payments, boolean needClear) {
-        view.setDataList(preparePaymentDHs(payments, needClear), needClear);
+        view.setDataList(preparePaymentDHs(payments), needClear);
         if (this.payments.isEmpty()) {
             view.displayErrorState(ErrorManager.getErrorType(null));
         } else {
@@ -101,12 +101,11 @@ public class PaymentsPresenter extends MasterFilterablePresenterHelper implement
         }
     }
 
-    private ArrayList<PaymentDH> preparePaymentDHs(final List<Payment> payments, boolean needClear) {
-        int position = 0;
+    private ArrayList<PaymentDH> preparePaymentDHs(final List<Payment> payments) {
         final ArrayList<PaymentDH> result = new ArrayList<>();
         for (Payment payment : payments) {
             final PaymentDH paymentDH = new PaymentDH(payment);
-            makeSelectedDHIfNeed(paymentDH, position++, needClear);
+            makeSelectedDHIfNeed(paymentDH, this.payments.indexOf(payment));
             result.add(paymentDH);
         }
         selectFirstElementIfNeed(result);
