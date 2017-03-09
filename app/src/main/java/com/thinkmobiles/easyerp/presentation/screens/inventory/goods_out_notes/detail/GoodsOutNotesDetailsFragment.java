@@ -94,7 +94,7 @@ public class GoodsOutNotesDetailsFragment extends ContentFragment implements Goo
 
     @Override
     public String getScreenName() {
-        return "Goods-Out Notes Details Screen";
+        return "Goods-Out Notes details screen";
     }
 
     @Override
