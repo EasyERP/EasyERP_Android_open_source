@@ -2,7 +2,7 @@ package com.thinkmobiles.easyerp.domain.inventory;
 
 import com.thinkmobiles.easyerp.data.api.Rest;
 import com.thinkmobiles.easyerp.data.model.crm.filter.ResponseFilters;
-import com.thinkmobiles.easyerp.data.model.inventory.transfers.ResponseGetTransferDetails;
+import com.thinkmobiles.easyerp.data.model.inventory.transfers.details.ResponseGetTransferDetails;
 import com.thinkmobiles.easyerp.data.model.inventory.transfers.ResponseGetTransfers;
 import com.thinkmobiles.easyerp.data.services.FilterService;
 import com.thinkmobiles.easyerp.data.services.TransfersService;

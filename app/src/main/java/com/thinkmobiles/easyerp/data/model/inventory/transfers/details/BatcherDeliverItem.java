@@ -1,4 +1,4 @@
-package com.thinkmobiles.easyerp.data.model.inventory.transfers;
+package com.thinkmobiles.easyerp.data.model.inventory.transfers.details;
 
 import android.os.Parcel;
 import android.os.Parcelable;

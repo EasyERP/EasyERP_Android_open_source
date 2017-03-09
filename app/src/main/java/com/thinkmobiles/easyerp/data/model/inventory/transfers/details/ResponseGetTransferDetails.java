@@ -1,12 +1,14 @@
-package com.thinkmobiles.easyerp.data.model.inventory.transfers;
+package com.thinkmobiles.easyerp.data.model.inventory.transfers.details;
 
 import android.os.Parcel;
 import android.os.Parcelable;
 
 import com.google.gson.annotations.SerializedName;
+import com.thinkmobiles.easyerp.data.model.crm.filter.FilterItem;
 import com.thinkmobiles.easyerp.data.model.crm.leads.detail.AttachmentItem;
 import com.thinkmobiles.easyerp.data.model.crm.persons.details.CreatedEditedUserString;
 import com.thinkmobiles.easyerp.data.model.inventory.goods_out_notes.InventoryStatus;
+import com.thinkmobiles.easyerp.data.model.inventory.transfers.WarehouseInfo;
 
 import java.util.ArrayList;
 
@@ -23,7 +25,7 @@ public class ResponseGetTransferDetails implements Parcelable {
 
     public WarehouseInfo warehouseTo;
     public InventoryStatus status;
-    public ArrayList<OrderRowItem> orderRows;
+    public ArrayList<TransferRowItem> orderRows;
     public ArrayList<AttachmentItem> attachments;
     public CreatedEditedUserString editedBy;
     public CreatedEditedUserString createdBy;
@@ -32,7 +34,11 @@ public class ResponseGetTransferDetails implements Parcelable {
     public int shippingCost;
     public int boxes;
     public String reference;
+    public FilterItem shippingMethod;
     public WarehouseInfo warehouse;
+
+    public ResponseGetTransferDetails() {
+    }
 
     @Override
     public int describeContents() {
@@ -55,10 +61,8 @@ public class ResponseGetTransferDetails implements Parcelable {
         dest.writeInt(this.shippingCost);
         dest.writeInt(this.boxes);
         dest.writeString(this.reference);
+        dest.writeParcelable(this.shippingMethod, flags);
         dest.writeParcelable(this.warehouse, flags);
-    }
-
-    public ResponseGetTransferDetails() {
     }
 
     protected ResponseGetTransferDetails(Parcel in) {
@@ -67,8 +71,8 @@ public class ResponseGetTransferDetails implements Parcelable {
         this.description = in.readString();
         this.warehouseTo = in.readParcelable(WarehouseInfo.class.getClassLoader());
         this.status = in.readParcelable(InventoryStatus.class.getClassLoader());
-        this.orderRows = new ArrayList<OrderRowItem>();
-        in.readList(this.orderRows, OrderRowItem.class.getClassLoader());
+        this.orderRows = new ArrayList<TransferRowItem>();
+        in.readList(this.orderRows, TransferRowItem.class.getClassLoader());
         this.attachments = in.createTypedArrayList(AttachmentItem.CREATOR);
         this.editedBy = in.readParcelable(CreatedEditedUserString.class.getClassLoader());
         this.createdBy = in.readParcelable(CreatedEditedUserString.class.getClassLoader());
@@ -77,10 +81,11 @@ public class ResponseGetTransferDetails implements Parcelable {
         this.shippingCost = in.readInt();
         this.boxes = in.readInt();
         this.reference = in.readString();
+        this.shippingMethod = in.readParcelable(FilterItem.class.getClassLoader());
         this.warehouse = in.readParcelable(WarehouseInfo.class.getClassLoader());
     }
 
-    public static final Parcelable.Creator<ResponseGetTransferDetails> CREATOR = new Parcelable.Creator<ResponseGetTransferDetails>() {
+    public static final Creator<ResponseGetTransferDetails> CREATOR = new Creator<ResponseGetTransferDetails>() {
         @Override
         public ResponseGetTransferDetails createFromParcel(Parcel source) {
             return new ResponseGetTransferDetails(source);

@@ -1,6 +1,6 @@
 package com.thinkmobiles.easyerp.data.services;
 
-import com.thinkmobiles.easyerp.data.model.inventory.transfers.ResponseGetTransferDetails;
+import com.thinkmobiles.easyerp.data.model.inventory.transfers.details.ResponseGetTransferDetails;
 import com.thinkmobiles.easyerp.data.model.inventory.transfers.ResponseGetTransfers;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
