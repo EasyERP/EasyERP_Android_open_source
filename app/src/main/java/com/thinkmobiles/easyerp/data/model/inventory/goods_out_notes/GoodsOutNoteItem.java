@@ -3,6 +3,7 @@ package com.thinkmobiles.easyerp.data.model.inventory.goods_out_notes;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.google.gson.annotations.SerializedName;
 import com.thinkmobiles.easyerp.data.model.crm.dashboard.detail.order.OrderBase;
 import com.thinkmobiles.easyerp.data.model.crm.filter.FilterItem;
 import com.thinkmobiles.easyerp.data.model.crm.leads.Workflow;
@@ -12,8 +13,10 @@ import com.thinkmobiles.easyerp.data.model.crm.persons.details.CreatedEditedUser
  * Created by Lynx on 3/6/2017.
  */
 
-public class GoodOutNoteItem implements Parcelable {
-    public String _id;
+public class GoodsOutNoteItem implements Parcelable {
+
+    @SerializedName("_id")
+    public String id;
     public int total;
     public String name;
     public OrderBase order;
@@ -28,7 +31,7 @@ public class GoodOutNoteItem implements Parcelable {
     public boolean picked;
     public boolean packed;
 
-    public GoodOutNoteItem() {
+    public GoodsOutNoteItem() {
     }
 
     @Override
@@ -38,7 +41,7 @@ public class GoodOutNoteItem implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(this._id);
+        dest.writeString(this.id);
         dest.writeInt(this.total);
         dest.writeString(this.name);
         dest.writeParcelable(this.order, flags);
@@ -54,8 +57,8 @@ public class GoodOutNoteItem implements Parcelable {
         dest.writeByte(this.packed ? (byte) 1 : (byte) 0);
     }
 
-    protected GoodOutNoteItem(Parcel in) {
-        this._id = in.readString();
+    protected GoodsOutNoteItem(Parcel in) {
+        this.id = in.readString();
         this.total = in.readInt();
         this.name = in.readString();
         this.order = in.readParcelable(OrderBase.class.getClassLoader());
@@ -71,15 +74,15 @@ public class GoodOutNoteItem implements Parcelable {
         this.packed = in.readByte() != 0;
     }
 
-    public static final Creator<GoodOutNoteItem> CREATOR = new Creator<GoodOutNoteItem>() {
+    public static final Creator<GoodsOutNoteItem> CREATOR = new Creator<GoodsOutNoteItem>() {
         @Override
-        public GoodOutNoteItem createFromParcel(Parcel source) {
-            return new GoodOutNoteItem(source);
+        public GoodsOutNoteItem createFromParcel(Parcel source) {
+            return new GoodsOutNoteItem(source);
         }
 
         @Override
-        public GoodOutNoteItem[] newArray(int size) {
-            return new GoodOutNoteItem[size];
+        public GoodsOutNoteItem[] newArray(int size) {
+            return new GoodsOutNoteItem[size];
         }
     };
 }

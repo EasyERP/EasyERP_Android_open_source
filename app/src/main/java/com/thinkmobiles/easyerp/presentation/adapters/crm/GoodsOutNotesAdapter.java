@@ -15,6 +15,6 @@ import org.androidannotations.annotations.EBean;
 public class GoodsOutNotesAdapter extends SelectableAdapter<GoodOutNoteDH, GoodOutNoteVH> {
     @Override
     protected int getItemLayout() {
-        return R.layout.view_list_item_good_out_note;
+        return R.layout.view_list_item_goods_out_note;
     }
 }
