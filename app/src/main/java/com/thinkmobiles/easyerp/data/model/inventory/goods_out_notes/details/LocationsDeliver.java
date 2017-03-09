@@ -9,7 +9,7 @@ import com.google.gson.annotations.SerializedName;
  * Created by samson on 06.03.17.
  */
 
-public class LocationDeliver implements Parcelable {
+public class LocationsDeliver implements Parcelable {
 
     @SerializedName("_id")
     public String id;
@@ -24,7 +24,7 @@ public class LocationDeliver implements Parcelable {
     public String name;
 
 
-    public LocationDeliver() {
+    public LocationsDeliver() {
     }
 
     @Override
@@ -38,20 +38,20 @@ public class LocationDeliver implements Parcelable {
         dest.writeString(this.name);
     }
 
-    protected LocationDeliver(Parcel in) {
+    protected LocationsDeliver(Parcel in) {
         this.id = in.readString();
         this.name = in.readString();
     }
 
-    public static final Creator<LocationDeliver> CREATOR = new Creator<LocationDeliver>() {
+    public static final Creator<LocationsDeliver> CREATOR = new Creator<LocationsDeliver>() {
         @Override
-        public LocationDeliver createFromParcel(Parcel source) {
-            return new LocationDeliver(source);
+        public LocationsDeliver createFromParcel(Parcel source) {
+            return new LocationsDeliver(source);
         }
 
         @Override
-        public LocationDeliver[] newArray(int size) {
-            return new LocationDeliver[size];
+        public LocationsDeliver[] newArray(int size) {
+            return new LocationsDeliver[size];
         }
     };
 }

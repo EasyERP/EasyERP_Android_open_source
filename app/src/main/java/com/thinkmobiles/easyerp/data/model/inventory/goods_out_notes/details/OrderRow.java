@@ -36,7 +36,7 @@ public class OrderRow implements Parcelable {
     public SubProduct product;
     public int shipped;
     public int selectedQuantity;
-    public ArrayList<LocationDeliver> locationsDeliver;
+    public ArrayList<LocationsDeliver> locationsDeliver;
 
 
 
@@ -90,7 +90,7 @@ public class OrderRow implements Parcelable {
         this.product = in.readParcelable(SubProduct.class.getClassLoader());
         this.shipped = in.readInt();
         this.selectedQuantity = in.readInt();
-        this.locationsDeliver = in.createTypedArrayList(LocationDeliver.CREATOR);
+        this.locationsDeliver = in.createTypedArrayList(LocationsDeliver.CREATOR);
     }
 
     public static final Creator<OrderRow> CREATOR = new Creator<OrderRow>() {

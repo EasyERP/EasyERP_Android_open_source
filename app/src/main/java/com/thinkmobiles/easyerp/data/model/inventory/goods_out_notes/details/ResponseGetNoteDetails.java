@@ -6,7 +6,6 @@ import android.os.Parcelable;
 import com.google.gson.annotations.SerializedName;
 import com.thinkmobiles.easyerp.data.model.crm.filter.FilterItem;
 import com.thinkmobiles.easyerp.data.model.crm.leads.detail.CreatedEditedBy;
-import com.thinkmobiles.easyerp.data.model.crm.order.detail.ResponseGetOrderDetails;
 import com.thinkmobiles.easyerp.data.model.inventory.goods_out_notes.GoodOutNoteStatus;
 
 import java.util.ArrayList;
@@ -22,7 +21,7 @@ public class ResponseGetNoteDetails implements Parcelable {
     public String name;
     public GoodOutNoteStatus status;
     public ArrayList<OrderRow> orderRows;
-    public NoteOrder order;
+    public GoodsOutNoteOrder order;
     public CreatedEditedBy editedBy;
     public String description;
     public CreatedEditedBy createdBy;
@@ -59,7 +58,7 @@ public class ResponseGetNoteDetails implements Parcelable {
         this.name = in.readString();
         this.status = in.readParcelable(GoodOutNoteStatus.class.getClassLoader());
         this.orderRows = in.createTypedArrayList(OrderRow.CREATOR);
-        this.order = in.readParcelable(NoteOrder.class.getClassLoader());
+        this.order = in.readParcelable(GoodsOutNoteOrder.class.getClassLoader());
         this.editedBy = in.readParcelable(CreatedEditedBy.class.getClassLoader());
         this.description = in.readString();
         this.createdBy = in.readParcelable(CreatedEditedBy.class.getClassLoader());

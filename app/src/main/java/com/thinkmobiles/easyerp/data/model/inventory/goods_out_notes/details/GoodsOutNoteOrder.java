@@ -4,29 +4,13 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import com.google.gson.annotations.SerializedName;
-import com.thinkmobiles.easyerp.data.model.crm.dashboard.detail.order.OrderStatus;
-import com.thinkmobiles.easyerp.data.model.crm.filter.FilterItem;
-import com.thinkmobiles.easyerp.data.model.crm.invoice.Currency;
-import com.thinkmobiles.easyerp.data.model.crm.invoice.PaymentInfo;
-import com.thinkmobiles.easyerp.data.model.crm.leads.Workflow;
-import com.thinkmobiles.easyerp.data.model.crm.leads.detail.AttachmentItem;
-import com.thinkmobiles.easyerp.data.model.crm.leads.detail.CreatedEditedBy;
-import com.thinkmobiles.easyerp.data.model.crm.leads.detail.Groups;
-import com.thinkmobiles.easyerp.data.model.crm.leads.detail.NoteItem;
-import com.thinkmobiles.easyerp.data.model.crm.leads.detail.SalesPerson;
-import com.thinkmobiles.easyerp.data.model.crm.order.detail.OrderProduct;
-import com.thinkmobiles.easyerp.data.model.crm.order.detail.PaymentMethod;
-import com.thinkmobiles.easyerp.data.model.crm.order.detail.Prepayment;
 import com.thinkmobiles.easyerp.data.model.crm.order.detail.Supplier;
-import com.thinkmobiles.easyerp.data.model.crm.persons.details.CreatedEditedUserString;
-
-import java.util.ArrayList;
 
 /**
  * Created by samson on 07.03.17.
  */
 
-public class NoteOrder implements Parcelable {
+public class GoodsOutNoteOrder implements Parcelable {
 
     @SerializedName("_id")
     public String id;
@@ -68,7 +52,7 @@ public class NoteOrder implements Parcelable {
 //    public Prepayment prepayment;
 //    public InvoiceItem invoice;
 
-    public NoteOrder() {
+    public GoodsOutNoteOrder() {
     }
 
     @Override
@@ -85,7 +69,7 @@ public class NoteOrder implements Parcelable {
         dest.writeParcelable(this.supplier, flags);
     }
 
-    protected NoteOrder(Parcel in) {
+    protected GoodsOutNoteOrder(Parcel in) {
         this.id = in.readString();
         this._type = in.readString();
         this._v = in.readInt();
@@ -93,15 +77,15 @@ public class NoteOrder implements Parcelable {
         this.supplier = in.readParcelable(Supplier.class.getClassLoader());
     }
 
-    public static final Creator<NoteOrder> CREATOR = new Creator<NoteOrder>() {
+    public static final Creator<GoodsOutNoteOrder> CREATOR = new Creator<GoodsOutNoteOrder>() {
         @Override
-        public NoteOrder createFromParcel(Parcel source) {
-            return new NoteOrder(source);
+        public GoodsOutNoteOrder createFromParcel(Parcel source) {
+            return new GoodsOutNoteOrder(source);
         }
 
         @Override
-        public NoteOrder[] newArray(int size) {
-            return new NoteOrder[size];
+        public GoodsOutNoteOrder[] newArray(int size) {
+            return new GoodsOutNoteOrder[size];
         }
     };
 }

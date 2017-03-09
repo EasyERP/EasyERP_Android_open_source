@@ -66,6 +66,7 @@ public class GoodsOutNotesDetailsPresenter extends ContentPresenterHelper implem
         noteDetails = response;
         view.setName(response.name);
         view.setTitle(String.format("Goods-out Notes #%s", response.name));
+        view.setPrint(DateManager.convert(response.date).setDstPattern(DateManager.PATTERN_DATE_SIMPLE_PREVIEW).toString());
         view.setPrint(DateManager.convert(response.status.printedOn).setDstPattern(DateManager.PATTERN_DATE_SIMPLE_PREVIEW).toString());
         view.setPick(DateManager.convert(response.status.pickedOn).setDstPattern(DateManager.PATTERN_DATE_SIMPLE_PREVIEW).toString());
         view.setPack(DateManager.convert(response.status.packedOn).setDstPattern(DateManager.PATTERN_DATE_SIMPLE_PREVIEW).toString());
