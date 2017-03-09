@@ -20,11 +20,6 @@ public abstract class ContentPresenterHelper implements ContentPresenter {
     protected CompositeSubscription compositeSubscription = new CompositeSubscription();
 
     @Override
-    public void refresh() {
-
-    }
-
-    @Override
     public void subscribe() {
         if (!hasContent()) {
             request();

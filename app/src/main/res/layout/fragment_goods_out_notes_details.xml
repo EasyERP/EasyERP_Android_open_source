@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nsvContent_FGOND"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:background="@android:color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvTitle_FGOND"
+            style="@style/TextDetailsTitleStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_with_bottom_divider_line"
+            android:padding="@dimen/default_padding"
+            tools:text="Web development" />
+
+        <TextView
+            style="@style/TextContentTitle.WithoutPadding"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/default_padding"
+            android:layout_marginStart="@dimen/default_padding"
+            android:text="Goods-out note Preview" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/default_padding">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/PdfStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tracking ref" />
+
+                <TextView
+                    style="@style/PdfStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/default_padding"
+                    android:text="Shipping method" />
+
+                <TextView
+                    style="@style/PdfStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/default_padding"
+                    android:text="Print" />
+
+                <TextView
+                    style="@style/PdfStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/default_padding"
+                    android:text="Pick" />
+
+                <TextView
+                    style="@style/PdfStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/default_padding"
+                    android:text="Pack" />
+
+                <TextView
+                    style="@style/PdfStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/default_padding"
+                    android:text="Ship" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/default_padding"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvReference_FGOND"
+                    style="@style/PdfStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="10058620.00" />
+
+                <TextView
+                    android:id="@+id/tvShipping_FGOND"
+                    style="@style/PdfStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/default_padding"
+                    tools:text="10058620.00" />
+
+                <TextView
+                    android:id="@+id/tvPrint_FGOND"
+                    style="@style/PdfStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/default_padding"
+                    tools:text="10058620.00" />
+
+                <TextView
+                    android:id="@+id/tvPick_FGOND"
+                    style="@style/PdfStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/default_padding"
+                    tools:text="10058620.00" />
+
+                <TextView
+                    android:id="@+id/tvPack_FGOND"
+                    style="@style/PdfStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/default_padding"
+                    tools:text="10058620.00" />
+
+                <TextView
+                    android:id="@+id/tvShip_FGOND"
+                    style="@style/PdfStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/default_padding"
+                    tools:text="10058620.00" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/default_padding">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/white"
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/default_dimen_32"
+                android:paddingTop="@dimen/default_dimen_32">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/default_padding"
+                    android:baselineAligned="false"
+                    android:padding="@dimen/default_padding">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tvCompanyName_FGOND"
+                            style="@style/PdfStyle.BoldText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:lineSpacingExtra="16sp"
+                            android:textColor="@color/color_text_black"
+                            tools:text="EasyERP Inc" />
+
+                        <TextView
+                            android:id="@+id/tvCompanyAddress_FGOND"
+                            style="@style/PdfStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:lineSpacingExtra="4dp"
+                            android:textColor="@color/color_text_black"
+                            tools:text="Uzhhorod, 47 Shandora Petefi sq., 7th floor, Transcarpation, 88000, Ukraine" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/default_padding"
+                        android:gravity="end"
+                        android:orientation="vertical">
+
+                        <TextView
+                            style="@style/RobotoLight"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Delivery Note"
+                            android:textAllCaps="true"
+                            android:textColor="@color/color_text_black"
+                            android:textSize="@dimen/text_sixe_pdf_type" />
+
+                        <TextView
+                            android:id="@+id/tvName_FGOND"
+                            style="@style/PdfStyle.FieldTitleStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAllCaps="true"
+                            android:textColor="@color/color_text_gray"
+                            tools:text="SO_30" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <TextView
+                    style="@style/PdfStyle.BoldText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_marginEnd="@dimen/default_padding"
+                    android:layout_marginStart="@dimen/default_padding"
+                    android:gravity="end"
+                    android:text="Date" />
+
+                <TextView
+                    android:id="@+id/tvDate_FGOND"
+                    style="@style/PdfStyle.BoldText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_marginEnd="@dimen/default_padding"
+                    android:layout_marginStart="@dimen/default_padding"
+                    android:gravity="end"
+                    tools:text="10058620.00" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginStart="16dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/PdfStyle.FieldTitleStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/order_details_bill_to" />
+
+                    <TextView
+                        android:id="@+id/tvSupplierName_FGOND"
+                        style="@style/PdfStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/colorAccent"
+                        tools:text="Adrian Trif" />
+
+                    <TextView
+                        android:id="@+id/tvSupplierAddress_FGOND"
+                        style="@style/PdfStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text="Transcarpation, 88000, Ukraine, Uzhhorod, 47 Shandora Petefi sq., 7th floor," />
+
+                </LinearLayout>
+
+                <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/default_padding"
+                    android:layout_marginStart="@dimen/default_padding"
+                    android:layout_marginTop="@dimen/default_padding_big"
+                    android:background="@color/color_bg_header_table_product"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        style="@style/PdfStyle.TableStyle.Header"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/item_product_number" />
+
+                    <TextView
+                        style="@style/PdfStyle.TableStyle.Header"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Item name" />
+
+                    <TextView
+                        style="@style/PdfStyle.TableStyle.Header"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/item_product_sku" />
+
+                    <TextView
+                        style="@style/PdfStyle.TableStyle.Header"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical|end"
+                        android:text="Location" />
+
+                    <TextView
+                        style="@style/PdfStyle.TableStyle.Header"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical|end"
+                        android:text="Shipped" />
+
+                    <TextView
+                        style="@style/PdfStyle.TableStyle.Header"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical|end"
+                        android:text="This shipment" />
+
+                    <TextView
+                        style="@style/PdfStyle.TableStyle.Header"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical|end"
+                        android:text="To Follow" />
+
+                </LinearLayout>
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rvProductList_FGOND"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/default_padding"
+                    android:layout_marginStart="@dimen/default_padding" />
+
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+    </LinearLayout>
+
+</android.support.v4.widget.NestedScrollView>
