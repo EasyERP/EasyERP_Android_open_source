@@ -34,10 +34,10 @@ public abstract class MasterSelectablePresenterHelper extends MasterListPresente
         return selectedInfo != null ? selectedInfo.second : null;
     }
 
-    protected void makeSelectedDHIfNeed(final SelectableDHHelper dhHelper, final int currentPositionInData, boolean isRefresh) {
+    protected void makeSelectedDHIfNeed(final SelectableDHHelper dhHelper, final int currentPositionInData) {
         if (dhHelper.getId().equals(getSelectedItemId()) && getView().withItemSelecting()) {
             dhHelper.setSelected(true);
-            setSelectedInfo((isRefresh ? 0 : getCountItems()) + currentPositionInData, getSelectedItemId());
+            setSelectedInfo(currentPositionInData, getSelectedItemId());
         }
     }
 
@@ -54,7 +54,7 @@ public abstract class MasterSelectablePresenterHelper extends MasterListPresente
     protected void selectFirstElementIfNeed(final List<? extends SelectableDHHelper> preparedDHs) {
         if (getSelectedItemId() == null && preparedDHs.size() > 0 && getView().withItemSelecting()) {
             clickItem(0);
-            makeSelectedDHIfNeed(preparedDHs.get(0), 0, true);
+            makeSelectedDHIfNeed(preparedDHs.get(0), 0);
         }
     }
 

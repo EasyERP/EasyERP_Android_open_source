@@ -79,7 +79,7 @@ public class StockCorrectionsListPresenter extends MasterSelectablePresenterHelp
     }
 
     public void setData(final List<StockCorrection> stockCorrections, boolean needClear) {
-        view.setDataList(prepareStockCorrectionDHs(stockCorrections, needClear), needClear);
+        view.setDataList(prepareStockCorrectionDHs(stockCorrections), needClear);
         if (this.stockCorrections.isEmpty()) {
             view.displayErrorState(ErrorManager.getErrorType(null));
         } else {
@@ -87,12 +87,11 @@ public class StockCorrectionsListPresenter extends MasterSelectablePresenterHelp
         }
     }
 
-    private ArrayList<StockCorrectionDH> prepareStockCorrectionDHs(final List<StockCorrection> stockCorrections, boolean needClear) {
-        int position = 0;
+    private ArrayList<StockCorrectionDH> prepareStockCorrectionDHs(final List<StockCorrection> stockCorrections) {
         final ArrayList<StockCorrectionDH> result = new ArrayList<>();
         for (StockCorrection stockCorrection : stockCorrections) {
             final StockCorrectionDH stockCorrectionDH = new StockCorrectionDH(stockCorrection);
-            makeSelectedDHIfNeed(stockCorrectionDH, position++, needClear);
+            makeSelectedDHIfNeed(stockCorrectionDH, this.stockCorrections.indexOf(stockCorrection));
             result.add(stockCorrectionDH);
         }
         selectFirstElementIfNeed(result);

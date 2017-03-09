@@ -81,7 +81,7 @@ public class OpportunitiesPresenter extends MasterFilterablePresenterHelper impl
 
 
     private void setData(final ArrayList<OpportunityListItem> list, boolean needClear) {
-        view.setDataList(prepareOpportunitiesDHs(list, needClear), needClear);
+        view.setDataList(prepareOpportunitiesDHs(list), needClear);
         if (opportunityItems.isEmpty()) {
             view.displayErrorState(ErrorManager.getErrorType(null));
         } else {
@@ -90,12 +90,11 @@ public class OpportunitiesPresenter extends MasterFilterablePresenterHelper impl
     }
 
 
-    private ArrayList<OpportunityDH> prepareOpportunitiesDHs(ArrayList<OpportunityListItem> list, boolean needClear) {
-        int position = 0;
+    private ArrayList<OpportunityDH> prepareOpportunitiesDHs(ArrayList<OpportunityListItem> list) {
         final ArrayList<OpportunityDH> result = new ArrayList<>();
         for (OpportunityListItem opportunityItem : list) {
             final OpportunityDH opportunityDH = new OpportunityDH(opportunityItem);
-            makeSelectedDHIfNeed(opportunityDH, position++, needClear);
+            makeSelectedDHIfNeed(opportunityDH, opportunityItems.indexOf(opportunityItem));
             result.add(opportunityDH);
         }
         selectFirstElementIfNeed(result);
