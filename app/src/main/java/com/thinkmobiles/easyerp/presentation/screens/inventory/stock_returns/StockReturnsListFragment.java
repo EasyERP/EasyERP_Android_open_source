@@ -6,6 +6,7 @@ import com.thinkmobiles.easyerp.presentation.base.rules.master.selectable.Master
 import com.thinkmobiles.easyerp.presentation.base.rules.master.selectable.SelectableAdapter;
 import com.thinkmobiles.easyerp.presentation.base.rules.master.selectable.SelectablePresenter;
 import com.thinkmobiles.easyerp.presentation.managers.GoogleAnalyticHelper;
+import com.thinkmobiles.easyerp.presentation.screens.inventory.stock_returns.details.StockReturnsDetailsFragment_;
 
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterViews;
@@ -61,7 +62,9 @@ public class StockReturnsListFragment extends MasterSelectableFragment implement
     @Override
     public void openStockReturnsDetail(String id) {
         if (id != null) {
-            //TODO open Stock Return detail
+            mActivity.replaceFragmentContentDetail(StockReturnsDetailsFragment_.builder()
+                    .id(id)
+                    .build());
         } else {
             mActivity.replaceFragmentContentDetail(null);
         }

@@ -80,7 +80,7 @@ public class TransfersPresenter extends MasterFilterablePresenterHelper implemen
     }
 
     private void setData(final List<TransferItem> transferItems, boolean needClear) {
-        view.setDataList(prepareOrderDHs(transferItems, needClear), needClear);
+        view.setDataList(prepareOrderDHs(transferItems), needClear);
         if (listOfItems.isEmpty()) {
             view.displayErrorState(ErrorManager.getErrorType(null));
         } else {
@@ -88,12 +88,11 @@ public class TransfersPresenter extends MasterFilterablePresenterHelper implemen
         }
     }
 
-    private ArrayList<TransferDH> prepareOrderDHs(final List<TransferItem> transferItems, boolean needClear) {
-        int position = 0;
+    private ArrayList<TransferDH> prepareOrderDHs(final List<TransferItem> transferItems) {
         final ArrayList<TransferDH> result = new ArrayList<>();
         for (TransferItem item : transferItems) {
             final TransferDH goodOutNoteDH = new TransferDH(item);
-            makeSelectedDHIfNeed(goodOutNoteDH, position++, needClear);
+            makeSelectedDHIfNeed(goodOutNoteDH, listOfItems.indexOf(item));
             result.add(goodOutNoteDH);
         }
         selectFirstElementIfNeed(result);
