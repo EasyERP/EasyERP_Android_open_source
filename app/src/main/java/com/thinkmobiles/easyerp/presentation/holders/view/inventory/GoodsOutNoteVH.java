@@ -12,7 +12,7 @@ import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.data.model.inventory.goods_out_notes.GoodOutNoteItem;
 import com.thinkmobiles.easyerp.presentation.base.rules.master.selectable.SelectableVHHelper;
 import com.thinkmobiles.easyerp.presentation.custom.RoundRectDrawable;
-import com.thinkmobiles.easyerp.presentation.holders.data.inventory.GoodOutNoteDH;
+import com.thinkmobiles.easyerp.presentation.holders.data.inventory.GoodsOutNoteDH;
 import com.thinkmobiles.easyerp.presentation.managers.DateManager;
 import com.thinkmobiles.easyerp.presentation.managers.TagHelper;
 
@@ -20,7 +20,7 @@ import com.thinkmobiles.easyerp.presentation.managers.TagHelper;
  * Created by Lynx on 3/7/2017.
  */
 
-public class GoodOutNoteVH extends SelectableVHHelper<GoodOutNoteDH> {
+public class GoodsOutNoteVH extends SelectableVHHelper<GoodsOutNoteDH> {
 
     private TextView tvId_VLIGON;
     private TextView tvStatus_VLIGON;
@@ -35,7 +35,7 @@ public class GoodOutNoteVH extends SelectableVHHelper<GoodOutNoteDH> {
     private String not_assigned;
     private String patternCreated;
 
-    public GoodOutNoteVH(View itemView, @Nullable OnCardClickListener listener, int viewType) {
+    public GoodsOutNoteVH(View itemView, @Nullable OnCardClickListener listener, int viewType) {
         super(itemView, listener, viewType);
 
         tvId_VLIGON = findView(R.id.tvId_VLIGON);
@@ -53,7 +53,7 @@ public class GoodOutNoteVH extends SelectableVHHelper<GoodOutNoteDH> {
     }
 
     @Override
-    public void bindData(GoodOutNoteDH data) {
+    public void bindData(GoodsOutNoteDH data) {
         super.bindData(data);
         GoodOutNoteItem item = data.getItem();
 

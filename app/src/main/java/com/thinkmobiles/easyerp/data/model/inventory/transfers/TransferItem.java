@@ -3,6 +3,7 @@ package com.thinkmobiles.easyerp.data.model.inventory.transfers;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.google.gson.annotations.SerializedName;
 import com.thinkmobiles.easyerp.data.model.crm.leads.detail.CreatedEditedBy;
 import com.thinkmobiles.easyerp.data.model.inventory.goods_out_notes.InventoryStatus;
 
@@ -11,7 +12,8 @@ import com.thinkmobiles.easyerp.data.model.inventory.goods_out_notes.InventorySt
  */
 
 public class TransferItem implements Parcelable {
-    public String _id;
+    @SerializedName("_id")
+    public String id;
     public int total;
     public String name;
     public WarehouseInfo warehouse;
@@ -31,7 +33,7 @@ public class TransferItem implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(this._id);
+        dest.writeString(this.id);
         dest.writeInt(this.total);
         dest.writeString(this.name);
         dest.writeParcelable(this.warehouse, flags);
@@ -43,7 +45,7 @@ public class TransferItem implements Parcelable {
     }
 
     protected TransferItem(Parcel in) {
-        this._id = in.readString();
+        this.id = in.readString();
         this.total = in.readInt();
         this.name = in.readString();
         this.warehouse = in.readParcelable(WarehouseInfo.class.getClassLoader());

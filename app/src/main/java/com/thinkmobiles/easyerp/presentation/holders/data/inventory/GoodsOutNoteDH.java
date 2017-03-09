@@ -7,11 +7,11 @@ import com.thinkmobiles.easyerp.presentation.base.rules.master.selectable.Select
  * Created by Lynx on 3/7/2017.
  */
 
-public class GoodOutNoteDH extends SelectableDHHelper {
+public class GoodsOutNoteDH extends SelectableDHHelper {
 
     private GoodOutNoteItem item;
 
-    public GoodOutNoteDH(GoodOutNoteItem item) {
+    public GoodsOutNoteDH(GoodOutNoteItem item) {
         this.item = item;
     }
 

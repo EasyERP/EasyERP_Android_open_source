@@ -4,7 +4,7 @@ import com.thinkmobiles.easyerp.data.model.inventory.goods_out_notes.GoodOutNote
 import com.thinkmobiles.easyerp.presentation.base.rules.master.filterable.FilterableModel;
 import com.thinkmobiles.easyerp.presentation.base.rules.master.filterable.FilterableView;
 import com.thinkmobiles.easyerp.presentation.base.rules.master.filterable.MasterFilterablePresenterHelper;
-import com.thinkmobiles.easyerp.presentation.holders.data.inventory.GoodOutNoteDH;
+import com.thinkmobiles.easyerp.presentation.holders.data.inventory.GoodsOutNoteDH;
 import com.thinkmobiles.easyerp.presentation.managers.ErrorManager;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
@@ -81,7 +81,7 @@ public class GoodsOutNotesPresenter extends MasterFilterablePresenterHelper impl
     }
 
     private void setData(final List<GoodOutNoteItem> goodOutNoteItems, boolean needClear) {
-        view.setDataList(prepareOrderDHs(goodOutNoteItems, needClear), needClear);
+        view.setDataList(prepareGoodsOutNotesDHs(goodOutNoteItems, needClear), needClear);
         if (goodOutNotesList.isEmpty()) {
             view.displayErrorState(ErrorManager.getErrorType(null));
         } else {
@@ -89,13 +89,13 @@ public class GoodsOutNotesPresenter extends MasterFilterablePresenterHelper impl
         }
     }
 
-    private ArrayList<GoodOutNoteDH> prepareOrderDHs(final List<GoodOutNoteItem> goodOutNoteItems, boolean needClear) {
+    private ArrayList<GoodsOutNoteDH> prepareGoodsOutNotesDHs(final List<GoodOutNoteItem> goodOutNoteItems, boolean needClear) {
         int position = 0;
-        final ArrayList<GoodOutNoteDH> result = new ArrayList<>();
+        final ArrayList<GoodsOutNoteDH> result = new ArrayList<>();
         for (GoodOutNoteItem item : goodOutNoteItems) {
-            final GoodOutNoteDH goodOutNoteDH = new GoodOutNoteDH(item);
-            makeSelectedDHIfNeed(goodOutNoteDH, position++, needClear);
-            result.add(goodOutNoteDH);
+            final GoodsOutNoteDH goodsOutNoteDH = new GoodsOutNoteDH(item);
+            makeSelectedDHIfNeed(goodsOutNoteDH, position++, needClear);
+            result.add(goodsOutNoteDH);
         }
         selectFirstElementIfNeed(result);
         return result;
