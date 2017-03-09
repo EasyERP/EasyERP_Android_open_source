@@ -1,7 +1,5 @@
 package com.thinkmobiles.easyerp.presentation.screens.crm.companies.details;
 
-import android.os.Bundle;
-
 import com.thinkmobiles.easyerp.data.model.crm.companies.detail.ResponseGetCompanyDetails;
 import com.thinkmobiles.easyerp.presentation.base.BaseModel;
 import com.thinkmobiles.easyerp.presentation.base.BaseView;
@@ -11,7 +9,6 @@ import com.thinkmobiles.easyerp.presentation.holders.data.crm.AttachmentDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.ContactDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.HistoryDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.LeadAndOpportunityDH;
-import com.thinkmobiles.easyerp.presentation.listeners.IFragmentInstance;
 
 import java.util.ArrayList;
 

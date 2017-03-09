@@ -22,7 +22,7 @@ public abstract class BaseSupportFragment<T extends AppCompatActivity> extends F
         try {
             mActivity = (T) context;
         } catch (ClassCastException e) {
-            throw new RuntimeException("This fragment should have mActivity instance");
+            throw new RuntimeException("This fragment should have Activity instance");
         }
     }
 }

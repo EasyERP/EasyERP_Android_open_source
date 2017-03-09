@@ -19,8 +19,6 @@ import com.thinkmobiles.easyerp.presentation.utils.StringUtil;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
-import rx.subscriptions.CompositeSubscription;
-
 /**
  * @author Alex Michenko (Created on 06.02.17).
  *         Company: Thinkmobiles

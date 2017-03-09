@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_with_bottom_divider_line_selector"
+    android:orientation="vertical"
+    android:padding="@dimen/default_padding"
+    tools:background="@android:color/white">
+
+    <TextView
+        android:id="@+id/tvReason_VLISC"
+        style="@style/TextListTitleStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="Web development" />
+
+
+    <TextView
+        android:id="@+id/tvWarehouse_VLISC"
+        style="@style/RobotoRegular"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:layout_marginBottom="@dimen/default_padding_quart"
+        android:layout_marginTop="@dimen/default_padding_quart"
+        android:text="@string/not_assigned"
+        android:textColor="@color/color_text_black"
+        android:textSize="@dimen/text_list_item_medium_16"
+        tools:text="Local Stock" />
+
+    <TextView
+        android:id="@+id/tvCreatedDate_VLISC"
+        style="@style/TextListInfoGreyStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="Created Date: 02 Feb, 2017, 11:00:44" />
+
+</LinearLayout>
+

@@ -1,4 +1,4 @@
-package com.thinkmobiles.easyerp.presentation.holders.view.crm;
+package com.thinkmobiles.easyerp.presentation.holders.view.inventory;
 
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
@@ -9,10 +9,10 @@ import android.widget.TextView;
 
 import com.michenko.simpleadapter.OnCardClickListener;
 import com.thinkmobiles.easyerp.R;
-import com.thinkmobiles.easyerp.data.model.inventory.goods_out_notes.GoodOutNoteItem;
+import com.thinkmobiles.easyerp.data.model.inventory.goods_out_notes.GoodsOutNoteItem;
 import com.thinkmobiles.easyerp.presentation.base.rules.master.selectable.SelectableVHHelper;
 import com.thinkmobiles.easyerp.presentation.custom.RoundRectDrawable;
-import com.thinkmobiles.easyerp.presentation.holders.data.crm.GoodOutNoteDH;
+import com.thinkmobiles.easyerp.presentation.holders.data.inventory.GoodsOutNoteDH;
 import com.thinkmobiles.easyerp.presentation.managers.DateManager;
 import com.thinkmobiles.easyerp.presentation.managers.TagHelper;
 
@@ -20,7 +20,7 @@ import com.thinkmobiles.easyerp.presentation.managers.TagHelper;
  * Created by Lynx on 3/7/2017.
  */
 
-public class GoodOutNoteVH extends SelectableVHHelper<GoodOutNoteDH> {
+public class GoodsOutNoteVH extends SelectableVHHelper<GoodsOutNoteDH> {
 
     private TextView tvId_VLIGON;
     private TextView tvStatus_VLIGON;
@@ -35,7 +35,7 @@ public class GoodOutNoteVH extends SelectableVHHelper<GoodOutNoteDH> {
     private String not_assigned;
     private String patternCreated;
 
-    public GoodOutNoteVH(View itemView, @Nullable OnCardClickListener listener, int viewType) {
+    public GoodsOutNoteVH(View itemView, @Nullable OnCardClickListener listener, int viewType) {
         super(itemView, listener, viewType);
 
         tvId_VLIGON = findView(R.id.tvId_VLIGON);
@@ -53,17 +53,17 @@ public class GoodOutNoteVH extends SelectableVHHelper<GoodOutNoteDH> {
     }
 
     @Override
-    public void bindData(GoodOutNoteDH data) {
+    public void bindData(GoodsOutNoteDH data) {
         super.bindData(data);
-        GoodOutNoteItem item = data.getItem();
+        GoodsOutNoteItem item = data.getItem();
 
         tvId_VLIGON.setText(item.name);
         tvStatus_VLIGON.setText(item.workflow.name);
         //TODO uncomment when status appears
         tvStatus_VLIGON.setBackgroundDrawable(new RoundRectDrawable(ContextCompat.getColor(itemView.getContext(), TagHelper.getColorResIdByName(item.workflow.status))));
 
-        ivPrinted_VLIGON.setImageResource(item.printed ? R.drawable.ic_allocated : R.drawable.ic_allocated_off);
-        ivPicked_VLIGON.setImageResource(item.picked ? R.drawable.ic_fulfilled : R.drawable.ic_fulfilled_off);
+        ivPrinted_VLIGON.setImageResource(item.printed ? R.drawable.ic_print : R.drawable.ic_print_off);
+        ivPicked_VLIGON.setImageResource(item.picked ? R.drawable.ic_allocated : R.drawable.ic_allocated_off);
         ivPacked_VLIGON.setImageResource(item.packed ? R.drawable.ic_fulfilled : R.drawable.ic_fulfilled_off);
         ivShipped_VLIGON.setImageResource(item.shipped ? R.drawable.ic_shipped : R.drawable.ic_shipped_off);
 
