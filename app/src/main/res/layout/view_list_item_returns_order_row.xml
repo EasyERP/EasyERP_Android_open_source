@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@android:color/white"
+    android:gravity="center_vertical">
+
+    <TextView
+        android:id="@+id/tvNumber_LIOR"
+        style="@style/PdfStyle.TableStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="@string/item_product_number" />
+
+    <TextView
+        android:id="@+id/tvName_LIOR"
+        style="@style/PdfStyle.TableStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        tools:text="Item name" />
+
+    <TextView
+        android:id="@+id/tvSku_LIOR"
+        style="@style/PdfStyle.TableStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        tools:text="@string/item_product_sku" />
+
+    <TextView
+        android:id="@+id/tvCost_LIOR"
+        style="@style/PdfStyle.TableStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center_vertical|end"
+        tools:text="Location" />
+
+    <TextView
+        android:id="@+id/tvNote_LIOR"
+        style="@style/PdfStyle.TableStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center_vertical|end"
+        tools:text="Shipped" />
+
+    <TextView
+        android:id="@+id/tvWarehouse_LIOR"
+        style="@style/PdfStyle.TableStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center_vertical|end"
+        tools:text="This shipment" />
+
+    <TextView
+        android:id="@+id/tvQty_LIOR"
+        style="@style/PdfStyle.TableStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center_vertical|end"
+        tools:text="To Follow" />
+
+</LinearLayout>

@@ -4,6 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import com.google.gson.annotations.SerializedName;
+import com.thinkmobiles.easyerp.data.model.crm.filter.FilterItem;
 import com.thinkmobiles.easyerp.data.model.crm.order.detail.SubProduct;
 
 import java.util.ArrayList;
@@ -23,8 +24,10 @@ public class OrderRow implements Parcelable {
     public int shipped;
     public int selectedQuantity;
     public ArrayList<LocationsDeliver> locationsDeliver;
-
-
+    public FilterItem goodsOutNote;
+    public FilterItem goodsInNote;
+    public FilterItem warehouse;
+    public Float cost;
 
     public OrderRow() {
     }
@@ -43,6 +46,10 @@ public class OrderRow implements Parcelable {
         dest.writeInt(this.shipped);
         dest.writeInt(this.selectedQuantity);
         dest.writeTypedList(this.locationsDeliver);
+        dest.writeParcelable(this.goodsOutNote, flags);
+        dest.writeParcelable(this.goodsInNote, flags);
+        dest.writeParcelable(this.warehouse, flags);
+        dest.writeValue(this.cost);
     }
 
     protected OrderRow(Parcel in) {
@@ -53,6 +60,10 @@ public class OrderRow implements Parcelable {
         this.shipped = in.readInt();
         this.selectedQuantity = in.readInt();
         this.locationsDeliver = in.createTypedArrayList(LocationsDeliver.CREATOR);
+        this.goodsOutNote = in.readParcelable(FilterItem.class.getClassLoader());
+        this.goodsInNote = in.readParcelable(FilterItem.class.getClassLoader());
+        this.warehouse = in.readParcelable(FilterItem.class.getClassLoader());
+        this.cost = (Float) in.readValue(Float.class.getClassLoader());
     }
 
     public static final Creator<OrderRow> CREATOR = new Creator<OrderRow>() {
