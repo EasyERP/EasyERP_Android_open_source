@@ -7,7 +7,7 @@ import android.os.Parcelable;
  * Created by Lynx on 3/6/2017.
  */
 
-public class GoodOutNoteStatus implements Parcelable {
+public class GoodsOutNoteStatus implements Parcelable {
     public boolean shipped;
     public boolean picked;
     public boolean packed;
@@ -42,10 +42,10 @@ public class GoodOutNoteStatus implements Parcelable {
         dest.writeString(this.pickedById);
     }
 
-    public GoodOutNoteStatus() {
+    public GoodsOutNoteStatus() {
     }
 
-    protected GoodOutNoteStatus(Parcel in) {
+    protected GoodsOutNoteStatus(Parcel in) {
         this.shipped = in.readByte() != 0;
         this.picked = in.readByte() != 0;
         this.packed = in.readByte() != 0;
@@ -60,15 +60,15 @@ public class GoodOutNoteStatus implements Parcelable {
         this.pickedById = in.readString();
     }
 
-    public static final Parcelable.Creator<GoodOutNoteStatus> CREATOR = new Parcelable.Creator<GoodOutNoteStatus>() {
+    public static final Parcelable.Creator<GoodsOutNoteStatus> CREATOR = new Parcelable.Creator<GoodsOutNoteStatus>() {
         @Override
-        public GoodOutNoteStatus createFromParcel(Parcel source) {
-            return new GoodOutNoteStatus(source);
+        public GoodsOutNoteStatus createFromParcel(Parcel source) {
+            return new GoodsOutNoteStatus(source);
         }
 
         @Override
-        public GoodOutNoteStatus[] newArray(int size) {
-            return new GoodOutNoteStatus[size];
+        public GoodsOutNoteStatus[] newArray(int size) {
+            return new GoodsOutNoteStatus[size];
         }
     };
 }
