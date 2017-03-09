@@ -1,12 +1,12 @@
 package com.thinkmobiles.easyerp.presentation.screens.inventory.goods_out_notes.detail;
 
-import com.thinkmobiles.easyerp.data.model.inventory.goods_out_notes.details.ResponseGetNoteDetails;
+import com.thinkmobiles.easyerp.data.model.inventory.goods_out_notes.details.ResponseGetGoodsOutNoteDetails;
 import com.thinkmobiles.easyerp.data.model.user.organization.ResponseGetOrganizationSettings;
 import com.thinkmobiles.easyerp.presentation.base.BaseModel;
 import com.thinkmobiles.easyerp.presentation.base.BaseView;
 import com.thinkmobiles.easyerp.presentation.base.rules.content.ContentPresenter;
 import com.thinkmobiles.easyerp.presentation.base.rules.content.ContentView;
-import com.thinkmobiles.easyerp.presentation.holders.data.crm.OrderRowDH;
+import com.thinkmobiles.easyerp.presentation.holders.data.inventory.OrderRowDH;
 
 import java.util.ArrayList;
 
@@ -39,7 +39,7 @@ public interface GoodsOutNotesDetailsContract {
     }
 
     interface GoodsOutNotesDetailsModel extends BaseModel {
-        Observable<ResponseGetNoteDetails> getGoodsOutNotesDetails(String id);
+        Observable<ResponseGetGoodsOutNoteDetails> getGoodsOutNotesDetails(String id);
 
         Observable<ResponseGetOrganizationSettings> getOrganizationSettings();
     }

@@ -1,4 +1,4 @@
-package com.thinkmobiles.easyerp.presentation.holders.data.crm;
+package com.thinkmobiles.easyerp.presentation.holders.data.inventory;
 
 import com.michenko.simpleadapter.RecyclerDH;
 import com.thinkmobiles.easyerp.data.model.inventory.goods_out_notes.details.OrderRow;

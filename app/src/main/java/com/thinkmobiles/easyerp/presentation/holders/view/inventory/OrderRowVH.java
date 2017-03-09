@@ -1,4 +1,4 @@
-package com.thinkmobiles.easyerp.presentation.holders.view.crm;
+package com.thinkmobiles.easyerp.presentation.holders.view.inventory;
 
 import android.support.annotation.Nullable;
 import android.view.View;
@@ -8,21 +8,21 @@ import com.michenko.simpleadapter.OnCardClickListener;
 import com.michenko.simpleadapter.RecyclerVH;
 import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.data.model.inventory.goods_out_notes.details.OrderRow;
-import com.thinkmobiles.easyerp.presentation.holders.data.crm.OrderRowDH;
+import com.thinkmobiles.easyerp.presentation.holders.data.inventory.OrderRowDH;
 
 /**
  * Created by samson on 07.03.17.
  */
 
-public class OrderRowVH extends RecyclerVH<OrderRowDH> {
+public final class OrderRowVH extends RecyclerVH<OrderRowDH> {
 
-    private TextView tvNumber_LIOR;
-    private TextView tvName_LIOR;
-    private TextView tvSku_LIOR;
-    private TextView tvLocation_LIOR;
-    private TextView tvShipped_LIOR;
-    private TextView tvShipment_LIOR;
-    private TextView tvFollow_LIOR;
+    private final TextView tvNumber_LIOR;
+    private final TextView tvName_LIOR;
+    private final TextView tvSku_LIOR;
+    private final TextView tvLocation_LIOR;
+    private final TextView tvShipped_LIOR;
+    private final TextView tvShipment_LIOR;
+    private final TextView tvFollow_LIOR;
 
 
     public OrderRowVH(View itemView, @Nullable OnCardClickListener listener, int viewType) {
@@ -47,7 +47,7 @@ public class OrderRowVH extends RecyclerVH<OrderRowDH> {
         if (model.locationsDeliver != null)
             tvLocation_LIOR.setText(model.locationsDeliver.get(0).name);
         tvShipped_LIOR.setText(String.valueOf(model.shipped));
-        tvShipment_LIOR.setText(null);
+        tvShipment_LIOR.setText(String.valueOf(model.selectedQuantity));
         tvFollow_LIOR.setText(String.valueOf(model.quantity));
     }
 }

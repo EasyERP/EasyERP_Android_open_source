@@ -13,14 +13,6 @@ public class LocationsDeliver implements Parcelable {
 
     @SerializedName("_id")
     public String id;
-//    public CreatedEditedUserString editedBy;
-//    public CreatedEditedUserString createdBy;
-//    public String zone;
-//    public String warehouse;
-//    public String groupingD;
-//    public String groupingC;
-//    public String groupingB;
-//    public String groupingA;
     public String name;
 
 

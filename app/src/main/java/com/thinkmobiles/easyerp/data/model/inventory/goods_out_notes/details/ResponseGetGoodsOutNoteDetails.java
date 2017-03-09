@@ -5,8 +5,7 @@ import android.os.Parcelable;
 
 import com.google.gson.annotations.SerializedName;
 import com.thinkmobiles.easyerp.data.model.crm.filter.FilterItem;
-import com.thinkmobiles.easyerp.data.model.crm.leads.detail.CreatedEditedBy;
-import com.thinkmobiles.easyerp.data.model.inventory.goods_out_notes.GoodOutNoteStatus;
+import com.thinkmobiles.easyerp.data.model.inventory.goods_out_notes.GoodsOutNoteStatus;
 
 import java.util.ArrayList;
 
@@ -14,23 +13,21 @@ import java.util.ArrayList;
  * Created by samson on 06.03.17.
  */
 
-public class ResponseGetNoteDetails implements Parcelable {
+public class ResponseGetGoodsOutNoteDetails implements Parcelable {
 
     @SerializedName("_id")
     public String id;
     public String name;
-    public GoodOutNoteStatus status;
+    public GoodsOutNoteStatus status;
     public ArrayList<OrderRow> orderRows;
     public GoodsOutNoteOrder order;
-    public CreatedEditedBy editedBy;
     public String description;
-    public CreatedEditedBy createdBy;
     public String date;
     public String reference;
     public FilterItem shippingMethod;
 
 
-    public ResponseGetNoteDetails() {
+    public ResponseGetGoodsOutNoteDetails() {
     }
 
     @Override
@@ -45,37 +42,33 @@ public class ResponseGetNoteDetails implements Parcelable {
         dest.writeParcelable(this.status, flags);
         dest.writeTypedList(this.orderRows);
         dest.writeParcelable(this.order, flags);
-        dest.writeParcelable(this.editedBy, flags);
         dest.writeString(this.description);
-        dest.writeParcelable(this.createdBy, flags);
         dest.writeString(this.date);
         dest.writeString(this.reference);
         dest.writeParcelable(this.shippingMethod, flags);
     }
 
-    protected ResponseGetNoteDetails(Parcel in) {
+    protected ResponseGetGoodsOutNoteDetails(Parcel in) {
         this.id = in.readString();
         this.name = in.readString();
-        this.status = in.readParcelable(GoodOutNoteStatus.class.getClassLoader());
+        this.status = in.readParcelable(GoodsOutNoteStatus.class.getClassLoader());
         this.orderRows = in.createTypedArrayList(OrderRow.CREATOR);
         this.order = in.readParcelable(GoodsOutNoteOrder.class.getClassLoader());
-        this.editedBy = in.readParcelable(CreatedEditedBy.class.getClassLoader());
         this.description = in.readString();
-        this.createdBy = in.readParcelable(CreatedEditedBy.class.getClassLoader());
         this.date = in.readString();
         this.reference = in.readString();
         this.shippingMethod = in.readParcelable(FilterItem.class.getClassLoader());
     }
 
-    public static final Creator<ResponseGetNoteDetails> CREATOR = new Creator<ResponseGetNoteDetails>() {
+    public static final Creator<ResponseGetGoodsOutNoteDetails> CREATOR = new Creator<ResponseGetGoodsOutNoteDetails>() {
         @Override
-        public ResponseGetNoteDetails createFromParcel(Parcel source) {
-            return new ResponseGetNoteDetails(source);
+        public ResponseGetGoodsOutNoteDetails createFromParcel(Parcel source) {
+            return new ResponseGetGoodsOutNoteDetails(source);
         }
 
         @Override
-        public ResponseGetNoteDetails[] newArray(int size) {
-            return new ResponseGetNoteDetails[size];
+        public ResponseGetGoodsOutNoteDetails[] newArray(int size) {
+            return new ResponseGetGoodsOutNoteDetails[size];
         }
     };
 }

@@ -3,7 +3,7 @@ package com.thinkmobiles.easyerp.domain.inventory;
 import com.thinkmobiles.easyerp.data.api.Rest;
 import com.thinkmobiles.easyerp.data.model.crm.filter.ResponseFilters;
 import com.thinkmobiles.easyerp.data.model.inventory.goods_out_notes.ResponseGoodsOutNotes;
-import com.thinkmobiles.easyerp.data.model.inventory.goods_out_notes.details.ResponseGetNoteDetails;
+import com.thinkmobiles.easyerp.data.model.inventory.goods_out_notes.details.ResponseGetGoodsOutNoteDetails;
 import com.thinkmobiles.easyerp.data.model.user.organization.ResponseGetOrganizationSettings;
 import com.thinkmobiles.easyerp.data.services.FilterService;
 import com.thinkmobiles.easyerp.data.services.GoodsOutNotesService;
@@ -49,7 +49,7 @@ public class GoodsOutNotesRepository extends NetworkRepository implements GoodsO
     }
 
     @Override
-    public Observable<ResponseGetNoteDetails> getGoodsOutNotesDetails(String id) {
+    public Observable<ResponseGetGoodsOutNoteDetails> getGoodsOutNotesDetails(String id) {
         return getNetworkObservable(goodsOutNotesService.getNoteDetails(id));
     }
 

@@ -2,8 +2,8 @@ package com.thinkmobiles.easyerp.presentation.adapters.inventory;
 
 import com.michenko.simpleadapter.SimpleRecyclerAdapter;
 import com.thinkmobiles.easyerp.R;
-import com.thinkmobiles.easyerp.presentation.holders.data.crm.OrderRowDH;
-import com.thinkmobiles.easyerp.presentation.holders.view.crm.OrderRowVH;
+import com.thinkmobiles.easyerp.presentation.holders.data.inventory.OrderRowDH;
+import com.thinkmobiles.easyerp.presentation.holders.view.inventory.OrderRowVH;
 
 import org.androidannotations.annotations.EBean;
 

@@ -8,7 +8,7 @@ import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.domain.inventory.GoodsOutNotesRepository;
 import com.thinkmobiles.easyerp.presentation.adapters.inventory.OrderRowAdapter;
 import com.thinkmobiles.easyerp.presentation.base.rules.content.ContentFragment;
-import com.thinkmobiles.easyerp.presentation.holders.data.crm.OrderRowDH;
+import com.thinkmobiles.easyerp.presentation.holders.data.inventory.OrderRowDH;
 
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterViews;

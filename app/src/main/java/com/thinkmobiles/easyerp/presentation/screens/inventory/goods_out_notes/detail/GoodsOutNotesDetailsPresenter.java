@@ -1,12 +1,11 @@
 package com.thinkmobiles.easyerp.presentation.screens.inventory.goods_out_notes.detail;
 
 import com.thinkmobiles.easyerp.data.model.inventory.goods_out_notes.details.OrderRow;
-import com.thinkmobiles.easyerp.data.model.inventory.goods_out_notes.details.ResponseGetNoteDetails;
+import com.thinkmobiles.easyerp.data.model.inventory.goods_out_notes.details.ResponseGetGoodsOutNoteDetails;
 import com.thinkmobiles.easyerp.data.model.user.organization.OrganizationSettings;
-import com.thinkmobiles.easyerp.data.model.user.organization.ResponseGetOrganizationSettings;
 import com.thinkmobiles.easyerp.presentation.base.rules.content.ContentPresenterHelper;
 import com.thinkmobiles.easyerp.presentation.base.rules.content.ContentView;
-import com.thinkmobiles.easyerp.presentation.holders.data.crm.OrderRowDH;
+import com.thinkmobiles.easyerp.presentation.holders.data.inventory.OrderRowDH;
 import com.thinkmobiles.easyerp.presentation.managers.DateManager;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 import com.thinkmobiles.easyerp.presentation.utils.StringUtil;
@@ -23,7 +22,7 @@ public class GoodsOutNotesDetailsPresenter extends ContentPresenterHelper implem
     private GoodsOutNotesDetailsContract.GoodsOutNotesDetailsModel model;
     private String noteId;
 
-    private ResponseGetNoteDetails noteDetails;
+    private ResponseGetGoodsOutNoteDetails noteDetails;
     private OrganizationSettings organizationSettings;
 
     public GoodsOutNotesDetailsPresenter(GoodsOutNotesDetailsContract.GoodsOutNotesDetailsView view, GoodsOutNotesDetailsContract.GoodsOutNotesDetailsModel model, String noteId) {
@@ -62,11 +61,11 @@ public class GoodsOutNotesDetailsPresenter extends ContentPresenterHelper implem
                 }, t -> error(t)));
     }
 
-    private void setData(ResponseGetNoteDetails response) {
+    private void setData(ResponseGetGoodsOutNoteDetails response) {
         noteDetails = response;
         view.setName(response.name);
         view.setTitle(String.format("Goods-out Notes #%s", response.name));
-        view.setPrint(DateManager.convert(response.date).setDstPattern(DateManager.PATTERN_DATE_SIMPLE_PREVIEW).toString());
+        view.setDate(DateManager.convert(response.date).setDstPattern(DateManager.PATTERN_DATE_SIMPLE_PREVIEW).toString());
         view.setPrint(DateManager.convert(response.status.printedOn).setDstPattern(DateManager.PATTERN_DATE_SIMPLE_PREVIEW).toString());
         view.setPick(DateManager.convert(response.status.pickedOn).setDstPattern(DateManager.PATTERN_DATE_SIMPLE_PREVIEW).toString());
         view.setPack(DateManager.convert(response.status.packedOn).setDstPattern(DateManager.PATTERN_DATE_SIMPLE_PREVIEW).toString());
