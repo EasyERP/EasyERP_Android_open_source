@@ -31,10 +31,10 @@ public class ResponseGetTransferDetails implements Parcelable {
     public CreatedEditedUserString createdBy;
     public String date;
     public int weight;
-    public int shippingCost;
+    public double shippingCost;
     public int boxes;
     public String reference;
-    public FilterItem shippingMethod;
+    public String shippingMethod;
     public WarehouseInfo warehouse;
 
     public ResponseGetTransferDetails() {
@@ -52,16 +52,16 @@ public class ResponseGetTransferDetails implements Parcelable {
         dest.writeString(this.description);
         dest.writeParcelable(this.warehouseTo, flags);
         dest.writeParcelable(this.status, flags);
-        dest.writeList(this.orderRows);
+        dest.writeTypedList(this.orderRows);
         dest.writeTypedList(this.attachments);
         dest.writeParcelable(this.editedBy, flags);
         dest.writeParcelable(this.createdBy, flags);
         dest.writeString(this.date);
         dest.writeInt(this.weight);
-        dest.writeInt(this.shippingCost);
+        dest.writeDouble(this.shippingCost);
         dest.writeInt(this.boxes);
         dest.writeString(this.reference);
-        dest.writeParcelable(this.shippingMethod, flags);
+        dest.writeString(this.shippingMethod);
         dest.writeParcelable(this.warehouse, flags);
     }
 
@@ -71,17 +71,16 @@ public class ResponseGetTransferDetails implements Parcelable {
         this.description = in.readString();
         this.warehouseTo = in.readParcelable(WarehouseInfo.class.getClassLoader());
         this.status = in.readParcelable(InventoryStatus.class.getClassLoader());
-        this.orderRows = new ArrayList<TransferRowItem>();
-        in.readList(this.orderRows, TransferRowItem.class.getClassLoader());
+        this.orderRows = in.createTypedArrayList(TransferRowItem.CREATOR);
         this.attachments = in.createTypedArrayList(AttachmentItem.CREATOR);
         this.editedBy = in.readParcelable(CreatedEditedUserString.class.getClassLoader());
         this.createdBy = in.readParcelable(CreatedEditedUserString.class.getClassLoader());
         this.date = in.readString();
         this.weight = in.readInt();
-        this.shippingCost = in.readInt();
+        this.shippingCost = in.readDouble();
         this.boxes = in.readInt();
         this.reference = in.readString();
-        this.shippingMethod = in.readParcelable(FilterItem.class.getClassLoader());
+        this.shippingMethod = in.readString();
         this.warehouse = in.readParcelable(WarehouseInfo.class.getClassLoader());
     }
 

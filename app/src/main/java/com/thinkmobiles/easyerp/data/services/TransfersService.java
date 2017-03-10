@@ -6,6 +6,7 @@ import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
 import retrofit2.http.GET;
 import retrofit2.http.Part;
+import retrofit2.http.Path;
 import retrofit2.http.Url;
 import rx.Observable;
 
@@ -19,6 +20,6 @@ public interface TransfersService {
     Observable<ResponseGetTransfers> getTransfers(@Url String url);
 
     @GET(Constants.GET_TRANSFERS_DETAILS)
-    Observable<ResponseGetTransferDetails> getTransferDetails(@Part("transferID") String transferID);
+    Observable<ResponseGetTransferDetails> getTransferDetails(@Path("transferID") String transferID);
 
 }

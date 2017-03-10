@@ -38,7 +38,7 @@ public class TransferRowVH extends RecyclerVH<TransferRowDH> {
     @Override
     public void bindData(TransferRowDH data) {
         TransferRowItem item = data.getItem();
-        tvNumber_VLITR.setText(getAdapterPosition() + 1);
+        tvNumber_VLITR.setText(String.valueOf(getAdapterPosition() + 1));
         if(item.product != null && !TextUtils.isEmpty(item.product.name)) {
         tvName_VLITR.setText(item.product.name);
         } else {
@@ -49,7 +49,7 @@ public class TransferRowVH extends RecyclerVH<TransferRowDH> {
         } else {
             tvSku_VLITR.setText(null);
         }
-        tvShip_VLITR.setText(item.quantity);
+        tvShip_VLITR.setText(String.valueOf(item.quantity));
         if(item.locationsReceived != null && !item.locationsReceived.isEmpty() && item.locationsReceived.get(0).location != null && !TextUtils.isEmpty(item.locationsReceived.get(0).location.name)) {
             tvLocationsFrom_VLITR.setText(item.locationsReceived.get(0).location.name);
         } else {

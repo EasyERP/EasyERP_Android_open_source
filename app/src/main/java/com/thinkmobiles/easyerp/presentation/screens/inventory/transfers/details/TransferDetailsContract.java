@@ -23,6 +23,7 @@ public interface TransferDetailsContract {
         void setCompanyName(String companyName);
         void setCompanyAddress(String companyAddress);
         void setName(String name);
+        void setWarehouseFrom(String warehouseFrom);
         void setWarehouseFromCountry(String warehouseFromCountry);
         void setPrint(String print);
         void setPack(String pack);
@@ -31,9 +32,10 @@ public interface TransferDetailsContract {
         void setReference(String reference);
         void setShipping(String shipping);
         void setDate(String date);
-        void setProducts(ArrayList<TransferRowDH> rowDHs);
+        void setTransferRows(ArrayList<TransferRowDH> rowDHs);
 
         void setAttachments(ArrayList<AttachmentDH> attachmentDHs);
+        void showAttachments(boolean isShown);
         void startUrlIntent(String url);
     }
     interface TransferDetailsPresenter extends ContentPresenter {

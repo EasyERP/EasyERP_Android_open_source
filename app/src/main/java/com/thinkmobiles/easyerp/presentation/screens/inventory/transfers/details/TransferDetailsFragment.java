@@ -1,15 +1,25 @@
 package com.thinkmobiles.easyerp.presentation.screens.inventory.transfers.details;
 
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.TextView;
 
 import com.thinkmobiles.easyerp.R;
+import com.thinkmobiles.easyerp.domain.inventory.TransfersRepository;
+import com.thinkmobiles.easyerp.presentation.adapters.crm.AttachmentAdapter;
+import com.thinkmobiles.easyerp.presentation.adapters.inventory.TransfersRowAdapter;
 import com.thinkmobiles.easyerp.presentation.base.rules.content.ContentFragment;
 import com.thinkmobiles.easyerp.presentation.base.rules.content.ContentPresenter;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.AttachmentDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.inventory.TransferRowDH;
+import com.thinkmobiles.easyerp.presentation.managers.GoogleAnalyticHelper;
 import com.thinkmobiles.easyerp.presentation.utils.IntentActionHelper;
 
+import org.androidannotations.annotations.AfterInject;
+import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.FragmentArg;
 import org.androidannotations.annotations.ViewById;
@@ -27,6 +37,13 @@ public class TransferDetailsFragment extends ContentFragment implements Transfer
 
     @FragmentArg
     protected String id;
+
+    @Bean
+    protected AttachmentAdapter attachmentAdapter;
+    @Bean
+    protected TransfersRowAdapter transfersRowAdapter;
+    @Bean
+    protected TransfersRepository transfersRepository;
 
     //region View inject
     @ViewById
@@ -64,10 +81,27 @@ public class TransferDetailsFragment extends ContentFragment implements Transfer
     //endregion
 
 
+    @Override
+    protected int getLayoutRes() {
+        return R.layout.fragment_transfer_details;
+    }
 
+    @AfterInject
     @Override
     public void initPresenter() {
+        new TransferDetailsPresenter(this, transfersRepository, id);
+    }
 
+    @AfterViews
+    protected void initUI() {
+        rvAttachments_FLD.setAdapter(attachmentAdapter);
+        rvAttachments_FLD.setLayoutManager(new GridLayoutManager(getActivity(), 2));
+        attachmentAdapter.setOnCardClickListener((view, position, viewType) -> {
+            GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_ATTACHMENT, "");
+            presenter.startAttachment(position);
+        });
+        rvProductList_FTD.setAdapter(transfersRowAdapter);
+        rvProductList_FTD.setLayoutManager(new LinearLayoutManager(getActivity()));
     }
 
     @Override
@@ -98,6 +132,11 @@ public class TransferDetailsFragment extends ContentFragment implements Transfer
     @Override
     public void setName(String name) {
         tvName_FTD.setText(name);
+    }
+
+    @Override
+    public void setWarehouseFrom(String warehouseFrom) {
+        tvWarehouseFrom_FTD.setText(warehouseFrom);
     }
 
     @Override
@@ -141,23 +180,24 @@ public class TransferDetailsFragment extends ContentFragment implements Transfer
     }
 
     @Override
-    public void setProducts(ArrayList<TransferRowDH> rowDHs) {
-
+    public void setTransferRows(ArrayList<TransferRowDH> rowDHs) {
+        transfersRowAdapter.setListDH(rowDHs);
     }
 
     @Override
     public void setAttachments(ArrayList<AttachmentDH> attachmentDHs) {
+        tvEmptyAttachments_FLD.setVisibility(View.GONE);
+        attachmentAdapter.setListDH(attachmentDHs);
+    }
 
+    @Override
+    public void showAttachments(boolean isShown) {
+        if(!isShown) tvEmptyAttachments_FLD.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void startUrlIntent(String url) {
         IntentActionHelper.callViewIntent(mActivity, url, null);
-    }
-
-    @Override
-    protected int getLayoutRes() {
-        return R.layout.fragment_transfer_details;
     }
 
     @Override
