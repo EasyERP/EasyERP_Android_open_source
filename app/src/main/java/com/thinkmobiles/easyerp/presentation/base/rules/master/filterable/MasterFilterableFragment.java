@@ -59,7 +59,6 @@ public abstract class MasterFilterableFragment extends MasterSelectableFragment 
             {
                 FilterDH item = suggestionAdapter.getSuggestion(position);
                 searchView.setQuery(item.name, false);
-                searchView.clearFocus();
                 getPresenter().filterBySearchItem(item);
                 return true;
             }
@@ -73,7 +72,6 @@ public abstract class MasterFilterableFragment extends MasterSelectableFragment 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                searchView.clearFocus();
                 getPresenter().filterBySearchText(query);
                 return true;
             }
@@ -103,6 +101,7 @@ public abstract class MasterFilterableFragment extends MasterSelectableFragment 
             case R.id.menuSearch:
                 return false;
             case R.id.menuFilterRemoveAll:
+                scrollListener.reset();
                 getPresenter().removeAll();
                 break;
             default:
@@ -130,6 +129,7 @@ public abstract class MasterFilterableFragment extends MasterSelectableFragment 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        scrollListener.reset();
         if (resultCode == Activity.RESULT_OK) {
             ArrayList<FilterDH> filterDHs = data.getParcelableArrayListExtra(Constants.KEY_FILTER_LIST);
             getPresenter().filterByList(filterDHs, requestCode);
