@@ -76,16 +76,6 @@ public class PaymentsPresenter extends MasterFilterablePresenterHelper implement
             view.openDetailsScreen(payment);
     }
 
-    @Override
-    public void subscribe() {
-        if (payments.isEmpty() && !helper.isInitialized()) {
-            getFirstPage();
-            loadFilters();
-        } else {
-            setData(payments, true);
-        }
-    }
-
     private void saveData(final List<Payment> payments, boolean needClear) {
         if (needClear)
             this.payments.clear();

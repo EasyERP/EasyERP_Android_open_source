@@ -21,8 +21,9 @@ import com.thinkmobiles.easyerp.data.services.OpportunityService;
 import com.thinkmobiles.easyerp.data.services.OrderService;
 import com.thinkmobiles.easyerp.data.services.PaymentsService;
 import com.thinkmobiles.easyerp.data.services.PersonsService;
-import com.thinkmobiles.easyerp.data.services.TransfersService;
+import com.thinkmobiles.easyerp.data.services.ProductService;
 import com.thinkmobiles.easyerp.data.services.StockService;
+import com.thinkmobiles.easyerp.data.services.TransfersService;
 import com.thinkmobiles.easyerp.data.services.UserService;
 import com.thinkmobiles.easyerp.presentation.managers.CookieManager;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
@@ -63,6 +64,7 @@ public class Rest {
     private CompaniesService companiesService;
     private CustomerService customerService;
 
+    private ProductService productService;
     private StockService stockService;
     private GoodsOutNotesService goodsOutNotesService;
     private TransfersService transfersService;
@@ -147,6 +149,10 @@ public class Rest {
 
     public CustomerService getCustomerService() {
         return customerService == null ? customerService = createService(CustomerService.class) : customerService;
+    }
+
+    public ProductService getProductService() {
+        return productService == null ? productService = createService(ProductService.class) : productService;
     }
 
     public StockService getStockService() {

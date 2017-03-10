@@ -4,8 +4,6 @@ package com.thinkmobiles.easyerp.data.model.crm.order.detail;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import java.util.ArrayList;
-
 public class ProductInfo implements Parcelable {
 
     /**
@@ -14,10 +12,6 @@ public class ProductInfo implements Parcelable {
      "ISBN": "",
      "UPC": "",
      "SKU": "T100TAF-DK001B",
-     "categories": [
-     "586baca69fa9655f562aca9b",
-     "586bad60f1bdb6265636f9c7"
-     ],
      "brand": null,
      "description": "",
      "barcode": "",
@@ -30,13 +24,10 @@ public class ProductInfo implements Parcelable {
     public String ISBN;
     public String UPC;
     public String SKU;
-    public ArrayList<String> categories;
-//    public Object brand;
     public String description;
     public String barcode;
     public boolean isActive;
     public String productType;
-
 
     @Override
     public int describeContents() {
@@ -49,7 +40,6 @@ public class ProductInfo implements Parcelable {
         dest.writeString(this.ISBN);
         dest.writeString(this.UPC);
         dest.writeString(this.SKU);
-        dest.writeStringList(this.categories);
         dest.writeString(this.description);
         dest.writeString(this.barcode);
         dest.writeByte(this.isActive ? (byte) 1 : (byte) 0);
@@ -64,7 +54,6 @@ public class ProductInfo implements Parcelable {
         this.ISBN = in.readString();
         this.UPC = in.readString();
         this.SKU = in.readString();
-        this.categories = in.createStringArrayList();
         this.description = in.readString();
         this.barcode = in.readString();
         this.isActive = in.readByte() != 0;

@@ -11,9 +11,9 @@ import com.thinkmobiles.easyerp.presentation.screens.crm.orders.OrdersFragment_;
 import com.thinkmobiles.easyerp.presentation.screens.crm.payments.PaymentsFragment_;
 import com.thinkmobiles.easyerp.presentation.screens.crm.persons.PersonsFragment_;
 import com.thinkmobiles.easyerp.presentation.screens.inventory.goods_out_notes.GoodsOutNotesFragment_;
+import com.thinkmobiles.easyerp.presentation.screens.inventory.products.ProductsListFragment_;
 import com.thinkmobiles.easyerp.presentation.screens.inventory.stock_corrections.StockCorrectionsListFragment_;
 import com.thinkmobiles.easyerp.presentation.screens.inventory.stock_returns.StockReturnsListFragment_;
-import com.thinkmobiles.easyerp.presentation.screens.inventory.transfers.TransfersFragment;
 import com.thinkmobiles.easyerp.presentation.screens.inventory.transfers.TransfersFragment_;
 
 import java.util.ArrayList;
@@ -159,7 +159,7 @@ public abstract class MenuConfigs {
 
     private static List<MenuItem> getInventoryModule() {
         final List<MenuItem> menuItems = new ArrayList<>();
-        menuItems.add(new MenuItem(0, R.drawable.ic_products, "Products", false));
+        menuItems.add(new MenuItem(0, R.drawable.ic_products, "Products", true));
         menuItems.add(new MenuItem(1, R.drawable.ic_goods_out_notes, "Goods-Out Notes", true));
         menuItems.add(new MenuItem(2, R.drawable.ic_stock_returns, "Stock Returns", true));
         menuItems.add(new MenuItem(3, R.drawable.ic_stock_corrections, "Stock Correction", true));
@@ -237,6 +237,7 @@ public abstract class MenuConfigs {
 
     private static BaseMasterFlowFragment getFragmentByIdWithInventoryModule(final int itemId) {
         switch (itemId) {
+            case 0: return ProductsListFragment_.builder().build();
             case 1: return GoodsOutNotesFragment_.builder().build();
             case 2: return StockReturnsListFragment_.builder().build();
             case 3: return StockCorrectionsListFragment_.builder().build();

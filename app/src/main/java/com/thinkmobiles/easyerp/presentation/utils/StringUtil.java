@@ -68,6 +68,10 @@ public abstract class StringUtil {
                 name);
     }
 
+    public static String getImageURL(String imageSrcSuffix) {
+        return String.format("%s%s", Constants.BASE_URL, imageSrcSuffix);
+    }
+
     public static String getClickableUrl(String url, String name) {
         if(!url.startsWith("http://")) url = "http://" + url;
         return String.format(Locale.ENGLISH, "<a href=\"%s\">%s</a>", url, name);

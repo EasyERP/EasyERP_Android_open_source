@@ -18,6 +18,10 @@ public class FilterItem implements Parcelable {
     public String id;
     public String name;
 
+    @Override
+    public String toString() {
+        return name;
+    }
 
     @Override
     public int describeContents() {
