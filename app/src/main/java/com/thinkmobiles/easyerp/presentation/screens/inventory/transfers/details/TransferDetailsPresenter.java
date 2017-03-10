@@ -77,11 +77,11 @@ public class TransferDetailsPresenter extends ContentPresenterHelper implements 
         responseGetTransferDetails = response;
         view.setName(response.name);
         view.setTitle(response.name);
-        view.setDate(DateManager.convert(response.date).setDstPattern(DateManager.PATTERN_DATA_AND_TIME).toString());
-        view.setPrint(DateManager.convert(response.status.printedOn).setDstPattern(DateManager.PATTERN_DATA_AND_TIME).toString());
-        view.setPack(DateManager.convert(response.status.packedOn).setDstPattern(DateManager.PATTERN_DATA_AND_TIME).toString());
-        view.setShip(DateManager.convert(response.status.shippedOn).setDstPattern(DateManager.PATTERN_DATA_AND_TIME).toString());
-        view.setReceive(DateManager.convert(response.status.receivedOn).setDstPattern(DateManager.PATTERN_DATA_AND_TIME).toString());
+        view.setDate(DateManager.convert(response.date).setDstPattern(DateManager.PATTERN_DATE_AND_TIME).toString());
+        view.setPrint(DateManager.convert(response.status.printedOn).setDstPattern(DateManager.PATTERN_DATE_AND_TIME).toString());
+        view.setPack(DateManager.convert(response.status.packedOn).setDstPattern(DateManager.PATTERN_DATE_AND_TIME).toString());
+        view.setShip(DateManager.convert(response.status.shippedOn).setDstPattern(DateManager.PATTERN_DATE_AND_TIME).toString());
+        view.setReceive(DateManager.convert(response.status.receivedOn).setDstPattern(DateManager.PATTERN_DATE_AND_TIME).toString());
 
         if (response.warehouseTo != null && !TextUtils.isEmpty(response.warehouseTo.name)) {
             view.setWarehouseTo(response.warehouseTo.name);
