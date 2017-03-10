@@ -23,8 +23,8 @@ public interface TransferDetailsContract {
         void setCompanyName(String companyName);
         void setCompanyAddress(String companyAddress);
         void setName(String name);
-        void setWarehouseFrom(String warehouseFrom);
-        void setWarehouseFromCountry(String warehouseFromCountry);
+        void setWarehouseTo(String warehouseTo);
+        void setWarehouseToCountry(String warehouseToCountry);
         void setPrint(String print);
         void setPack(String pack);
         void setShip(String ship);

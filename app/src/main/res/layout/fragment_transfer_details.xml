@@ -249,7 +249,7 @@
                         android:text="Address" />
 
                     <TextView
-                        android:id="@+id/tvWarehouseFrom_FTD"
+                        android:id="@+id/tvWarehouseTo_FTD"
                         style="@style/PdfStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -257,7 +257,7 @@
                         tools:text="Local Stock" />
 
                     <TextView
-                        android:id="@+id/tvWarehouseFromCountry_FTD"
+                        android:id="@+id/tvWarehouseToCountry_FTD"
                         style="@style/PdfStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

@@ -69,9 +69,9 @@ public class TransferDetailsFragment extends ContentFragment implements Transfer
     @ViewById
     protected TextView tvDate_FTD;
     @ViewById
-    protected TextView tvWarehouseFrom_FTD;
+    protected TextView tvWarehouseTo_FTD;
     @ViewById
-    protected TextView tvWarehouseFromCountry_FTD;
+    protected TextView tvWarehouseToCountry_FTD;
     @ViewById
     protected RecyclerView rvProductList_FTD;
     @ViewById
@@ -135,13 +135,13 @@ public class TransferDetailsFragment extends ContentFragment implements Transfer
     }
 
     @Override
-    public void setWarehouseFrom(String warehouseFrom) {
-        tvWarehouseFrom_FTD.setText(warehouseFrom);
+    public void setWarehouseTo(String warehouseFrom) {
+        tvWarehouseTo_FTD.setText(warehouseFrom);
     }
 
     @Override
-    public void setWarehouseFromCountry(String warehouseFromCountry) {
-        tvWarehouseFromCountry_FTD.setText(warehouseFromCountry);
+    public void setWarehouseToCountry(String warehouseFromCountry) {
+        tvWarehouseToCountry_FTD.setText(warehouseFromCountry);
     }
 
     @Override

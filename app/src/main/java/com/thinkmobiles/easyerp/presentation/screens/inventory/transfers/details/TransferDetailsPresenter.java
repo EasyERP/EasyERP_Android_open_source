@@ -84,14 +84,14 @@ public class TransferDetailsPresenter extends ContentPresenterHelper implements 
         view.setReceive(DateManager.convert(response.status.receivedOn).setDstPattern(DateManager.PATTERN_DATA_AND_TIME).toString());
 
         if (response.warehouseTo != null && !TextUtils.isEmpty(response.warehouseTo.name)) {
-            view.setWarehouseFrom(response.warehouseTo.name);
+            view.setWarehouseTo(response.warehouseTo.name);
         } else {
-            view.setWarehouseFrom(null);
+            view.setWarehouseTo(null);
         }
         if (response.warehouseTo != null && response.warehouseTo.address != null && !TextUtils.isEmpty(response.warehouseTo.address.country)) {
-            view.setWarehouseFromCountry(response.warehouseTo.address.country);
+            view.setWarehouseToCountry(response.warehouseTo.address.country);
         } else {
-            view.setWarehouseFromCountry(null);
+            view.setWarehouseToCountry(null);
         }
 
         view.setShipping(response.shippingMethod);
