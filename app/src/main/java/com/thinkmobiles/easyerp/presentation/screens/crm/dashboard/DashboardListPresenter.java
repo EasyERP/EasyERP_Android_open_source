@@ -72,16 +72,15 @@ public class DashboardListPresenter extends MasterSelectablePresenterHelper impl
             view.displayErrorState(ErrorManager.getErrorType(null));
         } else {
             view.showProgress(Constants.ProgressType.NONE);
-            view.setDataList(prepareDashboardDHs(charts, true), true);
+            view.setDataList(prepareDashboardDHs(charts), true);
         }
     }
 
-    private ArrayList<DashboardListDH> prepareDashboardDHs(final List<DashboardListItem> dashboardListItems, boolean needClear) {
-        int position = 0;
+    private ArrayList<DashboardListDH> prepareDashboardDHs(final List<DashboardListItem> dashboardListItems) {
         final ArrayList<DashboardListDH> result = new ArrayList<>();
         for (DashboardListItem dashboardListItem : dashboardListItems) {
             final DashboardListDH dashboardListDH = new DashboardListDH(dashboardListItem);
-            makeSelectedDHIfNeed(dashboardListDH, position++, needClear);
+            makeSelectedDHIfNeed(dashboardListDH, charts.indexOf(dashboardListItem));
             result.add(dashboardListDH);
         }
         selectFirstElementIfNeed(result);

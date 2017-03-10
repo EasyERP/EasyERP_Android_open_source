@@ -65,7 +65,7 @@ public class LeadsPresenter extends MasterFilterablePresenterHelper implements L
     }
 
     private void setData(ArrayList<LeadItem> leadItems, boolean needClear) {
-        view.setDataList(prepareLeadDHs(leadItems, needClear), needClear);
+        view.setDataList(prepareLeadDHs(leadItems), needClear);
         if(this.leadItems.isEmpty()) {
             view.displayErrorState(ErrorManager.getErrorType(null));
         } else {
@@ -80,12 +80,11 @@ public class LeadsPresenter extends MasterFilterablePresenterHelper implements L
             view.openDetailsScreen(id);
     }
 
-    private ArrayList<LeadDH> prepareLeadDHs(ArrayList<LeadItem> leadItems, boolean needClear) {
-        int position = 0;
+    private ArrayList<LeadDH> prepareLeadDHs(ArrayList<LeadItem> leadItems) {
         final ArrayList<LeadDH> result = new ArrayList<>();
         for (LeadItem leadItem : leadItems) {
             final LeadDH leadDH = new LeadDH(leadItem);
-            makeSelectedDHIfNeed(leadDH, position++, needClear);
+            makeSelectedDHIfNeed(leadDH, this.leadItems.indexOf(leadItem));
             result.add(leadDH);
         }
         selectFirstElementIfNeed(result);

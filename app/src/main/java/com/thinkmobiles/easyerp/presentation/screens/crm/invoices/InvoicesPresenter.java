@@ -82,7 +82,7 @@ public class InvoicesPresenter extends MasterFilterablePresenterHelper implement
     }
 
     private void setData(final List<Invoice> invoices, boolean needClear) {
-        view.setDataList(prepareInvoiceDHs(invoices, needClear), needClear);
+        view.setDataList(prepareInvoiceDHs(invoices), needClear);
         if (this.invoices.isEmpty()) {
             view.displayErrorState(ErrorManager.getErrorType(null));
         } else {
@@ -90,12 +90,11 @@ public class InvoicesPresenter extends MasterFilterablePresenterHelper implement
         }
     }
 
-    private ArrayList<InvoiceDH> prepareInvoiceDHs(final List<Invoice> invoices, boolean needClear) {
-        int position = 0;
+    private ArrayList<InvoiceDH> prepareInvoiceDHs(final List<Invoice> invoices) {
         final ArrayList<InvoiceDH> result = new ArrayList<>();
         for (Invoice invoice : invoices) {
             final InvoiceDH invoiceDH = new InvoiceDH(invoice);
-            makeSelectedDHIfNeed(invoiceDH, position++, needClear);
+            makeSelectedDHIfNeed(invoiceDH, this.invoices.indexOf(invoice));
             result.add(invoiceDH);
         }
         selectFirstElementIfNeed(result);

@@ -82,7 +82,7 @@ public class OrdersPresenter extends MasterFilterablePresenterHelper implements 
     }
 
     private void setData(final List<Order> payments, boolean needClear) {
-        view.setDataList(prepareOrderDHs(payments, needClear), needClear);
+        view.setDataList(prepareOrderDHs(payments), needClear);
         if (this.orders.isEmpty()) {
             view.displayErrorState(ErrorManager.getErrorType(null));
         } else {
@@ -90,12 +90,11 @@ public class OrdersPresenter extends MasterFilterablePresenterHelper implements 
         }
     }
 
-    private ArrayList<OrderDH> prepareOrderDHs(final List<Order> orders, boolean needClear) {
-        int position = 0;
+    private ArrayList<OrderDH> prepareOrderDHs(final List<Order> orders) {
         final ArrayList<OrderDH> result = new ArrayList<>();
         for (Order order : orders) {
             final OrderDH orderDH = new OrderDH(order);
-            makeSelectedDHIfNeed(orderDH, position++, needClear);
+            makeSelectedDHIfNeed(orderDH, this.orders.indexOf(order));
             result.add(orderDH);
         }
         selectFirstElementIfNeed(result);

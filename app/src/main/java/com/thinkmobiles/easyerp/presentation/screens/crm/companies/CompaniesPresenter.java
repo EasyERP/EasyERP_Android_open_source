@@ -89,7 +89,7 @@ public class CompaniesPresenter extends MasterAlphabeticalPresenterHelper implem
 
     private void setData(CommonCompaniesResponse commonPersonsResponse, boolean needClear) {
         view.displaySelectedLetter(selectedLetter);
-        view.setDataList(prepareDataHolders(commonPersonsResponse, needClear), needClear);
+        view.setDataList(prepareDataHolders(commonPersonsResponse), needClear);
         if (companiesResponse.responseGetCompanies.data.isEmpty()) {
             view.displayErrorState(ErrorManager.getErrorType(null));
         } else {
@@ -97,14 +97,13 @@ public class CompaniesPresenter extends MasterAlphabeticalPresenterHelper implem
         }
     }
 
-    private ArrayList<CompanyDH> prepareDataHolders(CommonCompaniesResponse commonCompaniesResponse, boolean needClear) {
-        int position = 0;
+    private ArrayList<CompanyDH> prepareDataHolders(CommonCompaniesResponse commonCompaniesResponse) {
         ArrayList<CompanyDH> result = new ArrayList<>();
         for (CompanyListItem companyListItem : commonCompaniesResponse.responseGetCompanies.data) {
             for (CustomerImageItem imageItem : commonCompaniesResponse.responseGetCustomersImages.data) {
                 if (companyListItem.id.equalsIgnoreCase(imageItem.id)) {
                     final CompanyDH companyDH = new CompanyDH(companyListItem, imageItem.imageSrc);
-                    makeSelectedDHIfNeed(companyDH, position++, needClear);
+                    makeSelectedDHIfNeed(companyDH, companiesResponse.responseGetCompanies.data.indexOf(companyListItem));
                     result.add(companyDH);
                 }
             }

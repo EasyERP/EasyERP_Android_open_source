@@ -92,6 +92,7 @@ public abstract class Constants {
 
     //StockReturn
     public static final String GET_STOCK_RETURNS            = "stockReturns";
+    public static final String GET_STOCK_RETURNS_DETAILS    = "stockReturns/{id}";
     //End StockReturn
 
     //Transactions
