@@ -55,7 +55,7 @@ public class StockCorrectionsDetailsPresenter extends ContentPresenterHelper imp
 
     private void setData(ResponseGetStockCorrectionDetails response) {
         stockCorrectionDetails = response;
-        view.setDate(DateManager.convert(response.date).setDstPattern(DateManager.PATTERN_DATE_SIMPLE_PREVIEW).toString());
+        view.setDate(DateManager.convert(response.date).setDstPattern(DateManager.PATTERN_DATE_AND_TIME).toString());
         view.setTitle(response.warehouse.name);
         view.setWarehouse(response.warehouse.name);
         view.setDescription(response.description);
