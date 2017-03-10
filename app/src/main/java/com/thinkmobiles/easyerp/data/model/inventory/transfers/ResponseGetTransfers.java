@@ -3,6 +3,8 @@ package com.thinkmobiles.easyerp.data.model.inventory.transfers;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.thinkmobiles.easyerp.data.model.inventory.transfers.details.TransferItem;
+
 import java.util.ArrayList;
 
 /**
