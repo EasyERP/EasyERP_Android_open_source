@@ -102,6 +102,7 @@ public abstract class Constants {
 
     //StockCorrection
     public static final String GET_STOCK_CORRECTION         = "warehouse/stockCorrection";
+    public static final String GET_STOCK_CORRECTION_DETAILS = "warehouse/stockCorrection/{id}";
     //End StockCorrection
 
     //------------------------------------------------------ END INVENTORY

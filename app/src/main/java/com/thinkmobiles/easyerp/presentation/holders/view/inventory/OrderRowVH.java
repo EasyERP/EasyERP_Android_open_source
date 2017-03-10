@@ -39,7 +39,7 @@ public final class OrderRowVH extends RecyclerVH<OrderRowDH> {
 
     @Override
     public void bindData(OrderRowDH data) {
-        OrderRow model = data.getModel();
+        OrderRow model = (OrderRow) data.getModel();
         tvNumber_LIOR.setText(String.valueOf(getAdapterPosition() + 1));
         tvName_LIOR.setText(model.description);
         if (model.product != null && model.product.info != null)
