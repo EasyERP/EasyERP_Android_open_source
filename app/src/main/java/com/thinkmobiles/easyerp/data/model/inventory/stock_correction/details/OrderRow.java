@@ -1,23 +1,18 @@
-package com.thinkmobiles.easyerp.data.model.inventory.goods_out_notes.details;
+package com.thinkmobiles.easyerp.data.model.inventory.stock_correction.details;
+
 
 import android.os.Parcel;
-import android.os.Parcelable;
 
-import com.google.gson.annotations.SerializedName;
 import com.thinkmobiles.easyerp.data.model.crm.filter.FilterItem;
-import com.thinkmobiles.easyerp.data.model.crm.order.detail.SubProduct;
 import com.thinkmobiles.easyerp.data.model.inventory.BaseOrderRow;
 
-import java.util.ArrayList;
-
 /**
- * Created by samson on 06.03.17.
+ * Created by samson on 10.03.17.
  */
 
-public class OrderRow extends BaseOrderRow implements Parcelable {
+public class OrderRow extends BaseOrderRow  {
 
-
-    public String warehouse;
+    public FilterItem warehouse;
 
     public OrderRow() {
     }
@@ -30,12 +25,12 @@ public class OrderRow extends BaseOrderRow implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         super.writeToParcel(dest, flags);
-        dest.writeString(this.warehouse);
+        dest.writeParcelable(this.warehouse, flags);
     }
 
     protected OrderRow(Parcel in) {
         super(in);
-        this.warehouse = in.readString();
+        this.warehouse = in.readParcelable(FilterItem.class.getClassLoader());
     }
 
     public static final Creator<OrderRow> CREATOR = new Creator<OrderRow>() {

@@ -5,6 +5,7 @@ import com.thinkmobiles.easyerp.presentation.adapters.inventory.StockCorrections
 import com.thinkmobiles.easyerp.presentation.base.rules.master.selectable.MasterSelectableFragment;
 import com.thinkmobiles.easyerp.presentation.base.rules.master.selectable.SelectableAdapter;
 import com.thinkmobiles.easyerp.presentation.base.rules.master.selectable.SelectablePresenter;
+import com.thinkmobiles.easyerp.presentation.screens.inventory.stock_corrections.details.StockCorrectionsDetailsFragment_;
 
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.Bean;
@@ -54,7 +55,9 @@ public class StockCorrectionsListFragment extends MasterSelectableFragment imple
     @Override
     public void openStockCorrectionDetail(String id) {
         if (id != null) {
-            //TODO open Stock Correction detail
+            mActivity.replaceFragmentContentDetail(StockCorrectionsDetailsFragment_.builder()
+                    .id(id)
+                    .build());
         } else {
             mActivity.replaceFragmentContentDetail(null);
         }

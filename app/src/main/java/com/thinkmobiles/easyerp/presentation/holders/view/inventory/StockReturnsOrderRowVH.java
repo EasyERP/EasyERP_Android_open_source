@@ -7,7 +7,8 @@ import android.widget.TextView;
 import com.michenko.simpleadapter.OnCardClickListener;
 import com.michenko.simpleadapter.RecyclerVH;
 import com.thinkmobiles.easyerp.R;
-import com.thinkmobiles.easyerp.data.model.inventory.goods_out_notes.details.OrderRow;
+import com.thinkmobiles.easyerp.data.model.inventory.stock_correction.details.OrderRow;
+import com.thinkmobiles.easyerp.data.model.inventory.stock_returns.StockReturn;
 import com.thinkmobiles.easyerp.presentation.holders.data.inventory.OrderRowDH;
 
 /**
@@ -38,7 +39,7 @@ public final class StockReturnsOrderRowVH extends RecyclerVH<OrderRowDH> {
 
     @Override
     public void bindData(OrderRowDH data) {
-        OrderRow model = data.getModel();
+        OrderRow model = (OrderRow) data.getModel();
         tvNumber_LISROR.setText(String.valueOf(getAdapterPosition() + 1));
         if (model.product != null && model.product.info != null) {
             tvName_LISROR.setText(model.product.name);

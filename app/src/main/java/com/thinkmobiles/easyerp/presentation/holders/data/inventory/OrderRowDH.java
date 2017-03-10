@@ -1,6 +1,7 @@
 package com.thinkmobiles.easyerp.presentation.holders.data.inventory;
 
 import com.michenko.simpleadapter.RecyclerDH;
+import com.thinkmobiles.easyerp.data.model.inventory.BaseOrderRow;
 import com.thinkmobiles.easyerp.data.model.inventory.goods_out_notes.details.OrderRow;
 
 /**
@@ -9,17 +10,17 @@ import com.thinkmobiles.easyerp.data.model.inventory.goods_out_notes.details.Ord
 
 public class OrderRowDH extends RecyclerDH {
 
-    private OrderRow model;
+    private BaseOrderRow model;
 
-    public OrderRowDH(OrderRow model) {
+    public OrderRowDH(BaseOrderRow model) {
         this.model = model;
     }
 
-    public OrderRow getModel() {
+    public BaseOrderRow getModel() {
         return model;
     }
 
-    public void setModel(OrderRow model) {
+    public void setModel(BaseOrderRow model) {
         this.model = model;
     }
 }
