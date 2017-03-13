@@ -16,14 +16,14 @@ import java.util.List;
  *         Company: Thinkmobiles
  *         Email: michael.soyma@thinkmobiles.com
  */
-public class ApplicationListPresenter extends MasterFilterablePresenterHelper implements ApplicationsListContract.ApplicationsListPresenter {
+public class ApplicationsListPresenter extends MasterFilterablePresenterHelper implements ApplicationsListContract.ApplicationsListPresenter {
 
     private final ApplicationsListContract.ApplicationsListView view;
     private final ApplicationsListContract.ApplicationsListModel model;
 
     private final List<Application> applications = new ArrayList<>();
 
-    public ApplicationListPresenter(ApplicationsListContract.ApplicationsListView view, ApplicationsListContract.ApplicationsListModel model) {
+    public ApplicationsListPresenter(ApplicationsListContract.ApplicationsListView view, ApplicationsListContract.ApplicationsListModel model) {
         this.view = view;
         this.model = model;
 

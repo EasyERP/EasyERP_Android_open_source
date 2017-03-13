@@ -28,7 +28,7 @@ public class ApplicationsListFragment extends MasterFilterableFragment implement
     @AfterInject
     @Override
     public void initPresenter() {
-        new ApplicationListPresenter(this, applicationRepository);
+        new ApplicationsListPresenter(this, applicationRepository);
     }
 
     @Override
