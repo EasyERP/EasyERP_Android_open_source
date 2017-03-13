@@ -57,14 +57,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingBottom="@dimen/padding_very_minimum"
-                tools:text="smith@diagnext.com" />
+                tools:text="smith@diagnext.com"
+                android:drawableStart="@drawable/ic_email_small"
+                android:drawablePadding="@dimen/default_padding_half" />
 
             <TextView
                 android:id="@+id/tvCompanyPhone_VLIC"
                 style="@style/TextListInfoStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                tools:text="80502312123" />
+                tools:text="80502312123"
+                android:drawableStart="@drawable/ic_call_small"
+                android:drawablePadding="@dimen/default_padding_half" />
 
         </LinearLayout>
 
