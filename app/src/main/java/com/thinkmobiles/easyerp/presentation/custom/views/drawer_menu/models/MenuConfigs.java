@@ -10,6 +10,7 @@ import com.thinkmobiles.easyerp.presentation.screens.crm.opportunities.Opportuni
 import com.thinkmobiles.easyerp.presentation.screens.crm.orders.OrdersFragment_;
 import com.thinkmobiles.easyerp.presentation.screens.crm.payments.PaymentsFragment_;
 import com.thinkmobiles.easyerp.presentation.screens.crm.persons.PersonsFragment_;
+import com.thinkmobiles.easyerp.presentation.screens.hr.applications.ApplicationsListFragment_;
 import com.thinkmobiles.easyerp.presentation.screens.inventory.goods_out_notes.GoodsOutNotesFragment_;
 import com.thinkmobiles.easyerp.presentation.screens.inventory.products.ProductsListFragment_;
 import com.thinkmobiles.easyerp.presentation.screens.inventory.stock_corrections.StockCorrectionsListFragment_;
@@ -34,7 +35,7 @@ public abstract class MenuConfigs {
         menuModules.add(new MenuItem(0, R.drawable.ic_reports, "Reports", false));
         menuModules.add(new MenuItem(1, R.drawable.ic_crm, "CRM", true));
         menuModules.add(new MenuItem(2, R.drawable.ic_project, "Project", false));
-        menuModules.add(new MenuItem(3, R.drawable.ic_hr, "HR", false));
+        menuModules.add(new MenuItem(3, R.drawable.ic_hr, "HR", true));
         menuModules.add(new MenuItem(4, R.drawable.ic_purchases, "Purchases", true));
         menuModules.add(new MenuItem(5, R.drawable.ic_accounting, "Accounting", false));
         menuModules.add(new MenuItem(6, R.drawable.ic_payroll, "Payroll", false));
@@ -101,7 +102,7 @@ public abstract class MenuConfigs {
     private static List<MenuItem> getHRModule() {
         final List<MenuItem> menuItems = new ArrayList<>();
         menuItems.add(new MenuItem(0, R.drawable.ic_menu_item_placeholder, "Employees", false));
-        menuItems.add(new MenuItem(1, R.drawable.ic_menu_item_placeholder, "Applications", false));
+        menuItems.add(new MenuItem(1, R.drawable.ic_menu_item_placeholder, "Applications", true));
         menuItems.add(new MenuItem(2, R.drawable.ic_menu_item_placeholder, "Job Positions", false));
         menuItems.add(new MenuItem(3, R.drawable.ic_menu_item_placeholder, "Birthdays", false));
         menuItems.add(new MenuItem(4, R.drawable.ic_menu_item_placeholder, "Vacations", false));
@@ -185,6 +186,7 @@ public abstract class MenuConfigs {
     public static BaseMasterFlowFragment getFragmentByMenuId(final int moduleId, final int itemId) {
         switch (moduleId) {
             case 1: return getFragmentByIdWithCRMModule(itemId);
+            case 3: return getFragmentByIdWithHRModule(itemId);
             case 4: return getFragmentByIdWithPurchaseModule(itemId);
             case 8: return getFragmentByIdWithInventoryModule(itemId);
         }
@@ -242,6 +244,13 @@ public abstract class MenuConfigs {
             case 2: return StockReturnsListFragment_.builder().build();
             case 3: return StockCorrectionsListFragment_.builder().build();
             case 4: return TransfersFragment_.builder().build();
+        }
+        return null;
+    }
+
+    private static BaseMasterFlowFragment getFragmentByIdWithHRModule(final int itemId) {
+        switch (itemId) {
+            case 1: return ApplicationsListFragment_.builder().build();
         }
         return null;
     }

@@ -111,6 +111,15 @@ public abstract class Constants {
 
     //------------------------------------------------------ END INVENTORY
 
+
+    //------------------------------------------------------ HR
+
+    //Applications
+    public static final String GET_APPLICATIONS             = "applications";
+    //End Applications
+
+    //------------------------------------------------------ END HR
+
     public static final int DELAY_CLICK                     = 600;
 
     //Bundle keys
