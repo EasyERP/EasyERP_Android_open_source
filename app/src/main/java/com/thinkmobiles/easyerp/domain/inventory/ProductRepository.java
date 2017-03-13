@@ -4,10 +4,12 @@ import com.thinkmobiles.easyerp.data.api.Rest;
 import com.thinkmobiles.easyerp.data.model.ResponseGetTotalItems;
 import com.thinkmobiles.easyerp.data.model.crm.filter.ResponseFilters;
 import com.thinkmobiles.easyerp.data.model.inventory.product.Product;
+import com.thinkmobiles.easyerp.data.model.inventory.product.detail.ResponseGetProductDetail;
 import com.thinkmobiles.easyerp.data.services.FilterService;
 import com.thinkmobiles.easyerp.data.services.ProductService;
 import com.thinkmobiles.easyerp.presentation.base.NetworkRepository;
 import com.thinkmobiles.easyerp.presentation.screens.inventory.products.ProductsListContract;
+import com.thinkmobiles.easyerp.presentation.screens.inventory.products.details.ProductDetailsContract;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 import com.thinkmobiles.easyerp.presentation.utils.filter.FilterHelper;
 
@@ -21,7 +23,7 @@ import rx.Observable;
  *         Email: michael.soyma@thinkmobiles.com
  */
 @EBean(scope = EBean.Scope.Singleton)
-public class ProductRepository extends NetworkRepository implements ProductsListContract.ProductsListModel {
+public class ProductRepository extends NetworkRepository implements ProductsListContract.ProductsListModel, ProductDetailsContract.ProductDetailsModel {
 
     private final ProductService productService;
     private final FilterService filterService;
@@ -44,4 +46,25 @@ public class ProductRepository extends NetworkRepository implements ProductsList
                 .toString()
         ));
     }
+
+    @Override
+    public Observable<ResponseGetProductDetail> getInventoryProductDetails(String id) {
+        return getNetworkObservable(Observable
+                .zip(productService.getInventoryProductDetails(id), productService.getProductChannels(), (responseGetProductDetail, salesChannel) -> {
+                    responseGetProductDetail.channels = salesChannel;
+                    return responseGetProductDetail;
+                })
+                .flatMap(this::getProductStockInventory));
+    }
+
+    @Override
+    public Observable<ResponseGetProductDetail> getProductStockInventory(final ResponseGetProductDetail details) {
+        return getNetworkObservable(productService.getProductStockInventory(details.id))
+                .map(stockInventory -> {
+                    details.stockInventory = stockInventory;
+                    return details;
+                });
+    }
+
+
 }

@@ -5,6 +5,7 @@ import com.thinkmobiles.easyerp.presentation.adapters.inventory.ProductsAdapter;
 import com.thinkmobiles.easyerp.presentation.base.rules.master.filterable.FilterablePresenter;
 import com.thinkmobiles.easyerp.presentation.base.rules.master.filterable.MasterFilterableFragment;
 import com.thinkmobiles.easyerp.presentation.base.rules.master.selectable.SelectableAdapter;
+import com.thinkmobiles.easyerp.presentation.screens.inventory.products.details.ProductDetailsFragment_;
 
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.Bean;
@@ -49,7 +50,9 @@ public class ProductsListFragment extends MasterFilterableFragment implements Pr
     @Override
     public void openProductDetail(String id) {
         if (id != null) {
-            //TODO open Inventory Product detail
+            mActivity.replaceFragmentContentDetail(ProductDetailsFragment_.builder()
+                    .id(id)
+                    .build());
         } else {
             mActivity.replaceFragmentContentDetail(null);
         }
