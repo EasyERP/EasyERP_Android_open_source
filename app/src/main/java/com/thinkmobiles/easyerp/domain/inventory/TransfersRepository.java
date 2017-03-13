@@ -35,6 +35,7 @@ public class TransfersRepository extends NetworkRepository implements TransfersC
         userService = Rest.getInstance().getUserService();
     }
 
+    @Override
     public Observable<ResponseGetTransfers> getFilteredTransfers(FilterHelper query, int page) {
         return getNetworkObservable(transfersService.getTransfers(query
                 .createUrl(Constants.GET_TRANSFERS, "stockTransactions", page)
@@ -43,6 +44,7 @@ public class TransfersRepository extends NetworkRepository implements TransfersC
         ));
     }
 
+    @Override
     public Observable<ResponseGetTransferDetails> getTransferDetails(String transferID) {
         return getNetworkObservable(transfersService.getTransferDetails(transferID));
     }
@@ -52,6 +54,7 @@ public class TransfersRepository extends NetworkRepository implements TransfersC
         return getNetworkObservable(userService.getOrganizationSettings());
     }
 
+    @Override
     public Observable<ResponseFilters> getFilters() {
         return getNetworkObservable(filterService.getListFilters("stockTransactions"));
     }

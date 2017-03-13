@@ -3,7 +3,6 @@ package com.thinkmobiles.easyerp.presentation.screens.inventory.stock_correction
 import com.thinkmobiles.easyerp.data.model.inventory.stock_correction.StockCorrection;
 import com.thinkmobiles.easyerp.presentation.base.rules.master.selectable.MasterSelectablePresenterHelper;
 import com.thinkmobiles.easyerp.presentation.base.rules.master.selectable.SelectableView;
-import com.thinkmobiles.easyerp.presentation.holders.data.crm.InvoiceDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.inventory.StockCorrectionDH;
 import com.thinkmobiles.easyerp.presentation.managers.ErrorManager;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;

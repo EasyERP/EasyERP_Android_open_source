@@ -2,7 +2,6 @@ package com.thinkmobiles.easyerp.presentation.base;
 
 import android.app.Activity;
 import android.app.Fragment;
-import android.content.Context;
 import android.support.annotation.MenuRes;
 import android.view.Menu;
 import android.view.MenuInflater;
