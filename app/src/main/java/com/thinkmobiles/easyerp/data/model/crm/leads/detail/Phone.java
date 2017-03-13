@@ -2,6 +2,7 @@ package com.thinkmobiles.easyerp.data.model.crm.leads.detail;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.text.TextUtils;
 
 
 public class Phone implements Parcelable {
@@ -19,6 +20,15 @@ public class Phone implements Parcelable {
     public String phone;
     public String mobile;
 
+    public String getNotNullPhone() {
+        if (!TextUtils.isEmpty(mobile))
+            return mobile;
+        if (!TextUtils.isEmpty(phone))
+            return phone;
+        if (!TextUtils.isEmpty(fax))
+            return fax;
+        return null;
+    }
 
     @Override
     public int describeContents() {
