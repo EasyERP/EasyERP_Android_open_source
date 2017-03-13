@@ -4,12 +4,12 @@ import android.net.Uri;
 
 import com.thinkmobiles.easyerp.data.api.Rest;
 import com.thinkmobiles.easyerp.data.model.crm.common.alphabet.ResponseGetAlphabet;
-import com.thinkmobiles.easyerp.data.model.crm.common.images.ResponseGetCustomersImages;
+import com.thinkmobiles.easyerp.data.model.crm.common.images.ResponseGetImages;
 import com.thinkmobiles.easyerp.data.model.crm.companies.ResponseGetCompanies;
 import com.thinkmobiles.easyerp.data.model.crm.companies.detail.ResponseGetCompanyDetails;
 import com.thinkmobiles.easyerp.data.model.crm.filter.ResponseFilters;
 import com.thinkmobiles.easyerp.data.services.CompaniesService;
-import com.thinkmobiles.easyerp.data.services.CustomerService;
+import com.thinkmobiles.easyerp.data.services.ImageService;
 import com.thinkmobiles.easyerp.data.services.FilterService;
 import com.thinkmobiles.easyerp.presentation.base.NetworkRepository;
 import com.thinkmobiles.easyerp.presentation.screens.crm.companies.CompaniesContract;
@@ -31,12 +31,12 @@ import rx.Observable;
 public class CompaniesRepository extends NetworkRepository implements CompaniesContract.CompaniesModel, CompanyDetailsContract.CompanyDetailsModel {
 
     private CompaniesService companiesService;
-    private CustomerService customerService;
+    private ImageService imageService;
     private FilterService filterService;
 
     public CompaniesRepository() {
         companiesService = Rest.getInstance().getCompaniesService();
-        customerService = Rest.getInstance().getCustomerService();
+        imageService = Rest.getInstance().getImageService();
         filterService = Rest.getInstance().getFilterService();
     }
 
@@ -46,8 +46,8 @@ public class CompaniesRepository extends NetworkRepository implements CompaniesC
     }
 
     @Override
-    public Observable<ResponseGetCustomersImages> getCompanyImages(ArrayList<String> companyIdList) {
-        return getNetworkObservable(customerService.getCustomerImages(companyIdList));
+    public Observable<ResponseGetImages> getCompanyImages(ArrayList<String> companyIdList) {
+        return getNetworkObservable(imageService.getCustomerImages(companyIdList));
     }
 
     @Override

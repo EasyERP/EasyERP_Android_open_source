@@ -4,11 +4,11 @@ import android.net.Uri;
 
 import com.thinkmobiles.easyerp.data.api.Rest;
 import com.thinkmobiles.easyerp.data.model.crm.common.alphabet.ResponseGetAlphabet;
-import com.thinkmobiles.easyerp.data.model.crm.common.images.ResponseGetCustomersImages;
+import com.thinkmobiles.easyerp.data.model.crm.common.images.ResponseGetImages;
 import com.thinkmobiles.easyerp.data.model.crm.filter.ResponseFilters;
 import com.thinkmobiles.easyerp.data.model.crm.persons.ResponseGetPersons;
 import com.thinkmobiles.easyerp.data.model.crm.persons.details.ResponseGetPersonDetails;
-import com.thinkmobiles.easyerp.data.services.CustomerService;
+import com.thinkmobiles.easyerp.data.services.ImageService;
 import com.thinkmobiles.easyerp.data.services.FilterService;
 import com.thinkmobiles.easyerp.data.services.PersonsService;
 import com.thinkmobiles.easyerp.presentation.base.NetworkRepository;
@@ -31,12 +31,12 @@ import rx.Observable;
 public class PersonsRepository extends NetworkRepository implements PersonsContract.PersonsModel, PersonDetailsContract.PersonDetailsModel {
 
     private PersonsService personsService;
-    private CustomerService customerService;
+    private ImageService imageService;
     private FilterService filterService;
 
     public PersonsRepository() {
         personsService = Rest.getInstance().getPersonsService();
-        customerService = Rest.getInstance().getCustomerService();
+        imageService = Rest.getInstance().getImageService();
         filterService = Rest.getInstance().getFilterService();
     }
 
@@ -46,8 +46,8 @@ public class PersonsRepository extends NetworkRepository implements PersonsContr
     }
 
     @Override
-    public Observable<ResponseGetCustomersImages> getPersonImages(ArrayList<String> customerIdList) {
-        return getNetworkObservable(customerService.getCustomerImages(customerIdList));
+    public Observable<ResponseGetImages> getPersonImages(ArrayList<String> customerIdList) {
+        return getNetworkObservable(imageService.getCustomerImages(customerIdList));
     }
 
     @Override

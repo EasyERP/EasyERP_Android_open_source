@@ -3,7 +3,7 @@ package com.thinkmobiles.easyerp.data.model.crm.persons;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.thinkmobiles.easyerp.data.model.crm.common.images.ResponseGetCustomersImages;
+import com.thinkmobiles.easyerp.data.model.crm.common.images.ResponseGetImages;
 
 /**
  * Created by Lynx on 1/23/2017.
@@ -11,11 +11,11 @@ import com.thinkmobiles.easyerp.data.model.crm.common.images.ResponseGetCustomer
 
 public class CommonPersonsResponse implements Parcelable {
     public ResponseGetPersons responseGetPersons;
-    public ResponseGetCustomersImages responseGetCustomersImages;
+    public ResponseGetImages responseGetImages;
 
-    public CommonPersonsResponse(ResponseGetPersons responseGetPersons, ResponseGetCustomersImages responseGetCustomersImages) {
+    public CommonPersonsResponse(ResponseGetPersons responseGetPersons, ResponseGetImages responseGetImages) {
         this.responseGetPersons = responseGetPersons;
-        this.responseGetCustomersImages = responseGetCustomersImages;
+        this.responseGetImages = responseGetImages;
     }
 
     @Override
@@ -26,12 +26,12 @@ public class CommonPersonsResponse implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeParcelable(this.responseGetPersons, flags);
-        dest.writeParcelable(this.responseGetCustomersImages, flags);
+        dest.writeParcelable(this.responseGetImages, flags);
     }
 
     protected CommonPersonsResponse(Parcel in) {
         this.responseGetPersons = in.readParcelable(ResponseGetPersons.class.getClassLoader());
-        this.responseGetCustomersImages = in.readParcelable(ResponseGetCustomersImages.class.getClassLoader());
+        this.responseGetImages = in.readParcelable(ResponseGetImages.class.getClassLoader());
     }
 
     public static final Parcelable.Creator<CommonPersonsResponse> CREATOR = new Parcelable.Creator<CommonPersonsResponse>() {

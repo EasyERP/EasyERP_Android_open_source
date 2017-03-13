@@ -1,6 +1,6 @@
 package com.thinkmobiles.easyerp.presentation.screens.crm.persons;
 
-import com.thinkmobiles.easyerp.data.model.crm.common.images.CustomerImageItem;
+import com.thinkmobiles.easyerp.data.model.crm.common.images.ImageItem;
 import com.thinkmobiles.easyerp.data.model.crm.persons.CommonPersonsResponse;
 import com.thinkmobiles.easyerp.data.model.crm.persons.ResponseGetPersons;
 import com.thinkmobiles.easyerp.data.model.crm.persons.person_item.PersonModel;
@@ -82,7 +82,7 @@ public class PersonsPresenter extends MasterAlphabeticalPresenterHelper implemen
     private void saveData(CommonPersonsResponse commonPersonsResponse, boolean needClear) {
         if (needClear) personsResponse = commonPersonsResponse;
         else if (personsResponse != null) {
-            personsResponse.responseGetCustomersImages.data.addAll(commonPersonsResponse.responseGetCustomersImages.data);
+            personsResponse.responseGetImages.data.addAll(commonPersonsResponse.responseGetImages.data);
             personsResponse.responseGetPersons.data.addAll(commonPersonsResponse.responseGetPersons.data);
         }
     }
@@ -100,7 +100,7 @@ public class PersonsPresenter extends MasterAlphabeticalPresenterHelper implemen
     private ArrayList<PersonDH> prepareDataHolders(CommonPersonsResponse commonPersonsResponse) {
         ArrayList<PersonDH> result = new ArrayList<>();
         for (PersonModel personModel : commonPersonsResponse.responseGetPersons.data) {
-            for (CustomerImageItem imageItem : commonPersonsResponse.responseGetCustomersImages.data) {
+            for (ImageItem imageItem : commonPersonsResponse.responseGetImages.data) {
                 if (personModel.id.equalsIgnoreCase(imageItem.id)) {
                     final PersonDH personDH = new PersonDH(imageItem.imageSrc, personModel);
                     makeSelectedDHIfNeed(personDH, personsResponse.responseGetPersons.data.indexOf(personModel));
