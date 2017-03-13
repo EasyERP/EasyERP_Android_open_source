@@ -21,7 +21,8 @@ import com.thinkmobiles.easyerp.presentation.utils.StringUtil;
  */
 public final class ProductVH extends SelectableVHHelper<ProductDH> {
 
-    private TextView tvProductName_VLIIP, tvProductType_VLIIP, tvProductSKU_VLIIP, tvProductCategory_VLIIP;
+    private TextView tvProductName_VLIIP, tvProductType_VLIIP,
+            tvProductSKU_VLIIP, tvProductCategory_VLIIP, tvProductVariantsCount_VLIIP;
     private ImageView ivProductImage_VLIIP;
 
     public ProductVH(View itemView, @Nullable OnCardClickListener listener, int viewType) {
@@ -32,6 +33,7 @@ public final class ProductVH extends SelectableVHHelper<ProductDH> {
         tvProductSKU_VLIIP = findView(R.id.tvProductSKU_VLIIP);
         tvProductCategory_VLIIP = findView(R.id.tvProductCategory_VLIIP);
         ivProductImage_VLIIP = findView(R.id.ivProductImage_VLIIP);
+        tvProductVariantsCount_VLIIP = findView(R.id.tvProductVariantsCount_VLIIP);
     }
 
     @Override
@@ -41,12 +43,9 @@ public final class ProductVH extends SelectableVHHelper<ProductDH> {
         final Product product = data.getProduct();
         tvProductName_VLIIP.setText(product.name);
         tvProductType_VLIIP.setText(product.ProductTypesName);
-        tvProductSKU_VLIIP.setText(
-                String.format("%s (%s %s)",
-                        product.info.SKU,
-                        product.variantsCount.count,
-                        itemView.getResources().getQuantityString(R.plurals.variants, product.variantsCount.count)));
-        tvProductCategory_VLIIP.setText(TextUtils.join(" • ", product.ProductCategories));
+        tvProductSKU_VLIIP.setText(product.info.SKU);
+        tvProductVariantsCount_VLIIP.setText(String.valueOf(product.variantsCount.count));
+        tvProductCategory_VLIIP.setText(TextUtils.join(", ", product.ProductCategories));
 
         Picasso.with(itemView.getContext())
                 .load(StringUtil.getImageURL(product.imageSrc))

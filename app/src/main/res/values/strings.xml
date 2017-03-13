@@ -213,9 +213,7 @@
     <string name="btn_later">Later</string>
     <string name="dialog_logout_message">Logout. Please wait a second...</string>
     <string name="unicode_arrow">➞</string>
-
-    <plurals name="variants">
-        <item quantity="one">variant</item>
-        <item quantity="other">variants</item>
-    </plurals>
+    <string name="sku">SKU:</string>
+    <string name="categories">Categories:</string>
+    <string name="variants">Variants:</string>
 </resources>
