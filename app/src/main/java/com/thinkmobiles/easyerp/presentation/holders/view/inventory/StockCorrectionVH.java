@@ -17,7 +17,7 @@ import com.thinkmobiles.easyerp.presentation.managers.DateManager;
  *         Company: Thinkmobiles
  *         Email: michael.soyma@thinkmobiles.com
  */
-public class StockCorrectionVH extends SelectableVHHelper<StockCorrectionDH> {
+public final class StockCorrectionVH extends SelectableVHHelper<StockCorrectionDH> {
 
     private TextView tvReason_VLISC, tvWarehouse_VLISC, tvCreatedDate_VLISC;
 

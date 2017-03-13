@@ -7,7 +7,7 @@ import com.thinkmobiles.easyerp.presentation.base.rules.master.selectable.Select
  * Created by Lynx on 3/7/2017.
  */
 
-public class GoodsOutNoteDH extends SelectableDHHelper {
+public final class GoodsOutNoteDH extends SelectableDHHelper {
 
     private GoodsOutNoteItem item;
 

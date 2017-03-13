@@ -12,6 +12,7 @@ import com.thinkmobiles.easyerp.data.services.EmployeesService;
 import com.thinkmobiles.easyerp.data.services.FilterService;
 import com.thinkmobiles.easyerp.data.services.ImageService;
 import com.thinkmobiles.easyerp.presentation.base.NetworkRepository;
+import com.thinkmobiles.easyerp.presentation.screens.hr.employees.EmployeesContract;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 import com.thinkmobiles.easyerp.presentation.utils.filter.FilterHelper;
 
@@ -26,7 +27,7 @@ import rx.Observable;
  */
 
 @EBean(scope = EBean.Scope.Singleton)
-public class EmployeesRepository extends NetworkRepository {
+public class EmployeesRepository extends NetworkRepository implements EmployeesContract.EmployeeModel {
 
     private EmployeesService employeesService;
     private ImageService imageService;
@@ -38,10 +39,12 @@ public class EmployeesRepository extends NetworkRepository {
         filterService = Rest.getInstance().getFilterService();
     }
 
+    @Override
     public Observable<ResponseGetAlphabet> getAlphabet() {
         return getNetworkObservable(employeesService.getEmployeesAlphabet());
     }
 
+    @Override
     public Observable<ResponseGetEmployees> getEmployees(FilterHelper helper, String letter, int page) {
         Uri.Builder builder = helper.createUrl(Constants.GET_EMPLOYEES, "Employees", page);
         if (!letter.equalsIgnoreCase("All")) {
@@ -52,10 +55,12 @@ public class EmployeesRepository extends NetworkRepository {
         return getNetworkObservable(employeesService.getEmployees(builder.build().toString()));
     }
 
+    @Override
     public Observable<ResponseGetImages> getEmployeeImages(ArrayList<String> employeeIDs) {
         return getNetworkObservable(imageService.getEmployeesImages(employeeIDs));
     }
 
+    @Override
     public Observable<ResponseFilters> getFilters() {
         return getNetworkObservable(filterService.getListFilters("Employees"));
     }

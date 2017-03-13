@@ -7,7 +7,7 @@ import com.thinkmobiles.easyerp.data.model.inventory.transfers.details.TransferR
  * Created by Lynx on 3/9/2017.
  */
 
-public class TransferRowDH extends RecyclerDH {
+public final class TransferRowDH extends RecyclerDH {
 
     private TransferRowItem item;
 

@@ -7,7 +7,7 @@ import com.thinkmobiles.easyerp.presentation.base.rules.master.selectable.Select
  * Created by Lynx on 3/7/2017.
  */
 
-public class TransferDH extends SelectableDHHelper {
+public final class TransferDH extends SelectableDHHelper {
 
     private TransferItem item;
 

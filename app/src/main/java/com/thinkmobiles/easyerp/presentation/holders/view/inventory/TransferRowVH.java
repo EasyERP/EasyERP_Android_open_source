@@ -15,7 +15,7 @@ import com.thinkmobiles.easyerp.presentation.holders.data.inventory.TransferRowD
  * Created by Lynx on 3/9/2017.
  */
 
-public class TransferRowVH extends RecyclerVH<TransferRowDH> {
+public final class TransferRowVH extends RecyclerVH<TransferRowDH> {
 
     private TextView tvNumber_VLITR;
     private TextView tvName_VLITR;

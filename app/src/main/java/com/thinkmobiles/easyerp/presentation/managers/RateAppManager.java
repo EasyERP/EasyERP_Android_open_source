@@ -63,7 +63,8 @@ public class RateAppManager {
                             .apply();
                 })
                 .setNeutralButton(R.string.btn_later, (dialog, which) -> {
-
+                    statesPreferences.edit().getAppLaunchesCount().put(0L).apply();
+                    statesPreferences.edit().getFirstLaunchTime().put(System.currentTimeMillis()).apply();
                 })
                 .show();
     }

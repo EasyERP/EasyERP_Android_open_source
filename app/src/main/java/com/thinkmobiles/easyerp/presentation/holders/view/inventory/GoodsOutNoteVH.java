@@ -20,7 +20,7 @@ import com.thinkmobiles.easyerp.presentation.managers.TagHelper;
  * Created by Lynx on 3/7/2017.
  */
 
-public class GoodsOutNoteVH extends SelectableVHHelper<GoodsOutNoteDH> {
+public final class GoodsOutNoteVH extends SelectableVHHelper<GoodsOutNoteDH> {
 
     private TextView tvId_VLIGON;
     private TextView tvStatus_VLIGON;

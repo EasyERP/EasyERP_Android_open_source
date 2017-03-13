@@ -18,7 +18,7 @@ import com.thinkmobiles.easyerp.presentation.managers.ImageHelper;
  * Created by Lynx on 2/13/2017.
  */
 
-public class ContactVH extends RecyclerVH<ContactDH> {
+public final class ContactVH extends RecyclerVH<ContactDH> {
 
     private ImageView ivContactImage_VLIC;
     private TextView tvContactName_VLIC;

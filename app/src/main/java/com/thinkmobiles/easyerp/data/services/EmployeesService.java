@@ -19,7 +19,7 @@ public interface EmployeesService {
     @GET(Constants.GET_EMPLOYEES_ALPHABET)
     Observable<ResponseGetAlphabet> getEmployeesAlphabet();
 
-    @GET(Constants.GET_EMPLOYEES)
+    @GET
     Observable<ResponseGetEmployees> getEmployees(@Url String url);
 
     @GET(Constants.GET_EMPLOYEES)
