@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@android:color/white"
+    android:gravity="center_vertical">
+
+    <TextView
+        android:id="@+id/tvProduct_LIPA"
+        style="@style/PdfStyle.TableStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        tools:text="Item name" />
+
+    <TextView
+        android:id="@+id/tvAdjustedBy_LIPA"
+        style="@style/PdfStyle.TableStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        tools:text="@string/item_product_sku" />
+
+
+</LinearLayout>

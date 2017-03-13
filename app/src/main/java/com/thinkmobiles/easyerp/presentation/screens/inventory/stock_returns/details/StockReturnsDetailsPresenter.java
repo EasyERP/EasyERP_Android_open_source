@@ -1,6 +1,6 @@
 package com.thinkmobiles.easyerp.presentation.screens.inventory.stock_returns.details;
 
-import com.thinkmobiles.easyerp.data.model.inventory.goods_out_notes.details.OrderRow;
+import com.thinkmobiles.easyerp.data.model.inventory.stock_correction.details.OrderRow;
 import com.thinkmobiles.easyerp.data.model.inventory.stock_returns.details.ResponseGetStockReturnsDetails;
 import com.thinkmobiles.easyerp.data.model.user.organization.OrganizationSettings;
 import com.thinkmobiles.easyerp.presentation.base.rules.content.ContentPresenterHelper;
@@ -57,7 +57,7 @@ public class StockReturnsDetailsPresenter extends ContentPresenterHelper impleme
                 .subscribe(responseGetStockReturnsDetails -> {
                     view.showProgress(Constants.ProgressType.NONE);
                     setData(responseGetStockReturnsDetails);
-                }));
+                }, t -> error(t)));
     }
 
     private void setData(ResponseGetStockReturnsDetails response) {

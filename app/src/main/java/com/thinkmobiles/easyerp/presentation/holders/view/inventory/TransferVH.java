@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 import com.michenko.simpleadapter.OnCardClickListener;
 import com.thinkmobiles.easyerp.R;
-import com.thinkmobiles.easyerp.data.model.inventory.transfers.TransferItem;
+import com.thinkmobiles.easyerp.data.model.inventory.transfers.details.TransferItem;
 import com.thinkmobiles.easyerp.presentation.base.rules.master.selectable.SelectableVHHelper;
 import com.thinkmobiles.easyerp.presentation.holders.data.inventory.TransferDH;
 import com.thinkmobiles.easyerp.presentation.managers.DateManager;

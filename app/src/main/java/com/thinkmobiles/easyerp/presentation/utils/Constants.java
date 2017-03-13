@@ -100,11 +100,13 @@ public abstract class Constants {
     //End StockReturn
 
     //Transactions
-    public static final String GET_TRANSACTIONS             = "stockTransactions";
+    public static final String GET_TRANSFERS                = "stockTransactions";
+    public static final String GET_TRANSFERS_DETAILS        = "stockTransactions/{transferID}";
     //End Transactions
 
     //StockCorrection
     public static final String GET_STOCK_CORRECTION         = "warehouse/stockCorrection";
+    public static final String GET_STOCK_CORRECTION_DETAILS = "warehouse/stockCorrection/{id}";
     //End StockCorrection
 
     //------------------------------------------------------ END INVENTORY

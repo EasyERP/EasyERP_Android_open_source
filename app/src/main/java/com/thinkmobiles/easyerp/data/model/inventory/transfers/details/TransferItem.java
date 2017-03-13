@@ -1,4 +1,4 @@
-package com.thinkmobiles.easyerp.data.model.inventory.transfers;
+package com.thinkmobiles.easyerp.data.model.inventory.transfers.details;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -6,6 +6,7 @@ import android.os.Parcelable;
 import com.google.gson.annotations.SerializedName;
 import com.thinkmobiles.easyerp.data.model.crm.leads.detail.CreatedEditedBy;
 import com.thinkmobiles.easyerp.data.model.inventory.goods_out_notes.InventoryStatus;
+import com.thinkmobiles.easyerp.data.model.inventory.transfers.WarehouseInfo;
 
 /**
  * Created by Lynx on 3/7/2017.

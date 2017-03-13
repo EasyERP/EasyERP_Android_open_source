@@ -6,7 +6,7 @@ import android.os.Parcelable;
 import com.google.gson.annotations.SerializedName;
 import com.thinkmobiles.easyerp.data.model.crm.leads.detail.AttachmentItem;
 import com.thinkmobiles.easyerp.data.model.crm.persons.details.CreatedEditedUserString;
-import com.thinkmobiles.easyerp.data.model.inventory.goods_out_notes.details.OrderRow;
+import com.thinkmobiles.easyerp.data.model.inventory.stock_correction.details.OrderRow;
 import com.thinkmobiles.easyerp.data.model.inventory.stock_returns.StockReturnStatus;
 
 import java.util.ArrayList;

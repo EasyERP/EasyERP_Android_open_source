@@ -34,7 +34,10 @@ public abstract class MasterAlphabeticalFragment extends MasterFilterableFragmen
 
     @AfterViews
     protected void initAlphabet() {
-        alphabetView.setListener(letter -> getPresenter().setLetter(letter));
+        alphabetView.setListener(letter -> {
+            scrollListener.reset();
+            getPresenter().setLetter(letter);
+        });
     }
 
     @Override

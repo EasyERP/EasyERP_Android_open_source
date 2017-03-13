@@ -2,6 +2,7 @@ package com.thinkmobiles.easyerp.data.services;
 
 import com.thinkmobiles.easyerp.data.model.ResponseGetTotalItems;
 import com.thinkmobiles.easyerp.data.model.inventory.stock_correction.StockCorrection;
+import com.thinkmobiles.easyerp.data.model.inventory.stock_correction.details.ResponseGetStockCorrectionDetails;
 import com.thinkmobiles.easyerp.data.model.inventory.stock_returns.StockReturn;
 import com.thinkmobiles.easyerp.data.model.inventory.stock_returns.details.ResponseGetStockReturnsDetails;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
@@ -34,4 +35,7 @@ public interface StockService {
                                                                                 @Query("count") int count,
                                                                                 @Query("contentType") String contentType,
                                                                                 @Query("page") int page);
+
+    @GET(Constants.GET_STOCK_CORRECTION_DETAILS)
+    Observable<ResponseGetStockCorrectionDetails> getStockCorrectionDetails(@Path("id") String id);
 }
