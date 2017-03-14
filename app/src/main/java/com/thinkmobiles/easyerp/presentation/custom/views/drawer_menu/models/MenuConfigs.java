@@ -10,6 +10,7 @@ import com.thinkmobiles.easyerp.presentation.screens.crm.opportunities.Opportuni
 import com.thinkmobiles.easyerp.presentation.screens.crm.orders.OrdersFragment_;
 import com.thinkmobiles.easyerp.presentation.screens.crm.payments.PaymentsFragment_;
 import com.thinkmobiles.easyerp.presentation.screens.crm.persons.PersonsFragment_;
+import com.thinkmobiles.easyerp.presentation.screens.hr.employees.EmployeesFragment_;
 import com.thinkmobiles.easyerp.presentation.screens.hr.applications.ApplicationsListFragment_;
 import com.thinkmobiles.easyerp.presentation.screens.inventory.goods_out_notes.GoodsOutNotesFragment_;
 import com.thinkmobiles.easyerp.presentation.screens.inventory.products.ProductsListFragment_;
@@ -101,7 +102,7 @@ public abstract class MenuConfigs {
 
     private static List<MenuItem> getHRModule() {
         final List<MenuItem> menuItems = new ArrayList<>();
-        menuItems.add(new MenuItem(0, R.drawable.ic_menu_item_placeholder, "Employees", false));
+        menuItems.add(new MenuItem(0, R.drawable.ic_menu_item_placeholder, "Employees", true));
         menuItems.add(new MenuItem(1, R.drawable.ic_menu_item_placeholder, "Applications", true));
         menuItems.add(new MenuItem(2, R.drawable.ic_menu_item_placeholder, "Job Positions", false));
         menuItems.add(new MenuItem(3, R.drawable.ic_menu_item_placeholder, "Birthdays", false));
@@ -250,7 +251,13 @@ public abstract class MenuConfigs {
 
     private static BaseMasterFlowFragment getFragmentByIdWithHRModule(final int itemId) {
         switch (itemId) {
+            case 0: return EmployeesFragment_.builder().build();
             case 1: return ApplicationsListFragment_.builder().build();
+            case 2: return null;
+            case 3: return null;
+            case 4: return null;
+            case 5: return null;
+            case 6: return null;
         }
         return null;
     }

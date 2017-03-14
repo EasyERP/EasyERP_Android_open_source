@@ -1,6 +1,7 @@
 package com.thinkmobiles.easyerp.presentation.screens.crm.orders;
 
-import com.thinkmobiles.easyerp.data.model.crm.order.ResponseGetOrders;
+import com.thinkmobiles.easyerp.data.model.ResponseGetTotalItems;
+import com.thinkmobiles.easyerp.data.model.crm.order.Order;
 import com.thinkmobiles.easyerp.presentation.base.BaseView;
 import com.thinkmobiles.easyerp.presentation.base.rules.master.filterable.FilterableModel;
 import com.thinkmobiles.easyerp.presentation.base.rules.master.filterable.FilterablePresenter;
@@ -19,6 +20,6 @@ public interface OrdersContract {
     }
     interface OrdersPresenter extends FilterablePresenter {}
     interface OrdersModel extends FilterableModel {
-        Observable<ResponseGetOrders> getOrders(FilterHelper query, int page);
+        Observable<ResponseGetTotalItems<Order>> getOrders(FilterHelper query, int page);
     }
 }

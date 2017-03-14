@@ -7,8 +7,8 @@ import android.view.View;
 import android.widget.FrameLayout;
 
 import com.thinkmobiles.easyerp.R;
+import com.thinkmobiles.easyerp.data.model.ResponseGetTotalItems;
 import com.thinkmobiles.easyerp.data.model.crm.invoice.Invoice;
-import com.thinkmobiles.easyerp.data.model.crm.invoice.ResponseGetInvoice;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.DashboardTableChartAdapter;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.DashboardTableChartDH;
 
@@ -42,7 +42,7 @@ public class TableChartViewImpl implements IChartView<ArrayList<DashboardTableCh
 
     @Override
     public ArrayList<DashboardTableChartDH> prepareData(Object data) {
-        final ResponseGetInvoice responseGetInvoice = (ResponseGetInvoice) data;
+        final ResponseGetTotalItems<Invoice> responseGetInvoice = (ResponseGetTotalItems<Invoice>) data;
         final ArrayList<DashboardTableChartDH> dataList = new ArrayList<>();
 
         for (Invoice invoice : responseGetInvoice.data)

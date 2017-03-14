@@ -8,7 +8,7 @@ import com.thinkmobiles.easyerp.data.model.inventory.goods_out_notes.details.Ord
  * Created by samson on 07.03.17.
  */
 
-public class OrderRowDH extends RecyclerDH {
+public final class OrderRowDH extends RecyclerDH {
 
     private BaseOrderRow model;
 

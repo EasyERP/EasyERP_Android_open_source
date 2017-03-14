@@ -1,6 +1,7 @@
 package com.thinkmobiles.easyerp.presentation.screens.crm.invoices;
 
-import com.thinkmobiles.easyerp.data.model.crm.invoice.ResponseGetInvoice;
+import com.thinkmobiles.easyerp.data.model.ResponseGetTotalItems;
+import com.thinkmobiles.easyerp.data.model.crm.invoice.Invoice;
 import com.thinkmobiles.easyerp.presentation.base.BaseView;
 import com.thinkmobiles.easyerp.presentation.base.rules.master.filterable.FilterableModel;
 import com.thinkmobiles.easyerp.presentation.base.rules.master.filterable.FilterablePresenter;
@@ -20,7 +21,7 @@ public interface InvoicesContract {
     }
     interface InvoicesPresenter extends FilterablePresenter {}
     interface InvoicesModel extends FilterableModel {
-        Observable<ResponseGetInvoice> getFilteredInvoices(FilterHelper query, int page);
+        Observable<ResponseGetTotalItems<Invoice>> getFilteredInvoices(FilterHelper query, int page);
     }
 }
 

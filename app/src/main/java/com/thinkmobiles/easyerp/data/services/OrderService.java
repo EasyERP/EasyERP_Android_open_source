@@ -1,7 +1,8 @@
 package com.thinkmobiles.easyerp.data.services;
 
+import com.thinkmobiles.easyerp.data.model.ResponseGetTotalItems;
 import com.thinkmobiles.easyerp.data.model.crm.dashboard.detail.order.OrderItem;
-import com.thinkmobiles.easyerp.data.model.crm.order.ResponseGetOrders;
+import com.thinkmobiles.easyerp.data.model.crm.order.Order;
 import com.thinkmobiles.easyerp.data.model.crm.order.detail.ResponseGetOrderDetails;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
@@ -20,7 +21,7 @@ import rx.Observable;
 public interface OrderService {
 
     @GET
-    Observable<ResponseGetOrders> getOrders(@Url String url);
+    Observable<ResponseGetTotalItems<Order>> getOrders(@Url String url);
 
     @GET(Constants.GET_ORDER_BY_WORKFLOWS)
     Observable<List<OrderItem>> getOrderByWorkflows(

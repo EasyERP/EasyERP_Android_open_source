@@ -57,6 +57,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingBottom="@dimen/padding_very_minimum"
+                android:drawableStart="@drawable/ic_email_small"
+                android:drawablePadding="@dimen/default_padding_half"
                 tools:text="smith@diagnext.com" />
 
             <TextView
@@ -64,6 +66,8 @@
                 style="@style/TextListInfoStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_call_small"
+                android:drawablePadding="@dimen/default_padding_half"
                 tools:text="80502312123" />
 
         </LinearLayout>

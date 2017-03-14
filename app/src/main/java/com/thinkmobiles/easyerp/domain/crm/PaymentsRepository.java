@@ -1,8 +1,9 @@
 package com.thinkmobiles.easyerp.domain.crm;
 
 import com.thinkmobiles.easyerp.data.api.Rest;
+import com.thinkmobiles.easyerp.data.model.ResponseGetTotalItems;
 import com.thinkmobiles.easyerp.data.model.crm.filter.ResponseFilters;
-import com.thinkmobiles.easyerp.data.model.crm.payments.ResponseGetPayments;
+import com.thinkmobiles.easyerp.data.model.crm.payments.Payment;
 import com.thinkmobiles.easyerp.data.model.user.organization.ResponseGetOrganizationSettings;
 import com.thinkmobiles.easyerp.data.services.FilterService;
 import com.thinkmobiles.easyerp.data.services.PaymentsService;
@@ -37,7 +38,7 @@ public class PaymentsRepository extends NetworkRepository implements PaymentsCon
     }
 
     @Override
-    public Observable<ResponseGetPayments> getFilteredPayments(FilterHelper helper, int page) {
+    public Observable<ResponseGetTotalItems<Payment>> getFilteredPayments(FilterHelper helper, int page) {
         return getNetworkObservable(paymentsService.getFilteredPayments(helper
                 .createUrl(path, contentType, page)
                 .build()

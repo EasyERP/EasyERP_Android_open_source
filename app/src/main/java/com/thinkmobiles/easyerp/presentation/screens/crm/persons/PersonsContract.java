@@ -1,7 +1,8 @@
 package com.thinkmobiles.easyerp.presentation.screens.crm.persons;
 
-import com.thinkmobiles.easyerp.data.model.crm.common.images.ResponseGetCustomersImages;
-import com.thinkmobiles.easyerp.data.model.crm.persons.ResponseGetPersons;
+import com.thinkmobiles.easyerp.data.model.ResponseGetTotalItems;
+import com.thinkmobiles.easyerp.data.model.crm.common.images.ImageItem;
+import com.thinkmobiles.easyerp.data.model.crm.persons.person_item.PersonModel;
 import com.thinkmobiles.easyerp.presentation.base.BaseView;
 import com.thinkmobiles.easyerp.presentation.base.rules.master.alphabetical.AlphabeticalModel;
 import com.thinkmobiles.easyerp.presentation.base.rules.master.alphabetical.AlphabeticalPresenter;
@@ -23,7 +24,7 @@ public interface PersonsContract {
     interface PersonsPresenter extends AlphabeticalPresenter {
     }
     interface PersonsModel extends AlphabeticalModel {
-        Observable<ResponseGetCustomersImages> getPersonImages(ArrayList<String> customerIdList);
-        Observable<ResponseGetPersons> getPersons(FilterHelper helper, String letter, int page);
+        Observable<ResponseGetTotalItems<ImageItem>> getPersonImages(ArrayList<String> customerIdList);
+        Observable<ResponseGetTotalItems<PersonModel>> getPersons(FilterHelper helper, String letter, int page);
     }
 }

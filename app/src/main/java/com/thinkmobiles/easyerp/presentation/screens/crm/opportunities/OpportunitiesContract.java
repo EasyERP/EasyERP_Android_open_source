@@ -1,6 +1,7 @@
 package com.thinkmobiles.easyerp.presentation.screens.crm.opportunities;
 
-import com.thinkmobiles.easyerp.data.model.crm.opportunities.ResponseGetOpportunities;
+import com.thinkmobiles.easyerp.data.model.ResponseGetTotalItems;
+import com.thinkmobiles.easyerp.data.model.crm.opportunities.list_item.OpportunityListItem;
 import com.thinkmobiles.easyerp.presentation.base.BaseView;
 import com.thinkmobiles.easyerp.presentation.base.rules.master.filterable.FilterableModel;
 import com.thinkmobiles.easyerp.presentation.base.rules.master.filterable.FilterablePresenter;
@@ -22,6 +23,6 @@ public interface OpportunitiesContract {
     interface OpportunitiesPresenter extends FilterablePresenter {}
 
     interface OpportunitiesModel extends FilterableModel {
-        Observable<ResponseGetOpportunities> getOpportunities(FilterHelper query, int page);
+        Observable<ResponseGetTotalItems<OpportunityListItem>> getOpportunities(FilterHelper query, int page);
     }
 }
