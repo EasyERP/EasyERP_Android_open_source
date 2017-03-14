@@ -1,6 +1,7 @@
 package com.thinkmobiles.easyerp.data.services;
 
-import com.thinkmobiles.easyerp.data.model.crm.leads.ResponseGetLeads;
+import com.thinkmobiles.easyerp.data.model.ResponseGetTotalItems;
+import com.thinkmobiles.easyerp.data.model.crm.leads.LeadItem;
 import com.thinkmobiles.easyerp.data.model.crm.leads.detail.ResponseGetLeadDetails;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
@@ -16,7 +17,7 @@ import rx.Observable;
 public interface LeadService {
 
     @GET
-    Observable<ResponseGetLeads> getLeads(@Url String url);
+    Observable<ResponseGetTotalItems<LeadItem>> getLeads(@Url String url);
 
     @GET(Constants.GET_LEADS + "/{leadId}")
     Observable<ResponseGetLeadDetails> getLeadDetails(@Path("leadId") String leadId);

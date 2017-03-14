@@ -1,6 +1,7 @@
 package com.thinkmobiles.easyerp.presentation.screens.crm.leads;
 
-import com.thinkmobiles.easyerp.data.model.crm.leads.ResponseGetLeads;
+import com.thinkmobiles.easyerp.data.model.ResponseGetTotalItems;
+import com.thinkmobiles.easyerp.data.model.crm.leads.LeadItem;
 import com.thinkmobiles.easyerp.presentation.base.BaseModel;
 import com.thinkmobiles.easyerp.presentation.base.BaseView;
 import com.thinkmobiles.easyerp.presentation.base.rules.master.filterable.FilterableModel;
@@ -25,6 +26,6 @@ public interface LeadsContract {
     }
 
     interface LeadsModel extends BaseModel, FilterableModel {
-        Observable<ResponseGetLeads> getFilteredLeads(FilterHelper query, int page);
+        Observable<ResponseGetTotalItems<LeadItem>> getFilteredLeads(FilterHelper query, int page);
     }
 }
