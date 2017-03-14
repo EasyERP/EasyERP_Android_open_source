@@ -75,6 +75,7 @@ public class ApplicationsListPresenter extends MasterFilterablePresenterHelper i
     protected FilterableModel getModel() {
         return model;
     }
+
     private void saveData(final List<Application> applications, boolean needClear) {
         if (needClear)
             this.applications.clear();

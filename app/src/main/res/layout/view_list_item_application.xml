@@ -44,7 +44,7 @@
             style="@style/TextListInfoStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="@dimen/padding_very_minimum"
+            android:layout_marginBottom="@dimen/padding_very_minimum"
             tools:text="Senior iOS" />
 
         <TextView
@@ -52,7 +52,7 @@
             style="@style/TextListInfoStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="@dimen/padding_very_minimum"
+            android:layout_marginBottom="@dimen/padding_very_minimum"
             tools:text="smith@diagnext.com" />
 
         <TextView
@@ -60,7 +60,7 @@
             style="@style/TextListInfoStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="@dimen/default_padding_middle"
+            android:layout_marginBottom="@dimen/default_padding_middle"
             tools:text="+44 874 2221 1044" />
 
         <TextView
@@ -68,7 +68,7 @@
             style="@style/TextListInfoStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="@dimen/padding_very_minimum"
+            android:layout_marginBottom="@dimen/padding_very_minimum"
             android:textSize="@dimen/text_size_small_14"
             tools:text="Created at 18 Sep, 2016 by bradley.kingston" />
 

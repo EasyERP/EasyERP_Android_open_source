@@ -12,6 +12,7 @@ import com.thinkmobiles.easyerp.presentation.screens.crm.payments.PaymentsFragme
 import com.thinkmobiles.easyerp.presentation.screens.crm.persons.PersonsFragment_;
 import com.thinkmobiles.easyerp.presentation.screens.hr.employees.EmployeesFragment_;
 import com.thinkmobiles.easyerp.presentation.screens.hr.applications.ApplicationsListFragment_;
+import com.thinkmobiles.easyerp.presentation.screens.hr.job_positions.JobPositionsListFragment_;
 import com.thinkmobiles.easyerp.presentation.screens.inventory.goods_out_notes.GoodsOutNotesFragment_;
 import com.thinkmobiles.easyerp.presentation.screens.inventory.products.ProductsListFragment_;
 import com.thinkmobiles.easyerp.presentation.screens.inventory.stock_corrections.StockCorrectionsListFragment_;
@@ -104,7 +105,7 @@ public abstract class MenuConfigs {
         final List<MenuItem> menuItems = new ArrayList<>();
         menuItems.add(new MenuItem(0, R.drawable.ic_menu_item_placeholder, "Employees", true));
         menuItems.add(new MenuItem(1, R.drawable.ic_menu_item_placeholder, "Applications", true));
-        menuItems.add(new MenuItem(2, R.drawable.ic_menu_item_placeholder, "Job Positions", false));
+        menuItems.add(new MenuItem(2, R.drawable.ic_menu_item_placeholder, "Job Positions", true));
         menuItems.add(new MenuItem(3, R.drawable.ic_menu_item_placeholder, "Birthdays", false));
         menuItems.add(new MenuItem(4, R.drawable.ic_menu_item_placeholder, "Vacations", false));
         menuItems.add(new MenuItem(5, R.drawable.ic_menu_item_placeholder, "Attendance", false));
@@ -253,11 +254,7 @@ public abstract class MenuConfigs {
         switch (itemId) {
             case 0: return EmployeesFragment_.builder().build();
             case 1: return ApplicationsListFragment_.builder().build();
-            case 2: return null;
-            case 3: return null;
-            case 4: return null;
-            case 5: return null;
-            case 6: return null;
+            case 2: return JobPositionsListFragment_.builder().build();
         }
         return null;
     }

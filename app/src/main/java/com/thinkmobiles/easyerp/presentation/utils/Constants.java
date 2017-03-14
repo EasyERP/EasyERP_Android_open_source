@@ -112,6 +112,7 @@ public abstract class Constants {
     //------------------------------------------------------ END INVENTORY
 
     //------------------------------------------------------ HR
+
     //Employees
     public static final String GET_EMPLOYEES_IMAGES         = "employees/getEmployeesImages";
     public static final String GET_EMPLOYEES_ALPHABET       = "employees/getEmployeesAlphabet";
@@ -121,6 +122,11 @@ public abstract class Constants {
     //Applications
     public static final String GET_APPLICATIONS             = "applications";
     //End Applications
+
+    //Job Positions
+    public static final String GET_JOB_POSITIONS            = "JobPositions";
+    //End Job Positions
+
     //------------------------------------------------------ END HR
 
     public static final int DELAY_CLICK                     = 600;
