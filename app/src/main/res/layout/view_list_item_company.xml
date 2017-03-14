@@ -56,19 +56,19 @@
                 style="@style/TextListInfoStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingBottom="@dimen/padding_very_minimum"
-                tools:text="smith@diagnext.com"
+                android:drawablePadding="@dimen/default_padding_half"
                 android:drawableStart="@drawable/ic_email_small"
-                android:drawablePadding="@dimen/default_padding_half" />
+                android:paddingBottom="@dimen/padding_very_minimum"
+                tools:text="smith@diagnext.com" />
 
             <TextView
                 android:id="@+id/tvCompanyPhone_VLIC"
                 style="@style/TextListInfoStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                tools:text="80502312123"
+                android:drawablePadding="@dimen/default_padding_half"
                 android:drawableStart="@drawable/ic_call_small"
-                android:drawablePadding="@dimen/default_padding_half" />
+                tools:text="80502312123" />
 
         </LinearLayout>
 

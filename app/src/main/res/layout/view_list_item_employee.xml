@@ -52,7 +52,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_marginStart="@dimen/default_padding"
-                        tools:text="IOS departemnt"/>
+                        tools:text="IOS departemnt" />
 
                 </LinearLayout>
 
@@ -61,41 +61,41 @@
                     style="@style/TextListInfoStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    tools:text="Junior Software Developer"
-                    android:layout_marginTop="@dimen/default_padding_quart"/>
+                    android:layout_marginTop="@dimen/default_padding_quart"
+                    tools:text="Junior Software Developer" />
 
-                    <TextView
-                        android:id="@+id/tvEmployeeEmail_VLIE"
-                        style="@style/TextListInfoStyle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:includeFontPadding="false"
-                        tools:text="BradleyDouglas@mail.com"
-                        android:drawableStart="@drawable/ic_email_small"
-                        android:drawablePadding="@dimen/default_padding_half"
-                        android:layout_marginTop="@dimen/default_padding_quart"/>
+                <TextView
+                    android:id="@+id/tvEmployeeEmail_VLIE"
+                    style="@style/TextListInfoStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/default_padding_quart"
+                    android:drawablePadding="@dimen/default_padding_half"
+                    android:drawableStart="@drawable/ic_email_small"
+                    android:includeFontPadding="false"
+                    tools:text="BradleyDouglas@mail.com" />
 
-                    <TextView
-                        android:id="@+id/tvEmployeeSkype_VLIE"
-                        style="@style/TextListInfoStyle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:includeFontPadding="false"
-                        tools:text="bradely.douglas"
-                        android:drawableStart="@drawable/ic_skype_small"
-                        android:drawablePadding="@dimen/default_padding_half"
-                        android:layout_marginTop="@dimen/default_padding_quart"/>
+                <TextView
+                    android:id="@+id/tvEmployeeSkype_VLIE"
+                    style="@style/TextListInfoStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/default_padding_quart"
+                    android:drawablePadding="@dimen/default_padding_half"
+                    android:drawableStart="@drawable/ic_skype_small"
+                    android:includeFontPadding="false"
+                    tools:text="bradely.douglas" />
 
-                    <TextView
-                        android:id="@+id/tvEmployeePhone_VLIE"
-                        style="@style/TextListInfoStyle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:includeFontPadding="false"
-                        tools:text="+3805014987563"
-                        android:drawableStart="@drawable/ic_call_small"
-                        android:drawablePadding="@dimen/default_padding_half"
-                        android:layout_marginTop="@dimen/default_padding_quart"/>
+                <TextView
+                    android:id="@+id/tvEmployeePhone_VLIE"
+                    style="@style/TextListInfoStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/default_padding_quart"
+                    android:drawablePadding="@dimen/default_padding_half"
+                    android:drawableStart="@drawable/ic_call_small"
+                    android:includeFontPadding="false"
+                    tools:text="+3805014987563" />
 
             </LinearLayout>
 
