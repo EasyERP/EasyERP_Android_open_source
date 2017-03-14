@@ -1,7 +1,8 @@
 package com.thinkmobiles.easyerp.data.services;
 
-import com.thinkmobiles.easyerp.data.model.crm.opportunities.ResponseGetOpportunities;
+import com.thinkmobiles.easyerp.data.model.ResponseGetTotalItems;
 import com.thinkmobiles.easyerp.data.model.crm.opportunities.detail.ResponseGetOpportunityDetails;
+import com.thinkmobiles.easyerp.data.model.crm.opportunities.list_item.OpportunityListItem;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
 import retrofit2.http.GET;
@@ -16,7 +17,7 @@ import rx.Observable;
 public interface OpportunityService {
 
     @GET
-    Observable<ResponseGetOpportunities> getOpportunities(@Url String url);
+    Observable<ResponseGetTotalItems<OpportunityListItem>> getOpportunities(@Url String url);
 
     @GET(Constants.GET_OPPORTUNITY_DETAILS)
     Observable<ResponseGetOpportunityDetails> getOpportunityDetails(@Path("OpportunityID") String OpportunityID);
