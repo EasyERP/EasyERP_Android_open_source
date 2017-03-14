@@ -10,8 +10,8 @@ import com.thinkmobiles.easyerp.presentation.screens.crm.opportunities.Opportuni
 import com.thinkmobiles.easyerp.presentation.screens.crm.orders.OrdersFragment_;
 import com.thinkmobiles.easyerp.presentation.screens.crm.payments.PaymentsFragment_;
 import com.thinkmobiles.easyerp.presentation.screens.crm.persons.PersonsFragment_;
-import com.thinkmobiles.easyerp.presentation.screens.hr.employees.EmployeesFragment_;
 import com.thinkmobiles.easyerp.presentation.screens.hr.applications.ApplicationsListFragment_;
+import com.thinkmobiles.easyerp.presentation.screens.hr.employees.EmployeesFragment_;
 import com.thinkmobiles.easyerp.presentation.screens.hr.job_positions.JobPositionsListFragment_;
 import com.thinkmobiles.easyerp.presentation.screens.inventory.goods_out_notes.GoodsOutNotesFragment_;
 import com.thinkmobiles.easyerp.presentation.screens.inventory.products.ProductsListFragment_;
