@@ -3,7 +3,6 @@ package com.thinkmobiles.easyerp.presentation.screens.hr.employees;
 import com.thinkmobiles.easyerp.data.model.ResponseGetTotalItems;
 import com.thinkmobiles.easyerp.data.model.crm.common.images.ImageItem;
 import com.thinkmobiles.easyerp.data.model.hr.employees.ResponseCommonEmployees;
-import com.thinkmobiles.easyerp.data.model.hr.employees.ResponseGetEmployees;
 import com.thinkmobiles.easyerp.data.model.hr.employees.item.EmployeeItem;
 import com.thinkmobiles.easyerp.presentation.base.rules.master.alphabetical.AlphabeticalModel;
 import com.thinkmobiles.easyerp.presentation.base.rules.master.alphabetical.AlphabeticalView;

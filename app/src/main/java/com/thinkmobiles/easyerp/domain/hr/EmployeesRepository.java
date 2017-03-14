@@ -7,8 +7,6 @@ import com.thinkmobiles.easyerp.data.model.ResponseGetTotalItems;
 import com.thinkmobiles.easyerp.data.model.crm.common.alphabet.ResponseGetAlphabet;
 import com.thinkmobiles.easyerp.data.model.crm.common.images.ResponseGetImages;
 import com.thinkmobiles.easyerp.data.model.crm.filter.ResponseFilters;
-import com.thinkmobiles.easyerp.data.model.crm.persons.ResponseGetPersons;
-import com.thinkmobiles.easyerp.data.model.hr.employees.ResponseGetEmployees;
 import com.thinkmobiles.easyerp.data.model.hr.employees.item.EmployeeItem;
 import com.thinkmobiles.easyerp.data.services.EmployeesService;
 import com.thinkmobiles.easyerp.data.services.FilterService;
