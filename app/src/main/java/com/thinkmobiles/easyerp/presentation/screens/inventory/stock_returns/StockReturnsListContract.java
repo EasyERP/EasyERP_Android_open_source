@@ -17,7 +17,7 @@ import rx.Observable;
  */
 public interface StockReturnsListContract {
     interface StockReturnsListView extends BaseView<StockReturnsListPresenter>, SelectableView {
-        void openStockReturnsDetail(final String id);
+        void openStockReturnDetail(final String id);
     }
     interface StockReturnsListPresenter extends SelectablePresenter {
 

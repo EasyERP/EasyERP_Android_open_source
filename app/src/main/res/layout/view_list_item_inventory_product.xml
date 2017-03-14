@@ -57,7 +57,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:paddingBottom="@dimen/padding_very_minimum">
+                android:layout_marginBottom="@dimen/padding_very_minimum">
 
                 <TextView
                     style="@style/TextListInfoStyle"
@@ -81,7 +81,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:paddingBottom="@dimen/padding_very_minimum">
+                android:layout_marginBottom="@dimen/padding_very_minimum">
 
                 <TextView
                     style="@style/TextListInfoStyle"

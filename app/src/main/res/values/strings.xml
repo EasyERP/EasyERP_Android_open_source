@@ -221,4 +221,7 @@
     <string name="variants">Variants:</string>
     <string name="no_email">No Email</string>
     <string name="no_phone">No Phone</string>
+    <string name="current_number">Current Number:</string>
+    <string name="expected_in_recruitment">Expected in Recruitment:</string>
+    <string name="edited_key">Edited:</string>
 </resources>

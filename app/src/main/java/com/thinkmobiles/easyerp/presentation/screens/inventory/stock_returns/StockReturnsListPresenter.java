@@ -33,7 +33,7 @@ public class StockReturnsListPresenter extends MasterSelectablePresenterHelper i
     public void clickItem(int position) {
         StockReturn stockReturn = stockReturns.get(position);
         if (super.selectItem(stockReturn.id, position))
-            view.openStockReturnsDetail(stockReturn.id);
+            view.openStockReturnDetail(stockReturn.id);
     }
 
     @Override
