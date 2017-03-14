@@ -1,7 +1,8 @@
 package com.thinkmobiles.easyerp.data.services;
 
+import com.thinkmobiles.easyerp.data.model.ResponseGetTotalItems;
 import com.thinkmobiles.easyerp.data.model.crm.common.alphabet.ResponseGetAlphabet;
-import com.thinkmobiles.easyerp.data.model.crm.companies.ResponseGetCompanies;
+import com.thinkmobiles.easyerp.data.model.crm.companies.CompanyListItem;
 import com.thinkmobiles.easyerp.data.model.crm.companies.detail.ResponseGetCompanyDetails;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
@@ -21,7 +22,7 @@ public interface CompaniesService {
     Observable<ResponseGetAlphabet> getCompaniesAlphabet(@Query("contentType") String contentType);
 
     @GET
-    Observable<ResponseGetCompanies> getCompanies(@Url String url);
+    Observable<ResponseGetTotalItems<CompanyListItem>> getCompanies(@Url String url);
 
     @GET(Constants.GET_COMPANY_DETAILS)
     Observable<ResponseGetCompanyDetails> getCompanyDetails(@Path("companyID") String companyID);

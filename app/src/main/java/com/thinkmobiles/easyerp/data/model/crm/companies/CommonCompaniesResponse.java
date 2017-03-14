@@ -8,10 +8,10 @@ import com.thinkmobiles.easyerp.data.model.crm.common.images.ImageItem;
  */
 
 public class CommonCompaniesResponse {
-    public ResponseGetCompanies responseGetCompanies;
+    public ResponseGetTotalItems<CompanyListItem> responseGetCompanies;
     public ResponseGetTotalItems<ImageItem> responseGetImages;
 
-    public CommonCompaniesResponse(ResponseGetCompanies responseGetCompanies, ResponseGetTotalItems<ImageItem> responseGetImages) {
+    public CommonCompaniesResponse(ResponseGetTotalItems<CompanyListItem> responseGetCompanies, ResponseGetTotalItems<ImageItem> responseGetImages) {
         this.responseGetCompanies = responseGetCompanies;
         this.responseGetImages = responseGetImages;
     }

@@ -6,7 +6,7 @@ import com.thinkmobiles.easyerp.data.api.Rest;
 import com.thinkmobiles.easyerp.data.model.ResponseGetTotalItems;
 import com.thinkmobiles.easyerp.data.model.crm.common.alphabet.ResponseGetAlphabet;
 import com.thinkmobiles.easyerp.data.model.crm.common.images.ImageItem;
-import com.thinkmobiles.easyerp.data.model.crm.companies.ResponseGetCompanies;
+import com.thinkmobiles.easyerp.data.model.crm.companies.CompanyListItem;
 import com.thinkmobiles.easyerp.data.model.crm.companies.detail.ResponseGetCompanyDetails;
 import com.thinkmobiles.easyerp.data.model.crm.filter.ResponseFilters;
 import com.thinkmobiles.easyerp.data.services.CompaniesService;
@@ -57,7 +57,7 @@ public class CompaniesRepository extends NetworkRepository implements CompaniesC
     }
 
     @Override
-    public Observable<ResponseGetCompanies> getCompanies(FilterHelper helper, String letter, int page) {
+    public Observable<ResponseGetTotalItems<CompanyListItem>> getCompanies(FilterHelper helper, String letter, int page) {
         Uri.Builder builder = helper.createUrl(Constants.GET_COMPANIES, "Companies", page);
         if (!letter.equalsIgnoreCase("All")) {
             builder.appendQueryParameter("filter[letter][key]", "name.first")

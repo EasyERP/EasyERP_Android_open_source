@@ -2,7 +2,7 @@ package com.thinkmobiles.easyerp.presentation.screens.crm.companies;
 
 import com.thinkmobiles.easyerp.data.model.ResponseGetTotalItems;
 import com.thinkmobiles.easyerp.data.model.crm.common.images.ImageItem;
-import com.thinkmobiles.easyerp.data.model.crm.companies.ResponseGetCompanies;
+import com.thinkmobiles.easyerp.data.model.crm.companies.CompanyListItem;
 import com.thinkmobiles.easyerp.presentation.base.BaseView;
 import com.thinkmobiles.easyerp.presentation.base.rules.master.alphabetical.AlphabeticalModel;
 import com.thinkmobiles.easyerp.presentation.base.rules.master.alphabetical.AlphabeticalPresenter;
@@ -24,6 +24,6 @@ public interface CompaniesContract {
     interface CompaniesPresenter extends AlphabeticalPresenter {}
     interface CompaniesModel extends AlphabeticalModel {
         Observable<ResponseGetTotalItems<ImageItem>> getCompanyImages(ArrayList<String> companyIdList);
-        Observable<ResponseGetCompanies> getCompanies(FilterHelper helper, String letter, int page);
+        Observable<ResponseGetTotalItems<CompanyListItem>> getCompanies(FilterHelper helper, String letter, int page);
     }
 }

@@ -1,9 +1,9 @@
 package com.thinkmobiles.easyerp.presentation.screens.crm.companies;
 
+import com.thinkmobiles.easyerp.data.model.ResponseGetTotalItems;
 import com.thinkmobiles.easyerp.data.model.crm.common.images.ImageItem;
 import com.thinkmobiles.easyerp.data.model.crm.companies.CommonCompaniesResponse;
 import com.thinkmobiles.easyerp.data.model.crm.companies.CompanyListItem;
-import com.thinkmobiles.easyerp.data.model.crm.companies.ResponseGetCompanies;
 import com.thinkmobiles.easyerp.presentation.base.rules.master.alphabetical.AlphabeticalModel;
 import com.thinkmobiles.easyerp.presentation.base.rules.master.alphabetical.AlphabeticalView;
 import com.thinkmobiles.easyerp.presentation.base.rules.master.alphabetical.MasterAlphabeticalPresenterHelper;
@@ -112,7 +112,7 @@ public class CompaniesPresenter extends MasterAlphabeticalPresenterHelper implem
         return result;
     }
 
-    private ArrayList<String> prepareIDsForImagesRequest(ResponseGetCompanies responseGetCompanies) {
+    private ArrayList<String> prepareIDsForImagesRequest(ResponseGetTotalItems<CompanyListItem> responseGetCompanies) {
         ArrayList<String> companyIDs = new ArrayList<>();
         if (responseGetCompanies.total > 0 && responseGetCompanies.data != null && responseGetCompanies.data.size() > 0) {
             for (CompanyListItem companyListItem : responseGetCompanies.data) {
