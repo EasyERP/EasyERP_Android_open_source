@@ -3,11 +3,13 @@ package com.thinkmobiles.easyerp.domain.hr;
 import android.net.Uri;
 
 import com.thinkmobiles.easyerp.data.api.Rest;
+import com.thinkmobiles.easyerp.data.model.ResponseGetTotalItems;
 import com.thinkmobiles.easyerp.data.model.crm.common.alphabet.ResponseGetAlphabet;
 import com.thinkmobiles.easyerp.data.model.crm.common.images.ResponseGetImages;
 import com.thinkmobiles.easyerp.data.model.crm.filter.ResponseFilters;
 import com.thinkmobiles.easyerp.data.model.crm.persons.ResponseGetPersons;
 import com.thinkmobiles.easyerp.data.model.hr.employees.ResponseGetEmployees;
+import com.thinkmobiles.easyerp.data.model.hr.employees.item.EmployeeItem;
 import com.thinkmobiles.easyerp.data.services.EmployeesService;
 import com.thinkmobiles.easyerp.data.services.FilterService;
 import com.thinkmobiles.easyerp.data.services.ImageService;
@@ -45,7 +47,7 @@ public class EmployeesRepository extends NetworkRepository implements EmployeesC
     }
 
     @Override
-    public Observable<ResponseGetEmployees> getEmployees(FilterHelper helper, String letter, int page) {
+    public Observable<ResponseGetTotalItems<EmployeeItem>> getEmployees(FilterHelper helper, String letter, int page) {
         Uri.Builder builder = helper.createUrl(Constants.GET_EMPLOYEES, "Employees", page);
         if (!letter.equalsIgnoreCase("All")) {
             builder.appendQueryParameter("filter[letter][key]", "name.first")

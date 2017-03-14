@@ -1,8 +1,10 @@
 package com.thinkmobiles.easyerp.data.services;
 
+import com.thinkmobiles.easyerp.data.model.ResponseGetTotalItems;
 import com.thinkmobiles.easyerp.data.model.crm.common.alphabet.ResponseGetAlphabet;
 import com.thinkmobiles.easyerp.data.model.crm.persons.ResponseGetPersons;
 import com.thinkmobiles.easyerp.data.model.hr.employees.ResponseGetEmployees;
+import com.thinkmobiles.easyerp.data.model.hr.employees.item.EmployeeItem;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
 import retrofit2.http.GET;
@@ -20,15 +22,6 @@ public interface EmployeesService {
     Observable<ResponseGetAlphabet> getEmployeesAlphabet();
 
     @GET
-    Observable<ResponseGetEmployees> getEmployees(@Url String url);
-
-    @GET(Constants.GET_EMPLOYEES)
-    Observable<ResponseGetPersons> getEmployeesByLetter(@Query("viewType") String viewType,
-                                                      @Query("filter[letter][key]") String filterLetterKey,
-                                                      @Query("filter[letter][value]") String filterLetterValue,
-                                                      @Query("filter[letter][type]") String filterLetterType,
-                                                      @Query("contentType") String contentType,
-                                                      @Query("count") int count,
-                                                      @Query("page") int page);
+    Observable<ResponseGetTotalItems<EmployeeItem>> getEmployees(@Url String url);
 
 }

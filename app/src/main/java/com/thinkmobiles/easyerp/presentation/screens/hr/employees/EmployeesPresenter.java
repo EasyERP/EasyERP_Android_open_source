@@ -1,5 +1,6 @@
 package com.thinkmobiles.easyerp.presentation.screens.hr.employees;
 
+import com.thinkmobiles.easyerp.data.model.ResponseGetTotalItems;
 import com.thinkmobiles.easyerp.data.model.crm.common.images.ImageItem;
 import com.thinkmobiles.easyerp.data.model.hr.employees.ResponseCommonEmployees;
 import com.thinkmobiles.easyerp.data.model.hr.employees.ResponseGetEmployees;
@@ -53,7 +54,7 @@ public class EmployeesPresenter extends MasterAlphabeticalPresenterHelper implem
         final boolean needClear = page == 1;
         compositeSubscription.add(
                 model.getEmployees(helper, selectedLetter, page)
-                .flatMap(responseGetEmployees -> model.getEmployeeImages(prepareIDsForImagesRequest(responseGetEmployees)),
+                .flatMap(employeeItemResponseGetTotalItems -> model.getEmployeeImages(prepareIDsForImagesRequest(employeeItemResponseGetTotalItems)),
                         ResponseCommonEmployees::new)
                 .subscribe(responseCommonEmployees -> {
                     currentPage = page;
@@ -112,7 +113,7 @@ public class EmployeesPresenter extends MasterAlphabeticalPresenterHelper implem
         return result;
     }
 
-    private ArrayList<String> prepareIDsForImagesRequest(ResponseGetEmployees responseGetEmployees) {
+    private ArrayList<String> prepareIDsForImagesRequest(ResponseGetTotalItems<EmployeeItem> responseGetEmployees) {
         ArrayList<String> employeesID = new ArrayList<>();
         if (responseGetEmployees.total > 0 && responseGetEmployees.data != null && responseGetEmployees.data.size() > 0) {
             for (EmployeeItem employeeItem : responseGetEmployees.data) {
