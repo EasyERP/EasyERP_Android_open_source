@@ -9,6 +9,7 @@ import com.thinkmobiles.easyerp.data.api.interceptors.BadCookieInterceptor;
 import com.thinkmobiles.easyerp.data.api.interceptors.ReceiveCookieInterceptor;
 import com.thinkmobiles.easyerp.data.model.ResponseError;
 import com.thinkmobiles.easyerp.data.model.crm.filter.ResponseFilters;
+import com.thinkmobiles.easyerp.data.services.ApplicationService;
 import com.thinkmobiles.easyerp.data.services.CompaniesService;
 import com.thinkmobiles.easyerp.data.services.EmployeesService;
 import com.thinkmobiles.easyerp.data.services.ImageService;
@@ -71,6 +72,7 @@ public class Rest {
     private TransfersService transfersService;
 
     private EmployeesService employeesService;
+    private ApplicationService applicationService;
 
     private Converter<ResponseBody, ResponseError> converter;
 
@@ -172,6 +174,10 @@ public class Rest {
 
     public TransfersService getTransfersService() {
         return transfersService == null ? transfersService = createService(TransfersService.class) : transfersService;
+    }
+
+    public ApplicationService getApplicationService() {
+        return applicationService == null ? applicationService = createService(ApplicationService.class) : applicationService;
     }
 
     public EmployeesService getEmployeesService() {

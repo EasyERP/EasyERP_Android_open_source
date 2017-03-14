@@ -1,0 +1,46 @@
+package com.thinkmobiles.easyerp.domain.hr;
+
+import com.thinkmobiles.easyerp.data.api.Rest;
+import com.thinkmobiles.easyerp.data.model.ResponseGetTotalItems;
+import com.thinkmobiles.easyerp.data.model.crm.filter.ResponseFilters;
+import com.thinkmobiles.easyerp.data.model.hr.applications.Application;
+import com.thinkmobiles.easyerp.data.services.ApplicationService;
+import com.thinkmobiles.easyerp.data.services.FilterService;
+import com.thinkmobiles.easyerp.presentation.base.NetworkRepository;
+import com.thinkmobiles.easyerp.presentation.screens.hr.applications.ApplicationsListContract;
+import com.thinkmobiles.easyerp.presentation.utils.Constants;
+import com.thinkmobiles.easyerp.presentation.utils.filter.FilterHelper;
+
+import org.androidannotations.annotations.EBean;
+
+import rx.Observable;
+
+/**
+ * @author Michael Soyma (Created on 3/13/2017).
+ *         Company: Thinkmobiles
+ *         Email: michael.soyma@thinkmobiles.com
+ */
+@EBean
+public class ApplicationRepository extends NetworkRepository implements ApplicationsListContract.ApplicationsListModel {
+
+    private ApplicationService applicationService;
+    private FilterService filterService;
+
+    public ApplicationRepository() {
+        this.applicationService = Rest.getInstance().getApplicationService();
+        this.filterService = Rest.getInstance().getFilterService();
+    }
+
+    @Override
+    public Observable<ResponseGetTotalItems<Application>> getApplications(FilterHelper query, int page) {
+        return getNetworkObservable(applicationService.getApplications(query
+                .createUrl(Constants.GET_APPLICATIONS, "Applications", page)
+                .build()
+                .toString()));
+    }
+
+    @Override
+    public Observable<ResponseFilters> getFilters() {
+        return getNetworkObservable(filterService.getListFilters("Applications"));
+    }
+}

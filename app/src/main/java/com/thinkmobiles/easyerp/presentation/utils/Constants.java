@@ -115,6 +115,8 @@ public abstract class Constants {
     public static final String GET_EMPLOYEES_IMAGES         = "employees/getEmployeesImages";
     public static final String GET_EMPLOYEES_ALPHABET       = "employees/getEmployeesAlphabet";
     public static final String GET_EMPLOYEES                = "employees";
+
+    public static final String GET_APPLICATIONS             = "applications";
     //------------------------------------------------------ END HR
 
     public static final int DELAY_CLICK                     = 600;

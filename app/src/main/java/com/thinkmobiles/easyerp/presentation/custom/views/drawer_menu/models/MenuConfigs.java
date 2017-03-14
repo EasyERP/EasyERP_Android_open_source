@@ -11,6 +11,7 @@ import com.thinkmobiles.easyerp.presentation.screens.crm.orders.OrdersFragment_;
 import com.thinkmobiles.easyerp.presentation.screens.crm.payments.PaymentsFragment_;
 import com.thinkmobiles.easyerp.presentation.screens.crm.persons.PersonsFragment_;
 import com.thinkmobiles.easyerp.presentation.screens.hr.employees.EmployeesFragment_;
+import com.thinkmobiles.easyerp.presentation.screens.hr.applications.ApplicationsListFragment_;
 import com.thinkmobiles.easyerp.presentation.screens.inventory.goods_out_notes.GoodsOutNotesFragment_;
 import com.thinkmobiles.easyerp.presentation.screens.inventory.products.ProductsListFragment_;
 import com.thinkmobiles.easyerp.presentation.screens.inventory.stock_corrections.StockCorrectionsListFragment_;
@@ -103,6 +104,8 @@ public abstract class MenuConfigs {
         final List<MenuItem> menuItems = new ArrayList<>();
         menuItems.add(new MenuItem(0, R.drawable.ic_menu_item_placeholder, "Employees", true));
         menuItems.add(new MenuItem(1, R.drawable.ic_menu_item_placeholder, "Applications", false));
+        menuItems.add(new MenuItem(0, R.drawable.ic_menu_item_placeholder, "Employees", false));
+        menuItems.add(new MenuItem(1, R.drawable.ic_menu_item_placeholder, "Applications", true));
         menuItems.add(new MenuItem(2, R.drawable.ic_menu_item_placeholder, "Job Positions", false));
         menuItems.add(new MenuItem(3, R.drawable.ic_menu_item_placeholder, "Birthdays", false));
         menuItems.add(new MenuItem(4, R.drawable.ic_menu_item_placeholder, "Vacations", false));
