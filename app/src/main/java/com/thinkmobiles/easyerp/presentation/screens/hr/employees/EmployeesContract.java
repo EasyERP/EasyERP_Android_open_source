@@ -1,7 +1,7 @@
 package com.thinkmobiles.easyerp.presentation.screens.hr.employees;
 
 import com.thinkmobiles.easyerp.data.model.ResponseGetTotalItems;
-import com.thinkmobiles.easyerp.data.model.crm.common.images.ResponseGetImages;
+import com.thinkmobiles.easyerp.data.model.crm.common.images.ImageItem;
 import com.thinkmobiles.easyerp.data.model.hr.employees.item.EmployeeItem;
 import com.thinkmobiles.easyerp.presentation.base.BaseView;
 import com.thinkmobiles.easyerp.presentation.base.rules.master.alphabetical.AlphabeticalModel;
@@ -25,7 +25,7 @@ public interface EmployeesContract {
 
     }
     interface EmployeeModel extends AlphabeticalModel {
-        Observable<ResponseGetImages> getEmployeeImages(ArrayList<String> employeeIDs);
+        Observable<ResponseGetTotalItems<ImageItem>> getEmployeeImages(ArrayList<String> employeeIDs);
         Observable<ResponseGetTotalItems<EmployeeItem>> getEmployees(FilterHelper helper, String letter, int page);
     }
 }

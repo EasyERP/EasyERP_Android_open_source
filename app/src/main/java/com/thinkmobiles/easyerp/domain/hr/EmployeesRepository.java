@@ -5,7 +5,7 @@ import android.net.Uri;
 import com.thinkmobiles.easyerp.data.api.Rest;
 import com.thinkmobiles.easyerp.data.model.ResponseGetTotalItems;
 import com.thinkmobiles.easyerp.data.model.crm.common.alphabet.ResponseGetAlphabet;
-import com.thinkmobiles.easyerp.data.model.crm.common.images.ResponseGetImages;
+import com.thinkmobiles.easyerp.data.model.crm.common.images.ImageItem;
 import com.thinkmobiles.easyerp.data.model.crm.filter.ResponseFilters;
 import com.thinkmobiles.easyerp.data.model.hr.employees.item.EmployeeItem;
 import com.thinkmobiles.easyerp.data.services.EmployeesService;
@@ -56,7 +56,7 @@ public class EmployeesRepository extends NetworkRepository implements EmployeesC
     }
 
     @Override
-    public Observable<ResponseGetImages> getEmployeeImages(ArrayList<String> employeeIDs) {
+    public Observable<ResponseGetTotalItems<ImageItem>> getEmployeeImages(ArrayList<String> employeeIDs) {
         return getNetworkObservable(imageService.getEmployeesImages(employeeIDs));
     }
 

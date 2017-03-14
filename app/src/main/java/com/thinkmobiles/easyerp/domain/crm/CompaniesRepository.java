@@ -3,8 +3,9 @@ package com.thinkmobiles.easyerp.domain.crm;
 import android.net.Uri;
 
 import com.thinkmobiles.easyerp.data.api.Rest;
+import com.thinkmobiles.easyerp.data.model.ResponseGetTotalItems;
 import com.thinkmobiles.easyerp.data.model.crm.common.alphabet.ResponseGetAlphabet;
-import com.thinkmobiles.easyerp.data.model.crm.common.images.ResponseGetImages;
+import com.thinkmobiles.easyerp.data.model.crm.common.images.ImageItem;
 import com.thinkmobiles.easyerp.data.model.crm.companies.ResponseGetCompanies;
 import com.thinkmobiles.easyerp.data.model.crm.companies.detail.ResponseGetCompanyDetails;
 import com.thinkmobiles.easyerp.data.model.crm.filter.ResponseFilters;
@@ -46,7 +47,7 @@ public class CompaniesRepository extends NetworkRepository implements CompaniesC
     }
 
     @Override
-    public Observable<ResponseGetImages> getCompanyImages(ArrayList<String> companyIdList) {
+    public Observable<ResponseGetTotalItems<ImageItem>> getCompanyImages(ArrayList<String> companyIdList) {
         return getNetworkObservable(imageService.getCustomerImages(companyIdList));
     }
 

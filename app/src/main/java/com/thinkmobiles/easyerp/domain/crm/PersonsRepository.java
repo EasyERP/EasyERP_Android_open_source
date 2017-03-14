@@ -3,8 +3,9 @@ package com.thinkmobiles.easyerp.domain.crm;
 import android.net.Uri;
 
 import com.thinkmobiles.easyerp.data.api.Rest;
+import com.thinkmobiles.easyerp.data.model.ResponseGetTotalItems;
 import com.thinkmobiles.easyerp.data.model.crm.common.alphabet.ResponseGetAlphabet;
-import com.thinkmobiles.easyerp.data.model.crm.common.images.ResponseGetImages;
+import com.thinkmobiles.easyerp.data.model.crm.common.images.ImageItem;
 import com.thinkmobiles.easyerp.data.model.crm.filter.ResponseFilters;
 import com.thinkmobiles.easyerp.data.model.crm.persons.ResponseGetPersons;
 import com.thinkmobiles.easyerp.data.model.crm.persons.details.ResponseGetPersonDetails;
@@ -46,7 +47,7 @@ public class PersonsRepository extends NetworkRepository implements PersonsContr
     }
 
     @Override
-    public Observable<ResponseGetImages> getPersonImages(ArrayList<String> customerIdList) {
+    public Observable<ResponseGetTotalItems<ImageItem>> getPersonImages(ArrayList<String> customerIdList) {
         return getNetworkObservable(imageService.getCustomerImages(customerIdList));
     }
 

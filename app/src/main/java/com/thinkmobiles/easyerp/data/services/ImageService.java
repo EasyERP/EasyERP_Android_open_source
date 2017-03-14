@@ -1,7 +1,7 @@
 package com.thinkmobiles.easyerp.data.services;
 
+import com.thinkmobiles.easyerp.data.model.ResponseGetTotalItems;
 import com.thinkmobiles.easyerp.data.model.crm.common.images.ImageItem;
-import com.thinkmobiles.easyerp.data.model.crm.common.images.ResponseGetImages;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
 import java.util.ArrayList;
@@ -17,9 +17,9 @@ import rx.Observable;
 public interface ImageService {
 
     @GET(Constants.GET_CUSTOMER_IMAGES)
-    Observable<ResponseGetImages> getCustomerImages(@Query("ids[]") ArrayList<String> listOfIDs);
+    Observable<ResponseGetTotalItems<ImageItem>> getCustomerImages(@Query("ids[]") ArrayList<String> listOfIDs);
 
     @GET(Constants.GET_EMPLOYEES_IMAGES)
-    Observable<ResponseGetImages> getEmployeesImages(@Query("ids[]") ArrayList<String> listOfIDs);
+    Observable<ResponseGetTotalItems<ImageItem>> getEmployeesImages(@Query("ids[]") ArrayList<String> listOfIDs);
 
 }

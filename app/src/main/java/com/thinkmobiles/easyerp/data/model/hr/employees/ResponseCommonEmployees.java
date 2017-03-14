@@ -1,7 +1,7 @@
 package com.thinkmobiles.easyerp.data.model.hr.employees;
 
 import com.thinkmobiles.easyerp.data.model.ResponseGetTotalItems;
-import com.thinkmobiles.easyerp.data.model.crm.common.images.ResponseGetImages;
+import com.thinkmobiles.easyerp.data.model.crm.common.images.ImageItem;
 import com.thinkmobiles.easyerp.data.model.hr.employees.item.EmployeeItem;
 
 /**
@@ -11,9 +11,9 @@ import com.thinkmobiles.easyerp.data.model.hr.employees.item.EmployeeItem;
 public class ResponseCommonEmployees {
 
     public ResponseGetTotalItems<EmployeeItem> responseGetEmployees;
-    public ResponseGetImages responseGetImages;
+    public ResponseGetTotalItems<ImageItem> responseGetImages;
 
-    public ResponseCommonEmployees(ResponseGetTotalItems<EmployeeItem> responseGetEmployees, ResponseGetImages responseGetImages) {
+    public ResponseCommonEmployees(ResponseGetTotalItems<EmployeeItem> responseGetEmployees, ResponseGetTotalItems<ImageItem> responseGetImages) {
         this.responseGetEmployees = responseGetEmployees;
         this.responseGetImages = responseGetImages;
     }
