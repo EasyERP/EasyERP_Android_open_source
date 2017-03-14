@@ -1,8 +1,8 @@
 package com.thinkmobiles.easyerp.presentation.screens.crm.persons;
 
+import com.thinkmobiles.easyerp.data.model.ResponseGetTotalItems;
 import com.thinkmobiles.easyerp.data.model.crm.common.images.ImageItem;
 import com.thinkmobiles.easyerp.data.model.crm.persons.CommonPersonsResponse;
-import com.thinkmobiles.easyerp.data.model.crm.persons.ResponseGetPersons;
 import com.thinkmobiles.easyerp.data.model.crm.persons.person_item.PersonModel;
 import com.thinkmobiles.easyerp.presentation.base.rules.master.alphabetical.AlphabeticalModel;
 import com.thinkmobiles.easyerp.presentation.base.rules.master.alphabetical.AlphabeticalView;
@@ -112,7 +112,7 @@ public class PersonsPresenter extends MasterAlphabeticalPresenterHelper implemen
         return result;
     }
 
-    private ArrayList<String> prepareIDsForImagesRequest(ResponseGetPersons responseGetPersons) {
+    private ArrayList<String> prepareIDsForImagesRequest(ResponseGetTotalItems<PersonModel> responseGetPersons) {
         ArrayList<String> personIDs = new ArrayList<>();
         if (responseGetPersons.total > 0 && responseGetPersons.data != null && responseGetPersons.data.size() > 0) {
             for (PersonModel personModel : responseGetPersons.data) {

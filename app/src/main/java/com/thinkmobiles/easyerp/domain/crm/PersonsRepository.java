@@ -7,8 +7,8 @@ import com.thinkmobiles.easyerp.data.model.ResponseGetTotalItems;
 import com.thinkmobiles.easyerp.data.model.crm.common.alphabet.ResponseGetAlphabet;
 import com.thinkmobiles.easyerp.data.model.crm.common.images.ImageItem;
 import com.thinkmobiles.easyerp.data.model.crm.filter.ResponseFilters;
-import com.thinkmobiles.easyerp.data.model.crm.persons.ResponseGetPersons;
 import com.thinkmobiles.easyerp.data.model.crm.persons.details.ResponseGetPersonDetails;
+import com.thinkmobiles.easyerp.data.model.crm.persons.person_item.PersonModel;
 import com.thinkmobiles.easyerp.data.services.ImageService;
 import com.thinkmobiles.easyerp.data.services.FilterService;
 import com.thinkmobiles.easyerp.data.services.PersonsService;
@@ -57,7 +57,7 @@ public class PersonsRepository extends NetworkRepository implements PersonsContr
     }
 
     @Override
-    public Observable<ResponseGetPersons> getPersons(FilterHelper helper, String letter, int page) {
+    public Observable<ResponseGetTotalItems<PersonModel>> getPersons(FilterHelper helper, String letter, int page) {
         Uri.Builder builder = helper.createUrl(Constants.GET_PERSONS, "Persons", page);
         if (!letter.equalsIgnoreCase("All")) {
             builder.appendQueryParameter("filter[letter][key]", "name.first")
