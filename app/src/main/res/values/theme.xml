@@ -7,5 +7,10 @@
     <style name="LoginTheme" parent="AppTheme">
         <item name="android:windowBackground">@drawable/bg_login</item>
     </style>
+    <style name="GalleryTheme" parent="AppTheme">
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
 
 </resources>

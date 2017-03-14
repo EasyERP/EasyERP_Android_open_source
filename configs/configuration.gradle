@@ -23,6 +23,7 @@ allprojects {
         mpAndroidChartVersion = 'v3.0.1'
         flowLayoutVersion = '1.0'
         appIndicatorVersion = '1.2.2@aar'
+        photoViewVersion = '1.3.1'
 
         // Development
         stethoVersion = '1.4.2'
@@ -52,7 +53,8 @@ allprojects {
                 picasso:                    "com.squareup.picasso:picasso:${picassoVersion}",
                 mpAndroidChart:             "com.github.PhilJay:MPAndroidChart:${mpAndroidChartVersion}",
                 flowLayout:                 "com.github.ismaeltoe:flowlayout:${flowLayoutVersion}",
-                circleIndicator:            "me.relex:circleindicator:${appIndicatorVersion}"
+                circleIndicator:            "me.relex:circleindicator:${appIndicatorVersion}",
+                photoView:                  "com.github.chrisbanes:PhotoView:${photoViewVersion}"
         ]
     }
 
