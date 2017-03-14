@@ -9,6 +9,7 @@ import com.thinkmobiles.easyerp.presentation.managers.ErrorManager;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Lynx on 1/30/2017.
@@ -73,14 +74,14 @@ public class OpportunitiesPresenter extends MasterFilterablePresenterHelper impl
             view.openDetailsScreen(id);
     }
 
-    private void saveData(final ArrayList<OpportunityListItem> list, boolean needClear) {
+    private void saveData(final List<OpportunityListItem> list, boolean needClear) {
         if (needClear)
             this.opportunityItems.clear();
         this.opportunityItems.addAll(list);
     }
 
 
-    private void setData(final ArrayList<OpportunityListItem> list, boolean needClear) {
+    private void setData(final List<OpportunityListItem> list, boolean needClear) {
         view.setDataList(prepareOpportunitiesDHs(list), needClear);
         if (opportunityItems.isEmpty()) {
             view.displayErrorState(ErrorManager.getErrorType(null));
@@ -90,7 +91,7 @@ public class OpportunitiesPresenter extends MasterFilterablePresenterHelper impl
     }
 
 
-    private ArrayList<OpportunityDH> prepareOpportunitiesDHs(ArrayList<OpportunityListItem> list) {
+    private ArrayList<OpportunityDH> prepareOpportunitiesDHs(List<OpportunityListItem> list) {
         final ArrayList<OpportunityDH> result = new ArrayList<>();
         for (OpportunityListItem opportunityItem : list) {
             final OpportunityDH opportunityDH = new OpportunityDH(opportunityItem);
