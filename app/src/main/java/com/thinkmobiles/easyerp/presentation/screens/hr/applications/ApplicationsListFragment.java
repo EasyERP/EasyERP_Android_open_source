@@ -5,8 +5,10 @@ import com.thinkmobiles.easyerp.presentation.adapters.hr.ApplicationsAdapter;
 import com.thinkmobiles.easyerp.presentation.base.rules.master.filterable.FilterablePresenter;
 import com.thinkmobiles.easyerp.presentation.base.rules.master.filterable.MasterFilterableFragment;
 import com.thinkmobiles.easyerp.presentation.base.rules.master.selectable.SelectableAdapter;
+import com.thinkmobiles.easyerp.presentation.managers.GoogleAnalyticHelper;
 
 import org.androidannotations.annotations.AfterInject;
+import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EFragment;
 
@@ -34,6 +36,11 @@ public class ApplicationsListFragment extends MasterFilterableFragment implement
     @Override
     public void setPresenter(ApplicationsListContract.ApplicationsListPresenter presenter) {
         this.presenter = presenter;
+    }
+
+    @AfterViews
+    protected void initAnalytics() {
+        GoogleAnalyticHelper.trackScreenView(this, getResources().getConfiguration());
     }
 
     @Override

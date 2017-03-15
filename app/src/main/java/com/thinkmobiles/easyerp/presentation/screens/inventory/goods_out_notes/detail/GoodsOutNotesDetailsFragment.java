@@ -9,6 +9,7 @@ import com.thinkmobiles.easyerp.domain.inventory.GoodsOutNotesRepository;
 import com.thinkmobiles.easyerp.presentation.adapters.inventory.OrderRowAdapter;
 import com.thinkmobiles.easyerp.presentation.base.rules.content.ContentFragment;
 import com.thinkmobiles.easyerp.presentation.holders.data.inventory.OrderRowDH;
+import com.thinkmobiles.easyerp.presentation.managers.GoogleAnalyticHelper;
 
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterViews;
@@ -90,6 +91,11 @@ public class GoodsOutNotesDetailsFragment extends ContentFragment implements Goo
     protected void initUI() {
         rvProductList_FGOND.setLayoutManager(new LinearLayoutManager(getActivity()));
         rvProductList_FGOND.setAdapter(rowAdapter);
+    }
+
+    @AfterViews
+    protected void initAnalytics() {
+        GoogleAnalyticHelper.trackScreenView(this, getResources().getConfiguration());
     }
 
     @Override

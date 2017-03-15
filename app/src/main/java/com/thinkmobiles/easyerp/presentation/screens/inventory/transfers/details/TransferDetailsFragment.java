@@ -109,6 +109,11 @@ public class TransferDetailsFragment extends ContentFragment implements Transfer
         this.presenter = presenter;
     }
 
+    @AfterViews
+    protected void initAnalytics() {
+        GoogleAnalyticHelper.trackScreenView(this, getResources().getConfiguration());
+    }
+
     @Override
     public String getScreenName() {
         return "Transfer Details screen";

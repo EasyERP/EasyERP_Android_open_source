@@ -273,12 +273,16 @@
         <item name="colorControlActivated">@color/colorAccent</item>
     </style>
 
-    <style name="CustomCheckBoxStyle" >
+    <style name="CustomCheckBoxStyle">
         <item name="android:theme">@style/CustomCheckBox</item>
         <item name="android:textSize">@dimen/text_size_small_14</item>
         <item name="android:textColor">@color/text_grey_hint_color</item>
         <item name="android:clickable">false</item>
         <item name="android:enabled">false</item>
+    </style>
+
+    <style name="CustomRadioButtonStyle" parent="CustomCheckBoxStyle">
+        <item name="android:paddingStart">@dimen/default_padding_quart</item>
     </style>
 
     <style name="SmallChipsStyle" parent="RobotoMedium">
@@ -343,7 +347,7 @@
         <item name="android:paddingBottom">@dimen/default_padding_quart</item>
         <item name="android:textColor">@android:color/white</item>
     </style>
-    
+
     <style name="WhiteButtonStyle" parent="RobotoMedium">
         <item name="android:textSize">@dimen/text_list_item_large_20</item>
         <item name="android:padding">@dimen/padding_button_large</item>
