@@ -3,14 +3,13 @@
     android:width="48dp"
     android:height="48dp"
     android:tint="@color/selector_color_menu_icons"
-    android:viewportWidth="48"
-    android:viewportHeight="48">
+    android:viewportHeight="48"
+    android:viewportWidth="48">
 
     <path
-        android:fillColor="#FFFFFF"
-        android:pathData="M37,7H10c-2.2,0-4,1.8-4,4v28c0,2.2,1.8,4,4,4h27c2.2,0,4-1.8,4-4V11C41,8.8,39.2,7,37,7z
-M30,32h-9.2l2.5,2.5
-h-2.8l-2.1-2.1l-0.7-0.7L17,31l0.7-0.7l0.7-0.7l2.1-2.1h2.8L20.8,30H30V32z
-M29.3,21.7l-0.7,0.7l-2.1,2.1h-2.8l2.5-2.5H17v-2h9.2
-l-2.5-2.5h2.8l2.1,2.1l0.7,0.7L30,21L29.3,21.7z" />
+        android:fillColor="#ffffff"
+        android:pathData="M 21.5 27.6 L 14.9 27.6 L 6.8 35.7 L 8.8 37.8 L 10 39 L 10 39 L 14.9 44 L 21.5 44 L 15.6 38.1 L 37.3 38.1 L 37.3 33.4 L 15.6 33.4 Z" />
+    <path
+        android:fillColor="#ffffff"
+        android:pathData="M 22.4 20.4 L 29.1 20.4 L 34 15.6 L 34 15.6 L 35.7 13.9 L 37.3 12.3 L 35.7 10.6 L 34 9 L 29.1 4 L 22.4 4 L 28.3 9.9 L 6.8 9.9 L 6.8 14.6 L 28.4 14.6 Z" />
 </vector>
