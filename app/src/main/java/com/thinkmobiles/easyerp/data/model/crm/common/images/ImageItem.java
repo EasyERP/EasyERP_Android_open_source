@@ -3,6 +3,8 @@ package com.thinkmobiles.easyerp.data.model.crm.common.images;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Created by Lynx on 1/20/2017.
  */
@@ -17,6 +19,7 @@ public class ImageItem implements Parcelable {
      },
      */
 
+    @SerializedName("_id")
     public String id;
     public String imageSrc;
 

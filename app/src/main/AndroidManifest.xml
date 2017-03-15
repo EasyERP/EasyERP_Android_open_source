@@ -58,6 +58,12 @@
             android:screenOrientation="sensor"
             android:windowSoftInputMode="stateHidden" />
 
+        <activity
+            android:name=".presentation.screens.gallery.GalleryActivity_"
+            android:screenOrientation="sensor"
+            android:theme="@style/GalleryTheme"
+            android:windowSoftInputMode="stateHidden" />
+
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="6a0144c31124068686d2d8eea6c80aa61a955598" />

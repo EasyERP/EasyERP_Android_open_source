@@ -96,6 +96,7 @@ dependencies {
     compile appDependencies.mpAndroidChart
     compile appDependencies.flowLayout
     compile appDependencies.circleIndicator
+    compile appDependencies.photoView
 
     /*Analytic tools*/
     compile devDependencies.analytic

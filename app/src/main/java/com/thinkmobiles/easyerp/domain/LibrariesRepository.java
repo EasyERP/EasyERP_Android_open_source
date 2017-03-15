@@ -32,6 +32,7 @@ public class LibrariesRepository implements LibrariesContract.LibrariesModel {
         dependencies.add(new LibraryInfo("MPAndroidChart",            "2.0.8",    "PhilJay", "Apache License 2.0", "https://github.com/PhilJay/MPAndroidChart"));
         dependencies.add(new LibraryInfo("FlowLayout",                "1.0",      "ismaeltoe", "Apache License 2.0", "https://github.com/ismaeltoe/flowlayout"));
         dependencies.add(new LibraryInfo("CircleIndicator",           "1.3.0",    "angakeur", "Apache License 2.0", "https://github.com/ongakuer/CircleIndicator"));
+        dependencies.add(new LibraryInfo("PhotoView",                 "1.3.1",    "chrisbanes", "Apache License 2.0", "https://github.com/chrisbanes/PhotoView"));
 
         dependencies.add(new LibraryInfo("Stetho",                    "1.4.2",    "Facebook", "BSD", "http://facebook.github.io/stetho/"));
         dependencies.add(new LibraryInfo("Crashlytic",                "2.6.6",    "Twitter", "Apache License 2.0", "http://try.crashlytics.com"));

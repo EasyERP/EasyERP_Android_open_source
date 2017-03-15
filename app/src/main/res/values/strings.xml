@@ -147,6 +147,7 @@
     <string name="pattern_received_date" formatted="false">Received Date: %s at %s</string>
     <string name="pattern_created">Created: %s</string>
     <string name="pattern_created_date" formatted="false">Created Date: %s at %s</string>
+    <string name="pattern_gallery_indicator" formatted="false">%d/%d</string>
 
     <string name="pattern_created_by" formatted="false">Created: %s by %s</string>
     <string name="pattern_edited_by" formatted="false">Edited: %s by %s</string>
@@ -221,6 +222,18 @@
     <string name="variants">Variants:</string>
     <string name="no_email">No Email</string>
     <string name="no_phone">No Phone</string>
+
+    <string name="hint_date">Date</string>
+    <string name="tracking_reference">Tracking reference</string>
+    <string name="shipping_method">Shipping method</string>
+    <string name="not_printed">Not printed</string>
+    <string name="not_shipped">Not shipped</string>
+    <string name="not_packed">Not packed</string>
+    <string name="not_received">Not received</string>
+    <string name="printed">Printed</string>
+    <string name="packed">Packed</string>
+    <string name="received">Received</string>
+
     <string name="current_number">Current Number:</string>
     <string name="expected_in_recruitment">Expected in Recruitment:</string>
     <string name="edited_key">Edited:</string>

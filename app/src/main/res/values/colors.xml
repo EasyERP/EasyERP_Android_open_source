@@ -36,6 +36,9 @@
     <color name="tag_bg_purple">#c377e0</color>
     <color name="tag_bg_black">#4d4d4d</color>
     <color name="tag_bg_grey">#b6bbbf</color>
+
+    <color name="transparent_more">#b5000000</color>
+    <color name="transparent_less">#d8000000</color>
     
     <!--//////////////////////// DESIGN ////////////////////////-->
     <color name="color_ripple">#1b81ff</color>

@@ -55,7 +55,7 @@ public final class TransferRowVH extends RecyclerVH<TransferRowDH> {
         } else {
             tvLocationsFrom_VLITR.setText(null);
         }
-        if(item.locationsDeliver != null && !item.locationsDeliver.isEmpty() && !TextUtils.isEmpty(item.locationsDeliver.get(0).name)) {
+        if(item.locationsDeliver != null && !item.locationsDeliver.isEmpty() && item.locationsDeliver.get(0) != null && !TextUtils.isEmpty(item.locationsDeliver.get(0).name)) {
             tvLocationsTo_VLITR.setText(item.locationsDeliver.get(0).name);
         } else {
             tvLocationsTo_VLITR.setText(null);
