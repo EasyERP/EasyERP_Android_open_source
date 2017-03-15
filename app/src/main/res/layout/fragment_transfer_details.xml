@@ -44,7 +44,7 @@
                         android:id="@+id/tvPrinted_FTD"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Printed"
+                        android:text="@string/printed"
                         tools:drawableLeft="@drawable/ic_print"
                         android:drawablePadding="@dimen/padding_very_minimum"
                         android:gravity="center"/>
@@ -80,7 +80,7 @@
                         android:id="@+id/tvPacked_FTD"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Packed"
+                        android:text="@string/packed"
                         tools:drawableLeft="@drawable/ic_print"
                         android:drawablePadding="@dimen/padding_very_minimum"
                         android:gravity="center"/>
@@ -92,7 +92,6 @@
                         tools:text="07 Mar, 2017 10:59 AM"
                         android:text="@string/not_packed"
                         android:gravity="center"
-                        android:textSize="14sp"
                         android:layout_marginTop="@dimen/default_padding_quart"/>
 
                 </LinearLayout>
@@ -117,7 +116,7 @@
                         android:id="@+id/tvShipped_FTD"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Shipped"
+                        android:text="@string/shipped"
                         tools:drawableLeft="@drawable/ic_print"
                         android:drawablePadding="@dimen/padding_very_minimum"
                         android:gravity="center"/>
@@ -129,7 +128,6 @@
                         tools:text="07 Mar, 2017 10:59 AM"
                         android:text="@string/not_shipped"
                         android:gravity="center"
-                        android:textSize="14sp"
                         android:layout_marginTop="@dimen/default_padding_quart"/>
 
                 </LinearLayout>
@@ -154,7 +152,7 @@
                         android:id="@+id/tvReceived_FTD"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Received"
+                        android:text="@string/received"
                         tools:drawableLeft="@drawable/ic_print"
                         android:drawablePadding="@dimen/padding_very_minimum"
                         android:gravity="center"/>
@@ -166,7 +164,6 @@
                         tools:text="07 Mar, 2017 10:59 AM"
                         android:text="@string/not_received"
                         android:gravity="center"
-                        android:textSize="14sp"
                         android:layout_marginTop="@dimen/default_padding_quart"/>
 
                 </LinearLayout>

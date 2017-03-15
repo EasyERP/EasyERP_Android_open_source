@@ -230,5 +230,8 @@
     <string name="not_shipped">Not shipped</string>
     <string name="not_packed">Not packed</string>
     <string name="not_received">Not received</string>
+    <string name="printed">Printed</string>
+    <string name="packed">Packed</string>
+    <string name="received">Received</string>
 
 </resources>
