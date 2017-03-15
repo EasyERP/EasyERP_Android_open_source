@@ -234,4 +234,7 @@
     <string name="packed">Packed</string>
     <string name="received">Received</string>
 
+    <string name="current_number">Current Number:</string>
+    <string name="expected_in_recruitment">Expected in Recruitment:</string>
+    <string name="edited_key">Edited:</string>
 </resources>

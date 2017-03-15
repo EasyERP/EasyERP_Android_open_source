@@ -1,13 +1,10 @@
 package com.thinkmobiles.easyerp.presentation.screens.inventory.transfers;
 
-import android.widget.Toast;
-
 import com.thinkmobiles.easyerp.domain.inventory.TransfersRepository;
 import com.thinkmobiles.easyerp.presentation.adapters.inventory.TransfersAdapter;
 import com.thinkmobiles.easyerp.presentation.base.rules.master.filterable.FilterablePresenter;
 import com.thinkmobiles.easyerp.presentation.base.rules.master.filterable.MasterFilterableFragment;
 import com.thinkmobiles.easyerp.presentation.base.rules.master.selectable.SelectableAdapter;
-import com.thinkmobiles.easyerp.presentation.screens.inventory.transfers.details.TransferDetailsFragment;
 import com.thinkmobiles.easyerp.presentation.screens.inventory.transfers.details.TransferDetailsFragment_;
 
 import org.androidannotations.annotations.AfterInject;

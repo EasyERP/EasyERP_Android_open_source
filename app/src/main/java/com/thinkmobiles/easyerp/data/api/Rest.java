@@ -11,12 +11,13 @@ import com.thinkmobiles.easyerp.data.model.ResponseError;
 import com.thinkmobiles.easyerp.data.model.crm.filter.ResponseFilters;
 import com.thinkmobiles.easyerp.data.services.ApplicationService;
 import com.thinkmobiles.easyerp.data.services.CompaniesService;
-import com.thinkmobiles.easyerp.data.services.EmployeesService;
-import com.thinkmobiles.easyerp.data.services.ImageService;
 import com.thinkmobiles.easyerp.data.services.DashboardService;
+import com.thinkmobiles.easyerp.data.services.EmployeesService;
 import com.thinkmobiles.easyerp.data.services.FilterService;
 import com.thinkmobiles.easyerp.data.services.GoodsOutNotesService;
+import com.thinkmobiles.easyerp.data.services.ImageService;
 import com.thinkmobiles.easyerp.data.services.InvoiceService;
+import com.thinkmobiles.easyerp.data.services.JobPositionService;
 import com.thinkmobiles.easyerp.data.services.LeadService;
 import com.thinkmobiles.easyerp.data.services.LoginService;
 import com.thinkmobiles.easyerp.data.services.OpportunityService;
@@ -73,6 +74,7 @@ public class Rest {
 
     private EmployeesService employeesService;
     private ApplicationService applicationService;
+    private JobPositionService jobPositionService;
 
     private Converter<ResponseBody, ResponseError> converter;
 
@@ -182,6 +184,10 @@ public class Rest {
 
     public EmployeesService getEmployeesService() {
         return employeesService == null ? employeesService = createService(EmployeesService.class) : employeesService;
+    }
+
+    public JobPositionService getJobPositionService() {
+        return jobPositionService == null ? jobPositionService = createService(JobPositionService.class) : jobPositionService;
     }
 
     public ResponseError parseError(ResponseBody responseBody) {
