@@ -9,6 +9,7 @@ import com.thinkmobiles.easyerp.domain.inventory.StockCorrectionRepository;
 import com.thinkmobiles.easyerp.presentation.adapters.inventory.ProductAdjustedAdapter;
 import com.thinkmobiles.easyerp.presentation.base.rules.content.ContentFragment;
 import com.thinkmobiles.easyerp.presentation.holders.data.inventory.OrderRowDH;
+import com.thinkmobiles.easyerp.presentation.managers.GoogleAnalyticHelper;
 
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterViews;
@@ -75,6 +76,11 @@ public class StockCorrectionsDetailsFragment extends ContentFragment implements 
     @Override
     public void setPresenter(StockCorrectionsDetailsContract.StockCorrectionsDetailsPresenter presenter) {
         this.presenter = presenter;
+    }
+
+    @AfterViews
+    protected void initAnalytics() {
+        GoogleAnalyticHelper.trackScreenView(this, getResources().getConfiguration());
     }
 
     @Override

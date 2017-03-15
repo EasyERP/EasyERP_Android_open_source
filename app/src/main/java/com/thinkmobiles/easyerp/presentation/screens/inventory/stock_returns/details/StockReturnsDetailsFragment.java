@@ -9,6 +9,7 @@ import com.thinkmobiles.easyerp.domain.inventory.StockReturnRepository;
 import com.thinkmobiles.easyerp.presentation.adapters.inventory.StockReturnsOrderRowAdapter;
 import com.thinkmobiles.easyerp.presentation.base.rules.content.ContentFragment;
 import com.thinkmobiles.easyerp.presentation.holders.data.inventory.OrderRowDH;
+import com.thinkmobiles.easyerp.presentation.managers.GoogleAnalyticHelper;
 
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterViews;
@@ -79,6 +80,11 @@ public class StockReturnsDetailsFragment extends ContentFragment implements Stoc
     protected void initUI() {
         rvProductList_FSRD.setLayoutManager(new LinearLayoutManager(getActivity()));
         rvProductList_FSRD.setAdapter(orderRowAdapter);
+    }
+
+    @AfterViews
+    protected void initAnalytics() {
+        GoogleAnalyticHelper.trackScreenView(this, getResources().getConfiguration());
     }
 
     @Override

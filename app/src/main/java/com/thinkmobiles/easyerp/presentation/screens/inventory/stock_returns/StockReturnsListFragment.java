@@ -39,14 +39,14 @@ public class StockReturnsListFragment extends MasterSelectableFragment implement
         this.presenter = presenter;
     }
 
-    @Override
-    public String getScreenName() {
-        return "Stock Returns list screen";
-    }
-
     @AfterViews
     protected void initAnalytics() {
         GoogleAnalyticHelper.trackScreenView(this, getResources().getConfiguration());
+    }
+
+    @Override
+    public String getScreenName() {
+        return "Stock Returns list screen";
     }
 
     @Override

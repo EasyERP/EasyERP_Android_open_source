@@ -2,6 +2,7 @@ package com.thinkmobiles.easyerp.data.services;
 
 import com.thinkmobiles.easyerp.data.model.ResponseGetTotalItems;
 import com.thinkmobiles.easyerp.data.model.hr.job_positions.JobPosition;
+import com.thinkmobiles.easyerp.data.model.hr.job_positions.detail.JobPositionDetail;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
 import retrofit2.http.GET;
@@ -20,4 +21,7 @@ public interface JobPositionService {
                                                                    @Query("count") int count,
                                                                    @Query("contentType") String contentType,
                                                                    @Query("page") int page);
+
+    @GET(Constants.GET_JOB_POSITIONS)
+    Observable<JobPositionDetail> getJobPositionDetails(@Query("id") String id, @Query("viewType") String viewType);
 }

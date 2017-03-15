@@ -81,7 +81,7 @@
                 style="@style/TextListInfoStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/expected_in_recruitment"
+                android:text="@string/expected_in_recruitment_key"
                 android:textColor="@color/color_text_gray"
                 android:textSize="@dimen/text_size_small_14" />
 

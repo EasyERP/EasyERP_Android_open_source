@@ -13,7 +13,7 @@ import com.thinkmobiles.easyerp.data.model.crm.leads.Workflow;
  *         Company: Thinkmobiles
  *         Email: michael.soyma@thinkmobiles.com
  */
-public final class JobPosition implements Parcelable {
+public class JobPosition implements Parcelable {
 
     @SerializedName("_id")
     public String id;
@@ -29,6 +29,9 @@ public final class JobPosition implements Parcelable {
     public String requirements;
     public String whoCanRW;
     public Workflow workflow;
+
+    public JobPosition() {
+    }
 
     @Override
     public int describeContents() {
@@ -52,9 +55,6 @@ public final class JobPosition implements Parcelable {
         dest.writeParcelable(this.workflow, flags);
     }
 
-    public JobPosition() {
-    }
-
     protected JobPosition(Parcel in) {
         this.id = in.readString();
         this.createdBy = in.readParcelable(EditedBy.class.getClassLoader());
@@ -71,15 +71,4 @@ public final class JobPosition implements Parcelable {
         this.workflow = in.readParcelable(Workflow.class.getClassLoader());
     }
 
-    public static final Parcelable.Creator<JobPosition> CREATOR = new Parcelable.Creator<JobPosition>() {
-        @Override
-        public JobPosition createFromParcel(Parcel source) {
-            return new JobPosition(source);
-        }
-
-        @Override
-        public JobPosition[] newArray(int size) {
-            return new JobPosition[size];
-        }
-    };
 }

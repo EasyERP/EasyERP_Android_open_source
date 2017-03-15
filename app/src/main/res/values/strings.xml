@@ -235,6 +235,16 @@
     <string name="received">Received</string>
 
     <string name="current_number">Current Number:</string>
-    <string name="expected_in_recruitment">Expected in Recruitment:</string>
+    <string name="expected_in_recruitment_key">Expected in Recruitment:</string>
     <string name="edited_key">Edited:</string>
+    <string name="main">Main</string>
+    <string name="job_name">Job Name</string>
+    <string name="expected_in_recruitment">Expected in Recruitment</string>
+    <string name="department">Department</string>
+    <string name="stage">Stage</string>
+    <string name="requirements">Requirements</string>
+    <string name="assignees">Assignees</string>
+    <string name="owner">Owner</string>
+    <string name="everyone">Everyone</string>
+    <string name="owner_users_and_users_in_groups">Owner, Users and Users in Groups</string>
 </resources>
