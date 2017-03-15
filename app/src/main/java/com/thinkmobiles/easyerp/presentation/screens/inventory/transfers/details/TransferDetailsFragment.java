@@ -1,9 +1,13 @@
 package com.thinkmobiles.easyerp.presentation.screens.inventory.transfers.details;
 
+import android.graphics.drawable.Drawable;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.thinkmobiles.easyerp.R;
@@ -23,6 +27,7 @@ import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.FragmentArg;
 import org.androidannotations.annotations.ViewById;
+import org.androidannotations.annotations.res.ColorRes;
 
 import java.util.ArrayList;
 
@@ -49,25 +54,34 @@ public class TransferDetailsFragment extends ContentFragment implements Transfer
     @ViewById
     protected TextView tvTitle_FTD;
     @ViewById
-    protected TextView tvReference_FTD;
+    protected TextView tvPrinted_FTD;
     @ViewById
-    protected TextView tvShipping_FTD;
+    protected TextView tvPrintedDate_FTD;
     @ViewById
-    protected TextView tvPrint_FTD;
+    protected EditText etDate_FTD;
     @ViewById
-    protected TextView tvPack_FTD;
+    protected EditText etTrackingReference_FTD;
     @ViewById
-    protected TextView tvShip_FTD;
+    protected EditText etShippingMethod_FLD;
+
     @ViewById
-    protected TextView tvReceive_FTD;
+    protected TextView tvPacked_FTD;
+    @ViewById
+    protected TextView tvPackedDate_FTD;
+    @ViewById
+    protected TextView tvShipped_FTD;
+    @ViewById
+    protected TextView tvShippedDate_FTD;
+    @ViewById
+    protected TextView tvReceived_FTD;
+    @ViewById
+    protected TextView tvReceivedDate_FTD;
     @ViewById
     protected TextView tvCompanyName_FTD;
     @ViewById
     protected TextView tvCompanyAddress_FTD;
     @ViewById
     protected TextView tvName_FTD;
-    @ViewById
-    protected TextView tvDate_FTD;
     @ViewById
     protected TextView tvWarehouseTo_FTD;
     @ViewById
@@ -80,6 +94,8 @@ public class TransferDetailsFragment extends ContentFragment implements Transfer
     protected RecyclerView rvAttachments_FLD;
     //endregion
 
+    @ColorRes(R.color.color_text_gray)
+    protected int colorGray;
 
     @Override
     protected int getLayoutRes() {
@@ -146,37 +162,57 @@ public class TransferDetailsFragment extends ContentFragment implements Transfer
 
     @Override
     public void setPrint(String print) {
-        tvPrint_FTD.setText(print);
+        Drawable drawable = ContextCompat.getDrawable(getActivity(), TextUtils.isEmpty(print)
+                ? R.drawable.ic_print_off
+                : R.drawable.ic_print);
+        tvPrinted_FTD.setCompoundDrawablesWithIntrinsicBounds(drawable, null, null, null);
+        if(!TextUtils.isEmpty(print)) tvPrintedDate_FTD.setText(print);
+        else tvPrintedDate_FTD.setTextColor(colorGray);
     }
 
     @Override
     public void setPack(String pack) {
-        tvPack_FTD.setText(pack);
+        Drawable drawable = ContextCompat.getDrawable(getActivity(), TextUtils.isEmpty(pack)
+                ? R.drawable.ic_fulfilled_off
+                : R.drawable.ic_fulfilled);
+        tvPacked_FTD.setCompoundDrawablesWithIntrinsicBounds(drawable, null, null, null);
+        if(!TextUtils.isEmpty(pack)) tvPackedDate_FTD.setText(pack);
+        else tvPackedDate_FTD.setTextColor(colorGray);
     }
 
     @Override
     public void setShip(String ship) {
-        tvShip_FTD.setText(ship);
+        Drawable drawable = ContextCompat.getDrawable(getActivity(), TextUtils.isEmpty(ship)
+                ? R.drawable.ic_shipped_off
+                : R.drawable.ic_shipped);
+        tvShipped_FTD.setCompoundDrawablesWithIntrinsicBounds(drawable, null, null, null);
+        if(!TextUtils.isEmpty(ship)) tvShippedDate_FTD.setText(ship);
+        else tvShippedDate_FTD.setTextColor(colorGray);
     }
 
     @Override
     public void setReceive(String receive) {
-        tvReceive_FTD.setText(receive);
+        Drawable drawable = ContextCompat.getDrawable(getActivity(), TextUtils.isEmpty(receive)
+                ? R.drawable.ic_received_off
+                : R.drawable.ic_received);
+        tvReceived_FTD.setCompoundDrawablesWithIntrinsicBounds(drawable, null, null, null);
+        if(!TextUtils.isEmpty(receive)) tvReceivedDate_FTD.setText(receive);
+        else tvReceivedDate_FTD.setTextColor(colorGray);
     }
 
     @Override
-    public void setReference(String reference) {
-        tvReference_FTD.setText(reference);
+    public void setTrackingReference(String reference) {
+        etTrackingReference_FTD.setText(reference);
     }
 
     @Override
-    public void setShipping(String shipping) {
-        tvShipping_FTD.setText(shipping);
+    public void setShippingMethod(String shipping) {
+        etShippingMethod_FLD.setText(shipping);
     }
 
     @Override
     public void setDate(String date) {
-        tvDate_FTD.setText(date);
+        etDate_FTD.setText(date);
     }
 
     @Override

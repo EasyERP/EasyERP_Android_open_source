@@ -78,10 +78,21 @@ public class TransferDetailsPresenter extends ContentPresenterHelper implements 
         view.setName(response.name);
         view.setTitle(response.name);
         view.setDate(DateManager.convert(response.date).setDstPattern(DateManager.PATTERN_DATE_AND_TIME).toString());
-        view.setPrint(DateManager.convert(response.status.printedOn).setDstPattern(DateManager.PATTERN_DATE_AND_TIME).toString());
-        view.setPack(DateManager.convert(response.status.packedOn).setDstPattern(DateManager.PATTERN_DATE_AND_TIME).toString());
-        view.setShip(DateManager.convert(response.status.shippedOn).setDstPattern(DateManager.PATTERN_DATE_AND_TIME).toString());
-        view.setReceive(DateManager.convert(response.status.receivedOn).setDstPattern(DateManager.PATTERN_DATE_AND_TIME).toString());
+
+        if (response.status != null) {
+             view.setPrint(response.status.printed
+                     ? DateManager.convert(response.status.printedOn).setDstPattern(DateManager.PATTERN_DATE_AND_TIME).toString()
+                     : null);
+            view.setPack(response.status.packed
+                    ? DateManager.convert(response.status.packedOn).setDstPattern(DateManager.PATTERN_DATE_AND_TIME).toString()
+                    : null);
+            view.setShip(response.status.shipped
+                    ? DateManager.convert(response.status.shippedOn).setDstPattern(DateManager.PATTERN_DATE_AND_TIME).toString()
+                    : null);
+            view.setReceive(response.status.received
+                    ? DateManager.convert(response.status.receivedOn).setDstPattern(DateManager.PATTERN_DATE_AND_TIME).toString()
+                    : null);
+        }
 
         if (response.warehouseTo != null && !TextUtils.isEmpty(response.warehouseTo.name)) {
             view.setWarehouseTo(response.warehouseTo.name);
@@ -94,8 +105,8 @@ public class TransferDetailsPresenter extends ContentPresenterHelper implements 
             view.setWarehouseToCountry(null);
         }
 
-        view.setShipping(response.shippingMethod);
-        view.setReference(response.reference);
+        view.setShippingMethod(response.shippingMethod);
+        view.setTrackingReference(response.reference);
         view.setTransferRows(prepareList(response.orderRows));
 
         displayAttachments(responseGetTransferDetails);
@@ -122,7 +133,7 @@ public class TransferDetailsPresenter extends ContentPresenterHelper implements 
     private void displayAttachments(ResponseGetTransferDetails response) {
         if (response.attachments != null && !response.attachments.isEmpty()) {
             ArrayList<AttachmentDH> result = new ArrayList<>();
-            for(AttachmentItem item : response.attachments) result.add(new AttachmentDH(item));
+            for (AttachmentItem item : response.attachments) result.add(new AttachmentDH(item));
             view.setAttachments(result);
         } else
             view.showAttachments(false);

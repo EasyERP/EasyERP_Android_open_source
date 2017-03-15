@@ -223,4 +223,12 @@
     <string name="no_email">No Email</string>
     <string name="no_phone">No Phone</string>
 
+    <string name="hint_date">Date</string>
+    <string name="tracking_reference">Tracking reference</string>
+    <string name="shipping_method">Shipping method</string>
+    <string name="not_printed">Not printed</string>
+    <string name="not_shipped">Not shipped</string>
+    <string name="not_packed">Not packed</string>
+    <string name="not_received">Not received</string>
+
 </resources>
