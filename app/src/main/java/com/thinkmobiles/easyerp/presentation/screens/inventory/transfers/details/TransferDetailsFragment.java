@@ -174,63 +174,30 @@ public class TransferDetailsFragment extends ContentFragment implements Transfer
 
     @Override
     public void setPrint(String print) {
-        Drawable drawable = ContextCompat.getDrawable(getActivity(), TextUtils.isEmpty(print)
-                ? R.drawable.ic_print_off
-                : R.drawable.ic_print);
-        tvPrinted_FTD.setCompoundDrawablesWithIntrinsicBounds(drawable, null, null, null);
-        if (!TextUtils.isEmpty(print)) {
-            tvPrintedDate_FTD.setText(print);
-            tvPrintedDate_FTD.setTextColor(colorBlack);
-        } else {
-            tvPrintedDate_FTD.setText(notPrinted);
-            tvPrintedDate_FTD.setTextColor(colorGray);
-        }
+        fulfillTransferStatusCard(print, notPrinted,
+                R.drawable.ic_print, R.drawable.ic_print_off,
+                tvPrinted_FTD, tvPrintedDate_FTD);
     }
 
     @Override
     public void setPack(String pack) {
-        Drawable drawable = ContextCompat.getDrawable(getActivity(), TextUtils.isEmpty(pack)
-                ? R.drawable.ic_fulfilled_off
-                : R.drawable.ic_fulfilled);
-        tvPacked_FTD.setCompoundDrawablesWithIntrinsicBounds(drawable, null, null, null);
-        if (!TextUtils.isEmpty(pack)) {
-            tvPackedDate_FTD.setText(pack);
-            tvPackedDate_FTD.setTextColor(colorBlack);
-        } else {
-            tvPackedDate_FTD.setText(notPacked);
-            tvPackedDate_FTD.setTextColor(colorGray);
-        }
+        fulfillTransferStatusCard(pack, notPacked,
+                R.drawable.ic_fulfilled, R.drawable.ic_fulfilled_off,
+                tvPacked_FTD, tvPackedDate_FTD);
     }
 
     @Override
     public void setShip(String ship) {
-        Drawable drawable = ContextCompat.getDrawable(getActivity(), TextUtils.isEmpty(ship)
-                ? R.drawable.ic_shipped_off
-                : R.drawable.ic_shipped);
-        tvShipped_FTD.setCompoundDrawablesWithIntrinsicBounds(drawable, null, null, null);
-        if (!TextUtils.isEmpty(ship)) {
-            tvShippedDate_FTD.setText(ship);
-            tvShippedDate_FTD.setTextColor(colorBlack);
-        } else {
-            tvShippedDate_FTD.setText(notShipped);
-            tvShippedDate_FTD.setTextColor(colorGray);
-        }
+        fulfillTransferStatusCard(ship, notShipped,
+                R.drawable.ic_shipped, R.drawable.ic_shipped_off,
+                tvShipped_FTD, tvShippedDate_FTD);
     }
 
     @Override
     public void setReceive(String receive) {
-        Drawable drawable = ContextCompat.getDrawable(getActivity(), TextUtils.isEmpty(receive)
-                ? R.drawable.ic_received_off
-                : R.drawable.ic_received);
-        tvReceived_FTD.setCompoundDrawablesWithIntrinsicBounds(drawable, null, null, null);
-        if (!TextUtils.isEmpty(receive)) {
-            tvReceivedDate_FTD.setText(receive);
-            tvReceivedDate_FTD.setTextColor(colorBlack);
-        }
-        else {
-            tvReceivedDate_FTD.setText(notReceived);
-            tvReceivedDate_FTD.setTextColor(colorGray);
-        }
+        fulfillTransferStatusCard(receive, notReceived,
+                R.drawable.ic_received, R.drawable.ic_received_off,
+                tvReceived_FTD, tvReceivedDate_FTD);
     }
 
     @Override
@@ -272,6 +239,13 @@ public class TransferDetailsFragment extends ContentFragment implements Transfer
     @Override
     protected ContentPresenter getPresenter() {
         return presenter;
+    }
+
+    private void fulfillTransferStatusCard(String date, String noDate, int drawableRes, int drawableOffRes, TextView tvTitle, TextView tvDate) {
+        Drawable drawable = ContextCompat.getDrawable(getActivity(), TextUtils.isEmpty(date) ? drawableOffRes : drawableRes);
+        tvTitle.setCompoundDrawablesWithIntrinsicBounds(drawable, null, null, null);
+        tvDate.setText(TextUtils.isEmpty(date) ? noDate : date);
+        tvDate.setTextColor(TextUtils.isEmpty(date) ? colorGray : colorBlack);
     }
 
 }
