@@ -28,6 +28,7 @@ import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.FragmentArg;
 import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.res.ColorRes;
+import org.androidannotations.annotations.res.StringRes;
 
 import java.util.ArrayList;
 
@@ -96,6 +97,17 @@ public class TransferDetailsFragment extends ContentFragment implements Transfer
 
     @ColorRes(R.color.color_text_gray)
     protected int colorGray;
+    @ColorRes(R.color.color_text_black)
+    protected int colorBlack;
+
+    @StringRes(R.string.not_printed)
+    protected String notPrinted;
+    @StringRes(R.string.not_packed)
+    protected String notPacked;
+    @StringRes(R.string.not_shipped)
+    protected String notShipped;
+    @StringRes(R.string.not_received)
+    protected String notReceived;
 
     @Override
     protected int getLayoutRes() {
@@ -166,8 +178,13 @@ public class TransferDetailsFragment extends ContentFragment implements Transfer
                 ? R.drawable.ic_print_off
                 : R.drawable.ic_print);
         tvPrinted_FTD.setCompoundDrawablesWithIntrinsicBounds(drawable, null, null, null);
-        if(!TextUtils.isEmpty(print)) tvPrintedDate_FTD.setText(print);
-        else tvPrintedDate_FTD.setTextColor(colorGray);
+        if (!TextUtils.isEmpty(print)) {
+            tvPrintedDate_FTD.setText(print);
+            tvPrintedDate_FTD.setTextColor(colorBlack);
+        } else {
+            tvPrintedDate_FTD.setText(notPrinted);
+            tvPrintedDate_FTD.setTextColor(colorGray);
+        }
     }
 
     @Override
@@ -176,8 +193,13 @@ public class TransferDetailsFragment extends ContentFragment implements Transfer
                 ? R.drawable.ic_fulfilled_off
                 : R.drawable.ic_fulfilled);
         tvPacked_FTD.setCompoundDrawablesWithIntrinsicBounds(drawable, null, null, null);
-        if(!TextUtils.isEmpty(pack)) tvPackedDate_FTD.setText(pack);
-        else tvPackedDate_FTD.setTextColor(colorGray);
+        if (!TextUtils.isEmpty(pack)) {
+            tvPackedDate_FTD.setText(pack);
+            tvPackedDate_FTD.setTextColor(colorBlack);
+        } else {
+            tvPackedDate_FTD.setText(notPacked);
+            tvPackedDate_FTD.setTextColor(colorGray);
+        }
     }
 
     @Override
@@ -186,8 +208,13 @@ public class TransferDetailsFragment extends ContentFragment implements Transfer
                 ? R.drawable.ic_shipped_off
                 : R.drawable.ic_shipped);
         tvShipped_FTD.setCompoundDrawablesWithIntrinsicBounds(drawable, null, null, null);
-        if(!TextUtils.isEmpty(ship)) tvShippedDate_FTD.setText(ship);
-        else tvShippedDate_FTD.setTextColor(colorGray);
+        if (!TextUtils.isEmpty(ship)) {
+            tvShippedDate_FTD.setText(ship);
+            tvShippedDate_FTD.setTextColor(colorBlack);
+        } else {
+            tvShippedDate_FTD.setText(notShipped);
+            tvShippedDate_FTD.setTextColor(colorGray);
+        }
     }
 
     @Override
@@ -196,8 +223,14 @@ public class TransferDetailsFragment extends ContentFragment implements Transfer
                 ? R.drawable.ic_received_off
                 : R.drawable.ic_received);
         tvReceived_FTD.setCompoundDrawablesWithIntrinsicBounds(drawable, null, null, null);
-        if(!TextUtils.isEmpty(receive)) tvReceivedDate_FTD.setText(receive);
-        else tvReceivedDate_FTD.setTextColor(colorGray);
+        if (!TextUtils.isEmpty(receive)) {
+            tvReceivedDate_FTD.setText(receive);
+            tvReceivedDate_FTD.setTextColor(colorBlack);
+        }
+        else {
+            tvReceivedDate_FTD.setText(notReceived);
+            tvReceivedDate_FTD.setTextColor(colorGray);
+        }
     }
 
     @Override
@@ -228,7 +261,7 @@ public class TransferDetailsFragment extends ContentFragment implements Transfer
 
     @Override
     public void showAttachments(boolean isShown) {
-        if(!isShown) tvEmptyAttachments_FLD.setVisibility(View.VISIBLE);
+        if (!isShown) tvEmptyAttachments_FLD.setVisibility(View.VISIBLE);
     }
 
     @Override
