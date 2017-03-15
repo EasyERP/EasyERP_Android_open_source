@@ -228,6 +228,7 @@
     <string name="shipping_method">Shipping method</string>
     <string name="not_printed">Not printed</string>
     <string name="not_shipped">Not shipped</string>
+    <string name="not_picked">Not picked</string>
     <string name="not_packed">Not packed</string>
     <string name="not_received">Not received</string>
     <string name="printed">Printed</string>
@@ -247,4 +248,5 @@
     <string name="owner">Owner</string>
     <string name="everyone">Everyone</string>
     <string name="owner_users_and_users_in_groups">Owner, Users and Users in Groups</string>
+    <string name="picked">Picked</string>
 </resources>
