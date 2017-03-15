@@ -101,18 +101,16 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <android.support.design.widget.TextInputLayout
-                    style="@style/DefaultTheme.LeadTextInputLayoutStyle"
-                    android:layout_marginEnd="@dimen/default_padding_half">
+                <android.support.design.widget.TextInputLayout style="@style/DefaultTheme.LeadTextInputLayoutStyle">
 
                     <EditText
                         android:id="@+id/etRequirements_FJPD"
                         style="@style/DefaultTheme.LeadInputFieldStyle"
+                        android:hint="@string/requirements"
+                        android:inputType="textMultiLine"
                         android:maxLines="3"
                         android:minLines="1"
-                        android:inputType="textMultiLine"
                         android:scrollHorizontally="false"
-                        android:hint="@string/requirements"
                         android:text="@string/err_not_specified" />
 
                 </android.support.design.widget.TextInputLayout>
@@ -146,6 +144,7 @@
                     android:id="@+id/rgAssignees_FJPD"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/default_padding_half"
                     android:layout_weight="1">
 
                     <android.support.v7.widget.AppCompatRadioButton
