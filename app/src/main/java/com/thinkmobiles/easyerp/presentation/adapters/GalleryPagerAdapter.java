@@ -11,6 +11,7 @@ import com.squareup.picasso.Picasso;
 import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.data.model.crm.common.images.ImageItem;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
+import com.thinkmobiles.easyerp.presentation.utils.StringUtil;
 
 import org.androidannotations.annotations.EBean;
 
@@ -46,7 +47,7 @@ public class GalleryPagerAdapter extends PagerAdapter {
         ImageView ivFullscreenImage_LGI = (ImageView) view.findViewById(R.id.ivFullscreenImage_VGI);
 
         Picasso.with(container.getContext())
-                .load(Constants.BASE_URL + data.get(position).imageSrc)
+                .load(StringUtil.getImageURL(data.get(position).imageSrc))
                 .into(ivFullscreenImage_LGI, new Callback() {
                     @Override
                     public void onSuccess() {

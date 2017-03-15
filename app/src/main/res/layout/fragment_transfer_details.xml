@@ -44,19 +44,20 @@
                         android:id="@+id/tvPrinted_FTD"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/printed"
-                        tools:drawableLeft="@drawable/ic_print"
                         android:drawablePadding="@dimen/padding_very_minimum"
-                        android:gravity="center"/>
+                        android:gravity="center"
+                        android:text="@string/printed"
+                        android:textColor="@color/color_text_black"
+                        tools:drawableLeft="@drawable/ic_print" />
 
                     <TextView
                         android:id="@+id/tvPrintedDate_FTD"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        tools:text="07 Mar, 2017 10:59 AM"
-                        android:text="@string/not_printed"
+                        android:layout_marginTop="@dimen/default_padding_quart"
                         android:gravity="center"
-                        android:layout_marginTop="@dimen/default_padding_quart"/>
+                        android:textColor="@color/color_text_black"
+                        tools:text="07 Mar, 2017 10:59 AM" />
 
                 </LinearLayout>
 
@@ -80,19 +81,20 @@
                         android:id="@+id/tvPacked_FTD"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/packed"
-                        tools:drawableLeft="@drawable/ic_print"
                         android:drawablePadding="@dimen/padding_very_minimum"
-                        android:gravity="center"/>
+                        android:gravity="center"
+                        android:text="@string/packed"
+                        android:textColor="@color/color_text_black"
+                        tools:drawableLeft="@drawable/ic_print" />
 
                     <TextView
                         android:id="@+id/tvPackedDate_FTD"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        tools:text="07 Mar, 2017 10:59 AM"
-                        android:text="@string/not_packed"
+                        android:layout_marginTop="@dimen/default_padding_quart"
                         android:gravity="center"
-                        android:layout_marginTop="@dimen/default_padding_quart"/>
+                        android:textColor="@color/color_text_black"
+                        tools:text="07 Mar, 2017 10:59 AM" />
 
                 </LinearLayout>
 
@@ -116,19 +118,20 @@
                         android:id="@+id/tvShipped_FTD"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/shipped"
-                        tools:drawableLeft="@drawable/ic_print"
                         android:drawablePadding="@dimen/padding_very_minimum"
-                        android:gravity="center"/>
+                        android:gravity="center"
+                        android:text="@string/shipped"
+                        android:textColor="@color/color_text_black"
+                        tools:drawableLeft="@drawable/ic_print" />
 
                     <TextView
                         android:id="@+id/tvShippedDate_FTD"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        tools:text="07 Mar, 2017 10:59 AM"
-                        android:text="@string/not_shipped"
+                        android:layout_marginTop="@dimen/default_padding_quart"
                         android:gravity="center"
-                        android:layout_marginTop="@dimen/default_padding_quart"/>
+                        android:textColor="@color/color_text_black"
+                        tools:text="07 Mar, 2017 10:59 AM" />
 
                 </LinearLayout>
 
@@ -152,19 +155,20 @@
                         android:id="@+id/tvReceived_FTD"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/received"
-                        tools:drawableLeft="@drawable/ic_print"
                         android:drawablePadding="@dimen/padding_very_minimum"
-                        android:gravity="center"/>
+                        android:gravity="center"
+                        android:text="@string/received"
+                        android:textColor="@color/color_text_black"
+                        tools:drawableLeft="@drawable/ic_print" />
 
                     <TextView
                         android:id="@+id/tvReceivedDate_FTD"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        tools:text="07 Mar, 2017 10:59 AM"
-                        android:text="@string/not_received"
+                        android:layout_marginTop="@dimen/default_padding_quart"
                         android:gravity="center"
-                        android:layout_marginTop="@dimen/default_padding_quart"/>
+                        android:textColor="@color/color_text_black"
+                        tools:text="07 Mar, 2017 10:59 AM" />
 
                 </LinearLayout>
 
@@ -175,8 +179,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginRight="@dimen/default_padding"
-            android:layout_marginLeft="@dimen/default_padding">
+            android:layout_marginLeft="@dimen/default_padding"
+            android:layout_marginRight="@dimen/default_padding">
 
             <android.support.design.widget.TextInputLayout
                 style="@style/DefaultTheme.LeadTextInputLayoutStyle"
@@ -207,8 +211,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginRight="@dimen/default_padding"
-            android:layout_marginLeft="@dimen/default_padding">
+            android:layout_marginLeft="@dimen/default_padding"
+            android:layout_marginRight="@dimen/default_padding">
 
             <android.support.design.widget.TextInputLayout
                 style="@style/DefaultTheme.LeadTextInputLayoutStyle"

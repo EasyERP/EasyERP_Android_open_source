@@ -25,6 +25,10 @@
 #-renamesourcefileattribute SourceFile
 
 
+# PhotoView
+-dontwarn uk.co.senab.photoview.**
+-keep class uk.co.senab.photoview.** { *; }
+
 #My
 -keep,allowobfuscation public class com.thinkmobiles.easyerp.** {*;}
 -keep class com.thinkmobiles.easyerp.data.** { *; }
@@ -121,6 +125,8 @@
 #Crashlytics
 -keep class com.crashlytics.** { *; }
 -keep class com.crashlytics.android.**
+
+-dontwarn uk.co.senab.photoview.**
 
 #UXCam
 -keep class com.uxcam.** { *; }
