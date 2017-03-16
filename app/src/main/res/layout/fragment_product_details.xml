@@ -61,7 +61,7 @@
                                 android:id="@+id/tvTitleActions"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="This product can be:"
+                                android:text="@string/product_details_this_product_can_be"
                                 android:textColor="@color/color_text_gray" />
 
                             <TextView
@@ -78,7 +78,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_alignTop="@+id/tvProductType_FPD"
-                                android:text="Product Type:"
+                                android:text="@string/product_details_product_type"
                                 android:textColor="@color/color_text_gray" />
 
                             <TextView
@@ -96,7 +96,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_alignTop="@+id/flCategories_FPD"
                                 android:layout_marginTop="@dimen/default_padding_quart"
-                                android:text="Product Categories:"
+                                android:text="@string/product_details_product_categories"
                                 android:textColor="@color/color_text_gray" />
 
                             <com.ismaeltoe.FlowLayout
@@ -121,8 +121,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
-                    <TextView
-                        android:id="@+id/tvDescription_FPD"
+                    <android.support.v4.widget.NestedScrollView
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
@@ -130,12 +129,16 @@
                         android:layout_marginEnd="@dimen/default_padding_half"
                         android:layout_marginBottom="@dimen/default_padding_half"
                         android:padding="@dimen/default_padding"
-                        android:background="@drawable/bg_border_field"
-                        android:isScrollContainer="true"
+                        android:background="@drawable/bg_rectangle_round_grey">
+
+                    <TextView
+                        android:id="@+id/tvDescription_FPD"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
                         android:textColor="@color/color_text_black"
-                        android:textSize="@dimen/text_list_item_medium_16"
-                        android:text="Description"
-                        android:nestedScrollingEnabled="false" />
+                        android:textSize="@dimen/text_list_item_medium_16"/>
+
+                    </android.support.v4.widget.NestedScrollView>
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -151,7 +154,7 @@
                             <EditText
                                 android:id="@+id/etSKU_FPD"
                                 style="@style/DefaultTheme.LeadInputFieldStyle"
-                                android:hint="Model / SKU" />
+                                android:hint="@string/product_details_model_sku" />
 
                         </android.support.design.widget.TextInputLayout>
 
@@ -163,7 +166,7 @@
                             <EditText
                                 android:id="@+id/etUPC_FPD"
                                 style="@style/DefaultTheme.LeadInputFieldStyle"
-                                android:hint="UPC" />
+                                android:hint="@string/product_details_upc" />
 
                         </android.support.design.widget.TextInputLayout>
 
@@ -175,7 +178,7 @@
                             <EditText
                                 android:id="@+id/etISBN_FPD"
                                 style="@style/DefaultTheme.LeadInputFieldStyle"
-                                android:hint="ISBN" />
+                                android:hint="@string/product_details_isbn" />
 
                         </android.support.design.widget.TextInputLayout>
 
@@ -187,7 +190,7 @@
                             <EditText
                                 android:id="@+id/etEAN_FPD"
                                 style="@style/DefaultTheme.LeadInputFieldStyle"
-                                android:hint="EAN" />
+                                android:hint="@string/product_details_ean" />
 
                         </android.support.design.widget.TextInputLayout>
 
@@ -199,7 +202,7 @@
                             <EditText
                                 android:id="@+id/etWeight_FPD"
                                 style="@style/DefaultTheme.LeadInputFieldStyle"
-                                android:hint="Weight(kg)" />
+                                android:hint="@string/product_details_weight_kg" />
 
                         </android.support.design.widget.TextInputLayout>
 
@@ -211,7 +214,7 @@
                     style="@style/TextContentTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Stock Inventory" />
+                    android:text="@string/product_details_stock_inventory" />
 
                 <LinearLayout
                     android:id="@+id/llStockInventoryHeader_FPD"
@@ -227,7 +230,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
                         android:gravity="start"
-                        android:text="Warehouse"
+                        android:text="@string/product_details_warehouse"
                         android:textColor="@color/color_text_black" />
 
                     <TextView
@@ -235,7 +238,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="In Stock"
+                        android:text="@string/product_details_in_stock"
                         android:textColor="@color/color_text_black" />
 
                     <TextView
@@ -243,7 +246,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Fulfilled"
+                        android:text="@string/product_details_fulfilled"
                         android:textColor="@color/color_text_black" />
 
                     <TextView
@@ -251,7 +254,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="On hand"
+                        android:text="@string/product_details_on_hand"
                         android:textColor="@color/color_text_black" />
 
                     <TextView
@@ -259,7 +262,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Incoming"
+                        android:text="@string/product_details_incoming"
                         android:textColor="@color/color_text_black" />
 
                     <TextView
@@ -267,7 +270,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Bin location"
+                        android:text="@string/product_details_bin_location"
                         android:textColor="@color/color_text_black" />
 
                 </LinearLayout>
@@ -293,7 +296,7 @@
                     style="@style/TextContentTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Prices" />
+                    android:text="@string/product_details_prices" />
 
                 <android.support.v7.widget.CardView
                     android:layout_width="match_parent"
@@ -603,18 +606,11 @@
 
                 </android.support.v7.widget.CardView>
 
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/rvPrices_FPD"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/default_padding_half"
-                    android:nestedScrollingEnabled="false" />
-
                 <TextView
                     style="@style/TextContentTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Sales Channel" />
+                    android:text="@string/product_details_sales_channel" />
 
                 <LinearLayout
                     android:id="@+id/llSalesChannelHeader_FPD"
@@ -628,9 +624,9 @@
                         style="@style/ProductTableTextStyle.Header"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_weight="2.5"
                         android:gravity="start"
-                        android:text="Channel Logo"
+                        android:text="@string/product_details_channel_logo"
                         android:textColor="@color/color_text_black" />
 
                     <TextView
@@ -639,16 +635,15 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="3"
                         android:gravity="start"
-                        android:text="Channel Name"
+                        android:text="@string/product_details_channel_name"
                         android:textColor="@color/color_text_black" />
 
                     <TextView
                         style="@style/ProductTableTextStyle.Header"
-                        android:layout_width="0dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
                         android:gravity="center_horizontal"
-                        android:text="Published"
+                        android:text="@string/product_details_published"
                         android:textColor="@color/color_text_black" />
 
                 </LinearLayout>
@@ -675,7 +670,7 @@
                     style="@style/TextContentTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Images" />
+                    android:text="@string/product_details_images" />
 
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/rvImages_FPD"

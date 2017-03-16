@@ -2,7 +2,7 @@ package com.thinkmobiles.easyerp.presentation.screens.inventory.products.details
 
 import android.text.TextUtils;
 
-import com.thinkmobiles.easyerp.data.model.crm.common.images.CustomerImageItem;
+import com.thinkmobiles.easyerp.data.model.crm.common.images.ImageItem;
 import com.thinkmobiles.easyerp.data.model.crm.filter.FilterItem;
 import com.thinkmobiles.easyerp.data.model.inventory.product.detail.ChannelResult;
 import com.thinkmobiles.easyerp.data.model.inventory.product.detail.InventoryItem;
@@ -91,6 +91,11 @@ public class ProductDetailsPresenter extends ContentPresenterHelper implements P
         }
     }
 
+    @Override
+    public void openGallery(int startPosition) {
+        view.openGallery(startPosition, productDetail.variantsArray.get(selectedVariant).name, productDetail.images);
+    }
+
     private void setData(ResponseGetProductDetail response) {
         productDetail = response;
         ProductVariant variant = response.variantsArray.get(selectedVariant);
@@ -128,9 +133,9 @@ public class ProductDetailsPresenter extends ContentPresenterHelper implements P
         return res;
     }
 
-    private ArrayList<ProductImageDH> prepareImages(ArrayList<CustomerImageItem> list) {
+    private ArrayList<ProductImageDH> prepareImages(ArrayList<ImageItem> list) {
         ArrayList<ProductImageDH> dhs = new ArrayList<>();
-        for (CustomerImageItem item : list) {
+        for (ImageItem item : list) {
             dhs.add(new ProductImageDH(Constants.BASE_URL.concat(item.imageSrc)));
         }
         return dhs;

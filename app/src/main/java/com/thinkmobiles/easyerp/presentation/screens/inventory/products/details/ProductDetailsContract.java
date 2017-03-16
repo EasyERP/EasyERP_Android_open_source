@@ -1,5 +1,6 @@
 package com.thinkmobiles.easyerp.presentation.screens.inventory.products.details;
 
+import com.thinkmobiles.easyerp.data.model.crm.common.images.ImageItem;
 import com.thinkmobiles.easyerp.data.model.crm.filter.FilterItem;
 import com.thinkmobiles.easyerp.data.model.inventory.product.detail.Price;
 import com.thinkmobiles.easyerp.data.model.inventory.product.detail.PriceList;
@@ -43,12 +44,14 @@ public interface ProductDetailsContract {
         void setVariants(ArrayList<ProductVariantDH> variants);
 
         void showVariants(boolean enable);
+        void openGallery(int position, String title, ArrayList<ImageItem> images);
     }
 
     interface ProductDetailsPresenter extends ContentPresenter {
         void changeVisibilityVariants();
         void changePriceList(int position);
         void changeProductVariant(int position);
+        void openGallery(int startPosition);
     }
 
     interface ProductDetailsModel extends BaseModel {

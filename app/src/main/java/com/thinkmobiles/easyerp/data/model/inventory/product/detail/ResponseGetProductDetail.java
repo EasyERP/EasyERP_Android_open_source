@@ -4,7 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import com.google.gson.annotations.SerializedName;
-import com.thinkmobiles.easyerp.data.model.crm.common.images.CustomerImageItem;
+import com.thinkmobiles.easyerp.data.model.crm.common.images.ImageItem;
 import com.thinkmobiles.easyerp.data.model.crm.filter.FilterItem;
 
 import java.util.ArrayList;
@@ -19,7 +19,7 @@ public class ResponseGetProductDetail implements Parcelable {
     public String id;
     public String groupId;
     public ArrayList<ProductVariant> variantsArray;
-    public ArrayList<CustomerImageItem> images;
+    public ArrayList<ImageItem> images;
     public ArrayList<ProductValue> currentValues;
     public ArrayList<ProductId> valuesIds;
 
@@ -54,7 +54,7 @@ public class ResponseGetProductDetail implements Parcelable {
         this.id = in.readString();
         this.groupId = in.readString();
         this.variantsArray = in.createTypedArrayList(ProductVariant.CREATOR);
-        this.images = in.createTypedArrayList(CustomerImageItem.CREATOR);
+        this.images = in.createTypedArrayList(ImageItem.CREATOR);
         this.currentValues = in.createTypedArrayList(ProductValue.CREATOR);
         this.valuesIds = in.createTypedArrayList(ProductId.CREATOR);
         this.channels = in.readParcelable(SalesChannel.class.getClassLoader());

@@ -5,6 +5,7 @@ import android.support.v4.graphics.ColorUtils;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
@@ -19,6 +20,7 @@ import com.ismaeltoe.FlowLayout;
 import com.jakewharton.rxbinding.view.RxView;
 import com.squareup.picasso.Picasso;
 import com.thinkmobiles.easyerp.R;
+import com.thinkmobiles.easyerp.data.model.crm.common.images.ImageItem;
 import com.thinkmobiles.easyerp.data.model.crm.filter.FilterItem;
 import com.thinkmobiles.easyerp.data.model.inventory.product.detail.Price;
 import com.thinkmobiles.easyerp.data.model.inventory.product.detail.PriceList;
@@ -35,6 +37,8 @@ import com.thinkmobiles.easyerp.presentation.holders.data.inventory.SalesChannel
 import com.thinkmobiles.easyerp.presentation.holders.data.inventory.StockInventoryDH;
 import com.thinkmobiles.easyerp.presentation.managers.GoogleAnalyticHelper;
 import com.thinkmobiles.easyerp.presentation.managers.HistoryAnimationHelper;
+import com.thinkmobiles.easyerp.presentation.screens.gallery.GalleryActivity;
+import com.thinkmobiles.easyerp.presentation.screens.gallery.GalleryActivity_;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
 import org.androidannotations.annotations.AfterInject;
@@ -94,8 +98,6 @@ public class ProductDetailsFragment extends ContentFragment implements ProductDe
     protected RecyclerView rvStockInventory_FPD;
     @ViewById
     protected TextView tvEmptyStockInventory_FPD;
-    @ViewById
-    protected RecyclerView rvPrices_FPD;
     @ViewById
     protected Spinner spPrices_FPD;
     @ViewById
@@ -158,6 +160,7 @@ public class ProductDetailsFragment extends ContentFragment implements ProductDe
         new ProductDetailsPresenter(this, productRepository, id);
         priceAdapter = new ArrayAdapter<>(getActivity(), R.layout.view_list_item_product_price, R.id.tvPriceListName_LIPP);
         variantAdapter.setOnCardClickListener((view, position, viewType) -> presenter.changeProductVariant(position));
+        imageAdapter.setOnCardClickListener((view, position, viewType) -> presenter.openGallery(position));
     }
     @AfterViews
     protected void initUI() {
@@ -342,5 +345,14 @@ public class ProductDetailsFragment extends ContentFragment implements ProductDe
         }
         if (!enable && rvHistory.getVisibility() == View.VISIBLE)
             animationHelper.backward(rvHistory.getHeight());
+    }
+
+    @Override
+    public void openGallery(int position, String title, ArrayList<ImageItem> images) {
+        GalleryActivity_.intent(this)
+                .imageItems(images)
+                .position(position)
+                .title(title)
+                .startForResult(0);
     }
 }
