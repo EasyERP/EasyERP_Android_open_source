@@ -71,7 +71,7 @@ public class GoodsOutNotesDetailsPresenter extends ContentPresenterHelper implem
                     ? DateManager.convert(response.status.printedOn).setDstPattern(DateManager.PATTERN_DATE_AND_TIME).toString()
                     : null);
             view.setPick(response.status.picked
-                    ? DateManager.convert(response.status.printedOn).setDstPattern(DateManager.PATTERN_DATE_AND_TIME).toString()
+                    ? DateManager.convert(response.status.pickedOn).setDstPattern(DateManager.PATTERN_DATE_AND_TIME).toString()
                     : null);
             view.setPack(response.status.packed
                     ? DateManager.convert(response.status.packedOn).setDstPattern(DateManager.PATTERN_DATE_AND_TIME).toString()
