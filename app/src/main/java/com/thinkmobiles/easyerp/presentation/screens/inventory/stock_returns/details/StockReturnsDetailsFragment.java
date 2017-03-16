@@ -2,6 +2,8 @@ package com.thinkmobiles.easyerp.presentation.screens.inventory.stock_returns.de
 
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.thinkmobiles.easyerp.R;
@@ -17,6 +19,8 @@ import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.FragmentArg;
 import org.androidannotations.annotations.ViewById;
+import org.androidannotations.annotations.res.ColorRes;
+import org.androidannotations.annotations.res.StringRes;
 
 import java.util.ArrayList;
 
@@ -35,7 +39,9 @@ public class StockReturnsDetailsFragment extends ContentFragment implements Stoc
     @ViewById
     protected TextView tvTitle_FSRD;
     @ViewById
-    protected TextView tvReceivedBy_FSRD;
+    protected EditText etReceivedBy_FSRD;
+    @ViewById
+    protected EditText etDate_FSRD;
     @ViewById
     protected TextView tvDescription_FSRD;
     @ViewById
@@ -45,9 +51,15 @@ public class StockReturnsDetailsFragment extends ContentFragment implements Stoc
     @ViewById
     protected TextView tvName_FSRD;
     @ViewById
-    protected TextView tvDate_FSRD;
-    @ViewById
     protected RecyclerView rvProductList_FSRD;
+
+    @StringRes(R.string.description)
+    protected String strDescription;
+
+    @ColorRes(R.color.color_text_black)
+    protected int textColorBlack;
+    @ColorRes(R.color.color_text_gray)
+    protected int textColorGrey;
 
     @Bean
     protected StockReturnsOrderRowAdapter orderRowAdapter;
@@ -99,12 +111,13 @@ public class StockReturnsDetailsFragment extends ContentFragment implements Stoc
 
     @Override
     public void setReceivedBy(String receivedBy) {
-        tvReceivedBy_FSRD.setText(receivedBy);
+        etReceivedBy_FSRD.setText(receivedBy);
     }
 
     @Override
     public void setDescription(String description) {
-        tvDescription_FSRD.setText(description);
+        tvDescription_FSRD.setText(TextUtils.isEmpty(description) ? strDescription : description);
+        tvDescription_FSRD.setTextColor(TextUtils.isEmpty(description) ? textColorGrey : textColorBlack);
     }
 
     @Override
@@ -124,7 +137,7 @@ public class StockReturnsDetailsFragment extends ContentFragment implements Stoc
 
     @Override
     public void setDate(String date) {
-        tvDate_FSRD.setText(date);
+        etDate_FSRD.setText(date);
     }
 
     @Override
