@@ -248,4 +248,7 @@
     <string name="everyone">Everyone</string>
     <string name="owner_users_and_users_in_groups">Owner, Users and Users in Groups</string>
     <string name="picked">Picked</string>
+
+    <string name="received_by">Received By</string>
+    <string name="description">Description</string>
 </resources>

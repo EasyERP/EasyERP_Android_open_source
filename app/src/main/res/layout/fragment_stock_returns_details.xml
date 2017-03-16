@@ -20,61 +20,58 @@
             android:padding="@dimen/default_padding"
             tools:text="Web development" />
 
-        <TextView
-            style="@style/TextContentTitle.WithoutPadding"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/default_padding"
-            android:layout_marginStart="@dimen/default_padding"
-            android:text="Stock Returns Preview" />
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/default_padding">
+            android:orientation="horizontal"
+            android:layout_marginLeft="@dimen/default_padding"
+            android:layout_marginRight="@dimen/default_padding">
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:layout_weight="1">
 
-                <TextView
-                    style="@style/PdfStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Received By" />
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    style="@style/DefaultTheme.LeadTextInputLayoutStyle"
+                    android:layout_marginStart="@dimen/default_padding_half"
+                    android:hint="@string/received_by">
 
-                <TextView
-                    style="@style/PdfStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/default_padding"
-                    android:text="Description" />
+                    <EditText
+                        android:id="@+id/etReceivedBy_FSRD"
+                        style="@style/DefaultTheme.LeadInputFieldStyle"
+                        android:text="@string/err_not_specified" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    style="@style/DefaultTheme.LeadTextInputLayoutStyle"
+                    android:layout_marginStart="@dimen/default_padding_half"
+                    android:hint="@string/hint_date">
+
+                    <EditText
+                        android:id="@+id/etDate_FSRD"
+                        style="@style/DefaultTheme.LeadInputFieldStyle"
+                        android:text="@string/err_not_specified" />
+
+                </android.support.design.widget.TextInputLayout>
+
 
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="wrap_content"
+
+            <TextView
+                android:id="@+id/tvDescription_FSRD"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/default_padding"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/tvReceivedBy_FSRD"
-                    style="@style/PdfStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    tools:text="10058620.00" />
-
-                <TextView
-                    android:id="@+id/tvDescription_FSRD"
-                    style="@style/PdfStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/default_padding"
-                    tools:text="10058620.00" />
-
-            </LinearLayout>
+                tools:text="Duis hendrerit ac nisl eget bibendum. Fusce euismod velit turpis, id scelerisque nibh consequat eu. Nulla facilisi. Maecenas et imperdiet diam. Morbi posuere tellus vel sollicitudin pharetra. Aliquam erat volutpat. Aenean et quam eget tortor consequat fermentum. Ut et congue lacus, bibendum bibendum est. Maecenas quis porttitor lorem, vel vehicula mauris. Proin vel sem dui. Sed vulputate urna et facilisis tempus. Morbi ipsum ligula, placerat vitae lacinia in, placerat id mauris."
+                android:layout_margin="@dimen/default_padding_fixed"
+                android:background="@drawable/bg_rectangle_round_grey"
+                android:padding="@dimen/default_padding_half"
+                android:layout_weight="1"/>
 
         </LinearLayout>
 
@@ -153,27 +150,6 @@
                     </LinearLayout>
 
                 </LinearLayout>
-
-                <TextView
-                    style="@style/PdfStyle.BoldText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="end"
-                    android:layout_marginEnd="@dimen/default_padding"
-                    android:layout_marginStart="@dimen/default_padding"
-                    android:gravity="end"
-                    android:text="Date" />
-
-                <TextView
-                    android:id="@+id/tvDate_FSRD"
-                    style="@style/PdfStyle.BoldText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="end"
-                    android:layout_marginEnd="@dimen/default_padding"
-                    android:layout_marginStart="@dimen/default_padding"
-                    android:gravity="end"
-                    tools:text="10058620.00" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
