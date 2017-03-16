@@ -12,31 +12,24 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center_vertical"
         android:orientation="horizontal">
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/tvOrderName_VLIO"
+            style="@style/TextListTitleStyle"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
+            android:layout_weight="1"
+            tools:text="Web development" />
 
-            <TextView
-                android:id="@+id/tvOrderName_VLIO"
-                style="@style/TextListTitleStyle"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                tools:text="Web development" />
-
-            <TextView
-                android:id="@+id/tvOrderStatus_VLIO"
-                style="@style/SmallChipsStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/default_padding_middle"
-                tools:text="Medium" />
-
-        </LinearLayout>
+        <TextView
+            android:id="@+id/tvOrderStatus_VLIO"
+            style="@style/SmallChipsStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/default_padding_middle"
+            tools:text="Medium" />
 
     </LinearLayout>
 

@@ -1,6 +1,7 @@
 package com.thinkmobiles.easyerp.presentation.holders.view.hr;
 
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.TextView;
 
@@ -8,8 +9,10 @@ import com.michenko.simpleadapter.OnCardClickListener;
 import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.data.model.hr.job_positions.JobPosition;
 import com.thinkmobiles.easyerp.presentation.base.rules.master.selectable.SelectableVHHelper;
+import com.thinkmobiles.easyerp.presentation.custom.RoundRectDrawable;
 import com.thinkmobiles.easyerp.presentation.holders.data.hr.JobPositionDH;
 import com.thinkmobiles.easyerp.presentation.managers.DateManager;
+import com.thinkmobiles.easyerp.presentation.managers.TagHelper;
 
 /**
  * @author Michael Soyma (Created on 3/14/2017).
@@ -38,7 +41,10 @@ public class JobPositionVH extends SelectableVHHelper<JobPositionDH> {
 
         final JobPosition jobPosition = data.getJobPosition();
         tvJobName_VLIJP.setText(jobPosition.name);
+
         tvStatus_VLIJP.setText(jobPosition.workflow.name);
+        tvStatus_VLIJP.setBackgroundDrawable(new RoundRectDrawable(ContextCompat.getColor(itemView.getContext(), TagHelper.getStatusColorRes(jobPosition.workflow.status))));
+
         tvDepartment_VLIJP.setText(jobPosition.department.name);
         tvCurrentNumber_VLIJP.setText(String.valueOf(jobPosition.numberOfEmployees));
         tvExpectedInRecruitment_VLIJP.setText(String.valueOf(jobPosition.expectedRecruitment));
