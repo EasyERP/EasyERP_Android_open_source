@@ -44,6 +44,7 @@ public abstract class TagHelper {
     public static final String IN_PROGRESS = "In Progress";
     public static final String CANCELLED = "Cancelled";
     public static final String DONE = "Done";
+    public static final String HIRED = "Hired";
     public static final String UNLINKED = "UnLinked";
 
     public static final String PAID = "Paid";
@@ -62,6 +63,7 @@ public abstract class TagHelper {
                 return R.color.color_status_new;
             case IN_PROGRESS:
                 return R.color.color_status_sent;
+            case HIRED:
             case DONE:
                 return R.color.color_status_interested;
             case CANCELLED:

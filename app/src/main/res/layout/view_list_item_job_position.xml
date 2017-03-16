@@ -1,122 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/bg_with_bottom_divider_line_selector"
+    android:orientation="vertical"
     android:padding="@dimen/default_padding"
     tools:background="@android:color/white">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingBottom="@dimen/default_padding_quart">
-
-            <TextView
-                android:id="@+id/tvJobName_VLIJP"
-                style="@style/TextListTitleStyle"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center_vertical"
-                android:includeFontPadding="false"
-                tools:text="Junior Java" />
-
-            <TextView
-                android:id="@+id/tvStatus_VLIJP"
-                style="@style/TextListInfoStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_gravity="top"
-                android:layout_marginStart="@dimen/default_padding"
-                tools:text="No Recruitment" />
-
-        </LinearLayout>
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/tvDepartment_VLIJP"
+            android:id="@+id/tvJobName_VLIJP"
+            style="@style/TextListTitleStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:includeFontPadding="false"
+            tools:text="Junior Java" />
+
+        <TextView
+            android:id="@+id/tvStatus_VLIJP"
+            style="@style/SmallChipsStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/default_padding_middle"
+            tools:text="No Recruitment" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvDepartment_VLIJP"
+        style="@style/TextListInfoStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_padding_small"
+        tools:text="Android" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_padding_quart"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/TextListInfoStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/current_number"
+            android:textColor="@color/color_text_gray" />
+
+        <TextView
+            android:id="@+id/tvCurrentNumber_VLIJP"
             style="@style/TextListInfoStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/padding_very_minimum"
-            tools:text="Android" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/padding_very_minimum"
-            android:orientation="horizontal">
-
-            <TextView
-                style="@style/TextListInfoStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/current_number"
-                android:textColor="@color/color_text_gray"
-                android:textSize="@dimen/text_size_small_14" />
-
-            <TextView
-                android:id="@+id/tvCurrentNumber_VLIJP"
-                style="@style/TextListInfoStyle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/default_padding_half"
-                android:textSize="@dimen/text_size_small_14"
-                tools:text="2" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/padding_very_minimum"
-            android:orientation="horizontal">
-
-            <TextView
-                style="@style/TextListInfoStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/expected_in_recruitment_key"
-                android:textColor="@color/color_text_gray"
-                android:textSize="@dimen/text_size_small_14" />
-
-            <TextView
-                android:id="@+id/tvExpectedInRecruitment_VLIJP"
-                style="@style/TextListInfoStyle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/default_padding_half"
-                android:textSize="@dimen/text_size_small_14"
-                tools:text="6" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                style="@style/TextListInfoStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/edited_key"
-                android:textColor="@color/color_text_gray"
-                android:textSize="@dimen/text_size_small_14" />
-
-            <TextView
-                android:id="@+id/tvEditedAt_VLIJP"
-                style="@style/TextListInfoStyle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/default_padding_half"
-                android:textSize="@dimen/text_size_small_14"
-                tools:text="5/9/2016 12:53 PM" />
-        </LinearLayout>
-
+            android:layout_marginStart="@dimen/default_padding_half"
+            tools:text="2" />
     </LinearLayout>
-</FrameLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_padding_quart"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/TextListInfoStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/expected_in_recruitment_key"
+            android:textColor="@color/color_text_gray" />
+
+        <TextView
+            android:id="@+id/tvExpectedInRecruitment_VLIJP"
+            style="@style/TextListInfoStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/default_padding_half"
+            tools:text="6" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_padding_quart"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/TextListInfoStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/edited_key"
+            android:textColor="@color/color_text_gray" />
+
+        <TextView
+            android:id="@+id/tvEditedAt_VLIJP"
+            style="@style/TextListInfoStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/default_padding_half"
+            tools:text="5/9/2016 12:53 PM" />
+    </LinearLayout>
+
+</LinearLayout>

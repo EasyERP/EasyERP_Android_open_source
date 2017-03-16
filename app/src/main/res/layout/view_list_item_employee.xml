@@ -72,7 +72,7 @@
                     android:layout_marginTop="@dimen/default_padding_quart"
                     android:drawablePadding="@dimen/default_padding_half"
                     android:drawableStart="@drawable/ic_email_small"
-                    android:includeFontPadding="false"
+                    android:gravity="center_vertical"
                     tools:text="BradleyDouglas@mail.com" />
 
                 <TextView
@@ -83,7 +83,7 @@
                     android:layout_marginTop="@dimen/default_padding_quart"
                     android:drawablePadding="@dimen/default_padding_half"
                     android:drawableStart="@drawable/ic_skype_small"
-                    android:includeFontPadding="false"
+                    android:gravity="center_vertical"
                     tools:text="bradely.douglas" />
 
                 <TextView
@@ -94,7 +94,7 @@
                     android:layout_marginTop="@dimen/default_padding_quart"
                     android:drawablePadding="@dimen/default_padding_half"
                     android:drawableStart="@drawable/ic_call_small"
-                    android:includeFontPadding="false"
+                    android:gravity="center_vertical"
                     tools:text="+3805014987563" />
 
             </LinearLayout>

@@ -1,85 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/bg_with_bottom_divider_line_selector"
+    android:orientation="vertical"
     android:padding="@dimen/default_padding"
     tools:background="@android:color/white">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingBottom="@dimen/default_padding_quart">
-
-            <TextView
-                android:id="@+id/tvApplicationName_VLIA"
-                style="@style/TextListTitleStyle"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center_vertical"
-                android:includeFontPadding="false"
-                tools:text="Matt Houlders" />
-
-            <TextView
-                android:id="@+id/tvJobType_VLIA"
-                style="@style/TextListInfoStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_gravity="top"
-                android:layout_marginStart="@dimen/default_padding"
-                tools:text="Full-Time" />
-
-        </LinearLayout>
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/tvAppliedJob_VLIA"
-            style="@style/TextListInfoStyle"
-            android:layout_width="match_parent"
+            android:id="@+id/tvApplicationName_VLIA"
+            style="@style/TextListTitleStyle"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/padding_very_minimum"
-            tools:text="Senior iOS" />
+            android:layout_weight="1"
+            android:includeFontPadding="false"
+            tools:text="Matt Houlders" />
+
+        <TextView
+            android:id="@+id/tvStage_VLIA"
+            style="@style/SmallChipsStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/default_padding_middle"
+            tools:text="Full-Time" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_padding_small"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
 
         <TextView
             android:id="@+id/tvEmail_VLIA"
             style="@style/TextListInfoStyle"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/padding_very_minimum"
-            tools:text="smith@diagnext.com" />
+            android:layout_weight="1"
+            android:drawablePadding="@dimen/default_padding_half"
+            android:drawableStart="@drawable/ic_email_small"
+            android:gravity="center_vertical"
+            tools:text="BradleyDouglas@mail.com" />
 
         <TextView
-            android:id="@+id/tvPhone_VLIA"
+            android:id="@+id/tvAppliedJob_VLIA"
             style="@style/TextListInfoStyle"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/default_padding_middle"
-            tools:text="+44 874 2221 1044" />
-
-        <TextView
-            android:id="@+id/tvCratedBy_VLIA"
-            style="@style/TextListInfoStyle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/padding_very_minimum"
-            android:textSize="@dimen/text_size_small_14"
-            tools:text="Created at 18 Sep, 2016 by bradley.kingston" />
-
-        <TextView
-            android:id="@+id/tvEditedBy_VLIA"
-            style="@style/TextListInfoStyle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/text_size_small_14"
-            tools:text="Edited at 19 Sep, 2016 by superAdmin" />
-
+            android:layout_marginStart="@dimen/default_padding_half"
+            tools:text="Technical Writer" />
     </LinearLayout>
 
-</FrameLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_padding_quart"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tvSkype_VLIA"
+            style="@style/TextListInfoStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawablePadding="@dimen/default_padding_half"
+            android:drawableStart="@drawable/ic_skype_small"
+            android:gravity="center_vertical"
+            tools:text="bradely.douglas" />
+
+        <TextView
+            android:id="@+id/tvJobType_VLIA"
+            style="@style/TextListInfoStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/default_padding_half"
+            tools:text="Part Time" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvPhone_VLIA"
+        style="@style/TextListInfoStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_padding_quart"
+        android:drawablePadding="@dimen/default_padding_half"
+        android:drawableStart="@drawable/ic_call_small"
+        android:gravity="center_vertical"
+        tools:text="+44 874 2221 1044" />
+
+    <TextView
+        android:id="@+id/tvCratedBy_VLIA"
+        style="@style/TextListInfoStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_padding_quart"
+        android:textColor="@color/color_text_gray"
+        tools:text="Created at 18 Sep, 2016 by bradley.kingston" />
+
+</LinearLayout>
