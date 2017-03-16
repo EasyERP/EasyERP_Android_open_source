@@ -2,6 +2,9 @@ package com.thinkmobiles.easyerp.presentation.screens.inventory.stock_correction
 
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
+import android.text.method.ScrollingMovementMethod;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.thinkmobiles.easyerp.R;
@@ -17,6 +20,8 @@ import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.FragmentArg;
 import org.androidannotations.annotations.ViewById;
+import org.androidannotations.annotations.res.ColorRes;
+import org.androidannotations.annotations.res.StringRes;
 
 import java.util.ArrayList;
 
@@ -40,15 +45,23 @@ public class StockCorrectionsDetailsFragment extends ContentFragment implements 
     @ViewById
     protected TextView tvTitle_FSCD;
     @ViewById
-    protected TextView tvDate_FSCD;
+    protected EditText etWarehouse_FSCD;
     @ViewById
-    protected TextView tvWarehouse_FSCD;
+    protected EditText etDate_FSCD;
+    @ViewById
+    protected EditText etAdjustedBy_FSCD;
     @ViewById
     protected TextView tvDescription_FSCD;
     @ViewById
-    protected TextView tvAdjustedBy_FSCD;
-    @ViewById
     protected RecyclerView rvProducts_FSCD;
+
+    @StringRes(R.string.description)
+    protected String strDescription;
+
+    @ColorRes(R.color.color_text_black)
+    protected int textColorBlack;
+    @ColorRes(R.color.color_text_gray)
+    protected int textColorGrey;
 
     @Bean
     protected StockCorrectionRepository stockCorrectionRepository;
@@ -95,22 +108,24 @@ public class StockCorrectionsDetailsFragment extends ContentFragment implements 
 
     @Override
     public void setDate(String date) {
-        tvDate_FSCD.setText(date);
+        etDate_FSCD.setText(date);
     }
 
     @Override
     public void setWarehouse(String warehouse) {
-        tvWarehouse_FSCD.setText(warehouse);
+        etWarehouse_FSCD.setText(warehouse);
     }
 
     @Override
     public void setDescription(String description) {
-        tvDescription_FSCD.setText(description);
+        tvDescription_FSCD.setMovementMethod(new ScrollingMovementMethod());
+        tvDescription_FSCD.setText(TextUtils.isEmpty(description) ? strDescription : description);
+        tvDescription_FSCD.setTextColor(TextUtils.isEmpty(description) ? textColorGrey : textColorBlack);
     }
 
     @Override
     public void setAdjustedBy(String adjustedBy) {
-        tvAdjustedBy_FSCD.setText(adjustedBy);
+        etAdjustedBy_FSCD.setText(adjustedBy);
     }
 
     @Override
