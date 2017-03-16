@@ -110,6 +110,7 @@
                         android:inputType="textMultiLine"
                         android:maxLines="3"
                         android:minLines="1"
+                        android:lines="3"
                         android:scrollHorizontally="false"
                         android:text="@string/err_not_specified" />
 
