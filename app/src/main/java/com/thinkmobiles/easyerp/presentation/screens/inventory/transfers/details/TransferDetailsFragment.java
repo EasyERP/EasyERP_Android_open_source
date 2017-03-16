@@ -180,7 +180,7 @@ public class TransferDetailsFragment extends ContentFragment implements Transfer
     @Override
     public void setPrint(String print) {
         fulfillTransferStatusCard(print, notPrinted,
-                R.drawable.ic_print, R.drawable.ic_print_off,
+                        R.drawable.ic_print, R.drawable.ic_print_off,
                 tvPrinted_FTD, tvPrintedDate_FTD);
     }
 
