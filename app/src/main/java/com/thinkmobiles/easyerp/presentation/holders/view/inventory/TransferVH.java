@@ -17,7 +17,7 @@ import com.thinkmobiles.easyerp.presentation.managers.DateManager;
  * Created by Lynx on 3/7/2017.
  */
 
-public class TransferVH extends SelectableVHHelper<TransferDH> {
+public final class TransferVH extends SelectableVHHelper<TransferDH> {
 
     private TextView tvTransferName_VLIT;
     private TextView tvDate_VLIT;

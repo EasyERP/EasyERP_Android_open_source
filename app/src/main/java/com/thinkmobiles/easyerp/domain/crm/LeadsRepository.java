@@ -1,8 +1,9 @@
 package com.thinkmobiles.easyerp.domain.crm;
 
 import com.thinkmobiles.easyerp.data.api.Rest;
+import com.thinkmobiles.easyerp.data.model.ResponseGetTotalItems;
 import com.thinkmobiles.easyerp.data.model.crm.filter.ResponseFilters;
-import com.thinkmobiles.easyerp.data.model.crm.leads.ResponseGetLeads;
+import com.thinkmobiles.easyerp.data.model.crm.leads.LeadItem;
 import com.thinkmobiles.easyerp.data.model.crm.leads.detail.ResponseGetLeadDetails;
 import com.thinkmobiles.easyerp.data.services.FilterService;
 import com.thinkmobiles.easyerp.data.services.LeadService;
@@ -32,7 +33,7 @@ public class LeadsRepository extends NetworkRepository implements LeadsContract.
     }
 
     @Override
-    public Observable<ResponseGetLeads> getFilteredLeads(FilterHelper query, int page) {
+    public Observable<ResponseGetTotalItems<LeadItem>> getFilteredLeads(FilterHelper query, int page) {
         return getNetworkObservable(leadService.getLeads(query
                 .createUrl(Constants.GET_LEADS, "Leads", page)
                 .build()

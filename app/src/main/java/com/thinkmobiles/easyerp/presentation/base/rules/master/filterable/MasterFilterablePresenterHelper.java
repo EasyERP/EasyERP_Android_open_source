@@ -39,6 +39,7 @@ public abstract class MasterFilterablePresenterHelper extends MasterSelectablePr
                     helper = filterHelper;
                     getView().createMenuFilters(helper);
                 }, t -> {
+                    t.printStackTrace();
                     getView().displayErrorToast(ErrorManager.getErrorType(t));
                 }));
     }

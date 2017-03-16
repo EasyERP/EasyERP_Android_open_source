@@ -1,8 +1,9 @@
 package com.thinkmobiles.easyerp.domain.crm;
 
 import com.thinkmobiles.easyerp.data.api.Rest;
+import com.thinkmobiles.easyerp.data.model.ResponseGetTotalItems;
 import com.thinkmobiles.easyerp.data.model.crm.filter.ResponseFilters;
-import com.thinkmobiles.easyerp.data.model.crm.order.ResponseGetOrders;
+import com.thinkmobiles.easyerp.data.model.crm.order.Order;
 import com.thinkmobiles.easyerp.data.model.crm.order.detail.ResponseGetOrderDetails;
 import com.thinkmobiles.easyerp.data.model.user.organization.ResponseGetOrganizationSettings;
 import com.thinkmobiles.easyerp.data.services.FilterService;
@@ -37,7 +38,7 @@ public class OrderRepository extends NetworkRepository implements OrdersContract
     }
 
     @Override
-    public Observable<ResponseGetOrders> getOrders(FilterHelper query, final int page) {
+    public Observable<ResponseGetTotalItems<Order>> getOrders(FilterHelper query, final int page) {
         return getNetworkObservable(orderService.getOrders(query
                 .createUrl(path, contentType, page)
                 .build()

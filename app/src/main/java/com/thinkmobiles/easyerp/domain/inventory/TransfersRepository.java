@@ -1,9 +1,10 @@
 package com.thinkmobiles.easyerp.domain.inventory;
 
 import com.thinkmobiles.easyerp.data.api.Rest;
+import com.thinkmobiles.easyerp.data.model.ResponseGetTotalItems;
 import com.thinkmobiles.easyerp.data.model.crm.filter.ResponseFilters;
 import com.thinkmobiles.easyerp.data.model.inventory.transfers.details.ResponseGetTransferDetails;
-import com.thinkmobiles.easyerp.data.model.inventory.transfers.ResponseGetTransfers;
+import com.thinkmobiles.easyerp.data.model.inventory.transfers.details.TransferItem;
 import com.thinkmobiles.easyerp.data.model.user.organization.ResponseGetOrganizationSettings;
 import com.thinkmobiles.easyerp.data.services.FilterService;
 import com.thinkmobiles.easyerp.data.services.TransfersService;
@@ -36,7 +37,7 @@ public class TransfersRepository extends NetworkRepository implements TransfersC
     }
 
     @Override
-    public Observable<ResponseGetTransfers> getFilteredTransfers(FilterHelper query, int page) {
+    public Observable<ResponseGetTotalItems<TransferItem>> getFilteredTransfers(FilterHelper query, int page) {
         return getNetworkObservable(transfersService.getTransfers(query
                 .createUrl(Constants.GET_TRANSFERS, "stockTransactions", page)
                 .build()

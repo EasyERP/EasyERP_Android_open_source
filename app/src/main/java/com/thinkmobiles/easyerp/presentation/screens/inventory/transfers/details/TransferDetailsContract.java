@@ -29,8 +29,8 @@ public interface TransferDetailsContract {
         void setPack(String pack);
         void setShip(String ship);
         void setReceive(String receive);
-        void setReference(String reference);
-        void setShipping(String shipping);
+        void setTrackingReference(String trackingReference);
+        void setShippingMethod(String shippingMethod);
         void setDate(String date);
         void setTransferRows(ArrayList<TransferRowDH> rowDHs);
 

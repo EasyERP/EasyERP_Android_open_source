@@ -1,9 +1,9 @@
 package com.thinkmobiles.easyerp.presentation.screens.crm.companies;
 
-import com.thinkmobiles.easyerp.data.model.crm.common.images.CustomerImageItem;
+import com.thinkmobiles.easyerp.data.model.ResponseGetTotalItems;
+import com.thinkmobiles.easyerp.data.model.crm.common.images.ImageItem;
 import com.thinkmobiles.easyerp.data.model.crm.companies.CommonCompaniesResponse;
 import com.thinkmobiles.easyerp.data.model.crm.companies.CompanyListItem;
-import com.thinkmobiles.easyerp.data.model.crm.companies.ResponseGetCompanies;
 import com.thinkmobiles.easyerp.presentation.base.rules.master.alphabetical.AlphabeticalModel;
 import com.thinkmobiles.easyerp.presentation.base.rules.master.alphabetical.AlphabeticalView;
 import com.thinkmobiles.easyerp.presentation.base.rules.master.alphabetical.MasterAlphabeticalPresenterHelper;
@@ -82,7 +82,7 @@ public class CompaniesPresenter extends MasterAlphabeticalPresenterHelper implem
     private void saveData(CommonCompaniesResponse commonPersonsResponse, boolean needClear) {
         if (needClear) companiesResponse = commonPersonsResponse;
         else if (companiesResponse != null) {
-            companiesResponse.responseGetCustomersImages.data.addAll(commonPersonsResponse.responseGetCustomersImages.data);
+            companiesResponse.responseGetImages.data.addAll(commonPersonsResponse.responseGetImages.data);
             companiesResponse.responseGetCompanies.data.addAll(commonPersonsResponse.responseGetCompanies.data);
         }
     }
@@ -100,7 +100,7 @@ public class CompaniesPresenter extends MasterAlphabeticalPresenterHelper implem
     private ArrayList<CompanyDH> prepareDataHolders(CommonCompaniesResponse commonCompaniesResponse) {
         ArrayList<CompanyDH> result = new ArrayList<>();
         for (CompanyListItem companyListItem : commonCompaniesResponse.responseGetCompanies.data) {
-            for (CustomerImageItem imageItem : commonCompaniesResponse.responseGetCustomersImages.data) {
+            for (ImageItem imageItem : commonCompaniesResponse.responseGetImages.data) {
                 if (companyListItem.id.equalsIgnoreCase(imageItem.id)) {
                     final CompanyDH companyDH = new CompanyDH(companyListItem, imageItem.imageSrc);
                     makeSelectedDHIfNeed(companyDH, companiesResponse.responseGetCompanies.data.indexOf(companyListItem));
@@ -112,7 +112,7 @@ public class CompaniesPresenter extends MasterAlphabeticalPresenterHelper implem
         return result;
     }
 
-    private ArrayList<String> prepareIDsForImagesRequest(ResponseGetCompanies responseGetCompanies) {
+    private ArrayList<String> prepareIDsForImagesRequest(ResponseGetTotalItems<CompanyListItem> responseGetCompanies) {
         ArrayList<String> companyIDs = new ArrayList<>();
         if (responseGetCompanies.total > 0 && responseGetCompanies.data != null && responseGetCompanies.data.size() > 0) {
             for (CompanyListItem companyListItem : responseGetCompanies.data) {

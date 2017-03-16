@@ -1,7 +1,11 @@
 package com.thinkmobiles.easyerp.presentation.screens.inventory.goods_out_notes.detail;
 
+import android.graphics.drawable.Drawable;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.thinkmobiles.easyerp.R;
@@ -9,6 +13,7 @@ import com.thinkmobiles.easyerp.domain.inventory.GoodsOutNotesRepository;
 import com.thinkmobiles.easyerp.presentation.adapters.inventory.OrderRowAdapter;
 import com.thinkmobiles.easyerp.presentation.base.rules.content.ContentFragment;
 import com.thinkmobiles.easyerp.presentation.holders.data.inventory.OrderRowDH;
+import com.thinkmobiles.easyerp.presentation.managers.GoogleAnalyticHelper;
 
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterViews;
@@ -16,6 +21,8 @@ import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.FragmentArg;
 import org.androidannotations.annotations.ViewById;
+import org.androidannotations.annotations.res.ColorRes;
+import org.androidannotations.annotations.res.StringRes;
 
 import java.util.ArrayList;
 
@@ -27,6 +34,9 @@ import java.util.ArrayList;
 public class GoodsOutNotesDetailsFragment extends ContentFragment implements GoodsOutNotesDetailsContract.GoodsOutNotesDetailsView {
 
     private GoodsOutNotesDetailsContract.GoodsOutNotesDetailsPresenter presenter;
+
+    @FragmentArg
+    protected String id;
 
     @ViewById
     protected TextView tvTitle_FGOND;
@@ -41,24 +51,44 @@ public class GoodsOutNotesDetailsFragment extends ContentFragment implements Goo
     @ViewById
     protected TextView tvSupplierAddress_FGOND;
     @ViewById
-    protected TextView tvPrint_FGOND;
+    protected TextView tvPrinted_FGOND;
     @ViewById
-    protected TextView tvPick_FGOND;
+    protected TextView tvPrintedDate_FGOND;
     @ViewById
-    protected TextView tvPack_FGOND;
+    protected TextView tvPicked_FGOND;
     @ViewById
-    protected TextView tvShip_FGOND;
+    protected TextView tvPickedDate_FGOND;
     @ViewById
-    protected TextView tvReference_FGOND;
+    protected TextView tvPacked_FGOND;
     @ViewById
-    protected TextView tvShipping_FGOND;
+    protected TextView tvPackedDate_FGOND;
     @ViewById
-    protected TextView tvDate_FGOND;
+    protected TextView tvShipped_FGOND;
+    @ViewById
+    protected TextView tvShippedDate_FGOND;
+    @ViewById
+    protected EditText etDate_FGOND;
+    @ViewById
+    protected EditText etTrackingReference_FGOND;
+    @ViewById
+    protected EditText etShippingMethod_FGOND;
+
     @ViewById
     protected RecyclerView rvProductList_FGOND;
 
-    @FragmentArg
-    protected String id;
+    @ColorRes(R.color.color_text_gray)
+    protected int colorGray;
+    @ColorRes(R.color.color_text_black)
+    protected int colorBlack;
+
+    @StringRes(R.string.not_printed)
+    protected String notPrinted;
+    @StringRes(R.string.not_picked)
+    protected String notPicked;
+    @StringRes(R.string.not_packed)
+    protected String notPacked;
+    @StringRes(R.string.not_shipped)
+    protected String notShipped;
 
     @Bean
     protected GoodsOutNotesRepository notesRepository;
@@ -90,6 +120,11 @@ public class GoodsOutNotesDetailsFragment extends ContentFragment implements Goo
     protected void initUI() {
         rvProductList_FGOND.setLayoutManager(new LinearLayoutManager(getActivity()));
         rvProductList_FGOND.setAdapter(rowAdapter);
+    }
+
+    @AfterViews
+    protected void initAnalytics() {
+        GoogleAnalyticHelper.trackScreenView(this, getResources().getConfiguration());
     }
 
     @Override
@@ -129,41 +164,56 @@ public class GoodsOutNotesDetailsFragment extends ContentFragment implements Goo
 
     @Override
     public void setPrint(String print) {
-        tvPrint_FGOND.setText(print);
+        fulfillStatusCard(print, notPrinted,
+                R.drawable.ic_print, R.drawable.ic_print_off,
+                tvPrinted_FGOND, tvPrintedDate_FGOND);
     }
 
     @Override
     public void setPick(String pick) {
-        tvPick_FGOND.setText(pick);
+        fulfillStatusCard(pick, notPicked,
+                R.drawable.ic_allocated, R.drawable.ic_allocated_off,
+                tvPicked_FGOND, tvPickedDate_FGOND);
     }
 
     @Override
     public void setPack(String pack) {
-        tvPack_FGOND.setText(pack);
+        fulfillStatusCard(pack, notPacked,
+                R.drawable.ic_fulfilled, R.drawable.ic_fulfilled_off,
+                tvPacked_FGOND, tvPackedDate_FGOND);
     }
 
     @Override
     public void setShip(String ship) {
-        tvShip_FGOND.setText(ship);
+        fulfillStatusCard(ship, notShipped,
+                R.drawable.ic_shipped, R.drawable.ic_shipped_off,
+                tvShipped_FGOND, tvShippedDate_FGOND);
     }
 
     @Override
     public void setReference(String reference) {
-        tvReference_FGOND.setText(reference);
+        etTrackingReference_FGOND.setText(reference);
     }
 
     @Override
     public void setShipping(String shipping) {
-        tvShipping_FGOND.setText(shipping);
+        etShippingMethod_FGOND.setText(shipping);
     }
 
     @Override
     public void setDate(String date) {
-        tvDate_FGOND.setText(date);
+        etDate_FGOND.setText(date);
     }
 
     @Override
     public void setProducts(ArrayList<OrderRowDH> rowDHs) {
         rowAdapter.setListDH(rowDHs);
+    }
+
+    private void fulfillStatusCard(String date, String noDate, int drawableRes, int drawableOffRes, TextView tvTitle, TextView tvDate) {
+        Drawable drawable = ContextCompat.getDrawable(getActivity(), TextUtils.isEmpty(date) ? drawableOffRes : drawableRes);
+        tvTitle.setCompoundDrawablesWithIntrinsicBounds(drawable, null, null, null);
+        tvDate.setText(TextUtils.isEmpty(date) ? noDate : date);
+        tvDate.setTextColor(TextUtils.isEmpty(date) ? colorGray : colorBlack);
     }
 }

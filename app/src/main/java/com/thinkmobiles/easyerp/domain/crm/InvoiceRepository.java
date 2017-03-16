@@ -1,8 +1,9 @@
 package com.thinkmobiles.easyerp.domain.crm;
 
 import com.thinkmobiles.easyerp.data.api.Rest;
+import com.thinkmobiles.easyerp.data.model.ResponseGetTotalItems;
 import com.thinkmobiles.easyerp.data.model.crm.filter.ResponseFilters;
-import com.thinkmobiles.easyerp.data.model.crm.invoice.ResponseGetInvoice;
+import com.thinkmobiles.easyerp.data.model.crm.invoice.Invoice;
 import com.thinkmobiles.easyerp.data.model.crm.invoice.detail.ResponseGetInvoiceDetails;
 import com.thinkmobiles.easyerp.data.model.user.organization.ResponseGetOrganizationSettings;
 import com.thinkmobiles.easyerp.data.services.FilterService;
@@ -39,7 +40,7 @@ public class InvoiceRepository extends NetworkRepository implements InvoicesCont
     }
 
     @Override
-    public Observable<ResponseGetInvoice> getFilteredInvoices(FilterHelper query, int page) {
+    public Observable<ResponseGetTotalItems<Invoice>> getFilteredInvoices(FilterHelper query, int page) {
         return getNetworkObservable(invoiceService.getInvoices(query
                 .createUrl(path, contentType, page)
                 .build()

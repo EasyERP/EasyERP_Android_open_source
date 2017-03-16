@@ -1,6 +1,7 @@
 package com.thinkmobiles.easyerp.data.services;
 
-import com.thinkmobiles.easyerp.data.model.crm.payments.ResponseGetPayments;
+import com.thinkmobiles.easyerp.data.model.ResponseGetTotalItems;
+import com.thinkmobiles.easyerp.data.model.crm.payments.Payment;
 
 import retrofit2.http.GET;
 import retrofit2.http.Url;
@@ -14,5 +15,5 @@ import rx.Observable;
 public interface PaymentsService {
 
     @GET
-    Observable<ResponseGetPayments> getFilteredPayments(@Url String url);
+    Observable<ResponseGetTotalItems<Payment>> getFilteredPayments(@Url String url);
 }

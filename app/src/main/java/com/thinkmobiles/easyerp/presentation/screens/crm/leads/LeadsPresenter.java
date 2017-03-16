@@ -9,6 +9,7 @@ import com.thinkmobiles.easyerp.presentation.managers.ErrorManager;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Lynx on 1/16/2017.
@@ -58,13 +59,13 @@ public class LeadsPresenter extends MasterFilterablePresenterHelper implements L
         return leadItems.size();
     }
 
-    private void saveData(ArrayList<LeadItem> leadItems, boolean needClear) {
+    private void saveData(List<LeadItem> leadItems, boolean needClear) {
         if(needClear)
             this.leadItems.clear();
         this.leadItems.addAll(leadItems);
     }
 
-    private void setData(ArrayList<LeadItem> leadItems, boolean needClear) {
+    private void setData(List<LeadItem> leadItems, boolean needClear) {
         view.setDataList(prepareLeadDHs(leadItems), needClear);
         if(this.leadItems.isEmpty()) {
             view.displayErrorState(ErrorManager.getErrorType(null));
@@ -80,7 +81,7 @@ public class LeadsPresenter extends MasterFilterablePresenterHelper implements L
             view.openDetailsScreen(id);
     }
 
-    private ArrayList<LeadDH> prepareLeadDHs(ArrayList<LeadItem> leadItems) {
+    private ArrayList<LeadDH> prepareLeadDHs(List<LeadItem> leadItems) {
         final ArrayList<LeadDH> result = new ArrayList<>();
         for (LeadItem leadItem : leadItems) {
             final LeadDH leadDH = new LeadDH(leadItem);

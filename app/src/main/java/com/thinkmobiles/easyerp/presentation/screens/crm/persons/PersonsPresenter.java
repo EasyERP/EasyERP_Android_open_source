@@ -1,8 +1,8 @@
 package com.thinkmobiles.easyerp.presentation.screens.crm.persons;
 
-import com.thinkmobiles.easyerp.data.model.crm.common.images.CustomerImageItem;
+import com.thinkmobiles.easyerp.data.model.ResponseGetTotalItems;
+import com.thinkmobiles.easyerp.data.model.crm.common.images.ImageItem;
 import com.thinkmobiles.easyerp.data.model.crm.persons.CommonPersonsResponse;
-import com.thinkmobiles.easyerp.data.model.crm.persons.ResponseGetPersons;
 import com.thinkmobiles.easyerp.data.model.crm.persons.person_item.PersonModel;
 import com.thinkmobiles.easyerp.presentation.base.rules.master.alphabetical.AlphabeticalModel;
 import com.thinkmobiles.easyerp.presentation.base.rules.master.alphabetical.AlphabeticalView;
@@ -82,7 +82,7 @@ public class PersonsPresenter extends MasterAlphabeticalPresenterHelper implemen
     private void saveData(CommonPersonsResponse commonPersonsResponse, boolean needClear) {
         if (needClear) personsResponse = commonPersonsResponse;
         else if (personsResponse != null) {
-            personsResponse.responseGetCustomersImages.data.addAll(commonPersonsResponse.responseGetCustomersImages.data);
+            personsResponse.responseGetImages.data.addAll(commonPersonsResponse.responseGetImages.data);
             personsResponse.responseGetPersons.data.addAll(commonPersonsResponse.responseGetPersons.data);
         }
     }
@@ -100,7 +100,7 @@ public class PersonsPresenter extends MasterAlphabeticalPresenterHelper implemen
     private ArrayList<PersonDH> prepareDataHolders(CommonPersonsResponse commonPersonsResponse) {
         ArrayList<PersonDH> result = new ArrayList<>();
         for (PersonModel personModel : commonPersonsResponse.responseGetPersons.data) {
-            for (CustomerImageItem imageItem : commonPersonsResponse.responseGetCustomersImages.data) {
+            for (ImageItem imageItem : commonPersonsResponse.responseGetImages.data) {
                 if (personModel.id.equalsIgnoreCase(imageItem.id)) {
                     final PersonDH personDH = new PersonDH(imageItem.imageSrc, personModel);
                     makeSelectedDHIfNeed(personDH, personsResponse.responseGetPersons.data.indexOf(personModel));
@@ -112,7 +112,7 @@ public class PersonsPresenter extends MasterAlphabeticalPresenterHelper implemen
         return result;
     }
 
-    private ArrayList<String> prepareIDsForImagesRequest(ResponseGetPersons responseGetPersons) {
+    private ArrayList<String> prepareIDsForImagesRequest(ResponseGetTotalItems<PersonModel> responseGetPersons) {
         ArrayList<String> personIDs = new ArrayList<>();
         if (responseGetPersons.total > 0 && responseGetPersons.data != null && responseGetPersons.data.size() > 0) {
             for (PersonModel personModel : responseGetPersons.data) {

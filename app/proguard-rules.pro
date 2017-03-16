@@ -122,6 +122,12 @@
 -keep class com.crashlytics.** { *; }
 -keep class com.crashlytics.android.**
 
+-dontwarn uk.co.senab.photoview.**
+
+# PhotoView
+-dontwarn uk.co.senab.photoview.**
+-keep class uk.co.senab.photoview.** { *; }
+
 #UXCam
 -keep class com.uxcam.** { *; }
 -dontwarn com.uxcam.**

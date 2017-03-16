@@ -8,7 +8,7 @@ import com.thinkmobiles.easyerp.presentation.base.rules.master.selectable.Select
  *         Company: Thinkmobiles
  *         Email: michael.soyma@thinkmobiles.com
  */
-public class StockReturnDH extends SelectableDHHelper {
+public final class StockReturnDH extends SelectableDHHelper {
 
     private final StockReturn stockReturn;
 

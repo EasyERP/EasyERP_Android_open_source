@@ -1,7 +1,7 @@
 package com.thinkmobiles.easyerp.presentation.screens.crm.payments;
 
+import com.thinkmobiles.easyerp.data.model.ResponseGetTotalItems;
 import com.thinkmobiles.easyerp.data.model.crm.payments.Payment;
-import com.thinkmobiles.easyerp.data.model.crm.payments.ResponseGetPayments;
 import com.thinkmobiles.easyerp.presentation.base.BaseView;
 import com.thinkmobiles.easyerp.presentation.base.rules.master.filterable.FilterableModel;
 import com.thinkmobiles.easyerp.presentation.base.rules.master.filterable.FilterablePresenter;
@@ -21,6 +21,6 @@ public interface PaymentsContract {
     }
     interface PaymentsPresenter extends FilterablePresenter {}
     interface PaymentsModel extends FilterableModel {
-        Observable<ResponseGetPayments> getFilteredPayments(FilterHelper helper, int page);
+        Observable<ResponseGetTotalItems<Payment>> getFilteredPayments(FilterHelper helper, int page);
     }
 }

@@ -12,12 +12,15 @@ import com.thinkmobiles.easyerp.data.api.interceptors.ReceiveCookieInterceptor;
 import com.thinkmobiles.easyerp.data.model.ResponseError;
 import com.thinkmobiles.easyerp.data.model.crm.filter.ResponseFilters;
 import com.thinkmobiles.easyerp.data.model.inventory.product.detail.ProductId;
+import com.thinkmobiles.easyerp.data.services.ApplicationService;
 import com.thinkmobiles.easyerp.data.services.CompaniesService;
-import com.thinkmobiles.easyerp.data.services.CustomerService;
 import com.thinkmobiles.easyerp.data.services.DashboardService;
+import com.thinkmobiles.easyerp.data.services.EmployeesService;
 import com.thinkmobiles.easyerp.data.services.FilterService;
 import com.thinkmobiles.easyerp.data.services.GoodsOutNotesService;
+import com.thinkmobiles.easyerp.data.services.ImageService;
 import com.thinkmobiles.easyerp.data.services.InvoiceService;
+import com.thinkmobiles.easyerp.data.services.JobPositionService;
 import com.thinkmobiles.easyerp.data.services.LeadService;
 import com.thinkmobiles.easyerp.data.services.LoginService;
 import com.thinkmobiles.easyerp.data.services.OpportunityService;
@@ -66,12 +69,16 @@ public class Rest {
     private OpportunityService opportunityService;
     private FilterService filterService;
     private CompaniesService companiesService;
-    private CustomerService customerService;
+    private ImageService imageService;
 
     private ProductService productService;
     private StockService stockService;
     private GoodsOutNotesService goodsOutNotesService;
     private TransfersService transfersService;
+
+    private EmployeesService employeesService;
+    private ApplicationService applicationService;
+    private JobPositionService jobPositionService;
 
     private Converter<ResponseBody, ResponseError> converter;
 
@@ -152,8 +159,8 @@ public class Rest {
         return companiesService == null ? companiesService = createService(CompaniesService.class) : companiesService;
     }
 
-    public CustomerService getCustomerService() {
-        return customerService == null ? customerService = createService(CustomerService.class) : customerService;
+    public ImageService getImageService() {
+        return imageService == null ? imageService = createService(ImageService.class) : imageService;
     }
 
     public ProductService getProductService() {
@@ -174,6 +181,18 @@ public class Rest {
 
     public TransfersService getTransfersService() {
         return transfersService == null ? transfersService = createService(TransfersService.class) : transfersService;
+    }
+
+    public ApplicationService getApplicationService() {
+        return applicationService == null ? applicationService = createService(ApplicationService.class) : applicationService;
+    }
+
+    public EmployeesService getEmployeesService() {
+        return employeesService == null ? employeesService = createService(EmployeesService.class) : employeesService;
+    }
+
+    public JobPositionService getJobPositionService() {
+        return jobPositionService == null ? jobPositionService = createService(JobPositionService.class) : jobPositionService;
     }
 
     public ResponseError parseError(ResponseBody responseBody) {

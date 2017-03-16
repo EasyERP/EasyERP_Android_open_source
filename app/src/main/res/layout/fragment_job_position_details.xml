@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nsvContent_FTD"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:background="@android:color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvTitle_FJPD"
+            style="@style/TextDetailsTitleStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_with_bottom_divider_line"
+            android:padding="@dimen/default_padding"
+            tools:text="Junior Java" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/default_padding"
+            android:paddingEnd="@dimen/default_padding"
+            android:paddingStart="@dimen/default_padding">
+
+            <TextView
+                style="@style/TextContentTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/main" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <android.support.design.widget.TextInputLayout
+                    style="@style/DefaultTheme.LeadTextInputLayoutStyle"
+                    android:layout_marginEnd="@dimen/default_padding_half">
+
+                    <EditText
+                        android:id="@+id/etJobName_FJPD"
+                        style="@style/DefaultTheme.LeadInputFieldStyle"
+                        android:hint="@string/job_name"
+                        android:text="@string/err_not_specified" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    style="@style/DefaultTheme.LeadTextInputLayoutStyle"
+                    android:layout_marginStart="@dimen/default_padding_half">
+
+                    <EditText
+                        android:id="@+id/etExpectedInRecruitment_FJPD"
+                        style="@style/DefaultTheme.LeadInputFieldStyle"
+                        android:hint="@string/expected_in_recruitment"
+                        android:text="@string/err_not_specified" />
+
+                </android.support.design.widget.TextInputLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <android.support.design.widget.TextInputLayout
+                    style="@style/DefaultTheme.LeadTextInputLayoutStyle"
+                    android:layout_marginEnd="@dimen/default_padding_half">
+
+                    <EditText
+                        android:id="@+id/etDepartment_FJPD"
+                        style="@style/DefaultTheme.LeadInputFieldStyle"
+                        android:hint="@string/department"
+                        android:text="@string/err_not_specified" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    style="@style/DefaultTheme.LeadTextInputLayoutStyle"
+                    android:layout_marginStart="@dimen/default_padding_half">
+
+                    <EditText
+                        android:id="@+id/etStage_FJPD"
+                        style="@style/DefaultTheme.LeadInputFieldStyle"
+                        android:hint="@string/stage"
+                        android:text="@string/err_not_specified" />
+
+                </android.support.design.widget.TextInputLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <android.support.design.widget.TextInputLayout style="@style/DefaultTheme.LeadTextInputLayoutStyle">
+
+                    <EditText
+                        android:id="@+id/etRequirements_FJPD"
+                        style="@style/DefaultTheme.LeadInputFieldStyle"
+                        android:hint="@string/requirements"
+                        android:inputType="textMultiLine"
+                        android:maxLines="3"
+                        android:minLines="1"
+                        android:lines="3"
+                        android:scrollHorizontally="false"
+                        android:text="@string/err_not_specified" />
+
+                </android.support.design.widget.TextInputLayout>
+
+            </LinearLayout>
+
+            <TextView
+                style="@style/TextContentTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/assignees" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <android.support.design.widget.TextInputLayout
+                    style="@style/DefaultTheme.LeadTextInputLayoutStyle"
+                    android:layout_marginEnd="@dimen/default_padding_half">
+
+                    <EditText
+                        android:id="@+id/etOwner_FJPD"
+                        style="@style/DefaultTheme.LeadInputFieldStyle"
+                        android:hint="@string/owner"
+                        android:text="@string/err_not_specified" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <RadioGroup
+                    android:id="@+id/rgAssignees_FJPD"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/default_padding_half"
+                    android:layout_weight="1">
+
+                    <android.support.v7.widget.AppCompatRadioButton
+                        android:id="@+id/rbEveryone_FJPD"
+                        style="@style/CustomRadioButtonStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/everyone" />
+
+                    <android.support.v7.widget.AppCompatRadioButton
+                        android:id="@+id/rbOwner_FJPD"
+                        style="@style/CustomRadioButtonStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/owner" />
+
+                    <android.support.v7.widget.AppCompatRadioButton
+                        android:id="@+id/rbOwnerUsers_FJPD"
+                        style="@style/CustomRadioButtonStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/owner_users_and_users_in_groups" />
+                </RadioGroup>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</android.support.v4.widget.NestedScrollView>

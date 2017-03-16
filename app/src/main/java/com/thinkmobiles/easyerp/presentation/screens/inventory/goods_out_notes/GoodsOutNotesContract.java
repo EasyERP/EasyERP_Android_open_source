@@ -1,6 +1,7 @@
 package com.thinkmobiles.easyerp.presentation.screens.inventory.goods_out_notes;
 
-import com.thinkmobiles.easyerp.data.model.inventory.goods_out_notes.ResponseGoodsOutNotes;
+import com.thinkmobiles.easyerp.data.model.ResponseGetTotalItems;
+import com.thinkmobiles.easyerp.data.model.inventory.goods_out_notes.GoodsOutNoteItem;
 import com.thinkmobiles.easyerp.presentation.base.BaseModel;
 import com.thinkmobiles.easyerp.presentation.base.BaseView;
 import com.thinkmobiles.easyerp.presentation.base.rules.master.filterable.FilterableModel;
@@ -22,6 +23,6 @@ public interface GoodsOutNotesContract {
 
     }
     interface GoodsOutNotesModel extends BaseModel, FilterableModel {
-        Observable<ResponseGoodsOutNotes> getFilteredGoodsOutNotes(FilterHelper query, int page);
+        Observable<ResponseGetTotalItems<GoodsOutNoteItem>> getFilteredGoodsOutNotes(FilterHelper query, int page);
     }
 }

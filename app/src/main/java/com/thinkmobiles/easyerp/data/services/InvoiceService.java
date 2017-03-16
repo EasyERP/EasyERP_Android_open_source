@@ -1,8 +1,8 @@
 package com.thinkmobiles.easyerp.data.services;
 
+import com.thinkmobiles.easyerp.data.model.ResponseGetTotalItems;
 import com.thinkmobiles.easyerp.data.model.crm.dashboard.detail.order.OrderItem;
 import com.thinkmobiles.easyerp.data.model.crm.invoice.Invoice;
-import com.thinkmobiles.easyerp.data.model.crm.invoice.ResponseGetInvoice;
 import com.thinkmobiles.easyerp.data.model.crm.invoice.detail.ResponseGetInvoiceDetails;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
@@ -20,7 +20,7 @@ import rx.Observable;
 public interface InvoiceService {
 
     @GET(Constants.GET_INVOICE)
-    Observable<ResponseGetInvoice> getInvoiceForDashboard(
+    Observable<ResponseGetTotalItems<Invoice>> getInvoiceForDashboard(
             @Query("filter[date][value][0]") final String filterDateValueFrom,
             @Query("filter[date][value][1]") final String filterDateValueTo,
             @Query("forSales") final boolean forSales,
@@ -31,7 +31,7 @@ public interface InvoiceService {
             @Query("contentType") final String contentType);
 
     @GET
-    Observable<ResponseGetInvoice> getInvoices(@Url String url);
+    Observable<ResponseGetTotalItems<Invoice>> getInvoices(@Url String url);
 
     @GET(Constants.GET_INVOICE_BY_WORKFLOWS)
     Observable<List<OrderItem>> getInvoiceByWorkflows(

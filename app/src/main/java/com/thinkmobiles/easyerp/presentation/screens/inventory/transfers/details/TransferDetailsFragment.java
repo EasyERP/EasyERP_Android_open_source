@@ -1,9 +1,13 @@
 package com.thinkmobiles.easyerp.presentation.screens.inventory.transfers.details;
 
+import android.graphics.drawable.Drawable;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.thinkmobiles.easyerp.R;
@@ -23,6 +27,8 @@ import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.FragmentArg;
 import org.androidannotations.annotations.ViewById;
+import org.androidannotations.annotations.res.ColorRes;
+import org.androidannotations.annotations.res.StringRes;
 
 import java.util.ArrayList;
 
@@ -49,25 +55,34 @@ public class TransferDetailsFragment extends ContentFragment implements Transfer
     @ViewById
     protected TextView tvTitle_FTD;
     @ViewById
-    protected TextView tvReference_FTD;
+    protected TextView tvPrinted_FTD;
     @ViewById
-    protected TextView tvShipping_FTD;
+    protected TextView tvPrintedDate_FTD;
     @ViewById
-    protected TextView tvPrint_FTD;
+    protected EditText etDate_FTD;
     @ViewById
-    protected TextView tvPack_FTD;
+    protected EditText etTrackingReference_FTD;
     @ViewById
-    protected TextView tvShip_FTD;
+    protected EditText etShippingMethod_FLD;
+
     @ViewById
-    protected TextView tvReceive_FTD;
+    protected TextView tvPacked_FTD;
+    @ViewById
+    protected TextView tvPackedDate_FTD;
+    @ViewById
+    protected TextView tvShipped_FTD;
+    @ViewById
+    protected TextView tvShippedDate_FTD;
+    @ViewById
+    protected TextView tvReceived_FTD;
+    @ViewById
+    protected TextView tvReceivedDate_FTD;
     @ViewById
     protected TextView tvCompanyName_FTD;
     @ViewById
     protected TextView tvCompanyAddress_FTD;
     @ViewById
     protected TextView tvName_FTD;
-    @ViewById
-    protected TextView tvDate_FTD;
     @ViewById
     protected TextView tvWarehouseTo_FTD;
     @ViewById
@@ -80,6 +95,19 @@ public class TransferDetailsFragment extends ContentFragment implements Transfer
     protected RecyclerView rvAttachments_FLD;
     //endregion
 
+    @ColorRes(R.color.color_text_gray)
+    protected int colorGray;
+    @ColorRes(R.color.color_text_black)
+    protected int colorBlack;
+
+    @StringRes(R.string.not_printed)
+    protected String notPrinted;
+    @StringRes(R.string.not_packed)
+    protected String notPacked;
+    @StringRes(R.string.not_shipped)
+    protected String notShipped;
+    @StringRes(R.string.not_received)
+    protected String notReceived;
 
     @Override
     protected int getLayoutRes() {
@@ -107,6 +135,11 @@ public class TransferDetailsFragment extends ContentFragment implements Transfer
     @Override
     public void setPresenter(TransferDetailsContract.TransferDetailsPresenter presenter) {
         this.presenter = presenter;
+    }
+
+    @AfterViews
+    protected void initAnalytics() {
+        GoogleAnalyticHelper.trackScreenView(this, getResources().getConfiguration());
     }
 
     @Override
@@ -146,37 +179,45 @@ public class TransferDetailsFragment extends ContentFragment implements Transfer
 
     @Override
     public void setPrint(String print) {
-        tvPrint_FTD.setText(print);
+        fulfillTransferStatusCard(print, notPrinted,
+                        R.drawable.ic_print, R.drawable.ic_print_off,
+                tvPrinted_FTD, tvPrintedDate_FTD);
     }
 
     @Override
     public void setPack(String pack) {
-        tvPack_FTD.setText(pack);
+        fulfillTransferStatusCard(pack, notPacked,
+                R.drawable.ic_fulfilled, R.drawable.ic_fulfilled_off,
+                tvPacked_FTD, tvPackedDate_FTD);
     }
 
     @Override
     public void setShip(String ship) {
-        tvShip_FTD.setText(ship);
+        fulfillTransferStatusCard(ship, notShipped,
+                R.drawable.ic_shipped, R.drawable.ic_shipped_off,
+                tvShipped_FTD, tvShippedDate_FTD);
     }
 
     @Override
     public void setReceive(String receive) {
-        tvReceive_FTD.setText(receive);
+        fulfillTransferStatusCard(receive, notReceived,
+                R.drawable.ic_received, R.drawable.ic_received_off,
+                tvReceived_FTD, tvReceivedDate_FTD);
     }
 
     @Override
-    public void setReference(String reference) {
-        tvReference_FTD.setText(reference);
+    public void setTrackingReference(String reference) {
+        etTrackingReference_FTD.setText(reference);
     }
 
     @Override
-    public void setShipping(String shipping) {
-        tvShipping_FTD.setText(shipping);
+    public void setShippingMethod(String shipping) {
+        etShippingMethod_FLD.setText(shipping);
     }
 
     @Override
     public void setDate(String date) {
-        tvDate_FTD.setText(date);
+        etDate_FTD.setText(date);
     }
 
     @Override
@@ -192,7 +233,7 @@ public class TransferDetailsFragment extends ContentFragment implements Transfer
 
     @Override
     public void showAttachments(boolean isShown) {
-        if(!isShown) tvEmptyAttachments_FLD.setVisibility(View.VISIBLE);
+        if (!isShown) tvEmptyAttachments_FLD.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -203,6 +244,13 @@ public class TransferDetailsFragment extends ContentFragment implements Transfer
     @Override
     protected ContentPresenter getPresenter() {
         return presenter;
+    }
+
+    private void fulfillTransferStatusCard(String date, String noDate, int drawableRes, int drawableOffRes, TextView tvTitle, TextView tvDate) {
+        Drawable drawable = ContextCompat.getDrawable(getActivity(), TextUtils.isEmpty(date) ? drawableOffRes : drawableRes);
+        tvTitle.setCompoundDrawablesWithIntrinsicBounds(drawable, null, null, null);
+        tvDate.setText(TextUtils.isEmpty(date) ? noDate : date);
+        tvDate.setTextColor(TextUtils.isEmpty(date) ? colorGray : colorBlack);
     }
 
 }

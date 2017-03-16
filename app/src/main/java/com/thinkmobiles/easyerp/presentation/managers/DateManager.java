@@ -148,7 +148,7 @@ public abstract class DateManager {
                         return "Parse error";
                     }
                 } else {
-                    return "No specified";
+                    return "Not specified";
                 }
             } else {
                 return outFormat.format(calendar.getTime());

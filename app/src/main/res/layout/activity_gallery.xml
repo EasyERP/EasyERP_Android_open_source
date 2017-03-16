@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.thinkmobiles.easyerp.presentation.custom.views.FixedZoomViewPager
+        android:id="@+id/vpFullscreenImage_AG"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/transparent_less"/>
+
+    <TextView
+        android:id="@+id/tvPageIndicator_AG"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_margin="@dimen/default_padding_half"
+        android:background="@color/transparent_less"
+        android:padding="@dimen/default_padding_quart"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/text_list_item_large_20"/>
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbarGallery_AG"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/transparent_less"/>
+
+</FrameLayout>

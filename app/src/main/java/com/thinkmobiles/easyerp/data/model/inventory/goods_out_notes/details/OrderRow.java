@@ -3,12 +3,7 @@ package com.thinkmobiles.easyerp.data.model.inventory.goods_out_notes.details;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.google.gson.annotations.SerializedName;
-import com.thinkmobiles.easyerp.data.model.crm.filter.FilterItem;
-import com.thinkmobiles.easyerp.data.model.crm.order.detail.SubProduct;
 import com.thinkmobiles.easyerp.data.model.inventory.BaseOrderRow;
-
-import java.util.ArrayList;
 
 /**
  * Created by samson on 06.03.17.

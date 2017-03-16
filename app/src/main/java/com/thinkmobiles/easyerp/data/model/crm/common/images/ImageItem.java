@@ -3,11 +3,13 @@ package com.thinkmobiles.easyerp.data.model.crm.common.images;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Created by Lynx on 1/20/2017.
  */
 
-public class CustomerImageItem implements Parcelable {
+public class ImageItem implements Parcelable {
     /**
      * {
      _id: "587752046cfe921708d8718a",
@@ -17,6 +19,7 @@ public class CustomerImageItem implements Parcelable {
      },
      */
 
+    @SerializedName("_id")
     public String id;
     public String imageSrc;
 
@@ -31,23 +34,23 @@ public class CustomerImageItem implements Parcelable {
         dest.writeString(this.imageSrc);
     }
 
-    public CustomerImageItem() {
+    public ImageItem() {
     }
 
-    protected CustomerImageItem(Parcel in) {
+    protected ImageItem(Parcel in) {
         this.id = in.readString();
         this.imageSrc = in.readString();
     }
 
-    public static final Parcelable.Creator<CustomerImageItem> CREATOR = new Parcelable.Creator<CustomerImageItem>() {
+    public static final Parcelable.Creator<ImageItem> CREATOR = new Parcelable.Creator<ImageItem>() {
         @Override
-        public CustomerImageItem createFromParcel(Parcel source) {
-            return new CustomerImageItem(source);
+        public ImageItem createFromParcel(Parcel source) {
+            return new ImageItem(source);
         }
 
         @Override
-        public CustomerImageItem[] newArray(int size) {
-            return new CustomerImageItem[size];
+        public ImageItem[] newArray(int size) {
+            return new ImageItem[size];
         }
     };
 }

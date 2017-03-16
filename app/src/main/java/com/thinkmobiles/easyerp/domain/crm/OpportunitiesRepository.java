@@ -1,9 +1,10 @@
 package com.thinkmobiles.easyerp.domain.crm;
 
 import com.thinkmobiles.easyerp.data.api.Rest;
+import com.thinkmobiles.easyerp.data.model.ResponseGetTotalItems;
 import com.thinkmobiles.easyerp.data.model.crm.filter.ResponseFilters;
-import com.thinkmobiles.easyerp.data.model.crm.opportunities.ResponseGetOpportunities;
 import com.thinkmobiles.easyerp.data.model.crm.opportunities.detail.ResponseGetOpportunityDetails;
+import com.thinkmobiles.easyerp.data.model.crm.opportunities.list_item.OpportunityListItem;
 import com.thinkmobiles.easyerp.data.services.FilterService;
 import com.thinkmobiles.easyerp.data.services.OpportunityService;
 import com.thinkmobiles.easyerp.presentation.base.NetworkRepository;
@@ -32,7 +33,7 @@ public class OpportunitiesRepository extends NetworkRepository implements Opport
     }
 
     @Override
-    public Observable<ResponseGetOpportunities> getOpportunities(FilterHelper query, int page) {
+    public Observable<ResponseGetTotalItems<OpportunityListItem>> getOpportunities(FilterHelper query, int page) {
         return getNetworkObservable(opportunityService.getOpportunities(query
                 .createUrl(Constants.GET_OPPORTUNITIES, "Opportunities", page)
                 .build()

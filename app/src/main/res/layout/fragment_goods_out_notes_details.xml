@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:id="@+id/nsvContent_FGOND"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -20,123 +21,219 @@
             android:padding="@dimen/default_padding"
             tools:text="Web development" />
 
-        <TextView
-            style="@style/TextContentTitle.WithoutPadding"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/default_padding"
-            android:layout_marginStart="@dimen/default_padding"
-            android:text="Goods-out note Preview" />
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/default_padding">
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+            <android.support.v7.widget.CardView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/default_padding_half"
+                android:layout_weight="1"
+                card_view:cardBackgroundColor="@android:color/white">
 
-                <TextView
-                    style="@style/PdfStyle"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Tracking ref" />
+                    android:layout_margin="@dimen/default_padding"
+                    android:gravity="center"
+                    android:orientation="vertical">
 
-                <TextView
-                    style="@style/PdfStyle"
-                    android:layout_width="wrap_content"
+                    <TextView
+                        android:id="@+id/tvPrinted_FGOND"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="@dimen/default_padding_quart"
+                        android:gravity="center"
+                        android:text="@string/printed"
+                        android:textColor="@color/color_text_black"
+                        tools:drawableLeft="@drawable/ic_print" />
+
+                    <TextView
+                        android:id="@+id/tvPrintedDate_FGOND"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/default_padding_quart"
+                        android:gravity="center"
+                        android:textColor="@color/color_text_black"
+                        tools:text="07 Mar, 2017 10:59 AM" />
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/default_padding_half"
+                android:layout_weight="1"
+                card_view:cardBackgroundColor="@android:color/white">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/default_padding"
-                    android:text="Shipping method" />
+                    android:layout_margin="@dimen/default_padding"
+                    android:gravity="center"
+                    android:orientation="vertical">
 
-                <TextView
-                    style="@style/PdfStyle"
-                    android:layout_width="wrap_content"
+                    <TextView
+                        android:id="@+id/tvPicked_FGOND"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="@dimen/default_padding_quart"
+                        android:gravity="center"
+                        android:text="@string/picked"
+                        android:textColor="@color/color_text_black"
+                        tools:drawableLeft="@drawable/ic_print" />
+
+                    <TextView
+                        android:id="@+id/tvPickedDate_FGOND"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/default_padding_quart"
+                        android:gravity="center"
+                        android:textColor="@color/color_text_black"
+                        tools:text="07 Mar, 2017 10:59 AM" />
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/default_padding_half"
+                android:layout_weight="1"
+                card_view:cardBackgroundColor="@android:color/white">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/default_padding"
-                    android:text="Print" />
+                    android:layout_margin="@dimen/default_padding"
+                    android:gravity="center"
+                    android:orientation="vertical">
 
-                <TextView
-                    style="@style/PdfStyle"
-                    android:layout_width="wrap_content"
+                    <TextView
+                        android:id="@+id/tvPacked_FGOND"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="@dimen/default_padding_quart"
+                        android:gravity="center"
+                        android:text="@string/packed"
+                        android:textColor="@color/color_text_black"
+                        tools:drawableLeft="@drawable/ic_print" />
+
+                    <TextView
+                        android:id="@+id/tvPackedDate_FGOND"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/default_padding_quart"
+                        android:gravity="center"
+                        android:textColor="@color/color_text_black"
+                        tools:text="07 Mar, 2017 10:59 AM" />
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/default_padding_half"
+                android:layout_weight="1"
+                card_view:cardBackgroundColor="@android:color/white">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/default_padding"
-                    android:text="Pick" />
+                    android:layout_margin="@dimen/default_padding"
+                    android:gravity="center"
+                    android:orientation="vertical">
 
-                <TextView
-                    style="@style/PdfStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/default_padding"
-                    android:text="Pack" />
+                    <TextView
+                        android:id="@+id/tvShipped_FGOND"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="@dimen/default_padding_quart"
+                        android:gravity="center"
+                        android:text="@string/shipped"
+                        android:textColor="@color/color_text_black"
+                        tools:drawableLeft="@drawable/ic_print" />
 
-                <TextView
-                    style="@style/PdfStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/default_padding"
-                    android:text="Ship" />
+                    <TextView
+                        android:id="@+id/tvShippedDate_FGOND"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/default_padding_quart"
+                        android:gravity="center"
+                        android:textColor="@color/color_text_black"
+                        tools:text="07 Mar, 2017 10:59 AM" />
 
-            </LinearLayout>
+                </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/default_padding"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/tvReference_FGOND"
-                    style="@style/PdfStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    tools:text="10058620.00" />
-
-                <TextView
-                    android:id="@+id/tvShipping_FGOND"
-                    style="@style/PdfStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/default_padding"
-                    tools:text="10058620.00" />
-
-                <TextView
-                    android:id="@+id/tvPrint_FGOND"
-                    style="@style/PdfStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/default_padding"
-                    tools:text="10058620.00" />
-
-                <TextView
-                    android:id="@+id/tvPick_FGOND"
-                    style="@style/PdfStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/default_padding"
-                    tools:text="10058620.00" />
-
-                <TextView
-                    android:id="@+id/tvPack_FGOND"
-                    style="@style/PdfStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/default_padding"
-                    tools:text="10058620.00" />
-
-                <TextView
-                    android:id="@+id/tvShip_FGOND"
-                    style="@style/PdfStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/default_padding"
-                    tools:text="10058620.00" />
-
-            </LinearLayout>
+            </android.support.v7.widget.CardView>
 
         </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/default_padding"
+            android:layout_marginRight="@dimen/default_padding">
+
+            <android.support.design.widget.TextInputLayout
+                style="@style/DefaultTheme.LeadTextInputLayoutStyle"
+                android:layout_marginEnd="@dimen/default_padding_half"
+                android:hint="@string/hint_date">
+
+                <EditText
+                    android:id="@+id/etDate_FGOND"
+                    style="@style/DefaultTheme.LeadInputFieldStyle"
+                    android:text="@string/err_not_specified" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                style="@style/DefaultTheme.LeadTextInputLayoutStyle"
+                android:layout_marginStart="@dimen/default_padding_half"
+                android:hint="@string/tracking_reference">
+
+                <EditText
+                    android:id="@+id/etTrackingReference_FGOND"
+                    style="@style/DefaultTheme.LeadInputFieldStyle"
+                    android:text="@string/err_not_specified" />
+
+            </android.support.design.widget.TextInputLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/default_padding"
+            android:layout_marginRight="@dimen/default_padding">
+
+            <android.support.design.widget.TextInputLayout
+                style="@style/DefaultTheme.LeadTextInputLayoutStyle"
+                android:layout_marginEnd="@dimen/default_padding_half"
+                android:hint="@string/shipping_method">
+
+                <EditText
+                    android:id="@+id/etShippingMethod_FGOND"
+                    style="@style/DefaultTheme.LeadInputFieldStyle"
+                    android:text="@string/err_not_specified" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/default_padding_half"
+                android:layout_weight="1" />
+
+        </LinearLayout>
+
 
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
@@ -213,27 +310,6 @@
                     </LinearLayout>
 
                 </LinearLayout>
-
-                <TextView
-                    style="@style/PdfStyle.BoldText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="end"
-                    android:layout_marginEnd="@dimen/default_padding"
-                    android:layout_marginStart="@dimen/default_padding"
-                    android:gravity="end"
-                    android:text="Date" />
-
-                <TextView
-                    android:id="@+id/tvDate_FGOND"
-                    style="@style/PdfStyle.BoldText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="end"
-                    android:layout_marginEnd="@dimen/default_padding"
-                    android:layout_marginStart="@dimen/default_padding"
-                    android:gravity="end"
-                    tools:text="10058620.00" />
 
                 <LinearLayout
                     android:layout_width="match_parent"

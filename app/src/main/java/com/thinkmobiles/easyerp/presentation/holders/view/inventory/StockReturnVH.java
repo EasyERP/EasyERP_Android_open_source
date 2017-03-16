@@ -20,7 +20,7 @@ import com.thinkmobiles.easyerp.presentation.utils.StringUtil;
  *         Company: Thinkmobiles
  *         Email: michael.soyma@thinkmobiles.com
  */
-public class StockReturnVH extends SelectableVHHelper<StockReturnDH> {
+public final class StockReturnVH extends SelectableVHHelper<StockReturnDH> {
 
     private TextView tvName_VLIST, tvOrder_VLIST, tvReceivedByDate_VLIST, tvTotal_VLIST;
     private ImageView ivStatus_VLIST;

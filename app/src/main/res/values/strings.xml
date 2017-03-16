@@ -147,6 +147,8 @@
     <string name="pattern_received_date" formatted="false">Received Date: %s at %s</string>
     <string name="pattern_created">Created: %s</string>
     <string name="pattern_created_date" formatted="false">Created Date: %s at %s</string>
+    <string name="pattern_gallery_indicator" formatted="false">%d/%d</string>
+    <string name="pattern_created_by" formatted="false">Created: %s by %s</string>
 
     <string name="profile">Profile:</string>
     <string name="last_access">Last Access:</string>
@@ -217,4 +219,39 @@
     <string name="categories">Categories:</string>
     <string name="variants">Variants:</string>
     <string name="product_details_variants">Variants</string>
+    <string name="no_email">No Email</string>
+    <string name="no_phone">No Phone</string>
+    <string name="no_skype">No Skype</string>
+
+    <string name="hint_date">Date</string>
+    <string name="tracking_reference">Tracking reference</string>
+    <string name="shipping_method">Shipping method</string>
+    <string name="not_printed">Not printed</string>
+    <string name="not_shipped">Not shipped</string>
+    <string name="not_picked">Not picked</string>
+    <string name="not_packed">Not packed</string>
+    <string name="not_received">Not received</string>
+    <string name="printed">Printed</string>
+    <string name="packed">Packed</string>
+    <string name="received">Received</string>
+
+    <string name="current_number">Current Number:</string>
+    <string name="expected_in_recruitment_key">Expected in Recruitment:</string>
+    <string name="edited_key">Edited:</string>
+    <string name="main">Main</string>
+    <string name="job_name">Job Name</string>
+    <string name="expected_in_recruitment">Expected in Recruitment</string>
+    <string name="department">Department</string>
+    <string name="stage">Stage</string>
+    <string name="requirements">Requirements</string>
+    <string name="assignees">Assignees</string>
+    <string name="owner">Owner</string>
+    <string name="everyone">Everyone</string>
+    <string name="owner_users_and_users_in_groups">Owner, Users and Users in Groups</string>
+    <string name="picked">Picked</string>
+
+    <string name="received_by">Received By</string>
+    <string name="description">Description</string>
+    <string name="warehouse">Warehouse</string>
+    <string name="adjusted_by">Adjusted By</string>
 </resources>
