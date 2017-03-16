@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:background="@android:color/white"
+    android:layout_marginTop="@dimen/default_padding_half"
+    android:layout_marginStart="@dimen/default_padding"
+    android:layout_marginEnd="@dimen/default_padding"
+    android:padding="@dimen/default_padding_half">
+
+    <TextView
+        style="@style/ProductVariantTableTextStyle"
+        android:layout_width="48dp"
+        android:layout_height="wrap_content"
+        android:text="Image"/>
+
+    <TextView
+        style="@style/ProductVariantTableTextStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:layout_marginStart="@dimen/default_padding"
+        android:text="Name"/>
+
+    <TextView
+        style="@style/ProductVariantTableTextStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:layout_marginStart="@dimen/default_padding_half"
+        android:text="SKU"/>
+
+    <TextView
+        style="@style/ProductVariantTableTextStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.7"
+        android:layout_marginStart="@dimen/default_padding_half"
+        android:text="Variant"/>
+
+    <TextView
+        style="@style/ProductVariantTableTextStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginStart="@dimen/default_padding_half"
+        android:text="Channel"/>
+
+</LinearLayout>

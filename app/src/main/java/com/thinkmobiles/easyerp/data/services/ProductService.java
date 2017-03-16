@@ -1,6 +1,7 @@
 package com.thinkmobiles.easyerp.data.services;
 
 import com.thinkmobiles.easyerp.data.model.ResponseGetTotalItems;
+import com.thinkmobiles.easyerp.data.model.crm.filter.FilterItem;
 import com.thinkmobiles.easyerp.data.model.inventory.product.Product;
 import com.thinkmobiles.easyerp.data.model.inventory.product.detail.ResponseGetProductDetail;
 import com.thinkmobiles.easyerp.data.model.inventory.product.detail.SalesChannel;
@@ -30,4 +31,7 @@ public interface ProductService {
 
     @GET(Constants.GET_PRODUCT_CHANNELS)
     Observable<SalesChannel> getProductChannels();
+
+    @GET(Constants.GET_PRODUCT_TYPES)
+    Observable<ResponseGetTotalItems<FilterItem>> getProductTypes();
 }

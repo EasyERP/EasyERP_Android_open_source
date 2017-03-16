@@ -216,4 +216,5 @@
     <string name="sku">SKU:</string>
     <string name="categories">Categories:</string>
     <string name="variants">Variants:</string>
+    <string name="product_details_variants">Variants</string>
 </resources>

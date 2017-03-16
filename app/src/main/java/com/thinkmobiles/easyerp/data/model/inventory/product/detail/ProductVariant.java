@@ -36,7 +36,11 @@ public class ProductVariant implements Parcelable {
     public boolean canBePurchased;
     public String groupId;
     public ArrayList<FilterItem> categories;
+    public ArrayList<FilterItem> channels;
 
+
+    public ProductVariant() {
+    }
 
     @Override
     public int describeContents() {
@@ -64,9 +68,7 @@ public class ProductVariant implements Parcelable {
         dest.writeByte(this.canBePurchased ? (byte) 1 : (byte) 0);
         dest.writeString(this.groupId);
         dest.writeTypedList(this.categories);
-    }
-
-    public ProductVariant() {
+        dest.writeTypedList(this.channels);
     }
 
     protected ProductVariant(Parcel in) {
@@ -89,9 +91,10 @@ public class ProductVariant implements Parcelable {
         this.canBePurchased = in.readByte() != 0;
         this.groupId = in.readString();
         this.categories = in.createTypedArrayList(FilterItem.CREATOR);
+        this.channels = in.createTypedArrayList(FilterItem.CREATOR);
     }
 
-    public static final Parcelable.Creator<ProductVariant> CREATOR = new Parcelable.Creator<ProductVariant>() {
+    public static final Creator<ProductVariant> CREATOR = new Creator<ProductVariant>() {
         @Override
         public ProductVariant createFromParcel(Parcel source) {
             return new ProductVariant(source);

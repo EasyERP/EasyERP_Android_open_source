@@ -33,6 +33,9 @@ public class ChannelResult implements Parcelable {
     public String channelName;
     public WarehouseSettings warehouseSettings;
 
+    //Rx
+    public boolean isPublished;
+
 
     public ChannelResult() {
     }
@@ -63,6 +66,7 @@ public class ChannelResult implements Parcelable {
         dest.writeString(this.dbName);
         dest.writeString(this.channelName);
         dest.writeParcelable(this.warehouseSettings, flags);
+        dest.writeByte(this.isPublished ? (byte) 1 : (byte) 0);
     }
 
     protected ChannelResult(Parcel in) {
@@ -85,6 +89,7 @@ public class ChannelResult implements Parcelable {
         this.dbName = in.readString();
         this.channelName = in.readString();
         this.warehouseSettings = in.readParcelable(WarehouseSettings.class.getClassLoader());
+        this.isPublished = in.readByte() != 0;
     }
 
     public static final Creator<ChannelResult> CREATOR = new Creator<ChannelResult>() {

@@ -5,7 +5,7 @@ import android.os.Parcelable;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.util.List;
+import java.util.ArrayList;
 
 /**
  * Created by samson on 13.03.17.
@@ -15,9 +15,12 @@ public class PriceList implements Parcelable {
 
     @SerializedName("_id")
     public String id;
-    public List<Price> prices;
+    public ArrayList<Price> prices;
     public String product;
     public PriceListInfo priceLists;
+
+    public PriceList() {
+    }
 
     @Override
     public int describeContents() {
@@ -32,9 +35,6 @@ public class PriceList implements Parcelable {
         dest.writeParcelable(this.priceLists, flags);
     }
 
-    public PriceList() {
-    }
-
     protected PriceList(Parcel in) {
         this.id = in.readString();
         this.prices = in.createTypedArrayList(Price.CREATOR);
@@ -42,7 +42,7 @@ public class PriceList implements Parcelable {
         this.priceLists = in.readParcelable(PriceListInfo.class.getClassLoader());
     }
 
-    public static final Parcelable.Creator<PriceList> CREATOR = new Parcelable.Creator<PriceList>() {
+    public static final Creator<PriceList> CREATOR = new Creator<PriceList>() {
         @Override
         public PriceList createFromParcel(Parcel source) {
             return new PriceList(source);

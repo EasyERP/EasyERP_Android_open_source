@@ -370,5 +370,47 @@
         <item name="android:layout_marginTop">@dimen/default_padding</item>
     </style>
 
+    <style name="ProductTableTextStyle" parent="RobotoMedium">
+        <item name="android:textSize">@dimen/text_size_table_12</item>
+        <item name="android:textColor">@color/color_text_black</item>
+        <item name="android:padding">@dimen/default_padding_quart</item>
+        <item name="android:gravity">end</item>
+    </style>
+
+    <style name="ProductTableTextStyle.Header">
+        <item name="android:textColor">@color/color_text_black</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="ProductVariantTableTextStyle" parent="RobotoCondensedRegular">
+        <item name="android:textSize">@dimen/text_size_table_12</item>
+        <item name="android:textColor">@color/selector_color_product_variant</item>
+        <item name="android:padding">@dimen/default_padding_quart</item>
+        <item name="android:layout_gravity">center_vertical</item>
+    </style>
+
+    <style name="ProductVariantTableTextStyle.Header">
+        <item name="android:textColor">@color/color_text_black</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="BigFieldStyle" parent="@style/Widget.AppCompat.EditText">
+        <item name="android:background">@drawable/bg_border_field</item>
+        <item name="android:gravity">top</item>
+        <item name="android:lines">100</item>
+        <item name="android:maxLines">100</item>
+        <item name="android:scrollHorizontally">false</item>
+        <item name="android:inputType">textMultiLine</item>
+        <item name="android:padding">@dimen/default_padding_3dp</item>
+        <item name="android:focusable">false</item>
+        <item name="android:textSize">@dimen/text_list_item_medium_16</item>
+        <item name="android:focusableInTouchMode">false</item>
+        <item name="android:clickable">false</item>
+        <item name="android:editable">false</item>
+        <item name="android:cursorVisible">false</item>
+        <item name="android:longClickable">false</item>
+        <item name="android:textColor">@color/color_text_black</item>
+        <item name="android:textColorHint">@color/text_grey_hint_color</item>
+    </style>
 
 </resources>

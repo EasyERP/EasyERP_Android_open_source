@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:background="@android:color/white"
+    android:layout_marginStart="@dimen/default_padding"
+    android:layout_marginEnd="@dimen/default_padding"
+    android:padding="@dimen/default_padding_half">
+
+    <ImageView
+        android:id="@+id/ivImage_LIPV"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:scaleType="center"/>
+
+    <TextView
+        android:id="@+id/tvName_LIPV"
+        style="@style/ProductVariantTableTextStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:layout_marginStart="@dimen/default_padding"/>
+
+    <TextView
+        android:id="@+id/tvSKU_LIPV"
+        style="@style/ProductVariantTableTextStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:layout_marginStart="@dimen/default_padding_half"/>
+
+    <TextView
+        android:id="@+id/tvVariant_LIPV"
+        style="@style/ProductVariantTableTextStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.7"
+        android:layout_marginStart="@dimen/default_padding_half"/>
+
+    <TextView
+        android:id="@+id/tvChannel_LIPV"
+        style="@style/ProductVariantTableTextStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginStart="@dimen/default_padding_half"/>
+
+</LinearLayout>

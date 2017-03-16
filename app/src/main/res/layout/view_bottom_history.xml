@@ -15,6 +15,7 @@
         android:padding="@dimen/default_padding">
 
         <TextView
+            android:id="@+id/tvTitleHistory"
             style="@style/RobotoMedium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

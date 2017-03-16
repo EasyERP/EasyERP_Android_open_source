@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <TextView
+        android:id="@+id/tvName_LISI"
+        style="@style/ProductTableTextStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:gravity="start"
+        tools:text="Warehouse"/>
+
+    <TextView
+        android:id="@+id/tvStock_LISI"
+        style="@style/ProductTableTextStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        tools:text="In Stock"/>
+
+    <TextView
+        android:id="@+id/tvFulfilled_LISI"
+        style="@style/ProductTableTextStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        tools:text="Fulfilled"/>
+
+    <TextView
+        android:id="@+id/tvHand_LISI"
+        style="@style/ProductTableTextStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        tools:text="On hand"/>
+
+    <TextView
+        android:id="@+id/tvIncoming_LISI"
+        style="@style/ProductTableTextStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        tools:text="incoming"/>
+
+    <TextView
+        android:id="@+id/tvLocation_LISI"
+        style="@style/ProductTableTextStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        tools:text="Bin location"/>
+
+</LinearLayout>
