@@ -23,20 +23,20 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginLeft="@dimen/default_padding"
-            android:layout_marginRight="@dimen/default_padding">
+            android:layout_marginEnd="@dimen/default_padding"
+            android:layout_marginStart="@dimen/default_padding"
+            android:orientation="horizontal">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_weight="1">
+                android:layout_marginEnd="@dimen/default_padding_half"
+                android:layout_weight="1"
+                android:orientation="vertical">
 
                 <android.support.design.widget.TextInputLayout
-                    android:layout_width="match_parent"
                     style="@style/DefaultTheme.LeadTextInputLayoutStyle"
-                    android:layout_marginStart="@dimen/default_padding_half"
+                    android:layout_width="match_parent"
                     android:hint="@string/received_by">
 
                     <EditText
@@ -47,9 +47,8 @@
                 </android.support.design.widget.TextInputLayout>
 
                 <android.support.design.widget.TextInputLayout
-                    android:layout_width="match_parent"
                     style="@style/DefaultTheme.LeadTextInputLayoutStyle"
-                    android:layout_marginStart="@dimen/default_padding_half"
+                    android:layout_width="match_parent"
                     android:hint="@string/hint_date">
 
                     <EditText
@@ -59,19 +58,25 @@
 
                 </android.support.design.widget.TextInputLayout>
 
-
             </LinearLayout>
 
-
-            <TextView
-                android:id="@+id/tvDescription_FSRD"
+            <android.support.v4.widget.NestedScrollView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                tools:text="Duis hendrerit ac nisl eget bibendum. Fusce euismod velit turpis, id scelerisque nibh consequat eu. Nulla facilisi. Maecenas et imperdiet diam. Morbi posuere tellus vel sollicitudin pharetra. Aliquam erat volutpat. Aenean et quam eget tortor consequat fermentum. Ut et congue lacus, bibendum bibendum est. Maecenas quis porttitor lorem, vel vehicula mauris. Proin vel sem dui. Sed vulputate urna et facilisis tempus. Morbi ipsum ligula, placerat vitae lacinia in, placerat id mauris."
-                android:layout_margin="@dimen/default_padding_fixed"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="@dimen/default_padding_half"
+                android:layout_marginStart="@dimen/default_padding_half"
+                android:layout_marginTop="@dimen/default_padding"
+                android:layout_weight="1"
                 android:background="@drawable/bg_rectangle_round_grey"
-                android:padding="@dimen/default_padding_half"
-                android:layout_weight="1"/>
+                android:padding="@dimen/default_padding_middle">
+
+                <TextView
+                    android:id="@+id/tvDescription_FSRD"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    tools:text="Duis hendrerit ac nisl eget bibendum. Fusce euismod velit turpis, id scelerisque nibh consequat eu. Nulla facilisi. Maecenas et imperdiet diam. Morbi posuere tellus vel sollicitudin pharetra. Aliquam erat volutpat. Aenean et quam eget tortor consequat fermentum. Ut et congue lacus, bibendum bibendum est. Maecenas quis porttitor lorem, vel vehicula mauris. Proin vel sem dui. Sed vulputate urna et facilisis tempus. Morbi ipsum ligula, placerat vitae lacinia in, placerat id mauris." />
+
+            </android.support.v4.widget.NestedScrollView>
 
         </LinearLayout>
 

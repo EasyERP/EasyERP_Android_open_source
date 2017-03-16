@@ -20,91 +20,77 @@
             android:padding="@dimen/default_padding"
             tools:text="Web development" />
 
-        <TextView
-            style="@style/TextContentTitle.WithoutPadding"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/default_padding"
-            android:layout_marginStart="@dimen/default_padding"
-            android:text="Stock Correction Preview" />
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/default_padding">
+            android:orientation="horizontal"
+            android:layout_marginStart="@dimen/default_padding"
+            android:layout_marginEnd="@dimen/default_padding">
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/default_padding_half"
+                android:layout_weight="1"
                 android:orientation="vertical">
 
-                <TextView
-                    style="@style/PdfStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Date" />
+                <android.support.design.widget.TextInputLayout
+                    style="@style/DefaultTheme.LeadTextInputLayoutStyle"
+                    android:layout_width="match_parent"
+                    android:hint="@string/warehouse">
 
-                <TextView
-                    style="@style/PdfStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/default_padding"
-                    android:text="Warehouse" />
+                    <EditText
+                        android:id="@+id/etWarehouse_FSCD"
+                        style="@style/DefaultTheme.LeadInputFieldStyle"
+                        android:text="@string/err_not_specified" />
 
-                <TextView
-                    style="@style/PdfStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/default_padding"
-                    android:text="Description" />
+                </android.support.design.widget.TextInputLayout>
 
-                <TextView
-                    style="@style/PdfStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/default_padding"
-                    android:text="Adjusted By" />
+                <android.support.design.widget.TextInputLayout
+                    style="@style/DefaultTheme.LeadTextInputLayoutStyle"
+                    android:layout_width="match_parent"
+                    android:hint="@string/hint_date">
+
+                    <EditText
+                        android:id="@+id/etDate_FSCD"
+                        style="@style/DefaultTheme.LeadInputFieldStyle"
+                        android:text="@string/err_not_specified" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    style="@style/DefaultTheme.LeadTextInputLayoutStyle"
+                    android:layout_width="match_parent"
+                    android:hint="@string/adjusted_by">
+
+                    <EditText
+                        android:id="@+id/etAdjustedBy_FSCD"
+                        style="@style/DefaultTheme.LeadInputFieldStyle"
+                        android:text="@string/err_not_specified" />
+
+                </android.support.design.widget.TextInputLayout>
 
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/default_padding"
-                android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/tvDate_FSCD"
-                    style="@style/PdfStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    tools:text="10058620.00" />
 
-                <TextView
-                    android:id="@+id/tvWarehouse_FSCD"
-                    style="@style/PdfStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                <android.support.v4.widget.NestedScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/bg_rectangle_round_grey"
+                    android:layout_weight="1"
+                    android:layout_marginStart="@dimen/default_padding_half"
                     android:layout_marginTop="@dimen/default_padding"
-                    tools:text="10058620.00" />
+                    android:layout_marginBottom="@dimen/default_padding_half"
+                    android:padding="@dimen/default_padding_middle">
 
                 <TextView
                     android:id="@+id/tvDescription_FSCD"
-                    style="@style/PdfStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/default_padding"
-                    tools:text="10058620.00" />
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    tools:text="Duis hendrerit ac nisl eget bibendum. Fusce euismod velit turpis, id scelerisque nibh consequat eu. Nulla facilisi. Maecenas et imperdiet diam. Morbi posuere tellus vel sollicitudin pharetra. Aliquam erat volutpat. Aenean et quam eget tortor consequat fermentum. Ut et congue lacus, bibendum bibendum est. Maecenas quis porttitor lorem, vel vehicula mauris. Proin vel sem dui. Sed vulputate urna et facilisis tempus. Morbi ipsum ligula, placerat vitae lacinia in, placerat id mauris." />
 
-                <TextView
-                    android:id="@+id/tvAdjustedBy_FSCD"
-                    style="@style/PdfStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/default_padding"
-                    tools:text="10058620.00" />
-
-            </LinearLayout>
+                </android.support.v4.widget.NestedScrollView>
 
         </LinearLayout>
 
@@ -138,9 +124,9 @@
             android:id="@+id/rvProducts_FSCD"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/default_padding"
             android:layout_marginEnd="@dimen/default_padding"
-            android:layout_marginStart="@dimen/default_padding"
-            android:layout_marginBottom="@dimen/default_padding"/>
+            android:layout_marginStart="@dimen/default_padding" />
 
     </LinearLayout>
 

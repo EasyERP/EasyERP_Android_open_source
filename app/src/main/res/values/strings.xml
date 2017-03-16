@@ -251,4 +251,6 @@
 
     <string name="received_by">Received By</string>
     <string name="description">Description</string>
+    <string name="warehouse">Warehouse</string>
+    <string name="adjusted_by">Adjusted By</string>
 </resources>
