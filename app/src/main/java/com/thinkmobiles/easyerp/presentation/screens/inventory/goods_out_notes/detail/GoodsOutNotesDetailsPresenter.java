@@ -29,6 +29,7 @@ public class GoodsOutNotesDetailsPresenter extends ContentPresenterHelper implem
         this.view = view;
         this.model = model;
         this.noteId = noteId;
+
         view.setPresenter(this);
     }
 
