@@ -275,4 +275,24 @@
     <string name="product_details_channel_logo">Channel Logo</string>
     <string name="product_details_channel_name">Channel Name</string>
     <string name="product_details_published">Published</string>
+
+    <string name="main_information">Main Information</string>
+    <string name="hint_personal_mobile">Personal Mobile</string>
+    <string name="hint_personal_email">Personal Email</string>
+    <string name="hint_manager">Manager</string>
+    <string name="hint_job_type">Job Type</string>
+    <string name="hint_work_email">Work Email</string>
+    <string name="hint_work_phone">Work Phone</string>
+    <string name="personal_information">Personal Information</string>
+    <string name="hint_gender">Gender</string>
+    <string name="hint_employment_type">Employment Type</string>
+    <string name="hint_marital_status">Marital Status</string>
+    <string name="hint_nationality">Nationality</string>
+    <string name="hint_identification_number">Identification #</string>
+    <string name="hint_passport_number">Passport #</string>
+    <string name="hint_bank_account_number">Bank Account #</string>
+    <string name="hint_order_id">Order ID</string>
+    <string name="address">Address</string>
+    <string name="employment_details">Employment Details</string>
+    <string name="hint_google_plus">Google Plus</string>
 </resources>
