@@ -79,6 +79,7 @@ public class StockCorrectionsDetailsFragment extends ContentFragment implements 
     protected void initUI() {
         rvProducts_FSCD.setLayoutManager(new LinearLayoutManager(getActivity()));
         rvProducts_FSCD.setAdapter(productAdjustedAdapter);
+        getPresenter().subscribe();
     }
 
     @Override

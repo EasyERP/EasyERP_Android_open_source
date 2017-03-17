@@ -218,6 +218,7 @@
     <string name="sku">SKU:</string>
     <string name="categories">Categories:</string>
     <string name="variants">Variants:</string>
+    <string name="product_details_variants">Variants</string>
     <string name="no_email">No Email</string>
     <string name="no_phone">No Phone</string>
     <string name="no_skype">No Skype</string>
@@ -253,4 +254,25 @@
     <string name="description">Description</string>
     <string name="warehouse">Warehouse</string>
     <string name="adjusted_by">Adjusted By</string>
+    <string name="product_details_images">Images</string>
+    <string name="product_details_this_product_can_be">This product can be:</string>
+    <string name="product_details_product_type">Product Type:</string>
+    <string name="product_details_product_categories">Product Categories:</string>
+    <string name="product_details_model_sku">Model / SKU</string>
+    <string name="product_details_upc">UPC</string>
+    <string name="product_details_isbn">ISBN</string>
+    <string name="product_details_ean">EAN</string>
+    <string name="product_details_weight_kg">Weight(kg)</string>
+    <string name="product_details_stock_inventory">Stock Inventory</string>
+    <string name="product_details_warehouse">Warehouse</string>
+    <string name="product_details_in_stock">In Stock</string>
+    <string name="product_details_fulfilled">Fulfilled</string>
+    <string name="product_details_on_hand">On hand</string>
+    <string name="product_details_incoming">Incoming</string>
+    <string name="product_details_bin_location">Bin location</string>
+    <string name="product_details_prices">Prices</string>
+    <string name="product_details_sales_channel">Sales Channel</string>
+    <string name="product_details_channel_logo">Channel Logo</string>
+    <string name="product_details_channel_name">Channel Name</string>
+    <string name="product_details_published">Published</string>
 </resources>

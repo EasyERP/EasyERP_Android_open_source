@@ -70,6 +70,7 @@ public class DashboardDetailChartFragment extends ContentFragment implements Das
     @AfterViews
     protected void initAnalytics() {
         GoogleAnalyticHelper.trackScreenView(this, getResources().getConfiguration());
+        getPresenter().subscribe();
     }
 
     @Override

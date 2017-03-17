@@ -120,6 +120,7 @@ public class GoodsOutNotesDetailsFragment extends ContentFragment implements Goo
     protected void initUI() {
         rvProductList_FGOND.setLayoutManager(new LinearLayoutManager(getActivity()));
         rvProductList_FGOND.setAdapter(rowAdapter);
+        getPresenter().subscribe();
     }
 
     @AfterViews

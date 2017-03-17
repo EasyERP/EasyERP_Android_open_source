@@ -87,6 +87,11 @@ public abstract class Constants {
 
     //Products
     public static final String GET_INVENTORY_PRODUCTS       = "products";
+    public static final String GET_PRODUCT_DETAILS          = "products/{id}";
+    public static final String GET_PRODUCT_STOCK_INVENTORY  = "products/stockInventory/{id}";
+    public static final String GET_PRODUCT_CHANNELS         = "channels";
+    public static final String GET_PRODUCT_CATEGORIES       = "category";
+    public static final String GET_PRODUCT_TYPES            = "products/getProductsTypeForDd";
     //End Products
 
     //GoodsOutNotes

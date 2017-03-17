@@ -92,6 +92,7 @@ public class StockReturnsDetailsFragment extends ContentFragment implements Stoc
     protected void initUI() {
         rvProductList_FSRD.setLayoutManager(new LinearLayoutManager(getActivity()));
         rvProductList_FSRD.setAdapter(orderRowAdapter);
+        getPresenter().subscribe();
     }
 
     @AfterViews

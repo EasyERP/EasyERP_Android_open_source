@@ -67,5 +67,6 @@
     <color name="color_bg_header_table_product">#737373</color>
     <color name="color_text_red">#e74c3c</color>
     <color name="color_bg_chart">#f8f9fa</color>
+    <color name="color_bg_product_details">#f5f7f9</color>
 
 </resources>

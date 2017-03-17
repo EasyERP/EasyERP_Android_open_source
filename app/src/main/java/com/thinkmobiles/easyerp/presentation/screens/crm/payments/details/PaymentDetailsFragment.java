@@ -83,6 +83,7 @@ public class PaymentDetailsFragment extends ContentFragment implements PaymentDe
     @AfterViews
     protected void initAnalytics() {
         GoogleAnalyticHelper.trackScreenView(this, getResources().getConfiguration());
+        getPresenter().subscribe();
     }
 
     @Override

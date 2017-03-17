@@ -80,8 +80,6 @@ public abstract class ContentFragment extends BaseMasterFlowFragment implements 
         RxView.clicks(btnHolderTry)
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
                 .subscribe(aVoid -> getPresenter().subscribe());
-
-        getPresenter().subscribe();
     }
 
     @Override

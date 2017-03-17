@@ -218,17 +218,18 @@ public class CompanyDetailsFragment extends ContentFragment implements CompanyDe
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
                 .subscribe(aVoid -> presenter.changeNotesVisibility());
 
-        animationHelper.init(ivIconArrow, rvHistory);
+        animationHelper.init(ivIconArrow, rvHistory, nsvContent_FCD);
+        getPresenter().subscribe();
     }
 
     @Override
     public void showHistory(boolean enable) {
-        if (enable && rvHistory.getVisibility() == View.GONE) {
+        if (enable) {
             GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_BUTTON, "History");
-            animationHelper.forward(nsvContent_FCD.getHeight());
+            animationHelper.open();
+        } else {
+            animationHelper.close();
         }
-        if (!enable && rvHistory.getVisibility() == View.VISIBLE)
-            animationHelper.backward(rvHistory.getHeight());
     }
 
     @Override
