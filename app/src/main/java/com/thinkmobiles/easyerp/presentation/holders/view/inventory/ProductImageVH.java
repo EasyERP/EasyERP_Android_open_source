@@ -27,6 +27,7 @@ public final class ProductImageVH extends RecyclerVH<ProductImageDH> {
     public void bindData(ProductImageDH data) {
         Picasso.with(ivProductImage_LISI.getContext())
                 .load(data.getUrl())
+                .placeholder(R.drawable.placeholder)
                 .into(ivProductImage_LISI);
     }
 }

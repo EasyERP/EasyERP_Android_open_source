@@ -677,11 +677,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/default_padding_half"
-                    android:background="@color/color_bg_product_details"
+                    android:background="@drawable/bg_container_product_image"
                     android:nestedScrollingEnabled="false"
                     android:overScrollMode="never"
                     android:visibility="gone"
-                    tools:visibility="visible" />
+                    tools:visibility="visible"
+                    android:padding="@dimen/default_padding_half"/>
 
                 <TextView
                     android:id="@+id/tvEmptyImages_FPD"

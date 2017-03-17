@@ -33,6 +33,7 @@ public final class SalesChannelVH extends RecyclerVH<SalesChannelDH> {
         itemView.setBackgroundResource(getAdapterPosition() % 2 == 0 ? R.color.color_bg_product_details : android.R.color.white);
         Picasso.with(ivChannelLogo_LIPSC.getContext())
                 .load(data.getUrl())
+                .placeholder(R.drawable.placeholder)
                 .into(ivChannelLogo_LIPSC);
         tvChannelName_LIPSC.setText(data.getName());
         ivChannelPublished_LIPSC.setImageResource(data.isPublished() ? R.drawable.ic_published : R.drawable.ic_published_off);

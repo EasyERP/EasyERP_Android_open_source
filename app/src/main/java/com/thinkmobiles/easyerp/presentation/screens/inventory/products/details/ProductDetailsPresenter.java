@@ -15,6 +15,7 @@ import com.thinkmobiles.easyerp.presentation.holders.data.inventory.ProductVaria
 import com.thinkmobiles.easyerp.presentation.holders.data.inventory.SalesChannelDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.inventory.StockInventoryDH;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
+import com.thinkmobiles.easyerp.presentation.utils.StringUtil;
 
 import java.util.ArrayList;
 
@@ -99,7 +100,7 @@ public class ProductDetailsPresenter extends ContentPresenterHelper implements P
     private void setData(ResponseGetProductDetail response) {
         productDetail = response;
         ProductVariant variant = response.variantsArray.get(selectedVariant);
-        view.setProductImage(Constants.BASE_URL.concat("/").concat(variant.imageSrc));
+        view.setProductImage(StringUtil.getImageURL(variant.imageSrc));
         view.setProductName(variant.name);
         ArrayList<String> actions = new ArrayList<>();
         if (variant.canBeSold) actions.add("Sold");
@@ -108,7 +109,7 @@ public class ProductDetailsPresenter extends ContentPresenterHelper implements P
         view.setActions(TextUtils.join(", ", actions));
         view.setProductType(getProductType(variant.info.productType, response.productTypes));
         view.setCategories(variant.categories);
-        view.setDescription(variant.info.description);
+        view.setDescription(TextUtils.isEmpty(variant.info.description) ? "No description" : variant.info.description);
         view.setSKU(variant.info.SKU);
         view.setUPC(variant.info.UPC);
         view.setISBN(variant.info.ISBN);
@@ -162,7 +163,7 @@ public class ProductDetailsPresenter extends ContentPresenterHelper implements P
     private ArrayList<SalesChannelDH> prepareSalesChannel(ArrayList<ChannelResult> all) {
         ArrayList<SalesChannelDH> dhs = new ArrayList<>();
         for (ChannelResult item : all) {
-            dhs.add(new SalesChannelDH(Constants.BASE_URL.concat("/images").concat(item.type).concat(".svg"), item.channelName, item.isPublished));
+            dhs.add(new SalesChannelDH(null, item.channelName, item.isPublished));
         }
         return dhs;
     }
