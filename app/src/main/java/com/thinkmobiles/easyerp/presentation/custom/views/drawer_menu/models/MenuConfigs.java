@@ -103,13 +103,13 @@ public abstract class MenuConfigs {
 
     private static List<MenuItem> getHRModule() {
         final List<MenuItem> menuItems = new ArrayList<>();
-        menuItems.add(new MenuItem(0, R.drawable.ic_menu_item_placeholder, "Employees", true));
-        menuItems.add(new MenuItem(1, R.drawable.ic_menu_item_placeholder, "Applications", true));
-        menuItems.add(new MenuItem(2, R.drawable.ic_menu_item_placeholder, "Job Positions", true));
-        menuItems.add(new MenuItem(3, R.drawable.ic_menu_item_placeholder, "Birthdays", false));
-        menuItems.add(new MenuItem(4, R.drawable.ic_menu_item_placeholder, "Vacations", false));
-        menuItems.add(new MenuItem(5, R.drawable.ic_menu_item_placeholder, "Attendance", false));
-        menuItems.add(new MenuItem(6, R.drawable.ic_menu_item_placeholder, "HR Dashboard", false));
+        menuItems.add(new MenuItem(0, R.drawable.ic_employees, "Employees", true));
+        menuItems.add(new MenuItem(1, R.drawable.ic_applications, "Applications", true));
+        menuItems.add(new MenuItem(2, R.drawable.ic_job_positions, "Job Positions", true));
+        menuItems.add(new MenuItem(3, R.drawable.ic_birthdays, "Birthdays", false));
+        menuItems.add(new MenuItem(4, R.drawable.ic_vacations, "Vacations", false));
+        menuItems.add(new MenuItem(5, R.drawable.ic_attendance, "Attendance", false));
+        menuItems.add(new MenuItem(6, R.drawable.ic_dashboard, "HR Dashboard", false));
         return menuItems;
     }
 
