@@ -7,6 +7,7 @@ import com.thinkmobiles.easyerp.data.model.ResponseGetTotalItems;
 import com.thinkmobiles.easyerp.data.model.crm.common.alphabet.ResponseGetAlphabet;
 import com.thinkmobiles.easyerp.data.model.crm.common.images.ImageItem;
 import com.thinkmobiles.easyerp.data.model.crm.filter.ResponseFilters;
+import com.thinkmobiles.easyerp.data.model.hr.employees.ResponseEmployeeDetails;
 import com.thinkmobiles.easyerp.data.model.hr.employees.item.EmployeeItem;
 import com.thinkmobiles.easyerp.data.services.EmployeesService;
 import com.thinkmobiles.easyerp.data.services.FilterService;
@@ -53,6 +54,10 @@ public class EmployeesRepository extends NetworkRepository implements EmployeesC
                     .appendQueryParameter("filter[letter][type]", "letter");
         }
         return getNetworkObservable(employeesService.getEmployees(builder.build().toString()));
+    }
+
+    public Observable<ResponseEmployeeDetails> getEmployeeDetails(String id) {
+        return getNetworkObservable(employeesService.getEmployeeDetails(id));
     }
 
     @Override
