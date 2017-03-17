@@ -295,4 +295,14 @@
     <string name="address">Address</string>
     <string name="employment_details">Employment Details</string>
     <string name="hint_google_plus">Google Plus</string>
+    <string name="column_status">Status</string>
+    <string name="column_date">Date</string>
+    <string name="column_job_position">Job Position</string>
+    <string name="column_department">Department</string>
+    <string name="column_manager">Manager</string>
+    <string name="column_job_type">Job Type</string>
+    <string name="column_schedule">Schedule</string>
+    <string name="column_contract">Contract</string>
+    <string name="column_scheduled_pay">Scheduled Pay</string>
+    <string name="column_salary">Salary</string>
 </resources>

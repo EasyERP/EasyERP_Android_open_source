@@ -75,20 +75,13 @@
                             android:layout_marginTop="@dimen/default_padding_quart">
 
                             <ImageView
-                                android:id="@+id/ivGooglePlus_FED"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:visibility="gone"
-                                app:srcCompat="@drawable/ic_g_plus"
-                                tools:visibility="visible" />
-
-                            <ImageView
                                 android:id="@+id/ivFacebook_FED"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:visibility="gone"
                                 app:srcCompat="@drawable/ic_fb"
-                                tools:visibility="visible" />
+                                tools:visibility="visible"
+                                android:paddingEnd="@dimen/default_padding_quart"/>
 
                             <ImageView
                                 android:id="@+id/ivLinkedIn_FED"
@@ -96,7 +89,9 @@
                                 android:layout_height="wrap_content"
                                 android:visibility="gone"
                                 app:srcCompat="@drawable/ic_linkedin"
-                                tools:visibility="visible" />
+                                tools:visibility="visible"
+                                android:paddingStart="@dimen/default_padding_quart"
+                                android:paddingEnd="@dimen/default_padding_quart"/>
 
                             <ImageView
                                 android:id="@+id/ivSkype_FED"
@@ -104,7 +99,9 @@
                                 android:layout_height="wrap_content"
                                 android:visibility="gone"
                                 app:srcCompat="@drawable/ic_skype"
-                                tools:visibility="visible" />
+                                tools:visibility="visible"
+                                android:paddingStart="@dimen/default_padding_quart"
+                                android:paddingEnd="@dimen/default_padding_quart" />
 
                             <ImageView
                                 android:id="@+id/ivEmail_FED"
@@ -112,7 +109,9 @@
                                 android:layout_height="wrap_content"
                                 android:visibility="gone"
                                 app:srcCompat="@drawable/ic_mail"
-                                tools:visibility="visible" />
+                                tools:visibility="visible"
+                                android:paddingStart="@dimen/default_padding_quart"
+                                android:paddingEnd="@dimen/default_padding_quart" />
 
                         </LinearLayout>
 
@@ -194,9 +193,9 @@
                         android:layout_marginEnd="@dimen/default_padding_half">
 
                         <EditText
-                            android:id="@+id/etGooglePlus_FED"
+                            android:id="@+id/etSource_FED"
                             style="@style/DefaultTheme.LeadInputFieldStyle"
-                            android:hint="@string/hint_google_plus" />
+                            android:hint="@string/source" />
 
                     </android.support.design.widget.TextInputLayout>
 
@@ -346,16 +345,11 @@
 
                     </android.support.design.widget.TextInputLayout>
 
-                    <android.support.design.widget.TextInputLayout
-                        style="@style/DefaultTheme.LeadTextInputLayoutStyle"
-                        android:layout_marginStart="@dimen/default_padding_half">
-
-                        <EditText
-                            android:id="@+id/etSource_FED"
-                            style="@style/DefaultTheme.LeadInputFieldStyle"
-                            android:hint="@string/source" />
-
-                    </android.support.design.widget.TextInputLayout>
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/default_padding_half"
+                        android:layout_weight="1" />
 
                 </LinearLayout>
 
@@ -582,19 +576,71 @@
                     android:layout_marginStart="@dimen/default_padding">
 
                     <TextView
-                        android:id="@+id/tvEmptyJobPostionList_FED"
+                        android:id="@+id/tvEmptyJobPositionList_FED"
                         style="@style/TextNoDataStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/default_padding_3dp"
                         android:layout_marginTop="@dimen/default_padding" />
 
-                    <android.support.v7.widget.RecyclerView
-                        android:id="@+id/rvJobPostionList_FED"
+                    <LinearLayout
+                        android:id="@+id/llJobPositionListHeader_FED"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/default_padding_half"
-                        android:overScrollMode="never" />
+                        android:layout_marginTop="@dimen/default_padding"
+                        android:visibility="gone"
+                        tools:visibility="visible">
+
+                        <TextView
+                            style="@style/ProductTableTextStyle.Header"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="start"
+                            android:text="@string/column_status"
+                            android:textColor="@color/color_text_black" />
+
+                        <TextView
+                            style="@style/ProductTableTextStyle.Header"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/column_date"
+                            android:textColor="@color/color_text_black" />
+
+                        <TextView
+                            style="@style/ProductTableTextStyle.Header"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/column_job_position"
+                            android:textColor="@color/color_text_black" />
+
+                        <TextView
+                            style="@style/ProductTableTextStyle.Header"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/column_department"
+                            android:textColor="@color/color_text_black" />
+
+                        <TextView
+                            style="@style/ProductTableTextStyle.Header"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/column_manager"
+                            android:textColor="@color/color_text_black" />
+
+                    </LinearLayout>
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/rvJobPositionList_FED"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:nestedScrollingEnabled="false"
+                        android:visibility="gone"
+                        tools:visibility="visible" />
 
                 </FrameLayout>
 
@@ -618,12 +664,64 @@
                         android:layout_marginStart="@dimen/default_padding_3dp"
                         android:layout_marginTop="@dimen/default_padding" />
 
+                    <LinearLayout
+                        android:id="@+id/llEmploymentDetailsListHeader_FED"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/default_padding"
+                        android:visibility="gone"
+                        tools:visibility="visible">
+
+                        <TextView
+                            style="@style/ProductTableTextStyle.Header"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="start"
+                            android:text="@string/column_job_type"
+                            android:textColor="@color/color_text_black" />
+
+                        <TextView
+                            style="@style/ProductTableTextStyle.Header"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/column_schedule"
+                            android:textColor="@color/color_text_black" />
+
+                        <TextView
+                            style="@style/ProductTableTextStyle.Header"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/column_contract"
+                            android:textColor="@color/color_text_black" />
+
+                        <TextView
+                            style="@style/ProductTableTextStyle.Header"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/column_scheduled_pay"
+                            android:textColor="@color/color_text_black" />
+
+                        <TextView
+                            style="@style/ProductTableTextStyle.Header"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/column_salary"
+                            android:textColor="@color/color_text_black" />
+
+                    </LinearLayout>
+
                     <android.support.v7.widget.RecyclerView
                         android:id="@+id/rvEmploymentDetailsList_FED"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/default_padding_half"
-                        android:overScrollMode="never" />
+                        android:nestedScrollingEnabled="false"
+                        android:visibility="gone"
+                        tools:visibility="visible" />
 
                 </FrameLayout>
 
