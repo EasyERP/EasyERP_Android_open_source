@@ -15,6 +15,7 @@
         android:padding="@dimen/default_padding">
 
         <TextView
+            android:id="@+id/tvTitleHistory"
             style="@style/RobotoMedium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -42,8 +43,9 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rvHistory"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         android:background="@android:color/white"
-        android:visibility="gone" />
+        android:layout_weight="0"
+        android:visibility="visible" />
 
 </merge>

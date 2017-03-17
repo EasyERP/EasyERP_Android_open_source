@@ -227,7 +227,8 @@ public class PersonDetailsFragment extends ContentFragment implements PersonDeta
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
                 .subscribe(aVoid -> presenter.showCompanyDetails());
 
-        animationHelper.init(ivIconArrow, rvHistory);
+        animationHelper.init(ivIconArrow, rvHistory, nsvContent_FPD);
+        getPresenter().subscribe();
     }
 
     @Override
@@ -566,12 +567,12 @@ public class PersonDetailsFragment extends ContentFragment implements PersonDeta
 
     @Override
     public void showHistory(boolean enable) {
-        if (enable && rvHistory.getVisibility() == View.GONE) {
+        if (enable) {
             GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_BUTTON, "History");
-            animationHelper.forward(nsvContent_FPD.getHeight());
+            animationHelper.open();
+        } else {
+            animationHelper.close();
         }
-        if (!enable && rvHistory.getVisibility() == View.VISIBLE)
-            animationHelper.backward(rvHistory.getHeight());
     }
 
     @Override

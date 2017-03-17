@@ -374,5 +374,28 @@
         <item name="android:layout_marginTop">@dimen/default_padding</item>
     </style>
 
+    <style name="ProductTableTextStyle" parent="RobotoMedium">
+        <item name="android:textSize">@dimen/text_size_table_12</item>
+        <item name="android:textColor">@color/color_text_black</item>
+        <item name="android:padding">@dimen/default_padding_quart</item>
+        <item name="android:gravity">end</item>
+    </style>
+
+    <style name="ProductTableTextStyle.Header">
+        <item name="android:textColor">@color/color_text_black</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="ProductVariantTableTextStyle" parent="RobotoCondensedRegular">
+        <item name="android:textSize">@dimen/text_size_table_12</item>
+        <item name="android:textColor">@color/selector_color_product_variant</item>
+        <item name="android:padding">@dimen/default_padding_quart</item>
+        <item name="android:layout_gravity">center_vertical</item>
+    </style>
+
+    <style name="ProductVariantTableTextStyle.Header">
+        <item name="android:textColor">@color/color_text_black</item>
+        <item name="android:textStyle">bold</item>
+    </style>
 
 </resources>

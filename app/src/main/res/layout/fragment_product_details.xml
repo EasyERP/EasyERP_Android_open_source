@@ -1,0 +1,704 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    tools:background="@android:color/white">
+
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/nsvContent_FPD"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/default_padding"
+            android:paddingTop="@dimen/default_padding">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingEnd="@dimen/default_padding"
+                android:paddingStart="@dimen/default_padding">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/ivProductImage_FPD"
+                        android:layout_width="@dimen/image_size_large"
+                        android:layout_height="@dimen/image_size_large"
+                        android:scaleType="centerCrop" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/default_padding"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tvProductName_FPD"
+                            style="@style/TextLargeTitleStyle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            tools:text="Bradley	Douglas" />
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/default_padding_half">
+
+                            <TextView
+                                android:id="@+id/tvTitleActions"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/product_details_this_product_can_be"
+                                android:textColor="@color/color_text_gray" />
+
+                            <TextView
+                                android:id="@+id/tvActions_FPD"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/default_padding_half"
+                                android:layout_toEndOf="@id/tvTitleActions"
+                                android:textColor="@color/color_text_black"
+                                tools:text="Sold" />
+
+                            <TextView
+                                android:id="@+id/tvTitleProductType"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignTop="@+id/tvProductType_FPD"
+                                android:text="@string/product_details_product_type"
+                                android:textColor="@color/color_text_gray" />
+
+                            <TextView
+                                android:id="@id/tvProductType_FPD"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignStart="@id/tvActions_FPD"
+                                android:layout_below="@id/tvActions_FPD"
+                                android:layout_marginTop="@dimen/default_padding_half"
+                                android:textColor="@color/color_text_black"
+                                tools:text="Product Type:" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignTop="@+id/flCategories_FPD"
+                                android:layout_marginTop="@dimen/default_padding_quart"
+                                android:text="@string/product_details_product_categories"
+                                android:textColor="@color/color_text_gray" />
+
+                            <com.ismaeltoe.FlowLayout
+                                android:id="@id/flCategories_FPD"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_alignStart="@id/tvProductType_FPD"
+                                android:layout_below="@id/tvProductType_FPD"
+                                android:layout_marginTop="@dimen/default_padding_half"
+                                app:horizontalPadding="@dimen/default_padding_half"
+                                app:verticalPadding="@dimen/default_padding_half" />
+
+                        </RelativeLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <android.support.v4.widget.NestedScrollView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:layout_marginTop="@dimen/default_padding"
+                        android:layout_marginEnd="@dimen/default_padding_half"
+                        android:layout_marginBottom="@dimen/default_padding_half"
+                        android:padding="@dimen/default_padding"
+                        android:background="@drawable/bg_rectangle_round_grey">
+
+                    <TextView
+                        android:id="@+id/tvDescription_FPD"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:textColor="@color/color_text_black"
+                        android:textSize="@dimen/text_list_item_medium_16"/>
+
+                    </android.support.v4.widget.NestedScrollView>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <android.support.design.widget.TextInputLayout
+                            style="@style/DefaultTheme.LeadTextInputLayoutStyle"
+                            android:layout_width="match_parent"
+                            android:layout_marginStart="@dimen/default_padding_half">
+
+                            <EditText
+                                android:id="@+id/etSKU_FPD"
+                                style="@style/DefaultTheme.LeadInputFieldStyle"
+                                android:hint="@string/product_details_model_sku" />
+
+                        </android.support.design.widget.TextInputLayout>
+
+                        <android.support.design.widget.TextInputLayout
+                            style="@style/DefaultTheme.LeadTextInputLayoutStyle"
+                            android:layout_width="match_parent"
+                            android:layout_marginStart="@dimen/default_padding_half">
+
+                            <EditText
+                                android:id="@+id/etUPC_FPD"
+                                style="@style/DefaultTheme.LeadInputFieldStyle"
+                                android:hint="@string/product_details_upc" />
+
+                        </android.support.design.widget.TextInputLayout>
+
+                        <android.support.design.widget.TextInputLayout
+                            style="@style/DefaultTheme.LeadTextInputLayoutStyle"
+                            android:layout_width="match_parent"
+                            android:layout_marginStart="@dimen/default_padding_half">
+
+                            <EditText
+                                android:id="@+id/etISBN_FPD"
+                                style="@style/DefaultTheme.LeadInputFieldStyle"
+                                android:hint="@string/product_details_isbn" />
+
+                        </android.support.design.widget.TextInputLayout>
+
+                        <android.support.design.widget.TextInputLayout
+                            style="@style/DefaultTheme.LeadTextInputLayoutStyle"
+                            android:layout_width="match_parent"
+                            android:layout_marginStart="@dimen/default_padding_half">
+
+                            <EditText
+                                android:id="@+id/etEAN_FPD"
+                                style="@style/DefaultTheme.LeadInputFieldStyle"
+                                android:hint="@string/product_details_ean" />
+
+                        </android.support.design.widget.TextInputLayout>
+
+                        <android.support.design.widget.TextInputLayout
+                            style="@style/DefaultTheme.LeadTextInputLayoutStyle"
+                            android:layout_width="match_parent"
+                            android:layout_marginStart="@dimen/default_padding_half">
+
+                            <EditText
+                                android:id="@+id/etWeight_FPD"
+                                style="@style/DefaultTheme.LeadInputFieldStyle"
+                                android:hint="@string/product_details_weight_kg" />
+
+                        </android.support.design.widget.TextInputLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <TextView
+                    style="@style/TextContentTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/product_details_stock_inventory" />
+
+                <LinearLayout
+                    android:id="@+id/llStockInventoryHeader_FPD"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/default_padding"
+                    android:visibility="gone"
+                    tools:visibility="visible">
+
+                    <TextView
+                        style="@style/ProductTableTextStyle.Header"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:gravity="start"
+                        android:text="@string/product_details_warehouse"
+                        android:textColor="@color/color_text_black" />
+
+                    <TextView
+                        style="@style/ProductTableTextStyle.Header"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/product_details_in_stock"
+                        android:textColor="@color/color_text_black" />
+
+                    <TextView
+                        style="@style/ProductTableTextStyle.Header"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/product_details_fulfilled"
+                        android:textColor="@color/color_text_black" />
+
+                    <TextView
+                        style="@style/ProductTableTextStyle.Header"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/product_details_on_hand"
+                        android:textColor="@color/color_text_black" />
+
+                    <TextView
+                        style="@style/ProductTableTextStyle.Header"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/product_details_incoming"
+                        android:textColor="@color/color_text_black" />
+
+                    <TextView
+                        style="@style/ProductTableTextStyle.Header"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/product_details_bin_location"
+                        android:textColor="@color/color_text_black" />
+
+                </LinearLayout>
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rvStockInventory_FPD"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:nestedScrollingEnabled="false"
+                    android:visibility="gone"
+                    tools:visibility="visible" />
+
+                <TextView
+                    android:id="@+id/tvEmptyStockInventory_FPD"
+                    style="@style/TextNoDataStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/default_padding"
+                    android:visibility="visible"
+                    tools:visibility="gone" />
+
+                <TextView
+                    style="@style/TextContentTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/product_details_prices" />
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/default_padding_quart"
+                    android:layout_marginEnd="@dimen/default_padding_quart"
+                    android:layout_marginStart="@dimen/default_padding_quart"
+                    android:layout_marginTop="@dimen/default_padding_half">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/white"
+                        android:orientation="vertical">
+
+                        <android.support.v7.widget.AppCompatSpinner
+                            android:id="@+id/spPrices_FPD"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:spinnerMode="dropdown"
+                            android:theme="@style/ThemeOverlay.AppCompat.Light" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/color_bg_product_details"
+                            android:paddingEnd="@dimen/default_padding_half"
+                            android:paddingStart="@dimen/default_padding_half"
+                            android:paddingTop="@dimen/default_padding_half">
+
+                            <android.support.v7.widget.CardView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="@dimen/default_padding_half"
+                                android:layout_weight="1">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:background="@android:color/white"
+                                    android:orientation="horizontal"
+                                    android:paddingEnd="@dimen/default_padding_small">
+
+
+                                    <android.support.design.widget.TextInputLayout
+                                        style="@style/DefaultTheme.LeadTextInputLayoutStyle"
+                                        android:layout_width="match_parent"
+                                        android:layout_marginStart="@dimen/default_padding_half">
+
+                                        <EditText
+                                            android:id="@+id/etCount1_FPD"
+                                            style="@style/DefaultTheme.LeadInputFieldStyle"
+                                            android:hint="Count 1" />
+
+                                    </android.support.design.widget.TextInputLayout>
+
+                                    <android.support.design.widget.TextInputLayout
+                                        style="@style/DefaultTheme.LeadTextInputLayoutStyle"
+                                        android:layout_width="match_parent"
+                                        android:layout_marginStart="@dimen/default_padding_half">
+
+                                        <EditText
+                                            android:id="@+id/etPrice1_FPD"
+                                            style="@style/DefaultTheme.LeadInputFieldStyle"
+                                            android:hint="Price 1" />
+
+                                    </android.support.design.widget.TextInputLayout>
+
+                                </LinearLayout>
+
+                            </android.support.v7.widget.CardView>
+
+                            <android.support.v7.widget.CardView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="@dimen/default_padding_half"
+                                android:layout_weight="1">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:background="@android:color/white"
+                                    android:orientation="horizontal"
+                                    android:paddingEnd="@dimen/default_padding_small">
+
+
+                                    <android.support.design.widget.TextInputLayout
+                                        style="@style/DefaultTheme.LeadTextInputLayoutStyle"
+                                        android:layout_width="match_parent"
+                                        android:layout_marginStart="@dimen/default_padding_half">
+
+                                        <EditText
+                                            android:id="@+id/etCount2_FPD"
+                                            style="@style/DefaultTheme.LeadInputFieldStyle"
+                                            android:hint="Count 2" />
+
+                                    </android.support.design.widget.TextInputLayout>
+
+                                    <android.support.design.widget.TextInputLayout
+                                        style="@style/DefaultTheme.LeadTextInputLayoutStyle"
+                                        android:layout_width="match_parent"
+                                        android:layout_marginStart="@dimen/default_padding_half">
+
+                                        <EditText
+                                            android:id="@+id/etPrice2_FPD"
+                                            style="@style/DefaultTheme.LeadInputFieldStyle"
+                                            android:hint="Price 2" />
+
+                                    </android.support.design.widget.TextInputLayout>
+
+                                </LinearLayout>
+
+                            </android.support.v7.widget.CardView>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="#f5f7f9"
+                            android:paddingEnd="@dimen/default_padding_half"
+                            android:paddingStart="@dimen/default_padding_half">
+
+                            <android.support.v7.widget.CardView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="@dimen/default_padding_half"
+                                android:layout_weight="1">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:background="@android:color/white"
+                                    android:orientation="horizontal"
+                                    android:paddingEnd="@dimen/default_padding_small">
+
+
+                                    <android.support.design.widget.TextInputLayout
+                                        style="@style/DefaultTheme.LeadTextInputLayoutStyle"
+                                        android:layout_width="match_parent"
+                                        android:layout_marginStart="@dimen/default_padding_half">
+
+                                        <EditText
+                                            android:id="@+id/etCount3_FPD"
+                                            style="@style/DefaultTheme.LeadInputFieldStyle"
+                                            android:hint="Count 3" />
+
+                                    </android.support.design.widget.TextInputLayout>
+
+                                    <android.support.design.widget.TextInputLayout
+                                        style="@style/DefaultTheme.LeadTextInputLayoutStyle"
+                                        android:layout_width="match_parent"
+                                        android:layout_marginStart="@dimen/default_padding_half">
+
+                                        <EditText
+                                            android:id="@+id/etPrice3_FPD"
+                                            style="@style/DefaultTheme.LeadInputFieldStyle"
+                                            android:hint="Price 3" />
+
+                                    </android.support.design.widget.TextInputLayout>
+
+                                </LinearLayout>
+
+                            </android.support.v7.widget.CardView>
+
+                            <android.support.v7.widget.CardView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="@dimen/default_padding_half"
+                                android:layout_weight="1">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:background="@android:color/white"
+                                    android:orientation="horizontal"
+                                    android:paddingEnd="@dimen/default_padding_small">
+
+
+                                    <android.support.design.widget.TextInputLayout
+                                        style="@style/DefaultTheme.LeadTextInputLayoutStyle"
+                                        android:layout_width="match_parent"
+                                        android:layout_marginStart="@dimen/default_padding_half">
+
+                                        <EditText
+                                            android:id="@+id/etCount4_FPD"
+                                            style="@style/DefaultTheme.LeadInputFieldStyle"
+                                            android:hint="Count 4" />
+
+                                    </android.support.design.widget.TextInputLayout>
+
+                                    <android.support.design.widget.TextInputLayout
+                                        style="@style/DefaultTheme.LeadTextInputLayoutStyle"
+                                        android:layout_width="match_parent"
+                                        android:layout_marginStart="@dimen/default_padding_half">
+
+                                        <EditText
+                                            android:id="@+id/etPrice4_FPD"
+                                            style="@style/DefaultTheme.LeadInputFieldStyle"
+                                            android:hint="Price 4" />
+
+                                    </android.support.design.widget.TextInputLayout>
+
+                                </LinearLayout>
+
+                            </android.support.v7.widget.CardView>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="#f5f7f9"
+                            android:paddingBottom="@dimen/default_padding_half"
+                            android:paddingEnd="@dimen/default_padding_half"
+                            android:paddingStart="@dimen/default_padding_half">
+
+                            <android.support.v7.widget.CardView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="@dimen/default_padding_half"
+                                android:layout_weight="1">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:background="@android:color/white"
+                                    android:orientation="horizontal"
+                                    android:paddingEnd="@dimen/default_padding_small">
+
+
+                                    <android.support.design.widget.TextInputLayout
+                                        style="@style/DefaultTheme.LeadTextInputLayoutStyle"
+                                        android:layout_width="match_parent"
+                                        android:layout_marginStart="@dimen/default_padding_half">
+
+                                        <EditText
+                                            android:id="@+id/etCount5_FPD"
+                                            style="@style/DefaultTheme.LeadInputFieldStyle"
+                                            android:hint="Count 5" />
+
+                                    </android.support.design.widget.TextInputLayout>
+
+                                    <android.support.design.widget.TextInputLayout
+                                        style="@style/DefaultTheme.LeadTextInputLayoutStyle"
+                                        android:layout_width="match_parent"
+                                        android:layout_marginStart="@dimen/default_padding_half">
+
+                                        <EditText
+                                            android:id="@+id/etPrice5_FPD"
+                                            style="@style/DefaultTheme.LeadInputFieldStyle"
+                                            android:hint="Price 5" />
+
+                                    </android.support.design.widget.TextInputLayout>
+
+                                </LinearLayout>
+
+                            </android.support.v7.widget.CardView>
+
+                            <android.support.v7.widget.CardView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="@dimen/default_padding_half"
+                                android:layout_weight="1"
+                                android:visibility="invisible">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:background="@android:color/white"
+                                    android:orientation="horizontal"
+                                    android:paddingEnd="@dimen/default_padding_small">
+
+
+                                    <android.support.design.widget.TextInputLayout
+                                        style="@style/DefaultTheme.LeadTextInputLayoutStyle"
+                                        android:layout_width="match_parent"
+                                        android:layout_marginStart="@dimen/default_padding_half">
+
+                                        <EditText
+                                            android:id="@+id/etCount6_FPD"
+                                            style="@style/DefaultTheme.LeadInputFieldStyle"
+                                            android:hint="Count 6" />
+
+                                    </android.support.design.widget.TextInputLayout>
+
+                                    <android.support.design.widget.TextInputLayout
+                                        style="@style/DefaultTheme.LeadTextInputLayoutStyle"
+                                        android:layout_width="match_parent"
+                                        android:layout_marginStart="@dimen/default_padding_half">
+
+                                        <EditText
+                                            android:id="@+id/etPrice6_FPD"
+                                            style="@style/DefaultTheme.LeadInputFieldStyle"
+                                            android:hint="Price 6" />
+
+                                    </android.support.design.widget.TextInputLayout>
+
+                                </LinearLayout>
+
+                            </android.support.v7.widget.CardView>
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+                </android.support.v7.widget.CardView>
+
+                <TextView
+                    style="@style/TextContentTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/product_details_sales_channel" />
+
+                <LinearLayout
+                    android:id="@+id/llSalesChannelHeader_FPD"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/default_padding"
+                    android:visibility="gone"
+                    tools:visibility="visible">
+
+                    <TextView
+                        style="@style/ProductTableTextStyle.Header"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2.5"
+                        android:gravity="start"
+                        android:text="@string/product_details_channel_logo"
+                        android:textColor="@color/color_text_black" />
+
+                    <TextView
+                        style="@style/ProductTableTextStyle.Header"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:gravity="start"
+                        android:text="@string/product_details_channel_name"
+                        android:textColor="@color/color_text_black" />
+
+                    <TextView
+                        style="@style/ProductTableTextStyle.Header"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:text="@string/product_details_published"
+                        android:textColor="@color/color_text_black" />
+
+                </LinearLayout>
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rvSalesChannel_FPD"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:nestedScrollingEnabled="false"
+                    android:overScrollMode="never"
+                    android:visibility="gone"
+                    tools:visibility="visible" />
+
+                <TextView
+                    android:id="@+id/tvEmptySalesChannel_FPD"
+                    style="@style/TextNoDataStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/default_padding"
+                    android:visibility="visible"
+                    tools:visibility="gone" />
+
+                <TextView
+                    style="@style/TextContentTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/product_details_images" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rvImages_FPD"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/default_padding_half"
+                    android:background="@drawable/bg_container_product_image"
+                    android:nestedScrollingEnabled="false"
+                    android:overScrollMode="never"
+                    android:visibility="gone"
+                    tools:visibility="visible"
+                    android:padding="@dimen/default_padding_half"/>
+
+                <TextView
+                    android:id="@+id/tvEmptyImages_FPD"
+                    style="@style/TextNoDataStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/default_padding"
+                    android:visibility="visible"
+                    tools:visibility="gone" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+
+    <include layout="@layout/view_bottom_history" />
+
+</LinearLayout>

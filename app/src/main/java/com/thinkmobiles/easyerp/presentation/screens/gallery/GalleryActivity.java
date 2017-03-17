@@ -83,7 +83,7 @@ public class GalleryActivity extends AppCompatActivity implements GalleryContrac
 
             @Override
             public void onPageSelected(int position) {
-                displayIndicator(position + 1, galleryPagerAdapter.getCount());
+                displayIndicator(position, galleryPagerAdapter.getCount());
             }
 
             @Override
@@ -115,7 +115,7 @@ public class GalleryActivity extends AppCompatActivity implements GalleryContrac
 
     @Override
     public void displayIndicator(int current, int total) {
-        tvPageIndicator_AG.setText(String.format(Locale.US, patternIndicator, current, total));
+        tvPageIndicator_AG.setText(String.format(Locale.US, patternIndicator, current + 1, total));
     }
 
     @Override

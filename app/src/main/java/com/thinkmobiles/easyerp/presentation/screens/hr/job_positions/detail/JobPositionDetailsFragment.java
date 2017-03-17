@@ -68,6 +68,7 @@ public class JobPositionDetailsFragment extends ContentFragment implements JobPo
     @AfterViews
     protected void initAnalytics() {
         GoogleAnalyticHelper.trackScreenView(this, getResources().getConfiguration());
+        getPresenter().subscribe();
     }
 
     @Override
