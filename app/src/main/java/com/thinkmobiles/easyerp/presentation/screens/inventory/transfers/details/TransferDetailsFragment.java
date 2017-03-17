@@ -130,6 +130,7 @@ public class TransferDetailsFragment extends ContentFragment implements Transfer
         });
         rvProductList_FTD.setAdapter(transfersRowAdapter);
         rvProductList_FTD.setLayoutManager(new LinearLayoutManager(getActivity()));
+        getPresenter().subscribe();
     }
 
     @Override

@@ -56,6 +56,7 @@ public abstract class MasterListFragment extends ContentFragment implements Mast
         listRecycler.addOnScrollListener(scrollListener);
         getAdapter().setOnCardClickListener((view, position, viewType) -> getPresenter().clickItem(position));
         listRecycler.setAdapter(getAdapter());
+        getPresenter().subscribe();
     }
 
     protected void onRefreshData() {

@@ -13,6 +13,7 @@ import com.thinkmobiles.easyerp.data.model.inventory.product.detail.ProductVaria
 import com.thinkmobiles.easyerp.data.model.inventory.product.detail.Variant;
 import com.thinkmobiles.easyerp.presentation.holders.data.inventory.ProductVariantDH;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
+import com.thinkmobiles.easyerp.presentation.utils.StringUtil;
 
 /**
  * Created by samson on 15.03.17.
@@ -38,9 +39,10 @@ public class ProductVariantVH extends RecyclerVH<ProductVariantDH> {
     @Override
     public void bindData(ProductVariantDH data) {
         itemView.setBackgroundResource(getAdapterPosition() % 2 == 1 ? R.color.color_bg_product_details : android.R.color.white);
+        itemView.setSelected(data.isSelected());
         ProductVariant model = data.getModel();
         Picasso.with(itemView.getContext())
-                .load(Constants.BASE_URL.concat("/").concat(model.imageSrc))
+                .load(StringUtil.getImageURL(model.imageSrc))
                 .into(ivImage_LIPV);
         tvName_LIPV.setText(model.name);
         tvSKU_LIPV.setText(model.info.SKU);
@@ -55,10 +57,5 @@ public class ProductVariantVH extends RecyclerVH<ProductVariantDH> {
         } else {
             tvChannel_LIPV.setText(null);
         }
-
-        tvName_LIPV.setSelected(data.isSelected());
-        tvSKU_LIPV.setSelected(data.isSelected());
-        tvVariant_LIPV.setSelected(data.isSelected());
-        tvChannel_LIPV.setSelected(data.isSelected());
     }
 }

@@ -121,6 +121,7 @@ public class ProductDetailsPresenter extends ContentPresenterHelper implements P
         view.setPriceLists(variant.priceList);
         changePriceList(priceListIndex);
         view.setVariants(prepareVariants(response.variantsArray));
+        view.showVariants(variantsIsVisible);
     }
 
     private String getProductType(String id, ArrayList<FilterItem> types) {
@@ -137,7 +138,7 @@ public class ProductDetailsPresenter extends ContentPresenterHelper implements P
     private ArrayList<ProductImageDH> prepareImages(ArrayList<ImageItem> list) {
         ArrayList<ProductImageDH> dhs = new ArrayList<>();
         for (ImageItem item : list) {
-            dhs.add(new ProductImageDH(Constants.BASE_URL.concat(item.imageSrc)));
+            dhs.add(new ProductImageDH(StringUtil.getImageURL(item.imageSrc)));
         }
         return dhs;
     }

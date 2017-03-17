@@ -5,7 +5,6 @@ import android.support.v4.graphics.ColorUtils;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
@@ -37,7 +36,6 @@ import com.thinkmobiles.easyerp.presentation.holders.data.inventory.SalesChannel
 import com.thinkmobiles.easyerp.presentation.holders.data.inventory.StockInventoryDH;
 import com.thinkmobiles.easyerp.presentation.managers.GoogleAnalyticHelper;
 import com.thinkmobiles.easyerp.presentation.managers.HistoryAnimationHelper;
-import com.thinkmobiles.easyerp.presentation.screens.gallery.GalleryActivity;
 import com.thinkmobiles.easyerp.presentation.screens.gallery.GalleryActivity_;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
@@ -164,7 +162,7 @@ public class ProductDetailsFragment extends ContentFragment implements ProductDe
     }
     @AfterViews
     protected void initUI() {
-        animationHelper.init(ivIconArrow, rvHistory);
+        animationHelper.init(ivIconArrow, rvHistory, nsvContent_FPD);
         tvTitleHistory.setText(R.string.product_details_variants);
         rvImages_FPD.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
         rvImages_FPD.setAdapter(imageAdapter);
@@ -192,6 +190,8 @@ public class ProductDetailsFragment extends ContentFragment implements ProductDe
         RxView.clicks(btnHistory)
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
                 .subscribe(aVoid -> presenter.changeVisibilityVariants());
+
+        getPresenter().subscribe();
     }
 
     @Override
@@ -339,12 +339,12 @@ public class ProductDetailsFragment extends ContentFragment implements ProductDe
 
     @Override
     public void showVariants(boolean enable) {
-        if (enable && rvHistory.getVisibility() == View.GONE) {
+        if (enable) {
             GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_BUTTON, "Variants");
-            animationHelper.forward(nsvContent_FPD.getHeight());
+            animationHelper.open();
+        } else {
+            animationHelper.close();
         }
-        if (!enable && rvHistory.getVisibility() == View.VISIBLE)
-            animationHelper.backward(rvHistory.getHeight());
     }
 
     @Override

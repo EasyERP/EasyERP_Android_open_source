@@ -158,7 +158,8 @@ public class LeadDetailsFragment extends ContentFragment implements LeadDetailsC
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
                 .subscribe(aVoid -> presenter.changeNotesVisibility());
 
-        animationHelper.init(ivIconArrow, rvHistory);
+        animationHelper.init(ivIconArrow, rvHistory, nsvContent_FLD);
+        getPresenter().subscribe();
     }
 
     public boolean optionsMenuForDetail() {
@@ -321,12 +322,12 @@ public class LeadDetailsFragment extends ContentFragment implements LeadDetailsC
 
     @Override
     public void showHistory(boolean enable) {
-        if (enable && rvHistory.getVisibility() == View.GONE) {
+        if (enable) {
             GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_BUTTON, "History");
-            animationHelper.forward(nsvContent_FLD.getHeight());
+            animationHelper.open();
+        } else {
+            animationHelper.close();
         }
-        if (!enable && rvHistory.getVisibility() == View.VISIBLE)
-            animationHelper.backward(rvHistory.getHeight());
     }
 
     @Override
