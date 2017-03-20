@@ -39,7 +39,7 @@ public class RowEmploymentDetailsVH extends RecyclerVH<EmployeeRowTransferDH> {
     public void bindData(EmployeeRowTransferDH data) {
         itemView.setBackgroundResource(getAdapterPosition() % 2 == 0 ? R.color.color_bg_product_details : android.R.color.white);
         EmployeeTransferItem item = data.getEmployeeTransferItem();
-        tvJobType_VLIRED.setText(!TextUtils.isEmpty(item.jobType) ? item.jobType : null);
+        tvJobType_VLIRED.setText(!TextUtils.isEmpty(item.jobType) ? item.jobType.trim() : null);
         if(item.weeklyScheduler != null && !TextUtils.isEmpty(item.weeklyScheduler.name)) {
             tvSchedule_VLIRED.setText(item.weeklyScheduler.name);
         } else {

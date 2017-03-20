@@ -36,7 +36,8 @@
                         android:id="@+id/ivEmployeeAvatar_FED"
                         android:layout_width="@dimen/image_size_large"
                         android:layout_height="@dimen/image_size_large"
-                        android:scaleType="centerCrop" />
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/placeholder"/>
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -601,12 +602,6 @@
                     android:layout_height="wrap_content"
                     android:text="@string/job_position" />
 
-                <FrameLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/default_padding"
-                    android:layout_marginStart="@dimen/default_padding">
-
                     <TextView
                         android:id="@+id/tvEmptyJobPositionList_FED"
                         style="@style/TextNoDataStyle"
@@ -625,9 +620,7 @@
                             android:id="@+id/llJobPositionListHeader_FED"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/default_padding"
-                            android:visibility="gone"
-                            tools:visibility="visible">
+                            android:layout_marginTop="@dimen/default_padding">
 
                             <TextView
                                 style="@style/ProductTableTextStyle.Header"
@@ -676,25 +669,15 @@
                             android:id="@+id/rvJobPositionList_FED"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:nestedScrollingEnabled="false"
-                            android:visibility="gone"
-                            tools:visibility="visible" />
+                            android:nestedScrollingEnabled="false" />
 
                     </LinearLayout>
-
-                </FrameLayout>
 
                 <TextView
                     style="@style/TextContentTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/employment_details" />
-
-                <FrameLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/default_padding"
-                    android:layout_marginStart="@dimen/default_padding">
 
                     <TextView
                         android:id="@+id/tvEmptyEmploymentDetailsList_FED"
@@ -714,9 +697,7 @@
                             android:id="@+id/llEmploymentDetailsListHeader_FED"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/default_padding"
-                            android:visibility="gone"
-                            tools:visibility="visible">
+                            android:layout_marginTop="@dimen/default_padding">
 
                             <TextView
                                 style="@style/ProductTableTextStyle.Header"
@@ -765,13 +746,9 @@
                             android:id="@+id/rvEmploymentDetailsList_FED"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:nestedScrollingEnabled="false"
-                            android:visibility="gone"
-                            tools:visibility="visible" />
+                            android:nestedScrollingEnabled="false" />
 
                     </LinearLayout>
-
-                </FrameLayout>
 
             </LinearLayout>
 

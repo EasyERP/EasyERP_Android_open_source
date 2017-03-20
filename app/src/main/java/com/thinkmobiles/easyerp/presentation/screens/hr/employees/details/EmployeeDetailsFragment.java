@@ -186,7 +186,7 @@ public class EmployeeDetailsFragment extends ContentFragment implements Employee
     @AfterInject
     @Override
     public void initPresenter() {
-
+        new EmployeeDetailsPresenter(this, employeesRepository, employeeID);
     }
 
     @AfterViews
@@ -202,6 +202,11 @@ public class EmployeeDetailsFragment extends ContentFragment implements Employee
         rvEmploymentDetailsList_FED.setAdapter(rowEmploymentDetailsAdapter);
         rvAttachments_FED.setAdapter(attachmentAdapter);
         rvHistory.setAdapter(simpleNotesAdapter);
+
+        attachmentAdapter.setOnCardClickListener((view, position, viewType) -> {
+            GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_ATTACHMENT, "");
+            presenter.startAttachment(position);
+        });
 
         RxView.clicks(btnHistory)
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
@@ -295,7 +300,7 @@ public class EmployeeDetailsFragment extends ContentFragment implements Employee
 
     @Override
     public void enableEmailIcon(String email) {
-        ivEmployeeAvatar_FED.setVisibility(TextUtils.isEmpty(email) ? View.GONE : View.VISIBLE);
+        ivEmail_FED.setVisibility(TextUtils.isEmpty(email) ? View.GONE : View.VISIBLE);
         RxView.clicks(ivEmail_FED)
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
                 .subscribe(aVoid -> {
@@ -309,7 +314,7 @@ public class EmployeeDetailsFragment extends ContentFragment implements Employee
         RxView.clicks(etPersonalMobile_FED)
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
                 .subscribe(aVoid -> {
-                    if(phone != null) {
+                    if (phone != null) {
                         GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_URL, "Personal Mobile");
                         IntentActionHelper.callDialIntent(mActivity, phone);
                     }
@@ -321,7 +326,7 @@ public class EmployeeDetailsFragment extends ContentFragment implements Employee
         RxView.clicks(etWorkPhone_FED)
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
                 .subscribe(aVoid -> {
-                    if(phone != null) {
+                    if (phone != null) {
                         GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_URL, "Work Phone");
                         IntentActionHelper.callDialIntent(mActivity, phone);
                     }
@@ -333,7 +338,7 @@ public class EmployeeDetailsFragment extends ContentFragment implements Employee
         RxView.clicks(etPersonalEmail_FED)
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
                 .subscribe(aVoid -> {
-                    if(email != null) {
+                    if (email != null) {
                         GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_URL, "Personal Email");
                         IntentActionHelper.callSendEmailIntent(mActivity, email, null);
                     }
@@ -345,7 +350,7 @@ public class EmployeeDetailsFragment extends ContentFragment implements Employee
         RxView.clicks(etWorkEmail_FED)
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
                 .subscribe(aVoid -> {
-                    if(email != null) {
+                    if (email != null) {
                         GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_URL, "Work Email");
                         IntentActionHelper.callSendEmailIntent(mActivity, email, null);
                     }
@@ -353,24 +358,25 @@ public class EmployeeDetailsFragment extends ContentFragment implements Employee
     }
 
     @Override
-    public void enableSourceActionClick(String url) {
+    public void enableSourceActionClick(final String url) {
         RxView.clicks(etSource_FED)
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
                 .subscribe(aVoid -> {
-                    if(url != null) {
+                    if (url != null) {
                         GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_URL, "");
-                        startUrlIntent(url);
+                        if (!url.startsWith("http:")) {
+                            startUrlIntent("http:" + url);
+                        } else
+                            startUrlIntent(url);
                     }
                 });
     }
 
     @Override
     public void displayEmployeeImage(String base64Image) {
-        if(!TextUtils.isEmpty(base64Image)) {
+        if (!TextUtils.isEmpty(base64Image)) {
             ImageHelper.getBitmapFromBase64(base64Image, new CropCircleTransformation())
                     .subscribe(ivEmployeeAvatar_FED::setImageBitmap);
-        } else {
-            ivEmployeeAvatar_FED.setImageResource(R.drawable.ic_avatar_placeholder);
         }
     }
 
