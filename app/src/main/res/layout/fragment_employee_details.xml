@@ -71,47 +71,47 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:layout_marginTop="@dimen/default_padding_quart">
+                            android:layout_marginTop="@dimen/default_padding_quart"
+                            android:orientation="horizontal">
 
                             <ImageView
                                 android:id="@+id/ivFacebook_FED"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:paddingEnd="@dimen/default_padding_quart"
                                 android:visibility="gone"
                                 app:srcCompat="@drawable/ic_fb"
-                                tools:visibility="visible"
-                                android:paddingEnd="@dimen/default_padding_quart"/>
+                                tools:visibility="visible" />
 
                             <ImageView
                                 android:id="@+id/ivLinkedIn_FED"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:paddingEnd="@dimen/default_padding_quart"
+                                android:paddingStart="@dimen/default_padding_quart"
                                 android:visibility="gone"
                                 app:srcCompat="@drawable/ic_linkedin"
-                                tools:visibility="visible"
-                                android:paddingStart="@dimen/default_padding_quart"
-                                android:paddingEnd="@dimen/default_padding_quart"/>
+                                tools:visibility="visible" />
 
                             <ImageView
                                 android:id="@+id/ivSkype_FED"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:paddingEnd="@dimen/default_padding_quart"
+                                android:paddingStart="@dimen/default_padding_quart"
                                 android:visibility="gone"
                                 app:srcCompat="@drawable/ic_skype"
-                                tools:visibility="visible"
-                                android:paddingStart="@dimen/default_padding_quart"
-                                android:paddingEnd="@dimen/default_padding_quart" />
+                                tools:visibility="visible" />
 
                             <ImageView
                                 android:id="@+id/ivEmail_FED"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:paddingEnd="@dimen/default_padding_quart"
+                                android:paddingStart="@dimen/default_padding_quart"
                                 android:visibility="gone"
                                 app:srcCompat="@drawable/ic_mail"
-                                tools:visibility="visible"
-                                android:paddingStart="@dimen/default_padding_quart"
-                                android:paddingEnd="@dimen/default_padding_quart" />
+                                tools:visibility="visible" />
 
                         </LinearLayout>
 
@@ -339,7 +339,7 @@
                         android:layout_marginEnd="@dimen/default_padding_half">
 
                         <EditText
-                            android:id="@+id/eWorkPhone_FED"
+                            android:id="@+id/etWorkPhone_FED"
                             style="@style/DefaultTheme.LeadInputFieldStyle"
                             android:hint="@string/hint_work_phone" />
 
@@ -359,119 +359,135 @@
                     android:layout_height="wrap_content"
                     android:text="@string/personal_information" />
 
-                <LinearLayout
+                <TextView
+                    android:id="@+id/tvEmptyPersonalInformation_FED"
+                    style="@style/TextNoDataStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <android.support.design.widget.TextInputLayout
-                        style="@style/DefaultTheme.LeadTextInputLayoutStyle"
-                        android:layout_marginEnd="@dimen/default_padding_half">
-
-                        <EditText
-                            android:id="@+id/etGender_FED"
-                            style="@style/DefaultTheme.LeadInputFieldStyle"
-                            android:hint="@string/hint_gender" />
-
-                    </android.support.design.widget.TextInputLayout>
-
-                    <android.support.design.widget.TextInputLayout
-                        style="@style/DefaultTheme.LeadTextInputLayoutStyle"
-                        android:layout_marginStart="@dimen/default_padding_half">
-
-                        <EditText
-                            android:id="@+id/etEmploymentType_FED"
-                            style="@style/DefaultTheme.LeadInputFieldStyle"
-                            android:hint="@string/hint_employment_type" />
-
-                    </android.support.design.widget.TextInputLayout>
-
-                </LinearLayout>
+                    android:layout_marginStart="@dimen/default_padding_3dp"
+                    android:layout_marginTop="@dimen/default_padding" />
 
                 <LinearLayout
+                    android:id="@+id/llContainerPersonalInformation_FED"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="vertical">
 
-                    <android.support.design.widget.TextInputLayout
-                        style="@style/DefaultTheme.LeadTextInputLayoutStyle"
-                        android:layout_marginEnd="@dimen/default_padding_half">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
 
-                        <EditText
-                            android:id="@+id/etMaritalStatus_FED"
-                            style="@style/DefaultTheme.LeadInputFieldStyle"
-                            android:hint="@string/hint_marital_status" />
+                        <android.support.design.widget.TextInputLayout
+                            style="@style/DefaultTheme.LeadTextInputLayoutStyle"
+                            android:layout_marginEnd="@dimen/default_padding_half">
 
-                    </android.support.design.widget.TextInputLayout>
+                            <EditText
+                                android:id="@+id/etGender_FED"
+                                style="@style/DefaultTheme.LeadInputFieldStyle"
+                                android:hint="@string/hint_gender" />
 
-                    <android.support.design.widget.TextInputLayout
-                        style="@style/DefaultTheme.LeadTextInputLayoutStyle"
-                        android:layout_marginStart="@dimen/default_padding_half">
+                        </android.support.design.widget.TextInputLayout>
 
-                        <EditText
-                            android:id="@+id/etNationality_FED"
-                            style="@style/DefaultTheme.LeadInputFieldStyle"
-                            android:hint="@string/hint_nationality" />
+                        <android.support.design.widget.TextInputLayout
+                            style="@style/DefaultTheme.LeadTextInputLayoutStyle"
+                            android:layout_marginStart="@dimen/default_padding_half">
 
-                    </android.support.design.widget.TextInputLayout>
+                            <EditText
+                                android:id="@+id/etEmploymentType_FED"
+                                style="@style/DefaultTheme.LeadInputFieldStyle"
+                                android:hint="@string/hint_employment_type" />
 
-                </LinearLayout>
+                        </android.support.design.widget.TextInputLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    </LinearLayout>
 
-                    <android.support.design.widget.TextInputLayout
-                        style="@style/DefaultTheme.LeadTextInputLayoutStyle"
-                        android:layout_marginEnd="@dimen/default_padding_half">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
 
-                        <EditText
-                            android:id="@+id/eIdentificationNumber_FED"
-                            style="@style/DefaultTheme.LeadInputFieldStyle"
-                            android:hint="@string/hint_identification_number" />
+                        <android.support.design.widget.TextInputLayout
+                            style="@style/DefaultTheme.LeadTextInputLayoutStyle"
+                            android:layout_marginEnd="@dimen/default_padding_half">
 
-                    </android.support.design.widget.TextInputLayout>
+                            <EditText
+                                android:id="@+id/etMaritalStatus_FED"
+                                style="@style/DefaultTheme.LeadInputFieldStyle"
+                                android:hint="@string/hint_marital_status" />
 
-                    <android.support.design.widget.TextInputLayout
-                        style="@style/DefaultTheme.LeadTextInputLayoutStyle"
-                        android:layout_marginStart="@dimen/default_padding_half">
+                        </android.support.design.widget.TextInputLayout>
 
-                        <EditText
-                            android:id="@+id/etPasportNumber_FED"
-                            style="@style/DefaultTheme.LeadInputFieldStyle"
-                            android:hint="@string/hint_passport_number" />
+                        <android.support.design.widget.TextInputLayout
+                            style="@style/DefaultTheme.LeadTextInputLayoutStyle"
+                            android:layout_marginStart="@dimen/default_padding_half">
 
-                    </android.support.design.widget.TextInputLayout>
+                            <EditText
+                                android:id="@+id/etNationality_FED"
+                                style="@style/DefaultTheme.LeadInputFieldStyle"
+                                android:hint="@string/hint_nationality" />
 
-                </LinearLayout>
+                        </android.support.design.widget.TextInputLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    </LinearLayout>
 
-                    <android.support.design.widget.TextInputLayout
-                        style="@style/DefaultTheme.LeadTextInputLayoutStyle"
-                        android:layout_marginEnd="@dimen/default_padding_half">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
 
-                        <EditText
-                            android:id="@+id/etBankAccountNumber_FED"
-                            style="@style/DefaultTheme.LeadInputFieldStyle"
-                            android:hint="@string/hint_bank_account_number" />
+                        <android.support.design.widget.TextInputLayout
+                            style="@style/DefaultTheme.LeadTextInputLayoutStyle"
+                            android:layout_marginEnd="@dimen/default_padding_half">
 
-                    </android.support.design.widget.TextInputLayout>
+                            <EditText
+                                android:id="@+id/eIdentificationNumber_FED"
+                                style="@style/DefaultTheme.LeadInputFieldStyle"
+                                android:hint="@string/hint_identification_number" />
 
-                    <android.support.design.widget.TextInputLayout
-                        style="@style/DefaultTheme.LeadTextInputLayoutStyle"
-                        android:layout_marginStart="@dimen/default_padding_half">
+                        </android.support.design.widget.TextInputLayout>
 
-                        <EditText
-                            android:id="@+id/etOrderID_FED"
-                            style="@style/DefaultTheme.LeadInputFieldStyle"
-                            android:hint="@string/hint_order_id" />
+                        <android.support.design.widget.TextInputLayout
+                            style="@style/DefaultTheme.LeadTextInputLayoutStyle"
+                            android:layout_marginStart="@dimen/default_padding_half">
 
-                    </android.support.design.widget.TextInputLayout>
+                            <EditText
+                                android:id="@+id/etPassportNumber_FED"
+                                style="@style/DefaultTheme.LeadInputFieldStyle"
+                                android:hint="@string/hint_passport_number" />
+
+                        </android.support.design.widget.TextInputLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <android.support.design.widget.TextInputLayout
+                            style="@style/DefaultTheme.LeadTextInputLayoutStyle"
+                            android:layout_marginEnd="@dimen/default_padding_half">
+
+                            <EditText
+                                android:id="@+id/etBankAccountNumber_FED"
+                                style="@style/DefaultTheme.LeadInputFieldStyle"
+                                android:hint="@string/hint_bank_account_number" />
+
+                        </android.support.design.widget.TextInputLayout>
+
+                        <android.support.design.widget.TextInputLayout
+                            style="@style/DefaultTheme.LeadTextInputLayoutStyle"
+                            android:layout_marginStart="@dimen/default_padding_half">
+
+                            <EditText
+                                android:id="@+id/etOrderID_FED"
+                                style="@style/DefaultTheme.LeadInputFieldStyle"
+                                android:hint="@string/hint_order_id" />
+
+                        </android.support.design.widget.TextInputLayout>
+
+                    </LinearLayout>
 
                 </LinearLayout>
 
@@ -481,85 +497,101 @@
                     android:layout_height="wrap_content"
                     android:text="@string/address" />
 
-                <LinearLayout
+                <TextView
+                    android:id="@+id/tvEmptyAddress_FED"
+                    style="@style/TextNoDataStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <android.support.design.widget.TextInputLayout
-                        style="@style/DefaultTheme.LeadTextInputLayoutStyle"
-                        android:layout_marginEnd="@dimen/default_padding_half">
-
-                        <EditText
-                            android:id="@+id/etStreet_FPD"
-                            style="@style/DefaultTheme.LeadInputFieldStyle"
-                            android:hint="@string/street" />
-
-                    </android.support.design.widget.TextInputLayout>
-
-                    <android.support.design.widget.TextInputLayout
-                        style="@style/DefaultTheme.LeadTextInputLayoutStyle"
-                        android:layout_marginStart="@dimen/default_padding_half">
-
-                        <EditText
-                            android:id="@+id/etCity_FPD"
-                            style="@style/DefaultTheme.LeadInputFieldStyle"
-                            android:hint="@string/hint_city" />
-
-                    </android.support.design.widget.TextInputLayout>
-
-                </LinearLayout>
+                    android:layout_marginStart="@dimen/default_padding_3dp"
+                    android:layout_marginTop="@dimen/default_padding" />
 
                 <LinearLayout
+                    android:id="@+id/llAddressContainer_FED"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="vertical">
 
-                    <android.support.design.widget.TextInputLayout
-                        style="@style/DefaultTheme.LeadTextInputLayoutStyle"
-                        android:layout_marginEnd="@dimen/default_padding_half">
-
-                        <EditText
-                            android:id="@+id/etState_FPD"
-                            style="@style/DefaultTheme.LeadInputFieldStyle"
-                            android:hint="@string/state" />
-
-                    </android.support.design.widget.TextInputLayout>
-
-                    <android.support.design.widget.TextInputLayout
-                        style="@style/DefaultTheme.LeadTextInputLayoutStyle"
-                        android:layout_marginStart="@dimen/default_padding_half">
-
-                        <EditText
-                            android:id="@+id/etZipcode_FPD"
-                            style="@style/DefaultTheme.LeadInputFieldStyle"
-                            android:hint="@string/zip" />
-
-                    </android.support.design.widget.TextInputLayout>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <android.support.design.widget.TextInputLayout
-                        style="@style/DefaultTheme.LeadTextInputLayoutStyle"
-                        android:layout_marginEnd="@dimen/default_padding_half">
-
-                        <EditText
-                            android:id="@+id/etCountry_FPD"
-                            style="@style/DefaultTheme.LeadInputFieldStyle"
-                            android:hint="@string/country" />
-
-                    </android.support.design.widget.TextInputLayout>
-
-                    <View
-                        android:layout_width="0dp"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/default_padding_half"
-                        android:layout_weight="1" />
+                        android:orientation="horizontal">
+
+                        <android.support.design.widget.TextInputLayout
+                            style="@style/DefaultTheme.LeadTextInputLayoutStyle"
+                            android:layout_marginEnd="@dimen/default_padding_half">
+
+                            <EditText
+                                android:id="@+id/etStreet_FPD"
+                                style="@style/DefaultTheme.LeadInputFieldStyle"
+                                android:hint="@string/street" />
+
+                        </android.support.design.widget.TextInputLayout>
+
+                        <android.support.design.widget.TextInputLayout
+                            style="@style/DefaultTheme.LeadTextInputLayoutStyle"
+                            android:layout_marginStart="@dimen/default_padding_half">
+
+                            <EditText
+                                android:id="@+id/etCity_FPD"
+                                style="@style/DefaultTheme.LeadInputFieldStyle"
+                                android:hint="@string/hint_city" />
+
+                        </android.support.design.widget.TextInputLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <android.support.design.widget.TextInputLayout
+                            style="@style/DefaultTheme.LeadTextInputLayoutStyle"
+                            android:layout_marginEnd="@dimen/default_padding_half">
+
+                            <EditText
+                                android:id="@+id/etState_FPD"
+                                style="@style/DefaultTheme.LeadInputFieldStyle"
+                                android:hint="@string/state" />
+
+                        </android.support.design.widget.TextInputLayout>
+
+                        <android.support.design.widget.TextInputLayout
+                            style="@style/DefaultTheme.LeadTextInputLayoutStyle"
+                            android:layout_marginStart="@dimen/default_padding_half">
+
+                            <EditText
+                                android:id="@+id/etZipcode_FPD"
+                                style="@style/DefaultTheme.LeadInputFieldStyle"
+                                android:hint="@string/zip" />
+
+                        </android.support.design.widget.TextInputLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <android.support.design.widget.TextInputLayout
+                            style="@style/DefaultTheme.LeadTextInputLayoutStyle"
+                            android:layout_marginEnd="@dimen/default_padding_half">
+
+                            <EditText
+                                android:id="@+id/etCountry_FPD"
+                                style="@style/DefaultTheme.LeadInputFieldStyle"
+                                android:hint="@string/country" />
+
+                        </android.support.design.widget.TextInputLayout>
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/default_padding_half"
+                            android:layout_weight="1" />
+
+                    </LinearLayout>
 
                 </LinearLayout>
 
@@ -584,63 +616,71 @@
                         android:layout_marginTop="@dimen/default_padding" />
 
                     <LinearLayout
-                        android:id="@+id/llJobPositionListHeader_FED"
+                        android:id="@+id/llJobPositionListContainer_FED"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/default_padding"
-                        android:visibility="gone"
-                        tools:visibility="visible">
+                        android:orientation="vertical">
 
-                        <TextView
-                            style="@style/ProductTableTextStyle.Header"
-                            android:layout_width="0dp"
+                        <LinearLayout
+                            android:id="@+id/llJobPositionListHeader_FED"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="start"
-                            android:text="@string/column_status"
-                            android:textColor="@color/color_text_black" />
+                            android:layout_marginTop="@dimen/default_padding"
+                            android:visibility="gone"
+                            tools:visibility="visible">
 
-                        <TextView
-                            style="@style/ProductTableTextStyle.Header"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="@string/column_date"
-                            android:textColor="@color/color_text_black" />
+                            <TextView
+                                style="@style/ProductTableTextStyle.Header"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:gravity="start"
+                                android:text="@string/column_status"
+                                android:textColor="@color/color_text_black" />
 
-                        <TextView
-                            style="@style/ProductTableTextStyle.Header"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="@string/column_job_position"
-                            android:textColor="@color/color_text_black" />
+                            <TextView
+                                style="@style/ProductTableTextStyle.Header"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@string/column_date"
+                                android:textColor="@color/color_text_black" />
 
-                        <TextView
-                            style="@style/ProductTableTextStyle.Header"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="@string/column_department"
-                            android:textColor="@color/color_text_black" />
+                            <TextView
+                                style="@style/ProductTableTextStyle.Header"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@string/column_job_position"
+                                android:textColor="@color/color_text_black" />
 
-                        <TextView
-                            style="@style/ProductTableTextStyle.Header"
-                            android:layout_width="0dp"
+                            <TextView
+                                style="@style/ProductTableTextStyle.Header"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@string/column_department"
+                                android:textColor="@color/color_text_black" />
+
+                            <TextView
+                                style="@style/ProductTableTextStyle.Header"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@string/column_manager"
+                                android:textColor="@color/color_text_black" />
+
+                        </LinearLayout>
+
+                        <android.support.v7.widget.RecyclerView
+                            android:id="@+id/rvJobPositionList_FED"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="@string/column_manager"
-                            android:textColor="@color/color_text_black" />
+                            android:nestedScrollingEnabled="false"
+                            android:visibility="gone"
+                            tools:visibility="visible" />
 
                     </LinearLayout>
-
-                    <android.support.v7.widget.RecyclerView
-                        android:id="@+id/rvJobPositionList_FED"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:nestedScrollingEnabled="false"
-                        android:visibility="gone"
-                        tools:visibility="visible" />
 
                 </FrameLayout>
 
@@ -665,63 +705,71 @@
                         android:layout_marginTop="@dimen/default_padding" />
 
                     <LinearLayout
-                        android:id="@+id/llEmploymentDetailsListHeader_FED"
+                        android:id="@+id/llEmploymentDetailsContainer_FED"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/default_padding"
-                        android:visibility="gone"
-                        tools:visibility="visible">
+                        android:orientation="vertical">
 
-                        <TextView
-                            style="@style/ProductTableTextStyle.Header"
-                            android:layout_width="0dp"
+                        <LinearLayout
+                            android:id="@+id/llEmploymentDetailsListHeader_FED"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="start"
-                            android:text="@string/column_job_type"
-                            android:textColor="@color/color_text_black" />
+                            android:layout_marginTop="@dimen/default_padding"
+                            android:visibility="gone"
+                            tools:visibility="visible">
 
-                        <TextView
-                            style="@style/ProductTableTextStyle.Header"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="@string/column_schedule"
-                            android:textColor="@color/color_text_black" />
+                            <TextView
+                                style="@style/ProductTableTextStyle.Header"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:gravity="start"
+                                android:text="@string/column_job_type"
+                                android:textColor="@color/color_text_black" />
 
-                        <TextView
-                            style="@style/ProductTableTextStyle.Header"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="@string/column_contract"
-                            android:textColor="@color/color_text_black" />
+                            <TextView
+                                style="@style/ProductTableTextStyle.Header"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@string/column_schedule"
+                                android:textColor="@color/color_text_black" />
 
-                        <TextView
-                            style="@style/ProductTableTextStyle.Header"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="@string/column_scheduled_pay"
-                            android:textColor="@color/color_text_black" />
+                            <TextView
+                                style="@style/ProductTableTextStyle.Header"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@string/column_contract"
+                                android:textColor="@color/color_text_black" />
 
-                        <TextView
-                            style="@style/ProductTableTextStyle.Header"
-                            android:layout_width="0dp"
+                            <TextView
+                                style="@style/ProductTableTextStyle.Header"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@string/column_scheduled_pay"
+                                android:textColor="@color/color_text_black" />
+
+                            <TextView
+                                style="@style/ProductTableTextStyle.Header"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@string/column_salary"
+                                android:textColor="@color/color_text_black" />
+
+                        </LinearLayout>
+
+                        <android.support.v7.widget.RecyclerView
+                            android:id="@+id/rvEmploymentDetailsList_FED"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="@string/column_salary"
-                            android:textColor="@color/color_text_black" />
+                            android:nestedScrollingEnabled="false"
+                            android:visibility="gone"
+                            tools:visibility="visible" />
 
                     </LinearLayout>
-
-                    <android.support.v7.widget.RecyclerView
-                        android:id="@+id/rvEmploymentDetailsList_FED"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:nestedScrollingEnabled="false"
-                        android:visibility="gone"
-                        tools:visibility="visible" />
 
                 </FrameLayout>
 

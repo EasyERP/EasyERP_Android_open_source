@@ -6,6 +6,7 @@ import com.thinkmobiles.easyerp.presentation.base.rules.content.ContentPresenter
 import com.thinkmobiles.easyerp.presentation.base.rules.content.ContentView;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.AttachmentDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.HistoryDH;
+import com.thinkmobiles.easyerp.presentation.holders.data.hr.SimpleNoteDH;
 
 import java.util.ArrayList;
 
@@ -17,8 +18,7 @@ public interface EmployeeDetailsContract {
     interface EmployeeDetailsView extends BaseView<EmployeeDetailsPresenter>, ContentView {
         void showHistory(boolean isShow);
 
-        void showMainInformaion(boolean isShown);
-        void showPersonalInformaion(boolean isShown);
+        void showPersonalInformation(boolean isShown);
         void showAddress(boolean isShown);
         void showJobPositionList(boolean isShown);
         void showEmploymentDetailsList(boolean isShown);
@@ -71,12 +71,13 @@ public interface EmployeeDetailsContract {
         void setZip(String zip);
         void setCountry(String country);
 
-        void setHistory(ArrayList<HistoryDH> history);
+        void setHistory(ArrayList<SimpleNoteDH> simpleNoteDHs);
         void displayAttachments(ArrayList<AttachmentDH> attachmentDHs);
         void startUrlIntent(String url);
     }
     interface EmployeeDetailsPresenter extends ContentPresenter {
-
+        void changeNotesVisibility();
+        void startAttachment(int pos);
     }
     interface EmployeeDetailsModel extends BaseModel {
 
