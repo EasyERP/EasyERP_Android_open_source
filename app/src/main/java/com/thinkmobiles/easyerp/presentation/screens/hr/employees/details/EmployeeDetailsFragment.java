@@ -4,6 +4,7 @@ import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.FrameLayout;
@@ -22,6 +23,7 @@ import com.thinkmobiles.easyerp.presentation.base.rules.content.ContentFragment;
 import com.thinkmobiles.easyerp.presentation.base.rules.content.ContentPresenter;
 import com.thinkmobiles.easyerp.presentation.custom.transformations.CropCircleTransformation;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.AttachmentDH;
+import com.thinkmobiles.easyerp.presentation.holders.data.hr.EmployeeRowTransferDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.hr.SimpleNoteDH;
 import com.thinkmobiles.easyerp.presentation.managers.GoogleAnalyticHelper;
 import com.thinkmobiles.easyerp.presentation.managers.HistoryAnimationHelper;
@@ -260,7 +262,7 @@ public class EmployeeDetailsFragment extends ContentFragment implements Employee
 
     @Override
     public void enableSkypeIcon(String uriPath) {
-        ivSkype_FED.setVisibility(View.VISIBLE);
+        ivSkype_FED.setVisibility(TextUtils.isEmpty(uriPath) ? View.GONE : View.VISIBLE);
         RxView.clicks(ivSkype_FED)
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
                 .subscribe(aVoid -> {
@@ -271,7 +273,7 @@ public class EmployeeDetailsFragment extends ContentFragment implements Employee
 
     @Override
     public void enableLinkedInIcon(String uriPath) {
-        ivLinkedIn_FED.setVisibility(View.VISIBLE);
+        ivLinkedIn_FED.setVisibility(TextUtils.isEmpty(uriPath) ? View.GONE : View.VISIBLE);
         RxView.clicks(ivLinkedIn_FED)
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
                 .subscribe(aVoid -> {
@@ -282,7 +284,7 @@ public class EmployeeDetailsFragment extends ContentFragment implements Employee
 
     @Override
     public void enableFacebookIcon(String uriPath) {
-        ivFacebook_FED.setVisibility(View.VISIBLE);
+        ivFacebook_FED.setVisibility(TextUtils.isEmpty(uriPath) ? View.GONE : View.VISIBLE);
         RxView.clicks(ivFacebook_FED)
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
                 .subscribe(aVoid -> {
@@ -293,7 +295,7 @@ public class EmployeeDetailsFragment extends ContentFragment implements Employee
 
     @Override
     public void enableEmailIcon(String email) {
-        ivEmail_FED.setVisibility(View.VISIBLE);
+        ivEmployeeAvatar_FED.setVisibility(TextUtils.isEmpty(email) ? View.GONE : View.VISIBLE);
         RxView.clicks(ivEmail_FED)
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
                 .subscribe(aVoid -> {
@@ -307,8 +309,10 @@ public class EmployeeDetailsFragment extends ContentFragment implements Employee
         RxView.clicks(etPersonalMobile_FED)
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
                 .subscribe(aVoid -> {
-                    GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_URL, "Personal Mobile");
-                    IntentActionHelper.callDialIntent(mActivity, phone);
+                    if(phone != null) {
+                        GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_URL, "Personal Mobile");
+                        IntentActionHelper.callDialIntent(mActivity, phone);
+                    }
                 });
     }
 
@@ -317,8 +321,10 @@ public class EmployeeDetailsFragment extends ContentFragment implements Employee
         RxView.clicks(etWorkPhone_FED)
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
                 .subscribe(aVoid -> {
-                    GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_URL, "Work Phone");
-                    IntentActionHelper.callDialIntent(mActivity, phone);
+                    if(phone != null) {
+                        GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_URL, "Work Phone");
+                        IntentActionHelper.callDialIntent(mActivity, phone);
+                    }
                 });
     }
 
@@ -327,8 +333,10 @@ public class EmployeeDetailsFragment extends ContentFragment implements Employee
         RxView.clicks(etPersonalEmail_FED)
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
                 .subscribe(aVoid -> {
-                    GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_URL, "Personal Email");
-                    IntentActionHelper.callSendEmailIntent(mActivity, email, null);
+                    if(email != null) {
+                        GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_URL, "Personal Email");
+                        IntentActionHelper.callSendEmailIntent(mActivity, email, null);
+                    }
                 });
     }
 
@@ -337,180 +345,202 @@ public class EmployeeDetailsFragment extends ContentFragment implements Employee
         RxView.clicks(etWorkEmail_FED)
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
                 .subscribe(aVoid -> {
-                    GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_URL, "Work Email");
-                    IntentActionHelper.callSendEmailIntent(mActivity, email, null);
+                    if(email != null) {
+                        GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_URL, "Work Email");
+                        IntentActionHelper.callSendEmailIntent(mActivity, email, null);
+                    }
                 });
     }
 
     @Override
     public void enableSourceActionClick(String url) {
-        GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_URL, "");
-        startUrlIntent(url);
+        RxView.clicks(etSource_FED)
+                .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
+                .subscribe(aVoid -> {
+                    if(url != null) {
+                        GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_URL, "");
+                        startUrlIntent(url);
+                    }
+                });
     }
 
     @Override
-    public void setImage(String base64Image) {
-        ImageHelper.getBitmapFromBase64(base64Image, new CropCircleTransformation())
-                .subscribe(ivEmployeeAvatar_FED::setImageBitmap);
+    public void displayEmployeeImage(String base64Image) {
+        if(!TextUtils.isEmpty(base64Image)) {
+            ImageHelper.getBitmapFromBase64(base64Image, new CropCircleTransformation())
+                    .subscribe(ivEmployeeAvatar_FED::setImageBitmap);
+        } else {
+            ivEmployeeAvatar_FED.setImageResource(R.drawable.ic_avatar_placeholder);
+        }
     }
 
     @Override
-    public void setHeaderFullname(String fullname) {
+    public void displayHeaderFullname(String fullname) {
         tvEmployeeName_FED.setText(fullname);
     }
 
     @Override
-    public void setHeaderDepartment(String department) {
+    public void displayHeaderDepartment(String department) {
         tvHeaderDepartment_FED.setText(department);
     }
 
     @Override
-    public void setHeaderJobPosition(String jobPosition) {
+    public void displayHeaderJobPosition(String jobPosition) {
         tvHeaderJobPosition_FED.setText(jobPosition);
     }
 
     @Override
-    public void setFirstName(String firstName) {
+    public void displayFirstName(String firstName) {
         etFirstName_FED.setText(firstName);
     }
 
     @Override
-    public void setLastName(String lastName) {
+    public void displayLastName(String lastName) {
         etLastName_FED.setText(lastName);
     }
 
     @Override
-    public void setDateOfBirth(String dob) {
+    public void displayDateOfBirth(String dob) {
         etDob_FED.setText(dob);
     }
 
     @Override
-    public void setPersonalMobile(String personalMobile) {
+    public void displayPersonalMobile(String personalMobile) {
         etPersonalMobile_FED.setText(personalMobile);
     }
 
     @Override
-    public void setPersonalEmail(String personalEmail) {
+    public void displayPersonalEmail(String personalEmail) {
         etPersonalEmail_FED.setText(personalEmail);
     }
 
     @Override
-    public void setSkype(String skype) {
+    public void displaySkype(String skype) {
         etSkype_FED.setText(skype);
     }
 
     @Override
-    public void setLinkedIn(String linkedIn) {
+    public void displayLinkedIn(String linkedIn) {
         etLinkedIn_FED.setText(linkedIn);
     }
 
     @Override
-    public void setFacebook(String facebook) {
+    public void displayFacebook(String facebook) {
         etFacebook_FED.setText(facebook);
     }
 
     @Override
-    public void setJobPosition(String jobPosition) {
+    public void displayJobPosition(String jobPosition) {
         etJobPosition_FED.setText(jobPosition);
     }
 
     @Override
-    public void setDepartment(String department) {
+    public void displayDepartment(String department) {
         etDepartment_FED.setText(department);
     }
 
     @Override
-    public void setManager(String manager) {
+    public void displayManager(String manager) {
         etManager_FED.setText(manager);
     }
 
     @Override
-    public void setJobType(String jobType) {
+    public void displayJobType(String jobType) {
         etJobType_FED.setText(jobType);
     }
 
     @Override
-    public void setSource(String source) {
+    public void displaySource(String source) {
         etSource_FED.setText(source);
     }
 
     @Override
-    public void setWorkEmail(String workEmail) {
+    public void displayWorkEmail(String workEmail) {
         etWorkEmail_FED.setText(workEmail);
     }
 
     @Override
-    public void setWorkPhone(String workPhone) {
+    public void displayWorkPhone(String workPhone) {
         etWorkPhone_FED.setText(workPhone);
     }
 
     @Override
-    public void setGender(String gender) {
+    public void displayGender(String gender) {
         etGender_FED.setText(gender);
     }
 
     @Override
-    public void setEmploymentType(String employmentType) {
+    public void displayEmploymentType(String employmentType) {
         etEmploymentType_FED.setText(employmentType);
     }
 
     @Override
-    public void setMaritalStatus(String maritalStatus) {
+    public void displayMaritalStatus(String maritalStatus) {
         etMaritalStatus_FED.setText(maritalStatus);
     }
 
     @Override
-    public void setNationality(String nationality) {
+    public void displayNationality(String nationality) {
         etNationality_FED.setText(nationality);
     }
 
     @Override
-    public void setIdentificationNumber(String identificationNumber) {
+    public void displayIdentificationNumber(String identificationNumber) {
         eIdentificationNumber_FED.setText(identificationNumber);
     }
 
     @Override
-    public void setPassportNumber(String passportNumber) {
+    public void displayPassportNumber(String passportNumber) {
         etPassportNumber_FED.setText(passportNumber);
     }
 
     @Override
-    public void setBankAccountNumber(String bankAccountNumber) {
+    public void displayBankAccountNumber(String bankAccountNumber) {
         etBankAccountNumber_FED.setText(bankAccountNumber);
     }
 
     @Override
-    public void setOrderID(String orderID) {
+    public void displayOtherID(String orderID) {
         etOrderID_FED.setText(orderID);
     }
 
     @Override
-    public void setStreet(String street) {
+    public void displayStreet(String street) {
         etStreet_FPD.setText(street);
     }
 
     @Override
-    public void setCity(String city) {
+    public void displayCity(String city) {
         etCity_FPD.setText(city);
     }
 
     @Override
-    public void setState(String state) {
+    public void displayState(String state) {
         etState_FPD.setText(state);
     }
 
     @Override
-    public void setZip(String zip) {
+    public void displayZip(String zip) {
         etZipcode_FPD.setText(zip);
     }
 
     @Override
-    public void setCountry(String country) {
+    public void displayCountry(String country) {
         etCountry_FPD.setText(country);
     }
 
     @Override
-    public void setHistory(ArrayList<SimpleNoteDH> simpleNoteDHs) {
+    public void displayJobPositionList(ArrayList<EmployeeRowTransferDH> employeeRowTransferDHs) {
+        rowEmploymentJobPositionAdapter.setListDH(employeeRowTransferDHs);
+    }
+
+    @Override
+    public void displayEmploymentDetailsList(ArrayList<EmployeeRowTransferDH> employeeRowTransferDHs) {
+        rowEmploymentDetailsAdapter.setListDH(employeeRowTransferDHs);
+    }
+
+    @Override
+    public void displayHistory(ArrayList<SimpleNoteDH> simpleNoteDHs) {
         simpleNotesAdapter.setListDH(simpleNoteDHs);
     }
 

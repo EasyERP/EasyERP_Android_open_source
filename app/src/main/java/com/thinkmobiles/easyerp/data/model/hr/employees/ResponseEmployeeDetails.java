@@ -31,7 +31,7 @@ public class ResponseEmployeeDetails implements Parcelable {
     public int expectedSalary;
     public int proposedSalary;
     public String identNo;
-    public int passportNo;
+    public String passportNo;
     public String dateBirth;
 //    public String __v;
     public String userName;
@@ -85,6 +85,9 @@ public class ResponseEmployeeDetails implements Parcelable {
     public boolean isEmployee;
     public String fullName;
 
+    public ResponseEmployeeDetails() {
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -97,7 +100,7 @@ public class ResponseEmployeeDetails implements Parcelable {
         dest.writeInt(this.expectedSalary);
         dest.writeInt(this.proposedSalary);
         dest.writeString(this.identNo);
-        dest.writeInt(this.passportNo);
+        dest.writeString(this.passportNo);
         dest.writeString(this.dateBirth);
         dest.writeString(this.userName);
         dest.writeTypedList(this.transfer);
@@ -149,16 +152,13 @@ public class ResponseEmployeeDetails implements Parcelable {
         dest.writeString(this.fullName);
     }
 
-    public ResponseEmployeeDetails() {
-    }
-
     protected ResponseEmployeeDetails(Parcel in) {
         this.id = in.readString();
         this.nextAction = in.readString();
         this.expectedSalary = in.readInt();
         this.proposedSalary = in.readInt();
         this.identNo = in.readString();
-        this.passportNo = in.readInt();
+        this.passportNo = in.readString();
         this.dateBirth = in.readString();
         this.userName = in.readString();
         this.transfer = in.createTypedArrayList(EmployeeTransferItem.CREATOR);
@@ -210,7 +210,7 @@ public class ResponseEmployeeDetails implements Parcelable {
         this.fullName = in.readString();
     }
 
-    public static final Parcelable.Creator<ResponseEmployeeDetails> CREATOR = new Parcelable.Creator<ResponseEmployeeDetails>() {
+    public static final Creator<ResponseEmployeeDetails> CREATOR = new Creator<ResponseEmployeeDetails>() {
         @Override
         public ResponseEmployeeDetails createFromParcel(Parcel source) {
             return new ResponseEmployeeDetails(source);

@@ -14,6 +14,7 @@ import com.thinkmobiles.easyerp.data.services.FilterService;
 import com.thinkmobiles.easyerp.data.services.ImageService;
 import com.thinkmobiles.easyerp.presentation.base.NetworkRepository;
 import com.thinkmobiles.easyerp.presentation.screens.hr.employees.EmployeesContract;
+import com.thinkmobiles.easyerp.presentation.screens.hr.employees.details.EmployeeDetailsContract;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 import com.thinkmobiles.easyerp.presentation.utils.filter.FilterHelper;
 
@@ -28,7 +29,7 @@ import rx.Observable;
  */
 
 @EBean(scope = EBean.Scope.Singleton)
-public class EmployeesRepository extends NetworkRepository implements EmployeesContract.EmployeeModel {
+public class EmployeesRepository extends NetworkRepository implements EmployeesContract.EmployeeModel, EmployeeDetailsContract.EmployeeDetailsModel {
 
     private EmployeesService employeesService;
     private ImageService imageService;
