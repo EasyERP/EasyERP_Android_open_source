@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <TextView
-        android:id="@+id/tvJobType_VEDI"
+        android:id="@+id/tvJobType_VLIRED"
         style="@style/ProductTableTextStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -14,7 +14,7 @@
         tools:text="Full Time"/>
 
     <TextView
-        android:id="@+id/tvSchedule_VEDI"
+        android:id="@+id/tvSchedule_VLIRED"
         style="@style/ProductTableTextStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -22,7 +22,7 @@
         tools:text="UA-40"/>
 
     <TextView
-        android:id="@+id/tvContract_VEDI"
+        android:id="@+id/tvContract_VLIRED"
         style="@style/ProductTableTextStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -30,7 +30,7 @@
         tools:text="Base Contract"/>
 
     <TextView
-        android:id="@+id/tvScheduledPay_VEDI"
+        android:id="@+id/tvScheduledPay_VLIRED"
         style="@style/ProductTableTextStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -38,7 +38,7 @@
         tools:text="Monthly"/>
 
     <TextView
-        android:id="@+id/tvSalary_VEDI"
+        android:id="@+id/tvSalary_VLIRED"
         style="@style/ProductTableTextStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
