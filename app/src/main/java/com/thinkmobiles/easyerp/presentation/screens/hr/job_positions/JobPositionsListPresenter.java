@@ -15,14 +15,14 @@ import java.util.List;
  *         Company: Thinkmobiles
  *         Email: michael.soyma@thinkmobiles.com
  */
-public final class JobPositionsPresenter extends MasterSelectablePresenterHelper implements JobPositionsListContract.JobPositionsListPresenter {
+public final class JobPositionsListPresenter extends MasterSelectablePresenterHelper implements JobPositionsListContract.JobPositionsListPresenter {
 
     private JobPositionsListContract.JobPositionsListView view;
     private JobPositionsListContract.JobPositionsListModel model;
 
     private List<JobPosition> jobPositions = new ArrayList<>();
 
-    public JobPositionsPresenter(JobPositionsListContract.JobPositionsListView view, JobPositionsListContract.JobPositionsListModel model) {
+    public JobPositionsListPresenter(JobPositionsListContract.JobPositionsListView view, JobPositionsListContract.JobPositionsListModel model) {
         this.view = view;
         this.model = model;
 

@@ -1,12 +1,11 @@
-package com.thinkmobiles.easyerp.presentation.screens.hr.employees;
+package com.thinkmobiles.easyerp.presentation.screens.hr.attendance;
 
 import com.thinkmobiles.easyerp.data.model.ResponseGetTotalItems;
 import com.thinkmobiles.easyerp.data.model.crm.common.images.ImageItem;
 import com.thinkmobiles.easyerp.data.model.hr.employees.ResponseCommonEmployees;
 import com.thinkmobiles.easyerp.data.model.hr.employees.item.EmployeeItem;
-import com.thinkmobiles.easyerp.presentation.base.rules.master.alphabetical.AlphabeticalModel;
-import com.thinkmobiles.easyerp.presentation.base.rules.master.alphabetical.AlphabeticalView;
-import com.thinkmobiles.easyerp.presentation.base.rules.master.alphabetical.MasterAlphabeticalPresenterHelper;
+import com.thinkmobiles.easyerp.presentation.base.rules.master.selectable.MasterSelectablePresenterHelper;
+import com.thinkmobiles.easyerp.presentation.base.rules.master.selectable.SelectableView;
 import com.thinkmobiles.easyerp.presentation.holders.data.hr.EmployeeDH;
 import com.thinkmobiles.easyerp.presentation.managers.ErrorManager;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
@@ -14,28 +13,54 @@ import com.thinkmobiles.easyerp.presentation.utils.Constants;
 import java.util.ArrayList;
 
 /**
- * Created by Lynx on 3/13/2017.
+ * @author Michael Soyma (Created on 3/20/2017).
+ *         Company: Thinkmobiles
+ *         Email: michael.soyma@thinkmobiles.com
  */
+public class AttendanceListPresenter extends MasterSelectablePresenterHelper implements AttendanceListContract.AttendanceListPresenter {
 
-public class EmployeesPresenter extends MasterAlphabeticalPresenterHelper implements EmployeesContract.EmployeePresenter {
-
-    private EmployeesContract.EmployeeView view;
-    private EmployeesContract.EmployeeModel model;
+    private AttendanceListContract.AttendanceListView view;
+    private AttendanceListContract.AttendanceListModel model;
 
     private ResponseCommonEmployees responseEmployees;
 
-    public EmployeesPresenter(EmployeesContract.EmployeeView view, EmployeesContract.EmployeeModel model) {
+    public AttendanceListPresenter(AttendanceListContract.AttendanceListView view, AttendanceListContract.AttendanceListModel model) {
         this.view = view;
         this.model = model;
 
-        view.setPresenter(this);
+        this.view.setPresenter(this);
     }
 
     @Override
     public void clickItem(int position) {
-        String id = responseEmployees.responseGetEmployees.data.get(position).id;
-        if (super.selectItem(id, position))
-            view.openDetailsScreen(id);
+        final EmployeeItem employeeItem = responseEmployees.responseGetEmployees.data.get(position);
+        if (super.selectItem(employeeItem.id, position))
+            view.openAttendanceDetail(employeeItem.id);
+    }
+
+    @Override
+    protected SelectableView getView() {
+        return view;
+    }
+
+    @Override
+    protected void loadPage(int page) {
+        compositeSubscription.add(
+                model.getAllEmployees()
+                        .flatMap(employeeItemResponseGetTotalItems -> model.getEmployeeImages(prepareIDsForImagesRequest(employeeItemResponseGetTotalItems)),
+                                ResponseCommonEmployees::new)
+                        .subscribe(responseCommonEmployees -> {
+                            totalItems = responseCommonEmployees.responseGetEmployees.data.size();
+                            saveData(responseCommonEmployees, true);
+                            setData(responseCommonEmployees, true);
+                        }, t -> error(t))
+        );
+
+    }
+
+    @Override
+    protected int getCountItems() {
+        return responseEmployees.responseGetEmployees.data.size();
     }
 
     @Override
@@ -48,37 +73,6 @@ public class EmployeesPresenter extends MasterAlphabeticalPresenterHelper implem
         setData(responseEmployees, true);
     }
 
-    @Override
-    protected void loadPage(int page) {
-        final boolean needClear = page == 1;
-        compositeSubscription.add(
-                model.getEmployees(helper, selectedLetter, page)
-                .flatMap(employeeItemResponseGetTotalItems -> model.getEmployeeImages(prepareIDsForImagesRequest(employeeItemResponseGetTotalItems)),
-                        ResponseCommonEmployees::new)
-                .subscribe(responseCommonEmployees -> {
-                    currentPage = page;
-                    totalItems = responseCommonEmployees.responseGetEmployees.total;
-                    saveData(responseCommonEmployees, needClear);
-                    setData(responseCommonEmployees, needClear);
-                }, t -> error(t))
-        );
-    }
-
-    @Override
-    protected int getCountItems() {
-        return responseEmployees.responseGetEmployees.data.size();
-    }
-
-    @Override
-    protected AlphabeticalView getView() {
-        return view;
-    }
-
-    @Override
-    protected AlphabeticalModel getModel() {
-        return model;
-    }
-
     private void saveData(ResponseCommonEmployees responseCommonEmployees, boolean needClear) {
         if (needClear) responseEmployees = responseCommonEmployees;
         else if (responseEmployees != null) {
@@ -88,7 +82,6 @@ public class EmployeesPresenter extends MasterAlphabeticalPresenterHelper implem
     }
 
     private void setData(ResponseCommonEmployees responseCommonEmployees, boolean needClear) {
-        view.displaySelectedLetter(selectedLetter);
         view.setDataList(prepareDataHolders(responseCommonEmployees), needClear);
         if (responseEmployees.responseGetEmployees.data.isEmpty()) {
             view.displayErrorState(ErrorManager.getErrorType(null));
@@ -114,7 +107,7 @@ public class EmployeesPresenter extends MasterAlphabeticalPresenterHelper implem
 
     private ArrayList<String> prepareIDsForImagesRequest(ResponseGetTotalItems<EmployeeItem> responseGetEmployees) {
         ArrayList<String> employeesID = new ArrayList<>();
-        if (responseGetEmployees.total > 0 && responseGetEmployees.data != null && responseGetEmployees.data.size() > 0) {
+        if (responseGetEmployees.data.size() > 0 && responseGetEmployees.data != null && responseGetEmployees.data.size() > 0) {
             for (EmployeeItem employeeItem : responseGetEmployees.data) {
                 employeesID.add(employeeItem.id);
             }
