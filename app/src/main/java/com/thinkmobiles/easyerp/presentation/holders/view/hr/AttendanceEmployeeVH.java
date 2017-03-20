@@ -11,6 +11,7 @@ import com.michenko.simpleadapter.OnCardClickListener;
 import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.data.model.hr.employees.item.EmployeeItem;
 import com.thinkmobiles.easyerp.presentation.base.rules.master.selectable.SelectableVHHelper;
+import com.thinkmobiles.easyerp.presentation.custom.RoundRectDrawable;
 import com.thinkmobiles.easyerp.presentation.custom.transformations.CropCircleTransformation;
 import com.thinkmobiles.easyerp.presentation.holders.data.hr.EmployeeDH;
 import com.thinkmobiles.easyerp.presentation.managers.ImageHelper;
@@ -22,20 +23,18 @@ import com.thinkmobiles.easyerp.presentation.managers.ImageHelper;
  */
 public class AttendanceEmployeeVH extends SelectableVHHelper<EmployeeDH> {
 
-    private View llAttendanceParent_VLIA;
     private ImageView ivEmployeeImage_VLIA;
-    private TextView tvEmployeeName_VLIA, tvEmployeeDepartment_VLIA;
-    private int notEmployeeBgColor;
+    private TextView tvEmployeeName_VLIA, tvEmployeeDepartment_VLIA, tvIsEmployee_VLIA;
 
     public AttendanceEmployeeVH(View itemView, @Nullable OnCardClickListener listener, int viewType) {
         super(itemView, listener, viewType);
 
-        llAttendanceParent_VLIA = findView(R.id.llAttendanceParent_VLIA);
+        tvIsEmployee_VLIA = findView(R.id.tvIsEmployee_VLIA);
         ivEmployeeImage_VLIA = findView(R.id.ivEmployeeImage_VLIA);
         tvEmployeeName_VLIA = findView(R.id.tvEmployeeName_VLIA);
         tvEmployeeDepartment_VLIA = findView(R.id.tvEmployeeDepartment_VLIA);
 
-        notEmployeeBgColor = ContextCompat.getColor(itemView.getContext(), R.color.color_not_employee);
+        tvIsEmployee_VLIA.setBackgroundDrawable(new RoundRectDrawable(ContextCompat.getColor(itemView.getContext(), R.color.color_not_employee)));
     }
 
     @Override
@@ -51,7 +50,7 @@ public class AttendanceEmployeeVH extends SelectableVHHelper<EmployeeDH> {
 
         final EmployeeItem employeeItem = data.getEmployeeItem();
 
-        llAttendanceParent_VLIA.setBackgroundColor(employeeItem.isEmployee ? 0 : notEmployeeBgColor);
+        tvIsEmployee_VLIA.setVisibility(employeeItem.isEmployee ? View.GONE : View.VISIBLE);
         if (employeeItem.name != null) {
             tvEmployeeName_VLIA.setText(employeeItem.name.getFullName());
         } else {

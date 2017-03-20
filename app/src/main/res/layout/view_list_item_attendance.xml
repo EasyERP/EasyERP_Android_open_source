@@ -7,7 +7,6 @@
     tools:background="@android:color/white">
 
     <LinearLayout
-        android:id="@+id/llAttendanceParent_VLIA"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -32,21 +31,35 @@
                 android:gravity="center_vertical"
                 android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/tvEmployeeName_VLIA"
-                    style="@style/TextListTitleStyle"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
-                    android:includeFontPadding="false"
-                    android:maxLines="2"
-                    tools:text="Bradley Douglas" />
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tvEmployeeName_VLIA"
+                        style="@style/TextListTitleStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:includeFontPadding="false"
+                        tools:text="Bradley Douglas" />
+
+                    <TextView
+                        android:id="@+id/tvIsEmployee_VLIA"
+                        style="@style/SmallChipsStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/default_padding_middle"
+                        android:text="@string/non_employee" />
+                </LinearLayout>
 
                 <TextView
                     android:id="@+id/tvEmployeeDepartment_VLIA"
                     style="@style/TextListInfoStyle"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/padding_very_minimum"
                     tools:text="Marketing" />
 

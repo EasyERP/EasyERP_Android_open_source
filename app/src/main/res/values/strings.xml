@@ -275,4 +275,5 @@
     <string name="product_details_channel_logo">Channel Logo</string>
     <string name="product_details_channel_name">Channel Name</string>
     <string name="product_details_published">Published</string>
+    <string name="non_employee">Non-employee</string>
 </resources>
