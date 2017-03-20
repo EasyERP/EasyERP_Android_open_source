@@ -31,7 +31,7 @@ public class JobPositionsListFragment extends MasterSelectableFragment implement
     @AfterInject
     @Override
     public void initPresenter() {
-        new JobPositionsPresenter(this, jobPositionRepository);
+        new JobPositionsListPresenter(this, jobPositionRepository);
     }
 
     @Override

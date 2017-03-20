@@ -306,4 +306,5 @@
     <string name="column_scheduled_pay">Scheduled Pay</string>
     <string name="column_salary">Salary</string>
     <string name="left_a_note">Left a Note</string>
+    <string name="non_employee">Non-employee</string>
 </resources>

@@ -23,6 +23,9 @@ public interface EmployeesService {
     @GET
     Observable<ResponseGetTotalItems<EmployeeItem>> getEmployees(@Url String url);
 
+    @GET(Constants.GET_EMPLOYEES_ALL_FOR_DB)
+    Observable<ResponseGetTotalItems<EmployeeItem>> getAllEmployeesForDB();
+
     @GET(Constants.GET_EMPLOYEES)
     Observable<ResponseEmployeeDetails> getEmployeeDetails(@Query("id") String id);
 }

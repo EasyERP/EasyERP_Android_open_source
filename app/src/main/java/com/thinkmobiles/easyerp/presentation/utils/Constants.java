@@ -121,6 +121,7 @@ public abstract class Constants {
     //Employees
     public static final String GET_EMPLOYEES_IMAGES         = "employees/getEmployeesImages";
     public static final String GET_EMPLOYEES_ALPHABET       = "employees/getEmployeesAlphabet";
+    public static final String GET_EMPLOYEES_ALL_FOR_DB     = "employees/getForDd";
     public static final String GET_EMPLOYEES                = "employees";
     //End Employees
 

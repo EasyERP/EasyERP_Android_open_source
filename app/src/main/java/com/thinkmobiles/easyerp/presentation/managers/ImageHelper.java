@@ -2,6 +2,7 @@ package com.thinkmobiles.easyerp.presentation.managers;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.text.TextUtils;
 import android.util.Base64;
 
 import com.squareup.picasso.Transformation;
@@ -29,9 +30,11 @@ public abstract class ImageHelper {
     }
 
     private static Bitmap getBitmap(String str) {
-        str = str.substring(str.indexOf(","));    // cut useless values
-        byte[] decodedString = Base64.decode(str, Base64.DEFAULT);
-        return BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+        if (!TextUtils.isEmpty(str)) {
+            str = str.substring(str.indexOf(","));    // cut useless values
+            byte[] decodedString = Base64.decode(str, Base64.DEFAULT);
+            return BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+        } else return null;
     }
 
 }
