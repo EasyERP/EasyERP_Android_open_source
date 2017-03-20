@@ -11,6 +11,7 @@ import com.thinkmobiles.easyerp.presentation.screens.crm.orders.OrdersFragment_;
 import com.thinkmobiles.easyerp.presentation.screens.crm.payments.PaymentsFragment_;
 import com.thinkmobiles.easyerp.presentation.screens.crm.persons.PersonsFragment_;
 import com.thinkmobiles.easyerp.presentation.screens.hr.applications.ApplicationsListFragment_;
+import com.thinkmobiles.easyerp.presentation.screens.hr.attendance.AttendanceListFragment_;
 import com.thinkmobiles.easyerp.presentation.screens.hr.employees.EmployeesFragment_;
 import com.thinkmobiles.easyerp.presentation.screens.hr.job_positions.JobPositionsListFragment_;
 import com.thinkmobiles.easyerp.presentation.screens.inventory.goods_out_notes.GoodsOutNotesFragment_;
@@ -108,7 +109,7 @@ public abstract class MenuConfigs {
         menuItems.add(new MenuItem(2, R.drawable.ic_job_positions, "Job Positions", true));
         menuItems.add(new MenuItem(3, R.drawable.ic_birthdays, "Birthdays", false));
         menuItems.add(new MenuItem(4, R.drawable.ic_vacations, "Vacations", false));
-        menuItems.add(new MenuItem(5, R.drawable.ic_attendance, "Attendance", false));
+        menuItems.add(new MenuItem(5, R.drawable.ic_attendance, "Attendance", true));
         menuItems.add(new MenuItem(6, R.drawable.ic_dashboard, "HR Dashboard", false));
         return menuItems;
     }
@@ -255,6 +256,7 @@ public abstract class MenuConfigs {
             case 0: return EmployeesFragment_.builder().build();
             case 1: return ApplicationsListFragment_.builder().build();
             case 2: return JobPositionsListFragment_.builder().build();
+            case 5: return AttendanceListFragment_.builder().build();
         }
         return null;
     }
