@@ -21,14 +21,15 @@ public abstract class DateManager {
     private static final String PATTERN_COOKIE_EXPIRED      = "E, dd MMM yyyy HH:mm:ss z"; //Expires=Wed, 18 Jan 2017 08:58:07 GMT
 
     public static final String PATTERN_SIMPLE_DATE          = "MMMM dd, yyyy"; //January 15, 2017
-    public static final String PATTERN_SIMPLE_DATE_SHORT   = "MMM dd, yyyy"; //Jan 15, 2017
-    public static final String PATTERN_SIMPLE_TIME         = "h:mm a";   // 2:45 PM
+    public static final String PATTERN_SIMPLE_DATE_SHORT    = "MMM dd, yyyy"; //Jan 15, 2017
+    public static final String PATTERN_SIMPLE_TIME          = "h:mm a";   // 2:45 PM
 
     public static final String PATTERN_DATE_SIMPLE_PREVIEW  = "dd MMM, yyyy";
     public static final String PATTERN_DATE_AND_TIME        = "dd MMM, yyyy, HH:mm";
     public static final String PATTERN_DASHBOARD_PREVIEW    = "dd, MMM yyyy";
     public static final String PATTERN_DASHBOARD_BACKEND    = "E MMM dd yyyy HH:mm:ss z";
     public static final String PATTERN_DASHBOARD_DAY_VIEW   = PATTERN_DASHBOARD_PREVIEW + " EEEE, HH:mm";
+    public static final String PATTERN_DASHBOARD_YM_PREVIEW = "MMMM, yyyy";
 
     private static final String YESTERDAY                   = "Yesterday";
     private static final String TODAY                       = "Today";

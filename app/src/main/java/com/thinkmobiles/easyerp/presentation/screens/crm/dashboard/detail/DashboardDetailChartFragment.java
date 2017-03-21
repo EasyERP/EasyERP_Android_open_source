@@ -13,6 +13,7 @@ import com.thinkmobiles.easyerp.domain.DomainHelper;
 import com.thinkmobiles.easyerp.domain.crm.DashboardRepository;
 import com.thinkmobiles.easyerp.presentation.base.rules.content.ContentFragment;
 import com.thinkmobiles.easyerp.presentation.base.rules.content.ContentPresenter;
+import com.thinkmobiles.easyerp.presentation.custom.views.drawer_menu.models.MenuConfigs;
 import com.thinkmobiles.easyerp.presentation.managers.GoogleAnalyticHelper;
 import com.thinkmobiles.easyerp.presentation.screens.crm.dashboard.detail.DashboardDetailChartContract.DashboardDetailChartView;
 import com.thinkmobiles.easyerp.presentation.screens.crm.dashboard.detail.charts.ChartViewFabric;
@@ -85,7 +86,7 @@ public class DashboardDetailChartFragment extends ContentFragment implements Das
 
     @Override
     public String getScreenName() {
-        return "Dashboard details screen";
+        return String.format("%s Dashboard details screen", MenuConfigs.getModuleLabel(moduleId));
     }
 
     @Override
@@ -95,7 +96,6 @@ public class DashboardDetailChartFragment extends ContentFragment implements Das
 
     @Override
     public void displayChart(Object data, DashboardChartType chartType) {
-
         IChartView chartView = ChartViewFabric.implementByChartType(chartType);
         if (chartView != null)
             chartView.render(containerChart, data);

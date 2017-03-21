@@ -307,4 +307,6 @@
     <string name="column_salary">Salary</string>
     <string name="left_a_note">Left a Note</string>
     <string name="non_employee">Non-employee</string>
+    <string name="month_filter">Month Filter</string>
+
 </resources>

@@ -48,6 +48,8 @@ public abstract class DomainHelper {
         switch (moduleId) {
             case 4:
                 return new DashboardRepository("purchaseDashboard");
+            case 3:
+                return new DashboardRepository("hrDashboard");
             case 1:
             default:
                 return new DashboardRepository("reportsDashboard");

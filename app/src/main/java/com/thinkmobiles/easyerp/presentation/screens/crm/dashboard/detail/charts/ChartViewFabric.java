@@ -16,6 +16,8 @@ public final class ChartViewFabric {
             case OVERVIEW: return new OverViewChartViewImpl();
             case TABLE: return new TableChartViewImpl();
             case HORIZONTALBAR: return new HorizontalBarChartViewImpl();
+            case REVERSEHORIZONTALBAR:
+            case COLORCARDSVIEW:
             default : return null;
         }
     }

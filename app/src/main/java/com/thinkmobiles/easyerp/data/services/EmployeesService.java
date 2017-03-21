@@ -28,4 +28,16 @@ public interface EmployeesService {
 
     @GET(Constants.GET_EMPLOYEES)
     Observable<ResponseEmployeeDetails> getEmployeeDetails(@Query("id") String id);
+
+    @GET(Constants.GET_EMPLOYEES_COUNT_FOR_DASHBOARD)
+    Observable<ResponseEmployeeDetails> getEmployeesCountForDashboard(@Query("month") final int month, @Query("year") final int year);
+
+    @GET(Constants.GET_EMPLOYEES_FOR_CHART_BY_GENDER)
+    Observable<ResponseEmployeeDetails> getEmployeesForChartByGender();
+
+    @GET(Constants.GET_EMPLOYEES_FOR_CHART_BY_SALARY)
+    Observable<ResponseEmployeeDetails> getEmployeesForChartBySalary(@Query("month") final int month, @Query("year") final int year);
+
+    @GET(Constants.GET_EMPLOYEES_FOR_CHART_BY_DEPARTMENT)
+    Observable<ResponseEmployeeDetails> getEmployeesForChartByDepartment(@Query("month") final int month, @Query("year") final int year);
 }

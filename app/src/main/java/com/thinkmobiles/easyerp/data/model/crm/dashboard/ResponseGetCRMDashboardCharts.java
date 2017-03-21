@@ -28,6 +28,11 @@ public class ResponseGetCRMDashboardCharts implements Parcelable {
         dest.writeTypedList(this.charts);
     }
 
+    public ResponseGetCRMDashboardCharts(String id, ArrayList<DashboardListItem> charts) {
+        this.id = id;
+        this.charts = charts;
+    }
+
     protected ResponseGetCRMDashboardCharts(Parcel in) {
         this.id = in.readString();
         this.charts = in.createTypedArrayList(DashboardListItem.CREATOR);

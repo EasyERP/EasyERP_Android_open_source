@@ -21,6 +21,10 @@ public interface AppDefaultStatesPreferences {
     @DefaultLong(-1)
     long customDateFilterToForCRMDashboardCharts();
 
+    int yearForHRDashboardCharts();
+
+    int monthForHRDashboardCharts();
+
     @DefaultBoolean(value = false)
     boolean dontShowRateDialog();
 

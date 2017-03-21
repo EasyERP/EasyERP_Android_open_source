@@ -2,8 +2,10 @@ package com.thinkmobiles.easyerp.domain.crm;
 
 import com.thinkmobiles.easyerp.data.api.Rest;
 import com.thinkmobiles.easyerp.data.model.crm.dashboard.detail.DashboardChartType;
+import com.thinkmobiles.easyerp.data.services.EmployeesService;
 import com.thinkmobiles.easyerp.data.services.InvoiceService;
 import com.thinkmobiles.easyerp.data.services.OrderService;
+import com.thinkmobiles.easyerp.data.services.VacationService;
 
 import rx.Observable;
 
@@ -14,10 +16,14 @@ class DashboardChartsLayerRepository {
 
     private InvoiceService invoiceService;
     private OrderService orderService;
+    private EmployeesService employeesService;
+    private VacationService vacationService;
 
     DashboardChartsLayerRepository() {
         invoiceService = Rest.getInstance().getInvoiceService();
         orderService = Rest.getInstance().getOrderService();
+        employeesService = Rest.getInstance().getEmployeesService();
+        vacationService = Rest.getInstance().getVacationService();
     }
 
     Observable<?> getDashboardChartObservable(
@@ -89,7 +95,26 @@ class DashboardChartsLayerRepository {
                 }
                 break;
         }
-        return null;
+        return Observable.empty();
     }
 
+    Observable<?> getHRDashboardChartObservable(
+            final String dataSet,
+            final DashboardChartType chartType,
+            final int year,
+            final int month) {
+        switch (dataSet) {
+            case "hrEmployeesInfo":
+                //TODO need zip
+//                vacationService.getVacationByStatistic(month, year);
+                return employeesService.getEmployeesCountForDashboard(month, year);
+            case "hrEmployeesByGender":
+                return employeesService.getEmployeesForChartByGender();
+            case "hrEmployeesSalary":
+                return employeesService.getEmployeesForChartBySalary(month, year);
+            case "hrEmployeesDepartment":
+                return employeesService.getEmployeesForChartByDepartment(month, year);
+        }
+        return Observable.empty();
+    }
 }
