@@ -52,7 +52,7 @@ public class CompanyDetailsPresenter extends ContentPresenterHelper implements C
                     currentData = responseGetCompanyDetails;
                     view.showProgress(Constants.ProgressType.NONE);
                     setData(currentData);
-                },  t -> error(t)));
+                }, this::error));
     }
 
     @Override

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <TextView
+        android:id="@+id/tvStatus_VLIRJP"
+        style="@style/ProductTableTextStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="start"
+        tools:text="Hired"/>
+
+    <TextView
+        android:id="@+id/tvDate_VLIRJP"
+        style="@style/ProductTableTextStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        tools:text="15 Feb, 17"/>
+
+    <TextView
+        android:id="@+id/tvJobPosition_VLIRJP"
+        style="@style/ProductTableTextStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        tools:text="Digital Marketing"/>
+
+    <TextView
+        android:id="@+id/tvDepartment_VLIRJP"
+        style="@style/ProductTableTextStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        tools:text="Marketing"/>
+
+    <TextView
+        android:id="@+id/tvManager_VLIRJP"
+        style="@style/ProductTableTextStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        tools:text="Emily Lazier"/>
+
+</LinearLayout>

@@ -10,6 +10,8 @@ import com.thinkmobiles.easyerp.presentation.base.rules.master.alphabetical.Mast
 import com.thinkmobiles.easyerp.presentation.base.rules.master.selectable.SelectableAdapter;
 import com.thinkmobiles.easyerp.presentation.managers.GoogleAnalyticHelper;
 import com.thinkmobiles.easyerp.presentation.screens.gallery.GalleryActivity_;
+import com.thinkmobiles.easyerp.presentation.screens.hr.employees.details.EmployeeDetailsFragment;
+import com.thinkmobiles.easyerp.presentation.screens.hr.employees.details.EmployeeDetailsFragment_;
 
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterViews;
@@ -70,6 +72,12 @@ public class EmployeesFragment extends MasterAlphabeticalFragment implements Emp
 
     @Override
     public void openDetailsScreen(String employeeID) {
-        //TODO open Employee details
+        if (employeeID != null) {
+            mActivity.replaceFragmentContentDetail(EmployeeDetailsFragment_.builder()
+                    .employeeID(employeeID)
+                    .build());
+        } else {
+            mActivity.replaceFragmentContentDetail(null);
+        }
     }
 }
