@@ -45,7 +45,7 @@ public class EmployeeDetailsPresenter extends ContentPresenterHelper implements 
             currentEmployee = responseEmployeeDetails;
             view.showProgress(Constants.ProgressType.NONE);
             setData(currentEmployee);
-        }, this::error));
+        }, t -> error(t)));
     }
 
     @Override

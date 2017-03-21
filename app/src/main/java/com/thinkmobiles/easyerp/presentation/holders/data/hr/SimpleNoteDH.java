@@ -26,6 +26,7 @@ public class SimpleNoteDH extends RecyclerDH {
         for (SimpleNoteItem note : list) {
             historyDHs.add(new SimpleNoteDH(note));
         }
+        if(historyDHs.isEmpty()) historyDHs.add(null);
         return historyDHs;
     }
 }

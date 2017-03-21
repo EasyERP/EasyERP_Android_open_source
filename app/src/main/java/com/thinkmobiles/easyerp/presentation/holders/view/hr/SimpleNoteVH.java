@@ -10,6 +10,7 @@ import com.michenko.simpleadapter.OnCardClickListener;
 import com.michenko.simpleadapter.RecyclerVH;
 import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.data.model.hr.employees.details.SimpleNoteItem;
+import com.thinkmobiles.easyerp.presentation.adapters.hr.SimpleNotesAdapter;
 import com.thinkmobiles.easyerp.presentation.holders.data.hr.SimpleNoteDH;
 import com.thinkmobiles.easyerp.presentation.managers.DateManager;
 import com.thinkmobiles.easyerp.presentation.utils.StringUtil;
@@ -35,7 +36,7 @@ public class SimpleNoteVH extends RecyclerVH<SimpleNoteDH> {
 
         View line = findView(R.id.vLine_VLISN);
         ViewGroup.LayoutParams params = line.getLayoutParams();
-        params.height = viewType == 0 ? ViewGroup.LayoutParams.MATCH_PARENT : 50;
+        params.height = viewType == SimpleNotesAdapter.VIEW_TYPE_LAST ? ViewGroup.LayoutParams.MATCH_PARENT : 50;
         line.setLayoutParams(params);
     }
 
