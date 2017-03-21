@@ -3,6 +3,8 @@ package com.thinkmobiles.easyerp.presentation.screens.gallery;
 import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
+import android.os.Build;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -66,11 +68,14 @@ public class GalleryActivity extends AppCompatActivity implements GalleryContrac
     @AfterInject
     @Override
     public void initPresenter() {
+        ActivityCompat.postponeEnterTransition(this);
+
         new GalleryPresenter(this, position, imageItems, title);
     }
 
     @AfterViews
     protected void initUI() {
+        galleryPagerAdapter.setActivity(this, position);
         setupToolbar();
         prepareAnimations();
 
@@ -91,6 +96,7 @@ public class GalleryActivity extends AppCompatActivity implements GalleryContrac
 
             }
         });
+
 
         galleryPagerAdapter.setOnViewTapListener((view, x, y) -> presenter.screenClicked());
 

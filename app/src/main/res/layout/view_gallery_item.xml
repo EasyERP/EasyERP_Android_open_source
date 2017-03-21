@@ -12,8 +12,6 @@
     <ImageView
         android:id="@+id/ivFullscreenImage_VGI"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType="centerInside"
-        android:layout_gravity="center"/>
+        android:layout_height="match_parent"/>
 
 </FrameLayout>
