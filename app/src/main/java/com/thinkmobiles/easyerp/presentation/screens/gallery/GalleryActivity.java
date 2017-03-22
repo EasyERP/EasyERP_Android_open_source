@@ -5,6 +5,7 @@ import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.os.Build;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.SharedElementCallback;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -96,7 +97,6 @@ public class GalleryActivity extends AppCompatActivity implements GalleryContrac
 
             }
         });
-
 
         galleryPagerAdapter.setOnViewTapListener((view, x, y) -> presenter.screenClicked());
 
@@ -192,7 +192,6 @@ public class GalleryActivity extends AppCompatActivity implements GalleryContrac
         animatorSet.playTogether(toolbarAnimator, indicatorAnimator);
     }
 
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -204,4 +203,11 @@ public class GalleryActivity extends AppCompatActivity implements GalleryContrac
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void finishAfterTransition() {
+        if(vpFullscreenImage_AG.getCurrentItem() == position)
+        super.finishAfterTransition();
+        else
+            finish();
+    }
 }
