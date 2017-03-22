@@ -81,6 +81,7 @@ public class GalleryPagerAdapter extends PagerAdapter {
                             ivFullscreenImage_LGI.getViewTreeObserver().addOnPreDrawListener(() -> {
                                         ActivityCompat.startPostponedEnterTransition(activity);
                                         ivFullscreenImage_LGI.requestLayout();
+                                        photoViewAttacher.update();
                                         return true;
                                     }
                             );
