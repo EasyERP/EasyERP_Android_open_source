@@ -79,7 +79,9 @@
     <string name="list_searchview_hint">Search</string>
     <string name="dialog_btn_close">Close</string>
     <string name="dialog_btn_apply">Apply</string>
+    <string name="dialog_btn_ok">Ok</string>
     <string name="dialog_btn_cancel">Cancel</string>
+    <string name="dialog_btn_today">Today</string>
     <string name="dialog_btn_remove">Remove</string>
     <string name="dialog_btn_send">Send</string>
     <string name="dialog_btn_change">Change</string>
@@ -307,6 +309,6 @@
     <string name="column_salary">Salary</string>
     <string name="left_a_note">Left a Note</string>
     <string name="non_employee">Non-employee</string>
-    <string name="month_filter">Month Filter</string>
+    <string name="choose_year_and_month">Choose Year and Month</string>
 
 </resources>

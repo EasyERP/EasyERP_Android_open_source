@@ -2,6 +2,7 @@ package com.thinkmobiles.easyerp.domain.crm;
 
 import com.thinkmobiles.easyerp.data.api.Rest;
 import com.thinkmobiles.easyerp.data.model.crm.dashboard.detail.DashboardChartType;
+import com.thinkmobiles.easyerp.data.model.hr.dashboard.EmployeeInfoCommonResponse;
 import com.thinkmobiles.easyerp.data.services.EmployeesService;
 import com.thinkmobiles.easyerp.data.services.InvoiceService;
 import com.thinkmobiles.easyerp.data.services.OrderService;
@@ -105,9 +106,8 @@ class DashboardChartsLayerRepository {
             final int month) {
         switch (dataSet) {
             case "hrEmployeesInfo":
-                //TODO need zip
-//                vacationService.getVacationByStatistic(month, year);
-                return employeesService.getEmployeesCountForDashboard(month, year);
+                return employeesService.getEmployeesCountForDashboard(month, year).flatMap(
+                        responseGetCompanies -> vacationService.getVacationByStatistic(month, year), EmployeeInfoCommonResponse::new);
             case "hrEmployeesByGender":
                 return employeesService.getEmployeesForChartByGender();
             case "hrEmployeesSalary":

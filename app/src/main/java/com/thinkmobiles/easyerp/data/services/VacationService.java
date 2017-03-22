@@ -1,6 +1,6 @@
 package com.thinkmobiles.easyerp.data.services;
 
-import com.thinkmobiles.easyerp.data.model.hr.employees.ResponseEmployeeDetails;
+import com.thinkmobiles.easyerp.data.model.hr.dashboard.VacationStatistic;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
 import retrofit2.http.GET;
@@ -15,5 +15,5 @@ import rx.Observable;
 public interface VacationService {
 
     @GET(Constants.GET_VACATION_BY_STATISTIC)
-    Observable<ResponseEmployeeDetails> getVacationByStatistic(@Query("month") final int month, @Query("year") final int year);
+    Observable<VacationStatistic> getVacationByStatistic(@Query("month") final int month, @Query("year") final int year);
 }

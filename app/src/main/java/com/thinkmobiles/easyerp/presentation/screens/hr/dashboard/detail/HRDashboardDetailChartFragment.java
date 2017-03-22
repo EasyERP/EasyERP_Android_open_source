@@ -1,5 +1,7 @@
 package com.thinkmobiles.easyerp.presentation.screens.hr.dashboard.detail;
 
+import android.app.DatePickerDialog;
+import android.support.v7.app.AlertDialog;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 import android.widget.TextView;
@@ -11,6 +13,8 @@ import com.thinkmobiles.easyerp.domain.DomainHelper;
 import com.thinkmobiles.easyerp.domain.crm.DashboardRepository;
 import com.thinkmobiles.easyerp.presentation.base.rules.content.ContentFragment;
 import com.thinkmobiles.easyerp.presentation.base.rules.content.ContentPresenter;
+import com.thinkmobiles.easyerp.presentation.custom.views.MonthYearView;
+import com.thinkmobiles.easyerp.presentation.custom.views.MonthYearView_;
 import com.thinkmobiles.easyerp.presentation.custom.views.drawer_menu.models.MenuConfigs;
 import com.thinkmobiles.easyerp.presentation.managers.GoogleAnalyticHelper;
 import com.thinkmobiles.easyerp.presentation.screens.crm.dashboard.detail.charts.ChartViewFabric;
@@ -23,6 +27,8 @@ import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.FragmentArg;
 import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.sharedpreferences.Pref;
+
+import java.util.GregorianCalendar;
 
 /**
  * @author Michael Soyma (Created on 3/21/2017).
@@ -84,8 +90,8 @@ public class HRDashboardDetailChartFragment extends ContentFragment implements H
     }
 
     @Override
-    public void displayChart(Object data, DashboardChartType chartType) {
-        IChartView chartView = ChartViewFabric.implementByChartType(chartType);
+    public void displayChart(Object data, DashboardListItem dashboardListItem) {
+        IChartView chartView = ChartViewFabric.implementForHRByChartType(dashboardListItem.getChartType(), dashboardListItem.dataset);
         if (chartView != null)
             chartView.render(containerChart, data);
     }
@@ -97,7 +103,18 @@ public class HRDashboardDetailChartFragment extends ContentFragment implements H
 
     @Override
     public void displayPickerCustomYearMonth(int year, int month) {
-        //TODO open Month/Year Picker Dialog
+        final MonthYearView monthYearView = MonthYearView_.build(mActivity, 1980, 2050);
+        monthYearView.setCurrentYear(year);
+        monthYearView.setCurrentMonth(month);
+
+        final AlertDialog alertDialog = new AlertDialog.Builder(mActivity, R.style.DefaultTheme_NoTitleDialogWithAnimation)
+                .setCancelable(true)
+                .setPositiveButton(R.string.dialog_btn_ok, (dialogInterface, i) -> presenter.setYearMonth(monthYearView.getChosenYear(), monthYearView.getChosenMonth()))
+                .setNegativeButton(R.string.dialog_btn_cancel, (dialogInterface, i) -> {})
+                .setNeutralButton(R.string.dialog_btn_today, (dialogInterface, i) -> presenter.setYearMonth(monthYearView.getTodayYear(), monthYearView.getTodayMonth()))
+                .create();
+        alertDialog.setView(monthYearView);
+        alertDialog.show();
     }
 
     @Override

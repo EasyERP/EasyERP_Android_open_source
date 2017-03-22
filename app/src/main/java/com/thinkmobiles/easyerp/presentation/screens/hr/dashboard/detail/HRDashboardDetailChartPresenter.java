@@ -59,7 +59,7 @@ public final class HRDashboardDetailChartPresenter extends ContentPresenterHelpe
                         month)
                         .subscribe(result -> {
                             view.showProgress(Constants.ProgressType.NONE);
-                            view.displayChart(chartData = result, workDashboardInfoForChart.getChartType());
+                            view.displayChart(chartData = result, workDashboardInfoForChart);
                         }, t -> error(t)));
 
     }
@@ -76,13 +76,22 @@ public final class HRDashboardDetailChartPresenter extends ContentPresenterHelpe
 
     @Override
     protected void retainInstance() {
-        view.displayChart(chartData, workDashboardInfoForChart.getChartType());
+        view.displayChart(chartData, workDashboardInfoForChart);
     }
 
     @Override
     public void setYearMonth(int year, int month) {
         this.year = year;
         this.month = month;
+
+        defaultStatesPreferences.edit()
+                .yearForHRDashboardCharts().put(this.year)
+                .monthForHRDashboardCharts().put(this.month)
+                .apply();
+
+        view.displayYearMonth(getYearMonthToString());
+
+        refresh();
     }
 
     @Override

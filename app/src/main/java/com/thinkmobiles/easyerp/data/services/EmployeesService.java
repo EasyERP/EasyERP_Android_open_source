@@ -2,9 +2,14 @@ package com.thinkmobiles.easyerp.data.services;
 
 import com.thinkmobiles.easyerp.data.model.ResponseGetTotalItems;
 import com.thinkmobiles.easyerp.data.model.crm.common.alphabet.ResponseGetAlphabet;
+import com.thinkmobiles.easyerp.data.model.hr.dashboard.DepartmentSalary;
+import com.thinkmobiles.easyerp.data.model.hr.dashboard.EmployeeCountForDashboard;
+import com.thinkmobiles.easyerp.data.model.hr.dashboard.EmployeeGenderDepartmentInfo;
 import com.thinkmobiles.easyerp.data.model.hr.employees.ResponseEmployeeDetails;
 import com.thinkmobiles.easyerp.data.model.hr.employees.item.EmployeeItem;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
+
+import java.util.List;
 
 import retrofit2.http.GET;
 import retrofit2.http.Query;
@@ -30,14 +35,14 @@ public interface EmployeesService {
     Observable<ResponseEmployeeDetails> getEmployeeDetails(@Query("id") String id);
 
     @GET(Constants.GET_EMPLOYEES_COUNT_FOR_DASHBOARD)
-    Observable<ResponseEmployeeDetails> getEmployeesCountForDashboard(@Query("month") final int month, @Query("year") final int year);
+    Observable<EmployeeCountForDashboard> getEmployeesCountForDashboard(@Query("month") final int month, @Query("year") final int year);
 
     @GET(Constants.GET_EMPLOYEES_FOR_CHART_BY_GENDER)
-    Observable<ResponseEmployeeDetails> getEmployeesForChartByGender();
+    Observable<List<EmployeeGenderDepartmentInfo>> getEmployeesForChartByGender();
 
     @GET(Constants.GET_EMPLOYEES_FOR_CHART_BY_SALARY)
-    Observable<ResponseEmployeeDetails> getEmployeesForChartBySalary(@Query("month") final int month, @Query("year") final int year);
+    Observable<ResponseGetTotalItems<Integer>> getEmployeesForChartBySalary(@Query("month") final int month, @Query("year") final int year);
 
     @GET(Constants.GET_EMPLOYEES_FOR_CHART_BY_DEPARTMENT)
-    Observable<ResponseEmployeeDetails> getEmployeesForChartByDepartment(@Query("month") final int month, @Query("year") final int year);
+    Observable<ResponseGetTotalItems<DepartmentSalary>> getEmployeesForChartByDepartment(@Query("month") final int month, @Query("year") final int year);
 }

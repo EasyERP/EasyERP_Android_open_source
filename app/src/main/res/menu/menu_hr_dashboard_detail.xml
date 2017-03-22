@@ -5,6 +5,6 @@
     <item
         android:id="@+id/monthYearAction_MHDD"
         android:icon="@drawable/ic_calendar_menu_icon"
-        android:title="@string/month_filter"
+        android:title="@string/choose_year_and_month"
         app:showAsAction="always" />
 </menu>

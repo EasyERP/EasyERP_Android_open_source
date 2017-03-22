@@ -69,7 +69,7 @@ public final class HorizontalBarChartViewImpl implements IChartView<BarData> {
         legend.setHorizontalAlignment(Legend.LegendHorizontalAlignment.LEFT);
         legend.setOrientation(Legend.LegendOrientation.HORIZONTAL);
         legend.setDrawInside(false);
-        legend.setTextColor(ContextCompat.getColor(parent.getContext(), R.color.colorPrimaryDark));
+        legend.setTextColor(ContextCompat.getColor(parent.getContext(), R.color.color_text_black));
         legend.setTypeface(Typeface.create("sans-serif-condensed", Typeface.NORMAL));
         legend.setFormToTextSpace(8);
         legend.setTextSize(14);
@@ -79,11 +79,7 @@ public final class HorizontalBarChartViewImpl implements IChartView<BarData> {
         description.setEnabled(true);
         description.setText("Revenue");
         description.setTextSize(16);
-        description.setTextColor(ContextCompat.getColor(parent.getContext(), R.color.colorPrimaryDark));
-        description.setTextAlign(Paint.Align.CENTER);
-        description.setPosition(
-                (parent.getWidth() - parent.getPaddingLeft() - parent.getPaddingRight() ) / 2 + Utils.convertDpToPixel(38),
-                parent.getHeight() - parent.getPaddingTop() - parent.getPaddingBottom() - Utils.convertDpToPixel(38));
+        description.setTextColor(ContextCompat.getColor(parent.getContext(), R.color.color_text_black));
 
         barChart.setFitBars(true);
 

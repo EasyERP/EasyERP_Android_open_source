@@ -1,5 +1,6 @@
 package com.thinkmobiles.easyerp.presentation.screens.hr.dashboard.detail;
 
+import com.thinkmobiles.easyerp.data.model.crm.dashboard.DashboardListItem;
 import com.thinkmobiles.easyerp.data.model.crm.dashboard.detail.DashboardChartType;
 import com.thinkmobiles.easyerp.presentation.base.BaseModel;
 import com.thinkmobiles.easyerp.presentation.base.BaseView;
@@ -16,7 +17,7 @@ import rx.Observable;
 public interface HRDashboardDetailChartContract {
     interface HRDashboardDetailChartView extends BaseView<HRDashboardDetailChartPresenter>, ContentView {
         void displayHeader(final String title);
-        void displayChart(final Object data, final DashboardChartType chartType);
+        void displayChart(final Object data, final DashboardListItem dashboardListItem);
         void displayYearMonth(final String yearMonth);
         void displayPickerCustomYearMonth(final int year, final int month);
     }
