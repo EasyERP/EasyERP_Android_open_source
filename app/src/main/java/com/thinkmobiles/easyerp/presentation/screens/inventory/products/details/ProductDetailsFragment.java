@@ -1,5 +1,6 @@
 package com.thinkmobiles.easyerp.presentation.screens.inventory.products.details;
 
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.graphics.ColorUtils;
 import android.support.v4.widget.NestedScrollView;
@@ -62,6 +63,7 @@ public class ProductDetailsFragment extends ContentFragment implements ProductDe
     }
 
     private ProductDetailsContract.ProductDetailsPresenter presenter;
+    private LinearLayoutManager imageLLM;
 
     @FragmentArg
     protected String id;
@@ -158,13 +160,15 @@ public class ProductDetailsFragment extends ContentFragment implements ProductDe
         new ProductDetailsPresenter(this, productRepository, id);
         priceAdapter = new ArrayAdapter<>(getActivity(), R.layout.view_list_item_product_price, R.id.tvPriceListName_LIPP);
         variantAdapter.setOnCardClickListener((view, position, viewType) -> presenter.changeProductVariant(position));
-        imageAdapter.setOnCardClickListener((view, position, viewType) -> presenter.openGallery(position));
+        imageAdapter.setOnCardClickListener((view, position, viewType) -> presenter.openGallery(view, position));
     }
+
     @AfterViews
     protected void initUI() {
         animationHelper.init(ivIconArrow, rvHistory, nsvContent_FPD);
         tvTitleHistory.setText(R.string.product_details_variants);
-        rvImages_FPD.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
+        imageLLM = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
+        rvImages_FPD.setLayoutManager(imageLLM);
         rvImages_FPD.setAdapter(imageAdapter);
         rvStockInventory_FPD.setLayoutManager(new LinearLayoutManager(getActivity()));
         rvStockInventory_FPD.setAdapter(inventoryAdapter);
@@ -348,11 +352,17 @@ public class ProductDetailsFragment extends ContentFragment implements ProductDe
     }
 
     @Override
-    public void openGallery(int position, String title, ArrayList<ImageItem> images) {
-        GalleryActivity_.intent(this)
+    public void openGallery(View view, int position, String title, ArrayList<ImageItem> images) {
+        ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(
+                getActivity(),
+                imageLLM.findContainingItemView(view).findViewById(R.id.ivProductImage_LISI), "gallery" + position
+        );
+
+        GalleryActivity_.intent(getActivity())
                 .imageItems(images)
                 .position(position)
                 .title(title)
-                .startForResult(0);
+                .withOptions(options.toBundle())
+                .start();
     }
 }

@@ -1,6 +1,7 @@
 package com.thinkmobiles.easyerp.presentation.screens.inventory.products.details;
 
 import android.text.TextUtils;
+import android.view.View;
 
 import com.thinkmobiles.easyerp.data.model.crm.common.images.ImageItem;
 import com.thinkmobiles.easyerp.data.model.crm.filter.FilterItem;
@@ -93,8 +94,8 @@ public class ProductDetailsPresenter extends ContentPresenterHelper implements P
     }
 
     @Override
-    public void openGallery(int startPosition) {
-        view.openGallery(startPosition, productDetail.variantsArray.get(selectedVariant).name, productDetail.images);
+    public void openGallery(View view, int startPosition) {
+        this.view.openGallery(view, startPosition, productDetail.variantsArray.get(selectedVariant).name, productDetail.images);
     }
 
     private void setData(ResponseGetProductDetail response) {

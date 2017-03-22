@@ -1,5 +1,6 @@
 package com.thinkmobiles.easyerp.presentation.holders.view.inventory;
 
+import android.os.Build;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.ImageView;
@@ -25,6 +26,9 @@ public final class ProductImageVH extends RecyclerVH<ProductImageDH> {
 
     @Override
     public void bindData(ProductImageDH data) {
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            ivProductImage_LISI.setTransitionName("gallery" + getAdapterPosition());
+        }
         Picasso.with(ivProductImage_LISI.getContext())
                 .load(data.getUrl())
                 .placeholder(R.drawable.placeholder)
