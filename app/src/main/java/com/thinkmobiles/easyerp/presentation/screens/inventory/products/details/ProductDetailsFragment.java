@@ -162,6 +162,7 @@ public class ProductDetailsFragment extends ContentFragment implements ProductDe
         variantAdapter.setOnCardClickListener((view, position, viewType) -> presenter.changeProductVariant(position));
         imageAdapter.setOnCardClickListener((view, position, viewType) -> presenter.openGallery(view, position));
     }
+
     @AfterViews
     protected void initUI() {
         animationHelper.init(ivIconArrow, rvHistory, nsvContent_FPD);

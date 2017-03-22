@@ -131,7 +131,7 @@ public class GalleryActivity extends AppCompatActivity implements GalleryContrac
 
     @Override
     public void showSupportViews(boolean isShown) {
-        if(isShown) {
+        if (isShown) {
             toolbarAnimator.setFloatValues(0, 1);
             indicatorAnimator.setFloatValues(0, 1);
             toolbarGallery_AG.setVisibility(View.VISIBLE);
@@ -140,7 +140,7 @@ public class GalleryActivity extends AppCompatActivity implements GalleryContrac
             toolbarAnimator.setFloatValues(1, 0);
             indicatorAnimator.setFloatValues(1, 0);
         }
-        if(!isShown)
+        if (!isShown)
             animatorSet.addListener(new Animator.AnimatorListener() {
                 @Override
                 public void onAnimationStart(Animator animator) {
@@ -205,8 +205,8 @@ public class GalleryActivity extends AppCompatActivity implements GalleryContrac
 
     @Override
     public void finishAfterTransition() {
-        if(vpFullscreenImage_AG.getCurrentItem() == position)
-        super.finishAfterTransition();
+        if (vpFullscreenImage_AG.getCurrentItem() == position)
+            super.finishAfterTransition();
         else
             finish();
     }
