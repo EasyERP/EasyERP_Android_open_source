@@ -44,7 +44,8 @@ public final class HRDashboardDetailChartPresenter extends ContentPresenterHelpe
         year = defaultStatesPreferences.yearForHRDashboardCharts().getOr(getCurrentYear());
         month = defaultStatesPreferences.monthForHRDashboardCharts().getOr(getCurrentMonth());
 
-        view.displayYearMonth(getYearMonthToString());
+        if (!(workDashboardInfoForChart.type.equals("reverseHorizontalBar") && workDashboardInfoForChart.dataset.equals("hrEmployeesByGender")))
+            view.displayYearMonth(getYearMonthToString());
         view.displayHeader(workDashboardInfoForChart.name);
         super.subscribe();
     }
