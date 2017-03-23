@@ -315,4 +315,5 @@
     <string name="hint_contract">Contract</string>
     <string name="hint_scheduled_pay">Scheduled Pay</string>
     <string name="hint_stage">Stage</string>
+    <string name="hint_other_id">Other ID</string>
 </resources>

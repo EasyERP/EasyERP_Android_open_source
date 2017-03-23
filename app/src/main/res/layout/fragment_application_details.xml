@@ -533,7 +533,7 @@
                             android:layout_marginEnd="@dimen/default_padding_half">
 
                             <EditText
-                                android:id="@+id/eIdentificationNumber_FAD"
+                                android:id="@+id/etIdentificationNumber_FAD"
                                 style="@style/DefaultTheme.LeadInputFieldStyle"
                                 android:hint="@string/hint_identification_number" />
 
@@ -573,9 +573,9 @@
                             android:layout_marginStart="@dimen/default_padding_half">
 
                             <EditText
-                                android:id="@+id/etOrderID_FAD"
+                                android:id="@+id/etOtherID_FAD"
                                 style="@style/DefaultTheme.LeadInputFieldStyle"
-                                android:hint="@string/hint_order_id" />
+                                android:hint="@string/hint_other_id" />
 
                         </android.support.design.widget.TextInputLayout>
 

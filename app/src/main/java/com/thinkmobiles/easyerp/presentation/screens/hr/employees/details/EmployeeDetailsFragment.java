@@ -130,7 +130,7 @@ public class EmployeeDetailsFragment extends ContentFragment implements Employee
     @ViewById
     protected EditText etBankAccountNumber_FED;
     @ViewById
-    protected EditText etOrderID_FED;
+    protected EditText etOtherID_FED;
     @ViewById
     protected EditText etStreet_FPD;
     @ViewById
@@ -506,8 +506,8 @@ public class EmployeeDetailsFragment extends ContentFragment implements Employee
     }
 
     @Override
-    public void displayOtherID(String orderID) {
-        etOrderID_FED.setText(orderID);
+    public void displayOtherID(String otherID) {
+        etOtherID_FED.setText(otherID);
     }
 
     @Override
