@@ -2,6 +2,7 @@ package com.thinkmobiles.easyerp.presentation.screens.crm.dashboard.detail.chart
 
 import com.thinkmobiles.easyerp.data.model.crm.dashboard.detail.DashboardChartType;
 import com.thinkmobiles.easyerp.presentation.screens.hr.dashboard.detail.charts.HRHorizontalBarChartViewImpl;
+import com.thinkmobiles.easyerp.presentation.screens.hr.dashboard.detail.charts.ReverseBarChartViewImpl;
 
 /**
  * @author michael.soyma@thinkmobiles.com (Created on 1/24/2017.)
@@ -24,7 +25,7 @@ public final class ChartViewFabric {
     public static IChartView implementForHRByChartType(final DashboardChartType chartType, final String dataSet) {
         switch (chartType) {
             case HORIZONTALBAR: return new HRHorizontalBarChartViewImpl(dataSet);
-            case REVERSEHORIZONTALBAR:
+            case REVERSEHORIZONTALBAR: return new ReverseBarChartViewImpl();
             case COLORCARDSVIEW:
             default : return null;
         }

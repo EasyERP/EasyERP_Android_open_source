@@ -31,9 +31,10 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * @author michael.soyma@thinkmobiles.com (Created on 1/24/2017.)
+ * @author Michael Soyma (Created on 3/22/2017).
+ *         Company: Thinkmobiles
+ *         Email: michael.soyma@thinkmobiles.com
  */
-
 public final class HRHorizontalBarChartViewImpl implements IChartView<BarData> {
 
     private HorizontalBarChart barChart;
