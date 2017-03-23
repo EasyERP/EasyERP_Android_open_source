@@ -2,6 +2,7 @@ package com.thinkmobiles.easyerp.data.services;
 
 import com.thinkmobiles.easyerp.data.model.ResponseGetTotalItems;
 import com.thinkmobiles.easyerp.data.model.hr.applications.Application;
+import com.thinkmobiles.easyerp.data.model.hr.applications.ResponseGetPayrollStructureTypes;
 import com.thinkmobiles.easyerp.data.model.hr.employees.ResponseEmployeeDetails;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
@@ -22,4 +23,7 @@ public interface ApplicationService {
 
     @GET(Constants.GET_APPLICATIONS)
     Observable<ResponseEmployeeDetails> getApplicationDetails(@Query("id") String id);
+
+    @GET(Constants.GET_PAYROLL_TYPES)
+    Observable<ResponseGetPayrollStructureTypes> getPayrollStructureTypes();
 }

@@ -318,7 +318,7 @@
 
                     <android.support.design.widget.TextInputLayout
                         style="@style/DefaultTheme.LeadTextInputLayoutStyle"
-                        android:layout_marginEnd="@dimen/default_padding_half">
+                        android:layout_marginStart="@dimen/default_padding_half">
 
                         <EditText
                             android:id="@+id/etNextActionDay_FAD"

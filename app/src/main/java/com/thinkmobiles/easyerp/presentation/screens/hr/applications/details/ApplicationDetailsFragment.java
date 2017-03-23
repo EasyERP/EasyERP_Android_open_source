@@ -1,6 +1,8 @@
 package com.thinkmobiles.easyerp.presentation.screens.hr.applications.details;
 
 import android.support.v4.widget.NestedScrollView;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
@@ -190,7 +192,25 @@ public class ApplicationDetailsFragment extends ContentFragment implements Appli
 
     @AfterViews
     protected void initUI() {
+        GoogleAnalyticHelper.trackScreenView(this, getResources().getConfiguration());
 
+        rvAttachments_FAD.setLayoutManager(new GridLayoutManager(getActivity(), 2));
+        rvHistory.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+        rvAttachments_FAD.setAdapter(attachmentAdapter);
+        rvHistory.setAdapter(simpleNotesAdapter);
+
+        attachmentAdapter.setOnCardClickListener((view, position, viewType) -> {
+            GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_ATTACHMENT, "");
+            presenter.startAttachment(position);
+        });
+
+        RxView.clicks(btnHistory)
+                .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
+                .subscribe(aVoid -> presenter.changeNotesVisibility());
+
+        animationHelper.init(ivIconArrow, rvHistory, nsvContent_FAD);
+        getPresenter().subscribe();
     }
 
     @Override
