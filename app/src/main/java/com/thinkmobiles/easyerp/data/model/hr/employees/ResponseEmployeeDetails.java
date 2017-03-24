@@ -28,8 +28,8 @@ public class ResponseEmployeeDetails implements Parcelable {
 
     public String id;
     public String nextAction;
-    public int expectedSalary;
-    public int proposedSalary;
+    public long expectedSalary;
+    public long proposedSalary;
     public String identNo;
     public String passportNo;
     public String dateBirth;
@@ -67,6 +67,7 @@ public class ResponseEmployeeDetails implements Parcelable {
     public Manager manager;
     public FilterItem scheduledPay;
     public String payrollStructureType;
+    public String contract;
     public FilterItem weeklyScheduler;
     public FilterItem jobPosition;
     public FilterItem department;
@@ -97,8 +98,8 @@ public class ResponseEmployeeDetails implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(this.id);
         dest.writeString(this.nextAction);
-        dest.writeInt(this.expectedSalary);
-        dest.writeInt(this.proposedSalary);
+        dest.writeLong(this.expectedSalary);
+        dest.writeLong(this.proposedSalary);
         dest.writeString(this.identNo);
         dest.writeString(this.passportNo);
         dest.writeString(this.dateBirth);
@@ -133,6 +134,7 @@ public class ResponseEmployeeDetails implements Parcelable {
         dest.writeParcelable(this.manager, flags);
         dest.writeParcelable(this.scheduledPay, flags);
         dest.writeString(this.payrollStructureType);
+        dest.writeString(this.contract);
         dest.writeParcelable(this.weeklyScheduler, flags);
         dest.writeParcelable(this.jobPosition, flags);
         dest.writeParcelable(this.department, flags);
@@ -155,8 +157,8 @@ public class ResponseEmployeeDetails implements Parcelable {
     protected ResponseEmployeeDetails(Parcel in) {
         this.id = in.readString();
         this.nextAction = in.readString();
-        this.expectedSalary = in.readInt();
-        this.proposedSalary = in.readInt();
+        this.expectedSalary = in.readLong();
+        this.proposedSalary = in.readLong();
         this.identNo = in.readString();
         this.passportNo = in.readString();
         this.dateBirth = in.readString();
@@ -191,6 +193,7 @@ public class ResponseEmployeeDetails implements Parcelable {
         this.manager = in.readParcelable(Manager.class.getClassLoader());
         this.scheduledPay = in.readParcelable(FilterItem.class.getClassLoader());
         this.payrollStructureType = in.readString();
+        this.contract = in.readString();
         this.weeklyScheduler = in.readParcelable(FilterItem.class.getClassLoader());
         this.jobPosition = in.readParcelable(FilterItem.class.getClassLoader());
         this.department = in.readParcelable(FilterItem.class.getClassLoader());
