@@ -1,6 +1,7 @@
 package com.thinkmobiles.easyerp.presentation.screens.crm.dashboard.detail.charts;
 
 import com.thinkmobiles.easyerp.data.model.crm.dashboard.detail.DashboardChartType;
+import com.thinkmobiles.easyerp.presentation.screens.hr.dashboard.detail.charts.ColorCardsChartViewImpl;
 import com.thinkmobiles.easyerp.presentation.screens.hr.dashboard.detail.charts.HRHorizontalBarChartViewImpl;
 import com.thinkmobiles.easyerp.presentation.screens.hr.dashboard.detail.charts.ReverseBarChartViewImpl;
 
@@ -26,7 +27,7 @@ public final class ChartViewFabric {
         switch (chartType) {
             case HORIZONTALBAR: return new HRHorizontalBarChartViewImpl(dataSet);
             case REVERSEHORIZONTALBAR: return new ReverseBarChartViewImpl();
-            case COLORCARDSVIEW:
+            case COLORCARDSVIEW: return new ColorCardsChartViewImpl();
             default : return null;
         }
     }
