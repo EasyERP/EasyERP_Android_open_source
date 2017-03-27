@@ -18,5 +18,4 @@ public interface DashboardService {
 
     @GET(Constants.GET_DASHBOARD_CHARTS)
     Observable<List<ResponseGetCRMDashboardCharts>> getDashboardListCharts(@Path("dashboardId") final String dashboardId, @Query("contentType") final String contentType);
-
 }

@@ -29,6 +29,10 @@ public abstract class Constants {
     public static final String PATCH_CHANGE_PASSWORD        = "users/current/{userId}";
     //End User
 
+    //Vacation
+    public static final String GET_VACATION_BY_STATISTIC    = "vacation/getStatistic";
+    //End Vacation
+
     //------------------------------------------------------ CRM
 
     public static final int COUNT_LIST_ITEMS                = 25;
@@ -119,10 +123,14 @@ public abstract class Constants {
     //------------------------------------------------------ HR
 
     //Employees
-    public static final String GET_EMPLOYEES_IMAGES         = "employees/getEmployeesImages";
-    public static final String GET_EMPLOYEES_ALPHABET       = "employees/getEmployeesAlphabet";
-    public static final String GET_EMPLOYEES_ALL_FOR_DB     = "employees/getForDd";
-    public static final String GET_EMPLOYEES                = "employees";
+    public static final String GET_EMPLOYEES_IMAGES                     = "employees/getEmployeesImages";
+    public static final String GET_EMPLOYEES_ALPHABET                   = "employees/getEmployeesAlphabet";
+    public static final String GET_EMPLOYEES_ALL_FOR_DB                 = "employees/getForDd";
+    public static final String GET_EMPLOYEES_COUNT_FOR_DASHBOARD        = "employees/getEmployeesCountForDashboard";
+    public static final String GET_EMPLOYEES_FOR_CHART_BY_GENDER        = "employees/EmployeesForChart";
+    public static final String GET_EMPLOYEES_FOR_CHART_BY_SALARY        = "employees/getSalaryForChart";
+    public static final String GET_EMPLOYEES_FOR_CHART_BY_DEPARTMENT    = "employees/getSalaryByDepartment";
+    public static final String GET_EMPLOYEES                            = "employees";
     //End Employees
 
     //Applications

@@ -26,6 +26,7 @@
 
 
     <color name="tag_bg_red">#eb5a46</color>
+    <color name="tag_bg_red_light">#E55253</color>
     <color name="tag_bg_pink">#ff80ce</color>
     <color name="tag_bg_orange">#ffab4a</color>
     <color name="tag_bg_yellow">#f2d600</color>
