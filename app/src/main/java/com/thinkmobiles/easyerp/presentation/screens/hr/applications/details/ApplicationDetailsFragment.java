@@ -1,4 +1,4 @@
-package com.thinkmobiles.easyerp.presentation.screens.hr.employees.details;
+package com.thinkmobiles.easyerp.presentation.screens.hr.applications.details;
 
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.GridLayoutManager;
@@ -14,16 +14,13 @@ import android.widget.TextView;
 
 import com.jakewharton.rxbinding.view.RxView;
 import com.thinkmobiles.easyerp.R;
-import com.thinkmobiles.easyerp.domain.hr.EmployeesRepository;
+import com.thinkmobiles.easyerp.domain.hr.ApplicationRepository;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.AttachmentAdapter;
-import com.thinkmobiles.easyerp.presentation.adapters.hr.RowEmploymentDetailsAdapter;
-import com.thinkmobiles.easyerp.presentation.adapters.hr.RowEmploymentJobPositionAdapter;
 import com.thinkmobiles.easyerp.presentation.adapters.hr.SimpleNotesAdapter;
 import com.thinkmobiles.easyerp.presentation.base.rules.content.ContentFragment;
 import com.thinkmobiles.easyerp.presentation.base.rules.content.ContentPresenter;
 import com.thinkmobiles.easyerp.presentation.custom.transformations.CropCircleTransformation;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.AttachmentDH;
-import com.thinkmobiles.easyerp.presentation.holders.data.hr.EmployeeRowTransferDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.hr.SimpleNoteDH;
 import com.thinkmobiles.easyerp.presentation.managers.GoogleAnalyticHelper;
 import com.thinkmobiles.easyerp.presentation.managers.HistoryAnimationHelper;
@@ -42,95 +39,98 @@ import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Created by Lynx on 3/17/2017.
+ * Created by Lynx on 3/22/2017.
  */
 
 @EFragment
-public class EmployeeDetailsFragment extends ContentFragment implements EmployeeDetailsContract.EmployeeDetailsView {
+public class ApplicationDetailsFragment extends ContentFragment implements ApplicationDetailsContract.ApplicationDetailsView {
 
-    private EmployeeDetailsContract.EmployeeDetailsPresenter presenter;
+    private ApplicationDetailsContract.ApplicationDetailsPresenter presenter;
 
     @FragmentArg
-    protected String employeeID;
+    protected String applicationID;
 
-    @Bean
-    protected EmployeesRepository employeesRepository;
-    @Bean
-    protected RowEmploymentDetailsAdapter rowEmploymentDetailsAdapter;
-    @Bean
-    protected RowEmploymentJobPositionAdapter rowEmploymentJobPositionAdapter;
-    @Bean
-    protected AttachmentAdapter attachmentAdapter;
-    @Bean
-    protected SimpleNotesAdapter simpleNotesAdapter;
-    @Bean
-    protected HistoryAnimationHelper animationHelper;
+    //region View inject
+    @ViewById
+    protected NestedScrollView nsvContent_FAD;
+    @ViewById
+    protected ImageView ivApplicationAvatar_FAD;
+    @ViewById
+    protected TextView tvApplicationName_FAD;
+    @ViewById
+    protected TextView tvHeaderDepartment_FAD;
+    @ViewById
+    protected TextView tvHeaderJobPosition_FAD;
+    @ViewById
+    protected ImageView ivFacebook_FAD;
+    @ViewById
+    protected ImageView ivLinkedIn_FAD;
+    @ViewById
+    protected ImageView ivSkype_FAD;
+    @ViewById
+    protected ImageView ivEmail_FAD;
+    @ViewById
+    protected EditText etFirstName_FAD;
+    @ViewById
+    protected EditText etLastName_FAD;
+    @ViewById
+    protected EditText etExpectedSalary_FAD;
+    @ViewById
+    protected EditText etProposedSalary_FAD;
+    @ViewById
+    protected EditText etDob_FAD;
+    @ViewById
+    protected EditText etPersonalMobile_FAD;
+    @ViewById
+    protected EditText etPersonalEmail_FAD;
+    @ViewById
+    protected EditText etSkype_FAD;
+    @ViewById
+    protected EditText etLinkedIn_FAD;
+    @ViewById
+    protected EditText etFacebook_FAD;
+    @ViewById
+    protected EditText etWorkEmail_FAD;
+    @ViewById
+    protected EditText etWorkPhone_FAD;
+    @ViewById
+    protected EditText etSource_FAD;
+    @ViewById
+    protected EditText etNextActionDay_FAD;
+    @ViewById
+    protected EditText etJobPosition_FAD;
+    @ViewById
+    protected EditText etDepartment_FAD;
+    @ViewById
+    protected EditText etManager_FAD;
+    @ViewById
+    protected EditText etJobType_FAD;
+    @ViewById
+    protected EditText etWeeklySchedule_FAD;
+    @ViewById
+    protected EditText etContract_FAD;
+    @ViewById
+    protected EditText etScheduledPay_FAD;
+    @ViewById
+    protected EditText etStage_FAD;
 
-    //region View Inject
     @ViewById
-    protected NestedScrollView nsvContent_FED;
+    protected EditText etGender_FAD;
     @ViewById
-    protected ImageView ivEmployeeAvatar_FED;
+    protected EditText etEmploymentType_FAD;
     @ViewById
-    protected TextView tvEmployeeName_FED;
+    protected EditText etMaritalStatus_FAD;
     @ViewById
-    protected TextView tvHeaderDepartment_FED;
+    protected EditText etNationality_FAD;
     @ViewById
-    protected TextView tvHeaderJobPosition_FED;
+    protected EditText etIdentificationNumber_FAD;
     @ViewById
-    protected ImageView ivFacebook_FED;
+    protected EditText etPassportNumber_FAD;
     @ViewById
-    protected ImageView ivLinkedIn_FED;
+    protected EditText etBankAccountNumber_FAD;
     @ViewById
-    protected ImageView ivSkype_FED;
-    @ViewById
-    protected ImageView ivEmail_FED;
-    @ViewById
-    protected EditText etFirstName_FED;
-    @ViewById
-    protected EditText etLastName_FED;
-    @ViewById
-    protected EditText etDob_FED;
-    @ViewById
-    protected EditText etPersonalMobile_FED;
-    @ViewById
-    protected EditText etSource_FED;
-    @ViewById
-    protected EditText etSkype_FED;
-    @ViewById
-    protected EditText etLinkedIn_FED;
-    @ViewById
-    protected EditText etFacebook_FED;
-    @ViewById
-    protected EditText etJobPosition_FED;
-    @ViewById
-    protected EditText etDepartment_FED;
-    @ViewById
-    protected EditText etManager_FED;
-    @ViewById
-    protected EditText etJobType_FED;
-    @ViewById
-    protected EditText etPersonalEmail_FED;
-    @ViewById
-    protected EditText etWorkEmail_FED;
-    @ViewById
-    protected EditText etWorkPhone_FED;
-    @ViewById
-    protected EditText etGender_FED;
-    @ViewById
-    protected EditText etEmploymentType_FED;
-    @ViewById
-    protected EditText etMaritalStatus_FED;
-    @ViewById
-    protected EditText etNationality_FED;
-    @ViewById
-    protected EditText eIdentificationNumber_FED;
-    @ViewById
-    protected EditText etPassportNumber_FED;
-    @ViewById
-    protected EditText etBankAccountNumber_FED;
-    @ViewById
-    protected EditText etOtherID_FED;
+    protected EditText etOtherID_FAD;
+
     @ViewById
     protected EditText etStreet_FPD;
     @ViewById
@@ -147,60 +147,57 @@ public class EmployeeDetailsFragment extends ContentFragment implements Employee
     protected ImageView ivIconArrow;
 
     @ViewById
-    protected RecyclerView rvJobPositionList_FED;
-    @ViewById
-    protected RecyclerView rvEmploymentDetailsList_FED;
-    @ViewById
-    protected RecyclerView rvAttachments_FED;
+    protected RecyclerView rvAttachments_FAD;
     @ViewById
     protected RecyclerView rvHistory;
 
     @ViewById
-    protected LinearLayout llContainerPersonalInformation_FED;
+    protected LinearLayout llContainerPersonalInformation_FAD;
     @ViewById
-    protected LinearLayout llAddressContainer_FED;
-    @ViewById
-    protected LinearLayout llJobPositionListContainer_FED;
-    @ViewById
-    protected LinearLayout llEmploymentDetailsContainer_FED;
+    protected LinearLayout llAddressContainer_FAD;
 
     @ViewById
-    protected TextView tvEmptyPersonalInformation_FED;
+    protected TextView tvEmptyPersonalInformation_FAD;
     @ViewById
-    protected TextView tvEmptyAddress_FED;
+    protected TextView tvEmptyAddress_FAD;
     @ViewById
-    protected TextView tvEmptyJobPositionList_FED;
-    @ViewById
-    protected TextView tvEmptyEmploymentDetailsList_FED;
-    @ViewById
-    protected TextView tvEmptyAttachments_FED;
-
+    protected TextView tvEmptyAttachments_FAD;
 
     //endregion
 
+    @Bean
+    protected ApplicationRepository applicationRepository;
+    @Bean
+    protected AttachmentAdapter attachmentAdapter;
+    @Bean
+    protected SimpleNotesAdapter simpleNotesAdapter;
+    @Bean
+    protected HistoryAnimationHelper animationHelper;
+
     @Override
     protected int getLayoutRes() {
-        return R.layout.fragment_employee_details;
+        return R.layout.fragment_application_details;
+    }
+
+    @Override
+    protected ContentPresenter getPresenter() {
+        return presenter;
     }
 
     @AfterInject
     @Override
     public void initPresenter() {
-        new EmployeeDetailsPresenter(this, employeesRepository, employeeID);
+        new ApplicationDetailsPresenter(this, applicationRepository, applicationID);
     }
 
     @AfterViews
     protected void initUI() {
         GoogleAnalyticHelper.trackScreenView(this, getResources().getConfiguration());
 
-        rvJobPositionList_FED.setLayoutManager(new LinearLayoutManager(getActivity()));
-        rvEmploymentDetailsList_FED.setLayoutManager(new LinearLayoutManager(getActivity()));
-        rvAttachments_FED.setLayoutManager(new GridLayoutManager(getActivity(), 2));
+        rvAttachments_FAD.setLayoutManager(new GridLayoutManager(getActivity(), 2));
         rvHistory.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        rvJobPositionList_FED.setAdapter(rowEmploymentJobPositionAdapter);
-        rvEmploymentDetailsList_FED.setAdapter(rowEmploymentDetailsAdapter);
-        rvAttachments_FED.setAdapter(attachmentAdapter);
+        rvAttachments_FAD.setAdapter(attachmentAdapter);
         rvHistory.setAdapter(simpleNotesAdapter);
 
         attachmentAdapter.setOnCardClickListener((view, position, viewType) -> {
@@ -212,18 +209,18 @@ public class EmployeeDetailsFragment extends ContentFragment implements Employee
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
                 .subscribe(aVoid -> presenter.changeNotesVisibility());
 
-        animationHelper.init(ivIconArrow, rvHistory, nsvContent_FED);
+        animationHelper.init(ivIconArrow, rvHistory, nsvContent_FAD);
         getPresenter().subscribe();
     }
 
     @Override
-    public void setPresenter(EmployeeDetailsContract.EmployeeDetailsPresenter presenter) {
+    public void setPresenter(ApplicationDetailsContract.ApplicationDetailsPresenter presenter) {
         this.presenter = presenter;
     }
 
     @Override
     public String getScreenName() {
-        return "Employee details screen";
+        return "Application Details Screen";
     }
 
     @Override
@@ -238,37 +235,25 @@ public class EmployeeDetailsFragment extends ContentFragment implements Employee
 
     @Override
     public void showPersonalInformation(boolean isShown) {
-        llContainerPersonalInformation_FED.setVisibility(isShown ? View.VISIBLE : View.GONE);
-        tvEmptyPersonalInformation_FED.setVisibility(isShown ? View.GONE : View.VISIBLE);
+        llContainerPersonalInformation_FAD.setVisibility(isShown ? View.VISIBLE : View.GONE);
+        tvEmptyPersonalInformation_FAD.setVisibility(isShown ? View.GONE : View.VISIBLE);
     }
 
     @Override
     public void showAddress(boolean isShown) {
-        llAddressContainer_FED.setVisibility(isShown ? View.VISIBLE : View.GONE);
-        tvEmptyAddress_FED.setVisibility(isShown ? View.GONE : View.VISIBLE);
-    }
-
-    @Override
-    public void showJobPositionList(boolean isShown) {
-        llJobPositionListContainer_FED.setVisibility(isShown ? View.VISIBLE : View.GONE);
-        tvEmptyJobPositionList_FED.setVisibility(isShown ? View.GONE : View.VISIBLE);
-    }
-
-    @Override
-    public void showEmploymentDetailsList(boolean isShown) {
-        llEmploymentDetailsContainer_FED.setVisibility(isShown ? View.VISIBLE : View.GONE);
-        tvEmptyEmploymentDetailsList_FED.setVisibility(isShown ? View.GONE : View.VISIBLE);
+        llAddressContainer_FAD.setVisibility(isShown ? View.VISIBLE : View.GONE);
+        tvEmptyAddress_FAD.setVisibility(isShown ? View.GONE : View.VISIBLE);
     }
 
     @Override
     public void showAttachments(boolean isShown) {
-        tvEmptyAttachments_FED.setVisibility(isShown ? View.GONE : View.VISIBLE);
+        tvEmptyAttachments_FAD.setVisibility(isShown ? View.GONE : View.VISIBLE);
     }
 
     @Override
     public void enableSkypeIcon(String uriPath) {
-        ivSkype_FED.setVisibility(TextUtils.isEmpty(uriPath) ? View.GONE : View.VISIBLE);
-        RxView.clicks(ivSkype_FED)
+        ivSkype_FAD.setVisibility(TextUtils.isEmpty(uriPath) ? View.GONE : View.VISIBLE);
+        RxView.clicks(ivSkype_FAD)
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
                 .subscribe(aVoid -> {
                     GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_SOCIAL_BUTTON, "Skype");
@@ -278,8 +263,8 @@ public class EmployeeDetailsFragment extends ContentFragment implements Employee
 
     @Override
     public void enableLinkedInIcon(String uriPath) {
-        ivLinkedIn_FED.setVisibility(TextUtils.isEmpty(uriPath) ? View.GONE : View.VISIBLE);
-        RxView.clicks(ivLinkedIn_FED)
+        ivLinkedIn_FAD.setVisibility(TextUtils.isEmpty(uriPath) ? View.GONE : View.VISIBLE);
+        RxView.clicks(ivLinkedIn_FAD)
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
                 .subscribe(aVoid -> {
                     GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_SOCIAL_BUTTON, "Linked In");
@@ -289,8 +274,8 @@ public class EmployeeDetailsFragment extends ContentFragment implements Employee
 
     @Override
     public void enableFacebookIcon(String uriPath) {
-        ivFacebook_FED.setVisibility(TextUtils.isEmpty(uriPath) ? View.GONE : View.VISIBLE);
-        RxView.clicks(ivFacebook_FED)
+        ivFacebook_FAD.setVisibility(TextUtils.isEmpty(uriPath) ? View.GONE : View.VISIBLE);
+        RxView.clicks(ivFacebook_FAD)
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
                 .subscribe(aVoid -> {
                     GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_SOCIAL_BUTTON, "Facebook");
@@ -300,8 +285,8 @@ public class EmployeeDetailsFragment extends ContentFragment implements Employee
 
     @Override
     public void enableEmailIcon(String email) {
-        ivEmail_FED.setVisibility(TextUtils.isEmpty(email) ? View.GONE : View.VISIBLE);
-        RxView.clicks(ivEmail_FED)
+        ivEmail_FAD.setVisibility(TextUtils.isEmpty(email) ? View.GONE : View.VISIBLE);
+        RxView.clicks(ivEmail_FAD)
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
                 .subscribe(aVoid -> {
                     GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_SOCIAL_BUTTON, "Email");
@@ -311,7 +296,7 @@ public class EmployeeDetailsFragment extends ContentFragment implements Employee
 
     @Override
     public void enablePersonalMobileActionClick(String phone) {
-        RxView.clicks(etPersonalMobile_FED)
+        RxView.clicks(etPersonalMobile_FAD)
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
                 .subscribe(aVoid -> {
                     if (phone != null) {
@@ -323,7 +308,7 @@ public class EmployeeDetailsFragment extends ContentFragment implements Employee
 
     @Override
     public void enableWorkPhoneActionClick(String phone) {
-        RxView.clicks(etWorkPhone_FED)
+        RxView.clicks(etWorkPhone_FAD)
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
                 .subscribe(aVoid -> {
                     if (phone != null) {
@@ -335,7 +320,7 @@ public class EmployeeDetailsFragment extends ContentFragment implements Employee
 
     @Override
     public void enablePersonalEmailActionClick(String email) {
-        RxView.clicks(etPersonalEmail_FED)
+        RxView.clicks(etPersonalEmail_FAD)
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
                 .subscribe(aVoid -> {
                     if (email != null) {
@@ -347,7 +332,7 @@ public class EmployeeDetailsFragment extends ContentFragment implements Employee
 
     @Override
     public void enableWorkEmailActionClick(String email) {
-        RxView.clicks(etWorkEmail_FED)
+        RxView.clicks(etWorkEmail_FAD)
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
                 .subscribe(aVoid -> {
                     if (email != null) {
@@ -358,8 +343,8 @@ public class EmployeeDetailsFragment extends ContentFragment implements Employee
     }
 
     @Override
-    public void enableSourceActionClick(final String url) {
-        RxView.clicks(etSource_FED)
+    public void enableSourceActionClick(String url) {
+        RxView.clicks(etSource_FAD)
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
                 .subscribe(aVoid -> {
                     if (url != null) {
@@ -376,138 +361,173 @@ public class EmployeeDetailsFragment extends ContentFragment implements Employee
     public void displayEmployeeImage(String base64Image) {
         if (!TextUtils.isEmpty(base64Image)) {
             ImageHelper.getBitmapFromBase64(base64Image, new CropCircleTransformation())
-                    .subscribe(ivEmployeeAvatar_FED::setImageBitmap);
+                    .subscribe(ivApplicationAvatar_FAD::setImageBitmap);
         }
     }
 
     @Override
     public void displayHeaderFullname(String fullname) {
-        tvEmployeeName_FED.setText(fullname);
+        tvApplicationName_FAD.setText(fullname);
     }
 
     @Override
     public void displayHeaderDepartment(String department) {
-        tvHeaderDepartment_FED.setText(department);
+        tvHeaderDepartment_FAD.setText(department);
     }
 
     @Override
     public void displayHeaderJobPosition(String jobPosition) {
-        tvHeaderJobPosition_FED.setText(jobPosition);
+        tvHeaderJobPosition_FAD.setText(jobPosition);
     }
 
     @Override
     public void displayFirstName(String firstName) {
-        etFirstName_FED.setText(firstName);
+        etFirstName_FAD.setText(firstName);
     }
 
     @Override
     public void displayLastName(String lastName) {
-        etLastName_FED.setText(lastName);
+        etLastName_FAD.setText(lastName);
+    }
+
+    @Override
+    public void displayExpectedSalary(String expectedSalary) {
+        etExpectedSalary_FAD.setText(expectedSalary);
+    }
+
+    @Override
+    public void displayProposedSalary(String proposedSalary) {
+        etProposedSalary_FAD.setText(proposedSalary);
     }
 
     @Override
     public void displayDateOfBirth(String dob) {
-        etDob_FED.setText(dob);
+        etDob_FAD.setText(dob);
     }
 
     @Override
     public void displayPersonalMobile(String personalMobile) {
-        etPersonalMobile_FED.setText(personalMobile);
+        etPersonalMobile_FAD.setText(personalMobile);
     }
 
     @Override
     public void displayPersonalEmail(String personalEmail) {
-        etPersonalEmail_FED.setText(personalEmail);
+        etPersonalEmail_FAD.setText(personalEmail);
     }
 
     @Override
     public void displaySkype(String skype) {
-        etSkype_FED.setText(skype);
+        etSkype_FAD.setText(skype);
     }
 
     @Override
     public void displayLinkedIn(String linkedIn) {
-        etLinkedIn_FED.setText(linkedIn);
+        etLinkedIn_FAD.setText(linkedIn);
     }
 
     @Override
     public void displayFacebook(String facebook) {
-        etFacebook_FED.setText(facebook);
+        etFacebook_FAD.setText(facebook);
     }
 
     @Override
     public void displayJobPosition(String jobPosition) {
-        etJobPosition_FED.setText(jobPosition);
+        etJobPosition_FAD.setText(jobPosition);
     }
 
     @Override
     public void displayDepartment(String department) {
-        etDepartment_FED.setText(department);
+        etDepartment_FAD.setText(department);
     }
 
     @Override
     public void displayManager(String manager) {
-        etManager_FED.setText(manager);
+        etManager_FAD.setText(manager);
     }
 
     @Override
     public void displayJobType(String jobType) {
-        etJobType_FED.setText(jobType);
+        etJobType_FAD.setText(jobType);
     }
 
     @Override
     public void displaySource(String source) {
-        etSource_FED.setText(source);
+        etSource_FAD.setText(source);
+    }
+
+    @Override
+    public void displayNextActionDate(String nextActionDate) {
+        etNextActionDay_FAD.setText(nextActionDate);
     }
 
     @Override
     public void displayWorkEmail(String workEmail) {
-        etWorkEmail_FED.setText(workEmail);
+        etWorkEmail_FAD.setText(workEmail);
     }
 
     @Override
     public void displayWorkPhone(String workPhone) {
-        etWorkPhone_FED.setText(workPhone);
+        etWorkPhone_FAD.setText(workPhone);
+    }
+
+    @Override
+    public void displayWeeklyScheduler(String weeklyScheduler) {
+        etWeeklySchedule_FAD.setText(weeklyScheduler);
+    }
+
+    @Override
+    public void displayContract(String contract) {
+        etContract_FAD.setText(contract);
+    }
+
+    @Override
+    public void displayScheduledPay(String scheduledPay) {
+        etScheduledPay_FAD.setText(scheduledPay);
+    }
+
+    @Override
+    public void displayStage(String stage) {
+        etStage_FAD.setText(stage);
     }
 
     @Override
     public void displayGender(String gender) {
-        etGender_FED.setText(gender);
+        etGender_FAD.setText(gender);
     }
 
     @Override
     public void displayEmploymentType(String employmentType) {
-        etEmploymentType_FED.setText(employmentType);
+        etEmploymentType_FAD.setText(employmentType);
     }
 
     @Override
     public void displayMaritalStatus(String maritalStatus) {
-        etMaritalStatus_FED.setText(maritalStatus);
+        etMaritalStatus_FAD.setText(maritalStatus);
     }
 
     @Override
     public void displayNationality(String nationality) {
-        etNationality_FED.setText(nationality);
+        etNationality_FAD.setText(nationality);
     }
 
     @Override
     public void displayIdentificationNumber(String identificationNumber) {
-        eIdentificationNumber_FED.setText(identificationNumber);
+        etIdentificationNumber_FAD.setText(identificationNumber);
     }
 
     @Override
     public void displayPassportNumber(String passportNumber) {
-        etPassportNumber_FED.setText(passportNumber);
+        etPassportNumber_FAD.setText(passportNumber);
     }
 
     @Override
     public void displayBankAccountNumber(String bankAccountNumber) {
-        etBankAccountNumber_FED.setText(bankAccountNumber);
+        etBankAccountNumber_FAD.setText(bankAccountNumber);
     }
 
     @Override
     public void displayOtherID(String otherID) {
-        etOtherID_FED.setText(otherID);
+        etOtherID_FAD.setText(otherID);
     }
 
     @Override
@@ -536,16 +556,6 @@ public class EmployeeDetailsFragment extends ContentFragment implements Employee
     }
 
     @Override
-    public void displayJobPositionList(ArrayList<EmployeeRowTransferDH> employeeRowTransferDHs) {
-        rowEmploymentJobPositionAdapter.setListDH(employeeRowTransferDHs);
-    }
-
-    @Override
-    public void displayEmploymentDetailsList(ArrayList<EmployeeRowTransferDH> employeeRowTransferDHs) {
-        rowEmploymentDetailsAdapter.setListDH(employeeRowTransferDHs);
-    }
-
-    @Override
     public void displayHistory(ArrayList<SimpleNoteDH> simpleNoteDHs) {
         simpleNotesAdapter.setListDH(simpleNoteDHs);
     }
@@ -558,10 +568,5 @@ public class EmployeeDetailsFragment extends ContentFragment implements Employee
     @Override
     public void startUrlIntent(String url) {
         IntentActionHelper.callViewIntent(mActivity, url, null);
-    }
-
-    @Override
-    protected ContentPresenter getPresenter() {
-        return presenter;
     }
 }

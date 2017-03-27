@@ -6,6 +6,7 @@ import com.thinkmobiles.easyerp.presentation.base.rules.master.filterable.Filter
 import com.thinkmobiles.easyerp.presentation.base.rules.master.filterable.MasterFilterableFragment;
 import com.thinkmobiles.easyerp.presentation.base.rules.master.selectable.SelectableAdapter;
 import com.thinkmobiles.easyerp.presentation.managers.GoogleAnalyticHelper;
+import com.thinkmobiles.easyerp.presentation.screens.hr.applications.details.ApplicationDetailsFragment_;
 
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterViews;
@@ -56,7 +57,9 @@ public class ApplicationsListFragment extends MasterFilterableFragment implement
     @Override
     public void openApplicationDetail(String id) {
         if (id != null) {
-            //TODO open application detail screen
+            mActivity.replaceFragmentContentDetail(ApplicationDetailsFragment_.builder()
+                    .applicationID(id)
+                    .build());
         } else {
             mActivity.replaceFragmentContentDetail(null);
         }

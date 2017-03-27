@@ -3,6 +3,9 @@ package com.thinkmobiles.easyerp.presentation.screens.gallery;
 import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
+import android.os.Build;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.SharedElementCallback;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -66,11 +69,14 @@ public class GalleryActivity extends AppCompatActivity implements GalleryContrac
     @AfterInject
     @Override
     public void initPresenter() {
+        ActivityCompat.postponeEnterTransition(this);
+
         new GalleryPresenter(this, position, imageItems, title);
     }
 
     @AfterViews
     protected void initUI() {
+        galleryPagerAdapter.setActivity(this, position);
         setupToolbar();
         prepareAnimations();
 
@@ -125,7 +131,7 @@ public class GalleryActivity extends AppCompatActivity implements GalleryContrac
 
     @Override
     public void showSupportViews(boolean isShown) {
-        if(isShown) {
+        if (isShown) {
             toolbarAnimator.setFloatValues(0, 1);
             indicatorAnimator.setFloatValues(0, 1);
             toolbarGallery_AG.setVisibility(View.VISIBLE);
@@ -134,7 +140,7 @@ public class GalleryActivity extends AppCompatActivity implements GalleryContrac
             toolbarAnimator.setFloatValues(1, 0);
             indicatorAnimator.setFloatValues(1, 0);
         }
-        if(!isShown)
+        if (!isShown)
             animatorSet.addListener(new Animator.AnimatorListener() {
                 @Override
                 public void onAnimationStart(Animator animator) {
@@ -186,7 +192,6 @@ public class GalleryActivity extends AppCompatActivity implements GalleryContrac
         animatorSet.playTogether(toolbarAnimator, indicatorAnimator);
     }
 
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -198,4 +203,11 @@ public class GalleryActivity extends AppCompatActivity implements GalleryContrac
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void finishAfterTransition() {
+        if (vpFullscreenImage_AG.getCurrentItem() == position)
+            super.finishAfterTransition();
+        else
+            finish();
+    }
 }

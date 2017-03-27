@@ -309,6 +309,16 @@
     <string name="column_salary">Salary</string>
     <string name="left_a_note">Left a Note</string>
     <string name="non_employee">Non-employee</string>
+
+    <string name="hint_expected_salary">Expected Salary</string>
+    <string name="hint_proposed_salary">Proposed Salary</string>
+    <string name="hint_next_action_day">Next Action Day</string>
+    <string name="hint_weekly_schedule">Weekly Schedule</string>
+    <string name="hint_contract">Contract</string>
+    <string name="hint_scheduled_pay">Scheduled Pay</string>
+    <string name="hint_stage">Stage</string>
+    <string name="hint_other_id">Other ID</string>
+
     <string name="choose_year_and_month">Choose Year and Month</string>
 
     <!-- HR Color Cards chart -->
