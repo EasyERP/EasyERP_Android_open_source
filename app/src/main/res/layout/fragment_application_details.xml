@@ -1,0 +1,729 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:background="@android:color/white">
+
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/nsvContent_FAD"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/default_padding"
+            android:paddingTop="@dimen/default_padding">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingEnd="@dimen/default_padding"
+                android:paddingStart="@dimen/default_padding">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/ivApplicationAvatar_FAD"
+                        android:layout_width="@dimen/image_size_large"
+                        android:layout_height="@dimen/image_size_large"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/placeholder"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/default_padding"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tvApplicationName_FAD"
+                            style="@style/TextLargeTitleStyle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            tools:text="Bradley	Douglas" />
+
+                        <TextView
+                            android:id="@+id/tvHeaderDepartment_FAD"
+                            style="@style/TextLargeInfoStyle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/default_padding_small"
+                            tools:text="Program Leader" />
+
+                        <TextView
+                            android:id="@+id/tvHeaderJobPosition_FAD"
+                            style="@style/TextLargeInfoStyle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/default_padding_quart"
+                            tools:text="PricewaterhouseCoopers Corp." />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/default_padding_quart"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:id="@+id/ivFacebook_FAD"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingEnd="@dimen/default_padding_quart"
+                                android:visibility="gone"
+                                app:srcCompat="@drawable/ic_fb"
+                                tools:visibility="visible" />
+
+                            <ImageView
+                                android:id="@+id/ivLinkedIn_FAD"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingEnd="@dimen/default_padding_quart"
+                                android:paddingStart="@dimen/default_padding_quart"
+                                android:visibility="gone"
+                                app:srcCompat="@drawable/ic_linkedin"
+                                tools:visibility="visible" />
+
+                            <ImageView
+                                android:id="@+id/ivSkype_FAD"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingEnd="@dimen/default_padding_quart"
+                                android:paddingStart="@dimen/default_padding_quart"
+                                android:visibility="gone"
+                                app:srcCompat="@drawable/ic_skype"
+                                tools:visibility="visible" />
+
+                            <ImageView
+                                android:id="@+id/ivEmail_FAD"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingEnd="@dimen/default_padding_quart"
+                                android:paddingStart="@dimen/default_padding_quart"
+                                android:visibility="gone"
+                                app:srcCompat="@drawable/ic_mail"
+                                tools:visibility="visible" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <TextView
+                    style="@style/TextContentTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/main_information" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <android.support.design.widget.TextInputLayout
+                        style="@style/DefaultTheme.LeadTextInputLayoutStyle"
+                        android:layout_marginEnd="@dimen/default_padding_half">
+
+                        <EditText
+                            android:id="@+id/etFirstName_FAD"
+                            style="@style/DefaultTheme.LeadInputFieldStyle"
+                            android:hint="@string/first_name" />
+
+                    </android.support.design.widget.TextInputLayout>
+
+                    <android.support.design.widget.TextInputLayout
+                        style="@style/DefaultTheme.LeadTextInputLayoutStyle"
+                        android:layout_marginStart="@dimen/default_padding_half">
+
+                        <EditText
+                            android:id="@+id/etLastName_FAD"
+                            style="@style/DefaultTheme.LeadInputFieldStyle"
+                            android:hint="@string/last_name" />
+
+                    </android.support.design.widget.TextInputLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <android.support.design.widget.TextInputLayout
+                        style="@style/DefaultTheme.LeadTextInputLayoutStyle"
+                        android:layout_marginEnd="@dimen/default_padding_half">
+
+                        <EditText
+                            android:id="@+id/etExpectedSalary_FAD"
+                            style="@style/DefaultTheme.LeadInputFieldStyle"
+                            android:hint="@string/hint_expected_salary" />
+
+                    </android.support.design.widget.TextInputLayout>
+
+                    <android.support.design.widget.TextInputLayout
+                        style="@style/DefaultTheme.LeadTextInputLayoutStyle"
+                        android:layout_marginStart="@dimen/default_padding_half">
+
+                        <EditText
+                            android:id="@+id/etProposedSalary_FAD"
+                            style="@style/DefaultTheme.LeadInputFieldStyle"
+                            android:hint="@string/hint_proposed_salary" />
+
+                    </android.support.design.widget.TextInputLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <android.support.design.widget.TextInputLayout
+                        style="@style/DefaultTheme.LeadTextInputLayoutStyle"
+                        android:layout_marginEnd="@dimen/default_padding_half">
+
+                        <EditText
+                            android:id="@+id/etDob_FAD"
+                            style="@style/DefaultTheme.LeadInputFieldStyle"
+                            android:hint="@string/date_of_birth" />
+
+                    </android.support.design.widget.TextInputLayout>
+
+                    <android.support.design.widget.TextInputLayout
+                        style="@style/DefaultTheme.LeadTextInputLayoutStyle"
+                        android:layout_marginStart="@dimen/default_padding_half">
+
+                        <EditText
+                            android:id="@+id/etPersonalMobile_FAD"
+                            style="@style/DefaultTheme.LeadInputFieldStyle"
+                            android:hint="@string/hint_personal_mobile" />
+
+                    </android.support.design.widget.TextInputLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <android.support.design.widget.TextInputLayout
+                        style="@style/DefaultTheme.LeadTextInputLayoutStyle"
+                        android:layout_marginEnd="@dimen/default_padding_half">
+
+                        <EditText
+                            android:id="@+id/etPersonalEmail_FAD"
+                            style="@style/DefaultTheme.LeadInputFieldStyle"
+                            android:hint="@string/hint_personal_email" />
+
+                    </android.support.design.widget.TextInputLayout>
+
+                    <android.support.design.widget.TextInputLayout
+                        style="@style/DefaultTheme.LeadTextInputLayoutStyle"
+                        android:layout_marginStart="@dimen/default_padding_half">
+
+                        <EditText
+                            android:id="@+id/etSkype_FAD"
+                            style="@style/DefaultTheme.LeadInputFieldStyle"
+                            android:hint="@string/skype" />
+
+                    </android.support.design.widget.TextInputLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <android.support.design.widget.TextInputLayout
+                        style="@style/DefaultTheme.LeadTextInputLayoutStyle"
+                        android:layout_marginEnd="@dimen/default_padding_half">
+
+                        <EditText
+                            android:id="@+id/etLinkedIn_FAD"
+                            style="@style/DefaultTheme.LeadInputFieldStyle"
+                            android:hint="@string/linkedin" />
+
+                    </android.support.design.widget.TextInputLayout>
+
+                    <android.support.design.widget.TextInputLayout
+                        style="@style/DefaultTheme.LeadTextInputLayoutStyle"
+                        android:layout_marginStart="@dimen/default_padding_half">
+
+                        <EditText
+                            android:id="@+id/etFacebook_FAD"
+                            style="@style/DefaultTheme.LeadInputFieldStyle"
+                            android:hint="@string/facebook" />
+
+                    </android.support.design.widget.TextInputLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <android.support.design.widget.TextInputLayout
+                        style="@style/DefaultTheme.LeadTextInputLayoutStyle"
+                        android:layout_marginEnd="@dimen/default_padding_half">
+
+                        <EditText
+                            android:id="@+id/etWorkEmail_FAD"
+                            style="@style/DefaultTheme.LeadInputFieldStyle"
+                            android:hint="@string/hint_work_email" />
+
+                    </android.support.design.widget.TextInputLayout>
+
+                    <android.support.design.widget.TextInputLayout
+                        style="@style/DefaultTheme.LeadTextInputLayoutStyle"
+                        android:layout_marginStart="@dimen/default_padding_half">
+
+                        <EditText
+                            android:id="@+id/etWorkPhone_FAD"
+                            style="@style/DefaultTheme.LeadInputFieldStyle"
+                            android:hint="@string/hint_work_phone" />
+
+                    </android.support.design.widget.TextInputLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <android.support.design.widget.TextInputLayout
+                        style="@style/DefaultTheme.LeadTextInputLayoutStyle"
+                        android:layout_marginEnd="@dimen/default_padding_half">
+
+                        <EditText
+                            android:id="@+id/etSource_FAD"
+                            style="@style/DefaultTheme.LeadInputFieldStyle"
+                            android:hint="@string/source" />
+
+                    </android.support.design.widget.TextInputLayout>
+
+                    <android.support.design.widget.TextInputLayout
+                        style="@style/DefaultTheme.LeadTextInputLayoutStyle"
+                        android:layout_marginStart="@dimen/default_padding_half">
+
+                        <EditText
+                            android:id="@+id/etNextActionDay_FAD"
+                            style="@style/DefaultTheme.LeadInputFieldStyle"
+                            android:hint="@string/hint_next_action_day" />
+
+                    </android.support.design.widget.TextInputLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <android.support.design.widget.TextInputLayout
+                        style="@style/DefaultTheme.LeadTextInputLayoutStyle"
+                        android:layout_marginEnd="@dimen/default_padding_half">
+
+                        <EditText
+                            android:id="@+id/etJobPosition_FAD"
+                            style="@style/DefaultTheme.LeadInputFieldStyle"
+                            android:hint="@string/job_position" />
+
+                    </android.support.design.widget.TextInputLayout>
+
+                    <android.support.design.widget.TextInputLayout
+                        style="@style/DefaultTheme.LeadTextInputLayoutStyle"
+                        android:layout_marginStart="@dimen/default_padding_half">
+
+                        <EditText
+                            android:id="@+id/etDepartment_FAD"
+                            style="@style/DefaultTheme.LeadInputFieldStyle"
+                            android:hint="@string/department" />
+
+                    </android.support.design.widget.TextInputLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <android.support.design.widget.TextInputLayout
+                        style="@style/DefaultTheme.LeadTextInputLayoutStyle"
+                        android:layout_marginEnd="@dimen/default_padding_half">
+
+                        <EditText
+                            android:id="@+id/etManager_FAD"
+                            style="@style/DefaultTheme.LeadInputFieldStyle"
+                            android:hint="@string/hint_manager" />
+
+                    </android.support.design.widget.TextInputLayout>
+
+                    <android.support.design.widget.TextInputLayout
+                        style="@style/DefaultTheme.LeadTextInputLayoutStyle"
+                        android:layout_marginStart="@dimen/default_padding_half">
+
+                        <EditText
+                            android:id="@+id/etJobType_FAD"
+                            style="@style/DefaultTheme.LeadInputFieldStyle"
+                            android:hint="@string/hint_job_type" />
+
+                    </android.support.design.widget.TextInputLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <android.support.design.widget.TextInputLayout
+                        style="@style/DefaultTheme.LeadTextInputLayoutStyle"
+                        android:layout_marginEnd="@dimen/default_padding_half">
+
+                        <EditText
+                            android:id="@+id/etWeeklySchedule_FAD"
+                            style="@style/DefaultTheme.LeadInputFieldStyle"
+                            android:hint="@string/hint_weekly_schedule" />
+
+                    </android.support.design.widget.TextInputLayout>
+
+                    <android.support.design.widget.TextInputLayout
+                        style="@style/DefaultTheme.LeadTextInputLayoutStyle"
+                        android:layout_marginStart="@dimen/default_padding_half">
+
+                        <EditText
+                            android:id="@+id/etContract_FAD"
+                            style="@style/DefaultTheme.LeadInputFieldStyle"
+                            android:hint="@string/hint_contract" />
+
+                    </android.support.design.widget.TextInputLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <android.support.design.widget.TextInputLayout
+                        style="@style/DefaultTheme.LeadTextInputLayoutStyle"
+                        android:layout_marginEnd="@dimen/default_padding_half">
+
+                        <EditText
+                            android:id="@+id/etScheduledPay_FAD"
+                            style="@style/DefaultTheme.LeadInputFieldStyle"
+                            android:hint="@string/hint_scheduled_pay" />
+
+                    </android.support.design.widget.TextInputLayout>
+
+                    <android.support.design.widget.TextInputLayout
+                        style="@style/DefaultTheme.LeadTextInputLayoutStyle"
+                        android:layout_marginStart="@dimen/default_padding_half">
+
+                        <EditText
+                            android:id="@+id/etStage_FAD"
+                            style="@style/DefaultTheme.LeadInputFieldStyle"
+                            android:hint="@string/hint_stage" />
+
+                    </android.support.design.widget.TextInputLayout>
+
+                </LinearLayout>
+
+                <TextView
+                    style="@style/TextContentTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/personal_information" />
+
+                <TextView
+                    android:id="@+id/tvEmptyPersonalInformation_FAD"
+                    style="@style/TextNoDataStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/default_padding_3dp"
+                    android:layout_marginTop="@dimen/default_padding" />
+
+                <LinearLayout
+                    android:id="@+id/llContainerPersonalInformation_FAD"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <android.support.design.widget.TextInputLayout
+                            style="@style/DefaultTheme.LeadTextInputLayoutStyle"
+                            android:layout_marginEnd="@dimen/default_padding_half">
+
+                            <EditText
+                                android:id="@+id/etGender_FAD"
+                                style="@style/DefaultTheme.LeadInputFieldStyle"
+                                android:hint="@string/hint_gender" />
+
+                        </android.support.design.widget.TextInputLayout>
+
+                        <android.support.design.widget.TextInputLayout
+                            style="@style/DefaultTheme.LeadTextInputLayoutStyle"
+                            android:layout_marginStart="@dimen/default_padding_half">
+
+                            <EditText
+                                android:id="@+id/etEmploymentType_FAD"
+                                style="@style/DefaultTheme.LeadInputFieldStyle"
+                                android:hint="@string/hint_employment_type" />
+
+                        </android.support.design.widget.TextInputLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <android.support.design.widget.TextInputLayout
+                            style="@style/DefaultTheme.LeadTextInputLayoutStyle"
+                            android:layout_marginEnd="@dimen/default_padding_half">
+
+                            <EditText
+                                android:id="@+id/etMaritalStatus_FAD"
+                                style="@style/DefaultTheme.LeadInputFieldStyle"
+                                android:hint="@string/hint_marital_status" />
+
+                        </android.support.design.widget.TextInputLayout>
+
+                        <android.support.design.widget.TextInputLayout
+                            style="@style/DefaultTheme.LeadTextInputLayoutStyle"
+                            android:layout_marginStart="@dimen/default_padding_half">
+
+                            <EditText
+                                android:id="@+id/etNationality_FAD"
+                                style="@style/DefaultTheme.LeadInputFieldStyle"
+                                android:hint="@string/hint_nationality" />
+
+                        </android.support.design.widget.TextInputLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <android.support.design.widget.TextInputLayout
+                            style="@style/DefaultTheme.LeadTextInputLayoutStyle"
+                            android:layout_marginEnd="@dimen/default_padding_half">
+
+                            <EditText
+                                android:id="@+id/etIdentificationNumber_FAD"
+                                style="@style/DefaultTheme.LeadInputFieldStyle"
+                                android:hint="@string/hint_identification_number" />
+
+                        </android.support.design.widget.TextInputLayout>
+
+                        <android.support.design.widget.TextInputLayout
+                            style="@style/DefaultTheme.LeadTextInputLayoutStyle"
+                            android:layout_marginStart="@dimen/default_padding_half">
+
+                            <EditText
+                                android:id="@+id/etPassportNumber_FAD"
+                                style="@style/DefaultTheme.LeadInputFieldStyle"
+                                android:hint="@string/hint_passport_number" />
+
+                        </android.support.design.widget.TextInputLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <android.support.design.widget.TextInputLayout
+                            style="@style/DefaultTheme.LeadTextInputLayoutStyle"
+                            android:layout_marginEnd="@dimen/default_padding_half">
+
+                            <EditText
+                                android:id="@+id/etBankAccountNumber_FAD"
+                                style="@style/DefaultTheme.LeadInputFieldStyle"
+                                android:hint="@string/hint_bank_account_number" />
+
+                        </android.support.design.widget.TextInputLayout>
+
+                        <android.support.design.widget.TextInputLayout
+                            style="@style/DefaultTheme.LeadTextInputLayoutStyle"
+                            android:layout_marginStart="@dimen/default_padding_half">
+
+                            <EditText
+                                android:id="@+id/etOtherID_FAD"
+                                style="@style/DefaultTheme.LeadInputFieldStyle"
+                                android:hint="@string/hint_other_id" />
+
+                        </android.support.design.widget.TextInputLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <TextView
+                    style="@style/TextContentTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/address" />
+
+                <TextView
+                    android:id="@+id/tvEmptyAddress_FAD"
+                    style="@style/TextNoDataStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/default_padding_3dp"
+                    android:layout_marginTop="@dimen/default_padding" />
+
+                <LinearLayout
+                    android:id="@+id/llAddressContainer_FAD"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <android.support.design.widget.TextInputLayout
+                            style="@style/DefaultTheme.LeadTextInputLayoutStyle"
+                            android:layout_marginEnd="@dimen/default_padding_half">
+
+                            <EditText
+                                android:id="@+id/etStreet_FPD"
+                                style="@style/DefaultTheme.LeadInputFieldStyle"
+                                android:hint="@string/street" />
+
+                        </android.support.design.widget.TextInputLayout>
+
+                        <android.support.design.widget.TextInputLayout
+                            style="@style/DefaultTheme.LeadTextInputLayoutStyle"
+                            android:layout_marginStart="@dimen/default_padding_half">
+
+                            <EditText
+                                android:id="@+id/etCity_FPD"
+                                style="@style/DefaultTheme.LeadInputFieldStyle"
+                                android:hint="@string/hint_city" />
+
+                        </android.support.design.widget.TextInputLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <android.support.design.widget.TextInputLayout
+                            style="@style/DefaultTheme.LeadTextInputLayoutStyle"
+                            android:layout_marginEnd="@dimen/default_padding_half">
+
+                            <EditText
+                                android:id="@+id/etState_FPD"
+                                style="@style/DefaultTheme.LeadInputFieldStyle"
+                                android:hint="@string/state" />
+
+                        </android.support.design.widget.TextInputLayout>
+
+                        <android.support.design.widget.TextInputLayout
+                            style="@style/DefaultTheme.LeadTextInputLayoutStyle"
+                            android:layout_marginStart="@dimen/default_padding_half">
+
+                            <EditText
+                                android:id="@+id/etZipcode_FPD"
+                                style="@style/DefaultTheme.LeadInputFieldStyle"
+                                android:hint="@string/zip" />
+
+                        </android.support.design.widget.TextInputLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <android.support.design.widget.TextInputLayout
+                            style="@style/DefaultTheme.LeadTextInputLayoutStyle"
+                            android:layout_marginEnd="@dimen/default_padding_half">
+
+                            <EditText
+                                android:id="@+id/etCountry_FPD"
+                                style="@style/DefaultTheme.LeadInputFieldStyle"
+                                android:hint="@string/country" />
+
+                        </android.support.design.widget.TextInputLayout>
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/default_padding_half"
+                            android:layout_weight="1" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <TextView
+                style="@style/TextContentTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/default_padding"
+                android:layout_marginStart="@dimen/default_padding"
+                android:text="@string/attachments" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/default_padding"
+                android:layout_marginStart="@dimen/default_padding">
+
+                <TextView
+                    android:id="@+id/tvEmptyAttachments_FAD"
+                    style="@style/TextNoDataStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/default_padding_3dp"
+                    android:layout_marginTop="@dimen/default_padding" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rvAttachments_FAD"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/default_padding_half"
+                    android:overScrollMode="never" />
+
+            </FrameLayout>
+
+        </LinearLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+
+    <include layout="@layout/view_bottom_history" />
+
+</LinearLayout>

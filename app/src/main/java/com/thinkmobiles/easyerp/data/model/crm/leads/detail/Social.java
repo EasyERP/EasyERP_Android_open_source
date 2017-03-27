@@ -19,6 +19,11 @@ public class Social implements Parcelable {
     public String linkedIn;
     @SerializedName("FB")
     public String facebook;
+    @SerializedName("GP")
+    public String googlePlus;
+
+    public Social() {
+    }
 
     @Override
     public int describeContents() {
@@ -29,17 +34,16 @@ public class Social implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(this.linkedIn);
         dest.writeString(this.facebook);
-    }
-
-    public Social() {
+        dest.writeString(this.googlePlus);
     }
 
     protected Social(Parcel in) {
         this.linkedIn = in.readString();
         this.facebook = in.readString();
+        this.googlePlus = in.readString();
     }
 
-    public static final Parcelable.Creator<Social> CREATOR = new Parcelable.Creator<Social>() {
+    public static final Creator<Social> CREATOR = new Creator<Social>() {
         @Override
         public Social createFromParcel(Parcel source) {
             return new Social(source);

@@ -14,6 +14,10 @@ public class Manager implements Parcelable {
     @SerializedName("_id")
     public String id;
     public Name name;
+    public String fullName;
+
+    public Manager() {
+    }
 
     @Override
     public int describeContents() {
@@ -24,17 +28,16 @@ public class Manager implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(this.id);
         dest.writeParcelable(this.name, flags);
-    }
-
-    public Manager() {
+        dest.writeString(this.fullName);
     }
 
     protected Manager(Parcel in) {
         this.id = in.readString();
         this.name = in.readParcelable(Name.class.getClassLoader());
+        this.fullName = in.readString();
     }
 
-    public static final Parcelable.Creator<Manager> CREATOR = new Parcelable.Creator<Manager>() {
+    public static final Creator<Manager> CREATOR = new Creator<Manager>() {
         @Override
         public Manager createFromParcel(Parcel source) {
             return new Manager(source);

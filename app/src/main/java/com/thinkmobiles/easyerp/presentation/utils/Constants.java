@@ -127,6 +127,7 @@ public abstract class Constants {
 
     //Applications
     public static final String GET_APPLICATIONS             = "applications";
+    public static final String GET_PAYROLL_TYPES            = "payrollStructureTypes/forDd";
     //End Applications
 
     //Job Positions
