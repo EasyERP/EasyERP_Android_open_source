@@ -59,6 +59,7 @@ public class AttendanceListFragment extends MasterSelectableFragment implements 
     public void openAttendanceDetail(String id) {
         if (id != null) {
             mActivity.replaceFragmentContentDetail(AttendanceDetailsFragment_.builder()
+                    .id(id)
                     .build());
         } else {
             mActivity.replaceFragmentContentDetail(null);

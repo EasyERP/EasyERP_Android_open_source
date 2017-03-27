@@ -76,6 +76,11 @@ public abstract class Constants {
     public static final String GET_PAYMENTS                 = "payments";
     //End Payments
 
+    //Vacation
+    public static final String GET_VACATION                 = "vacation";
+    public static final String GET_YEARS                    = "vacation/getYears";
+    //End Vacation
+
     //Filters
     public static final String GET_FILTER                   = "filter";
     //End Filters
