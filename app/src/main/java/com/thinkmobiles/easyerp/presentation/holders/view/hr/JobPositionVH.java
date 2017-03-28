@@ -19,7 +19,7 @@ import com.thinkmobiles.easyerp.presentation.managers.TagHelper;
  *         Company: Thinkmobiles
  *         Email: michael.soyma@thinkmobiles.com
  */
-public class JobPositionVH extends SelectableVHHelper<JobPositionDH> {
+public final class JobPositionVH extends SelectableVHHelper<JobPositionDH> {
 
     private TextView tvJobName_VLIJP, tvStatus_VLIJP, tvDepartment_VLIJP,
             tvCurrentNumber_VLIJP, tvExpectedInRecruitment_VLIJP, tvEditedAt_VLIJP;

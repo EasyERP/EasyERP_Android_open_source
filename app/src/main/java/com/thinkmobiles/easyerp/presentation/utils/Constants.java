@@ -35,7 +35,6 @@ public abstract class Constants {
 
     //------------------------------------------------------ CRM
 
-    public static final int COUNT_LIST_ITEMS                = 25;
     public static final String CRM_DASHBOARD_BASE_ID        = "582bfabf5a43a4bc2524bf09";
     public static final String GET_DASHBOARD_CHARTS         = "customDashboard/{dashboardId}";
 
@@ -130,6 +129,7 @@ public abstract class Constants {
     public static final String GET_EMPLOYEES_FOR_CHART_BY_GENDER        = "employees/EmployeesForChart";
     public static final String GET_EMPLOYEES_FOR_CHART_BY_SALARY        = "employees/getSalaryForChart";
     public static final String GET_EMPLOYEES_FOR_CHART_BY_DEPARTMENT    = "employees/getSalaryByDepartment";
+    public static final String GET_EMPLOYEES_BIRTHDAYS                  = "employees/birthdays";
     public static final String GET_EMPLOYEES                            = "employees";
     //End Employees
 
@@ -144,7 +144,9 @@ public abstract class Constants {
 
     //------------------------------------------------------ END HR
 
-    public static final int DELAY_CLICK                     = 600;
+    public static final int COUNT_LIST_ITEMS                    = 25;
+    public static final int COUNT_LIST_ITEMS_WITHOUT_PAGINATION = 100;
+    public static final int DELAY_CLICK                         = 600;
 
     //Bundle keys
     public static final String KEY_FILTER_LIST              = "keyFilterList";

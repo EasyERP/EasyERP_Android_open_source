@@ -21,7 +21,7 @@ import com.thinkmobiles.easyerp.presentation.managers.ImageHelper;
  *         Company: Thinkmobiles
  *         Email: michael.soyma@thinkmobiles.com
  */
-public class AttendanceEmployeeVH extends SelectableVHHelper<EmployeeDH> {
+public final class AttendanceEmployeeVH extends SelectableVHHelper<EmployeeDH> {
 
     private ImageView ivEmployeeImage_VLIA;
     private TextView tvEmployeeName_VLIA, tvEmployeeDepartment_VLIA, tvIsEmployee_VLIA;

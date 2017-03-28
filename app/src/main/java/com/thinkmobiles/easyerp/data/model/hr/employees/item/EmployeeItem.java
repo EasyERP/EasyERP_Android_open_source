@@ -14,6 +14,7 @@ import com.thinkmobiles.easyerp.data.model.crm.persons.details.CreatedEditedUser
  */
 
 public class EmployeeItem implements Parcelable {
+
     @SerializedName("_id")
     public String id;
     public int total;

@@ -332,4 +332,5 @@
     <string name="sick">Sick</string>
     <string name="education">Education</string>
 
+    <string name="pattern_birthday_date" formatted="false">%s (%s years)</string>
 </resources>
