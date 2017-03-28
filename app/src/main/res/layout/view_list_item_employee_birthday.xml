@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <include layout="@layout/view_list_item_employee_birthday_header" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_with_bottom_divider_line_selector"
+        tools:background="@android:color/white">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="@dimen/default_padding">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/ivEmployeeImage_VLIEB"
+                    android:layout_width="@dimen/image_size_small"
+                    android:layout_height="@dimen/image_size_small"
+                    android:scaleType="centerCrop"
+                    tools:background="@color/color_chips_green" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/default_padding_middle"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tvEmployeeName_VLIEB"
+                            style="@style/TextListTitleStyle"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:includeFontPadding="false"
+                            android:maxLines="2"
+                            tools:text="Bradley Douglas" />
+
+                        <TextView
+                            android:id="@+id/tvEmployeeDepartment_VLIEB"
+                            style="@style/TextListInfoStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="@dimen/default_padding"
+                            tools:text="IOS departemnt" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tvEmployeePosition_VLIEB"
+                        style="@style/TextListInfoStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="@dimen/default_padding_quart"
+                        tools:text="Junior Software Developer" />
+
+                    <TextView
+                        android:id="@+id/tvEmployeeBirthdayDate_VLIEB"
+                        style="@style/TextListInfoStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/default_padding_quart"
+                        android:drawablePadding="@dimen/default_padding_half"
+                        android:drawableStart="@drawable/ic_birthday_small"
+                        android:gravity="center_vertical"
+                        tools:text="04 Mar, 2017 (23 years)" />
+
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </FrameLayout>
+</LinearLayout>

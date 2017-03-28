@@ -7,6 +7,7 @@ import com.thinkmobiles.easyerp.data.model.ResponseGetTotalItems;
 import com.thinkmobiles.easyerp.data.model.crm.common.alphabet.ResponseGetAlphabet;
 import com.thinkmobiles.easyerp.data.model.crm.common.images.ImageItem;
 import com.thinkmobiles.easyerp.data.model.crm.filter.ResponseFilters;
+import com.thinkmobiles.easyerp.data.model.hr.birthdays.BirthdaysResponse;
 import com.thinkmobiles.easyerp.data.model.hr.employees.ResponseEmployeeDetails;
 import com.thinkmobiles.easyerp.data.model.hr.employees.item.EmployeeItem;
 import com.thinkmobiles.easyerp.data.services.EmployeesService;
@@ -14,6 +15,7 @@ import com.thinkmobiles.easyerp.data.services.FilterService;
 import com.thinkmobiles.easyerp.data.services.ImageService;
 import com.thinkmobiles.easyerp.presentation.base.NetworkRepository;
 import com.thinkmobiles.easyerp.presentation.screens.hr.attendance.AttendanceListContract;
+import com.thinkmobiles.easyerp.presentation.screens.hr.birthdays.BirthdaysListContract;
 import com.thinkmobiles.easyerp.presentation.screens.hr.employees.EmployeesContract;
 import com.thinkmobiles.easyerp.presentation.screens.hr.employees.details.EmployeeDetailsContract;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
@@ -30,7 +32,10 @@ import rx.Observable;
  */
 
 @EBean(scope = EBean.Scope.Singleton)
-public class EmployeesRepository extends NetworkRepository implements EmployeesContract.EmployeeModel, EmployeeDetailsContract.EmployeeDetailsModel, AttendanceListContract.AttendanceListModel {
+public class EmployeesRepository extends NetworkRepository implements EmployeesContract.EmployeeModel,
+                                                                      EmployeeDetailsContract.EmployeeDetailsModel,
+                                                                      AttendanceListContract.AttendanceListModel,
+                                                                      BirthdaysListContract.BirthdaysListModel {
 
     private EmployeesService employeesService;
     private ImageService imageService;
@@ -75,5 +80,10 @@ public class EmployeesRepository extends NetworkRepository implements EmployeesC
     @Override
     public Observable<ResponseFilters> getFilters() {
         return getNetworkObservable(filterService.getListFilters("Employees"));
+    }
+
+    @Override
+    public Observable<BirthdaysResponse> getBirthdaysInEmployees() {
+        return getNetworkObservable(employeesService.getBirthdaysInEmployees("list", 1, Constants.COUNT_LIST_ITEMS_WITHOUT_PAGINATION, "Birthdays"));
     }
 }

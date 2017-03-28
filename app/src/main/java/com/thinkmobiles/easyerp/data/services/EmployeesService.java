@@ -2,6 +2,7 @@ package com.thinkmobiles.easyerp.data.services;
 
 import com.thinkmobiles.easyerp.data.model.ResponseGetTotalItems;
 import com.thinkmobiles.easyerp.data.model.crm.common.alphabet.ResponseGetAlphabet;
+import com.thinkmobiles.easyerp.data.model.hr.birthdays.BirthdaysResponse;
 import com.thinkmobiles.easyerp.data.model.hr.dashboard.DepartmentSalary;
 import com.thinkmobiles.easyerp.data.model.hr.dashboard.EmployeeCountForDashboard;
 import com.thinkmobiles.easyerp.data.model.hr.dashboard.EmployeeGenderDepartmentInfo;
@@ -45,4 +46,10 @@ public interface EmployeesService {
 
     @GET(Constants.GET_EMPLOYEES_FOR_CHART_BY_DEPARTMENT)
     Observable<ResponseGetTotalItems<DepartmentSalary>> getEmployeesForChartByDepartment(@Query("month") final int month, @Query("year") final int year);
+
+    @GET(Constants.GET_EMPLOYEES_BIRTHDAYS)
+    Observable<BirthdaysResponse> getBirthdaysInEmployees(@Query("viewType") final String viewType,
+                                                          @Query("page") final int page,
+                                                          @Query("count") final int count,
+                                                          @Query("contentType") final String contentType);
 }

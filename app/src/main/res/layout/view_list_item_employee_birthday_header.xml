@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:background="@android:color/white">
+
+    <TextView
+        android:id="@+id/tvTitleHeader_VLIEBH"
+        style="@style/TextListInfoStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_vertical"
+        android:padding="@dimen/default_padding_middle"
+        android:textColor="@color/colorPrimary"
+        android:textSize="@dimen/text_list_item_large_20"
+        android:textStyle="bold"
+        android:visibility="gone"
+        tools:text="Current week"
+        tools:visibility="visible" />
+</FrameLayout>
