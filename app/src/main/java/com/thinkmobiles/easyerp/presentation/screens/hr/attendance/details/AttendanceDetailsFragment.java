@@ -9,6 +9,7 @@ import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.domain.hr.AttendanceRepository;
 import com.thinkmobiles.easyerp.presentation.base.rules.content.ContentFragment;
 import com.thinkmobiles.easyerp.presentation.managers.CalendarManager;
+import com.thinkmobiles.easyerp.presentation.managers.GoogleAnalyticHelper;
 
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterViews;
@@ -80,6 +81,7 @@ public class AttendanceDetailsFragment extends ContentFragment implements Attend
 
     @AfterViews
     protected void initUI() {
+        GoogleAnalyticHelper.trackScreenView(this, getResources().getConfiguration());
         calendarManager = new CalendarManager(rvYear_FAD);
         getPresenter().subscribe();
     }

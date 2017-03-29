@@ -42,7 +42,7 @@ public class CalendarManager {
 
         private YearAdapter adapter;
 
-        private int year = 2017;
+        private int year = Calendar.getInstance().get(Calendar.YEAR);
 
         public CalendarManager(RecyclerView recyclerView) {
             setList(recyclerView);
