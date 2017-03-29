@@ -5,6 +5,7 @@ import com.thinkmobiles.easyerp.data.model.crm.common.alphabet.AlphabetItem;
 import com.thinkmobiles.easyerp.data.model.crm.common.alphabet.ResponseGetAlphabet;
 import com.thinkmobiles.easyerp.data.model.crm.filter.FilterItem;
 import com.thinkmobiles.easyerp.data.model.crm.filter.ResponseFilters;
+import com.thinkmobiles.easyerp.data.model.hr.attendance_detail.MonthDetail;
 import com.thinkmobiles.easyerp.data.services.VacationService;
 import com.thinkmobiles.easyerp.presentation.base.NetworkRepository;
 import com.thinkmobiles.easyerp.presentation.screens.hr.vacations.VacationsListContract;
@@ -59,5 +60,9 @@ public class VacationsRepository extends NetworkRepository implements VacationsL
     @Override
     public Observable<ResponseFilters> getFilters() {
         return null;
+    }
+
+    public Observable<ArrayList<MonthDetail>> getVacationDetails(int page, int year, int month) {
+        return getNetworkObservable(vacationService.getVacationDetails("list", page, 50, "Vacation", year, month));
     }
 }

@@ -1,6 +1,7 @@
 package com.thinkmobiles.easyerp.data.services;
 
 import com.thinkmobiles.easyerp.data.model.crm.filter.FilterItem;
+import com.thinkmobiles.easyerp.data.model.hr.attendance_detail.MonthDetail;
 import com.thinkmobiles.easyerp.data.model.hr.dashboard.VacationStatistic;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
@@ -22,4 +23,12 @@ public interface VacationService {
 
     @GET(Constants.GET_VACATION_YEARS)
     Observable<ArrayList<FilterItem>> getVacationYears();
+
+    @GET(Constants.GET_VACATION)
+    Observable<ArrayList<MonthDetail>> getVacationDetails(@Query("viewType") final String viewType,
+                                                          @Query("page") final int page,
+                                                          @Query("count") final int count,
+                                                          @Query("contentType") final String contentType,
+                                                          @Query("year") final int year,
+                                                          @Query("month") final int month);
 }

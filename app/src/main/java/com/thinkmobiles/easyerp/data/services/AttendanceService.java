@@ -20,7 +20,7 @@ public interface AttendanceService {
     @GET(Constants.GET_VACATION)
     Observable<ResponseGetTotalItems<MonthDetail>> getAttendanceDetails(@Query("year") int year, @Query("employee") String employee);
 
-    @GET(Constants.GET_YEARS)
+    @GET(Constants.GET_VACATION_YEARS)
     Observable<ArrayList<FilterItem>> getEnableYears();
 
 }

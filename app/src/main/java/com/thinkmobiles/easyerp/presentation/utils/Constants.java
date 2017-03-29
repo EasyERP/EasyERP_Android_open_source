@@ -32,6 +32,7 @@ public abstract class Constants {
     //Vacation
     public static final String GET_VACATION_BY_STATISTIC    = "vacation/getStatistic";
     public static final String GET_VACATION_YEARS           = "vacation/getYears";
+    public static final String GET_VACATION                 = "vacation";
     //End Vacation
 
     //------------------------------------------------------ CRM
@@ -79,11 +80,6 @@ public abstract class Constants {
     //Payments
     public static final String GET_PAYMENTS                 = "payments";
     //End Payments
-
-    //Vacation
-    public static final String GET_VACATION                 = "vacation";
-    public static final String GET_YEARS                    = "vacation/getYears";
-    //End Vacation
 
     //Filters
     public static final String GET_FILTER                   = "filter";

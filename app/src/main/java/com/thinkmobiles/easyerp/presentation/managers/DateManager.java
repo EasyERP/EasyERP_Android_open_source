@@ -4,10 +4,13 @@ import android.text.TextUtils;
 import android.text.format.DateUtils;
 import android.util.Log;
 
+import com.thinkmobiles.easyerp.data.model.hr.attendance_detail.MonthDetail;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.Locale;
 
 /**
@@ -54,6 +57,34 @@ public abstract class DateManager {
             Log.d("myLogs", "Parse cookie date error " + e.getMessage());
             return true;
         }
+    }
+
+    public static int getWorkingDaysInMonth(int year, int month) {
+        Calendar cal = new GregorianCalendar(year, month, 1);
+        int max = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
+        int weekends = 0;
+        do {
+            int day = cal.get(Calendar.DAY_OF_WEEK);
+            if (day == Calendar.SATURDAY || day == Calendar.SUNDAY) {
+                weekends++;
+            }
+            cal.add(Calendar.DAY_OF_YEAR, 1);
+        }  while (cal.get(Calendar.MONTH) == month);
+        return max - weekends;
+    }
+
+    public static int getLeavesInMonth(MonthDetail monthDetail) {
+        int result = 0;
+        for(int i = 0; i < monthDetail.vacArray.size(); i++) {
+            if(monthDetail.vacArray.get(i) != null) {
+                Calendar cal = new GregorianCalendar(monthDetail.year, monthDetail.month, i);
+                int day = cal.get(Calendar.DAY_OF_WEEK);
+                if (day != Calendar.SATURDAY && day != Calendar.SUNDAY) {
+                    result++;
+                }
+            }
+        }
+        return result;
     }
 
     public static String getDateToNow(String date) {
