@@ -19,7 +19,7 @@ import rx.Observable;
  */
 public interface AttendanceListContract {
     interface AttendanceListView extends BaseView<AttendanceListPresenter>, SelectableView {
-        void openAttendanceDetail(String id);
+        void openAttendanceDetail(String id, String fullName);
     }
     interface AttendanceListPresenter extends SelectablePresenter {
 

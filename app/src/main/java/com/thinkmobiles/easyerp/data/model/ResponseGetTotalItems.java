@@ -1,6 +1,6 @@
 package com.thinkmobiles.easyerp.data.model;
 
-import java.util.List;
+import java.util.ArrayList;
 
 /**
  * @author Michael Soyma (Created on 3/7/2017).
@@ -9,6 +9,6 @@ import java.util.List;
  */
 public class ResponseGetTotalItems<T> {
 
-    public List<T> data;
+    public ArrayList<T> data;
     public int total;
 }

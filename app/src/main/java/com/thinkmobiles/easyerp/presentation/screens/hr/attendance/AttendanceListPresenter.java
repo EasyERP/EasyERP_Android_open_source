@@ -9,6 +9,7 @@ import com.thinkmobiles.easyerp.presentation.base.rules.master.selectable.Select
 import com.thinkmobiles.easyerp.presentation.holders.data.hr.EmployeeDH;
 import com.thinkmobiles.easyerp.presentation.managers.ErrorManager;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
+import com.thinkmobiles.easyerp.presentation.utils.StringUtil;
 
 import java.util.ArrayList;
 
@@ -35,7 +36,7 @@ public class AttendanceListPresenter extends MasterSelectablePresenterHelper imp
     public void clickItem(int position) {
         final EmployeeItem employeeItem = responseEmployees.responseGetEmployees.data.get(position);
         if (super.selectItem(employeeItem.id, position))
-            view.openAttendanceDetail(employeeItem.id);
+            view.openAttendanceDetail(employeeItem.id, StringUtil.getFullName(employeeItem.name.first, employeeItem.name.last));
     }
 
     @Override

@@ -8,6 +8,7 @@ import com.thinkmobiles.easyerp.presentation.base.rules.master.list.MasterListPr
 import com.thinkmobiles.easyerp.presentation.base.rules.master.selectable.MasterSelectableFragment;
 import com.thinkmobiles.easyerp.presentation.base.rules.master.selectable.SelectableAdapter;
 import com.thinkmobiles.easyerp.presentation.base.rules.master.selectable.SelectablePresenter;
+import com.thinkmobiles.easyerp.presentation.screens.hr.attendance.details.AttendanceDetailsFragment_;
 
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.Bean;
@@ -55,9 +56,12 @@ public class AttendanceListFragment extends MasterSelectableFragment implements 
     }
 
     @Override
-    public void openAttendanceDetail(String id) {
+    public void openAttendanceDetail(String id, String fullName) {
         if (id != null) {
-            //TODO open Attendance details
+            mActivity.replaceFragmentContentDetail(AttendanceDetailsFragment_.builder()
+                    .id(id)
+                    .fullName(fullName)
+                    .build());
         } else {
             mActivity.replaceFragmentContentDetail(null);
         }

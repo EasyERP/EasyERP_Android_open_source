@@ -398,4 +398,17 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="CalendarTextStyle" parent="RobotoCondensedBold">
+        <item name="android:textColor">@color/color_text_black</item>
+    </style>
+    <style name="CalendarTextStyle.Counter">
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:layout_margin">@dimen/default_padding_half</item>
+    </style>
+    <style name="CalendarTextStyle.CounterTitle">
+        <item name="android:textSize">@dimen/text_size_table_12</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:layout_marginBottom">@dimen/default_padding_half</item>
+    </style>
+
 </resources>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="8dp"
+    app:cardCornerRadius="3dp"
+    app:cardElevation="3dp">
+
+    <com.thinkmobiles.easyerp.presentation.custom.views.calendar.MonthView
+        android:id="@+id/month"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:selectWeekend="true"
+        app:visibleHeaderLine="true"
+        app:colorBackground="@android:color/white"
+        app:colorHeaderLine="#33000000"
+        app:colorSelectedDay="#ffffffff"
+        app:colorWeekend="#992b2b2b"
+        app:textMonthNameSize="16sp"
+        app:textDayNameSize="12sp"
+        app:textDaySize="14sp"/>
+
+</android.support.v7.widget.CardView>
