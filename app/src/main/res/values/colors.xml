@@ -70,6 +70,11 @@
     <color name="color_bg_chart">#f8f9fa</color>
     <color name="color_bg_product_details">#f5f7f9</color>
 
+    <color name="color_vacation">#ffeb5a46</color>
+    <color name="color_personal">#fffbaf5d</color>
+    <color name="color_sick">#ff00aaf2</color>
+    <color name="color_education">#ff2ecc71</color>
+
     <color name="color_not_employee">#dce74c3c</color>
 
 </resources>

@@ -11,4 +11,19 @@
         </attr>
     </declare-styleable>
 
+    <declare-styleable name="MonthView">
+        <attr name="colorBackground" format="color"/>
+        <attr name="colorMonthName" format="color"/>
+        <attr name="colorHeaderLine" format="color"/>
+        <attr name="colorDayName" format="color"/>
+        <attr name="colorWeekend" format="color"/>
+        <attr name="colorDay" format="color"/>
+        <attr name="colorSelectedDay" format="color"/>
+        <attr name="textMonthNameSize" format="dimension"/>
+        <attr name="textDayNameSize" format="dimension"/>
+        <attr name="textDaySize" format="dimension"/>
+        <attr name="visibleHeaderLine" format="boolean"/>
+        <attr name="selectWeekend" format="boolean"/>
+    </declare-styleable>
+
 </resources>
