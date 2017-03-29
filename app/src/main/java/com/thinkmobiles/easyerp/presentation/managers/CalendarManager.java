@@ -1,22 +1,23 @@
 package com.thinkmobiles.easyerp.presentation.managers;
 
-import android.content.Context;
 import android.graphics.Color;
 import android.support.annotation.IntDef;
+import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 
+import com.michenko.simpleadapter.OnCardClickListener;
+import com.michenko.simpleadapter.RecyclerDH;
+import com.michenko.simpleadapter.RecyclerVH;
+import com.michenko.simpleadapter.SimpleRecyclerAdapter;
 import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.presentation.EasyErpApplication;
 import com.thinkmobiles.easyerp.presentation.custom.views.calendar.MonthView;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
-import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
@@ -39,11 +40,7 @@ public class CalendarManager {
         public static final int CENTER = 3;
         public static final int RIGHT = 4;
 
-
-        private WeakReference<RecyclerView> list;
-        private GridLayoutManager layoutManager;
         private YearAdapter adapter;
-        private ArrayList<MonthDH> monthDHs;
 
         private int year = 2017;
 
@@ -53,21 +50,19 @@ public class CalendarManager {
         }
 
         private void setList(RecyclerView recyclerView) {
-            list = new WeakReference<>(recyclerView);
             adapter = new YearAdapter();
-            Context context = recyclerView.getContext();
-            layoutManager = new GridLayoutManager(context, 2);
-            list.get().setLayoutManager(layoutManager);
-            list.get().setAdapter(adapter);
+            GridLayoutManager layoutManager = new GridLayoutManager(recyclerView.getContext(), 2);
+            recyclerView.setLayoutManager(layoutManager);
+            recyclerView.setAdapter(adapter);
         }
 
         public void setYear(int year) {
             this.year = year;
-            monthDHs = new ArrayList<>();
+            ArrayList<MonthDH> monthDHs = new ArrayList<>();
             for (int i = 0; i < 12; i++) {
                 monthDHs.add(new MonthDH(year, i));
             }
-            adapter.notifyDataSetChanged();
+            adapter.setListDH(monthDHs);
         }
 
         public int getYear() {
@@ -75,8 +70,8 @@ public class CalendarManager {
         }
 
         public void setMonth(int month, ArrayList<String> types) {
-            ArrayList<DayDH> days = monthDHs.get(month).dayDHs;
-            int offset = monthDHs.get(month).weekOffset;
+            ArrayList<DayDH> days = adapter.getListDH().get(month).dayDHs;
+            int offset = adapter.getListDH().get(month).weekOffset;
             int d;
             @Shape int type;
             @Shape int prevType = NONE;
@@ -116,41 +111,31 @@ public class CalendarManager {
             }
         }
 
-        private class YearAdapter extends RecyclerView.Adapter<MonthVH> {
+        private class YearAdapter extends SimpleRecyclerAdapter<MonthDH, MonthVH>  {
 
             @Override
-            public MonthVH onCreateViewHolder(ViewGroup parent, int viewType) {
-                return new MonthVH(LayoutInflater.from(parent.getContext()).inflate(R.layout.view_month, parent, false));
+            protected int getItemLayout() {
+                return R.layout.view_month;
             }
-
-            @Override
-            public void onBindViewHolder(MonthVH holder, int position) {
-                holder.bindData(monthDHs.get(position));
-            }
-
-            @Override
-            public int getItemCount() {
-                return 12;
-            }
-
         }
 
-        private class MonthVH extends RecyclerView.ViewHolder {
+        private class MonthVH extends RecyclerVH<MonthDH> {
 
             private MonthView monthView;
 
-            MonthVH(View itemView) {
-                super(itemView);
-                monthView = (MonthView) itemView.findViewById(R.id.month);
+            public MonthVH(View itemView, @Nullable OnCardClickListener listener, int viewType) {
+                super(itemView, listener, viewType);
+                monthView = findView(R.id.month);
             }
 
-            void bindData(MonthDH monthDH) {
+            @Override
+            public void bindData(MonthDH monthDH) {
                 monthView.setDays(monthDH.dayDHs);
                 monthView.setMonthTitle(monthDH.month.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.ENGLISH));
             }
         }
 
-        public class MonthDH {
+        public class MonthDH extends RecyclerDH {
             private Calendar month;
             private ArrayList<DayDH> dayDHs;
             public int weekOffset;
