@@ -31,6 +31,7 @@ public abstract class Constants {
 
     //Vacation
     public static final String GET_VACATION_BY_STATISTIC    = "vacation/getStatistic";
+    public static final String GET_VACATION_YEARS           = "vacation/getYears";
     //End Vacation
 
     //------------------------------------------------------ CRM

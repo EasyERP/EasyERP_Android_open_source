@@ -11,8 +11,15 @@ import com.google.gson.annotations.SerializedName;
 
 public class AlphabetItem implements Parcelable {
 
+    public AlphabetItem(String id) {
+        this.id = id;
+    }
+
     @SerializedName("_id")
     public String id;
+
+    public AlphabetItem() {
+    }
 
     @Override
     public int describeContents() {
@@ -24,14 +31,11 @@ public class AlphabetItem implements Parcelable {
         dest.writeString(this.id);
     }
 
-    public AlphabetItem() {
-    }
-
     protected AlphabetItem(Parcel in) {
         this.id = in.readString();
     }
 
-    public static final Parcelable.Creator<AlphabetItem> CREATOR = new Parcelable.Creator<AlphabetItem>() {
+    public static final Creator<AlphabetItem> CREATOR = new Creator<AlphabetItem>() {
         @Override
         public AlphabetItem createFromParcel(Parcel source) {
             return new AlphabetItem(source);
