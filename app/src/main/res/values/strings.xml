@@ -79,7 +79,9 @@
     <string name="list_searchview_hint">Search</string>
     <string name="dialog_btn_close">Close</string>
     <string name="dialog_btn_apply">Apply</string>
+    <string name="dialog_btn_ok">Ok</string>
     <string name="dialog_btn_cancel">Cancel</string>
+    <string name="dialog_btn_today">Today</string>
     <string name="dialog_btn_remove">Remove</string>
     <string name="dialog_btn_send">Send</string>
     <string name="dialog_btn_change">Change</string>
@@ -316,6 +318,21 @@
     <string name="hint_scheduled_pay">Scheduled Pay</string>
     <string name="hint_stage">Stage</string>
     <string name="hint_other_id">Other ID</string>
+
+    <string name="choose_year_and_month">Choose Year and Month</string>
+
+    <!-- HR Color Cards chart -->
+    <string name="hired_fires_statistic">Hired/Fires Statistic</string>
+    <string name="employees">Employees</string>
+    <string name="hired">Hired</string>
+    <string name="fired">Fired</string>
+    <string name="vacation_days">Vacation Days</string>
+    <string name="vacation">Vacation</string>
+    <string name="personal">Personal</string>
+    <string name="sick">Sick</string>
+    <string name="education">Education</string>
+
+    <string name="pattern_birthday_date" formatted="false">%s (%s years)</string>
     <string name="attendance_details_working">Working</string>
     <string name="attendance_details_on_vacation">On Vacation</string>
     <string name="attendance_details_on_personal">On Personal</string>

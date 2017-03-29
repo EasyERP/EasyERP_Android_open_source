@@ -39,9 +39,13 @@ public final class DashboardVH extends SelectableVHHelper<DashboardListDH> {
     private @DrawableRes int getChartIconRes(final DashboardChartType chartType) {
         switch (chartType) {
             case DONUT: return R.drawable.ic_chart_donut;
-            case OVERVIEW: return R.drawable.ic_chart_overview;
+            case OVERVIEW:
+            case COLORCARDSVIEW:
+                return R.drawable.ic_chart_overview;
             case TABLE: return R.drawable.ic_chart_table;
-            case HORIZONTALBAR: return R.drawable.ic_chart_horizontal_bar;
+            case HORIZONTALBAR:
+            case REVERSEHORIZONTALBAR:
+                return R.drawable.ic_chart_horizontal_bar;
             default : return 0;
         }
     }

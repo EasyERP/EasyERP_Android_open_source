@@ -33,6 +33,13 @@ public class DashboardListItem implements Parcelable {
     public String dataset;
     public String name;
 
+    public DashboardListItem(String id, String type, String dataset, String name) {
+        this.id = id;
+        this.type = type;
+        this.dataset = dataset;
+        this.name = name;
+    }
+
     @Override
     public int describeContents() {
         return 0;
