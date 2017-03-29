@@ -35,6 +35,7 @@
     <string name="err_db_id_required">Database ID is required</string>
 
     <string name="date_filter">Date filter</string>
+    <string name="year_picker">Year picker</string>
     <string name="this_month">This Month</string>
     <string name="this_financial_year">This Financial Year</string>
     <string name="last_month">Last Month</string>

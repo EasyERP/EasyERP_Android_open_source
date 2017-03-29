@@ -10,7 +10,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/default_padding_quart"
+        android:padding="@dimen/default_padding"
         android:background="@drawable/bg_with_bottom_divider_line">
 
         <TextView
@@ -20,7 +20,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_weight="1"
-            android:layout_marginStart="@dimen/default_padding_middle"
             android:textSize="@dimen/text_list_item_large_20"/>
 
         <TextView
@@ -31,14 +30,15 @@
             android:layout_marginStart="@dimen/default_padding"
             android:text="@string/attendance_details_selected_year" />
 
-        <android.support.v7.widget.AppCompatSpinner
-            android:id="@+id/spYears_FAD"
+        <TextView
+            android:id="@+id/tvYear_FAD"
+            style="@style/RobotoMedium"
             android:layout_width="wrap_content"
-            android:layout_marginStart="@dimen/default_padding_half"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:theme="@style/ThemeOverlay.AppCompat.Light"
-            android:backgroundTint="@color/colorAccent"/>
+            android:layout_marginStart="@dimen/default_padding"
+            android:textSize="@dimen/text_list_item_medium_16"
+            android:textColor="@color/color_text_gray"/>
 
     </LinearLayout>
 

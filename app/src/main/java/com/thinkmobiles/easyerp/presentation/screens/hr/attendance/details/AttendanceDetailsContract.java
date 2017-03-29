@@ -35,6 +35,7 @@ public interface AttendanceDetailsContract {
 
     interface AttendanceDetailsPresenter extends ContentPresenter {
         void selectYear(int position);
+        void buildMenu();
     }
 
     interface AttendanceDetailsModel extends BaseModel {

@@ -1,10 +1,8 @@
 package com.thinkmobiles.easyerp.presentation.screens.hr.attendance.details;
 
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Spinner;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.thinkmobiles.easyerp.R;
@@ -39,12 +37,11 @@ public class AttendanceDetailsFragment extends ContentFragment implements Attend
 
     private AttendanceDetailsContract.AttendanceDetailsPresenter presenter;
     private CalendarManager calendarManager;
-    private ArrayAdapter<String> spinnerAdapter;
 
     @ViewById
     protected RecyclerView rvYear_FAD;
     @ViewById
-    protected Spinner spYears_FAD;
+    protected TextView tvYear_FAD;
     @ViewById
     protected TextView tvEmployeeName_FAD;
     @ViewById
@@ -60,9 +57,10 @@ public class AttendanceDetailsFragment extends ContentFragment implements Attend
     @ViewById
     protected TextView tvCountLeave_FAD;
 
+    protected MenuItem menuCalendar;
+
     @Bean
     protected AttendanceRepository attendanceRepository;
-
 
     @Override
     public AttendanceDetailsContract.AttendanceDetailsPresenter getPresenter() {
@@ -78,31 +76,24 @@ public class AttendanceDetailsFragment extends ContentFragment implements Attend
     @Override
     public void initPresenter() {
         new AttendanceDetailsPresenter(this, attendanceRepository, id, fullName);
-        spinnerAdapter = new ArrayAdapter<>(getActivity(), R.layout.view_list_item_year);
     }
 
     @AfterViews
     protected void initUI() {
         calendarManager = new CalendarManager(rvYear_FAD);
-        spYears_FAD.setAdapter(spinnerAdapter);
-        spYears_FAD.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                presenter.selectYear(position);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
         getPresenter().subscribe();
     }
 
     @Override
     public void setYears(ArrayList<String> years) {
-        spinnerAdapter.clear();
-        spinnerAdapter.addAll(years);
+        if (menuCalendar != null) {
+            Menu menu = menuCalendar.getSubMenu();
+            menu.clear();
+            for (int i = 0; i < years.size(); ++i) {
+                menu.add(0, i, i, years.get(i)).setCheckable(true);
+            }
+            menu.setGroupCheckable(0, true, true);
+        }
     }
 
     @Override
@@ -117,8 +108,12 @@ public class AttendanceDetailsFragment extends ContentFragment implements Attend
 
     @Override
     public void selectYear(int position) {
-        spYears_FAD.setSelection(position, false);
-        calendarManager.setYear(Integer.valueOf(spinnerAdapter.getItem(position)));
+        if (menuCalendar != null) {
+            MenuItem item = menuCalendar.getSubMenu().findItem(position);
+            item.setChecked(true);
+            calendarManager.setYear(Integer.valueOf(item.getTitle().toString()));
+            tvYear_FAD.setText(item.getTitle());
+        }
     }
 
     @Override
@@ -154,5 +149,27 @@ public class AttendanceDetailsFragment extends ContentFragment implements Attend
     @Override
     public String getScreenName() {
         return "Attendance details screen";
+    }
+
+    @Override
+    public boolean optionsMenuForDetail() {
+        return true;
+    }
+
+    @Override
+    public int optionsMenuRes() {
+        return R.menu.menu_hr_attendance_detail;
+    }
+
+    @Override
+    public void optionsMenuInitialized(Menu menu) {
+        menuCalendar = menu.findItem(R.id.menuYear_MHAD);
+        getPresenter().buildMenu();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        presenter.selectYear(item.getItemId());
+        return true;
     }
 }

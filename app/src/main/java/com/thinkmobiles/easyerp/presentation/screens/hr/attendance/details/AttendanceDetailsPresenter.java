@@ -1,16 +1,11 @@
 package com.thinkmobiles.easyerp.presentation.screens.hr.attendance.details;
 
-import android.support.v4.content.ContextCompat;
-
-import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.data.model.crm.filter.FilterItem;
 import com.thinkmobiles.easyerp.data.model.hr.attendance_detail.MonthDetail;
 import com.thinkmobiles.easyerp.data.model.hr.attendance_detail.ResponseGetAttendanceDetails;
-import com.thinkmobiles.easyerp.presentation.EasyErpApplication;
 import com.thinkmobiles.easyerp.presentation.base.rules.content.ContentPresenterHelper;
 import com.thinkmobiles.easyerp.presentation.base.rules.content.ContentView;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
-import com.thinkmobiles.easyerp.presentation.utils.StringUtil;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -64,7 +59,12 @@ public class AttendanceDetailsPresenter extends ContentPresenterHelper implement
 
     @Override
     public void selectYear(int position) {
-        int newYear = Integer.valueOf(attendanceDetails.years.get(position).id);
+        int newYear;
+        try {
+            newYear = Integer.valueOf(attendanceDetails.years.get(position).id);
+        } catch (Exception e) {
+            newYear = year;
+        }
         if (year != newYear) {
             year = newYear;
             view.showProgress(Constants.ProgressType.CENTER);
@@ -74,20 +74,26 @@ public class AttendanceDetailsPresenter extends ContentPresenterHelper implement
 
     private void setData(ResponseGetAttendanceDetails response) {
         attendanceDetails = response;
-        ArrayList<String> years = new ArrayList<>();
-        for (FilterItem item : response.years) {
-            years.add(item.name);
-        }
-        view.setYears(years);
-        for (String y : years) {
-            if (String.valueOf(year).equals(y)) {
-                view.selectYear(years.indexOf(y));
-                break;
-            }
-        }
+        buildMenu();
         view.setEmployeeName(fullName);
         prepareCalendar(response.details);
+    }
 
+    @Override
+    public void buildMenu() {
+        if (hasContent()) {
+            ArrayList<String> years = new ArrayList<>();
+            for (FilterItem item : attendanceDetails.years) {
+                years.add(item.name);
+            }
+            view.setYears(years);
+            for (String y : years) {
+                if (String.valueOf(year).equals(y)) {
+                    view.selectYear(years.indexOf(y));
+                    break;
+                }
+            }
+        }
     }
 
     private void prepareCalendar(ArrayList<MonthDetail> months) {
