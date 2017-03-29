@@ -316,4 +316,11 @@
     <string name="hint_scheduled_pay">Scheduled Pay</string>
     <string name="hint_stage">Stage</string>
     <string name="hint_other_id">Other ID</string>
+    <string name="attendance_details_working">Working</string>
+    <string name="attendance_details_on_vacation">On Vacation</string>
+    <string name="attendance_details_on_personal">On Personal</string>
+    <string name="attendance_details_on_sick">On Sick</string>
+    <string name="attendance_details_on_education">On Education</string>
+    <string name="attendance_details_on_leave">On Leave</string>
+    <string name="attendance_details_selected_year">Selected Year</string>
 </resources>

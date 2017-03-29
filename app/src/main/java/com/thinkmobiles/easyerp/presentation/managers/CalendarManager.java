@@ -67,6 +67,7 @@ public class CalendarManager {
             for (int i = 0; i < 12; i++) {
                 monthDHs.add(new MonthDH(year, i));
             }
+            adapter.notifyDataSetChanged();
         }
 
         public int getYear() {

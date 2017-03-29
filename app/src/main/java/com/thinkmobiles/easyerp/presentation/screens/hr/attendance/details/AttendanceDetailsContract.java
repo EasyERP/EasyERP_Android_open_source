@@ -22,10 +22,19 @@ public interface AttendanceDetailsContract {
     interface AttendanceDetailsView extends ContentView, BaseView<AttendanceDetailsPresenter> {
         void setYears(ArrayList<String> years);
         void setMonthDetails(int month, ArrayList<String> types);
+        void setEmployeeName(String name);
+        void selectYear(int position);
+        void setCountWorking(String countWorking);
+        void setCountVacation(String countVacation);
+        void setCountPersonal(String countPersonal);
+        void setCountSick(String countSick);
+        void setCountEducation(String countEducation);
+        void setCountLeave(String countLeave);
+
     }
 
     interface AttendanceDetailsPresenter extends ContentPresenter {
-        void selectYear();
+        void selectYear(int position);
     }
 
     interface AttendanceDetailsModel extends BaseModel {
