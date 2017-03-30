@@ -64,5 +64,27 @@ public class VacationsRepository extends NetworkRepository implements VacationsL
 
     public Observable<ArrayList<MonthDetail>> getVacationDetails(int page, int year, int month) {
         return getNetworkObservable(vacationService.getVacationDetails("list", page, 50, "Vacation", year, month));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 }

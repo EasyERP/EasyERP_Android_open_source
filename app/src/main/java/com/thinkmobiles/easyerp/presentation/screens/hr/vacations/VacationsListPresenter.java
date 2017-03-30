@@ -104,4 +104,10 @@ public class VacationsListPresenter extends MasterAlphabeticalPresenterHelper im
     protected void loadFilters() {
 
     }
+
+    @Override
+    public void setLetter(String letter) {
+        super.setLetter(letter);
+        view.openDetailsScreen(Integer.valueOf(selectedLetter), getSelectedItemPosition() + 1);
+    }
 }

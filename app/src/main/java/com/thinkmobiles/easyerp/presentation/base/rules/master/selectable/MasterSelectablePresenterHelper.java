@@ -26,7 +26,7 @@ public abstract class MasterSelectablePresenterHelper extends MasterListPresente
         selectedInfo = null;
     }
 
-    private Integer getSelectedItemPosition() {
+    protected Integer getSelectedItemPosition() {
         return selectedInfo != null ? selectedInfo.first : -1;
     }
 
