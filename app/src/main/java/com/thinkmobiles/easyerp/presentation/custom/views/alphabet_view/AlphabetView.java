@@ -27,7 +27,6 @@ public class AlphabetView extends FrameLayout {
     private OnLetterSelectedListener listener;
 
     private boolean forYears;
-    private ArrayList<AlphabetItem> alphabetItems = new ArrayList<>();
 
     @Bean
     protected AlphabetListAdapter alphabetListAdapter;
@@ -58,7 +57,6 @@ public class AlphabetView extends FrameLayout {
 
     public void setEnabledLetters(ArrayList<AlphabetItem> enabledLetters) {
         if (forYears) {
-            alphabetItems = enabledLetters;
             fillYears(enabledLetters);
         } else {
             fillLetters(enabledLetters);
@@ -66,6 +64,7 @@ public class AlphabetView extends FrameLayout {
     }
 
     public void setForYears(boolean forYears) {
+        alphabetListAdapter.setForYears(forYears);
         this.forYears = forYears;
     }
 

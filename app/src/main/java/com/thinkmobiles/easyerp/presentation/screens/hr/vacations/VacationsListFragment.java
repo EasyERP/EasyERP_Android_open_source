@@ -8,6 +8,7 @@ import com.thinkmobiles.easyerp.presentation.base.rules.master.alphabetical.Alph
 import com.thinkmobiles.easyerp.presentation.base.rules.master.alphabetical.MasterAlphabeticalFragment;
 import com.thinkmobiles.easyerp.presentation.base.rules.master.selectable.SelectableAdapter;
 import com.thinkmobiles.easyerp.presentation.managers.GoogleAnalyticHelper;
+import com.thinkmobiles.easyerp.presentation.screens.hr.vacations.details.VacationDetailsFragment_;
 
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterViews;
@@ -60,7 +61,13 @@ public class VacationsListFragment extends MasterAlphabeticalFragment implements
 
     @Override
     public void openDetailsScreen(int year, int month) {
-        Toast.makeText(getActivity(), String.format(Locale.US, "Open vacation details :: year = %d month = %d", year, month), Toast.LENGTH_SHORT).show();
+        if (year != 0) {
+            mActivity.replaceFragmentContentDetail(VacationDetailsFragment_.builder()
+                    .year(year)
+                    .month(month)
+                    .build());
+        } else
+            mActivity.replaceFragmentContentDetail(null);
     }
 
     @Override

@@ -11,8 +11,15 @@ import org.androidannotations.annotations.EBean;
 
 @EBean
 public class AlphabetListAdapter extends SimpleRecyclerAdapter<LetterDH, LetterVH> {
+
+    private boolean isForYears = false;
+
+    public void setForYears(boolean forYears) {
+        isForYears = forYears;
+    }
+
     @Override
     protected int getItemLayout() {
-        return R.layout.view_list_item_letter;
+        return isForYears ? R.layout.view_list_item_year : R.layout.view_list_item_letter;
     }
 }

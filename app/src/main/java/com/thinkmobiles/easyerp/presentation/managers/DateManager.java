@@ -73,20 +73,6 @@ public abstract class DateManager {
         return max - weekends;
     }
 
-    public static int getLeavesInMonth(MonthDetail monthDetail) {
-        int result = 0;
-        for(int i = 0; i < monthDetail.vacArray.size(); i++) {
-            if(monthDetail.vacArray.get(i) != null) {
-                Calendar cal = new GregorianCalendar(monthDetail.year, monthDetail.month, i);
-                int day = cal.get(Calendar.DAY_OF_WEEK);
-                if (day != Calendar.SATURDAY && day != Calendar.SUNDAY) {
-                    result++;
-                }
-            }
-        }
-        return result;
-    }
-
     public static String getDateToNow(String date) {
         SimpleDateFormat sdf = new SimpleDateFormat(PATTERN_DATE, Locale.US);
         SimpleDateFormat sdfOut = new SimpleDateFormat(PATTERN_SIMPLE_DATE_SHORT, Locale.US);

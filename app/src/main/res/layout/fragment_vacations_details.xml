@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:background="@android:color/white">
+
+    <TextView
+        android:id="@+id/tvTitleMonth_FVD"
+        style="@style/TextDetailsTitleStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_accent_divider_for_header"
+        tools:text="Costs by Sales Manager"
+        android:padding="@dimen/default_padding"/>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            app:srcCompat="@drawable/ic_empty_list"/>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rvVacationDetailsList_FVD"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/color_bg_chart"/>
+
+    </FrameLayout>
+
+
+</LinearLayout>

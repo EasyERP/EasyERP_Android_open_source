@@ -26,8 +26,6 @@ public interface VacationService {
 
     @GET(Constants.GET_VACATION)
     Observable<ArrayList<MonthDetail>> getVacationDetails(@Query("viewType") final String viewType,
-                                                          @Query("page") final int page,
-                                                          @Query("count") final int count,
                                                           @Query("contentType") final String contentType,
                                                           @Query("year") final int year,
                                                           @Query("month") final int month);

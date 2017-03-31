@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/tvLetter_LIL"
+    style="@style/TextDetailsTitleStyle"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="?android:attr/selectableItemBackground"
+    android:paddingStart="@dimen/default_padding_middle"
+    android:paddingEnd="@dimen/default_padding_middle"
+    android:paddingTop="@dimen/default_padding"
+    android:paddingBottom="@dimen/default_padding"
+    android:textColor="@color/selector_color_alphabet"
+    android:textSize="@dimen/text_list_item_large_20"
+    android:theme="@style/DefaultTheme.ThemeHistory"
+    tools:background="@android:color/white"
+    tools:text="2017"/>

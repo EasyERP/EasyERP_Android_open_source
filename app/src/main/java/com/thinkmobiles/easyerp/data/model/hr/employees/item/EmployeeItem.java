@@ -31,6 +31,12 @@ public class EmployeeItem implements Parcelable {
     public String jobType;
     public boolean isEmployee;
 
+    //additional for vacation details
+    public String employeeBase64Image;
+
+    public EmployeeItem() {
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -52,9 +58,7 @@ public class EmployeeItem implements Parcelable {
         dest.writeParcelable(this.workPhones, flags);
         dest.writeString(this.jobType);
         dest.writeByte(this.isEmployee ? (byte) 1 : (byte) 0);
-    }
-
-    public EmployeeItem() {
+        dest.writeString(this.employeeBase64Image);
     }
 
     protected EmployeeItem(Parcel in) {
@@ -72,9 +76,10 @@ public class EmployeeItem implements Parcelable {
         this.workPhones = in.readParcelable(Phone.class.getClassLoader());
         this.jobType = in.readString();
         this.isEmployee = in.readByte() != 0;
+        this.employeeBase64Image = in.readString();
     }
 
-    public static final Parcelable.Creator<EmployeeItem> CREATOR = new Parcelable.Creator<EmployeeItem>() {
+    public static final Creator<EmployeeItem> CREATOR = new Creator<EmployeeItem>() {
         @Override
         public EmployeeItem createFromParcel(Parcel source) {
             return new EmployeeItem(source);
