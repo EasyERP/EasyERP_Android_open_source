@@ -18,7 +18,9 @@ import com.thinkmobiles.easyerp.presentation.screens.hr.vacations.details.Vacati
 
 import org.androidannotations.annotations.EBean;
 
+import java.text.DateFormatSymbols;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 
@@ -93,5 +95,10 @@ public class VacationsRepository extends NetworkRepository implements VacationsL
             }
         }
         return result;
+    }
+
+    @Override
+    public ArrayList<String> getMonths() {
+        return new ArrayList<>(Arrays.asList(new DateFormatSymbols().getMonths()));
     }
 }

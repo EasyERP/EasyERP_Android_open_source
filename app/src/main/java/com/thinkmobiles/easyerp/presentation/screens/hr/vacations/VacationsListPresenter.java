@@ -48,7 +48,7 @@ public class VacationsListPresenter extends MasterAlphabeticalPresenterHelper im
     @Override
     protected void loadPage(int page) {
         Log.d("myLogs", "Load page with selected letter " + selectedLetter);
-        months = getMonths();
+        months = model.getMonths();
         totalItems = months.size();
         setData(months);
         view.showProgress(Constants.ProgressType.NONE);
@@ -67,23 +67,6 @@ public class VacationsListPresenter extends MasterAlphabeticalPresenterHelper im
     @Override
     protected AlphabeticalModel getModel() {
         return model;
-    }
-
-    private ArrayList<String> getMonths() {
-        ArrayList<String> result = new ArrayList<>();
-        result.add("January");
-        result.add("February");
-        result.add("March");
-        result.add("April");
-        result.add("May");
-        result.add("June");
-        result.add("July");
-        result.add("August");
-        result.add("September");
-        result.add("October");
-        result.add("November");
-        result.add("December");
-        return result;
     }
 
     private void setData(ArrayList<String> data) {
