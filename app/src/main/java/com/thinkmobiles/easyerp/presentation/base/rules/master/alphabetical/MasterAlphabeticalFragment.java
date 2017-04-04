@@ -9,6 +9,7 @@ import com.thinkmobiles.easyerp.presentation.custom.views.alphabet_view.Alphabet
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EFragment;
+import org.androidannotations.annotations.InstanceState;
 import org.androidannotations.annotations.ViewById;
 
 import java.util.ArrayList;

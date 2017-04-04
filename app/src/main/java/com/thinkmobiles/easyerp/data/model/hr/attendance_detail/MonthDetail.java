@@ -22,8 +22,11 @@ public class MonthDetail implements Parcelable {
     public int monthTotal;
     public EmployeeItem employee;
     public ArrayList<String> vacArray;
-    int year;
+    public int year;
 
+
+    public MonthDetail() {
+    }
 
     @Override
     public int describeContents() {
@@ -41,9 +44,6 @@ public class MonthDetail implements Parcelable {
         dest.writeInt(this.year);
     }
 
-    public MonthDetail() {
-    }
-
     protected MonthDetail(Parcel in) {
         this.id = in.readString();
         this.department = in.readParcelable(FilterItem.class.getClassLoader());
@@ -54,7 +54,7 @@ public class MonthDetail implements Parcelable {
         this.year = in.readInt();
     }
 
-    public static final Parcelable.Creator<MonthDetail> CREATOR = new Parcelable.Creator<MonthDetail>() {
+    public static final Creator<MonthDetail> CREATOR = new Creator<MonthDetail>() {
         @Override
         public MonthDetail createFromParcel(Parcel source) {
             return new MonthDetail(source);

@@ -12,6 +12,7 @@ import com.thinkmobiles.easyerp.data.model.crm.common.alphabet.AlphabetItem;
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EViewGroup;
+import org.androidannotations.annotations.InstanceState;
 import org.androidannotations.annotations.ViewById;
 
 import java.util.ArrayList;
@@ -24,6 +25,8 @@ import java.util.ArrayList;
 public class AlphabetView extends FrameLayout {
 
     private OnLetterSelectedListener listener;
+
+    private boolean forYears;
 
     @Bean
     protected AlphabetListAdapter alphabetListAdapter;
@@ -53,6 +56,19 @@ public class AlphabetView extends FrameLayout {
     }
 
     public void setEnabledLetters(ArrayList<AlphabetItem> enabledLetters) {
+        if (forYears) {
+            fillYears(enabledLetters);
+        } else {
+            fillLetters(enabledLetters);
+        }
+    }
+
+    public void setForYears(boolean forYears) {
+        alphabetListAdapter.setForYears(forYears);
+        this.forYears = forYears;
+    }
+
+    private void fillLetters(ArrayList<AlphabetItem> enabledLetters) {
         for (AlphabetItem alphabetItem : enabledLetters) {
             for (LetterDH dh : alphabetListAdapter.getListDH()) {
                 if (dh.getLetter().equalsIgnoreCase(alphabetItem.id)) {
@@ -83,5 +99,13 @@ public class AlphabetView extends FrameLayout {
             allLetters.add(new LetterDH(String.valueOf(c)));
         }
         alphabetListAdapter.setListDH(allLetters);
+    }
+
+    private void fillYears(ArrayList<AlphabetItem> enabledYears) {
+        ArrayList<LetterDH> years = new ArrayList<>();
+        for (AlphabetItem item : enabledYears) {
+            years.add(new LetterDH(item.id, true));
+        }
+        alphabetListAdapter.setListDH(years);
     }
 }
