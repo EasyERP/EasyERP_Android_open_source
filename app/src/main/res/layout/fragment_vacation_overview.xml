@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@android:color/white"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tvTitle"
+        style="@style/TextDetailsTitleStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/default_padding"
+        tools:text="Web development" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/color_divider" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:paddingStart="@dimen/default_padding"
+            android:paddingEnd="@dimen/default_padding_half">
+
+            <TextView
+                style="@style/TextContentTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/default_padding_middle"
+                android:text="Absence periods:" />
+
+            <android.support.v7.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:paddingEnd="@dimen/default_padding_half">
+
+
+            <TextView
+                style="@style/TextContentTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/default_padding_half"
+                android:layout_marginBottom="@dimen/default_padding_quart"
+                android:text="Calendar preview:" />
+
+            <include layout="@layout/view_month" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="0dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:baselineAligned="false">
+
+            <LinearLayout
+                android:background="@drawable/bg_cell_border_gray"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="4dp"
+                    android:background="@android:color/transparent" />
+
+                <TextView
+                    android:id="@+id/tvCountWorking_FAD"
+                    style="@style/CalendarTextStyle.Counter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="100" />
+
+                <TextView
+                    style="@style/CalendarTextStyle.CounterTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/attendance_details_working" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:background="@drawable/bg_cell_border_gray"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="4dp"
+                    android:background="@color/color_vacation" />
+
+                <TextView
+                    android:id="@+id/tvCountVacation_FAD"
+                    style="@style/CalendarTextStyle.Counter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="100" />
+
+                <TextView
+                    style="@style/CalendarTextStyle.CounterTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/attendance_details_on_vacation" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:background="@drawable/bg_cell_border_gray"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="4dp"
+                    android:background="@color/color_personal" />
+
+                <TextView
+                    android:id="@+id/tvCountPersonal_FAD"
+                    style="@style/CalendarTextStyle.Counter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="100" />
+
+                <TextView
+                    style="@style/CalendarTextStyle.CounterTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/attendance_details_on_personal" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:background="@drawable/bg_cell_border_gray"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="4dp"
+                    android:background="@color/color_sick" />
+
+                <TextView
+                    android:id="@+id/tvCountSick_FAD"
+                    style="@style/CalendarTextStyle.Counter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="100" />
+
+                <TextView
+                    style="@style/CalendarTextStyle.CounterTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/attendance_details_on_sick" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:background="@drawable/bg_cell_border_gray"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="4dp"
+                    android:background="@color/color_education" />
+
+                <TextView
+                    android:id="@+id/tvCountEducation_FAD"
+                    style="@style/CalendarTextStyle.Counter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="100" />
+
+                <TextView
+                    style="@style/CalendarTextStyle.CounterTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/attendance_details_on_education" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:background="@drawable/bg_cell_border_gray"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="4dp"
+                    android:background="@android:color/transparent" />
+
+                <TextView
+                    android:id="@+id/tvCountLeave_FAD"
+                    style="@style/CalendarTextStyle.Counter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="100" />
+
+                <TextView
+                    style="@style/CalendarTextStyle.CounterTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/attendance_details_on_leave"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>
