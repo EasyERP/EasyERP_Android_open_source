@@ -13,8 +13,8 @@ import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.data.model.crm.persons.details.OpportunityItem;
 import com.thinkmobiles.easyerp.presentation.custom.RoundRectDrawable;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.LeadAndOpportunityDH;
+import com.thinkmobiles.easyerp.presentation.managers.ColorHelper;
 import com.thinkmobiles.easyerp.presentation.managers.DateManager;
-import com.thinkmobiles.easyerp.presentation.managers.TagHelper;
 
 import java.util.Locale;
 
@@ -65,7 +65,7 @@ public final class LeadAndOpportunityVH extends RecyclerVH<LeadAndOpportunityDH>
         }
         if(item.workflow != null && !TextUtils.isEmpty(item.workflow.name)) {
             tvStatus_VLIOAL.setText(item.workflow.name);
-            tvStatus_VLIOAL.setBackground(new RoundRectDrawable(ContextCompat.getColor(itemView.getContext(), TagHelper.getStatusColorRes(item.workflow.name))));
+            tvStatus_VLIOAL.setBackground(new RoundRectDrawable(ContextCompat.getColor(itemView.getContext(), ColorHelper.getStatusColorRes(item.workflow.name))));
         }
         else {
             tvStatus_VLIOAL.setBackgroundResource(0);

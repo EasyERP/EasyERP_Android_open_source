@@ -12,8 +12,8 @@ import com.thinkmobiles.easyerp.data.model.crm.opportunities.list_item.Opportuni
 import com.thinkmobiles.easyerp.presentation.base.rules.master.selectable.SelectableVHHelper;
 import com.thinkmobiles.easyerp.presentation.custom.RoundRectDrawable;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.OpportunityDH;
+import com.thinkmobiles.easyerp.presentation.managers.ColorHelper;
 import com.thinkmobiles.easyerp.presentation.managers.DateManager;
-import com.thinkmobiles.easyerp.presentation.managers.TagHelper;
 import com.thinkmobiles.easyerp.presentation.screens.crm.dashboard.detail.charts.DollarFormatter;
 import com.thinkmobiles.easyerp.presentation.utils.StringUtil;
 
@@ -54,7 +54,7 @@ public final class OpportunityVH extends SelectableVHHelper<OpportunityDH> {
         if(data.getOpportunityListItem().workflow != null && !TextUtils.isEmpty(data.getOpportunityListItem().workflow.name)) {
             tvStage_VLIO.setText(data.getOpportunityListItem().workflow.name);
             tvStage_VLIO.setBackground(new RoundRectDrawable(ContextCompat.getColor(itemView.getContext(),
-                    TagHelper.getStatusColorRes(item.workflow.status))));
+                    ColorHelper.getStatusColorRes(item.workflow.status))));
         }
         else {
             tvStage_VLIO.setBackgroundResource(0);

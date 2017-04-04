@@ -22,9 +22,9 @@ import com.thinkmobiles.easyerp.presentation.custom.views.drawer_menu.models.Men
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.AttachmentDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.HistoryDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.ProductDH;
+import com.thinkmobiles.easyerp.presentation.managers.ColorHelper;
 import com.thinkmobiles.easyerp.presentation.managers.GoogleAnalyticHelper;
 import com.thinkmobiles.easyerp.presentation.managers.HistoryAnimationHelper;
-import com.thinkmobiles.easyerp.presentation.managers.TagHelper;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 import com.thinkmobiles.easyerp.presentation.utils.IntentActionHelper;
 
@@ -198,7 +198,7 @@ public class OrderDetailsFragment extends ContentFragment implements OrderDetail
 
     @Override
     public void setOrderStatus(String orderStatus) {
-        tvOrderStatus_FOD.setBackgroundResource(TagHelper.getColorResIdByName(orderStatus));
+        tvOrderStatus_FOD.setBackgroundResource(ColorHelper.getColorResIdByName(orderStatus));
     }
 
     @Override

@@ -11,8 +11,8 @@ import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.presentation.base.rules.master.selectable.SelectableVHHelper;
 import com.thinkmobiles.easyerp.presentation.custom.RoundRectDrawable;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.InvoiceDH;
+import com.thinkmobiles.easyerp.presentation.managers.ColorHelper;
 import com.thinkmobiles.easyerp.presentation.managers.DateManager;
-import com.thinkmobiles.easyerp.presentation.managers.TagHelper;
 import com.thinkmobiles.easyerp.presentation.screens.crm.dashboard.detail.charts.DollarFormatter;
 import com.thinkmobiles.easyerp.presentation.utils.StringUtil;
 
@@ -61,6 +61,6 @@ public final class InvoiceVH extends SelectableVHHelper<InvoiceDH> {
 
         final String workflowName = data.getInvoice().workflow.name + ((!data.getInvoice().approved && data.getInvoice().workflow.name.equals("Unpaid")) ? " / Not Approved" : "");
         tvInvoiceStatus_VLII.setText(workflowName);
-        tvInvoiceStatus_VLII.setBackgroundDrawable(new RoundRectDrawable(ContextCompat.getColor(itemView.getContext(), TagHelper.getColorResIdByName(workflowName))));
+        tvInvoiceStatus_VLII.setBackgroundDrawable(new RoundRectDrawable(ContextCompat.getColor(itemView.getContext(), ColorHelper.getColorResIdByName(workflowName))));
     }
 }

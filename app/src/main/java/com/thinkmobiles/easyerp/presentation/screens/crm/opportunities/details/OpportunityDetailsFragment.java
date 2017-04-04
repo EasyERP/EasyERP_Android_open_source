@@ -30,10 +30,10 @@ import com.thinkmobiles.easyerp.presentation.holders.data.crm.AttachmentDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.ContactDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.HistoryDH;
 import com.thinkmobiles.easyerp.presentation.listeners.IFragmentInstance;
+import com.thinkmobiles.easyerp.presentation.managers.ColorHelper;
 import com.thinkmobiles.easyerp.presentation.managers.GoogleAnalyticHelper;
 import com.thinkmobiles.easyerp.presentation.managers.HistoryAnimationHelper;
 import com.thinkmobiles.easyerp.presentation.managers.ImageHelper;
-import com.thinkmobiles.easyerp.presentation.managers.TagHelper;
 import com.thinkmobiles.easyerp.presentation.screens.crm.companies.details.CompanyDetailsFragment;
 import com.thinkmobiles.easyerp.presentation.screens.crm.companies.details.CompanyDetailsFragment_;
 import com.thinkmobiles.easyerp.presentation.screens.crm.persons.details.PersonDetailsFragment;
@@ -329,7 +329,7 @@ public class OpportunityDetailsFragment extends ContentFragment implements Oppor
         LayoutInflater inflater = LayoutInflater.from(getActivity());
         for(TagItem tagItem : tags) {
             TextView tvTag = (TextView) inflater.inflate(R.layout.view_text_tag, flowLayoutTags_FOD, false);
-            tvTag.setBackground(new RoundRectDrawable(ColorUtils.setAlphaComponent(ContextCompat.getColor(getActivity(), TagHelper.getColorResIdByName(tagItem.color)), 150)));
+            tvTag.setBackground(new RoundRectDrawable(ColorUtils.setAlphaComponent(ContextCompat.getColor(getActivity(), ColorHelper.getColorResIdByName(tagItem.color)), 150)));
             tvTag.setText(tagItem.name);
             flowLayoutTags_FOD.addView(tvTag);
         }

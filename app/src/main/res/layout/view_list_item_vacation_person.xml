@@ -12,7 +12,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/default_padding_big"
+        android:layout_margin="@dimen/default_padding"
         android:orientation="horizontal">
 
         <ImageView
@@ -25,7 +25,7 @@
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/default_padding_middle"
+            android:layout_marginStart="@dimen/default_padding_half"
             android:layout_weight="1"
             android:orientation="vertical">
 
@@ -34,8 +34,10 @@
                 style="@style/TextListTitleStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/default_padding_quart"
                 android:gravity="center_vertical"
                 android:includeFontPadding="false"
+                android:textSize="@dimen/text_list_item_medium_16"
                 tools:text="Bradley Douglas" />
 
             <TextView
@@ -51,6 +53,7 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/default_padding"
             android:orientation="horizontal">
 
             <View
@@ -61,7 +64,7 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_marginStart="@dimen/default_padding_big"
+                android:layout_marginStart="@dimen/default_padding"
                 android:orientation="vertical">
 
                 <TextView
@@ -109,7 +112,7 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_marginStart="@dimen/default_padding_big"
+                android:layout_marginStart="@dimen/default_padding"
                 android:orientation="vertical">
 
                 <TextView
@@ -157,7 +160,7 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_marginStart="@dimen/default_padding_big"
+                android:layout_marginStart="@dimen/default_padding"
                 android:orientation="vertical">
 
                 <TextView

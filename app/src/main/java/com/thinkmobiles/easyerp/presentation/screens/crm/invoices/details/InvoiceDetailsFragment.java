@@ -24,9 +24,9 @@ import com.thinkmobiles.easyerp.presentation.holders.data.crm.AttachmentDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.HistoryDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.InvoicePaymentDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.ProductDH;
+import com.thinkmobiles.easyerp.presentation.managers.ColorHelper;
 import com.thinkmobiles.easyerp.presentation.managers.GoogleAnalyticHelper;
 import com.thinkmobiles.easyerp.presentation.managers.HistoryAnimationHelper;
-import com.thinkmobiles.easyerp.presentation.managers.TagHelper;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 import com.thinkmobiles.easyerp.presentation.utils.IntentActionHelper;
 
@@ -204,7 +204,7 @@ public class InvoiceDetailsFragment extends ContentFragment implements InvoiceDe
 
     @Override
     public void setInvoiceStatus(String orderStatus) {
-        tvInvoiceStatus_FID.setBackgroundResource(TagHelper.getColorResIdByName(orderStatus));
+        tvInvoiceStatus_FID.setBackgroundResource(ColorHelper.getColorResIdByName(orderStatus));
     }
 
     @Override

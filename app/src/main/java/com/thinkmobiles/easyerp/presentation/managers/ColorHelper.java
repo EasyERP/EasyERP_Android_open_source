@@ -1,14 +1,17 @@
 package com.thinkmobiles.easyerp.presentation.managers;
 
+import android.graphics.Color;
+import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 
 import com.thinkmobiles.easyerp.R;
+import com.thinkmobiles.easyerp.presentation.EasyErpApplication;
 
 /**
  * Created by Lynx on 1/16/2017.
  */
 
-public abstract class TagHelper {
+public abstract class ColorHelper {
     /**
      * "tag_bg_red
      * "tag_bg_pink
@@ -149,6 +152,23 @@ public abstract class TagHelper {
                 return R.color.color_status_do_not_contact;
             default:
                 return R.color.color_status_do_not_contact;
+        }
+    }
+
+    public static int getLeaveTypeColor(String type) {
+        if (type == null)
+            return Color.TRANSPARENT;
+        switch (type) {
+            case "V":
+                return ContextCompat.getColor(EasyErpApplication.getInstance(), R.color.color_vacation);
+            case "P":
+                return ContextCompat.getColor(EasyErpApplication.getInstance(), R.color.color_personal);
+            case "S":
+                return ContextCompat.getColor(EasyErpApplication.getInstance(), R.color.color_sick);
+            case "E":
+                return ContextCompat.getColor(EasyErpApplication.getInstance(), R.color.color_education);
+            default:
+                return Color.TRANSPARENT;
         }
     }
 }

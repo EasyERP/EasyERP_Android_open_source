@@ -4,7 +4,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.data.model.hr.attendance_detail.MonthDetail;
@@ -14,6 +13,10 @@ import com.thinkmobiles.easyerp.presentation.base.rules.content.ContentFragment;
 import com.thinkmobiles.easyerp.presentation.base.rules.content.ContentPresenter;
 import com.thinkmobiles.easyerp.presentation.holders.data.hr.VacationPersonDH;
 import com.thinkmobiles.easyerp.presentation.managers.GoogleAnalyticHelper;
+import com.thinkmobiles.easyerp.presentation.screens.details.DetailsActivity_;
+import com.thinkmobiles.easyerp.presentation.screens.hr.vacations.overview.VacationOverviewFragment;
+import com.thinkmobiles.easyerp.presentation.screens.hr.vacations.overview.VacationOverviewFragment_;
+import com.thinkmobiles.easyerp.presentation.utils.StringUtil;
 
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterViews;
@@ -62,6 +65,7 @@ public class VacationDetailsFragment extends ContentFragment implements Vacation
     @Override
     public void initPresenter() {
         new VacationDetailsPresenter(this, vacationsRepository, year, month);
+        vacationPersonAdapter.setOnCardClickListener((view, position, viewType) -> presenter.openDetails(vacationPersonAdapter.getItem(position).getMonthDetail()));
     }
 
     @AfterViews
@@ -98,6 +102,10 @@ public class VacationDetailsFragment extends ContentFragment implements Vacation
 
     @Override
     public void displayDetails(MonthDetail monthDetail) {
-        Toast.makeText(getActivity(), "Details with ID = " + monthDetail.employee.id, Toast.LENGTH_SHORT).show();
+        DetailsActivity_.intent(this)
+                .bundle(VacationOverviewFragment_.builder().monthDetail(monthDetail).args())
+                .creator(VacationOverviewFragment.getCreator())
+                .titleDetails(StringUtil.getFullName(monthDetail.employee.name.first, monthDetail.employee.name.last))
+                .start();
     }
 }
