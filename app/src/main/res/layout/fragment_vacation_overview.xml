@@ -7,67 +7,108 @@
     android:background="@android:color/white"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/tvTitle"
-        style="@style/TextDetailsTitleStyle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/default_padding"
-        tools:text="Web development" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/color_divider" />
-
-    <LinearLayout
+    <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1">
 
         <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:paddingStart="@dimen/default_padding"
-            android:paddingEnd="@dimen/default_padding_half">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-            <TextView
-                style="@style/TextContentTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/default_padding_middle"
-                android:text="Absence periods:" />
 
-            <android.support.v7.widget.RecyclerView
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tvTitle_FVO"
+                    style="@style/TextDetailsTitleStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:lines="1"
+                    android:ellipsize="end"
+                    android:layout_marginTop="@dimen/default_padding"
+                    android:layout_marginBottom="@dimen/default_padding"
+                    android:layout_marginStart="@dimen/default_padding"
+                    tools:text="Web development" />
+
+                <TextView
+                    android:id="@+id/tvPosition_FVO"
+                    style="@style/RobotoMedium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/default_padding"
+                    android:layout_marginBottom="@dimen/default_padding"
+                    android:layout_marginStart="@dimen/default_padding_quart"
+                    android:layout_marginEnd="@dimen/default_padding"
+                    android:textColor="@color/color_text_gray"
+                    android:textSize="@dimen/text_list_item_medium_16"
+                    tools:text="Web development" />
+            </LinearLayout>
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/color_divider" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/TextContentTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/default_padding"
+                        android:layout_marginBottom="@dimen/default_padding_half"
+                        android:text="@string/vacation_overview_absence_periods" />
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/rvVacationList_FVO"
+                        android:layout_marginStart="@dimen/default_padding_half"
+                        android:layout_marginEnd="@dimen/default_padding_half"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:paddingEnd="@dimen/default_padding_half">
+
+
+                    <TextView
+                        style="@style/TextContentTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/default_padding_half"
+                        android:layout_marginBottom="@dimen/default_padding_quart"
+                        android:text="@string/vacation_overview_calendar_preview" />
+
+                    <include layout="@layout/view_month" />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
 
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:paddingEnd="@dimen/default_padding_half">
+    </android.support.v4.widget.NestedScrollView>
 
-
-            <TextView
-                style="@style/TextContentTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/default_padding_half"
-                android:layout_marginBottom="@dimen/default_padding_quart"
-                android:text="Calendar preview:" />
-
-            <include layout="@layout/view_month" />
-
-        </LinearLayout>
-
-
-    </LinearLayout>
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
@@ -93,7 +134,7 @@
                     android:background="@android:color/transparent" />
 
                 <TextView
-                    android:id="@+id/tvCountWorking_FAD"
+                    android:id="@+id/tvCountWorking_FVO"
                     style="@style/CalendarTextStyle.Counter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -120,7 +161,7 @@
                     android:background="@color/color_vacation" />
 
                 <TextView
-                    android:id="@+id/tvCountVacation_FAD"
+                    android:id="@+id/tvCountVacation_FVO"
                     style="@style/CalendarTextStyle.Counter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -147,7 +188,7 @@
                     android:background="@color/color_personal" />
 
                 <TextView
-                    android:id="@+id/tvCountPersonal_FAD"
+                    android:id="@+id/tvCountPersonal_FVO"
                     style="@style/CalendarTextStyle.Counter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -174,7 +215,7 @@
                     android:background="@color/color_sick" />
 
                 <TextView
-                    android:id="@+id/tvCountSick_FAD"
+                    android:id="@+id/tvCountSick_FVO"
                     style="@style/CalendarTextStyle.Counter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -201,7 +242,7 @@
                     android:background="@color/color_education" />
 
                 <TextView
-                    android:id="@+id/tvCountEducation_FAD"
+                    android:id="@+id/tvCountEducation_FVO"
                     style="@style/CalendarTextStyle.Counter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -228,7 +269,7 @@
                     android:background="@android:color/transparent" />
 
                 <TextView
-                    android:id="@+id/tvCountLeave_FAD"
+                    android:id="@+id/tvCountLeave_FVO"
                     style="@style/CalendarTextStyle.Counter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

@@ -8,11 +8,8 @@ import android.widget.TextView;
 import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.domain.hr.AttendanceRepository;
 import com.thinkmobiles.easyerp.presentation.base.rules.content.ContentFragment;
-import com.thinkmobiles.easyerp.presentation.managers.CalendarManager;
+import com.thinkmobiles.easyerp.presentation.custom.views.calendar.CalendarManager;
 import com.thinkmobiles.easyerp.presentation.managers.GoogleAnalyticHelper;
-import com.thinkmobiles.easyerp.presentation.screens.details.DetailsActivity_;
-import com.thinkmobiles.easyerp.presentation.screens.hr.vacations.overview.VacationOverviewFragment;
-import com.thinkmobiles.easyerp.presentation.screens.hr.vacations.overview.VacationOverviewFragment_;
 
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterViews;
@@ -86,14 +83,6 @@ public class AttendanceDetailsFragment extends ContentFragment implements Attend
     protected void initUI() {
         GoogleAnalyticHelper.trackScreenView(this, getResources().getConfiguration());
         calendarManager = new CalendarManager(rvYear_FAD);
-        tvYear_FAD.setOnClickListener(v -> {
-
-            DetailsActivity_.intent(this)
-                    .bundle(VacationOverviewFragment_.builder().args())
-                    .creator(VacationOverviewFragment.getCreator())
-                    .titleDetails("Year")
-                    .start();
-        });
         getPresenter().subscribe();
     }
 

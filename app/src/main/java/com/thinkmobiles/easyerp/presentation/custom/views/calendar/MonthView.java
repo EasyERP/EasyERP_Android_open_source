@@ -14,12 +14,15 @@ import android.view.MotionEvent;
 import android.view.View;
 
 import com.thinkmobiles.easyerp.R;
-import com.thinkmobiles.easyerp.presentation.managers.CalendarManager;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import static com.thinkmobiles.easyerp.presentation.managers.CalendarManager.*;
+import static com.thinkmobiles.easyerp.presentation.custom.views.calendar.CalendarManager.CENTER;
+import static com.thinkmobiles.easyerp.presentation.custom.views.calendar.CalendarManager.CIRCLE;
+import static com.thinkmobiles.easyerp.presentation.custom.views.calendar.CalendarManager.LEFT;
+import static com.thinkmobiles.easyerp.presentation.custom.views.calendar.CalendarManager.NONE;
+import static com.thinkmobiles.easyerp.presentation.custom.views.calendar.CalendarManager.RIGHT;
 
 
 /**
@@ -62,7 +65,7 @@ public class MonthView extends View implements GestureDetector.OnGestureListener
     private float stepH2;
     private float yLine;
 
-    private ArrayList<CalendarManager.DayDH> days = new ArrayList<>();
+    private ArrayList<DayDH> days = new ArrayList<>();
 
     private GestureDetector gestureDetector;
 
@@ -144,7 +147,7 @@ public class MonthView extends View implements GestureDetector.OnGestureListener
 
     }
 
-    public void setDays(ArrayList<CalendarManager.DayDH> days) {
+    public void setDays(ArrayList<DayDH> days) {
         this.days = days;
     }
 
@@ -203,7 +206,7 @@ public class MonthView extends View implements GestureDetector.OnGestureListener
 
     private void drawMonthDays(Canvas canvas) {
         for (int i = 0, week = 0, day = 0; i < days.size(); i++) {
-            CalendarManager.DayDH dayDH = days.get(i);
+            DayDH dayDH = days.get(i);
             float x = mPadding + stepH2 + day * stepH;
             float y = yLine + stepV2 + (week + 1) * stepV;
             drawDayBg(canvas, x, y, dayDH.getShapeType(), dayDH.getShapeColor());

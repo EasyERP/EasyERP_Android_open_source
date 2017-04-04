@@ -341,4 +341,6 @@
     <string name="attendance_details_on_education">On Education</string>
     <string name="attendance_details_on_leave">On Leave</string>
     <string name="attendance_details_selected_year">Selected Year</string>
+    <string name="vacation_overview_absence_periods">Absence periods:</string>
+    <string name="vacation_overview_calendar_preview">Calendar preview:</string>
 </resources>

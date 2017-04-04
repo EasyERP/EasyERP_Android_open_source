@@ -72,4 +72,9 @@ public class VacationDetailsPresenter extends ContentPresenterHelper implements 
         }
         return result;
     }
+
+    @Override
+    public void openDetails(MonthDetail model) {
+        view.displayDetails(model);
+    }
 }

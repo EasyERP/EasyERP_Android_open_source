@@ -13,8 +13,8 @@ import com.thinkmobiles.easyerp.data.model.inventory.goods_out_notes.GoodsOutNot
 import com.thinkmobiles.easyerp.presentation.base.rules.master.selectable.SelectableVHHelper;
 import com.thinkmobiles.easyerp.presentation.custom.RoundRectDrawable;
 import com.thinkmobiles.easyerp.presentation.holders.data.inventory.GoodsOutNoteDH;
+import com.thinkmobiles.easyerp.presentation.managers.ColorHelper;
 import com.thinkmobiles.easyerp.presentation.managers.DateManager;
-import com.thinkmobiles.easyerp.presentation.managers.TagHelper;
 
 /**
  * Created by Lynx on 3/7/2017.
@@ -59,7 +59,7 @@ public final class GoodsOutNoteVH extends SelectableVHHelper<GoodsOutNoteDH> {
 
         tvId_VLIGON.setText(item.name);
         tvStatus_VLIGON.setText(item.workflow.name);
-        tvStatus_VLIGON.setBackgroundDrawable(new RoundRectDrawable(ContextCompat.getColor(itemView.getContext(), TagHelper.getColorResIdByName(item.workflow.status))));
+        tvStatus_VLIGON.setBackgroundDrawable(new RoundRectDrawable(ContextCompat.getColor(itemView.getContext(), ColorHelper.getColorResIdByName(item.workflow.status))));
 
         ivPrinted_VLIGON.setImageResource(item.printed ? R.drawable.ic_print : R.drawable.ic_print_off);
         ivPicked_VLIGON.setImageResource(item.picked ? R.drawable.ic_allocated : R.drawable.ic_allocated_off);

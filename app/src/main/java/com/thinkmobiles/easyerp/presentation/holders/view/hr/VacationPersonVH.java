@@ -14,7 +14,8 @@ import com.thinkmobiles.easyerp.presentation.custom.transformations.CropCircleTr
 import com.thinkmobiles.easyerp.presentation.holders.data.hr.VacationPersonDH;
 import com.thinkmobiles.easyerp.presentation.managers.DateManager;
 import com.thinkmobiles.easyerp.presentation.managers.ImageHelper;
-import com.thinkmobiles.easyerp.presentation.utils.StringUtil;
+
+import java.util.Calendar;
 
 /**
  * Created by Lynx on 3/31/2017.
@@ -62,6 +63,9 @@ public final class VacationPersonVH extends RecyclerVH<VacationPersonDH> {
         int p = 0;
         int s = 0;
         int e = 0;
+        int l = 0;
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(item.year, item.month - 1, 1);
         for(String day : item.vacArray) {
             if(!TextUtils.isEmpty(day)) {
                 switch (day) {
@@ -78,10 +82,13 @@ public final class VacationPersonVH extends RecyclerVH<VacationPersonDH> {
                         e++;
                         break;
                 }
+                l = calendar.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY || calendar.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY ? l : l + 1;
             }
         }
-        tvWorkingCount_VLIVP.setText(String.valueOf(DateManager.getWorkingDaysInMonth(item.year, item.month)));
-        tvOnLeaveCount_VLIVP.setText(String.valueOf(item.monthTotal));
+        int w = DateManager.getWorkingDaysInMonth(item.year, item.month - 1);
+        w -= l;
+        tvWorkingCount_VLIVP.setText(String.valueOf(w));
+        tvOnLeaveCount_VLIVP.setText(String.valueOf(l));
         tvVacationCount_VLIVP.setText(String.valueOf(v));
         tvPersonalCount_VLIVP.setText(String.valueOf(p));
         tvSickCount_VLIVP.setText(String.valueOf(s));

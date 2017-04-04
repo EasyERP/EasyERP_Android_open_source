@@ -12,8 +12,8 @@ import com.thinkmobiles.easyerp.data.model.hr.applications.Application;
 import com.thinkmobiles.easyerp.presentation.base.rules.master.selectable.SelectableVHHelper;
 import com.thinkmobiles.easyerp.presentation.custom.RoundRectDrawable;
 import com.thinkmobiles.easyerp.presentation.holders.data.hr.ApplicationDH;
+import com.thinkmobiles.easyerp.presentation.managers.ColorHelper;
 import com.thinkmobiles.easyerp.presentation.managers.DateManager;
-import com.thinkmobiles.easyerp.presentation.managers.TagHelper;
 
 /**
  * @author Michael Soyma (Created on 3/13/2017).
@@ -59,7 +59,7 @@ public class ApplicationVH extends SelectableVHHelper<ApplicationDH> {
         tvPhone_VLIA.setText(TextUtils.isEmpty(application.workPhones.getNotNullPhone()) ? noPhone : application.workPhones.getNotNullPhone());
 
         tvStage_VLIA.setText(application.workflow.name);
-        tvStage_VLIA.setBackgroundDrawable(new RoundRectDrawable(ContextCompat.getColor(itemView.getContext(), TagHelper.getStatusColorRes(application.workflow.status))));
+        tvStage_VLIA.setBackgroundDrawable(new RoundRectDrawable(ContextCompat.getColor(itemView.getContext(), ColorHelper.getStatusColorRes(application.workflow.status))));
 
         tvCratedBy_VLIA.setText(String.format(createdByFormatter,
                 new DateManager.DateConverter(application.createdBy.date).setDstPattern(DateManager.PATTERN_DATE_SIMPLE_PREVIEW).toString(),

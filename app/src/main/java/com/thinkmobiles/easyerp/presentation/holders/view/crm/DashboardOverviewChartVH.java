@@ -11,7 +11,7 @@ import com.michenko.simpleadapter.RecyclerVH;
 import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.presentation.custom.CircleStrokeDrawable;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.DashboardOverviewChartDH;
-import com.thinkmobiles.easyerp.presentation.managers.TagHelper;
+import com.thinkmobiles.easyerp.presentation.managers.ColorHelper;
 
 /**
  * @author michael.soyma@thinkmobiles.com (Created on 1/26/2017.)
@@ -34,7 +34,7 @@ public final class DashboardOverviewChartVH extends RecyclerVH<DashboardOverview
     @Override
     public void bindData(DashboardOverviewChartDH data) {
         labelView.setText(data.getLabelWorkflow());
-        ivWorkflowCircle_VCOWI.setImageDrawable(new CircleStrokeDrawable(resources, resources.getColor(TagHelper.getWorkflowColorRes(data.getLabelWorkflow()))));
+        ivWorkflowCircle_VCOWI.setImageDrawable(new CircleStrokeDrawable(resources, resources.getColor(ColorHelper.getWorkflowColorRes(data.getLabelWorkflow()))));
         countView.setText(String.valueOf(data.getValueCount()));
     }
 }

@@ -23,7 +23,7 @@ public interface VacationDetailsContract {
         void displayDetails(MonthDetail monthDetail);
     }
     interface VacationDetailsPresenter extends ContentPresenter {
-
+        void openDetails(MonthDetail model);
     }
     interface VacationDetailsModel extends BaseModel {
         Observable<ArrayList<MonthDetail>> getVacationDetails(int year, int month);
