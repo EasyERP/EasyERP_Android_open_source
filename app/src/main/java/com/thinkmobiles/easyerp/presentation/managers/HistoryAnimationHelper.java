@@ -5,7 +5,6 @@ import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.support.v4.view.animation.FastOutSlowInInterpolator;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import org.androidannotations.annotations.EBean;

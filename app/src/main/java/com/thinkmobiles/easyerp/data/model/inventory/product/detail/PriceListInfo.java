@@ -4,7 +4,6 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import com.google.gson.annotations.SerializedName;
-import com.thinkmobiles.easyerp.data.model.crm.invoice.Currency;
 import com.thinkmobiles.easyerp.data.model.crm.invoice.CurrencyID;
 
 /**

@@ -11,7 +11,6 @@ import com.thinkmobiles.easyerp.presentation.holders.data.crm.AttachmentDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.hr.EmployeeRowTransferDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.hr.SimpleNoteDH;
 import com.thinkmobiles.easyerp.presentation.managers.DateManager;
-import com.thinkmobiles.easyerp.presentation.screens.hr.employees.EmployeesContract;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
 import java.util.ArrayList;

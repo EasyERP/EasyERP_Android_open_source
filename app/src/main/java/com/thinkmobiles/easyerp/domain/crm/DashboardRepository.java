@@ -11,8 +11,6 @@ import com.thinkmobiles.easyerp.presentation.screens.crm.dashboard.detail.Dashbo
 import com.thinkmobiles.easyerp.presentation.screens.hr.dashboard.detail.HRDashboardDetailChartContract;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
-import org.androidannotations.annotations.EBean;
-
 import java.util.ArrayList;
 import java.util.List;
 

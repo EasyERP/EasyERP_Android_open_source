@@ -1,21 +1,15 @@
 package com.thinkmobiles.easyerp.presentation.screens.hr.vacations;
 
-import android.widget.Toast;
-
 import com.thinkmobiles.easyerp.domain.hr.VacationsRepository;
 import com.thinkmobiles.easyerp.presentation.adapters.hr.VacationsListAdapter;
-import com.thinkmobiles.easyerp.presentation.base.rules.master.alphabetical.AlphabeticalPresenter;
 import com.thinkmobiles.easyerp.presentation.base.rules.master.alphabetical.MasterAlphabeticalFragment;
 import com.thinkmobiles.easyerp.presentation.base.rules.master.selectable.SelectableAdapter;
 import com.thinkmobiles.easyerp.presentation.managers.GoogleAnalyticHelper;
 import com.thinkmobiles.easyerp.presentation.screens.hr.vacations.details.VacationDetailsFragment_;
 
 import org.androidannotations.annotations.AfterInject;
-import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EFragment;
-
-import java.util.Locale;
 
 /**
  * Created by Lynx on 3/29/2017.

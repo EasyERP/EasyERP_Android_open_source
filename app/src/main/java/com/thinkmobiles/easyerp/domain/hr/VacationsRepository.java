@@ -22,7 +22,6 @@ import java.text.DateFormatSymbols;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.Comparator;
 
 import rx.Observable;
 import rx.functions.Func1;

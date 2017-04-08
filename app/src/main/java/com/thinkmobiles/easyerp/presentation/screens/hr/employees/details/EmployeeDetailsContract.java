@@ -6,7 +6,6 @@ import com.thinkmobiles.easyerp.presentation.base.BaseView;
 import com.thinkmobiles.easyerp.presentation.base.rules.content.ContentPresenter;
 import com.thinkmobiles.easyerp.presentation.base.rules.content.ContentView;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.AttachmentDH;
-import com.thinkmobiles.easyerp.presentation.holders.data.crm.HistoryDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.hr.EmployeeRowTransferDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.hr.SimpleNoteDH;
 

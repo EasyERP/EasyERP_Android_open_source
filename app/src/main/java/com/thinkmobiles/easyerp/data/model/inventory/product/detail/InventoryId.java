@@ -3,8 +3,6 @@ package com.thinkmobiles.easyerp.data.model.inventory.product.detail;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.google.gson.annotations.SerializedName;
-
 /**
  * Created by samson on 13.03.17.
  */

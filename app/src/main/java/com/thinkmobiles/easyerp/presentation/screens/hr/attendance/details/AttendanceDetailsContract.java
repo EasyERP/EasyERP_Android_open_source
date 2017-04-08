@@ -1,8 +1,5 @@
 package com.thinkmobiles.easyerp.presentation.screens.hr.attendance.details;
 
-import com.thinkmobiles.easyerp.data.model.ResponseGetTotalItems;
-import com.thinkmobiles.easyerp.data.model.crm.filter.FilterItem;
-import com.thinkmobiles.easyerp.data.model.hr.attendance_detail.MonthDetail;
 import com.thinkmobiles.easyerp.data.model.hr.attendance_detail.ResponseGetAttendanceDetails;
 import com.thinkmobiles.easyerp.presentation.base.BaseModel;
 import com.thinkmobiles.easyerp.presentation.base.BaseView;
