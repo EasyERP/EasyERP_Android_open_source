@@ -29,6 +29,7 @@ import com.thinkmobiles.easyerp.data.services.OrderService;
 import com.thinkmobiles.easyerp.data.services.PaymentsService;
 import com.thinkmobiles.easyerp.data.services.PersonsService;
 import com.thinkmobiles.easyerp.data.services.ProductService;
+import com.thinkmobiles.easyerp.data.services.ReportsService;
 import com.thinkmobiles.easyerp.data.services.StockService;
 import com.thinkmobiles.easyerp.data.services.TransfersService;
 import com.thinkmobiles.easyerp.data.services.UserService;
@@ -83,6 +84,8 @@ public class Rest {
     private JobPositionService jobPositionService;
     private VacationService vacationService;
     private AttendanceService attendanceService;
+
+    private ReportsService reportsService;
 
     private Converter<ResponseBody, ResponseError> converter;
 
@@ -205,6 +208,10 @@ public class Rest {
 
     public VacationService getVacationService() {
         return vacationService == null ? vacationService = createService(VacationService.class) : vacationService;
+    }
+
+    public ReportsService getReportsService() {
+        return reportsService == null ? reportsService = createService(ReportsService.class) : reportsService;
     }
 
     public ResponseError parseError(ResponseBody responseBody) {

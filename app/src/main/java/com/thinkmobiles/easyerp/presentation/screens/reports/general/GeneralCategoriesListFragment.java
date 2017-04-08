@@ -6,6 +6,7 @@ import com.thinkmobiles.easyerp.presentation.base.rules.master.selectable.Master
 import com.thinkmobiles.easyerp.presentation.base.rules.master.selectable.SelectableAdapter;
 import com.thinkmobiles.easyerp.presentation.base.rules.master.selectable.SelectablePresenter;
 import com.thinkmobiles.easyerp.presentation.managers.GoogleAnalyticHelper;
+import com.thinkmobiles.easyerp.presentation.screens.reports.general.detail.GeneralReportDetailFragment_;
 
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterViews;
@@ -61,7 +62,9 @@ public class GeneralCategoriesListFragment extends MasterSelectableFragment impl
     @Override
     public void openCategoryDetail(String key) {
         if (key != null) {
-            //TODO open general category detail screen
+            mActivity.replaceFragmentContentDetail(GeneralReportDetailFragment_.builder()
+                    .categoryKey(key)
+                    .build());
         } else mActivity.replaceFragmentContentDetail(null);
     }
 }

@@ -22,7 +22,6 @@ import com.thinkmobiles.easyerp.presentation.screens.inventory.products.Products
 import com.thinkmobiles.easyerp.presentation.screens.inventory.stock_corrections.StockCorrectionsListFragment_;
 import com.thinkmobiles.easyerp.presentation.screens.inventory.stock_returns.StockReturnsListFragment_;
 import com.thinkmobiles.easyerp.presentation.screens.inventory.transfers.TransfersFragment_;
-import com.thinkmobiles.easyerp.presentation.screens.reports.general.GeneralCategoriesListFragment;
 import com.thinkmobiles.easyerp.presentation.screens.reports.general.GeneralCategoriesListFragment_;
 
 import java.util.ArrayList;

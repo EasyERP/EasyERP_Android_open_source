@@ -84,6 +84,7 @@
     <string name="dialog_btn_cancel">Cancel</string>
     <string name="dialog_btn_today">Today</string>
     <string name="dialog_btn_remove">Remove</string>
+    <string name="dialog_btn_remove_all">Remove All</string>
     <string name="dialog_btn_send">Send</string>
     <string name="dialog_btn_change">Change</string>
     <string name="amount">Amount</string>
@@ -343,4 +344,7 @@
     <string name="attendance_details_selected_year">Selected Year</string>
     <string name="vacation_overview_absence_periods">Absence periods:</string>
     <string name="vacation_overview_calendar_preview">Calendar preview:</string>
+
+    <string name="report_type">Report type</string>
+    <string name="choose_report_type">Choose report type</string>
 </resources>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <item
+        android:id="@+id/reportType_MRG"
+        android:icon="@drawable/ic_filter_white"
+        android:title="@string/report_type"
+        android:visible="false"
+        app:showAsAction="always"
+        tools:visible="true" />
+</menu>

@@ -55,4 +55,6 @@
     <dimen name="tutorial_margin_top_land">50dp</dimen>
     <dimen name="text_title_tutorial">40sp</dimen>
 
+    <dimen name="small_alert_dialog_width">10dp</dimen>
+
 </resources>

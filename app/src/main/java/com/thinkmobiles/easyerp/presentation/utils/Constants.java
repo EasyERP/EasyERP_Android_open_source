@@ -7,6 +7,8 @@ import static com.thinkmobiles.easyerp.BuildConfig.PRODUCTION;
  */
 
 public abstract class Constants {
+    public static final String UXCAM_ACCOUNT_KEY            = "d2bf58cf5b3e5a0";
+
     private static final String BASE_TEST_URL               = "https://testdemo.easyerp.com/";
     private static final String BASE_RELEASE_URL            = "https://demo.easyerp.com/";
     public static final String BASE_URL                     = PRODUCTION ? BASE_RELEASE_URL : BASE_TEST_URL;
@@ -146,12 +148,21 @@ public abstract class Constants {
 
     //------------------------------------------------------ END HR
 
+    //------------------------------------------------------ REPORTS
+
+    public static final String GET_REPORTS                  = "reports";
+
+    public static final String KEY_QUERY_REPORT_CATEGORY    = "reportCategory";
+
+    //------------------------------------------------------ END REPORTS
+
     public static final int COUNT_LIST_ITEMS                    = 25;
-    public static final int COUNT_LIST_ITEMS_WITHOUT_PAGINATION = 100;
+    public static final int COUNT_LIST_ITEMS_WITHOUT_PAGINATION = Integer.MAX_VALUE;
     public static final int DELAY_CLICK                         = 600;
 
     //Bundle keys
     public static final String KEY_FILTER_LIST              = "keyFilterList";
+    public static final String KEY_REPORT_TYPES_LIST        = "keyReportTypesList";
 
     public enum ErrorCodes {
         OK,
@@ -172,5 +183,7 @@ public abstract class Constants {
         LIST_EMPTY, NETWORK, UNKNOWN
     }
 
-    public static final String UXCAM_ACCOUNT_KEY            = "d2bf58cf5b3e5a0";
+    public static class RequestCodes {
+        public static final int RC_CHOOSE_REPORT_TYPES      = 8001;
+    }
 }
