@@ -3,7 +3,6 @@ package com.thinkmobiles.easyerp.presentation.screens.hr.dashboard.detail.charts
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.support.v4.content.ContextCompat;
-import android.support.v4.util.Pair;
 import android.text.TextUtils;
 import android.widget.FrameLayout;
 
@@ -17,17 +16,13 @@ import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 import com.github.mikephil.charting.formatter.IValueFormatter;
-import com.google.gson.reflect.TypeToken;
 import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.data.model.ResponseGetTotalItems;
-import com.thinkmobiles.easyerp.data.model.crm.invoice.Invoice;
 import com.thinkmobiles.easyerp.data.model.hr.dashboard.DepartmentSalary;
-import com.thinkmobiles.easyerp.presentation.managers.ColorGenerateManager;
 import com.thinkmobiles.easyerp.presentation.screens.crm.dashboard.detail.charts.DollarFormatter;
 import com.thinkmobiles.easyerp.presentation.screens.crm.dashboard.detail.charts.IChartView;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 /**

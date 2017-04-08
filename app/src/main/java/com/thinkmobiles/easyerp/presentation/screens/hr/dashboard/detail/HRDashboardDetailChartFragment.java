@@ -1,6 +1,5 @@
 package com.thinkmobiles.easyerp.presentation.screens.hr.dashboard.detail;
 
-import android.app.DatePickerDialog;
 import android.support.v7.app.AlertDialog;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
@@ -8,7 +7,6 @@ import android.widget.TextView;
 
 import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.data.model.crm.dashboard.DashboardListItem;
-import com.thinkmobiles.easyerp.data.model.crm.dashboard.detail.DashboardChartType;
 import com.thinkmobiles.easyerp.domain.DomainHelper;
 import com.thinkmobiles.easyerp.domain.crm.DashboardRepository;
 import com.thinkmobiles.easyerp.presentation.base.rules.content.ContentFragment;
@@ -27,8 +25,6 @@ import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.FragmentArg;
 import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.sharedpreferences.Pref;
-
-import java.util.GregorianCalendar;
 
 /**
  * @author Michael Soyma (Created on 3/21/2017).

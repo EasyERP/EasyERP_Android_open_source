@@ -4,11 +4,9 @@ import android.text.TextUtils;
 
 import com.thinkmobiles.easyerp.data.model.crm.leads.detail.AttachmentItem;
 import com.thinkmobiles.easyerp.data.model.hr.employees.ResponseEmployeeDetails;
-import com.thinkmobiles.easyerp.data.model.hr.employees.details.EmployeeTransferItem;
 import com.thinkmobiles.easyerp.presentation.base.rules.content.ContentPresenterHelper;
 import com.thinkmobiles.easyerp.presentation.base.rules.content.ContentView;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.AttachmentDH;
-import com.thinkmobiles.easyerp.presentation.holders.data.hr.EmployeeRowTransferDH;
 import com.thinkmobiles.easyerp.presentation.holders.data.hr.SimpleNoteDH;
 import com.thinkmobiles.easyerp.presentation.managers.DateManager;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;

@@ -1,7 +1,6 @@
 package com.thinkmobiles.easyerp.presentation.screens.crm.dashboard.detail.charts;
 
 import android.graphics.Color;
-import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
@@ -15,7 +14,6 @@ import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
-import com.github.mikephil.charting.utils.Utils;
 import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.data.model.crm.invoice.Invoice;
 import com.thinkmobiles.easyerp.presentation.managers.ColorGenerateManager;

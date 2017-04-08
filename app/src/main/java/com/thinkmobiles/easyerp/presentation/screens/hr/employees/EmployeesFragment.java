@@ -1,24 +1,17 @@
 package com.thinkmobiles.easyerp.presentation.screens.hr.employees;
 
-import android.widget.Toast;
-
-import com.thinkmobiles.easyerp.data.model.crm.common.images.ImageItem;
 import com.thinkmobiles.easyerp.domain.hr.EmployeesRepository;
 import com.thinkmobiles.easyerp.presentation.adapters.hr.EmployeesAdapter;
 import com.thinkmobiles.easyerp.presentation.base.rules.master.alphabetical.AlphabeticalPresenter;
 import com.thinkmobiles.easyerp.presentation.base.rules.master.alphabetical.MasterAlphabeticalFragment;
 import com.thinkmobiles.easyerp.presentation.base.rules.master.selectable.SelectableAdapter;
 import com.thinkmobiles.easyerp.presentation.managers.GoogleAnalyticHelper;
-import com.thinkmobiles.easyerp.presentation.screens.gallery.GalleryActivity_;
-import com.thinkmobiles.easyerp.presentation.screens.hr.employees.details.EmployeeDetailsFragment;
 import com.thinkmobiles.easyerp.presentation.screens.hr.employees.details.EmployeeDetailsFragment_;
 
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EFragment;
-
-import java.util.ArrayList;
 
 /**
  * Created by Lynx on 3/13/2017.

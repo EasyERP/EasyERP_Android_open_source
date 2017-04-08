@@ -16,13 +16,14 @@ import com.thinkmobiles.easyerp.presentation.screens.hr.birthdays.BirthdaysListF
 import com.thinkmobiles.easyerp.presentation.screens.hr.dashboard.HRDashboardListFragment_;
 import com.thinkmobiles.easyerp.presentation.screens.hr.employees.EmployeesFragment_;
 import com.thinkmobiles.easyerp.presentation.screens.hr.job_positions.JobPositionsListFragment_;
-import com.thinkmobiles.easyerp.presentation.screens.hr.vacations.VacationsListFragment;
 import com.thinkmobiles.easyerp.presentation.screens.hr.vacations.VacationsListFragment_;
 import com.thinkmobiles.easyerp.presentation.screens.inventory.goods_out_notes.GoodsOutNotesFragment_;
 import com.thinkmobiles.easyerp.presentation.screens.inventory.products.ProductsListFragment_;
 import com.thinkmobiles.easyerp.presentation.screens.inventory.stock_corrections.StockCorrectionsListFragment_;
 import com.thinkmobiles.easyerp.presentation.screens.inventory.stock_returns.StockReturnsListFragment_;
 import com.thinkmobiles.easyerp.presentation.screens.inventory.transfers.TransfersFragment_;
+import com.thinkmobiles.easyerp.presentation.screens.reports.general.GeneralCategoriesListFragment;
+import com.thinkmobiles.easyerp.presentation.screens.reports.general.GeneralCategoriesListFragment_;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -39,7 +40,7 @@ public abstract class MenuConfigs {
     public static Map<Integer, List<MenuItem>> menuModuleItems = new HashMap<>();
 
     static {
-        menuModules.add(new MenuItem(0, R.drawable.ic_reports, "Reports", false));
+        menuModules.add(new MenuItem(0, R.drawable.ic_reports, "Reports", true));
         menuModules.add(new MenuItem(1, R.drawable.ic_crm, "CRM", true));
         menuModules.add(new MenuItem(2, R.drawable.ic_project, "Project", false));
         menuModules.add(new MenuItem(3, R.drawable.ic_hr, "HR", true));
@@ -71,8 +72,10 @@ public abstract class MenuConfigs {
 
     private static List<MenuItem> getReportsModule() {
         final List<MenuItem> menuItems = new ArrayList<>();
-        menuItems.add(new MenuItem(0, R.drawable.ic_menu_item_placeholder, "General", false));
+        menuItems.add(new MenuItem(0, R.drawable.ic_menu_item_placeholder, "General", true));
         menuItems.add(new MenuItem(1, R.drawable.ic_menu_item_placeholder, "Products Reports", false));
+        menuItems.add(new MenuItem(1, R.drawable.ic_menu_item_placeholder, "Inventory", false));
+        menuItems.add(new MenuItem(1, R.drawable.ic_menu_item_placeholder, "Stock Details", false));
         return menuItems;
     }
 
@@ -190,16 +193,6 @@ public abstract class MenuConfigs {
         return menuItems;
     }
 
-    public static BaseMasterFlowFragment getFragmentByMenuId(final int moduleId, final int itemId) {
-        switch (moduleId) {
-            case 1: return getFragmentByIdWithCRMModule(itemId);
-            case 3: return getFragmentByIdWithHRModule(itemId);
-            case 4: return getFragmentByIdWithPurchaseModule(itemId);
-            case 8: return getFragmentByIdWithInventoryModule(itemId);
-        }
-        return null;
-    }
-
     public static String getModuleLabel(final int moduleId) {
         for (MenuItem item: menuModules)
             if (item.getId() == moduleId)
@@ -211,6 +204,24 @@ public abstract class MenuConfigs {
         for (MenuItem item: menuModuleItems.get(moduleId))
             if (item.getId() == itemId)
                 return item.getLabel();
+        return null;
+    }
+
+    public static BaseMasterFlowFragment getFragmentByMenuId(final int moduleId, final int itemId) {
+        switch (moduleId) {
+            case 0: return getFragmentByIdWithReportsModule(itemId);
+            case 1: return getFragmentByIdWithCRMModule(itemId);
+            case 3: return getFragmentByIdWithHRModule(itemId);
+            case 4: return getFragmentByIdWithPurchaseModule(itemId);
+            case 8: return getFragmentByIdWithInventoryModule(itemId);
+        }
+        return null;
+    }
+
+    private static BaseMasterFlowFragment getFragmentByIdWithReportsModule(final int itemId) {
+        switch (itemId) {
+            case 0: return GeneralCategoriesListFragment_.builder().build();
+        }
         return null;
     }
 

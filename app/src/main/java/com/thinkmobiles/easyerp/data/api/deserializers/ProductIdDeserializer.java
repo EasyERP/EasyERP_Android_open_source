@@ -11,9 +11,7 @@ import com.thinkmobiles.easyerp.data.model.inventory.product.detail.ProductId;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.Map;
-import java.util.Set;
 
 /**
  * Created by samson on 13.03.17.

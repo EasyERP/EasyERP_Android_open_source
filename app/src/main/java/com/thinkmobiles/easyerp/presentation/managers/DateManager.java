@@ -4,8 +4,6 @@ import android.text.TextUtils;
 import android.text.format.DateUtils;
 import android.util.Log;
 
-import com.thinkmobiles.easyerp.data.model.hr.attendance_detail.MonthDetail;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;

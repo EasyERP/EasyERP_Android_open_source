@@ -18,7 +18,6 @@ import com.thinkmobiles.easyerp.presentation.utils.filter.FilterHelper;
 import org.androidannotations.annotations.EBean;
 
 import rx.Observable;
-import rx.functions.Func2;
 
 /**
  * @author Michael Soyma (Created on 3/13/2017).

@@ -12,7 +12,6 @@ import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.data.model.inventory.product.detail.ProductVariant;
 import com.thinkmobiles.easyerp.data.model.inventory.product.detail.Variant;
 import com.thinkmobiles.easyerp.presentation.holders.data.inventory.ProductVariantDH;
-import com.thinkmobiles.easyerp.presentation.utils.Constants;
 import com.thinkmobiles.easyerp.presentation.utils.StringUtil;
 
 /**
