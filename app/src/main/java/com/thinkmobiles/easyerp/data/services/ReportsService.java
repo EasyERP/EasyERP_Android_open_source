@@ -1,6 +1,7 @@
 package com.thinkmobiles.easyerp.data.services;
 
-import com.google.gson.JsonElement;
+import com.thinkmobiles.easyerp.data.model.ResponseGetTotalItems;
+import com.thinkmobiles.easyerp.data.model.reports.general.Report;
 
 import retrofit2.http.GET;
 import retrofit2.http.Url;
@@ -14,5 +15,5 @@ import rx.Observable;
 public interface ReportsService {
 
     @GET
-    Observable<JsonElement> getReports(@Url String url);
+    Observable<ResponseGetTotalItems<Report>> getReports(@Url String url);
 }

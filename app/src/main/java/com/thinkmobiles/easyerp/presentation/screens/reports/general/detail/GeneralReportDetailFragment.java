@@ -5,10 +5,14 @@ import android.content.Intent;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.michenko.simpleadapter.SimpleRecyclerAdapter;
 import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.domain.reports.ReportsRepository;
+import com.thinkmobiles.easyerp.presentation.adapters.reports.GeneralReportsAdapter;
 import com.thinkmobiles.easyerp.presentation.base.rules.content.ContentFragment;
 import com.thinkmobiles.easyerp.presentation.base.rules.content.ContentPresenter;
+import com.thinkmobiles.easyerp.presentation.base.rules.master.list.MasterListFragment;
+import com.thinkmobiles.easyerp.presentation.base.rules.master.list.MasterListPresenter;
 import com.thinkmobiles.easyerp.presentation.dialogs.ReportTypeDialogFragment;
 import com.thinkmobiles.easyerp.presentation.dialogs.ReportTypeDialogFragment_;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.FilterDH;
@@ -31,7 +35,7 @@ import java.util.ArrayList;
  *         Email: michael.soyma@thinkmobiles.com
  */
 @EFragment
-public class GeneralReportDetailFragment extends ContentFragment implements GeneralReportDetailContract.GeneralReportDetailView {
+public class GeneralReportDetailFragment extends MasterListFragment implements GeneralReportDetailContract.GeneralReportDetailView {
 
     private GeneralReportDetailContract.GeneralReportDetailPresenter presenter;
 
@@ -39,6 +43,8 @@ public class GeneralReportDetailFragment extends ContentFragment implements Gene
     protected ReportsRepository reportsRepository;
     @Bean
     protected DynamicallyPreferences dynamicallySharedPrefs;
+    @Bean
+    protected GeneralReportsAdapter generalReportsAdapter;
 
     @FragmentArg
     protected String categoryKey;
@@ -71,8 +77,13 @@ public class GeneralReportDetailFragment extends ContentFragment implements Gene
     }
 
     @Override
-    protected ContentPresenter getPresenter() {
+    protected MasterListPresenter getPresenter() {
         return presenter;
+    }
+
+    @Override
+    protected SimpleRecyclerAdapter getAdapter() {
+        return generalReportsAdapter;
     }
 
     @Override
@@ -113,6 +124,13 @@ public class GeneralReportDetailFragment extends ContentFragment implements Gene
     @Override
     public void makeAvailableReportTypes() {
         reportTypesItem.setVisible(true);
+    }
+
+    @Override
+    public void seeFullReport(String reportID) {
+        if (reportID != null) {
+            //TODO show full report review
+        }
     }
 
     @OnActivityResult(Constants.RequestCodes.RC_CHOOSE_REPORT_TYPES)

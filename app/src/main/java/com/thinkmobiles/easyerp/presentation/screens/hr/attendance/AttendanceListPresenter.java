@@ -51,6 +51,7 @@ public class AttendanceListPresenter extends MasterSelectablePresenterHelper imp
                         .flatMap(employeeItemResponseGetTotalItems -> model.getEmployeeImages(prepareIDsForImagesRequest(employeeItemResponseGetTotalItems)),
                                 ResponseCommonEmployees::new)
                         .subscribe(responseCommonEmployees -> {
+                            currentPage = page;
                             totalItems = responseCommonEmployees.responseGetEmployees.data.size();
                             saveData(responseCommonEmployees, true);
                             setData(responseCommonEmployees, true);

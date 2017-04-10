@@ -347,4 +347,12 @@
 
     <string name="report_type">Report type</string>
     <string name="choose_report_type">Choose report type</string>
+    <string name="favorite_short">Fav.</string>
+    <string name="edited_by">Edited By</string>
+    <string name="type">Type</string>
+    <string name="date_range">Date Range</string>
+    <string name="access">Access</string>
+    <string name="description_short">Descr.</string>
+    <string name="public_label">Public</string>
+    <string name="private_label">Private</string>
 </resources>
