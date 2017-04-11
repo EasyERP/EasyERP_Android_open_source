@@ -116,7 +116,7 @@ public class EmployeeDetailsPresenter extends ContentPresenterHelper implements 
         view.displayLastName(info.name != null && !TextUtils.isEmpty(info.name.last) ? info.name.last : null);
         if(!TextUtils.isEmpty(info.dateBirth)) {
             view.displayDateOfBirth(DateManager.convert(info.dateBirth)
-                    .setDstPattern(DateManager.PATTERN_DATE_SIMPLE_PREVIEW)
+                    .setDstPattern(DateManager.PATTERN_DATE_MONTH_PREVIEW)
                     .toString());
         } else {
             view.displayDateOfBirth(null);

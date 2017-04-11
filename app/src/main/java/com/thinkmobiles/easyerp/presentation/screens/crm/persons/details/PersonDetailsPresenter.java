@@ -112,7 +112,7 @@ public class PersonDetailsPresenter extends ContentPresenterHelper implements Pe
         }
         if (!TextUtils.isEmpty(data.dateBirth)) {
             view.displayDateOfBirth(DateManager.convert(data.dateBirth)
-                    .setDstPattern(DateManager.PATTERN_DATE_SIMPLE_PREVIEW)
+                    .setDstPattern(DateManager.PATTERN_DATE_MONTH_PREVIEW)
                     .toString());
         }
 

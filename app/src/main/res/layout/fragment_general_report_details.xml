@@ -13,7 +13,6 @@
         android:id="@+id/listRecycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="@dimen/default_padding_quart"
         android:clipToPadding="false"
         android:paddingBottom="@dimen/default_padding_quart" />
 

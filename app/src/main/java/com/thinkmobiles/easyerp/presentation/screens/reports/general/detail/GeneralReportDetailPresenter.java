@@ -1,9 +1,11 @@
 package com.thinkmobiles.easyerp.presentation.screens.reports.general.detail;
 
 import android.text.TextUtils;
+import android.view.View;
 
 import com.thinkmobiles.easyerp.data.model.crm.filter.FilterItem;
 import com.thinkmobiles.easyerp.data.model.reports.general.Report;
+import com.thinkmobiles.easyerp.data.model.user.UserInfo;
 import com.thinkmobiles.easyerp.presentation.base.rules.master.list.MasterListPresenterHelper;
 import com.thinkmobiles.easyerp.presentation.base.rules.master.list.MasterListView;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.FilterDH;
@@ -26,6 +28,7 @@ public final class GeneralReportDetailPresenter extends MasterListPresenterHelpe
     private GeneralReportDetailContract.GeneralReportDetailModel model;
     private DynamicallyPreferencesTemplate dynamicallyPreferences;
     private String categoryKey;
+    private UserInfo userInfo;
 
     private List<FilterItem> reportTypes = new ArrayList<>();
     private List<Report> reports = new ArrayList<>();
@@ -33,21 +36,25 @@ public final class GeneralReportDetailPresenter extends MasterListPresenterHelpe
     public GeneralReportDetailPresenter(GeneralReportDetailContract.GeneralReportDetailView view,
                                         GeneralReportDetailContract.GeneralReportDetailModel model,
                                         DynamicallyPreferencesTemplate dynamicallyPreferences,
-                                        String categoryKey) {
+                                        String categoryKey,
+                                        UserInfo userInfo) {
         this.view = view;
         this.model = model;
         this.dynamicallyPreferences = dynamicallyPreferences;
         this.categoryKey = categoryKey;
+        this.userInfo = userInfo;
 
         this.view.setPresenter(this);
     }
 
     @Override
     public void subscribe() {
-        this.model.getReportTypes().subscribe(reportTypes -> {
-            this.reportTypes = reportTypes;
-            super.subscribe();
-        }, t -> error(t));
+        compositeSubscription.add(
+            model.getReportTypes().subscribe(reportTypes -> {
+                this.reportTypes = reportTypes;
+                super.subscribe();
+            }, t -> error(t))
+        );
     }
 
     @Override
@@ -67,6 +74,25 @@ public final class GeneralReportDetailPresenter extends MasterListPresenterHelpe
         for (FilterItem filterItem: reportTypes)
             dynamicallyPreferences.putBoolean(filterItem.id, false);
         getFirstPage();
+    }
+
+    @Override
+    public void favorite(int position, boolean isFavorite) {
+        compositeSubscription.add(model.favorite(reports.get(position).id, isFavorite).subscribe(
+                result -> {
+                    userInfo.favorite.favoriteReport(reports.get(position).id, isFavorite);
+                    updateReportDH(position);
+                },
+                t -> updateReportDH(position)));
+    }
+
+    @Override
+    public void displayDescription(int position, View anchorView) {
+        view.showDescriptionPopUpWindow(anchorView, reports.get(position).description);
+    }
+
+    private void updateReportDH(final int position) {
+        view.updateItem(position);
     }
 
     private ArrayList<FilterDH> prepareReportTypeDHs() {
@@ -91,13 +117,14 @@ public final class GeneralReportDetailPresenter extends MasterListPresenterHelpe
     @Override
     protected void loadPage(int page) {
         final boolean needClear = page == 1;
-        this.model.getReports(page, categoryKey, prepareCategoryTypes()).subscribe(reports -> {
-            currentPage = page;
-            totalItems = reports.total;
-            view.makeAvailableReportTypes();
-            saveData(reports.data, needClear);
-            setData(reports.data, needClear);
-        }, t -> error(t));
+        compositeSubscription.add(model.getReports(page, categoryKey, prepareCategoryTypes()).subscribe(reports -> {
+                currentPage = page;
+                totalItems = reports.total;
+                view.makeAvailableReportTypes();
+                saveData(reports.data, needClear);
+                setData(reports.data, needClear);
+            }, t -> error(t))
+        );
     }
 
     private List<String> prepareCategoryTypes() {
@@ -141,7 +168,7 @@ public final class GeneralReportDetailPresenter extends MasterListPresenterHelpe
     private ArrayList<ReportDH> prepareDashboardDHs(final List<Report> reports) {
         final ArrayList<ReportDH> result = new ArrayList<>();
         for (Report report: reports)
-            result.add(new ReportDH(report));
+            result.add(new ReportDH(report, userInfo));
         return result;
     }
 }

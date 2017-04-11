@@ -13,4 +13,6 @@ import java.util.ArrayList;
 
 public interface MasterListView extends ContentView {
     void setDataList(ArrayList<? extends RecyclerDH> list, boolean needClear);
+    void changeItem(final RecyclerDH dh, final int position);
+    void updateItem(final int position);
 }

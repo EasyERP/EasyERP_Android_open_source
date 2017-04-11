@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/white"
+    android:orientation="vertical"
+    android:padding="@dimen/default_padding"
+    app:elevation="10dp">
+
+    <TextView
+        style="@style/TextDetailsTitleStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/description"
+        android:textSize="@dimen/text_list_item_large_18" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_padding_small"
+        android:orientation="vertical"
+        android:scrollbarSize="3dp"
+        android:scrollbarThumbVertical="@color/color_divider"
+        android:scrollbars="vertical">
+
+        <TextView
+            android:id="@+id/tvDescription_PWRD"
+            style="@style/RobotoRegular"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/default_padding_half"
+            android:textColor="@color/color_text_black"
+            android:textSize="@dimen/text_size_small_13" />
+    </ScrollView>
+
+</LinearLayout>

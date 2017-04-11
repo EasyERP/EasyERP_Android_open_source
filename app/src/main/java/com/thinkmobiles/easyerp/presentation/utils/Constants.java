@@ -151,6 +151,8 @@ public abstract class Constants {
     //------------------------------------------------------ REPORTS
 
     public static final String GET_REPORTS                  = "reports";
+    public static final String GET_REPORTS_FAVORITE         = "reports/favorite/{reportId}";
+    public static final String GET_REPORTS_UNFAVORITE       = "reports/unfavorite/{reportId}";
 
     public static final String KEY_QUERY_REPORT_CATEGORY    = "reportCategory";
 

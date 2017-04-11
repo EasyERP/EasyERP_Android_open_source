@@ -55,7 +55,7 @@ public final class TransferVH extends SelectableVHHelper<TransferDH> {
         tvTransferName_VLIT.setText(item.name);
         if(item.createdBy != null && !TextUtils.isEmpty(item.createdBy.date)) {
             tvDate_VLIT.setText(new DateManager.DateConverter(item.createdBy.date)
-                    .setDstPattern(DateManager.PATTERN_DATE_SIMPLE_PREVIEW)
+                    .setDstPattern(DateManager.PATTERN_DATE_MONTH_PREVIEW)
                     .toString());
         } else {
             tvDate_VLIT.setText(null);

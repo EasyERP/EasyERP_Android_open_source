@@ -1,23 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    style="@style/ViewWithRippleStyle"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
     tools:background="@android:color/white">
 
-    <TextView
-        style="@style/ReportsTableItemsTextStyle"
+    <FrameLayout
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1.5"
-        android:text="@string/favorite_short" />
+        android:layout_height="match_parent"
+        android:layout_weight="1.7">
+
+        <android.support.v7.widget.AppCompatCheckBox
+            android:id="@+id/cbFavorite_VLIGR"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:button="@drawable/selector_star"
+            android:text="@null" />
+    </FrameLayout>
 
     <TextView
         android:id="@+id/tvName_VLIGR"
         style="@style/ReportsTableItemsTextStyle"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_weight="7"
         tools:text="@string/name" />
 
@@ -25,7 +34,7 @@
         android:id="@+id/tvEditedBy_VLIGR"
         style="@style/ReportsTableItemsTextStyle"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_weight="4"
         tools:text="@string/edited_by" />
 
@@ -33,7 +42,7 @@
         android:id="@+id/tvType_VLIGR"
         style="@style/ReportsTableItemsTextStyle"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_weight="4"
         tools:text="@string/type" />
 
@@ -41,23 +50,31 @@
         android:id="@+id/tvDateRange_VLIGR"
         style="@style/ReportsTableItemsTextStyle"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="4"
+        android:layout_height="match_parent"
+        android:layout_weight="3.8"
         tools:text="@string/date_range" />
 
     <TextView
         android:id="@+id/tvAccess_VLIGR"
         style="@style/ReportsTableItemsTextStyle"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="2"
+        android:layout_height="match_parent"
+        android:layout_weight="2.2"
         tools:text="@string/access" />
 
-    <TextView
-        style="@style/ReportsTableItemsTextStyle"
+    <FrameLayout
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="2"
-        android:text="@string/description_short" />
+        android:layout_height="match_parent"
+        android:layout_weight="1.8">
+
+        <ImageView
+            android:id="@+id/ivDescription_VLIGR"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="@dimen/default_padding_small"
+            android:text="@null"
+            app:srcCompat="@drawable/ic_description" />
+    </FrameLayout>
 
 </LinearLayout>

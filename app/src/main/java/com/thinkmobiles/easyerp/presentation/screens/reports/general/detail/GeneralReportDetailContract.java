@@ -1,5 +1,7 @@
 package com.thinkmobiles.easyerp.presentation.screens.reports.general.detail;
 
+import android.view.View;
+
 import com.thinkmobiles.easyerp.data.model.ResponseGetTotalItems;
 import com.thinkmobiles.easyerp.data.model.crm.filter.FilterItem;
 import com.thinkmobiles.easyerp.data.model.reports.general.Report;
@@ -25,16 +27,19 @@ public interface GeneralReportDetailContract {
     interface GeneralReportDetailView extends BaseView<GeneralReportDetailPresenter>, MasterListView {
         void showReportTypesDialog(final ArrayList<FilterDH> listReportTypes);
         void makeAvailableReportTypes();
-
         void seeFullReport(final String reportID);
+        void showDescriptionPopUpWindow(final View anchorView, final String description);
     }
     interface GeneralReportDetailPresenter extends MasterListPresenter {
         void chooseReportTypes();
         void filterByReportTypes(final ArrayList<FilterDH> listReportTypes);
         void removeAllReportTypes();
+        void favorite(final int position, final boolean isFavorite);
+        void displayDescription(final int position, final View anchorView);
     }
     interface GeneralReportDetailModel extends BaseModel {
         Observable<List<FilterItem>> getReportTypes();
         Observable<ResponseGetTotalItems<Report>> getReports(final int page, final String categoryKey, final List<String> queryReportTypes);
+        Observable<?> favorite(final String reportId, final boolean isFavorite);
     }
 }

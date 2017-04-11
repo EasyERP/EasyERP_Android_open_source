@@ -30,6 +30,9 @@ public final class Report implements Parcelable {
     public String reportType;
     public List<String> rows;
 
+    public Report() {
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -50,9 +53,6 @@ public final class Report implements Parcelable {
         dest.writeStringList(this.rows);
     }
 
-    public Report() {
-    }
-
     protected Report(Parcel in) {
         this.id = in.readString();
         this.createdBy = in.readParcelable(EditedBy.class.getClassLoader());
@@ -67,7 +67,7 @@ public final class Report implements Parcelable {
         this.rows = in.createStringArrayList();
     }
 
-    public static final Parcelable.Creator<Report> CREATOR = new Parcelable.Creator<Report>() {
+    public static final Creator<Report> CREATOR = new Creator<Report>() {
         @Override
         public Report createFromParcel(Parcel source) {
             return new Report(source);

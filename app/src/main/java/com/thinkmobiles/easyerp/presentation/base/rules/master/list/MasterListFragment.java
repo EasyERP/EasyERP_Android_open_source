@@ -75,6 +75,18 @@ public abstract class MasterListFragment extends ContentFragment implements Mast
     }
 
     @Override
+    @SuppressWarnings("unchecked")
+    public void changeItem(RecyclerDH dh, int position) {
+        getAdapter().changeItem(dh, position);
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public void updateItem(int position) {
+        getAdapter().updateItem(position);
+    }
+
+    @Override
     public void displayErrorToast(Constants.ErrorType errorType) {
         super.displayErrorToast(errorType);
         scrollListener.reset();

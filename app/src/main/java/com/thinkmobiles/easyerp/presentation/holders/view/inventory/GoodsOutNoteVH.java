@@ -71,7 +71,7 @@ public final class GoodsOutNoteVH extends SelectableVHHelper<GoodsOutNoteDH> {
 
         if(item.createdBy != null && !TextUtils.isEmpty(item.createdBy.date)) {
             tvCreatedDate_VLIGON.setText(String.format(patternCreated, new DateManager.DateConverter(item.createdBy.date)
-                    .setDstPattern(DateManager.PATTERN_DATE_SIMPLE_PREVIEW)
+                    .setDstPattern(DateManager.PATTERN_DATE_MONTH_PREVIEW)
                     .toString()));
         } else
             tvCreatedDate_VLIGON.setText(null);

@@ -76,4 +76,11 @@ public class ReportsRepository extends NetworkRepository implements GeneralCateg
 
         return getNetworkObservable(reportsService.getReports(builder.build().toString()));
     }
+
+    @Override
+    public Observable<?> favorite(String reportId, boolean isFavorite) {
+        if (isFavorite)
+            return getNetworkObservable(reportsService.favorite(reportId));
+        else return getNetworkObservable(reportsService.unfavorite(reportId));
+    }
 }

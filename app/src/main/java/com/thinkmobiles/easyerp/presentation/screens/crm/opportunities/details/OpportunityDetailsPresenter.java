@@ -84,7 +84,7 @@ public class OpportunityDetailsPresenter extends ContentPresenterHelper implemen
         }
         if(!TextUtils.isEmpty(data.expectedClosing))
             view.displayCloseDate(DateManager.convert(data.expectedClosing)
-                    .setDstPattern(DateManager.PATTERN_DATE_SIMPLE_PREVIEW)
+                    .setDstPattern(DateManager.PATTERN_DATE_MONTH_PREVIEW)
                     .toString());
         if(data.salesPerson != null && !TextUtils.isEmpty(data.salesPerson.fullName))
             view.displayAssignedTo(data.salesPerson.fullName);
