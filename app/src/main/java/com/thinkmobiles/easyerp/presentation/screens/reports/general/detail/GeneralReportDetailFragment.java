@@ -7,6 +7,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.support.v4.widget.PopupWindowCompat;
+import android.text.TextUtils;
 import android.text.method.ScrollingMovementMethod;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -16,6 +17,7 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.PopupWindow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.michenko.simpleadapter.SimpleRecyclerAdapter;
 import com.thinkmobiles.easyerp.BuildConfig;
@@ -162,19 +164,24 @@ public class GeneralReportDetailFragment extends MasterListFragment implements G
 
     @Override
     public void showDescriptionPopUpWindow(final View anchorView, String description) {
-        final View popupView = LayoutInflater.from(mActivity).inflate(R.layout.popup_window_reports_description, null, false);
-        final TextView descriptionView = ((TextView) popupView.findViewById(R.id.tvDescription_PWRD));
-        descriptionView.setText("If you are in the market for a computer, there are a number of factors to consider. Will it be used for your home, your office or perhaps even your home office combo? First off, you will need to set a budget for your new purchase before deciding whether to shop for notebook or desktop computers. If you are in the market for a computer, there are a number of factors to consider. Will it be used for your home, your office or perhaps even your home office combo? First off, you will need to set a budget for your new purchase before deciding whether to shop for notebook or desktop computers. If you are in the market for a computer, there are a number of factors to consider. Will it be used for your home, your office or perhaps even your home office combo? First off, you will need to set a budget for your new purchase before deciding whether to shop for notebook or desktop computers. If you are in the market for a computer, there are a number of factors to consider. Will it be used for your home, your office or perhaps even your home office combo? First off, you will need to set a budget for your new purchase before deciding whether to shop for notebook or desktop computers. If you are in the market for a computer, there are a number of factors to consider. Will it be used for your home, your office or perhaps even your home office combo? First off, you will need to set a budget for your new purchase before deciding whether to shop for notebook or desktop computers. If you are in the market for a computer, there are a number of factors to consider. Will it be used for your home, your office or perhaps even your home office combo? First off, you will need to set a budget for your new purchase before deciding whether to shop for notebook or desktop computers. If you are in the market for a computer, there are a number of factors to consider. Will it be used for your home, your office or perhaps even your home office combo? First off, you will need to set a budget for your new purchase before deciding whether to shop for notebook or desktop computers. If you are in the market for a computer, there are a number of factors to consider. Will it be used for your home, your office or perhaps even your home office combo? First off, you will need to set a budget for your new purchase before deciding whether to shop for notebook or desktop computers.");
+        if (TextUtils.isEmpty(description)) {
+            Toast.makeText(mActivity, R.string.description_is_empty, Toast.LENGTH_SHORT).show();
+        } else {
+            final View popupView = LayoutInflater.from(mActivity).inflate(R.layout.popup_window_reports_description, null, false);
+            final TextView descriptionView = ((TextView) popupView.findViewById(R.id.tvDescription_PWRD));
+//            descriptionView.setText("If you are in the market for a computer, there are a number of factors to consider. Will it be used for your home, your office or perhaps even your home office combo? First off, you will need to set a budget for your new purchase before deciding whether to shop for notebook or desktop computers. If you are in the market for a computer, there are a number of factors to consider. Will it be used for your home, your office or perhaps even your home office combo? First off, you will need to set a budget for your new purchase before deciding whether to shop for notebook or desktop computers. If you are in the market for a computer, there are a number of factors to consider. Will it be used for your home, your office or perhaps even your home office combo? First off, you will need to set a budget for your new purchase before deciding whether to shop for notebook or desktop computers. If you are in the market for a computer, there are a number of factors to consider. Will it be used for your home, your office or perhaps even your home office combo? First off, you will need to set a budget for your new purchase before deciding whether to shop for notebook or desktop computers. If you are in the market for a computer, there are a number of factors to consider. Will it be used for your home, your office or perhaps even your home office combo? First off, you will need to set a budget for your new purchase before deciding whether to shop for notebook or desktop computers. If you are in the market for a computer, there are a number of factors to consider. Will it be used for your home, your office or perhaps even your home office combo? First off, you will need to set a budget for your new purchase before deciding whether to shop for notebook or desktop computers. If you are in the market for a computer, there are a number of factors to consider. Will it be used for your home, your office or perhaps even your home office combo? First off, you will need to set a budget for your new purchase before deciding whether to shop for notebook or desktop computers. If you are in the market for a computer, there are a number of factors to consider. Will it be used for your home, your office or perhaps even your home office combo? First off, you will need to set a budget for your new purchase before deciding whether to shop for notebook or desktop computers.");
+            descriptionView.setText(description);
 
-        final PopupWindow popupWindowCompat = new PopupWindow(mActivity);
-        popupWindowCompat.setContentView(popupView);
-        popupWindowCompat.setWidth((int) getResources().getDimension(R.dimen.popup_window_description_width));
-        popupWindowCompat.setBackgroundDrawable(new ColorDrawable(Color.WHITE));
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
-            popupWindowCompat.setElevation(20f);
-        popupWindowCompat.setOutsideTouchable(true);
-        popupWindowCompat.setFocusable(true);
-        PopupWindowCompat.showAsDropDown(popupWindowCompat, anchorView, 0, 0, Gravity.END);
+            final PopupWindow popupWindowCompat = new PopupWindow(mActivity);
+            popupWindowCompat.setContentView(popupView);
+            popupWindowCompat.setWidth((int) getResources().getDimension(R.dimen.popup_window_description_width));
+            popupWindowCompat.setBackgroundDrawable(new ColorDrawable(Color.WHITE));
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+                popupWindowCompat.setElevation(20f);
+            popupWindowCompat.setOutsideTouchable(true);
+            popupWindowCompat.setFocusable(true);
+            PopupWindowCompat.showAsDropDown(popupWindowCompat, anchorView, 0, 0, Gravity.END);
+        }
     }
 
     @OnActivityResult(Constants.RequestCodes.RC_CHOOSE_REPORT_TYPES)

@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="@dimen/default_padding_middle"
+    android:paddingEnd="@dimen/default_padding_middle"
+    android:paddingStart="@dimen/default_padding_middle"
     tools:background="@android:color/white">
 
     <include layout="@layout/view_header_general_reports" />
