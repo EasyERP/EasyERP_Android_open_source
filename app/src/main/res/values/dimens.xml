@@ -59,7 +59,7 @@
 
     <dimen name="small_alert_dialog_width">10dp</dimen>
 
-    <dimen name="popup_window_description_width">300dp</dimen>
-    <dimen name="popup_window_description_height">180dp</dimen>
+    <dimen name="popup_window_description_width">290dp</dimen>
+    <dimen name="popup_window_description_height">190dp</dimen>
 
 </resources>
