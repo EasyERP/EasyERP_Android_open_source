@@ -11,6 +11,7 @@
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1.7"
+        android:gravity="center"
         android:text="@string/favorite_short" />
 
     <TextView
@@ -53,6 +54,7 @@
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1.8"
+        android:gravity="center"
         android:text="@string/description_short" />
 
 </LinearLayout>

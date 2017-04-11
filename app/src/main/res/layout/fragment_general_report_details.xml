@@ -8,7 +8,7 @@
     android:paddingStart="@dimen/default_padding_middle"
     tools:background="@android:color/white">
 
-    <include layout="@layout/view_header_general_reports" />
+    <include layout="@layout/view_include_header_general_reports" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/listRecycler"
