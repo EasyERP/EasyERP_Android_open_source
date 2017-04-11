@@ -7,6 +7,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.support.v4.widget.PopupWindowCompat;
+import android.support.v7.widget.LinearLayoutManager;
 import android.text.TextUtils;
 import android.text.method.ScrollingMovementMethod;
 import android.view.Gravity;
@@ -86,7 +87,7 @@ public class GeneralReportDetailFragment extends MasterListFragment implements G
                     presenter.favorite(position, ((CheckBox) view).isChecked());
                     break;
                 case R.id.ivDescription_VLIGR:
-                    presenter.displayDescription(position, view);
+                    presenter.displayDescription(position);
                     break;
                 default:
                     getPresenter().clickItem(position);
@@ -163,24 +164,31 @@ public class GeneralReportDetailFragment extends MasterListFragment implements G
     }
 
     @Override
-    public void showDescriptionPopUpWindow(final View anchorView, String description) {
+    public void showDescriptionPopUpWindow(final int position, String description) {
         if (TextUtils.isEmpty(description)) {
             Toast.makeText(mActivity, R.string.description_is_empty, Toast.LENGTH_SHORT).show();
         } else {
+            final View itemView = listRecycler.getLayoutManager().findViewByPosition(position);
             final View popupView = LayoutInflater.from(mActivity).inflate(R.layout.popup_window_reports_description, null, false);
             final TextView descriptionView = ((TextView) popupView.findViewById(R.id.tvDescription_PWRD));
-//            descriptionView.setText("If you are in the market for a computer, there are a number of factors to consider. Will it be used for your home, your office or perhaps even your home office combo? First off, you will need to set a budget for your new purchase before deciding whether to shop for notebook or desktop computers. If you are in the market for a computer, there are a number of factors to consider. Will it be used for your home, your office or perhaps even your home office combo? First off, you will need to set a budget for your new purchase before deciding whether to shop for notebook or desktop computers. If you are in the market for a computer, there are a number of factors to consider. Will it be used for your home, your office or perhaps even your home office combo? First off, you will need to set a budget for your new purchase before deciding whether to shop for notebook or desktop computers. If you are in the market for a computer, there are a number of factors to consider. Will it be used for your home, your office or perhaps even your home office combo? First off, you will need to set a budget for your new purchase before deciding whether to shop for notebook or desktop computers. If you are in the market for a computer, there are a number of factors to consider. Will it be used for your home, your office or perhaps even your home office combo? First off, you will need to set a budget for your new purchase before deciding whether to shop for notebook or desktop computers. If you are in the market for a computer, there are a number of factors to consider. Will it be used for your home, your office or perhaps even your home office combo? First off, you will need to set a budget for your new purchase before deciding whether to shop for notebook or desktop computers. If you are in the market for a computer, there are a number of factors to consider. Will it be used for your home, your office or perhaps even your home office combo? First off, you will need to set a budget for your new purchase before deciding whether to shop for notebook or desktop computers. If you are in the market for a computer, there are a number of factors to consider. Will it be used for your home, your office or perhaps even your home office combo? First off, you will need to set a budget for your new purchase before deciding whether to shop for notebook or desktop computers.");
             descriptionView.setText(description);
 
             final PopupWindow popupWindowCompat = new PopupWindow(mActivity);
             popupWindowCompat.setContentView(popupView);
             popupWindowCompat.setWidth((int) getResources().getDimension(R.dimen.popup_window_description_width));
+            popupWindowCompat.setHeight((int) getResources().getDimension(R.dimen.popup_window_description_height));
             popupWindowCompat.setBackgroundDrawable(new ColorDrawable(Color.WHITE));
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
                 popupWindowCompat.setElevation(20f);
             popupWindowCompat.setOutsideTouchable(true);
             popupWindowCompat.setFocusable(true);
-            PopupWindowCompat.showAsDropDown(popupWindowCompat, anchorView, 0, 0, Gravity.END);
+
+            final int yOff = (int) getResources().getDimension(R.dimen.popup_window_description_height);
+            PopupWindowCompat.showAsDropDown(
+                    popupWindowCompat,
+                    itemView.findViewById(R.id.ivDescription_VLIGR),
+                    0, (flContent.getMeasuredHeight() / 2) < (itemView.getTop() + itemView.getHeight()) ? -yOff : 0, // + itemView.getHeight() - this is header height
+                    Gravity.BOTTOM | Gravity.END);
         }
     }
 

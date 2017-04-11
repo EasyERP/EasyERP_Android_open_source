@@ -28,14 +28,14 @@ public interface GeneralReportDetailContract {
         void showReportTypesDialog(final ArrayList<FilterDH> listReportTypes);
         void makeAvailableReportTypes();
         void seeFullReport(final String reportID);
-        void showDescriptionPopUpWindow(final View anchorView, final String description);
+        void showDescriptionPopUpWindow(final int position, final String description);
     }
     interface GeneralReportDetailPresenter extends MasterListPresenter {
         void chooseReportTypes();
         void filterByReportTypes(final ArrayList<FilterDH> listReportTypes);
         void removeAllReportTypes();
         void favorite(final int position, final boolean isFavorite);
-        void displayDescription(final int position, final View anchorView);
+        void displayDescription(final int position);
     }
     interface GeneralReportDetailModel extends BaseModel {
         Observable<List<FilterItem>> getReportTypes();

@@ -87,8 +87,8 @@ public final class GeneralReportDetailPresenter extends MasterListPresenterHelpe
     }
 
     @Override
-    public void displayDescription(int position, View anchorView) {
-        view.showDescriptionPopUpWindow(anchorView, reports.get(position).description);
+    public void displayDescription(int position) {
+        view.showDescriptionPopUpWindow(position, reports.get(position).description);
     }
 
     private void updateReportDH(final int position) {
