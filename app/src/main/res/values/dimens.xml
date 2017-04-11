@@ -42,9 +42,11 @@
     <dimen name="text_size_title_large">34sp</dimen>
     <dimen name="text_size_big_24">24sp</dimen>
     <dimen name="text_list_item_large_20">20sp</dimen>
+    <dimen name="text_list_item_large_18">18sp</dimen>
     <dimen name="text_list_item_medium_16">16sp</dimen>
     <dimen name="text_size_extra_small">10sp</dimen>
     <dimen name="text_size_table_12">12sp</dimen>
+    <dimen name="text_size_small_13">13sp</dimen>
     <dimen name="text_size_small_14">14sp</dimen>
 
     <dimen name="image_size_small">48dp</dimen>
@@ -56,5 +58,8 @@
     <dimen name="text_title_tutorial">40sp</dimen>
 
     <dimen name="small_alert_dialog_width">10dp</dimen>
+
+    <dimen name="popup_window_description_width">290dp</dimen>
+    <dimen name="popup_window_description_height">190dp</dimen>
 
 </resources>

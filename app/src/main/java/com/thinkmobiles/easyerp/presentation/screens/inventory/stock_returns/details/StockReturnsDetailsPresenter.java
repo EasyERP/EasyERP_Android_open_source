@@ -64,7 +64,7 @@ public class StockReturnsDetailsPresenter extends ContentPresenterHelper impleme
         stockReturnsDetails = response;
         view.setName(response.name);
         view.setTitle(String.format("Stock Returns #%s", response.name));
-        view.setDate(DateManager.convert(response.date).setDstPattern(DateManager.PATTERN_DATE_SIMPLE_PREVIEW).toString());
+        view.setDate(DateManager.convert(response.date).setDstPattern(DateManager.PATTERN_DATE_MONTH_PREVIEW).toString());
         if (response.status != null && response.status.receivedById != null)
             view.setReceivedBy(response.status.receivedById.login);
         view.setDescription(response.description);

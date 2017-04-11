@@ -25,7 +25,8 @@ public abstract class DateManager {
     public static final String PATTERN_SIMPLE_DATE_SHORT    = "MMM dd, yyyy"; //Jan 15, 2017
     public static final String PATTERN_SIMPLE_TIME          = "h:mm a";   // 2:45 PM
 
-    public static final String PATTERN_DATE_SIMPLE_PREVIEW  = "dd MMM, yyyy";
+    public static final String PATTERN_DATE_MONTH_PREVIEW   = "dd MMM, yyyy";
+    public static final String PATTERN_DATE_SIMPLE_PREVIEW  = "dd.MM.yyyy";
     public static final String PATTERN_DATE_AND_TIME        = "dd MMM, yyyy, HH:mm";
     public static final String PATTERN_DASHBOARD_PREVIEW    = "dd, MMM yyyy";
     public static final String PATTERN_DASHBOARD_BACKEND    = "E MMM dd yyyy HH:mm:ss z";

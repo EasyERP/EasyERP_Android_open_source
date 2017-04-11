@@ -61,7 +61,7 @@ public final class OrderVH extends SelectableVHHelper<OrderDH> {
         tvOrderStatus_VLIO.setText(data.getOrder().workflow.name);
         tvOrderStatus_VLIO.setBackgroundDrawable(new RoundRectDrawable(ContextCompat.getColor(itemView.getContext(), ColorHelper.getColorResIdByName(data.getOrder().workflow.status))));
         tvCustomer_VLIO.setText(TextUtils.isEmpty(data.getOrder().supplier.name) ? not_assigned : data.getOrder().supplier.name);
-        tvCreatedDate_VLIO.setText(String.format(orderDateFormatter, new DateManager.DateConverter(data.getOrder().orderDate).setDstPattern(DateManager.PATTERN_DATE_SIMPLE_PREVIEW).toString()));
+        tvCreatedDate_VLIO.setText(String.format(orderDateFormatter, new DateManager.DateConverter(data.getOrder().orderDate).setDstPattern(DateManager.PATTERN_DATE_MONTH_PREVIEW).toString()));
 
         tvTotalPrice_VLIO.setText(StringUtil.getFormattedPriceFromCent(new DollarFormatter().getFormat(),
                 data.getOrder().paymentInfo.total,

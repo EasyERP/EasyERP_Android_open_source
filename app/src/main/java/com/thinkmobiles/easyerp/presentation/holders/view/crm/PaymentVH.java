@@ -54,7 +54,7 @@ public final class PaymentVH extends SelectableVHHelper<PaymentDH> {
 
         tvSourceDocument_VLIP.setText(data.getPayment().name);
         tvPaymentCompany_VLIP.setText(data.getPayment().supplier == null ? no_data : data.getPayment().supplier.name.getFullName());
-        tvPaymentDate_VLIP.setText(String.format(paymentDateFormatter, new DateManager.DateConverter(data.getPayment().date).setDstPattern(DateManager.PATTERN_DATE_SIMPLE_PREVIEW).toString()));
+        tvPaymentDate_VLIP.setText(String.format(paymentDateFormatter, new DateManager.DateConverter(data.getPayment().date).setDstPattern(DateManager.PATTERN_DATE_MONTH_PREVIEW).toString()));
         tvAssignTo_VLIP.setText(data.getPayment().assigned == null ? not_assigned : data.getPayment().assigned.name.getFullName());
         tvPaid_VLIP.setText(StringUtil.getFormattedPriceFromCent(new DollarFormatter().getFormat(),
                 (data.getPayment().refund ? -1 : 1) * data.getPayment().paidAmount,

@@ -45,7 +45,7 @@ public final class InvoicePaymentVH extends RecyclerVH<InvoicePaymentDH> {
         String symbol = model.currency.id != null ? model.currency.id.symbol : "S";
 
         tvPaymentName_LIIP.setText(model.name);
-        tvPaymentDate_LIIP.setText(DateManager.convert(model.date).setDstPattern(DateManager.PATTERN_DATE_SIMPLE_PREVIEW).toString());
+        tvPaymentDate_LIIP.setText(DateManager.convert(model.date).setDstPattern(DateManager.PATTERN_DATE_MONTH_PREVIEW).toString());
         tvPaymentAmount_LIIP.setText(StringUtil.getFormattedPriceFromCent(formatter, model.paidAmount, symbol));
 
     }

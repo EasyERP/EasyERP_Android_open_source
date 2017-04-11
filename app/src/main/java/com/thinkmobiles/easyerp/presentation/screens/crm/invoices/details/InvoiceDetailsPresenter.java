@@ -106,9 +106,9 @@ public class InvoiceDetailsPresenter extends ContentPresenterHelper implements I
         view.setInvoiceStatusName(response.workflow.name);
         view.setInvoiceStatus(response.workflow.status);
         view.setInvoiceName(response.name);
-        view.setInvoiceDate(DateManager.convert(response.invoiceDate).setDstPattern(DateManager.PATTERN_DATE_SIMPLE_PREVIEW).toString());
+        view.setInvoiceDate(DateManager.convert(response.invoiceDate).setDstPattern(DateManager.PATTERN_DATE_MONTH_PREVIEW).toString());
         if (response.dueDate != null) {
-            view.setDueDate(DateManager.convert(response.dueDate).setDstPattern(DateManager.PATTERN_DATE_SIMPLE_PREVIEW).toString());
+            view.setDueDate(DateManager.convert(response.dueDate).setDstPattern(DateManager.PATTERN_DATE_MONTH_PREVIEW).toString());
         }
         view.setOrderNumber(response.paymentReference);
         view.setSupplierName(response.supplier.fullName);

@@ -9,14 +9,18 @@ import com.google.gson.annotations.SerializedName;
  * Created by Lynx on 1/18/2017.
  */
 
-public class UserInfo implements Parcelable {
+public final class UserInfo implements Parcelable {
     @SerializedName("_id")
     public String id;
     public String imageSrc; //base64
     public String login;
     public String email;
     public String lastAccess;
+    public UserFavorite favorite;
     public UserProfile profile;
+
+    public UserInfo() {
+    }
 
     @Override
     public int describeContents() {
@@ -30,10 +34,8 @@ public class UserInfo implements Parcelable {
         dest.writeString(this.login);
         dest.writeString(this.email);
         dest.writeString(this.lastAccess);
+        dest.writeParcelable(this.favorite, flags);
         dest.writeParcelable(this.profile, flags);
-    }
-
-    public UserInfo() {
     }
 
     protected UserInfo(Parcel in) {
@@ -42,6 +44,7 @@ public class UserInfo implements Parcelable {
         this.login = in.readString();
         this.email = in.readString();
         this.lastAccess = in.readString();
+        this.favorite = in.readParcelable(UserFavorite.class.getClassLoader());
         this.profile = in.readParcelable(UserProfile.class.getClassLoader());
     }
 

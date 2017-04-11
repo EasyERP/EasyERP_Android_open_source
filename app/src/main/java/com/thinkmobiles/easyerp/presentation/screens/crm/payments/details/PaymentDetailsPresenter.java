@@ -84,7 +84,7 @@ public class PaymentDetailsPresenter extends ContentPresenterHelper implements P
         if (doc != null) {
             view.setSourceDocument(String.format("%s %s", "Source Document", doc));
         }
-        view.setPaymentDate(DateManager.convert(currentPayment.date).setDstPattern(DateManager.PATTERN_DATE_SIMPLE_PREVIEW).toString());
+        view.setPaymentDate(DateManager.convert(currentPayment.date).setDstPattern(DateManager.PATTERN_DATE_MONTH_PREVIEW).toString());
         if (currentPayment.paymentMethod != null) {
             view.setBankAccount(currentPayment.paymentMethod.name);
         }

@@ -62,7 +62,7 @@ public class ApplicationVH extends SelectableVHHelper<ApplicationDH> {
         tvStage_VLIA.setBackgroundDrawable(new RoundRectDrawable(ContextCompat.getColor(itemView.getContext(), ColorHelper.getStatusColorRes(application.workflow.status))));
 
         tvCratedBy_VLIA.setText(String.format(createdByFormatter,
-                new DateManager.DateConverter(application.createdBy.date).setDstPattern(DateManager.PATTERN_DATE_SIMPLE_PREVIEW).toString(),
+                new DateManager.DateConverter(application.createdBy.date).setDstPattern(DateManager.PATTERN_DATE_MONTH_PREVIEW).toString(),
                 application.createdBy.user));
     }
 }

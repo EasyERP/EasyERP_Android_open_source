@@ -53,7 +53,7 @@ public final class InvoiceVH extends SelectableVHHelper<InvoiceDH> {
 
         tvInvoiceNumber_VLII.setText(data.getInvoice().name);
         tvInvoiceCustomer_VLII.setText(TextUtils.isEmpty(data.getInvoice().supplier.name) ? not_assigned : data.getInvoice().supplier.name);
-        tvInvoiceDate_VLII.setText(String.format(invoicedDateFormatter, new DateManager.DateConverter(data.getInvoice().invoiceDate).setDstPattern(DateManager.PATTERN_DATE_SIMPLE_PREVIEW).toString()));
+        tvInvoiceDate_VLII.setText(String.format(invoicedDateFormatter, new DateManager.DateConverter(data.getInvoice().invoiceDate).setDstPattern(DateManager.PATTERN_DATE_MONTH_PREVIEW).toString()));
         tvAssignTo_VLII.setText(TextUtils.isEmpty(data.getInvoice().salesPerson.name) ? not_assigned : data.getInvoice().salesPerson.name);
         tvTotalPrice_VLII.setText(StringUtil.getFormattedPriceFromCent(new DollarFormatter().getFormat(),
                 data.getInvoice().paymentInfo.total,

@@ -116,14 +116,14 @@ public class ApplicationDetailsPresenter extends ContentPresenterHelper implemen
         view.displayProposedSalary(String.format(Locale.US, "$ %d", info.proposedSalary));
         if(!TextUtils.isEmpty(info.dateBirth)) {
             view.displayDateOfBirth(DateManager.convert(info.dateBirth)
-                    .setDstPattern(DateManager.PATTERN_DATE_SIMPLE_PREVIEW)
+                    .setDstPattern(DateManager.PATTERN_DATE_MONTH_PREVIEW)
                     .toString());
         } else {
             view.displayDateOfBirth(null);
         }
         if(!TextUtils.isEmpty(info.nextAction)) {
             view.displayNextActionDate(DateManager.convert(info.nextAction)
-                    .setDstPattern(DateManager.PATTERN_DATE_SIMPLE_PREVIEW)
+                    .setDstPattern(DateManager.PATTERN_DATE_MONTH_PREVIEW)
                     .toString());
         } else {
             view.displayNextActionDate(null);

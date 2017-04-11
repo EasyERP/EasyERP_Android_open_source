@@ -101,8 +101,8 @@ public class OrderDetailsPresenter extends ContentPresenterHelper implements Ord
         view.setOrderStatusName(response.workflow.name);
         view.setOrderStatus(response.workflow.status);
         view.setOrderName(response.name);
-        view.setExpectedDate(DateManager.convert(response.expectedDate).setDstPattern(DateManager.PATTERN_DATE_SIMPLE_PREVIEW).toString());
-        view.setOrderDate(DateManager.convert(response.orderDate).setDstPattern(DateManager.PATTERN_DATE_SIMPLE_PREVIEW).toString());
+        view.setExpectedDate(DateManager.convert(response.expectedDate).setDstPattern(DateManager.PATTERN_DATE_MONTH_PREVIEW).toString());
+        view.setOrderDate(DateManager.convert(response.orderDate).setDstPattern(DateManager.PATTERN_DATE_MONTH_PREVIEW).toString());
         view.setSupplierName(response.supplier.fullName);
         view.setSupplierAddress(StringUtil.getAddress(response.supplier.address));
         String symbol = response.currency.id != null ? response.currency.id.symbol : "$";

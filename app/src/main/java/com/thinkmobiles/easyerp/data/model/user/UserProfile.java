@@ -9,7 +9,7 @@ import com.google.gson.annotations.SerializedName;
  * Created by Lynx on 1/18/2017.
  */
 
-public class UserProfile implements Parcelable {
+public final class UserProfile implements Parcelable {
     @SerializedName("_id")
     public long id;
     public String profileName;

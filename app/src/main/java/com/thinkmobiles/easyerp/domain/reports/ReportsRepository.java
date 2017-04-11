@@ -6,6 +6,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 import com.thinkmobiles.easyerp.data.api.Rest;
+import com.thinkmobiles.easyerp.data.model.ResponseGetTotalItems;
 import com.thinkmobiles.easyerp.data.model.crm.filter.FilterItem;
 import com.thinkmobiles.easyerp.data.model.reports.general.Category;
 import com.thinkmobiles.easyerp.data.model.reports.general.Report;
@@ -63,19 +64,23 @@ public class ReportsRepository extends NetworkRepository implements GeneralCateg
     }
 
     @Override
-    public Observable<List<Report>> getReports(String categoryKey, List<String> queryReportTypes) {
+    public Observable<ResponseGetTotalItems<Report>> getReports(int page, String categoryKey, List<String> queryReportTypes) {
         Uri.Builder builder = Uri.parse(Constants.BASE_URL).buildUpon();
         builder.appendPath(Constants.GET_REPORTS)
-                .appendQueryParameter("page", "1")
-                .appendQueryParameter("count", String.valueOf(Constants.COUNT_LIST_ITEMS_WITHOUT_PAGINATION));
+                .appendQueryParameter("page", String.valueOf(page))
+                .appendQueryParameter("categoryName", categoryKey)
+                .appendQueryParameter("count", String.valueOf(Constants.COUNT_LIST_ITEMS));
 
         for (String reportType: queryReportTypes)
             builder.appendQueryParameter(Constants.KEY_QUERY_REPORT_CATEGORY, reportType);
 
-        return getNetworkObservable(reportsService.getReports(builder.build().toString())
-                .flatMap(reports -> {
-                    final JsonObject reportsObj = new Gson().toJsonTree(reports.getAsJsonArray().get(0)).getAsJsonObject();
-                    return Observable.just(new Gson().fromJson(reportsObj.get(categoryKey), new TypeToken<List<Report>>(){}.getType()));
-                }));
+        return getNetworkObservable(reportsService.getReports(builder.build().toString()));
+    }
+
+    @Override
+    public Observable<?> favorite(String reportId, boolean isFavorite) {
+        if (isFavorite)
+            return getNetworkObservable(reportsService.favorite(reportId));
+        else return getNetworkObservable(reportsService.unfavorite(reportId));
     }
 }

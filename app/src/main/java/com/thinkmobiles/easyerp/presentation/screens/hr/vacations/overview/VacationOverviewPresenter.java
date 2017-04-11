@@ -99,11 +99,11 @@ public class VacationOverviewPresenter extends ContentPresenterHelper implements
                 l = calendar.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY || calendar.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY ? l : l + 1;
                 if (!isVac) {
                     isVac = true;
-                    rangeDHs.add(new VacationRangeDH(d, DateManager.convert(calendar).setDstPattern(DateManager.PATTERN_DATE_SIMPLE_PREVIEW).toString(), color));
+                    rangeDHs.add(new VacationRangeDH(d, DateManager.convert(calendar).setDstPattern(DateManager.PATTERN_DATE_MONTH_PREVIEW).toString(), color));
                 } else if (i == detail.vacArray.size() - 1) {
                     rangeDHs.get(rangeDHs.size() - 1).setRange(String.format("%s - %s",
                             rangeDHs.get(rangeDHs.size() - 1).getRange(),
-                            DateManager.convert(calendar).setDstPattern(DateManager.PATTERN_DATE_SIMPLE_PREVIEW).toString()
+                            DateManager.convert(calendar).setDstPattern(DateManager.PATTERN_DATE_MONTH_PREVIEW).toString()
                     ));
                 }
 
@@ -112,7 +112,7 @@ public class VacationOverviewPresenter extends ContentPresenterHelper implements
                 calendar.add(Calendar.DAY_OF_MONTH, -1);
                 rangeDHs.get(rangeDHs.size() - 1).setRange(String.format("%s - %s",
                         rangeDHs.get(rangeDHs.size() - 1).getRange(),
-                        DateManager.convert(calendar).setDstPattern(DateManager.PATTERN_DATE_SIMPLE_PREVIEW).toString()
+                        DateManager.convert(calendar).setDstPattern(DateManager.PATTERN_DATE_MONTH_PREVIEW).toString()
                 ));
                 calendar.add(Calendar.DAY_OF_MONTH, 1);
             }

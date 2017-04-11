@@ -46,7 +46,7 @@ public class HomeActivity extends BaseMasterFlowActivity implements HomeContract
     protected RateAppManager rateAppManager;
 
     @Extra
-    protected UserInfo userInfo;
+    public UserInfo userInfo;
 
     @ViewById(R.id.mdvMenu_AH)
     protected MenuDrawerView menuDrawerView;

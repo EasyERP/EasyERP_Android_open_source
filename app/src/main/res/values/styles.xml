@@ -411,4 +411,18 @@
         <item name="android:layout_marginBottom">@dimen/default_padding_half</item>
     </style>
 
+    <style name="ReportsTableHeaderTextStyle" parent="RobotoMedium">
+        <item name="android:gravity">center_vertical|left</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:maxLines">2</item>
+        <item name="android:lines">2</item>
+        <item name="android:padding">@dimen/default_padding_quart</item>
+        <item name="android:textColor">@color/color_text_black</item>
+    </style>
+
+    <style name="ReportsTableItemsTextStyle" parent="ReportsTableHeaderTextStyle">
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+
 </resources>
