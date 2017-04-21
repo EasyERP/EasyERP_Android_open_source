@@ -30,28 +30,31 @@
 
                 <ImageView
                     android:id="@+id/ivHolderIcon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    android:layout_width="78dp"
-                    android:layout_height="78dp"
                     app:srcCompat="@drawable/ic_error" />
 
                 <TextView
                     android:id="@+id/tvHolderMessage"
+                    style="@style/RobotoLight"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/default_padding"
-                    android:layout_centerHorizontal="true"
                     android:layout_below="@id/ivHolderIcon"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/default_padding_small"
+                    android:layout_marginBottom="@dimen/default_padding_middle"
                     android:gravity="center"
                     android:textColor="@color/color_text_black"
+                    android:textSize="@dimen/text_list_item_large_18"
                     tools:text="Unknown parameter lol" />
 
                 <Button
                     android:id="@+id/btnHolderTry"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
                     android:layout_below="@id/tvHolderMessage"
+                    android:layout_centerHorizontal="true"
                     android:minWidth="150dp"
                     android:text="@string/try_again"
                     android:textColor="@android:color/white" />
@@ -68,8 +71,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:indeterminate="true"
         android:layout_marginBottom="-14dp"
+        android:indeterminate="true"
         android:minHeight="32dp"
         android:visibility="gone"
         tools:visibility="visible" />
@@ -80,6 +83,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:visibility="gone"
-        tools:visibility="visible" />
+        tools:visibility="gone" />
 
 </FrameLayout>

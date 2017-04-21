@@ -58,7 +58,7 @@ public abstract class ErrorManager {
     public static int getErrorIcon(Constants.ErrorType type) {
         switch (type) {
             case LIST_EMPTY:
-                return R.drawable.ic_empty_list;
+                return R.drawable.ic_empty_content;
             case NETWORK:
             case UNKNOWN:
                 return R.drawable.ic_error;

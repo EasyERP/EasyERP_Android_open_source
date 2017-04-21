@@ -72,9 +72,6 @@ public abstract class MenuConfigs {
     private static List<MenuItem> getReportsModule() {
         final List<MenuItem> menuItems = new ArrayList<>();
         menuItems.add(new MenuItem(0, R.drawable.ic_menu_item_placeholder, "General", true));
-        menuItems.add(new MenuItem(1, R.drawable.ic_menu_item_placeholder, "Products Reports", false));
-        menuItems.add(new MenuItem(1, R.drawable.ic_menu_item_placeholder, "Inventory", false));
-        menuItems.add(new MenuItem(1, R.drawable.ic_menu_item_placeholder, "Stock Details", false));
         return menuItems;
     }
 
