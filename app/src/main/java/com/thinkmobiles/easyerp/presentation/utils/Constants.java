@@ -40,7 +40,7 @@ public abstract class Constants {
     //------------------------------------------------------ CRM
 
     public static final String CRM_DASHBOARD_BASE_ID        = "582bfabf5a43a4bc2524bf09";
-    public static final String GET_DASHBOARD_CHARTS         = "customDashboard/{dashboardId}";
+    public static final String GET_DASHBOARD_CHARTS         = "dashboards/{dashboardId}";
 
     //Leads
     public static final String GET_LEADS                    = "leads";

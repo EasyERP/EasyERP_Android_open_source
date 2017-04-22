@@ -22,6 +22,6 @@ public interface DashboardListContract {
     interface DashboardListPresenter extends SelectablePresenter {
     }
     interface DashboardListModel extends BaseModel {
-        Observable<List<ResponseGetCRMDashboardCharts>> getDashboardListCharts();
+        Observable<ResponseGetCRMDashboardCharts> getDashboardListCharts();
     }
 }

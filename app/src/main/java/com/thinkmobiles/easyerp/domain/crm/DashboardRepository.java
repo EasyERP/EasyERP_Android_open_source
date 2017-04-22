@@ -32,7 +32,7 @@ public class DashboardRepository extends NetworkRepository implements DashboardL
         this.dashboardService = Rest.getInstance().getDashboardService();
     }
 
-    public Observable<List<ResponseGetCRMDashboardCharts>> getDashboardListCharts() {
+    public Observable<ResponseGetCRMDashboardCharts> getDashboardListCharts() {
         switch (contentType) {
             case "hrDashboard":
                 return getHRDashboardListCharts();
@@ -59,14 +59,12 @@ public class DashboardRepository extends NetworkRepository implements DashboardL
         return getNetworkObservable(dashboardChartsLayerRepository.getHRDashboardChartObservable(dataSet, chartType, year, month));
     }
 
-    private Observable<List<ResponseGetCRMDashboardCharts>> getHRDashboardListCharts() {
-        final List<ResponseGetCRMDashboardCharts> responseGetCRMDashboardCharts = new ArrayList<>();
+    private Observable<ResponseGetCRMDashboardCharts> getHRDashboardListCharts() {
         final ArrayList<DashboardListItem> charts = new ArrayList<>();
         charts.add(new DashboardListItem("0", "colorCardsView", "hrEmployeesInfo", "Employees Info"));
         charts.add(new DashboardListItem("1", "reverseHorizontalBar", "hrEmployeesByGender", "Employees By Gender"));
         charts.add(new DashboardListItem("2", "horizontalBar", "hrEmployeesSalary", "Employees By Salary"));
         charts.add(new DashboardListItem("3", "horizontalBar", "hrEmployeesDepartment", "Departments By Salary"));
-        responseGetCRMDashboardCharts.add(new ResponseGetCRMDashboardCharts(null, charts));
-        return Observable.just(responseGetCRMDashboardCharts);
+        return Observable.just(new ResponseGetCRMDashboardCharts(null, charts));
     }
 }

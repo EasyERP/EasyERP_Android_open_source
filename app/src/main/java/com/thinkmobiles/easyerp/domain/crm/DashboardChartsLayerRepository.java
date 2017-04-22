@@ -42,6 +42,7 @@ class DashboardChartsLayerRepository {
             case "revenueBySales":
                 switch (chartType) {
                     case HORIZONTALBAR: return invoiceService.getInvoiceBySales(filterDateFrom, filterDateTo, true);
+                    case DONUT: return invoiceService.getInvoiceBySales(filterDateFrom, filterDateTo, true);
                 }
                 break;
             case "revenueByCustomer":
