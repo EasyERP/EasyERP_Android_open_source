@@ -55,7 +55,7 @@ public class DashboardListFragment extends MasterSelectableFragment implements D
 
         dashboardListAdapter.setOnCardClickListener((view, position, viewType) -> {
             String chartName = dashboardListAdapter.getItem(position).getDashboardListItem().name;
-            GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_DASHBOARD_ITEM, chartName);
+            GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_LIST_ITEM, chartName);
             presenter.clickItem(position);
         });
     }

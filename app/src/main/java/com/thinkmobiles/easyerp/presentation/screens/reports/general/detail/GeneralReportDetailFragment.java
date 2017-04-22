@@ -84,9 +84,11 @@ public class GeneralReportDetailFragment extends MasterListFragment implements G
         getAdapter().setOnCardClickListener((view, position, viewType) -> {
             switch (view.getId()) {
                 case R.id.cbFavorite_VLIGR:
+                    GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_BUTTON, getString(R.string.favorite));
                     presenter.favorite(position, ((CheckBox) view).isChecked());
                     break;
                 case R.id.ivDescription_VLIGR:
+                    GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_BUTTON, getString(R.string.description));
                     presenter.displayDescription(position);
                     break;
                 default:

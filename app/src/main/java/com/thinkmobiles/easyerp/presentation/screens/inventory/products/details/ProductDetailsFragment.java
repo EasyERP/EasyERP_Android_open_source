@@ -164,6 +164,11 @@ public class ProductDetailsFragment extends ContentFragment implements ProductDe
     }
 
     @AfterViews
+    protected void initAnalytics() {
+        GoogleAnalyticHelper.trackScreenView(this, getResources().getConfiguration());
+    }
+
+    @AfterViews
     protected void initUI() {
         animationHelper.init(ivIconArrow, rvHistory, nsvContent_FPD);
         tvTitleHistory.setText(R.string.product_details_variants);

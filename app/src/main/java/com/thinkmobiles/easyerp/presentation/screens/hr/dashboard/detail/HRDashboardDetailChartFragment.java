@@ -105,7 +105,10 @@ public class HRDashboardDetailChartFragment extends ContentFragment implements H
 
         final AlertDialog alertDialog = new AlertDialog.Builder(mActivity, R.style.DefaultTheme_NoTitleDialogWithAnimation)
                 .setCancelable(true)
-                .setPositiveButton(R.string.dialog_btn_ok, (dialogInterface, i) -> presenter.setYearMonth(monthYearView.getChosenYear(), monthYearView.getChosenMonth()))
+                .setPositiveButton(R.string.dialog_btn_ok, (dialogInterface, i) -> {
+                    presenter.setYearMonth(monthYearView.getChosenYear(), monthYearView.getChosenMonth());
+                    GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.SET_CHART_PERIOD, presenter.getYearMonthToString());
+                })
                 .setNegativeButton(R.string.dialog_btn_cancel, (dialogInterface, i) -> {})
                 .setNeutralButton(R.string.dialog_btn_today, (dialogInterface, i) -> presenter.setYearMonth(monthYearView.getTodayYear(), monthYearView.getTodayMonth()))
                 .create();
@@ -129,7 +132,6 @@ public class HRDashboardDetailChartFragment extends ContentFragment implements H
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.monthYearAction_MHDD) {
-            GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.SET_CHART_PERIOD, presenter.getYearMonthToString());
             presenter.selectYearMonthValues();
         }
         return super.onOptionsItemSelected(item);

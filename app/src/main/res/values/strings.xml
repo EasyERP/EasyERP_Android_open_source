@@ -348,6 +348,7 @@
     <string name="report_type">Report type</string>
     <string name="choose_report_type">Choose report type</string>
     <string name="favorite_short">Fav.</string>
+    <string name="favorite">Favorite</string>
     <string name="edited_by">Edited By</string>
     <string name="type">Type</string>
     <string name="date_range">Date Range</string>
