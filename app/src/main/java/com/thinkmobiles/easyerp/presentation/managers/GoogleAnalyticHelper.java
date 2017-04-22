@@ -7,6 +7,7 @@ import android.util.Log;
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
+import com.thinkmobiles.easyerp.BuildConfig;
 import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.presentation.base.BaseView;
 
@@ -31,7 +32,9 @@ public abstract class GoogleAnalyticHelper {
         }
         tracker.setScreenName(baseView.getScreenName());
 
-        Log.i("GAnalytics", String.format("Track screen view: %s in %s orientation", baseView.getScreenName(), getOrientation(configuration)));
+        if (BuildConfig.DEBUG)
+            Log.i("GAnalytics", String.format("Track screen view: %s in %s orientation", baseView.getScreenName(), getOrientation(configuration)));
+
         tracker.send(new HitBuilders.ScreenViewBuilder()
                 .setCustomDimension(1, getOrientation(configuration))
                 .build());
@@ -48,7 +51,9 @@ public abstract class GoogleAnalyticHelper {
         builder.setCategory(eventType.toString());
         builder.setAction(details);
 
-        Log.i("GAnalytics", String.format("Track on %s  |  %s  -->  %s", baseView.getScreenName(), eventType.toString(), details));
+        if (BuildConfig.DEBUG)
+            Log.i("GAnalytics", String.format("Track on %s  |  %s  -->  %s", baseView.getScreenName(), eventType.toString(), details));
+
         tracker.send(builder.build());
     }
 
