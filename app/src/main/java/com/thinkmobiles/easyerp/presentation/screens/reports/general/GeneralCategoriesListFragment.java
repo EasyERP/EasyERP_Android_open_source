@@ -40,8 +40,13 @@ public class GeneralCategoriesListFragment extends MasterSelectableFragment impl
     }
 
     @AfterViews
-    protected void initAnalytics() {
+    protected void initUI() {
         GoogleAnalyticHelper.trackScreenView(this, getResources().getConfiguration());
+        getAdapter().setOnCardClickListener((view, position, viewType) -> {
+            String reportCategory = generalCategoriesAdapter.getItem(position).getCategory().label;
+            GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_LIST_ITEM, reportCategory);
+            presenter.clickItem(position);
+        });
     }
 
     @Override

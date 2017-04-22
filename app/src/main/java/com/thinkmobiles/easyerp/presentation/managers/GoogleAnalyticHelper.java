@@ -26,11 +26,12 @@ public abstract class GoogleAnalyticHelper {
 
     public static void trackScreenView(BaseView baseView, Configuration configuration) {
         if(tracker == null || !tracker.isInitialized()) {
-            Log.d("myLogs", "Google analytic not initialized");
+            Log.d("GAnalytics", "Google analytic not initialized");
             return;
         }
         tracker.setScreenName(baseView.getScreenName());
 
+        Log.i("GAnalytics", String.format("Track screen view: %s in %s orientation", baseView.getScreenName(), getOrientation(configuration)));
         tracker.send(new HitBuilders.ScreenViewBuilder()
                 .setCustomDimension(1, getOrientation(configuration))
                 .build());
@@ -38,7 +39,7 @@ public abstract class GoogleAnalyticHelper {
 
     public static void trackClick(BaseView baseView, EventType eventType, String details) {
         if(tracker == null || !tracker.isInitialized()) {
-            Log.d("myLogs", "Google analytic not initialized");
+            Log.d("GAnalytics", "Google analytic not initialized");
             return;
         }
         tracker.setScreenName(baseView.getScreenName());
@@ -47,6 +48,7 @@ public abstract class GoogleAnalyticHelper {
         builder.setCategory(eventType.toString());
         builder.setAction(details);
 
+        Log.i("GAnalytics", String.format("Track on %s  |  %s  -->  %s", baseView.getScreenName(), eventType.toString(), details));
         tracker.send(builder.build());
     }
 
@@ -56,7 +58,7 @@ public abstract class GoogleAnalyticHelper {
         CLICK_SIDE_MENU_MODULE("Click side menu module"),
         CLICK_SIDE_MENU_ITEM("Click side menu item"),
         CLICK_MENU_ITEM("Click menu item"),
-        CLICK_DASHBOARD_ITEM("Click list item"),
+        CLICK_LIST_ITEM("Click list item"),
         CLICK_ATTACHMENT("Click attachment"),
         CLICK_IMAGE("Click image"),
         CLICK_SOCIAL_BUTTON("Click social button"),

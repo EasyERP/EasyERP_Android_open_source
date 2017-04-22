@@ -120,7 +120,6 @@ public final class GeneralReportDetailPresenter extends MasterListPresenterHelpe
         compositeSubscription.add(model.getReports(page, categoryKey, prepareCategoryTypes()).subscribe(reports -> {
                 currentPage = page;
                 totalItems = reports.total;
-                view.makeAvailableReportTypes();
                 saveData(reports.data, needClear);
                 setData(reports.data, needClear);
             }, t -> error(t))
@@ -160,6 +159,7 @@ public final class GeneralReportDetailPresenter extends MasterListPresenterHelpe
         if (reports.isEmpty()) {
             view.displayErrorState(ErrorManager.getErrorType(null));
         } else {
+            view.makeAvailableReportTypes();
             view.showProgress(Constants.ProgressType.NONE);
             view.setDataList(prepareDashboardDHs(reports), needClear);
         }
