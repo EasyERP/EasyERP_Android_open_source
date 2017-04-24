@@ -26,11 +26,14 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.login.LoginManager;
 import com.jakewharton.rxbinding.view.RxView;
 import com.thinkmobiles.easyerp.R;
+import com.thinkmobiles.easyerp.data.model.social.SocialType;
 import com.thinkmobiles.easyerp.data.model.user.UserInfo;
-import com.thinkmobiles.easyerp.domain.LoginRepository;
-import com.thinkmobiles.easyerp.domain.UserRepository;
+import com.thinkmobiles.easyerp.domain.auth.LoginRepository;
+import com.thinkmobiles.easyerp.domain.auth.SocialRepository;
+import com.thinkmobiles.easyerp.domain.auth.UserRepository;
 import com.thinkmobiles.easyerp.presentation.dialogs.ForgotPasswordDialogFragment;
 import com.thinkmobiles.easyerp.presentation.dialogs.ForgotPasswordDialogFragment_;
 import com.thinkmobiles.easyerp.presentation.managers.CookieManager;
@@ -47,6 +50,7 @@ import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.res.DimensionRes;
 import org.androidannotations.annotations.res.StringRes;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 @EActivity(R.layout.activity_login)
@@ -70,8 +74,6 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
     @ViewById
     protected TextInputLayout tilPassword_VIFL;
     @ViewById
-    protected TextInputLayout tilDbId_VIFL;
-    @ViewById
     protected EditText etLogin_VIFL;
     @ViewById
     protected View ivLogin_VIFL;
@@ -80,13 +82,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
     @ViewById
     protected View ivPassword_VIFL;
     @ViewById
-    protected EditText etDbId_VIFL;
-    @ViewById
-    protected View ivDbId_VIFL;
-    @ViewById
     protected Button btnLogin_VIFL;
-    @ViewById
-    protected Button btnDemoMode_VIFL;
     @ViewById
     protected TextView tvForgotPassword_VIFL;
     @ViewById
@@ -113,6 +109,8 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
     @Bean
     protected UserRepository userRepository;
     @Bean
+    protected SocialRepository socialRepository;
+    @Bean
     protected CookieManager cookieManager;
 
     private ProgressDialog progressDialog;
@@ -120,10 +118,10 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
     @AfterInject
     @Override
     public void initPresenter() {
-        new LoginPresenter(this, loginRepository, userRepository, cookieManager);
+        new LoginPresenter(this, loginRepository, userRepository, socialRepository, cookieManager);
 
         isCookieExpired = cookieManager.isCookieExpired();
-        if(isCookieExpired) presenter.clearCookies();
+        if (isCookieExpired) presenter.clearCookies();
     }
 
     @AfterViews
@@ -142,21 +140,15 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
         RxView.clicks(btnLogin_VIFL)
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
                 .subscribe(aVoid -> {
-                    GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_BUTTON, "Login");
-                    presenter.login();
-                });
-        RxView.clicks(btnDemoMode_VIFL)
-                .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
-                .subscribe(aVoid -> {
-                    GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_BUTTON, "Demo");
-                    presenter.launchDemoMode();
+//                    GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_BUTTON, "Login");
+//                    presenter.login();
+                    presenter.loginSocial(SocialType.FACEBOOK);
                 });
         RxView.clicks(tvForgotPassword_VIFL)
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
                 .subscribe(aVoid -> {
                         GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_BUTTON, "Forgot password");
                         ForgotPasswordDialogFragment_.builder()
-                            .databaseID(etDbId_VIFL.getText().toString())
                             .username(etLogin_VIFL.getText().toString())
                             .build().show(getFragmentManager(), null);
                 });
@@ -197,6 +189,11 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
     }
 
     @Override
+    public void loginWithFacebook(List<String> readPermissions) {
+        LoginManager.getInstance().logInWithReadPermissions(this, readPermissions);
+    }
+
+    @Override
     public void showProgress(String msg) {
         progressDialog = new ProgressDialog(this, R.style.DefaultTheme_NoTitleDialogWithAnimation);
         progressDialog.setCancelable(false);
@@ -232,11 +229,6 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
     @Override
     public String getPassword() {
         return etPassword_VIFL.getText().toString().trim();
-    }
-
-    @Override
-    public String getDbID() {
-        return etDbId_VIFL.getText().toString().trim();
     }
 
     @Override
@@ -286,24 +278,6 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
     }
 
     @Override
-    public void displayDbIdError(Constants.ErrorCodes code) {
-        final LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) ivDbId_VIFL.getLayoutParams();
-        switch (code) {
-            case FIELD_EMPTY:
-                tilDbId_VIFL.setError(errEmptyDbID);
-                tilDbId_VIFL.setErrorEnabled(true);
-                params.setMargins(params.getMarginStart(), params.topMargin, params.getMarginEnd(), (int) fixMarginForIcons);
-                break;
-            case OK:
-                tilDbId_VIFL.setError(null);
-                tilDbId_VIFL.setErrorEnabled(false);
-                params.setMargins(params.getMarginStart(), params.topMargin, params.getMarginEnd(), 0);
-                break;
-        }
-        ivDbId_VIFL.setLayoutParams(params);
-    }
-
-    @Override
     public void startHomeScreen(UserInfo userInfo) {
         this.userInfo = userInfo;
         if(isAnimationFinished) {
@@ -317,6 +291,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
     @Override
     public void setPresenter(LoginContract.LoginPresenter presenter) {
         this.presenter = presenter;
+        this.presenter.subscribe();
     }
 
     @Override
@@ -377,6 +352,12 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
     }
 
     @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        presenter.onActivityResult(requestCode, resultCode, data);
+    }
+
+    @Override
     protected void onDestroy() {
         super.onDestroy();
         if (animatorSet1 != null) animatorSet1.cancel();
@@ -385,7 +366,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
     }
 
     @Override
-    public void forgotPassword(String dbId, String usernameOrEmail) {
-        presenter.forgotPassword(usernameOrEmail, dbId);
+    public void forgotPassword(String usernameOrEmail) {
+        presenter.forgotPassword(usernameOrEmail);
     }
 }

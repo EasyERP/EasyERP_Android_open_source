@@ -35,12 +35,10 @@ public class ForgotPasswordDialogFragment extends DialogFragment implements Base
 
     private IForgotPasswordCallback forgotPasswordCallback;
 
-    private TextInputLayout tilDbId_DFP, tilUserNameOrEmail_DFP;
-    private View ivDatabaseID_DFP, ivUserOrEmail_DFP;
-    private EditText etDbId_DFP, etUserNameOrEmail_DFP;
+    private TextInputLayout tilUserNameOrEmail_DFP;
+    private View ivUserOrEmail_DFP;
+    private EditText etUserNameOrEmail_DFP;
 
-    @FragmentArg
-    protected String databaseID;
     @FragmentArg
     protected String username;
 
@@ -63,16 +61,10 @@ public class ForgotPasswordDialogFragment extends DialogFragment implements Base
     }
 
     private void initUI(final View rootView) {
-        tilDbId_DFP = (TextInputLayout) rootView.findViewById(R.id.tilDbId_DFP);
         tilUserNameOrEmail_DFP = (TextInputLayout) rootView.findViewById(R.id.tilUserNameOrEmail_DFP);
-
-        etDbId_DFP = (EditText) rootView.findViewById(R.id.etDbId_DFP);
         etUserNameOrEmail_DFP = (EditText) rootView.findViewById(R.id.etUserNameOrEmail_DFP);
-
-        ivDatabaseID_DFP = rootView.findViewById(R.id.ivDatabaseID_DFP);
         ivUserOrEmail_DFP = rootView.findViewById(R.id.ivUserOrEmail_DFP);
 
-        etDbId_DFP.setText(databaseID);
         etUserNameOrEmail_DFP.setText(username);
     }
 
@@ -97,14 +89,11 @@ public class ForgotPasswordDialogFragment extends DialogFragment implements Base
 
     private void send() {
         GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_BUTTON, "Send");
-        final String dbID = etDbId_DFP.getText().toString();
         final String userNameOrEmail = etUserNameOrEmail_DFP.getText().toString();
-        if (!showError(ValidationManager.isDbIDValid(dbID), tilDbId_DFP, ivDatabaseID_DFP, errEmptyDbID)) {
-            if (!showError(ValidationManager.isLoginValid(userNameOrEmail), tilUserNameOrEmail_DFP, ivUserOrEmail_DFP, errEmptyUsername)) {
-                dismiss();
-                if (forgotPasswordCallback != null)
-                    forgotPasswordCallback.forgotPassword(dbID, userNameOrEmail);
-            }
+        if (!showError(ValidationManager.isLoginValid(userNameOrEmail), tilUserNameOrEmail_DFP, ivUserOrEmail_DFP, errEmptyUsername)) {
+            dismiss();
+            if (forgotPasswordCallback != null)
+                forgotPasswordCallback.forgotPassword(userNameOrEmail);
         }
     }
 
@@ -149,6 +138,6 @@ public class ForgotPasswordDialogFragment extends DialogFragment implements Base
     }
 
     public interface IForgotPasswordCallback {
-        void forgotPassword(final String dbId, final String usernameOrEmail);
+        void forgotPassword(final String usernameOrEmail);
     }
 }

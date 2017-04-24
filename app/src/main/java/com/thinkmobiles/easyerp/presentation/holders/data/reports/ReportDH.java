@@ -1,7 +1,6 @@
 package com.thinkmobiles.easyerp.presentation.holders.data.reports;
 
 import com.michenko.simpleadapter.RecyclerDH;
-import com.thinkmobiles.easyerp.data.model.crm.leads.detail.User;
 import com.thinkmobiles.easyerp.data.model.reports.general.Report;
 import com.thinkmobiles.easyerp.data.model.user.UserInfo;
 

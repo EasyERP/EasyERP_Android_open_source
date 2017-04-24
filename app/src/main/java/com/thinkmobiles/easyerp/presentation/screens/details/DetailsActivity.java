@@ -7,7 +7,7 @@ import android.support.annotation.DrawableRes;
 import android.widget.Toast;
 
 import com.thinkmobiles.easyerp.R;
-import com.thinkmobiles.easyerp.domain.UserRepository;
+import com.thinkmobiles.easyerp.domain.auth.UserRepository;
 import com.thinkmobiles.easyerp.presentation.EasyErpApplication;
 import com.thinkmobiles.easyerp.presentation.base.BaseMasterFlowActivity;
 import com.thinkmobiles.easyerp.presentation.listeners.IFragmentInstance;

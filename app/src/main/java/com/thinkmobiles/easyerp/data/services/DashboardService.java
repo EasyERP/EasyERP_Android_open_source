@@ -3,8 +3,6 @@ package com.thinkmobiles.easyerp.data.services;
 import com.thinkmobiles.easyerp.data.model.crm.dashboard.ResponseGetCRMDashboardCharts;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
-import java.util.List;
-
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 import retrofit2.http.Query;

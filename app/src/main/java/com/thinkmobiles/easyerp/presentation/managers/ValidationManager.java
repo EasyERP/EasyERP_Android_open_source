@@ -35,12 +35,4 @@ public abstract class ValidationManager {
         else
             return Constants.ErrorCodes.OK;
     }
-
-    public static Constants.ErrorCodes isDbIDValid(String dbID) {
-        if (TextUtils.isEmpty(dbID))
-            return Constants.ErrorCodes.FIELD_EMPTY;
-        else
-            return Constants.ErrorCodes.OK;
-    }
-
 }

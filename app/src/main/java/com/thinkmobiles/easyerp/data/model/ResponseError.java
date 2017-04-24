@@ -23,6 +23,10 @@ public class ResponseError implements Parcelable {
     public ResponseError() {
     }
 
+    public ResponseError(final String error) {
+        this.error = error;
+    }
+
     protected ResponseError(Parcel in) {
         this.error = in.readString();
     }

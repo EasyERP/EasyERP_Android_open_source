@@ -11,8 +11,6 @@ import android.widget.Toast;
 import com.jakewharton.rxbinding.view.RxView;
 import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.data.model.user.UserInfo;
-import com.thinkmobiles.easyerp.domain.LoginRepository;
-import com.thinkmobiles.easyerp.domain.UserRepository;
 import com.thinkmobiles.easyerp.presentation.adapters.TutorialPagerAdapter;
 import com.thinkmobiles.easyerp.presentation.custom.transformations.ZoomOutSlideTransformer;
 import com.thinkmobiles.easyerp.presentation.managers.CookieManager;
@@ -51,23 +49,19 @@ public class TutorialActivity extends AppCompatActivity implements TutorialContr
     @ViewById
     protected TextView btnLogin_AT;
     @ViewById
-    protected TextView btnDemo_AT;
+    protected TextView btnSignUp_AT;
     @ViewById
     protected CircleIndicator ciTutorial_AT;
 
     @Bean
     protected TutorialPagerAdapter tutorialPagerAdapter;
     @Bean
-    protected LoginRepository loginRepository;
-    @Bean
     protected CookieManager cookieManager;
-    @Bean
-    protected UserRepository userRepository;
 
     @AfterInject
     @Override
     public void initPresenter() {
-        new TutorialPresenter(this, loginRepository, cookieManager, userRepository, isPreview);
+        new TutorialPresenter(this, null, cookieManager, isPreview);
     }
 
     @AfterViews
@@ -79,7 +73,6 @@ public class TutorialActivity extends AppCompatActivity implements TutorialContr
         vpTutorial_AT.setPageTransformer(true, new ZoomOutSlideTransformer());
 
         btnLogin_AT.setVisibility(isPreview ? View.INVISIBLE : View.VISIBLE);
-        btnDemo_AT.setVisibility(isPreview ? View.INVISIBLE : View.VISIBLE);
 
         RxView.clicks(btnLogin_AT)
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
@@ -87,11 +80,11 @@ public class TutorialActivity extends AppCompatActivity implements TutorialContr
                     GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_BUTTON, "Login");
                     presenter.login();
                 });
-        RxView.clicks(btnDemo_AT)
+        RxView.clicks(btnSignUp_AT)
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
                 .subscribe(aVoid -> {
-                    GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_BUTTON, "Demo");
-                    presenter.demo();
+                    GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_BUTTON, "Sign Up");
+                    presenter.login();
                 });
     }
 
@@ -134,10 +127,17 @@ public class TutorialActivity extends AppCompatActivity implements TutorialContr
     @Override
     public void setPresenter(TutorialContract.TutorialPresenter presenter) {
         this.presenter = presenter;
+        this.presenter.subscribe();
     }
 
     @Override
     public String getScreenName() {
         return "Tutorial screen";
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        presenter.unsubscribe();
     }
 }

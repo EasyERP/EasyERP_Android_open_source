@@ -5,6 +5,6 @@ package com.thinkmobiles.easyerp.presentation.screens.about.tabs.about_app;
  *         Company: Thinkmobiles
  *         Email: michael.soyma@thinkmobiles.com
  */
-public enum SocialType {
+public enum ShareSocialType {
     FACEBOOK, LINKEDIN, SKYPE, TWITTER, YOUTUBE
 }

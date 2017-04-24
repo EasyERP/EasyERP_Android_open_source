@@ -10,7 +10,7 @@ public abstract class Constants {
     public static final String UXCAM_ACCOUNT_KEY            = "d2bf58cf5b3e5a0";
 
     private static final String BASE_TEST_URL               = "https://testdemo.easyerp.com/";
-    private static final String BASE_RELEASE_URL            = "https://demo.easyerp.com/";
+    private static final String BASE_RELEASE_URL            = "https://live.easyerp.com/";
     public static final String BASE_URL                     = PRODUCTION ? BASE_RELEASE_URL : BASE_TEST_URL;
 
     public static final String PRIVACY_POLICY               = "https://easyerp.com/privacy-policy/?content=show";
@@ -22,6 +22,7 @@ public abstract class Constants {
     //Login
     public static final String POST_LOGIN                   = "users/login";
     public static final String POST_FORGOT_PASSWORD         = "users/forgotPassword";
+    public static final String POST_LOGIN_SOCIAL            = PRODUCTION ? "saas/social" : "users/login/social";
     //End Login
 
     //User
@@ -177,9 +178,7 @@ public abstract class Constants {
         CENTER, BOTTOM, NONE
     }
 
-    public static final String DEMO_LOGIN                   = "superAdmin";
-    public static final String DEMO_PASSWORD                = "111111";
-    public static final String DEMO_DB_ID                   = "CRM";
+    public static final String DB_TEST_ID                   = "CRM";
 
     public enum ErrorType {
         LIST_EMPTY, NETWORK, UNKNOWN

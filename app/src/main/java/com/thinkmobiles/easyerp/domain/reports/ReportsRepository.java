@@ -2,9 +2,6 @@ package com.thinkmobiles.easyerp.domain.reports;
 
 import android.net.Uri;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-import com.google.gson.reflect.TypeToken;
 import com.thinkmobiles.easyerp.data.api.Rest;
 import com.thinkmobiles.easyerp.data.model.ResponseGetTotalItems;
 import com.thinkmobiles.easyerp.data.model.crm.filter.FilterItem;

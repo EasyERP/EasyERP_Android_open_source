@@ -70,19 +70,19 @@ public class AboutAppFragment extends BaseSupportFragment<AboutUsActivity> imple
     protected void socialClick(final View clickedView) {
         switch (clickedView.getId()) {
             case R.id.ivFacebook_FAUE:
-                presenter.openSocial(SocialType.FACEBOOK);
+                presenter.openSocial(ShareSocialType.FACEBOOK);
                 break;
             case R.id.ivLinkedIn_FAUE:
-                presenter.openSocial(SocialType.LINKEDIN);
+                presenter.openSocial(ShareSocialType.LINKEDIN);
                 break;
             case R.id.ivSkype_FAUE:
-                presenter.openSocial(SocialType.SKYPE);
+                presenter.openSocial(ShareSocialType.SKYPE);
                 break;
             case R.id.ivTwitter_FAUE:
-                presenter.openSocial(SocialType.TWITTER);
+                presenter.openSocial(ShareSocialType.TWITTER);
                 break;
             case R.id.ivYouTube_FAUE:
-                presenter.openSocial(SocialType.YOUTUBE);
+                presenter.openSocial(ShareSocialType.YOUTUBE);
                 break;
         }
     }
