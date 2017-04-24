@@ -7,8 +7,6 @@ import com.thinkmobiles.easyerp.presentation.base.BaseView;
 import com.thinkmobiles.easyerp.presentation.base.rules.master.selectable.SelectablePresenter;
 import com.thinkmobiles.easyerp.presentation.base.rules.master.selectable.SelectableView;
 
-import java.util.List;
-
 import rx.Observable;
 
 /**

@@ -12,7 +12,6 @@ import com.thinkmobiles.easyerp.presentation.screens.hr.dashboard.detail.HRDashb
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import rx.Observable;
 

@@ -11,22 +11,22 @@
         android:layout_height="0dp"
         android:layout_weight="1"/>
 
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:background="@android:color/white">
 
         <TextView
             style="@style/WhiteButtonStyle"
             android:id="@+id/btnLogin_AT"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
             android:text="@string/login"/>
 
         <me.relex.circleindicator.CircleIndicator
             android:id="@+id/ciTutorial_AT"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:ci_width="13dp"
             app:ci_height="13dp"
@@ -35,16 +35,15 @@
             app:ci_animator="@animator/tutorial_indicator_in"
             app:ci_animator_reverse="@animator/tutorial_indicator_out"
             app:ci_drawable_unselected="@drawable/view_pager_indicator"
-            app:ci_drawable="@drawable/view_pager_indicator_selected"
-            android:layout_weight="1"/>
+            app:ci_drawable="@drawable/view_pager_indicator_selected"/>
 
         <TextView
             style="@style/WhiteButtonStyle"
-            android:id="@+id/btnDemo_AT"
+            android:id="@+id/btnSignUp_AT"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/demo"/>
-
-    </LinearLayout>
+            android:layout_height="match_parent"
+            android:layout_gravity="end"
+            android:text="@string/sign_up"/>
+    </FrameLayout>
 
 </LinearLayout>

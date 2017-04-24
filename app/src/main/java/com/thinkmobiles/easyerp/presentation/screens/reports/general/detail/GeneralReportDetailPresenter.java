@@ -1,7 +1,6 @@
 package com.thinkmobiles.easyerp.presentation.screens.reports.general.detail;
 
 import android.text.TextUtils;
-import android.view.View;
 
 import com.thinkmobiles.easyerp.data.model.crm.filter.FilterItem;
 import com.thinkmobiles.easyerp.data.model.reports.general.Report;

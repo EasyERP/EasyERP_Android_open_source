@@ -1,11 +1,18 @@
 package com.thinkmobiles.easyerp.presentation.screens.login;
 
+import android.content.Intent;
+
+import com.facebook.login.LoginResult;
+import com.thinkmobiles.easyerp.data.model.social.SocialRegisterProfile;
+import com.thinkmobiles.easyerp.data.model.social.SocialType;
 import com.thinkmobiles.easyerp.data.model.user.ResponseGetCurrentUser;
 import com.thinkmobiles.easyerp.data.model.user.UserInfo;
 import com.thinkmobiles.easyerp.presentation.base.BaseModel;
 import com.thinkmobiles.easyerp.presentation.base.BasePresenter;
 import com.thinkmobiles.easyerp.presentation.base.BaseView;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
+
+import java.util.List;
 
 import rx.Observable;
 
@@ -15,6 +22,8 @@ import rx.Observable;
 
 public interface LoginContract {
     interface LoginView extends BaseView<LoginPresenter> {
+        void loginWithFacebook(final List<String> readPermissions);
+
         void showProgress(final String msg);
         void dismissProgress();
         void showErrorToast(final String msg);
@@ -22,26 +31,29 @@ public interface LoginContract {
 
         String getLogin();
         String getPassword();
-        String getDbID();
 
         void displayLoginError(Constants.ErrorCodes code);
         void displayPasswordError(Constants.ErrorCodes code);
-        void displayDbIdError(Constants.ErrorCodes code);
 
         void startHomeScreen(UserInfo userInfo);
     }
     interface LoginPresenter extends BasePresenter {
         void login();
-        void launchDemoMode();
+        void loginSocial(final SocialType socialType);
         void getCurrentUser();
         void clearCookies();
-        void forgotPassword(final String login, final String dbId);
+        void forgotPassword(final String login);
+        void onActivityResult(int requestCode, int resultCode, Intent data);
     }
     interface LoginModel extends BaseModel {
-        Observable<?> login(String login, String password, String dbId);
-        Observable<?> forgotPassword(String login, String dbId);
+        Observable<?> login(String login, String password);
+        Observable<?> login(SocialRegisterProfile socialRegisterProfile);
+        Observable<?> forgotPassword(String login);
     }
     interface UserModel extends BaseModel {
         Observable<ResponseGetCurrentUser> getCurrentUser();
+    }
+    interface SocialModel extends BaseModel {
+        Observable<SocialRegisterProfile> loginWithFacebook(final LoginResult loginResult);
     }
 }

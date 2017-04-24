@@ -25,6 +25,9 @@ allprojects {
         appIndicatorVersion = '1.2.2@aar'
         photoViewVersion = '1.3.1'
 
+        // Social versions
+        facebookVersion = '4.+';
+
         // Development
         stethoVersion = '1.4.2'
         gmsVersion = '10.0.1'
@@ -56,6 +59,10 @@ allprojects {
                 circleIndicator:            "me.relex:circleindicator:${appIndicatorVersion}",
                 photoView:                  "com.github.chrisbanes:PhotoView:${photoViewVersion}"
         ]
+
+        socialDependencies = [
+                facebook:                   "com.facebook.android:facebook-android-sdk:${facebookVersion}"
+        ]
     }
 
     repositories {
@@ -63,9 +70,16 @@ allprojects {
         maven { url 'https://maven.fabric.io/public' }
         maven { url 'http://sdk.uxcam.com/android/' }
         jcenter()
+        mavenCentral()
     }
 }
 
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+// Generate package hash's commands:
+// keytool -exportcert -keystore C:\Android\Projects\EasyErpAndroid\app\keystores\debug.jks -alias easyERP | C:\OpenSSL\bin\openssl sha1 -binary | C:\OpenSSL\bin\openssl base64
+// keytool -exportcert -keystore C:\Android\Projects\EasyErpAndroid\app\keystores\eerp.jks -alias EasyERP | C:\OpenSSL\bin\openssl sha1 -binary | C:\OpenSSL\bin\openssl base64
+// Debug hash code: 0WMEWr3p9WY79t6iqVWb91OQs1M=
+// Release hash code: Bmce+9aHdOoVtE7fS3B07tfj7Bc=

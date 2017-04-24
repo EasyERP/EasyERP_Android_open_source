@@ -1,14 +1,10 @@
 package com.thinkmobiles.easyerp.presentation.screens.reports.general.detail;
 
-import android.view.View;
-
 import com.thinkmobiles.easyerp.data.model.ResponseGetTotalItems;
 import com.thinkmobiles.easyerp.data.model.crm.filter.FilterItem;
 import com.thinkmobiles.easyerp.data.model.reports.general.Report;
 import com.thinkmobiles.easyerp.presentation.base.BaseModel;
 import com.thinkmobiles.easyerp.presentation.base.BaseView;
-import com.thinkmobiles.easyerp.presentation.base.rules.content.ContentPresenter;
-import com.thinkmobiles.easyerp.presentation.base.rules.content.ContentView;
 import com.thinkmobiles.easyerp.presentation.base.rules.master.list.MasterListPresenter;
 import com.thinkmobiles.easyerp.presentation.base.rules.master.list.MasterListView;
 import com.thinkmobiles.easyerp.presentation.holders.data.crm.FilterDH;

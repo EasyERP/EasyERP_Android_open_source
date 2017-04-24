@@ -13,6 +13,7 @@
     <string name="hint_password_confirm">Confirm password</string>
     <string name="hint_database_id">Database ID</string>
     <string name="login">Login</string>
+    <string name="sign_up">Sign Up</string>
 
     <string name="menu_filter">Filter</string>
     <string name="menu_filter_remove_all">Remove all</string>
@@ -159,7 +160,6 @@
     <string name="order_details_title_order_preview">Order Preview</string>
     <string name="invoice_details_subtitle_payments">Payments</string>
     <string name="invoice_details_subtitle_invoice_preview">Invoice Preview</string>
-    <string name="demo">Demo</string>
 
     <string name="about_us">About Us</string>
 

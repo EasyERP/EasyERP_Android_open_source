@@ -1,5 +1,6 @@
 def appDependencies = rootProject.ext.appDependencies
 def devDependencies = rootProject.ext.devDependencies
+def socialDependencies = rootProject.ext.socialDependencies
 
 apply plugin: 'com.android.application'
 apply plugin: 'android-apt'
@@ -18,6 +19,7 @@ android {
         versionCode rootProject.ext.androidVersionCode
         versionName rootProject.ext.androidVersionName
         vectorDrawables.useSupportLibrary = true
+        multiDexEnabled true
     }
 
     def prop = new Properties();
@@ -44,6 +46,7 @@ android {
             signingConfig signingConfigs.debug
             buildConfigField "boolean", "PRODUCTION", "false"
             buildConfigField packageForStetho + '.IStethoConfigure', 'STETHO', 'new ' + packageForStetho + '.DebugStethoHelper()'
+            resValue "string", "FACEBOOK_APP_ID", "2275263652698073"
         }
         release {
             minifyEnabled true
@@ -51,6 +54,7 @@ android {
             signingConfig signingConfigs.release
             buildConfigField "boolean", "PRODUCTION", "true"
             buildConfigField packageForStetho + '.IStethoConfigure', 'STETHO', 'new ' + packageForStetho + '.ReleaseStethoHelper()'
+            resValue "string", "FACEBOOK_APP_ID", "2275263652698073"
         }
     }
 
@@ -97,6 +101,9 @@ dependencies {
     compile appDependencies.flowLayout
     compile appDependencies.circleIndicator
     compile appDependencies.photoView
+
+    /*Socials*/
+    compile socialDependencies.facebook
 
     /*Analytic tools*/
     compile devDependencies.analytic

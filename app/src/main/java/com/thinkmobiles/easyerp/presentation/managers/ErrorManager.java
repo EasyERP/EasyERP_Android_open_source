@@ -32,8 +32,10 @@ public abstract class ErrorManager {
             return "Sorry, but list is empty.\nPlease try again later!";    //exist in res
         else if(t instanceof HttpException) {
             HttpException e = (HttpException) t;
-            ResponseError responseError = Rest.getInstance().parseError(e.response().errorBody());
-            return responseError.error;
+            if (e.response().body() != null) {
+                ResponseError responseError = Rest.getInstance().parseError(e.response().errorBody());
+                return responseError.error;
+            } else return e.message();
         }
          else if(t instanceof UnknownHostException || t instanceof SocketTimeoutException)
             return "Connection problems. Make sure your internet connection established";

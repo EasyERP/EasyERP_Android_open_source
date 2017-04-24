@@ -9,7 +9,7 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.thinkmobiles.easyerp.R;
-import com.thinkmobiles.easyerp.domain.UserRepository;
+import com.thinkmobiles.easyerp.domain.auth.UserRepository;
 import com.thinkmobiles.easyerp.presentation.managers.GoogleAnalyticHelper;
 
 import org.androidannotations.annotations.AfterInject;

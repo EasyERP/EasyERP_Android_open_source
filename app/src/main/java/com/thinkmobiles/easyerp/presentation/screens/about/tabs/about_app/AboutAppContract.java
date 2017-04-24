@@ -16,6 +16,6 @@ public interface AboutAppContract {
     interface AboutAppPresenter extends BasePresenter {
         void contactUs();
         void rateTheApp(final String packageName);
-        void openSocial(final SocialType socialType);
+        void openSocial(final ShareSocialType socialType);
     }
 }

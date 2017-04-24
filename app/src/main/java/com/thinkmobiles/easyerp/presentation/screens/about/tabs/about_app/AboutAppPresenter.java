@@ -49,7 +49,7 @@ public class AboutAppPresenter implements AboutAppContract.AboutAppPresenter {
     }
 
     @Override
-    public void openSocial(SocialType socialType) {
+    public void openSocial(ShareSocialType socialType) {
         String url = null;
         switch (socialType) {
             case FACEBOOK:
