@@ -61,7 +61,8 @@ allprojects {
         ]
 
         socialDependencies = [
-                facebook:                   "com.facebook.android:facebook-android-sdk:${facebookVersion}"
+                facebook:                   "com.facebook.android:facebook-android-sdk:${facebookVersion}",
+                googlePlus:                 "com.google.android.gms:play-services-auth:${gmsVersion}"
         ]
     }
 

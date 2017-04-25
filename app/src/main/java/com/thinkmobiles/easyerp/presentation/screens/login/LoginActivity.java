@@ -27,6 +27,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.facebook.login.LoginManager;
+import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.auth.api.signin.GoogleSignInResult;
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.jakewharton.rxbinding.view.RxView;
 import com.linkedin.platform.LISessionManager;
 import com.linkedin.platform.errors.LIAuthError;
@@ -61,6 +65,8 @@ import java.util.concurrent.TimeUnit;
 public class LoginActivity extends AppCompatActivity implements LoginContract.LoginView, ForgotPasswordDialogFragment.IForgotPasswordCallback {
 
     private LoginContract.LoginPresenter presenter;
+
+    private GoogleApiClient googleApiClient;
 
     private boolean isCookieExpired = true;
     private boolean isAnimationFinished = false;
@@ -147,7 +153,8 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
 //                    GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_BUTTON, "Login");
 //                    presenter.login();
 //                    presenter.loginSocial(SocialType.FACEBOOK);
-                    presenter.loginSocial(SocialType.LIKENDIN);
+//                    presenter.loginSocial(SocialType.LIKENDIN);
+                    presenter.loginSocial(SocialType.GPLUS);
                 });
         RxView.clicks(tvForgotPassword_VIFL)
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
@@ -206,6 +213,17 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
             authListener.onAuthSuccess();
         }
         else sessionManager.init(this, scope, authListener, true, R.style.DefaultTheme_NoTitleDialogWithAnimation);
+    }
+
+    @Override
+    public void loginWithGoogle(GoogleSignInOptions gso, GoogleApiClient.OnConnectionFailedListener connectionFailedListener) {
+        if (googleApiClient == null || !googleApiClient.isConnected()) {
+            googleApiClient = new GoogleApiClient.Builder(this)
+                    .enableAutoManage(this, connectionFailedListener)
+                    .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
+                    .build();
+        }
+        startActivityForResult(Auth.GoogleSignInApi.getSignInIntent(googleApiClient), Constants.RequestCodes.RC_GOOGLE_SIGN_IN);
     }
 
     @Override
@@ -369,8 +387,9 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        LISessionManager.getInstance(getApplicationContext()).onActivityResult(this, requestCode, resultCode, data);
-        presenter.onActivityResult(requestCode, resultCode, data);
+
+        if (!presenter.onActivityResult(requestCode, resultCode, data))
+            LISessionManager.getInstance(getApplicationContext()).onActivityResult(this, requestCode, resultCode, data);
     }
 
     @Override
@@ -378,7 +397,10 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
         super.onDestroy();
         if (animatorSet1 != null) animatorSet1.cancel();
         if (animatorSet2 != null) animatorSet2.cancel();
+
         presenter.unsubscribe();
+        if (googleApiClient != null)
+            googleApiClient.disconnect();
     }
 
     @Override
