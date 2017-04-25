@@ -19,6 +19,12 @@ public abstract class Constants {
     public static final String HEADER_SET_COOKIE            = "Set-Cookie";
     public static final String HEADER_COOKIE                = "Cookie";
 
+    //------------------------------------------------------ LINKED IN
+
+    public static final String GET_LINKEDIN_PROFILE         = "https://api.linkedin.com/v1/people/~:(id,first-name,last-name,email-address,location,public-profile-url)";
+
+    //------------------------------------------------------ END LINKED IN
+
     //Login
     public static final String POST_LOGIN                   = "users/login";
     public static final String POST_FORGOT_PASSWORD         = "users/forgotPassword";

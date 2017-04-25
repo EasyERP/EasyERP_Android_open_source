@@ -1,1 +1,1 @@
-include ':app', ':rangepickerdialog'
+include ':app', ':rangepickerdialog', ':linkedin-sdk'
