@@ -32,4 +32,17 @@ public final class SocialRegisterProfile {
         socialRegisterProfile.profileUrl = facebookResponse.link;
         return socialRegisterProfile;
     }
+
+    public static SocialRegisterProfile withLinkedIn(final LinkedInResponse linkedInResponse) {
+        final SocialRegisterProfile socialRegisterProfile = new SocialRegisterProfile();
+        socialRegisterProfile.flag = SocialType.LIKENDIN.getLabel();
+        socialRegisterProfile.userId = linkedInResponse.id;
+        socialRegisterProfile.email = linkedInResponse.email;
+        socialRegisterProfile.login = TextUtils.isEmpty(linkedInResponse.email) ? linkedInResponse.id : linkedInResponse.email;
+        socialRegisterProfile.first = linkedInResponse.first;
+        socialRegisterProfile.last = linkedInResponse.last;
+        socialRegisterProfile.country = linkedInResponse.location != null ? linkedInResponse.location.name : null;
+        socialRegisterProfile.profileUrl = linkedInResponse.link;
+        return socialRegisterProfile;
+    }
 }

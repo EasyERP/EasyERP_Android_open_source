@@ -71,6 +71,7 @@ android {
 //TODO DANGEROUS!!!. Please move added dependency in repository: domain/LibrariesRepository.java
 dependencies {
     compile project(path: ':rangepickerdialog')
+    compile project(path: ':linkedin-sdk')
 
     /*Debug*/
     debugCompile devDependencies.stetho

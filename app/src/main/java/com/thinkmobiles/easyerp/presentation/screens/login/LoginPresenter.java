@@ -1,15 +1,21 @@
 package com.thinkmobiles.easyerp.presentation.screens.login;
 
 import android.content.Intent;
+import android.util.Log;
 
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
+import com.linkedin.platform.LISessionManager;
+import com.linkedin.platform.errors.LIAuthError;
+import com.linkedin.platform.listeners.AuthListener;
+import com.linkedin.platform.utils.Scope;
 import com.thinkmobiles.easyerp.BuildConfig;
 import com.thinkmobiles.easyerp.data.model.social.SocialRegisterProfile;
 import com.thinkmobiles.easyerp.data.model.social.SocialType;
+import com.thinkmobiles.easyerp.presentation.EasyErpApplication_;
 import com.thinkmobiles.easyerp.presentation.managers.CookieManager;
 import com.thinkmobiles.easyerp.presentation.managers.ErrorManager;
 import com.thinkmobiles.easyerp.presentation.managers.ValidationManager;
@@ -73,6 +79,7 @@ public class LoginPresenter implements LoginContract.LoginPresenter {
                 view.loginWithFacebook(Arrays.asList("public_profile", "email"));
                 break;
             case LIKENDIN:
+                view.loginWithLinkedIn(Scope.build(Scope.R_BASICPROFILE, Scope.R_EMAILADDRESS), linkedInAuthCallback);
                 break;
             case GPLUS:
                 break;
@@ -177,6 +184,28 @@ public class LoginPresenter implements LoginContract.LoginPresenter {
         @Override
         public void onError(FacebookException error) {
             view.showErrorToast(ErrorManager.getErrorMessage(error));
+        }
+    };
+
+    private final AuthListener linkedInAuthCallback = new AuthListener() {
+        @Override
+        public void onAuthSuccess() {
+            view.showProgress("Login via LinkedIn. Please wait a second...");
+            compositeSubscription.add(socialModel.loginWithLinkedIn(LISessionManager.getInstance(EasyErpApplication_.getInstance().getApplicationContext()).getSession().getAccessToken())
+                    .subscribe(socialRegisterProfile -> {
+                        view.dismissProgress();
+                        loginSocial(socialRegisterProfile);
+                    }, t -> {
+                        t.printStackTrace();
+                        view.dismissProgress();
+                        view.showErrorToast(ErrorManager.getErrorMessage(t));
+                    }));
+        }
+
+        @Override
+        public void onAuthError(LIAuthError error) {
+            Log.e("LinkedIn", error.toString());
+            view.showErrorToast(error.getErrorMsg());
         }
     };
 }

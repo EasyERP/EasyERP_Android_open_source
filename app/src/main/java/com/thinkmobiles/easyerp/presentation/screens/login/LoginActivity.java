@@ -28,6 +28,10 @@ import android.widget.Toast;
 
 import com.facebook.login.LoginManager;
 import com.jakewharton.rxbinding.view.RxView;
+import com.linkedin.platform.LISessionManager;
+import com.linkedin.platform.errors.LIAuthError;
+import com.linkedin.platform.listeners.AuthListener;
+import com.linkedin.platform.utils.Scope;
 import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.data.model.social.SocialType;
 import com.thinkmobiles.easyerp.data.model.user.UserInfo;
@@ -142,7 +146,8 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
                 .subscribe(aVoid -> {
 //                    GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_BUTTON, "Login");
 //                    presenter.login();
-                    presenter.loginSocial(SocialType.FACEBOOK);
+//                    presenter.loginSocial(SocialType.FACEBOOK);
+                    presenter.loginSocial(SocialType.LIKENDIN);
                 });
         RxView.clicks(tvForgotPassword_VIFL)
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
@@ -191,6 +196,16 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
     @Override
     public void loginWithFacebook(List<String> readPermissions) {
         LoginManager.getInstance().logInWithReadPermissions(this, readPermissions);
+    }
+
+    @Override
+    public void loginWithLinkedIn(Scope scope, AuthListener authListener) {
+        LISessionManager sessionManager = LISessionManager.getInstance(getApplicationContext());
+        if (sessionManager.getSession() != null && sessionManager.getSession().isValid()) {
+            sessionManager.init(sessionManager.getSession().getAccessToken());
+            authListener.onAuthSuccess();
+        }
+        else sessionManager.init(this, scope, authListener, true, R.style.DefaultTheme_NoTitleDialogWithAnimation);
     }
 
     @Override
@@ -354,6 +369,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        LISessionManager.getInstance(getApplicationContext()).onActivityResult(this, requestCode, resultCode, data);
         presenter.onActivityResult(requestCode, resultCode, data);
     }
 

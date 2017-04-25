@@ -3,6 +3,9 @@ package com.thinkmobiles.easyerp.presentation.screens.login;
 import android.content.Intent;
 
 import com.facebook.login.LoginResult;
+import com.linkedin.platform.AccessToken;
+import com.linkedin.platform.listeners.AuthListener;
+import com.linkedin.platform.utils.Scope;
 import com.thinkmobiles.easyerp.data.model.social.SocialRegisterProfile;
 import com.thinkmobiles.easyerp.data.model.social.SocialType;
 import com.thinkmobiles.easyerp.data.model.user.ResponseGetCurrentUser;
@@ -23,6 +26,7 @@ import rx.Observable;
 public interface LoginContract {
     interface LoginView extends BaseView<LoginPresenter> {
         void loginWithFacebook(final List<String> readPermissions);
+        void loginWithLinkedIn(final Scope scope, final AuthListener authListener);
 
         void showProgress(final String msg);
         void dismissProgress();
@@ -55,5 +59,6 @@ public interface LoginContract {
     }
     interface SocialModel extends BaseModel {
         Observable<SocialRegisterProfile> loginWithFacebook(final LoginResult loginResult);
+        Observable<SocialRegisterProfile> loginWithLinkedIn(final AccessToken accessToken);
     }
 }

@@ -131,3 +131,7 @@
 #UXCam
 -keep class com.uxcam.** { *; }
 -dontwarn com.uxcam.**
+
+#LinkedIn
+-keep class com.linkedin.** { *; }
+-keepattributes Signature
