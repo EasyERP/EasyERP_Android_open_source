@@ -3,6 +3,8 @@ package com.thinkmobiles.easyerp.presentation.screens.login;
 import android.content.Intent;
 
 import com.facebook.login.LoginResult;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.linkedin.platform.AccessToken;
 import com.linkedin.platform.listeners.AuthListener;
 import com.linkedin.platform.utils.Scope;
@@ -27,6 +29,7 @@ public interface LoginContract {
     interface LoginView extends BaseView<LoginPresenter> {
         void loginWithFacebook(final List<String> readPermissions);
         void loginWithLinkedIn(final Scope scope, final AuthListener authListener);
+        void loginWithGoogle(final GoogleSignInOptions gso, final GoogleApiClient.OnConnectionFailedListener connectionFailedListener);
 
         void showProgress(final String msg);
         void dismissProgress();
@@ -47,7 +50,7 @@ public interface LoginContract {
         void getCurrentUser();
         void clearCookies();
         void forgotPassword(final String login);
-        void onActivityResult(int requestCode, int resultCode, Intent data);
+        boolean onActivityResult(int requestCode, int resultCode, Intent data);
     }
     interface LoginModel extends BaseModel {
         Observable<?> login(String login, String password);

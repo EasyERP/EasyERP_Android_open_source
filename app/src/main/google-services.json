@@ -11,7 +11,20 @@
           "package_name": "com.thinkmobiles.easyerp"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "115004546787-amer7bbb2fp952lecue5sr3gfklo0oli.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.thinkmobiles.easyerp",
+            "certificate_hash": "98bf91438246a7d8cf7e1d7dc8ff31fe68726608"
+          }
+        },
+        {
+          "client_id": "115004546787-qmuhi940qb0qnasvmvmn80mijnjdm796.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyD4KLkY_G1tD8yTANqOA2g8FJkOw8tjHxY"

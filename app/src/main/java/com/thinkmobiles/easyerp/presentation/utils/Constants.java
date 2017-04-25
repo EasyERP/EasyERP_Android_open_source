@@ -192,5 +192,6 @@ public abstract class Constants {
 
     public static class RequestCodes {
         public static final int RC_CHOOSE_REPORT_TYPES      = 8001;
+        public static final int RC_GOOGLE_SIGN_IN           = 8002;
     }
 }

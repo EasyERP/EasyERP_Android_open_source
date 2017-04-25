@@ -1,6 +1,7 @@
 package com.thinkmobiles.easyerp.presentation.screens.login;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.facebook.CallbackManager;
@@ -8,6 +9,12 @@ import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
+import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.auth.api.signin.GoogleSignInResult;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.linkedin.platform.LISessionManager;
 import com.linkedin.platform.errors.LIAuthError;
 import com.linkedin.platform.listeners.AuthListener;
@@ -82,6 +89,12 @@ public class LoginPresenter implements LoginContract.LoginPresenter {
                 view.loginWithLinkedIn(Scope.build(Scope.R_BASICPROFILE, Scope.R_EMAILADDRESS), linkedInAuthCallback);
                 break;
             case GPLUS:
+                GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                        .requestEmail()
+//                        If need token, serverClientId must be registered on the same google account and the same the application
+//                        .requestIdToken("")
+                        .build();
+                view.loginWithGoogle(gso, googleConnectionFailedListener);
                 break;
         }
     }
@@ -113,7 +126,7 @@ public class LoginPresenter implements LoginContract.LoginPresenter {
         );
     }
 
-    private void loginSocial(final SocialRegisterProfile socialRegisterProfile) {
+    private void login(final SocialRegisterProfile socialRegisterProfile) {
         compositeSubscription.add(
                 loginModel.login(socialRegisterProfile)
                         .subscribe(s -> {
@@ -146,8 +159,17 @@ public class LoginPresenter implements LoginContract.LoginPresenter {
     }
 
     @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        callbackManager.onActivityResult(requestCode, resultCode, data);
+    public boolean onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == Constants.RequestCodes.RC_GOOGLE_SIGN_IN) {
+            GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
+            if (result.isSuccess()) {
+                view.showProgress("Login via Google+. Please wait a second...");
+                login(SocialRegisterProfile.withGoogle(result.getSignInAccount()));
+            } else {
+                view.showInfoToast("An error occurred. Please try again");
+            }
+            return true;
+        } else return callbackManager.onActivityResult(requestCode, resultCode, data);
     }
 
     @Override
@@ -168,7 +190,7 @@ public class LoginPresenter implements LoginContract.LoginPresenter {
             compositeSubscription.add(socialModel.loginWithFacebook(loginResult)
                     .subscribe(socialRegisterProfile -> {
                         view.dismissProgress();
-                        loginSocial(socialRegisterProfile);
+                        login(socialRegisterProfile);
                     }, t -> {
                         t.printStackTrace();
                         view.dismissProgress();
@@ -194,7 +216,7 @@ public class LoginPresenter implements LoginContract.LoginPresenter {
             compositeSubscription.add(socialModel.loginWithLinkedIn(LISessionManager.getInstance(EasyErpApplication_.getInstance().getApplicationContext()).getSession().getAccessToken())
                     .subscribe(socialRegisterProfile -> {
                         view.dismissProgress();
-                        loginSocial(socialRegisterProfile);
+                        login(socialRegisterProfile);
                     }, t -> {
                         t.printStackTrace();
                         view.dismissProgress();
@@ -206,6 +228,13 @@ public class LoginPresenter implements LoginContract.LoginPresenter {
         public void onAuthError(LIAuthError error) {
             Log.e("LinkedIn", error.toString());
             view.showErrorToast(error.getErrorMsg());
+        }
+    };
+
+    private final GoogleApiClient.OnConnectionFailedListener googleConnectionFailedListener = new GoogleApiClient.OnConnectionFailedListener() {
+        @Override
+        public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+            view.showErrorToast(connectionResult.getErrorMessage());
         }
     };
 }

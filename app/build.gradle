@@ -105,6 +105,7 @@ dependencies {
 
     /*Socials*/
     compile socialDependencies.facebook
+    compile socialDependencies.googlePlus
 
     /*Analytic tools*/
     compile devDependencies.analytic
