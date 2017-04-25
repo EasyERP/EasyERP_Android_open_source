@@ -52,17 +52,17 @@
         <item name="colorControlHighlight">@color/dividerColor</item>
     </style>
 
-    <style name="DefaultTheme.InputFieldsLight">
-        <item name="android:textColor">@color/white_main_text_color</item>
-        <item name="android:textColorHint">@color/white_main_text_color</item>
-        <item name="colorControlNormal">@color/dividerColor</item>
-        <item name="colorControlActivated">@android:color/white</item>
-        <item name="colorControlHighlight">@android:color/white</item>
-    </style>
+    <!--<style name="DefaultTheme.InputFieldsLight">-->
+        <!--<item name="android:textColor">@color/white_main_text_color</item>-->
+        <!--<item name="android:textColorHint">@color/white_main_text_color</item>-->
+        <!--<item name="colorControlNormal">@color/dividerColor</item>-->
+        <!--<item name="colorControlActivated">@android:color/white</item>-->
+        <!--<item name="colorControlHighlight">@android:color/white</item>-->
+    <!--</style>-->
 
-    <style name="TextInputLayoutStyleLight">
-        <item name="theme">@style/DefaultTheme.InputFieldsLight</item>`
-    </style>
+    <!--<style name="TextInputLayoutStyleLight">-->
+        <!--<item name="theme">@style/DefaultTheme.InputFieldsLight</item>`-->
+    <!--</style>-->
 
     <style name="TextInputLayoutStyle">
         <item name="theme">@style/DefaultTheme.InputFields</item>
@@ -352,8 +352,9 @@
         <item name="android:padding">@dimen/padding_button_large</item>
         <item name="android:textColor">@color/colorAccent</item>
         <item name="android:textAllCaps">true</item>
+        <item name="android:theme">@style/DefaultTheme.ThemeHistory</item>
+        <item name="android:foreground">?android:attr/selectableItemBackgroundBorderless</item>
     </style>
-
 
     <style name="PdfStyle.FieldTitleStyle">
         <item name="android:textColor">@color/color_text_gray</item>

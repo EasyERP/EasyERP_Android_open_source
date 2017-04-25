@@ -32,7 +32,7 @@ public abstract class ErrorManager {
             return "Sorry, but list is empty.\nPlease try again later!";    //exist in res
         else if(t instanceof HttpException) {
             HttpException e = (HttpException) t;
-            if (e.response().body() != null) {
+            if (e.response().errorBody() != null) {
                 ResponseError responseError = Rest.getInstance().parseError(e.response().errorBody());
                 return responseError.error;
             } else return e.message();

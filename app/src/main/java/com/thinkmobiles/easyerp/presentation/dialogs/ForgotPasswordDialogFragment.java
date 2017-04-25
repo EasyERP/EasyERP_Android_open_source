@@ -46,6 +46,8 @@ public class ForgotPasswordDialogFragment extends DialogFragment implements Base
     protected String errEmptyDbID;
     @StringRes(R.string.err_login_or_email_required)
     protected String errEmptyUsername;
+    @StringRes(R.string.err_password_short)
+    protected String errShortness;
     @DimensionRes(R.dimen.default_padding_middle)
     protected float fixMarginForIcons;
 
@@ -89,7 +91,7 @@ public class ForgotPasswordDialogFragment extends DialogFragment implements Base
 
     private void send() {
         GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_BUTTON, "Send");
-        final String userNameOrEmail = etUserNameOrEmail_DFP.getText().toString();
+        final String userNameOrEmail = etUserNameOrEmail_DFP.getText().toString().trim();
         if (!showError(ValidationManager.isLoginValid(userNameOrEmail), tilUserNameOrEmail_DFP, ivUserOrEmail_DFP, errEmptyUsername)) {
             dismiss();
             if (forgotPasswordCallback != null)
@@ -103,6 +105,12 @@ public class ForgotPasswordDialogFragment extends DialogFragment implements Base
         switch (errorCode) {
             case FIELD_EMPTY:
                 textInputLayout.setError(emptyField);
+                textInputLayout.setErrorEnabled(true);
+                params.setMargins(params.getMarginStart(), params.topMargin, params.getMarginEnd(), (int) fixMarginForIcons);
+                hasError = true;
+                break;
+            case SHORTNESS:
+                textInputLayout.setError(errShortness);
                 textInputLayout.setErrorEnabled(true);
                 params.setMargins(params.getMarginStart(), params.topMargin, params.getMarginEnd(), (int) fixMarginForIcons);
                 hasError = true;
