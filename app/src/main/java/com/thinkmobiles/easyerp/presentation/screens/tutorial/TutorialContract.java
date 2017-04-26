@@ -15,11 +15,12 @@ public interface TutorialContract {
         void dismissProgress();
         void showInfoToast(final String msg);
 
-        void startLoginScreen();
+        void startLoginScreen(final boolean loginActivated);
         void startHomeScreen(UserInfo userInfo);
     }
     interface TutorialPresenter extends BasePresenter {
-        void login();
+        void logIn();
+        void signUp();
     }
     interface TutorialModel extends BaseModel {
     }

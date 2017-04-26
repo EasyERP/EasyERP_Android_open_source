@@ -10,14 +10,12 @@ import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import com.linkedin.platform.APIHelper;
 import com.linkedin.platform.AccessToken;
-import com.linkedin.platform.LISessionManager;
 import com.linkedin.platform.errors.LIApiError;
 import com.linkedin.platform.listeners.ApiListener;
 import com.linkedin.platform.listeners.ApiResponse;
 import com.thinkmobiles.easyerp.data.model.social.FacebookResponse;
 import com.thinkmobiles.easyerp.data.model.social.LinkedInResponse;
 import com.thinkmobiles.easyerp.data.model.social.SocialRegisterProfile;
-import com.thinkmobiles.easyerp.presentation.EasyErpApplication;
 import com.thinkmobiles.easyerp.presentation.EasyErpApplication_;
 import com.thinkmobiles.easyerp.presentation.base.NetworkRepository;
 import com.thinkmobiles.easyerp.presentation.screens.login.LoginContract;
@@ -25,10 +23,7 @@ import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
 import org.androidannotations.annotations.EBean;
 
-import java.io.IOException;
-
 import rx.Observable;
-import rx.Subscriber;
 
 /**
  * @author Michael Soyma (Created on 4/24/2017).

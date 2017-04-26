@@ -22,7 +22,6 @@
 
     <dimen name="login_logo_margin">32dp</dimen>
     <dimen name="login_icons_size">17dp</dimen>
-    <dimen name="padding_start_for_credentials_ui">33dp</dimen>
     <dimen name="tutorial_margin_title">170dp</dimen>
 
     <!--/////////////////////// DESIGN ///////////////////////-->
@@ -45,6 +44,7 @@
     <dimen name="text_list_item_large_18">18sp</dimen>
     <dimen name="text_list_item_medium_16">16sp</dimen>
     <dimen name="text_size_extra_small">10sp</dimen>
+    <dimen name="text_size_small_11">11sp</dimen>
     <dimen name="text_size_table_12">12sp</dimen>
     <dimen name="text_size_small_13">13sp</dimen>
     <dimen name="text_size_small_14">14sp</dimen>
@@ -56,8 +56,6 @@
     <dimen name="circle_indicator_small_size">10dp</dimen>
     <dimen name="tutorial_margin_top_land">50dp</dimen>
     <dimen name="text_title_tutorial">40sp</dimen>
-
-    <dimen name="small_alert_dialog_width">10dp</dimen>
 
     <dimen name="popup_window_description_width">290dp</dimen>
     <dimen name="popup_window_description_height">190dp</dimen>

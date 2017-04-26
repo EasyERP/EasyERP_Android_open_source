@@ -4,13 +4,12 @@
     <color name="colorPrimaryDark">#292F4C</color>
     <color name="colorAccent">#427ede</color>
 
-    <color name="colorVintage">#7eadcc</color>
-    <color name="colorSuzy">#556f89</color>
-
     <color name="textColorHint">#bdbdbd</color>
     <color name="bg_color_activity_details">#ececec</color>
 
     <color name="text_grey_hint_color">#99000000</color>
+    <color name="text_grey_hint_color_61">#61000000</color>
+    <color name="text_grey_hint_color_25">#25000000</color>
 
     <color name="white_main_text_color">@android:color/white</color>
     <color name="transparent_white_main_text_color">#99FFFFFF</color>
@@ -38,7 +37,6 @@
     <color name="tag_bg_black">#4d4d4d</color>
     <color name="tag_bg_grey">#b6bbbf</color>
 
-    <color name="transparent_more">#b5000000</color>
     <color name="transparent_less">#d8000000</color>
     
     <!--//////////////////////// DESIGN ////////////////////////-->
@@ -76,5 +74,10 @@
     <color name="color_education">#ff2ecc71</color>
 
     <color name="color_not_employee">#dce74c3c</color>
+
+
+    <color name="color_facebook">#3b5998</color>
+    <color name="color_linked_in">#0077b5</color>
+    <color name="color_google_plus">#de4830</color>
 
 </resources>

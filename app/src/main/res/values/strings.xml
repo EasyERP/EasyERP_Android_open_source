@@ -11,9 +11,11 @@
     <string name="hint_password_old">Old password</string>
     <string name="hint_password_new">New password</string>
     <string name="hint_password_confirm">Confirm password</string>
-    <string name="hint_database_id">Database ID</string>
-    <string name="login">Login</string>
+
+    <string name="login">Log In</string>
     <string name="sign_up">Sign Up</string>
+    <string name="or_log_in_with">Or log in with</string>
+    <string name="or_sign_up_with">Or sign up with</string>
 
     <string name="menu_filter">Filter</string>
     <string name="menu_filter_remove_all">Remove all</string>
@@ -25,15 +27,18 @@
     <!--Errors-->
     <string name="err_not_specified">Not specified</string>
     <string name="err_login_required">Login is required</string>
+    <string name="err_f_name_required">First Name is required</string>
+    <string name="err_l_name_required">Last Name is required</string>
+    <string name="err_email_required">Email is required</string>
     <string name="err_password_required">Password is required</string>
     <string name="err_password_old_required">Old password is required</string>
     <string name="err_password_new_required">New password is required</string>
     <string name="err_password_confirm_required">Confirm password is required</string>
     <string name="err_password_confirm_equal">Passwords do not match</string>
-    <string name="err_password_wrong_symbols">Only A–Z, a–z, 0-9, _ @ symbols allowed</string>
+    <string name="err_password_wrong_symbols">Only A–Z, a–z, 0–9, _ @ symbols allowed</string>
     <string name="err_password_short">Should be at least 3 characters long</string>
+    <string name="err_email_wrong">Incorrect entered email</string>
     <string name="err_login_or_email_required">Username or Email is required</string>
-    <string name="err_db_id_required">Database ID is required</string>
 
     <string name="date_filter">Date filter</string>
     <string name="year_picker">Year picker</string>
@@ -65,6 +70,7 @@
     <string name="phone">Phone</string>
     <string name="skype">Skype</string>
     <string name="linkedin">LinkedIn</string>
+    <string name="gplus">Google+</string>
     <string name="facebook">Facebook</string>
     <string name="company">Company</string>
     <string name="name">Name</string>
@@ -179,7 +185,6 @@
     <string name="tutorial_4"><b>Look</b> through sales orders\nwith fulfilled products</string>
     <string name="tutorial_5"><b>Get</b> up-to-date information about\ninvoices and payments</string>
 
-    <string name="app_logo_in_text">Easy<b><font color='#4E86C3'>ERP</font></b></string>
     <string name="app_description"><![CDATA[
     We are a software engineering and consulting company which helps you to manage your working processes. <a href="https://easyerp.com">EasyERP</a> is a multichannel e-commerce management solution designed to meet varied operational requirements of the enterprises,  it is ideal for small and medium business.
     <p>
@@ -295,10 +300,8 @@
     <string name="hint_identification_number">Identification #</string>
     <string name="hint_passport_number">Passport #</string>
     <string name="hint_bank_account_number">Bank Account #</string>
-    <string name="hint_order_id">Order ID</string>
     <string name="address">Address</string>
     <string name="employment_details">Employment Details</string>
-    <string name="hint_google_plus">Google Plus</string>
     <string name="column_status">Status</string>
     <string name="column_date">Date</string>
     <string name="column_job_position">Job Position</string>
@@ -357,4 +360,6 @@
     <string name="public_label">Public</string>
     <string name="private_label">Private</string>
     <string name="description_is_empty">Description is empty</string>
+
+    <string name="sign_up_success">Please, check your email and confirm registration</string>
 </resources>

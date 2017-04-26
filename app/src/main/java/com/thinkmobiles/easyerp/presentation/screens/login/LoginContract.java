@@ -39,14 +39,26 @@ public interface LoginContract {
         String getLogin();
         String getPassword();
 
-        void displayLoginError(Constants.ErrorCodes code);
-        void displayPasswordError(Constants.ErrorCodes code);
+        String getFirstName();
+        String getLastName();
+        String getSignUpEmail();
+        String getSignUpPassword();
 
+        void displayLoginError(Constants.ErrorCode code);
+        void displayPasswordError(Constants.ErrorCode code);
+
+        void displayFirstNameError(Constants.ErrorCode code);
+        void displayLastNameError(Constants.ErrorCode code);
+        void displaySignUpEmailError(Constants.ErrorCode code);
+        void displaySignUpPasswordError(Constants.ErrorCode code);
+
+        void signUpDoSuccess();
         void startHomeScreen(UserInfo userInfo);
     }
     interface LoginPresenter extends BasePresenter {
         void login();
         void loginSocial(final SocialType socialType);
+        void signUp();
         void getCurrentUser();
         void clearCookies();
         void forgotPassword(final String login);
@@ -55,6 +67,7 @@ public interface LoginContract {
     interface LoginModel extends BaseModel {
         Observable<?> login(String login, String password);
         Observable<?> login(SocialRegisterProfile socialRegisterProfile);
+        Observable<?> signUp(String fName, String lName, String email, String password);
         Observable<?> forgotPassword(String login);
     }
     interface UserModel extends BaseModel {

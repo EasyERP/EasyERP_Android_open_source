@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/llContainerSignUp_VIFL"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:visibility="gone"
+    tools:visibility="visible">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="@dimen/login_icons_size"
+            android:layout_height="@dimen/login_icons_size"
+            android:layout_marginTop="@dimen/default_padding_big"
+            app:srcCompat="@drawable/ic_login_grey" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/tilFirstName_VIFL"
+                style="@style/TextInputLayoutStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/default_padding_middle"
+                android:layout_weight="1">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/etFirstName_VIFL"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/first_name"
+                    android:inputType="text"
+                    android:textColor="@color/color_text_black" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/tilLastName_VIFL"
+                style="@style/TextInputLayoutStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/default_padding_middle"
+                android:layout_weight="1">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/etLastName_VIFL"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/last_name"
+                    android:inputType="text"
+                    android:textColor="@color/color_text_black" />
+            </android.support.design.widget.TextInputLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_padding_half"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="@dimen/login_icons_size"
+            android:layout_height="@dimen/login_icons_size"
+            android:layout_marginTop="@dimen/default_padding_big"
+            app:srcCompat="@drawable/ic_email_grey" />
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/tilEmail_VIFL"
+            style="@style/TextInputLayoutStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/default_padding_middle">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/etEmail_VIFL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="@string/email"
+                android:inputType="textEmailAddress"
+                android:textColor="@color/color_text_black" />
+
+        </android.support.design.widget.TextInputLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_padding_half"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="@dimen/login_icons_size"
+            android:layout_height="@dimen/login_icons_size"
+            android:layout_marginTop="@dimen/default_padding_big"
+            app:srcCompat="@drawable/ic_password_grey" />
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/tilPasswordSignUp_VIFL"
+            style="@style/TextInputLayoutStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/default_padding_middle"
+            app:passwordToggleEnabled="true"
+            app:passwordToggleTint="@color/selector_color_password_toggle">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/etPasswordSignUp_VIFL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/hint_password"
+                android:inputType="textPassword"
+                android:textColor="@color/color_text_black" />
+        </android.support.design.widget.TextInputLayout>
+    </LinearLayout>
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/btnSignUp_VIFL"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_padding"
+        android:text="@string/sign_up" />
+
+</LinearLayout>

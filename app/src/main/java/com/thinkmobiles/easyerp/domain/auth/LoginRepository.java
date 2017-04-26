@@ -40,6 +40,18 @@ public class LoginRepository extends NetworkRepository implements LoginContract.
     }
 
     @Override
+    public Observable<?> signUp(String fName, String lName, String email, String password) {
+        return getNetworkObservable(
+                loginService.signUp(
+                        email, email,
+                        fName,
+                        lName,
+                        password,
+                        PRODUCTION ? null : Constants.DB_TEST_ID)
+        );
+    }
+
+    @Override
     public Observable<?> forgotPassword(String login) {
         return getNetworkObservable(loginService.forgotPassword(login, PRODUCTION ? null : Constants.DB_TEST_ID));
     }

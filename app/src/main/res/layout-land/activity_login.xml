@@ -5,21 +5,34 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/vAppIcon_AL"
+    <LinearLayout
+        android:id="@+id/llAppLogo_AL"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
         android:padding="@dimen/login_logo_margin"
-        app:srcCompat="@drawable/ic_logo_text"
-        tools:visibility="gone" />
+        tools:visibility="gone">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_easyerp_logo" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/login_margin_between_logo_and_text"
+            app:srcCompat="@drawable/ic_logo_text" />
+    </LinearLayout>
 
     <FrameLayout
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
-        app:layout_marginEndPercent="14%"
-        app:layout_widthPercent="32%">
+        app:layout_marginEndPercent="@fraction/login_form_land_margin_end_percents"
+        app:layout_widthPercent="@fraction/login_form_land_width_percents">
 
         <include layout="@layout/view_include_frame_login" />
 
