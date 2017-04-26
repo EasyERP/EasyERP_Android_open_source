@@ -14,8 +14,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/default_dimen_32"
-        app:cardCornerRadius="3dp"
         app:cardBackgroundColor="@android:color/white"
+        app:cardCornerRadius="3dp"
         app:cardElevation="14dp">
 
         <LinearLayout
@@ -45,102 +45,114 @@
                     android:text="@string/sign_up" />
             </LinearLayout>
 
-            <LinearLayout
+
+            <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="@dimen/default_padding_big">
-
-                <FrameLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/flContainerChangedContent_VIFL"
-                    android:animateLayoutChanges="true">
-
-                    <include layout="@layout/view_include_frame_login_tab_login" />
-                    <include layout="@layout/view_include_frame_login_tab_signup" />
-                </FrameLayout>
-
-                <TextView
-                    android:id="@+id/tvOrViaSocial_VIFL"
-                    style="@style/RobotoRegular"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/default_padding"
-                    android:ellipsize="end"
-                    android:gravity="center"
-                    android:maxLines="1"
-                    android:text="@string/or_log_in_with"
-                    android:textColor="@color/text_grey_hint_color_61"
-                    android:textSize="@dimen/small_text_size" />
+                android:overScrollMode="never"
+                android:scrollbarSize="5dp"
+                android:scrollbarThumbVertical="@color/color_divider"
+                android:scrollbars="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/default_padding"
-                    android:orientation="horizontal">
+                    android:orientation="vertical"
+                    android:padding="@dimen/default_padding_big">
 
                     <FrameLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1">
+                        android:id="@+id/flContainerChangedContent_VIFL"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:animateLayoutChanges="true">
 
-                        <TextView
-                            android:id="@+id/tvBtnFacebook_VIFL"
-                            style="@style/LoginFormSocialBtnStyle"
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:drawableStart="@drawable/ic_fb_28"
-                            android:text="@string/facebook"
-                            android:textColor="@color/color_facebook" />
+                        <include layout="@layout/view_include_frame_login_tab_login" />
+
+                        <include layout="@layout/view_include_frame_login_tab_signup" />
                     </FrameLayout>
 
-                    <FrameLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1">
+                    <TextView
+                        android:id="@+id/tvOrViaSocial_VIFL"
+                        style="@style/RobotoRegular"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/default_padding"
+                        android:ellipsize="end"
+                        android:gravity="center"
+                        android:maxLines="1"
+                        android:text="@string/or_log_in_with"
+                        android:textColor="@color/text_grey_hint_color_61"
+                        android:textSize="@dimen/small_text_size" />
 
-                        <TextView
-                            android:id="@+id/tvBtnLinkedIn_VIFL"
-                            style="@style/LoginFormSocialBtnStyle"
-                            android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/default_padding"
+                        android:orientation="horizontal">
+
+                        <FrameLayout
+                            android:layout_width="0dp"
                             android:layout_height="match_parent"
-                            android:drawableStart="@drawable/ic_linkedin_28"
-                            android:text="@string/linkedin"
-                            android:textColor="@color/color_linked_in" />
-                    </FrameLayout>
+                            android:layout_weight="1">
 
-                    <FrameLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1">
+                            <TextView
+                                android:id="@+id/tvBtnFacebook_VIFL"
+                                style="@style/LoginFormSocialBtnStyle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:drawableStart="@drawable/ic_fb_28"
+                                android:text="@string/facebook"
+                                android:textColor="@color/color_facebook" />
+                        </FrameLayout>
 
-                        <TextView
-                            android:id="@+id/tvBtnGooglePlus_VIFL"
-                            style="@style/LoginFormSocialBtnStyle"
-                            android:layout_width="wrap_content"
+                        <FrameLayout
+                            android:layout_width="0dp"
                             android:layout_height="match_parent"
-                            android:drawablePadding="@dimen/default_padding_half"
-                            android:drawableStart="@drawable/ic_g_plus_28"
-                            android:text="@string/gplus"
-                            android:textColor="@color/color_google_plus" />
-                    </FrameLayout>
+                            android:layout_weight="1">
+
+                            <TextView
+                                android:id="@+id/tvBtnLinkedIn_VIFL"
+                                style="@style/LoginFormSocialBtnStyle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:drawableStart="@drawable/ic_linkedin_28"
+                                android:text="@string/linkedin"
+                                android:textColor="@color/color_linked_in" />
+                        </FrameLayout>
+
+                        <FrameLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1">
+
+                            <TextView
+                                android:id="@+id/tvBtnGooglePlus_VIFL"
+                                style="@style/LoginFormSocialBtnStyle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:drawablePadding="@dimen/default_padding_half"
+                                android:drawableStart="@drawable/ic_g_plus_28"
+                                android:text="@string/gplus"
+                                android:textColor="@color/color_google_plus" />
+                        </FrameLayout>
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tvTermsAndCondition_VIFL"
+                        style="@style/RobotoRegular"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/default_padding_big"
+                        android:ellipsize="end"
+                        android:gravity="center"
+                        android:maxLines="2"
+                        android:textColor="@color/text_grey_hint_color_61"
+                        android:textSize="@dimen/text_size_small_11"
+                        tools:text="By signing in you agree to the Terms &amp; Conditions and Privacy Policy" />
+
                 </LinearLayout>
-
-                <TextView
-                    android:id="@+id/tvTermsAndCondition_VIFL"
-                    style="@style/RobotoRegular"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/default_padding_big"
-                    android:ellipsize="end"
-                    android:gravity="center"
-                    android:maxLines="2"
-                    android:textColor="@color/text_grey_hint_color_61"
-                    android:textSize="@dimen/text_size_small_11"
-                    tools:text="By signing in you agree to the Terms &amp; Conditions and Privacy Policy" />
-
-            </LinearLayout>
+            </ScrollView>
         </LinearLayout>
 
     </android.support.v7.widget.CardView>

@@ -31,8 +31,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
-        app:layout_marginEndPercent="6%"
-        app:layout_widthPercent="45%">
+        app:layout_marginEndPercent="@fraction/login_form_land_margin_end_percents"
+        app:layout_widthPercent="@fraction/login_form_land_width_percents">
 
         <include layout="@layout/view_include_frame_login" />
 

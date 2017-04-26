@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <fraction name="login_form_land_width_percents">47%</fraction>
+    <fraction name="login_form_land_margin_end_percents">4%</fraction>
+
+    <fraction name="login_form_port_width_percents">80%</fraction>
+    <fraction name="login_form_port_margin_top_percents">42%</fraction>
+
+    <dimen name="login_margin_between_logo_and_text">42dp</dimen>
+</resources>

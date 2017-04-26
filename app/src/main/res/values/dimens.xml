@@ -60,6 +60,4 @@
     <dimen name="popup_window_description_width">290dp</dimen>
     <dimen name="popup_window_description_height">190dp</dimen>
 
-    <dimen name="login_margin_between_logo_and_text">76dp</dimen>
-
 </resources>

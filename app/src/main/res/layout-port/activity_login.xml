@@ -30,8 +30,8 @@
     <FrameLayout
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        app:layout_marginTopPercent="44%"
-        app:layout_widthPercent="65%">
+        app:layout_marginTopPercent="@fraction/login_form_port_margin_top_percents"
+        app:layout_widthPercent="@fraction/login_form_port_width_percents">
 
         <include layout="@layout/view_include_frame_login" />
 
