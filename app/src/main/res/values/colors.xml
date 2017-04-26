@@ -11,6 +11,8 @@
     <color name="bg_color_activity_details">#ececec</color>
 
     <color name="text_grey_hint_color">#99000000</color>
+    <color name="text_grey_hint_color_61">#61000000</color>
+    <color name="text_grey_hint_color_25">#25000000</color>
 
     <color name="white_main_text_color">@android:color/white</color>
     <color name="transparent_white_main_text_color">#99FFFFFF</color>
@@ -76,5 +78,10 @@
     <color name="color_education">#ff2ecc71</color>
 
     <color name="color_not_employee">#dce74c3c</color>
+
+
+    <color name="color_facebook">#3b5998</color>
+    <color name="color_linked_in">#0077b5</color>
+    <color name="color_google_plus">#de4830</color>
 
 </resources>

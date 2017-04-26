@@ -12,8 +12,11 @@
     <string name="hint_password_new">New password</string>
     <string name="hint_password_confirm">Confirm password</string>
     <string name="hint_database_id">Database ID</string>
-    <string name="login">Login</string>
+
+    <string name="login">Log In</string>
     <string name="sign_up">Sign Up</string>
+    <string name="or_log_in_with">Or log in with</string>
+    <string name="or_sign_up_with">Or sign up with</string>
 
     <string name="menu_filter">Filter</string>
     <string name="menu_filter_remove_all">Remove all</string>
@@ -65,6 +68,7 @@
     <string name="phone">Phone</string>
     <string name="skype">Skype</string>
     <string name="linkedin">LinkedIn</string>
+    <string name="gplus">Google+</string>
     <string name="facebook">Facebook</string>
     <string name="company">Company</string>
     <string name="name">Name</string>

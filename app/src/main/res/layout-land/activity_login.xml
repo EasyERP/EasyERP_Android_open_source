@@ -18,8 +18,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
-        app:layout_marginEndPercent="10%"
-        app:layout_widthPercent="40%">
+        app:layout_marginEndPercent="6%"
+        app:layout_widthPercent="44%">
 
         <include layout="@layout/view_include_frame_login" />
 

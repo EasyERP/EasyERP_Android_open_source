@@ -15,19 +15,15 @@
         <item name="android:dropDownItemStyle">@style/DropDownItemStyle</item>
         <item name="autoCompleteTextViewStyle">@style/AutoCompleteTextViewStyle</item>
 
-        <item name="colorButtonNormal">@color/colorPrimary</item>
-    </style>
-
-    <style name="DefaultTheme.ButtonLight">
-        <item name="colorButtonNormal">@color/colorVintage</item>
-    </style>
-
-    <style name="DefaultTheme.ButtonNight">
-        <item name="colorButtonNormal">@color/colorSuzy</item>
+        <item name="colorButtonNormal">@color/colorAccent</item>
     </style>
 
     <style name="DefaultTheme.ThemeHistory" parent="DefaultTheme">
         <item name="colorControlHighlight">@color/color_ripple</item>
+    </style>
+
+    <style name="DefaultTheme.ThemeGreyHighLight" parent="DefaultTheme">
+        <item name="colorControlHighlight">@color/text_grey_hint_color_25</item>
     </style>
 
     <style name="ViewWithRippleStyle">
@@ -423,6 +419,27 @@
 
     <style name="ReportsTableItemsTextStyle" parent="ReportsTableHeaderTextStyle">
         <item name="android:fontFamily">sans-serif</item>
+    </style>
+
+    <style name="LoginFormTabStyle" parent="RobotoMedium">
+        <item name="android:ellipsize">end</item>
+        <item name="android:gravity">center</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:padding">14dp</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textColor">@color/selector_color_tab_login</item>
+        <item name="android:background">@drawable/selector_bg_tab_login</item>
+        <item name="android:theme">@style/DefaultTheme.ThemeGreyHighLight</item>
+        <item name="android:foreground">?android:attr/selectableItemBackgroundBorderless</item>
+    </style>
+
+    <style name="LoginFormSocialBtnStyle" parent="RobotoRegular">
+        <item name="android:drawablePadding">@dimen/default_padding_small</item>
+        <item name="android:padding">@dimen/default_padding_quart</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:maxLines">1</item>
     </style>
 
 </resources>

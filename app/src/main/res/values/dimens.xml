@@ -13,6 +13,7 @@
     <dimen name="small_text_size">12sp</dimen>
 
     <dimen name="default_dimen_32">32dp</dimen>
+    <dimen name="default_dimen_28">28dp</dimen>
     <dimen name="default_padding_middle">12dp</dimen>
     <dimen name="default_padding_small">6dp</dimen>
     <dimen name="default_padding_quart">4dp</dimen>
@@ -22,7 +23,6 @@
 
     <dimen name="login_logo_margin">32dp</dimen>
     <dimen name="login_icons_size">17dp</dimen>
-    <dimen name="padding_start_for_credentials_ui">33dp</dimen>
     <dimen name="tutorial_margin_title">170dp</dimen>
 
     <!--/////////////////////// DESIGN ///////////////////////-->
@@ -45,6 +45,7 @@
     <dimen name="text_list_item_large_18">18sp</dimen>
     <dimen name="text_list_item_medium_16">16sp</dimen>
     <dimen name="text_size_extra_small">10sp</dimen>
+    <dimen name="text_size_small_11">11sp</dimen>
     <dimen name="text_size_table_12">12sp</dimen>
     <dimen name="text_size_small_13">13sp</dimen>
     <dimen name="text_size_small_14">14sp</dimen>

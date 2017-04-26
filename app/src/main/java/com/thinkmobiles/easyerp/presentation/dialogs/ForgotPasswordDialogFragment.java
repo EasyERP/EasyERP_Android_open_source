@@ -11,7 +11,6 @@ import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 
 import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.presentation.base.BasePresenter;
@@ -22,7 +21,6 @@ import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.FragmentArg;
-import org.androidannotations.annotations.res.DimensionRes;
 import org.androidannotations.annotations.res.StringRes;
 
 /**
@@ -36,7 +34,6 @@ public class ForgotPasswordDialogFragment extends DialogFragment implements Base
     private IForgotPasswordCallback forgotPasswordCallback;
 
     private TextInputLayout tilUserNameOrEmail_DFP;
-    private View ivUserOrEmail_DFP;
     private EditText etUserNameOrEmail_DFP;
 
     @FragmentArg
@@ -48,8 +45,6 @@ public class ForgotPasswordDialogFragment extends DialogFragment implements Base
     protected String errEmptyUsername;
     @StringRes(R.string.err_password_short)
     protected String errShortness;
-    @DimensionRes(R.dimen.default_padding_middle)
-    protected float fixMarginForIcons;
 
     @Override
     public void onAttach(Activity activity) {
@@ -65,7 +60,6 @@ public class ForgotPasswordDialogFragment extends DialogFragment implements Base
     private void initUI(final View rootView) {
         tilUserNameOrEmail_DFP = (TextInputLayout) rootView.findViewById(R.id.tilUserNameOrEmail_DFP);
         etUserNameOrEmail_DFP = (EditText) rootView.findViewById(R.id.etUserNameOrEmail_DFP);
-        ivUserOrEmail_DFP = rootView.findViewById(R.id.ivUserOrEmail_DFP);
 
         etUserNameOrEmail_DFP.setText(username);
     }
@@ -92,41 +86,35 @@ public class ForgotPasswordDialogFragment extends DialogFragment implements Base
     private void send() {
         GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_BUTTON, "Send");
         final String userNameOrEmail = etUserNameOrEmail_DFP.getText().toString().trim();
-        if (!showError(ValidationManager.isLoginValid(userNameOrEmail), tilUserNameOrEmail_DFP, ivUserOrEmail_DFP, errEmptyUsername)) {
+        if (!showError(ValidationManager.isLoginValid(userNameOrEmail), tilUserNameOrEmail_DFP, errEmptyUsername)) {
             dismiss();
             if (forgotPasswordCallback != null)
                 forgotPasswordCallback.forgotPassword(userNameOrEmail);
         }
     }
 
-    private boolean showError(final Constants.ErrorCodes errorCode, final TextInputLayout textInputLayout, final View imageInfoView, final String emptyField) {
-        final LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) imageInfoView.getLayoutParams();
+    private boolean showError(final Constants.ErrorCodes errorCode, final TextInputLayout textInputLayout, final String emptyField) {
         boolean hasError;
         switch (errorCode) {
             case FIELD_EMPTY:
                 textInputLayout.setError(emptyField);
                 textInputLayout.setErrorEnabled(true);
-                params.setMargins(params.getMarginStart(), params.topMargin, params.getMarginEnd(), (int) fixMarginForIcons);
                 hasError = true;
                 break;
             case SHORTNESS:
                 textInputLayout.setError(errShortness);
                 textInputLayout.setErrorEnabled(true);
-                params.setMargins(params.getMarginStart(), params.topMargin, params.getMarginEnd(), (int) fixMarginForIcons);
                 hasError = true;
                 break;
             case OK:
                 textInputLayout.setError(null);
                 textInputLayout.setErrorEnabled(false);
-                params.setMargins(params.getMarginStart(), params.topMargin, params.getMarginEnd(), 0);
                 hasError = false;
                 break;
             default:
-                params.setMargins(params.getMarginStart(), params.topMargin, params.getMarginEnd(), 0);
                 hasError = false;
                 break;
         }
-        imageInfoView.setLayoutParams(params);
         return hasError;
     }
 

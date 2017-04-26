@@ -78,13 +78,13 @@ public class TutorialActivity extends AppCompatActivity implements TutorialContr
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
                 .subscribe(aVoid -> {
                     GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_BUTTON, "Login");
-                    presenter.login();
+                    presenter.logIn();
                 });
         RxView.clicks(btnSignUp_AT)
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
                 .subscribe(aVoid -> {
                     GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_BUTTON, "Sign Up");
-                    presenter.login();
+                    presenter.signUp();
                 });
     }
 
@@ -110,8 +110,9 @@ public class TutorialActivity extends AppCompatActivity implements TutorialContr
     }
 
     @Override
-    public void startLoginScreen() {
+    public void startLoginScreen(boolean loginActivated) {
         LoginActivity_.intent(this)
+                .loginActivated(loginActivated)
                 .flags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK)
                 .start();
     }

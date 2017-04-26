@@ -22,13 +22,18 @@ public class TutorialPresenter implements TutorialContract.TutorialPresenter {
         view.setPresenter(this);
 
         if(!isPreview && cookieManager.isCookieExists() && !cookieManager.isCookieExpired()) {
-            login();
+            logIn();
         }
     }
 
     @Override
-    public void login() {
-        view.startLoginScreen();
+    public void logIn() {
+        view.startLoginScreen(true);
+    }
+
+    @Override
+    public void signUp() {
+        view.startLoginScreen(false);
     }
 
     @Override
