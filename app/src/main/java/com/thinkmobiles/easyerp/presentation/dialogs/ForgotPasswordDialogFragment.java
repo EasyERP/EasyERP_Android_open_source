@@ -39,8 +39,6 @@ public class ForgotPasswordDialogFragment extends DialogFragment implements Base
     @FragmentArg
     protected String username;
 
-    @StringRes(R.string.err_db_id_required)
-    protected String errEmptyDbID;
     @StringRes(R.string.err_login_or_email_required)
     protected String errEmptyUsername;
     @StringRes(R.string.err_password_short)
@@ -93,7 +91,7 @@ public class ForgotPasswordDialogFragment extends DialogFragment implements Base
         }
     }
 
-    private boolean showError(final Constants.ErrorCodes errorCode, final TextInputLayout textInputLayout, final String emptyField) {
+    private boolean showError(final Constants.ErrorCode errorCode, final TextInputLayout textInputLayout, final String emptyField) {
         boolean hasError;
         switch (errorCode) {
             case FIELD_EMPTY:

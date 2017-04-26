@@ -77,7 +77,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
     protected boolean loginActivated = true;
 
     @ViewById
-    protected View vAppIcon_AL;
+    protected View llAppLogo_AL;
     @ViewById
     protected View flInput_VIFL;
 
@@ -107,12 +107,18 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
     protected String errEmptyLogin;
     @StringRes(R.string.err_password_required)
     protected String errEmptyPassword;
+    @StringRes(R.string.err_f_name_required)
+    protected String errEmptyFirstName;
+    @StringRes(R.string.err_l_name_required)
+    protected String errEmptyLastName;
+    @StringRes(R.string.err_email_required)
+    protected String errEmptyEmail;
     @StringRes(R.string.err_password_wrong_symbols)
-    protected String errPasswordWrongSymbols;
+    protected String errInvalidChars;
+    @StringRes(R.string.err_email_wrong)
+    protected String errInvalidEmail;
     @StringRes(R.string.err_password_short)
     protected String errPasswordShort;
-    @StringRes(R.string.err_db_id_required)
-    protected String errEmptyDbID;
     @StringRes(R.string.terms_and_conditions_privacy_policy)
     protected String termsAndConditionsString;
 
@@ -139,10 +145,10 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
     @AfterViews
     protected void initUI() {
         GoogleAnalyticHelper.trackScreenView(this, getResources().getConfiguration());
-        vAppIcon_AL.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+        llAppLogo_AL.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
             public void onGlobalLayout() {
-                vAppIcon_AL.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                llAppLogo_AL.getViewTreeObserver().removeOnGlobalLayoutListener(this);
                 runSplashAnimation();
                 if(cookieManager.isCookieExists())
                     presenter.getCurrentUser();
@@ -159,6 +165,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
                 .subscribe(aVoid -> {
                     GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_BUTTON, "Sign Up");
+                    presenter.signUp();
                 });
         RxView.clicks(tvBtnFacebook_VIFL)
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
@@ -315,41 +322,84 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
     }
 
     @Override
-    public void displayLoginError(Constants.ErrorCodes code) {
-        switch (code) {
-            case FIELD_EMPTY:
-                tilLogin_VIFL.setError(errEmptyLogin);
-                tilLogin_VIFL.setErrorEnabled(true);
-                break;
-            case SHORTNESS:
-                tilLogin_VIFL.setError(errPasswordShort);
-                tilLogin_VIFL.setErrorEnabled(true);
-                break;
-            case OK:
-                tilLogin_VIFL.setError(null);
-                tilLogin_VIFL.setErrorEnabled(false);
-                break;
-        }
+    public String getFirstName() {
+        return etFirstName_VIFL.getText().toString().trim();
     }
 
     @Override
-    public void displayPasswordError(Constants.ErrorCodes code) {
-        switch (code) {
+    public String getLastName() {
+        return etLastName_VIFL.getText().toString().trim();
+    }
+
+    @Override
+    public String getSignUpEmail() {
+        return etEmail_VIFL.getText().toString().trim();
+    }
+
+    @Override
+    public String getSignUpPassword() {
+        return etPasswordSignUp_VIFL.getText().toString().trim();
+    }
+
+    @Override
+    public void displayLoginError(Constants.ErrorCode code) {
+        displayError(code, tilLogin_VIFL, errEmptyLogin);
+    }
+
+    @Override
+    public void displayPasswordError(Constants.ErrorCode code) {
+        displayError(code, tilPassword_VIFL, errEmptyPassword);
+    }
+
+    @Override
+    public void displayFirstNameError(Constants.ErrorCode code) {
+        displayError(code, tilFirstName_VIFL, errEmptyFirstName);
+    }
+
+    @Override
+    public void displayLastNameError(Constants.ErrorCode code) {
+        displayError(code, tilLastName_VIFL, errEmptyLastName);
+    }
+
+    @Override
+    public void displaySignUpEmailError(Constants.ErrorCode code) {
+        displayError(code, tilEmail_VIFL, errEmptyEmail);
+    }
+
+    @Override
+    public void displaySignUpPasswordError(Constants.ErrorCode code) {
+        displayError(code, tilPasswordSignUp_VIFL, errEmptyPassword);
+    }
+
+    @Override
+    public void signUpDoSuccess() {
+        cookieManager.clearCookie();
+        Toast.makeText(this, R.string.sign_up_success, Toast.LENGTH_LONG).show();
+        loginActivated = true;
+        initSelectedStatesInTabs();
+    }
+
+    private void displayError(final Constants.ErrorCode errorCode, TextInputLayout til, final String emptyMsg) {
+        switch (errorCode) {
             case FIELD_EMPTY:
-                tilPassword_VIFL.setError(errEmptyPassword);
-                tilPassword_VIFL.setErrorEnabled(true);
+                til.setError(emptyMsg);
+                til.setErrorEnabled(true);
                 break;
             case INVALID_CHARS:
-                tilPassword_VIFL.setError(errPasswordWrongSymbols);
-                tilPassword_VIFL.setErrorEnabled(true);
+                til.setError(errInvalidChars);
+                til.setErrorEnabled(true);
+                break;
+            case INVALID_EMAIL:
+                til.setError(errInvalidEmail);
+                til.setErrorEnabled(true);
                 break;
             case SHORTNESS:
-                tilPassword_VIFL.setError(errPasswordShort);
-                tilPassword_VIFL.setErrorEnabled(true);
+                til.setError(errPasswordShort);
+                til.setErrorEnabled(true);
                 break;
             case OK:
-                tilPassword_VIFL.setError(null);
-                tilPassword_VIFL.setErrorEnabled(false);
+                til.setError(null);
+                til.setErrorEnabled(false);
                 break;
         }
     }
@@ -357,7 +407,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
     @Override
     public void startHomeScreen(UserInfo userInfo) {
         this.userInfo = userInfo;
-        if(isAnimationFinished) {
+        if (isAnimationFinished) {
             HomeActivity_.intent(this)
                     .userInfo(userInfo)
                     .flags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK)
@@ -377,22 +427,22 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
     }
 
     private void runSplashAnimation() {
-        ObjectAnimator iconFade = ObjectAnimator.ofFloat(vAppIcon_AL, View.ALPHA, 0.4f, 1f);
-        ObjectAnimator iconScaleX = ObjectAnimator.ofFloat(vAppIcon_AL, View.SCALE_X, 0.5f, 1f);
-        ObjectAnimator iconScaleY = ObjectAnimator.ofFloat(vAppIcon_AL, View.SCALE_Y, 0.5f, 1f);
-        iconFade.setDuration(1200);
-        iconScaleX.setDuration(1200);
-        iconScaleY.setDuration(1200);
+        ObjectAnimator iconFade = ObjectAnimator.ofFloat(llAppLogo_AL, View.ALPHA, 0.4f, 1f);
+        ObjectAnimator iconScaleX = ObjectAnimator.ofFloat(llAppLogo_AL, View.SCALE_X, 0.5f, 1f);
+        ObjectAnimator iconScaleY = ObjectAnimator.ofFloat(llAppLogo_AL, View.SCALE_Y, 0.5f, 1f);
+        iconFade.setDuration(800);
+        iconScaleX.setDuration(800);
+        iconScaleY.setDuration(800);
 
         ObjectAnimator iconTranslate;
         if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            iconTranslate = ObjectAnimator.ofFloat(vAppIcon_AL, View.X, vAppIcon_AL.getX() - .25f * getResources().getDisplayMetrics().widthPixels);
+            iconTranslate = ObjectAnimator.ofFloat(llAppLogo_AL, View.X, llAppLogo_AL.getX() - .25f * getResources().getDisplayMetrics().widthPixels);
         } else {
-            iconTranslate = ObjectAnimator.ofFloat(vAppIcon_AL, View.Y, vAppIcon_AL.getY() - .25f * getResources().getDisplayMetrics().heightPixels);
+            iconTranslate = ObjectAnimator.ofFloat(llAppLogo_AL, View.Y, llAppLogo_AL.getY() - .25f * getResources().getDisplayMetrics().heightPixels);
         }
         ObjectAnimator containerFade = ObjectAnimator.ofFloat(flInput_VIFL, View.ALPHA, 0f, 1f);
         iconTranslate.setDuration(1000);
-        containerFade.setDuration(500);
+        containerFade.setDuration(400);
 
         iconScaleX.setInterpolator(new OvershootInterpolator());
         iconScaleY.setInterpolator(new OvershootInterpolator());
@@ -420,7 +470,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
                 isAnimationFinished = true;
                 if(userInfo != null)
                     startHomeScreen(userInfo);
-                else if(!cookieManager.isCookieExists())
+                else if (!cookieManager.isCookieExists())
                     animatorSet2.start();
             }
         });

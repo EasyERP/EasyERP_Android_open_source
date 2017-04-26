@@ -13,7 +13,6 @@
     <dimen name="small_text_size">12sp</dimen>
 
     <dimen name="default_dimen_32">32dp</dimen>
-    <dimen name="default_dimen_28">28dp</dimen>
     <dimen name="default_padding_middle">12dp</dimen>
     <dimen name="default_padding_small">6dp</dimen>
     <dimen name="default_padding_quart">4dp</dimen>
@@ -58,9 +57,9 @@
     <dimen name="tutorial_margin_top_land">50dp</dimen>
     <dimen name="text_title_tutorial">40sp</dimen>
 
-    <dimen name="small_alert_dialog_width">10dp</dimen>
-
     <dimen name="popup_window_description_width">290dp</dimen>
     <dimen name="popup_window_description_height">190dp</dimen>
+
+    <dimen name="login_margin_between_logo_and_text">76dp</dimen>
 
 </resources>

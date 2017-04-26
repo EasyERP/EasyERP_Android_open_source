@@ -1,6 +1,7 @@
 package com.thinkmobiles.easyerp.presentation.managers;
 
 import android.text.TextUtils;
+import android.util.Patterns;
 
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
@@ -14,28 +15,46 @@ import java.util.regex.Pattern;
 public abstract class ValidationManager {
 
     private static final Pattern invalidCharsRegExp = Pattern.compile("^[a-zA-Z0-9_@]+$");
-    private static final Pattern shortRegExp = Pattern.compile("^[\\w]{3,100}$");
+    private static final Pattern invalidEmailRegExp = Patterns.EMAIL_ADDRESS;
+    private static final Pattern shortRegExp = Pattern.compile("^[a-zA-Z0-9_@.]{3,100}$");
 
-    public static Constants.ErrorCodes isLoginValid(String login) {
-        final Matcher loginMatcher = shortRegExp.matcher(login);
-        if (TextUtils.isEmpty(login))
-            return Constants.ErrorCodes.FIELD_EMPTY;
-        else if (!loginMatcher.matches())
-            return Constants.ErrorCodes.SHORTNESS;
+    public static Constants.ErrorCode isNameValid(String name) {
+        if (TextUtils.isEmpty(name))
+            return Constants.ErrorCode.FIELD_EMPTY;
         else
-            return Constants.ErrorCodes.OK;
+            return Constants.ErrorCode.OK;
     }
 
-    public static Constants.ErrorCodes isPasswordValid(String password) {
+    public static Constants.ErrorCode isLoginValid(String login) {
+        final Matcher loginMatcher = shortRegExp.matcher(login);
+        if (TextUtils.isEmpty(login))
+            return Constants.ErrorCode.FIELD_EMPTY;
+        else if (!loginMatcher.matches())
+            return Constants.ErrorCode.SHORTNESS;
+        else
+            return Constants.ErrorCode.OK;
+    }
+
+    public static Constants.ErrorCode isPasswordValid(String password) {
         final Matcher invalidCharsMatcher = invalidCharsRegExp.matcher(password);
         final Matcher passMatcher = shortRegExp.matcher(password);
         if (TextUtils.isEmpty(password))
-            return Constants.ErrorCodes.FIELD_EMPTY;
-        else if (!passMatcher.matches())
-            return Constants.ErrorCodes.SHORTNESS;
+            return Constants.ErrorCode.FIELD_EMPTY;
         else if (!invalidCharsMatcher.matches())
-            return Constants.ErrorCodes.INVALID_CHARS;
+            return Constants.ErrorCode.INVALID_CHARS;
+        else if (!passMatcher.matches())
+            return Constants.ErrorCode.SHORTNESS;
         else
-            return Constants.ErrorCodes.OK;
+            return Constants.ErrorCode.OK;
+    }
+
+    public static Constants.ErrorCode isEmailValid(String email) {
+        final Matcher invalidCharsMatcher = invalidEmailRegExp.matcher(email);
+        if (TextUtils.isEmpty(email))
+            return Constants.ErrorCode.FIELD_EMPTY;
+        else if (!invalidCharsMatcher.matches())
+            return Constants.ErrorCode.INVALID_EMAIL;
+        else
+            return Constants.ErrorCode.OK;
     }
 }

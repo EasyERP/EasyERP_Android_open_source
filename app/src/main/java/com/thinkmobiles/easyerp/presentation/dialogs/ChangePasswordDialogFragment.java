@@ -107,7 +107,7 @@ public class ChangePasswordDialogFragment extends DialogFragment implements Base
         }
     }
 
-    private boolean showError(final Constants.ErrorCodes errorCode, final TextInputLayout textInputLayout, final String emptyMsg) {
+    private boolean showError(final Constants.ErrorCode errorCode, final TextInputLayout textInputLayout, final String emptyMsg) {
         boolean hasError;
         switch (errorCode) {
             case INVALID_CHARS:

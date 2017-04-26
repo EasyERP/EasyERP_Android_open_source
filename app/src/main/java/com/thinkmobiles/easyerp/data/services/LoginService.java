@@ -23,6 +23,16 @@ public interface LoginService {
     Observable<Void> loginSocial(@Body final SocialRegisterProfile socialRegisterProfile);
 
     @FormUrlEncoded
+    @POST(Constants.POST_SIGN_UP)
+    Observable<Void> signUp(
+            @Field("login") String login,
+            @Field("email") String email,
+            @Field("first") String fName,
+            @Field("last") String lName,
+            @Field("pass") String password,
+            @Field("dbId") String dbId);
+
+    @FormUrlEncoded
     @POST(Constants.POST_FORGOT_PASSWORD)
     Observable<Void> forgotPassword(@Field("login") String login, @Field("dbId") String dbId);
 }

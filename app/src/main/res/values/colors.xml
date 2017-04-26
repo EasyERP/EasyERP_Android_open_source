@@ -4,9 +4,6 @@
     <color name="colorPrimaryDark">#292F4C</color>
     <color name="colorAccent">#427ede</color>
 
-    <color name="colorVintage">#7eadcc</color>
-    <color name="colorSuzy">#556f89</color>
-
     <color name="textColorHint">#bdbdbd</color>
     <color name="bg_color_activity_details">#ececec</color>
 
@@ -40,7 +37,6 @@
     <color name="tag_bg_black">#4d4d4d</color>
     <color name="tag_bg_grey">#b6bbbf</color>
 
-    <color name="transparent_more">#b5000000</color>
     <color name="transparent_less">#d8000000</color>
     
     <!--//////////////////////// DESIGN ////////////////////////-->

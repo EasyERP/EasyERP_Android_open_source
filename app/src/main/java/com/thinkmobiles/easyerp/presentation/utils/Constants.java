@@ -27,8 +27,9 @@ public abstract class Constants {
 
     //Login
     public static final String POST_LOGIN                   = "users/login";
-    public static final String POST_FORGOT_PASSWORD         = "users/forgotPassword";
     public static final String POST_LOGIN_SOCIAL            = PRODUCTION ? "saas/social" : "users/login/social";
+    public static final String POST_SIGN_UP                 = "users/signUp";
+    public static final String POST_FORGOT_PASSWORD         = "users/forgotPassword";
     //End Login
 
     //User
@@ -173,10 +174,11 @@ public abstract class Constants {
     public static final String KEY_FILTER_LIST              = "keyFilterList";
     public static final String KEY_REPORT_TYPES_LIST        = "keyReportTypesList";
 
-    public enum ErrorCodes {
+    public enum ErrorCode {
         OK,
         FIELD_EMPTY,
         INVALID_CHARS,
+        INVALID_EMAIL,
         SHORTNESS
     }
 

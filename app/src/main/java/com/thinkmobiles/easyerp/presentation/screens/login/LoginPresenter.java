@@ -66,13 +66,13 @@ public class LoginPresenter implements LoginContract.LoginPresenter {
         String login = view.getLogin();
         String pass = view.getPassword();
 
-        Constants.ErrorCodes errCodeLogin = ValidationManager.isLoginValid(login);
-        Constants.ErrorCodes errCodePassword = ValidationManager.isPasswordValid(pass);
+        Constants.ErrorCode errCodeLogin = ValidationManager.isLoginValid(login);
+        Constants.ErrorCode errCodePassword = ValidationManager.isPasswordValid(pass);
 
         view.displayLoginError(errCodeLogin);
         view.displayPasswordError(errCodePassword);
 
-        if(errCodeLogin == Constants.ErrorCodes.OK && errCodePassword == Constants.ErrorCodes.OK) {
+        if(errCodeLogin.equals(Constants.ErrorCode.OK) && errCodePassword.equals(Constants.ErrorCode.OK)) {
             login(login, pass);
         }
     }
@@ -98,6 +98,30 @@ public class LoginPresenter implements LoginContract.LoginPresenter {
     }
 
     @Override
+    public void signUp() {
+        String firstName = view.getFirstName();
+        String lastName = view.getLastName();
+        String email = view.getSignUpEmail();
+        String password = view.getSignUpPassword();
+
+        Constants.ErrorCode errCodeFirstName = ValidationManager.isNameValid(firstName);
+        Constants.ErrorCode errCodeLastName = ValidationManager.isNameValid(lastName);
+        Constants.ErrorCode errCodeEmail = ValidationManager.isEmailValid(email);
+        Constants.ErrorCode errCodePassword = ValidationManager.isPasswordValid(password);
+
+        view.displayFirstNameError(errCodeFirstName);
+        view.displayLastNameError(errCodeLastName);
+        view.displaySignUpEmailError(errCodeEmail);
+        view.displaySignUpPasswordError(errCodePassword);
+
+        if(errCodeFirstName.equals(Constants.ErrorCode.OK) &&
+                errCodeLastName.equals(Constants.ErrorCode.OK) &&
+                errCodeEmail.equals(Constants.ErrorCode.OK) &&
+                errCodePassword.equals(Constants.ErrorCode.OK))
+            signUp(firstName, lastName, email, password);
+    }
+
+    @Override
     public void getCurrentUser() {
         compositeSubscription.add(
                 userModel.getCurrentUser()
@@ -112,7 +136,7 @@ public class LoginPresenter implements LoginContract.LoginPresenter {
     }
 
     private void login(final String login, final String password) {
-        view.showProgress("Login. Please wait a second...");
+        view.showProgress("Log In. Please wait a second...");
         compositeSubscription.add(
                 loginModel.login(login, password)
                         .subscribe(s -> {
@@ -129,6 +153,20 @@ public class LoginPresenter implements LoginContract.LoginPresenter {
                 loginModel.login(socialRegisterProfile)
                         .subscribe(s -> {
                             getCurrentUser();
+                        }, t -> {
+                            view.dismissProgress();
+                            view.showErrorToast(ErrorManager.getErrorMessage(t));
+                        })
+        );
+    }
+
+    private void signUp(final String fName, final String lName, final String email, final String password) {
+        view.showProgress("Sign Up. Please wait a second...");
+        compositeSubscription.add(
+                loginModel.signUp(fName, lName, email, password)
+                        .subscribe(s -> {
+                            view.dismissProgress();
+                            view.signUpDoSuccess();
                         }, t -> {
                             view.dismissProgress();
                             view.showErrorToast(ErrorManager.getErrorMessage(t));
