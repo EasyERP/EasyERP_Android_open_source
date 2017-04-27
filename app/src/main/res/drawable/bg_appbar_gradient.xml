@@ -8,20 +8,12 @@
         </shape>
     </item>
 
-    <!--<item-->
-        <!--android:drawable="@drawable/bg_toolbar_neon_lines_start"-->
-        <!--android:gravity="start" />-->
+    <item
+        android:drawable="@drawable/bg_toolbar_neon_lines_start"
+        android:gravity="start|top" />
 
-    <!--<item-->
-        <!--android:drawable="@drawable/bg_toolbar_neon_lines_end"-->
-        <!--android:gravity="end" />-->
-
-    <item android:gravity="start">
-        <bitmap android:src="@drawable/ic_bg_toolbar_left" android:gravity="top" />
-    </item>
-
-    <item android:gravity="end">
-        <bitmap android:src="@drawable/ic_bg_toolbar_right" android:gravity="bottom" />
-    </item>
+    <item
+        android:drawable="@drawable/bg_toolbar_neon_lines_end"
+        android:gravity="end|bottom" />
 
 </layer-list>
