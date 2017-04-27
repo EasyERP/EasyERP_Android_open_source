@@ -10,9 +10,10 @@
 
     <item
         android:drawable="@drawable/bg_toolbar_neon_lines_start"
-        android:gravity="start" />
+        android:gravity="start|top" />
 
     <item
         android:drawable="@drawable/bg_toolbar_neon_lines_end"
-        android:gravity="end" />
+        android:gravity="end|bottom" />
+
 </layer-list>
