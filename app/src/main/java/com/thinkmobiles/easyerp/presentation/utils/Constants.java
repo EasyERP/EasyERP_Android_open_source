@@ -166,6 +166,14 @@ public abstract class Constants {
 
     //------------------------------------------------------ END REPORTS
 
+    //------------------------------------------------------ INTEGRATIONS
+
+    public static final String GET_CHANNELS                 = "channels";
+    public static final String GET_CHANNELS_BY_NAME         = "channels/{channelName}";
+    public static final String PATCH_CHANNEL_CONNECT_STATE  = "channels/{channelId}";
+
+    //------------------------------------------------------ END INTEGRATIONS
+
     public static final int COUNT_LIST_ITEMS                    = 25;
     public static final int COUNT_LIST_ITEMS_WITHOUT_PAGINATION = Integer.MAX_VALUE;
     public static final int DELAY_CLICK                         = 600;
