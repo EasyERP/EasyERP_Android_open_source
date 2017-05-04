@@ -362,4 +362,7 @@
     <string name="description_is_empty">Description is empty</string>
 
     <string name="sign_up_success">Please, check your email and confirm registration</string>
+
+    <string name="connected">Connected</string>
+    <string name="disconnected">Disconnected</string>
 </resources>
