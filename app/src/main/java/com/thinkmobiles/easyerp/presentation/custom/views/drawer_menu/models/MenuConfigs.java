@@ -17,6 +17,7 @@ import com.thinkmobiles.easyerp.presentation.screens.hr.dashboard.HRDashboardLis
 import com.thinkmobiles.easyerp.presentation.screens.hr.employees.EmployeesFragment_;
 import com.thinkmobiles.easyerp.presentation.screens.hr.job_positions.JobPositionsListFragment_;
 import com.thinkmobiles.easyerp.presentation.screens.hr.vacations.VacationsListFragment_;
+import com.thinkmobiles.easyerp.presentation.screens.integrations.IntegrationsListFragment_;
 import com.thinkmobiles.easyerp.presentation.screens.inventory.goods_out_notes.GoodsOutNotesFragment_;
 import com.thinkmobiles.easyerp.presentation.screens.inventory.products.ProductsListFragment_;
 import com.thinkmobiles.easyerp.presentation.screens.inventory.stock_corrections.StockCorrectionsListFragment_;
@@ -45,10 +46,9 @@ public abstract class MenuConfigs {
         menuModules.add(new MenuItem(3, R.drawable.ic_hr, "HR", true));
         menuModules.add(new MenuItem(4, R.drawable.ic_purchases, "Purchases", true));
         menuModules.add(new MenuItem(5, R.drawable.ic_accounting, "Accounting", false));
-        menuModules.add(new MenuItem(6, R.drawable.ic_payroll, "Payroll", false));
-        menuModules.add(new MenuItem(7, R.drawable.ic_expenses, "Expenses", false));
-        menuModules.add(new MenuItem(8, R.drawable.ic_inventory, "Inventory", true));
-        menuModules.add(new MenuItem(9, R.drawable.ic_settings, "Settings", false));
+        menuModules.add(new MenuItem(6, R.drawable.ic_integration, "Integrations", true));
+        menuModules.add(new MenuItem(7, R.drawable.ic_inventory, "Inventory", true));
+        menuModules.add(new MenuItem(8, R.drawable.ic_settings, "Settings", false));
 
         menuModuleItems.put(0, getReportsModule());
         menuModuleItems.put(1, getCRMModule());
@@ -56,10 +56,9 @@ public abstract class MenuConfigs {
         menuModuleItems.put(3, getHRModule());
         menuModuleItems.put(4, getPurchasesModule());
         menuModuleItems.put(5, getAccountingModule());
-        menuModuleItems.put(6, getPayrollModule());
-        menuModuleItems.put(7, getExpensesModule());
-        menuModuleItems.put(8, getInventoryModule());
-        menuModuleItems.put(9, getSettingsModule());
+        menuModuleItems.put(6, getIntegrationsModule());
+        menuModuleItems.put(7, getInventoryModule());
+        menuModuleItems.put(8, getSettingsModule());
     }
 
     public static MenuItem getMenuModuleById(final int moduleId) {
@@ -142,25 +141,13 @@ public abstract class MenuConfigs {
         return menuItems;
     }
 
-    private static List<MenuItem> getPayrollModule() {
+    private static List<MenuItem> getIntegrationsModule() {
         final List<MenuItem> menuItems = new ArrayList<>();
-        menuItems.add(new MenuItem(0, R.drawable.ic_menu_item_placeholder, "Payout", false));
-        menuItems.add(new MenuItem(1, R.drawable.ic_menu_item_placeholder, "Holidays", false));
-        menuItems.add(new MenuItem(2, R.drawable.ic_menu_item_placeholder, "Salary Report", false));
-        menuItems.add(new MenuItem(3, R.drawable.ic_menu_item_placeholder, "Bonus Type", false));
-        menuItems.add(new MenuItem(4, R.drawable.ic_menu_item_placeholder, "Payroll Expenses", false));
-        menuItems.add(new MenuItem(5, R.drawable.ic_menu_item_placeholder, "Payroll Payments", false));
-        menuItems.add(new MenuItem(6, R.drawable.ic_menu_item_placeholder, "Dividend Declarations", false));
-        menuItems.add(new MenuItem(7, R.drawable.ic_menu_item_placeholder, "Dividend Payments", false));
-        return menuItems;
-    }
-
-    private static List<MenuItem> getExpensesModule() {
-        final List<MenuItem> menuItems = new ArrayList<>();
-        menuItems.add(new MenuItem(0, R.drawable.ic_menu_item_placeholder, "Cost Center", false));
-        menuItems.add(new MenuItem(1, R.drawable.ic_menu_item_placeholder, "Expenses", false));
-        menuItems.add(new MenuItem(2, R.drawable.ic_menu_item_placeholder, "Expenses Payments", false));
-        menuItems.add(new MenuItem(3, R.drawable.ic_menu_item_placeholder, "Write Off", false));
+        menuItems.add(new MenuItem(0, R.drawable.ic_integration_general, "General", true));
+        menuItems.add(new MenuItem(1, R.drawable.ic_integration_magento, "Magento", true));
+        menuItems.add(new MenuItem(2, R.drawable.ic_integration_shopify, "Shopify", true));
+        menuItems.add(new MenuItem(3, R.drawable.ic_integration_etsy, "Etsy", true));
+        menuItems.add(new MenuItem(4, R.drawable.ic_integration_woo, "WooCommerce", true));
         return menuItems;
     }
 
@@ -209,7 +196,8 @@ public abstract class MenuConfigs {
             case 1: return getFragmentByIdWithCRMModule(itemId);
             case 3: return getFragmentByIdWithHRModule(itemId);
             case 4: return getFragmentByIdWithPurchaseModule(itemId);
-            case 8: return getFragmentByIdWithInventoryModule(itemId);
+            case 6: return getFragmentByIdWithIntegrationsModule(itemId);
+            case 7: return getFragmentByIdWithInventoryModule(itemId);
         }
         return null;
     }
@@ -240,6 +228,20 @@ public abstract class MenuConfigs {
         return null;
     }
 
+    private static BaseMasterFlowFragment getFragmentByIdWithHRModule(final int itemId) {
+        final int hrModuleId = 3;
+        switch (itemId) {
+            case 0: return EmployeesFragment_.builder().build();
+            case 1: return ApplicationsListFragment_.builder().build();
+            case 2: return JobPositionsListFragment_.builder().build();
+            case 3: return BirthdaysListFragment_.builder().build();
+            case 4: return VacationsListFragment_.builder().build();
+            case 5: return AttendanceListFragment_.builder().build();
+            case 6: return HRDashboardListFragment_.builder().moduleId(hrModuleId).build();
+        }
+        return null;
+    }
+
     private static BaseMasterFlowFragment getFragmentByIdWithPurchaseModule(final int itemId) {
         final int purchaseModuleId = 4;
         switch (itemId) {
@@ -251,6 +253,18 @@ public abstract class MenuConfigs {
         return null;
     }
 
+    private static BaseMasterFlowFragment getFragmentByIdWithIntegrationsModule(final int itemId) {
+        final int integrationsModuleId = 4;
+        switch (itemId) {
+            case 0: return IntegrationsListFragment_.builder().itemLabel(getItemLabel(integrationsModuleId, itemId)).build();
+            case 1: return IntegrationsListFragment_.builder().itemLabel(getItemLabel(integrationsModuleId, itemId)).channel("magento").build();
+            case 2: return IntegrationsListFragment_.builder().itemLabel(getItemLabel(integrationsModuleId, itemId)).channel("shopify").build();
+            case 3: return IntegrationsListFragment_.builder().itemLabel(getItemLabel(integrationsModuleId, itemId)).channel("etsy").build();
+            case 4: return IntegrationsListFragment_.builder().itemLabel(getItemLabel(integrationsModuleId, itemId)).channel("woo").build();
+        }
+        return null;
+    }
+
     private static BaseMasterFlowFragment getFragmentByIdWithInventoryModule(final int itemId) {
         switch (itemId) {
             case 0: return ProductsListFragment_.builder().build();
@@ -258,20 +272,6 @@ public abstract class MenuConfigs {
             case 2: return StockReturnsListFragment_.builder().build();
             case 3: return StockCorrectionsListFragment_.builder().build();
             case 4: return TransfersFragment_.builder().build();
-        }
-        return null;
-    }
-
-    private static BaseMasterFlowFragment getFragmentByIdWithHRModule(final int itemId) {
-        final int hrModuleId = 3;
-        switch (itemId) {
-            case 0: return EmployeesFragment_.builder().build();
-            case 1: return ApplicationsListFragment_.builder().build();
-            case 2: return JobPositionsListFragment_.builder().build();
-            case 3: return BirthdaysListFragment_.builder().build();
-            case 4: return VacationsListFragment_.builder().build();
-            case 5: return AttendanceListFragment_.builder().build();
-            case 6: return HRDashboardListFragment_.builder().moduleId(hrModuleId).build();
         }
         return null;
     }
