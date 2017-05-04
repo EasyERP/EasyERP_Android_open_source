@@ -46,7 +46,7 @@ public abstract class MenuConfigs {
         menuModules.add(new MenuItem(3, R.drawable.ic_hr, "HR", true));
         menuModules.add(new MenuItem(4, R.drawable.ic_purchases, "Purchases", true));
         menuModules.add(new MenuItem(5, R.drawable.ic_accounting, "Accounting", false));
-        menuModules.add(new MenuItem(6, R.drawable.ic_integrations, "Integrations", true));
+        menuModules.add(new MenuItem(6, R.drawable.ic_integration, "Integrations", true));
         menuModules.add(new MenuItem(7, R.drawable.ic_inventory, "Inventory", true));
         menuModules.add(new MenuItem(8, R.drawable.ic_settings, "Settings", false));
 
@@ -143,11 +143,11 @@ public abstract class MenuConfigs {
 
     private static List<MenuItem> getIntegrationsModule() {
         final List<MenuItem> menuItems = new ArrayList<>();
-        menuItems.add(new MenuItem(0, R.drawable.ic_menu_item_placeholder, "General", true));
-        menuItems.add(new MenuItem(1, R.drawable.ic_menu_item_placeholder, "Magento", true));
-        menuItems.add(new MenuItem(2, R.drawable.ic_menu_item_placeholder, "Shopify", true));
-        menuItems.add(new MenuItem(3, R.drawable.ic_menu_item_placeholder, "Etsy", true));
-        menuItems.add(new MenuItem(4, R.drawable.ic_menu_item_placeholder, "WooCommerce", true));
+        menuItems.add(new MenuItem(0, R.drawable.ic_integration_general, "General", true));
+        menuItems.add(new MenuItem(1, R.drawable.ic_integration_magento, "Magento", true));
+        menuItems.add(new MenuItem(2, R.drawable.ic_integration_shopify, "Shopify", true));
+        menuItems.add(new MenuItem(3, R.drawable.ic_integration_etsy, "Etsy", true));
+        menuItems.add(new MenuItem(4, R.drawable.ic_integration_woo, "WooCommerce", true));
         return menuItems;
     }
 
