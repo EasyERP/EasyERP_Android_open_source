@@ -1,6 +1,7 @@
 package com.thinkmobiles.easyerp.presentation.screens.integrations;
 
 import com.thinkmobiles.easyerp.data.model.integrations.Channel;
+import com.thinkmobiles.easyerp.data.model.integrations.ChannelType;
 import com.thinkmobiles.easyerp.presentation.base.rules.master.selectable.MasterSelectablePresenterHelper;
 import com.thinkmobiles.easyerp.presentation.base.rules.master.selectable.SelectableView;
 import com.thinkmobiles.easyerp.presentation.holders.data.integrations.ChannelDH;
@@ -20,14 +21,14 @@ public final class IntegrationsListPresenter extends MasterSelectablePresenterHe
     private IntegrationsListContract.IntegrationsListView view;
     private IntegrationsListContract.IntegrationsListModel model;
 
-    private final String channelFilter;
+    private final ChannelType channelType;
 
     private final ArrayList<Channel> channels = new ArrayList<>();
 
-    public IntegrationsListPresenter(IntegrationsListContract.IntegrationsListView view, IntegrationsListContract.IntegrationsListModel model, String channel) {
+    public IntegrationsListPresenter(IntegrationsListContract.IntegrationsListView view, IntegrationsListContract.IntegrationsListModel model, ChannelType channelType) {
         this.view = view;
         this.model = model;
-        this.channelFilter = channel;
+        this.channelType = channelType;
 
         this.view.setPresenter(this);
     }
@@ -47,11 +48,11 @@ public final class IntegrationsListPresenter extends MasterSelectablePresenterHe
     @Override
     protected void loadPage(int page) {
         compositeSubscription.add(
-                model.getChannels(channelFilter).subscribe(
-                        channelResponseGetResultItems -> {
-                            totalItems = channelResponseGetResultItems.result.size();
-                            saveData(channelResponseGetResultItems.result, true);
-                            setData(channelResponseGetResultItems.result, true);
+                model.getChannels(channelType).subscribe(
+                        channels -> {
+                            totalItems = channels.size();
+                            saveData(channels, true);
+                            setData(channels, true);
                         }, t -> error(t))
                 );
     }

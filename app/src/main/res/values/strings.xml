@@ -365,4 +365,8 @@
 
     <string name="connected">Connected</string>
     <string name="disconnected">Disconnected</string>
+    <string name="orders">Orders</string>
+    <string name="conflicted_products">Conflicted Products</string>
+    <string name="listing">Listing</string>
+    <string name="unlinked_orders">Unlinked Orders</string>
 </resources>

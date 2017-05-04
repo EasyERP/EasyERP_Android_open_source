@@ -35,6 +35,15 @@ public final class Channel implements Parcelable {
     public String username;
     public WarehouseSettings warehouseSettings;
 
+    public int conflictProducts;
+    public int importedOrders;
+    public int importedProducts;
+    public int unlinkedOrders;
+
+    public ChannelType getChannelType() {
+        return ChannelType.valueOf(type.toUpperCase());
+    }
+
     public Channel() {
     }
 
@@ -65,6 +74,10 @@ public final class Channel implements Parcelable {
         dest.writeString(this.user);
         dest.writeString(this.username);
         dest.writeParcelable(this.warehouseSettings, flags);
+        dest.writeInt(this.conflictProducts);
+        dest.writeInt(this.importedOrders);
+        dest.writeInt(this.importedProducts);
+        dest.writeInt(this.unlinkedOrders);
     }
 
     protected Channel(Parcel in) {
@@ -88,6 +101,10 @@ public final class Channel implements Parcelable {
         this.user = in.readString();
         this.username = in.readString();
         this.warehouseSettings = in.readParcelable(WarehouseSettings.class.getClassLoader());
+        this.conflictProducts = in.readInt();
+        this.importedOrders = in.readInt();
+        this.importedProducts = in.readInt();
+        this.unlinkedOrders = in.readInt();
     }
 
     public static final Creator<Channel> CREATOR = new Creator<Channel>() {

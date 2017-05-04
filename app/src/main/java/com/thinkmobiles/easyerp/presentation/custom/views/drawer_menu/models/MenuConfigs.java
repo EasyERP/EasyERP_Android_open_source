@@ -1,6 +1,7 @@
 package com.thinkmobiles.easyerp.presentation.custom.views.drawer_menu.models;
 
 import com.thinkmobiles.easyerp.R;
+import com.thinkmobiles.easyerp.data.model.integrations.ChannelType;
 import com.thinkmobiles.easyerp.presentation.base.BaseMasterFlowFragment;
 import com.thinkmobiles.easyerp.presentation.screens.crm.companies.CompaniesFragment_;
 import com.thinkmobiles.easyerp.presentation.screens.crm.dashboard.DashboardListFragment_;
@@ -257,10 +258,10 @@ public abstract class MenuConfigs {
         final int integrationsModuleId = 4;
         switch (itemId) {
             case 0: return IntegrationsListFragment_.builder().itemLabel(getItemLabel(integrationsModuleId, itemId)).build();
-            case 1: return IntegrationsListFragment_.builder().itemLabel(getItemLabel(integrationsModuleId, itemId)).channel("magento").build();
-            case 2: return IntegrationsListFragment_.builder().itemLabel(getItemLabel(integrationsModuleId, itemId)).channel("shopify").build();
-            case 3: return IntegrationsListFragment_.builder().itemLabel(getItemLabel(integrationsModuleId, itemId)).channel("etsy").build();
-            case 4: return IntegrationsListFragment_.builder().itemLabel(getItemLabel(integrationsModuleId, itemId)).channel("woo").build();
+            case 1: return IntegrationsListFragment_.builder().itemLabel(getItemLabel(integrationsModuleId, itemId)).channelType(ChannelType.MAGENTO).build();
+            case 2: return IntegrationsListFragment_.builder().itemLabel(getItemLabel(integrationsModuleId, itemId)).channelType(ChannelType.SHOPIFY).build();
+            case 3: return IntegrationsListFragment_.builder().itemLabel(getItemLabel(integrationsModuleId, itemId)).channelType(ChannelType.ETSY).build();
+            case 4: return IntegrationsListFragment_.builder().itemLabel(getItemLabel(integrationsModuleId, itemId)).channelType(ChannelType.WOO).build();
         }
         return null;
     }
