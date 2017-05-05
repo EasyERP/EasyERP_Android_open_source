@@ -369,4 +369,13 @@
     <string name="conflicted_products">Conflicted Products</string>
     <string name="listing">Listing</string>
     <string name="unlinked_orders">Unlinked Orders</string>
+
+    <string name="magento_channel_details">Magento channel details</string>
+    <string name="channel_name">Channel Name</string>
+    <string name="base_url">Base URL</string>
+    <string name="user_name">User Name</string>
+    <string name="api_password">API Password</string>
+    <string name="for_import_from_magento_use">For import from Magento use</string>
+    <string name="location">Location</string>
+    <string name="price_list">Price List</string>
 </resources>

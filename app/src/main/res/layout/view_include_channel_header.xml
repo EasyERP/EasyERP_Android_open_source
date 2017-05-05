@@ -7,14 +7,26 @@
     android:orientation="vertical"
     tools:background="@android:color/white">
 
-    <TextView
-        android:id="@+id/tvChannel_VICH"
-        style="@style/TextDetailsTitleStyle"
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/bg_with_bottom_divider_line"
-        android:padding="@dimen/default_padding"
-        tools:text="Magento Channel" />
+        android:padding="@dimen/default_padding">
+
+        <TextView
+            android:id="@+id/tvChannel_VICH"
+            style="@style/TextDetailsTitleStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Magento Channel" />
+
+        <TextView
+            android:id="@+id/tvChannelStatus_VICH"
+            style="@style/MediumChipsStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|center_vertical"/>
+    </FrameLayout>
 
     <LinearLayout
         android:layout_width="match_parent"

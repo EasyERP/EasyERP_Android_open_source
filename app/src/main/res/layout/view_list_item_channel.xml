@@ -14,8 +14,8 @@
 
         <ImageView
             android:id="@+id/ivChannelImage_VLIC"
-            android:layout_width="@dimen/image_size_small_22"
-            android:layout_height="@dimen/image_size_small_22"
+            android:layout_width="@dimen/image_size_small_38"
+            android:layout_height="@dimen/image_size_small_38"
             tools:src="@drawable/ic_woo" />
 
         <LinearLayout
@@ -31,7 +31,6 @@
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
-
                 <TextView
                     android:id="@+id/tvChannelName_VLIC"
                     style="@style/TextListTitleStyle"
@@ -42,13 +41,12 @@
                     android:textSize="@dimen/text_list_item_large_18"
                     tools:text="Test WooCommerce channel" />
 
-                <TextView
-                    android:id="@+id/tvStatusConnected_VLIC"
-                    style="@style/SmallChipsStyle"
+                <ImageView
+                    android:id="@+id/ivStatusConnected_VLIC"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/default_padding_middle"
-                    tools:text="Connected" />
+                    tools:src="@drawable/ic_connected"/>
             </LinearLayout>
 
             <TextView
@@ -56,7 +54,6 @@
                 style="@style/TextListInfoGreyStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_marginTop="@dimen/default_padding_quart"
                 android:textAllCaps="true"
                 android:textSize="@dimen/text_size_small_14"
                 tools:text="Woo" />

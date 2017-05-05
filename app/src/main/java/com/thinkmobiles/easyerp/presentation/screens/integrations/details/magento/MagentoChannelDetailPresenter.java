@@ -3,6 +3,7 @@ package com.thinkmobiles.easyerp.presentation.screens.integrations.details.magen
 import com.thinkmobiles.easyerp.data.model.integrations.Channel;
 import com.thinkmobiles.easyerp.presentation.base.rules.content.ContentPresenterHelper;
 import com.thinkmobiles.easyerp.presentation.base.rules.content.ContentView;
+import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
 /**
  * @author Michael Soyma (Created on 5/4/2017).
@@ -24,7 +25,8 @@ public final class MagentoChannelDetailPresenter extends ContentPresenterHelper 
 
     @Override
     public void refresh() {
-
+        setData();
+        view.showProgress(Constants.ProgressType.NONE);
     }
 
     @Override
@@ -39,6 +41,18 @@ public final class MagentoChannelDetailPresenter extends ContentPresenterHelper 
 
     @Override
     protected void retainInstance() {
+        setData();
+    }
 
+    private void setData() {
+        view.displayChannelName(channel.channelName);
+        view.displayBaseUrl(channel.baseUrl);
+        view.displayUserName(channel.username);
+        view.displayPassword(channel.password);
+
+        view.displayWarehouse(channel.warehouseSettings.warehouse.name);
+        view.displayLocation(channel.warehouseSettings.location.name);
+        if (channel.priceList != null)
+            view.displayPriceList(channel.priceList.name);
     }
 }

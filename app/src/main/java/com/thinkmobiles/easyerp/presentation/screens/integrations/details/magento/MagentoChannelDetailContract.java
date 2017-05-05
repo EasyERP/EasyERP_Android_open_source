@@ -11,7 +11,14 @@ import com.thinkmobiles.easyerp.presentation.base.rules.content.ContentView;
  */
 public interface MagentoChannelDetailContract {
     interface MagnetoChannelView extends BaseView<MagentoChannelPresenter>, ContentView {
+        void displayChannelName(final String channelName);
+        void displayBaseUrl(final String url);
+        void displayUserName(final String userName);
+        void displayPassword(final String apiPassword);
 
+        void displayWarehouse(final String warehouse);
+        void displayLocation(final String location);
+        void displayPriceList(final String priceList);
     }
     interface MagentoChannelPresenter extends ContentPresenter {
 
