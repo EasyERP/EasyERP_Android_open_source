@@ -1,13 +1,16 @@
 package com.thinkmobiles.easyerp.domain.integrations;
 
 import com.thinkmobiles.easyerp.data.api.Rest;
-import com.thinkmobiles.easyerp.data.model.ResponseGetResultItems;
 import com.thinkmobiles.easyerp.data.model.integrations.Channel;
+import com.thinkmobiles.easyerp.data.model.integrations.ChannelType;
 import com.thinkmobiles.easyerp.data.services.IntegrationsService;
 import com.thinkmobiles.easyerp.presentation.base.NetworkRepository;
 import com.thinkmobiles.easyerp.presentation.screens.integrations.IntegrationsListContract;
+import com.thinkmobiles.easyerp.presentation.screens.integrations.details.IntegrationChannelDetailModel;
 
 import org.androidannotations.annotations.EBean;
+
+import java.util.ArrayList;
 
 import rx.Observable;
 
@@ -17,7 +20,7 @@ import rx.Observable;
  *         Email:  michael.soyma@thinkmobiles.com
  */
 @EBean
-public class IntegrationsRepository extends NetworkRepository implements IntegrationsListContract.IntegrationsListModel {
+public class IntegrationsRepository extends NetworkRepository implements IntegrationsListContract.IntegrationsListModel, IntegrationChannelDetailModel {
 
     private IntegrationsService integrationsService;
 
@@ -26,15 +29,16 @@ public class IntegrationsRepository extends NetworkRepository implements Integra
     }
 
     @Override
-    public Observable<ResponseGetResultItems<Channel>> getChannels(String channelName) {
+    public Observable<ArrayList<Channel>> getChannels(ChannelType channelType) {
         return getNetworkObservable(
-                channelName == null ?
+                channelType == null ?
                         integrationsService.getChannels() :
-                        integrationsService.getChannels(channelName));
+                        integrationsService.getChannels(channelType.name().toLowerCase()))
+                .flatMap(channelResponseGetChannels -> Observable.just(channelResponseGetChannels.getPackedChannels()));
     }
 
     @Override
-    public Observable<Channel> changeConnectedStatus(String channelId, boolean connected) {
-        return getNetworkObservable(integrationsService.changeConnectStatus(channelId, connected));
+    public Observable<Channel> changeConnectStateInChannel(String channelId, boolean connect) {
+        return getNetworkObservable(integrationsService.changeConnectStatus(channelId, connect));
     }
 }

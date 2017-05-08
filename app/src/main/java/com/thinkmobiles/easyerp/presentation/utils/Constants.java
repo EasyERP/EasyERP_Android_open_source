@@ -181,6 +181,7 @@ public abstract class Constants {
     //Bundle keys
     public static final String KEY_FILTER_LIST              = "keyFilterList";
     public static final String KEY_REPORT_TYPES_LIST        = "keyReportTypesList";
+    public static final String KEY_CHANNEL                  = "keyChannel";
 
     public enum ErrorCode {
         OK,
@@ -203,5 +204,9 @@ public abstract class Constants {
     public static class RequestCodes {
         public static final int RC_CHOOSE_REPORT_TYPES      = 8001;
         public static final int RC_GOOGLE_SIGN_IN           = 8002;
+    }
+
+    public static class Actions {
+        public static final String ACTION_UPDATE_CHANNEL    = "action_update_channel";
     }
 }

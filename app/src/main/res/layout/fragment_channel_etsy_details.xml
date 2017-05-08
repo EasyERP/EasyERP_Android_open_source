@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:background="@android:color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <include layout="@layout/view_include_channel_header" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingEnd="@dimen/default_padding"
+            android:paddingStart="@dimen/default_padding">
+
+            <TextView
+                style="@style/TextContentTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
+                android:text="@string/etsy_channel_details" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <android.support.design.widget.TextInputLayout
+                    style="@style/DefaultTheme.LeadTextInputLayoutStyle"
+                    android:layout_marginEnd="@dimen/default_padding_half"
+                    android:hint="@string/channel_name">
+
+                    <EditText
+                        android:id="@+id/etChannelName_FCED"
+                        style="@style/DefaultTheme.LeadInputFieldStyle"
+                        android:text="@string/err_not_specified" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    style="@style/DefaultTheme.LeadTextInputLayoutStyle"
+                    android:layout_marginStart="@dimen/default_padding_half"
+                    android:hint="@string/shop_name">
+
+                    <EditText
+                        android:id="@+id/etShopName_FCED"
+                        style="@style/DefaultTheme.LeadInputFieldStyle"
+                        android:inputType="textUri"
+                        android:text="@string/err_not_specified" />
+
+                </android.support.design.widget.TextInputLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <android.support.design.widget.TextInputLayout
+                    style="@style/DefaultTheme.LeadTextInputLayoutStyle"
+                    android:layout_marginEnd="@dimen/default_padding_half"
+                    android:hint="@string/keystring">
+
+                    <EditText
+                        android:id="@+id/etKeyString_FCED"
+                        style="@style/DefaultTheme.LeadInputFieldStyle"
+                        android:text="@string/err_not_specified" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    style="@style/DefaultTheme.LeadTextInputLayoutStyle"
+                    android:layout_marginStart="@dimen/default_padding_half"
+                    android:hint="@string/shared_secret"
+                    app:passwordToggleEnabled="true"
+                    app:passwordToggleTint="@color/selector_color_password_toggle">
+
+                    <EditText
+                        android:id="@+id/etSharedSecret_FCED"
+                        style="@style/DefaultTheme.LeadInputFieldStyle"
+                        android:inputType="textPassword"
+                        android:text="@string/err_not_specified" />
+
+                </android.support.design.widget.TextInputLayout>
+
+            </LinearLayout>
+
+            <TextView
+                style="@style/TextContentTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/for_import_from_etsy_use" />
+
+            <include layout="@layout/view_include_channel_warehouse_settings" />
+
+            <android.support.v7.widget.AppCompatCheckBox
+                android:id="@+id/cbStatusOnEtsy_FCED"
+                style="@style/CustomCheckBoxStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/update_shipping_status_on_etsy"
+                tools:checked="true" />
+
+            <android.support.v7.widget.AppCompatCheckBox
+                android:id="@+id/cbMethodOnEtsy_FCED"
+                style="@style/CustomCheckBoxStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/default_padding"
+                android:layout_marginTop="@dimen/default_padding_small"
+                android:text="@string/update_shipping_method_on_etsy"
+                tools:checked="true" />
+        </LinearLayout>
+    </LinearLayout>
+</android.support.v4.widget.NestedScrollView>

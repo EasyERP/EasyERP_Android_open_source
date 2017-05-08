@@ -365,4 +365,41 @@
 
     <string name="connected">Connected</string>
     <string name="disconnected">Disconnected</string>
+    <string name="orders">Orders</string>
+    <string name="conflicted_products">Conflicted Products</string>
+    <string name="listing">Listing</string>
+    <string name="unlinked_orders">Unlinked Orders</string>
+
+    <string name="magento_channel_details">Magento channel details</string>
+    <string name="shopify_channel_details">Shopify channel details</string>
+    <string name="woo_channel_details">Woo channel details</string>
+    <string name="etsy_channel_details">Etsy channel details</string>
+    <string name="for_import_from_magento_use">For import from Magento use</string>
+    <string name="for_import_from_shopify_use">For import from Shopify use</string>
+    <string name="for_import_from_woo_use">For import from Woo use</string>
+    <string name="for_import_from_etsy_use">For import from Etsy use</string>
+
+    <string name="channel_name">Channel Name</string>
+    <string name="base_url">Base URL</string>
+    <string name="user_name">User Name</string>
+    <string name="api_password">API Password</string>
+    <string name="api_key">API Key</string>
+    <string name="api_secret">API Secret</string>
+    <string name="consumer_secret">Consumer Secret</string>
+    <string name="consumer_key">Consumer Key</string>
+    <string name="version">Version</string>
+    <string name="bank_account">Bank Account</string>
+    <string name="shop_name">Shop Name</string>
+    <string name="keystring">Keystring</string>
+    <string name="shared_secret">Shared Secret</string>
+
+    <string name="update_shipping_status_on_etsy">Update shipping status on Etsy</string>
+    <string name="update_shipping_method_on_etsy">Update shipping method on Etsy</string>
+
+    <string name="location">Location</string>
+    <string name="price_list">Price List</string>
+
+    <string name="change_connect_state">Connect</string>
+    <string name="connect">Connect</string>
+    <string name="disconnect">Disconnect</string>
 </resources>

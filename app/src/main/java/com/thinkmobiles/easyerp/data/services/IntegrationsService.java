@@ -1,7 +1,7 @@
 package com.thinkmobiles.easyerp.data.services;
 
-import com.thinkmobiles.easyerp.data.model.ResponseGetResultItems;
 import com.thinkmobiles.easyerp.data.model.integrations.Channel;
+import com.thinkmobiles.easyerp.data.model.integrations.ResponseGetChannels;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
 import retrofit2.http.Field;
@@ -19,10 +19,10 @@ import rx.Observable;
 public interface IntegrationsService {
 
     @GET(Constants.GET_CHANNELS)
-    Observable<ResponseGetResultItems<Channel>> getChannels();
+    Observable<ResponseGetChannels> getChannels();
 
     @GET(Constants.GET_CHANNELS_BY_NAME)
-    Observable<ResponseGetResultItems<Channel>> getChannels(@Path("channelName") final String channelName);
+    Observable<ResponseGetChannels> getChannels(@Path("channelName") final String channelName);
 
     @FormUrlEncoded
     @PATCH(Constants.PATCH_CHANNEL_CONNECT_STATE)

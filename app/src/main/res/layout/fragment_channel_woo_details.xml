@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:background="@android:color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <include layout="@layout/view_include_channel_header" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingEnd="@dimen/default_padding"
+            android:paddingStart="@dimen/default_padding">
+
+            <TextView
+                style="@style/TextContentTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
+                android:text="@string/woo_channel_details" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <android.support.design.widget.TextInputLayout
+                    style="@style/DefaultTheme.LeadTextInputLayoutStyle"
+                    android:layout_marginEnd="@dimen/default_padding_half"
+                    android:hint="@string/channel_name">
+
+                    <EditText
+                        android:id="@+id/etChannelName_FCWD"
+                        style="@style/DefaultTheme.LeadInputFieldStyle"
+                        android:text="@string/err_not_specified" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    style="@style/DefaultTheme.LeadTextInputLayoutStyle"
+                    android:layout_marginStart="@dimen/default_padding_half"
+                    android:hint="@string/base_url">
+
+                    <EditText
+                        android:id="@+id/etBaseUrl_FCWD"
+                        style="@style/DefaultTheme.LeadInputFieldStyle"
+                        android:inputType="textUri"
+                        android:text="@string/err_not_specified" />
+
+                </android.support.design.widget.TextInputLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <android.support.design.widget.TextInputLayout
+                    style="@style/DefaultTheme.LeadTextInputLayoutStyle"
+                    android:layout_marginEnd="@dimen/default_padding_half"
+                    android:hint="@string/consumer_key">
+
+                    <EditText
+                        android:id="@+id/etConsumerKey_FCWD"
+                        style="@style/DefaultTheme.LeadInputFieldStyle"
+                        android:text="@string/err_not_specified" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    style="@style/DefaultTheme.LeadTextInputLayoutStyle"
+                    android:layout_marginStart="@dimen/default_padding_half"
+                    android:hint="@string/consumer_secret"
+                    app:passwordToggleEnabled="true"
+                    app:passwordToggleTint="@color/selector_color_password_toggle">
+
+                    <EditText
+                        android:id="@+id/etConsumerSecret_FCWD"
+                        style="@style/DefaultTheme.LeadInputFieldStyle"
+                        android:inputType="textPassword"
+                        android:text="@string/err_not_specified" />
+
+                </android.support.design.widget.TextInputLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="2">
+
+                <android.support.design.widget.TextInputLayout
+                    style="@style/DefaultTheme.LeadTextInputLayoutStyle"
+                    android:layout_marginEnd="@dimen/default_padding"
+                    android:hint="@string/version">
+
+                    <EditText
+                        android:id="@+id/etVersion_FCWD"
+                        style="@style/DefaultTheme.LeadInputFieldStyle"
+                        android:text="@string/err_not_specified" />
+
+                </android.support.design.widget.TextInputLayout>
+
+            </LinearLayout>
+
+            <TextView
+                style="@style/TextContentTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/for_import_from_woo_use" />
+
+            <include layout="@layout/view_include_channel_warehouse_settings" />
+        </LinearLayout>
+    </LinearLayout>
+</android.support.v4.widget.NestedScrollView>

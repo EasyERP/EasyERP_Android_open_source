@@ -15,9 +15,9 @@ public final class PriceList implements Parcelable {
     @SerializedName("_id")
     public String id;
     public boolean cost;
-    public boolean currency;
-    public boolean name;
-    public boolean priceListCode;
+    public String currency;
+    public String name;
+    public String priceListCode;
 
     public PriceList() {
     }
@@ -31,17 +31,17 @@ public final class PriceList implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(this.id);
         dest.writeByte(this.cost ? (byte) 1 : (byte) 0);
-        dest.writeByte(this.currency ? (byte) 1 : (byte) 0);
-        dest.writeByte(this.name ? (byte) 1 : (byte) 0);
-        dest.writeByte(this.priceListCode ? (byte) 1 : (byte) 0);
+        dest.writeString(this.currency);
+        dest.writeString(this.name);
+        dest.writeString(this.priceListCode);
     }
 
     protected PriceList(Parcel in) {
         this.id = in.readString();
         this.cost = in.readByte() != 0;
-        this.currency = in.readByte() != 0;
-        this.name = in.readByte() != 0;
-        this.priceListCode = in.readByte() != 0;
+        this.currency = in.readString();
+        this.name = in.readString();
+        this.priceListCode = in.readString();
     }
 
     public static final Creator<PriceList> CREATOR = new Creator<PriceList>() {
