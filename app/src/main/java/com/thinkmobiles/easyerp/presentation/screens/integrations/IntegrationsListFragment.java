@@ -1,5 +1,12 @@
 package com.thinkmobiles.easyerp.presentation.screens.integrations;
 
+import android.app.Activity;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.support.v4.content.LocalBroadcastManager;
+
 import com.thinkmobiles.easyerp.data.model.integrations.Channel;
 import com.thinkmobiles.easyerp.data.model.integrations.ChannelType;
 import com.thinkmobiles.easyerp.domain.integrations.IntegrationsRepository;
@@ -12,6 +19,7 @@ import com.thinkmobiles.easyerp.presentation.screens.integrations.details.etsy.E
 import com.thinkmobiles.easyerp.presentation.screens.integrations.details.magento.MagentoChannelDetailFragment_;
 import com.thinkmobiles.easyerp.presentation.screens.integrations.details.shopify.ShopifyChannelDetailFragment_;
 import com.thinkmobiles.easyerp.presentation.screens.integrations.details.woo.WooChannelDetailFragment_;
+import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterViews;
@@ -87,4 +95,24 @@ public class IntegrationsListFragment extends MasterSelectableFragment implement
                 break;
         }
     }
+
+    @Override
+    public void onAttach(Activity context) {
+        super.onAttach(context);
+        LocalBroadcastManager.getInstance(context).registerReceiver(updateChannelReceiver, new IntentFilter(Constants.Actions.ACTION_UPDATE_CHANNEL));
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        LocalBroadcastManager.getInstance(getActivity()).unregisterReceiver(updateChannelReceiver);
+    }
+
+    private final BroadcastReceiver updateChannelReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (presenter != null)
+                presenter.updateListItemChannel(intent.getParcelableExtra(Constants.KEY_CHANNEL));
+        }
+    };
 }

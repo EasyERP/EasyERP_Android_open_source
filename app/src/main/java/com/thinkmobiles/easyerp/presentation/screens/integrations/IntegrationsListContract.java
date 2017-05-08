@@ -21,10 +21,9 @@ public interface IntegrationsListContract {
         void openDetailChannel(final Channel channel);
     }
     interface IntegrationsListPresenter extends SelectablePresenter {
-
+        void updateListItemChannel(final Channel channel);
     }
     interface IntegrationsListModel extends BaseModel {
         Observable<ArrayList<Channel>> getChannels(final ChannelType channelType);
-        Observable<Channel> changeConnectedStatus(final String channelId, final boolean connected);
     }
 }

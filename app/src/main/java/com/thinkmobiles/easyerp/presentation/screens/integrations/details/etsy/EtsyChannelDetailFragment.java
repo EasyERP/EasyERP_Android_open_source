@@ -39,7 +39,7 @@ public class EtsyChannelDetailFragment extends IntegrationChannelDetailFragment 
     @AfterInject
     @Override
     public void initPresenter() {
-        new EtsyChannelDetailPresenter(this, channel);
+        new EtsyChannelDetailPresenter(this, integrationsRepository, channel);
     }
 
     @Override
@@ -50,11 +50,6 @@ public class EtsyChannelDetailFragment extends IntegrationChannelDetailFragment 
     @AfterViews
     protected void initAnalytics() {
         GoogleAnalyticHelper.trackScreenView(this, getResources().getConfiguration());
-    }
-
-    @AfterViews
-    protected void initUI() {
-        getPresenter().subscribe();
     }
 
     @Override
@@ -86,5 +81,10 @@ public class EtsyChannelDetailFragment extends IntegrationChannelDetailFragment 
     public void displayBankAccount(String bankAccount) {
         tilContainerBankAccount_VICWS.setVisibility(View.VISIBLE);
         etBankAccount_VICWS.setText(bankAccount);
+    }
+
+    @Override
+    protected void changeConnectState() {
+        presenter.changeConnectState();
     }
 }

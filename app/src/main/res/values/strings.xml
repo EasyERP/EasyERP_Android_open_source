@@ -398,4 +398,8 @@
 
     <string name="location">Location</string>
     <string name="price_list">Price List</string>
+
+    <string name="change_connect_state">Connect</string>
+    <string name="connect">Connect</string>
+    <string name="disconnect">Disconnect</string>
 </resources>

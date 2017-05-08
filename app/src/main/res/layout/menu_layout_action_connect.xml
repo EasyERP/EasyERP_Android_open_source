@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:paddingEnd="@dimen/default_padding_middle"
+    android:paddingStart="@dimen/default_padding_middle">
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/btnChangeConnection_MLAS"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        tools:text="@string/connect" />
+</FrameLayout>

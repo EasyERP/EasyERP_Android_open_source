@@ -6,6 +6,7 @@ import com.thinkmobiles.easyerp.data.model.integrations.ChannelType;
 import com.thinkmobiles.easyerp.data.services.IntegrationsService;
 import com.thinkmobiles.easyerp.presentation.base.NetworkRepository;
 import com.thinkmobiles.easyerp.presentation.screens.integrations.IntegrationsListContract;
+import com.thinkmobiles.easyerp.presentation.screens.integrations.details.IntegrationChannelDetailModel;
 
 import org.androidannotations.annotations.EBean;
 
@@ -19,7 +20,7 @@ import rx.Observable;
  *         Email:  michael.soyma@thinkmobiles.com
  */
 @EBean
-public class IntegrationsRepository extends NetworkRepository implements IntegrationsListContract.IntegrationsListModel {
+public class IntegrationsRepository extends NetworkRepository implements IntegrationsListContract.IntegrationsListModel, IntegrationChannelDetailModel {
 
     private IntegrationsService integrationsService;
 
@@ -37,7 +38,7 @@ public class IntegrationsRepository extends NetworkRepository implements Integra
     }
 
     @Override
-    public Observable<Channel> changeConnectedStatus(String channelId, boolean connected) {
-        return getNetworkObservable(integrationsService.changeConnectStatus(channelId, connected));
+    public Observable<Channel> changeConnectStateInChannel(String channelId, boolean connect) {
+        return getNetworkObservable(integrationsService.changeConnectStatus(channelId, connect));
     }
 }

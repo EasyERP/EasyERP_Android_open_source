@@ -1,7 +1,7 @@
 package com.thinkmobiles.easyerp.presentation.screens.integrations.details.magento;
 
 import com.thinkmobiles.easyerp.presentation.base.BaseView;
-import com.thinkmobiles.easyerp.presentation.base.rules.content.ContentPresenter;
+import com.thinkmobiles.easyerp.presentation.screens.integrations.details.IntegrationChannelDetailPresenter;
 import com.thinkmobiles.easyerp.presentation.screens.integrations.details.IntegrationChannelDetailView;
 
 /**
@@ -15,7 +15,7 @@ public interface MagentoChannelDetailContract {
         void displayUserName(final String userName);
         void displayPassword(final String apiPassword);
     }
-    interface MagentoChannelPresenter extends ContentPresenter {
+    interface MagentoChannelPresenter extends IntegrationChannelDetailPresenter {
 
     }
 }

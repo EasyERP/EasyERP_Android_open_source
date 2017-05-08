@@ -38,7 +38,7 @@ public class WooChannelDetailFragment extends IntegrationChannelDetailFragment i
     @AfterInject
     @Override
     public void initPresenter() {
-        new WooChannelDetailPresenter(this, channel);
+        new WooChannelDetailPresenter(this, integrationsRepository, channel);
     }
 
     @Override
@@ -49,11 +49,6 @@ public class WooChannelDetailFragment extends IntegrationChannelDetailFragment i
     @AfterViews
     protected void initAnalytics() {
         GoogleAnalyticHelper.trackScreenView(this, getResources().getConfiguration());
-    }
-
-    @AfterViews
-    protected void initUI() {
-        getPresenter().subscribe();
     }
 
     @Override
@@ -84,5 +79,10 @@ public class WooChannelDetailFragment extends IntegrationChannelDetailFragment i
     @Override
     public void displayVersion(String version) {
         etVersion_FCWD.setText(version);
+    }
+
+    @Override
+    protected void changeConnectState() {
+        presenter.changeConnectState();
     }
 }

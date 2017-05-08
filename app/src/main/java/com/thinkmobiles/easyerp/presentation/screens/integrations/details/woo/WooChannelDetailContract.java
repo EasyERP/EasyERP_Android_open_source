@@ -1,7 +1,7 @@
 package com.thinkmobiles.easyerp.presentation.screens.integrations.details.woo;
 
 import com.thinkmobiles.easyerp.presentation.base.BaseView;
-import com.thinkmobiles.easyerp.presentation.base.rules.content.ContentPresenter;
+import com.thinkmobiles.easyerp.presentation.screens.integrations.details.IntegrationChannelDetailPresenter;
 import com.thinkmobiles.easyerp.presentation.screens.integrations.details.IntegrationChannelDetailView;
 
 /**
@@ -16,7 +16,7 @@ public interface WooChannelDetailContract {
         void displayConsumerSecret(final String consumerSecret);
         void displayVersion(final String version);
     }
-    interface WooChannelPresenter extends ContentPresenter {
+    interface WooChannelPresenter extends IntegrationChannelDetailPresenter {
 
     }
 }

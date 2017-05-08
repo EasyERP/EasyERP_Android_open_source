@@ -1,7 +1,7 @@
 package com.thinkmobiles.easyerp.presentation.screens.integrations.details.shopify;
 
 import com.thinkmobiles.easyerp.presentation.base.BaseView;
-import com.thinkmobiles.easyerp.presentation.base.rules.content.ContentPresenter;
+import com.thinkmobiles.easyerp.presentation.screens.integrations.details.IntegrationChannelDetailPresenter;
 import com.thinkmobiles.easyerp.presentation.screens.integrations.details.IntegrationChannelDetailView;
 
 /**
@@ -15,7 +15,7 @@ public interface ShopifyChannelDetailContract {
         void displayApiKey(final String apiKey);
         void displayApiSecret(final String apiSecret);
     }
-    interface ShopifyChannelPresenter extends ContentPresenter {
+    interface ShopifyChannelPresenter extends IntegrationChannelDetailPresenter {
 
     }
 }

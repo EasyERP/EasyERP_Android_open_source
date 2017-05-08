@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import com.thinkmobiles.easyerp.BuildConfig;
+import com.thinkmobiles.easyerp.data.api.deserializers.ChannelDeserializer;
 import com.thinkmobiles.easyerp.data.api.deserializers.FilterDeserializer;
 import com.thinkmobiles.easyerp.data.api.deserializers.ProductIdDeserializer;
 import com.thinkmobiles.easyerp.data.api.interceptors.AddCookieInterceptor;
@@ -11,6 +12,7 @@ import com.thinkmobiles.easyerp.data.api.interceptors.BadCookieInterceptor;
 import com.thinkmobiles.easyerp.data.api.interceptors.ReceiveCookieInterceptor;
 import com.thinkmobiles.easyerp.data.model.ResponseError;
 import com.thinkmobiles.easyerp.data.model.crm.filter.ResponseFilters;
+import com.thinkmobiles.easyerp.data.model.integrations.Channel;
 import com.thinkmobiles.easyerp.data.model.inventory.product.detail.ProductId;
 import com.thinkmobiles.easyerp.data.services.ApplicationService;
 import com.thinkmobiles.easyerp.data.services.AttendanceService;
@@ -95,6 +97,7 @@ public class Rest {
     private Rest() {
         Gson malformedGson = new GsonBuilder()
                 .setLenient()
+                .registerTypeAdapter(Channel.class, new ChannelDeserializer())
                 .registerTypeAdapter(ResponseFilters.class, new FilterDeserializer())
                 .registerTypeAdapter(new TypeToken<ArrayList<ProductId>>(){}.getType(), new ProductIdDeserializer())
                 .create();

@@ -38,7 +38,7 @@ public class ShopifyChannelDetailFragment extends IntegrationChannelDetailFragme
     @AfterInject
     @Override
     public void initPresenter() {
-        new ShopifyChannelDetailPresenter(this, channel);
+        new ShopifyChannelDetailPresenter(this, integrationsRepository, channel);
     }
 
     @Override
@@ -49,11 +49,6 @@ public class ShopifyChannelDetailFragment extends IntegrationChannelDetailFragme
     @AfterViews
     protected void initAnalytics() {
         GoogleAnalyticHelper.trackScreenView(this, getResources().getConfiguration());
-    }
-
-    @AfterViews
-    protected void initUI() {
-        getPresenter().subscribe();
     }
 
     @Override
@@ -79,5 +74,10 @@ public class ShopifyChannelDetailFragment extends IntegrationChannelDetailFragme
     @Override
     public void displayApiSecret(String apiSecret) {
         etApiSecret_FCSD.setText(apiSecret);
+    }
+
+    @Override
+    protected void changeConnectState() {
+        presenter.changeConnectState();
     }
 }

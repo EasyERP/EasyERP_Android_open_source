@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <item
+        android:id="@+id/actionChangeConnect_MICD"
+        android:title="@string/change_connect_state"
+        app:actionLayout="@layout/menu_layout_action_connect"
+        app:showAsAction="always"
+        tools:visible="true" />
+</menu>

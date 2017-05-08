@@ -38,7 +38,7 @@ public class MagentoChannelDetailFragment extends IntegrationChannelDetailFragme
     @AfterInject
     @Override
     public void initPresenter() {
-        new MagentoChannelDetailPresenter(this, channel);
+        new MagentoChannelDetailPresenter(this, integrationsRepository, channel);
     }
 
     @Override
@@ -50,12 +50,6 @@ public class MagentoChannelDetailFragment extends IntegrationChannelDetailFragme
     protected void initAnalytics() {
         GoogleAnalyticHelper.trackScreenView(this, getResources().getConfiguration());
     }
-
-    @AfterViews
-    protected void initUI() {
-        getPresenter().subscribe();
-    }
-
 
     @Override
     public String getScreenName() {
@@ -82,4 +76,8 @@ public class MagentoChannelDetailFragment extends IntegrationChannelDetailFragme
         etApiPassword_FCMD.setText(apiPassword);
     }
 
+    @Override
+    protected void changeConnectState() {
+        presenter.changeConnectState();
+    }
 }

@@ -10,7 +10,6 @@ import com.michenko.simpleadapter.OnCardClickListener;
 import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.data.model.integrations.Channel;
 import com.thinkmobiles.easyerp.presentation.base.rules.master.selectable.SelectableVHHelper;
-import com.thinkmobiles.easyerp.presentation.custom.RoundRectDrawable;
 import com.thinkmobiles.easyerp.presentation.holders.data.integrations.ChannelDH;
 
 /**

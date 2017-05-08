@@ -3,6 +3,7 @@ package com.thinkmobiles.easyerp.presentation.screens.integrations.details.etsy;
 import com.thinkmobiles.easyerp.data.model.integrations.Channel;
 import com.thinkmobiles.easyerp.presentation.base.rules.content.ContentPresenterHelper;
 import com.thinkmobiles.easyerp.presentation.base.rules.content.ContentView;
+import com.thinkmobiles.easyerp.presentation.screens.integrations.details.IntegrationChannelDetailModel;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
 /**
@@ -13,14 +14,36 @@ import com.thinkmobiles.easyerp.presentation.utils.Constants;
 public final class EtsyChannelDetailPresenter extends ContentPresenterHelper implements EtsyChannelDetailContract.EtsyChannelPresenter {
 
     private EtsyChannelDetailContract.EtsyChannelView view;
+    private IntegrationChannelDetailModel model;
 
-    private final Channel channel;
+    private Channel channel;
 
-    public EtsyChannelDetailPresenter(EtsyChannelDetailContract.EtsyChannelView view, Channel channel) {
+    public EtsyChannelDetailPresenter(EtsyChannelDetailContract.EtsyChannelView view, IntegrationChannelDetailModel model, Channel channel) {
         this.view = view;
+        this.model = model;
         this.channel = channel;
 
         this.view.setPresenter(this);
+    }
+
+    @Override
+    public void changeConnectState() {
+        final boolean connect = !channel.connected;
+        view.showProgress(String.format("%s. Please wait a second...", connect ? "Connecting" : "Disconnecting"));
+        compositeSubscription.add(
+                model.changeConnectStateInChannel(channel.id, connect).subscribe(
+                        channelNew -> {
+                            channel = channel.createWith(channelNew);
+                            view.dismissProgress();
+                            view.showInfoToast(String.format("Channel %s.", channel.connected ? "connected" : "disconnected"));
+                            view.sendBroadcastUpdateChannel(channel);
+                            setData();
+                        }, t -> {
+                            view.dismissProgress();
+                            error(t);
+                        }
+                )
+        );
     }
 
     @Override
@@ -45,6 +68,7 @@ public final class EtsyChannelDetailPresenter extends ContentPresenterHelper imp
     }
 
     private void setData() {
+        view.fillHeaderUI(channel);
         view.displayChannelName(channel.channelName);
         view.displayShopName(channel.username);
         view.displayKeyString(channel.consumerKey);

@@ -1,7 +1,7 @@
 package com.thinkmobiles.easyerp.presentation.screens.integrations.details.etsy;
 
 import com.thinkmobiles.easyerp.presentation.base.BaseView;
-import com.thinkmobiles.easyerp.presentation.base.rules.content.ContentPresenter;
+import com.thinkmobiles.easyerp.presentation.screens.integrations.details.IntegrationChannelDetailPresenter;
 import com.thinkmobiles.easyerp.presentation.screens.integrations.details.IntegrationChannelDetailView;
 
 /**
@@ -17,7 +17,7 @@ public interface EtsyChannelDetailContract {
 
         void displayBankAccount(final String bankAccount);
     }
-    interface EtsyChannelPresenter extends ContentPresenter {
+    interface EtsyChannelPresenter extends IntegrationChannelDetailPresenter {
 
     }
 }

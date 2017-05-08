@@ -97,4 +97,15 @@ public final class IntegrationsListPresenter extends MasterSelectablePresenterHe
         selectFirstElementIfNeed(result);
         return result;
     }
+
+    @Override
+    public void updateListItemChannel(Channel channel) {
+        for (int i = 0; i < channels.size(); i++) {
+            if (channels.get(i).id.equals(channel.id)) {
+                channels.set(i, channel);
+                retainInstance();
+                break;
+            }
+        }
+    }
 }
