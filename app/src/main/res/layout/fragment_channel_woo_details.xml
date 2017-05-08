@@ -25,7 +25,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="0dp"
-                android:text="@string/magento_channel_details" />
+                android:text="@string/woo_channel_details" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -37,7 +37,7 @@
                     android:hint="@string/channel_name">
 
                     <EditText
-                        android:id="@+id/etChannelName_FCMD"
+                        android:id="@+id/etChannelName_FCWD"
                         style="@style/DefaultTheme.LeadInputFieldStyle"
                         android:text="@string/err_not_specified" />
 
@@ -49,7 +49,7 @@
                     android:hint="@string/base_url">
 
                     <EditText
-                        android:id="@+id/etBaseUrl_FCMD"
+                        android:id="@+id/etBaseUrl_FCWD"
                         style="@style/DefaultTheme.LeadInputFieldStyle"
                         android:inputType="textUri"
                         android:text="@string/err_not_specified" />
@@ -65,10 +65,10 @@
                 <android.support.design.widget.TextInputLayout
                     style="@style/DefaultTheme.LeadTextInputLayoutStyle"
                     android:layout_marginEnd="@dimen/default_padding_half"
-                    android:hint="@string/user_name">
+                    android:hint="@string/consumer_key">
 
                     <EditText
-                        android:id="@+id/etUserName_FCMD"
+                        android:id="@+id/etConsumerKey_FCWD"
                         style="@style/DefaultTheme.LeadInputFieldStyle"
                         android:text="@string/err_not_specified" />
 
@@ -77,14 +77,33 @@
                 <android.support.design.widget.TextInputLayout
                     style="@style/DefaultTheme.LeadTextInputLayoutStyle"
                     android:layout_marginStart="@dimen/default_padding_half"
-                    android:hint="@string/api_password"
+                    android:hint="@string/consumer_secret"
                     app:passwordToggleEnabled="true"
                     app:passwordToggleTint="@color/selector_color_password_toggle">
 
                     <EditText
-                        android:id="@+id/etApiPassword_FCMD"
+                        android:id="@+id/etConsumerSecret_FCWD"
                         style="@style/DefaultTheme.LeadInputFieldStyle"
                         android:inputType="textPassword"
+                        android:text="@string/err_not_specified" />
+
+                </android.support.design.widget.TextInputLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="2">
+
+                <android.support.design.widget.TextInputLayout
+                    style="@style/DefaultTheme.LeadTextInputLayoutStyle"
+                    android:layout_marginEnd="@dimen/default_padding"
+                    android:hint="@string/version">
+
+                    <EditText
+                        android:id="@+id/etVersion_FCWD"
+                        style="@style/DefaultTheme.LeadInputFieldStyle"
                         android:text="@string/err_not_specified" />
 
                 </android.support.design.widget.TextInputLayout>
@@ -95,7 +114,7 @@
                 style="@style/TextContentTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/for_import_from_magento_use" />
+                android:text="@string/for_import_from_woo_use" />
 
             <include layout="@layout/view_include_channel_warehouse_settings" />
         </LinearLayout>

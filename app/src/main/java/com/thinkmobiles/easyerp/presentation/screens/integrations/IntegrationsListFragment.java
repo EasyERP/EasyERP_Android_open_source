@@ -8,7 +8,10 @@ import com.thinkmobiles.easyerp.presentation.base.rules.master.selectable.Master
 import com.thinkmobiles.easyerp.presentation.base.rules.master.selectable.SelectableAdapter;
 import com.thinkmobiles.easyerp.presentation.base.rules.master.selectable.SelectablePresenter;
 import com.thinkmobiles.easyerp.presentation.managers.GoogleAnalyticHelper;
+import com.thinkmobiles.easyerp.presentation.screens.integrations.details.etsy.EtsyChannelDetailFragment_;
 import com.thinkmobiles.easyerp.presentation.screens.integrations.details.magento.MagentoChannelDetailFragment_;
+import com.thinkmobiles.easyerp.presentation.screens.integrations.details.shopify.ShopifyChannelDetailFragment_;
+import com.thinkmobiles.easyerp.presentation.screens.integrations.details.woo.WooChannelDetailFragment_;
 
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterViews;
@@ -72,6 +75,15 @@ public class IntegrationsListFragment extends MasterSelectableFragment implement
         switch (channel.getChannelType()) {
             case MAGENTO:
                 mActivity.replaceFragmentContentDetail(MagentoChannelDetailFragment_.builder().channel(channel).build());
+                break;
+            case SHOPIFY:
+                mActivity.replaceFragmentContentDetail(ShopifyChannelDetailFragment_.builder().channel(channel).build());
+                break;
+            case ETSY:
+                mActivity.replaceFragmentContentDetail(EtsyChannelDetailFragment_.builder().channel(channel).build());
+                break;
+            case WOO:
+                mActivity.replaceFragmentContentDetail(WooChannelDetailFragment_.builder().channel(channel).build());
                 break;
         }
     }

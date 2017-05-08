@@ -1,4 +1,4 @@
-package com.thinkmobiles.easyerp.presentation.screens.integrations.details.magento;
+package com.thinkmobiles.easyerp.presentation.screens.integrations.details.shopify;
 
 import android.widget.EditText;
 
@@ -13,21 +13,21 @@ import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.ViewById;
 
 /**
- * @author Michael Soyma (Created on 5/4/2017).
+ * @author Michael Soyma (Created on 5/8/2017).
  *         Company: Thinkmobiles
  *         Email:  michael.soyma@thinkmobiles.com
  */
 @EFragment
-public class MagentoChannelDetailFragment extends IntegrationChannelDetailFragment implements MagentoChannelDetailContract.MagnetoChannelView {
+public class ShopifyChannelDetailFragment extends IntegrationChannelDetailFragment implements ShopifyChannelDetailContract.ShopifyChannelView {
 
-    private MagentoChannelDetailContract.MagentoChannelPresenter presenter;
+    private ShopifyChannelDetailContract.ShopifyChannelPresenter presenter;
 
     @ViewById
-    protected EditText etChannelName_FCMD, etBaseUrl_FCMD, etUserName_FCMD, etApiPassword_FCMD;
+    protected EditText etChannelName_FCSD, etBaseUrl_FCSD, etApiKey_FCSD, etApiSecret_FCSD;
 
     @Override
     protected int getLayoutRes() {
-        return R.layout.fragment_channel_magento_details;
+        return R.layout.fragment_channel_shopify_details;
     }
 
     @Override
@@ -38,11 +38,11 @@ public class MagentoChannelDetailFragment extends IntegrationChannelDetailFragme
     @AfterInject
     @Override
     public void initPresenter() {
-        new MagentoChannelDetailPresenter(this, channel);
+        new ShopifyChannelDetailPresenter(this, channel);
     }
 
     @Override
-    public void setPresenter(MagentoChannelDetailContract.MagentoChannelPresenter presenter) {
+    public void setPresenter(ShopifyChannelDetailContract.ShopifyChannelPresenter presenter) {
         this.presenter = presenter;
     }
 
@@ -56,30 +56,28 @@ public class MagentoChannelDetailFragment extends IntegrationChannelDetailFragme
         getPresenter().subscribe();
     }
 
-
     @Override
     public String getScreenName() {
-        return "Integrations | Magento details screen";
+        return "Integrations | Shopify details screen";
     }
 
     @Override
     public void displayChannelName(String channelName) {
-        etChannelName_FCMD.setText(channelName);
+        etChannelName_FCSD.setText(channelName);
     }
 
     @Override
     public void displayBaseUrl(String url) {
-        etBaseUrl_FCMD.setText(url);
+        etBaseUrl_FCSD.setText(url);
     }
 
     @Override
-    public void displayUserName(String userName) {
-        etUserName_FCMD.setText(userName);
+    public void displayApiKey(String apiKey) {
+        etApiKey_FCSD.setText(apiKey);
     }
 
     @Override
-    public void displayPassword(String apiPassword) {
-        etApiPassword_FCMD.setText(apiPassword);
+    public void displayApiSecret(String apiSecret) {
+        etApiSecret_FCSD.setText(apiSecret);
     }
-
 }

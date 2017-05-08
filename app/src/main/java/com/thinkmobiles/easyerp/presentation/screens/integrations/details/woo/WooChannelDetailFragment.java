@@ -1,4 +1,4 @@
-package com.thinkmobiles.easyerp.presentation.screens.integrations.details.magento;
+package com.thinkmobiles.easyerp.presentation.screens.integrations.details.woo;
 
 import android.widget.EditText;
 
@@ -13,21 +13,21 @@ import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.ViewById;
 
 /**
- * @author Michael Soyma (Created on 5/4/2017).
+ * @author Michael Soyma (Created on 5/8/2017).
  *         Company: Thinkmobiles
  *         Email:  michael.soyma@thinkmobiles.com
  */
 @EFragment
-public class MagentoChannelDetailFragment extends IntegrationChannelDetailFragment implements MagentoChannelDetailContract.MagnetoChannelView {
+public class WooChannelDetailFragment extends IntegrationChannelDetailFragment implements WooChannelDetailContract.WooChannelView {
 
-    private MagentoChannelDetailContract.MagentoChannelPresenter presenter;
+    private WooChannelDetailContract.WooChannelPresenter presenter;
 
     @ViewById
-    protected EditText etChannelName_FCMD, etBaseUrl_FCMD, etUserName_FCMD, etApiPassword_FCMD;
+    protected EditText etChannelName_FCWD, etBaseUrl_FCWD, etConsumerKey_FCWD, etConsumerSecret_FCWD, etVersion_FCWD;
 
     @Override
     protected int getLayoutRes() {
-        return R.layout.fragment_channel_magento_details;
+        return R.layout.fragment_channel_woo_details;
     }
 
     @Override
@@ -38,11 +38,11 @@ public class MagentoChannelDetailFragment extends IntegrationChannelDetailFragme
     @AfterInject
     @Override
     public void initPresenter() {
-        new MagentoChannelDetailPresenter(this, channel);
+        new WooChannelDetailPresenter(this, channel);
     }
 
     @Override
-    public void setPresenter(MagentoChannelDetailContract.MagentoChannelPresenter presenter) {
+    public void setPresenter(WooChannelDetailContract.WooChannelPresenter presenter) {
         this.presenter = presenter;
     }
 
@@ -56,30 +56,33 @@ public class MagentoChannelDetailFragment extends IntegrationChannelDetailFragme
         getPresenter().subscribe();
     }
 
-
     @Override
     public String getScreenName() {
-        return "Integrations | Magento details screen";
+        return "Integrations | Woo details screen";
     }
 
     @Override
     public void displayChannelName(String channelName) {
-        etChannelName_FCMD.setText(channelName);
+        etChannelName_FCWD.setText(channelName);
     }
 
     @Override
     public void displayBaseUrl(String url) {
-        etBaseUrl_FCMD.setText(url);
+        etBaseUrl_FCWD.setText(url);
     }
 
     @Override
-    public void displayUserName(String userName) {
-        etUserName_FCMD.setText(userName);
+    public void displayConsumerKey(String consumerKey) {
+        etConsumerKey_FCWD.setText(consumerKey);
     }
 
     @Override
-    public void displayPassword(String apiPassword) {
-        etApiPassword_FCMD.setText(apiPassword);
+    public void displayConsumerSecret(String consumerSecret) {
+        etConsumerSecret_FCWD.setText(consumerSecret);
     }
 
+    @Override
+    public void displayVersion(String version) {
+        etVersion_FCWD.setText(version);
+    }
 }

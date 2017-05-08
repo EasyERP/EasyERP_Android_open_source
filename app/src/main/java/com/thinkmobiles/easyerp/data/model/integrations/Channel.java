@@ -29,6 +29,7 @@ public final class Channel implements Parcelable {
     public FilterItem shippingMethod;
     public String token;
     public String type;
+    public String version;
     public boolean updateShippingMethod;
     public boolean updateShippingStatus;
     public String user;
@@ -69,6 +70,7 @@ public final class Channel implements Parcelable {
         dest.writeParcelable(this.shippingMethod, flags);
         dest.writeString(this.token);
         dest.writeString(this.type);
+        dest.writeString(this.version);
         dest.writeByte(this.updateShippingMethod ? (byte) 1 : (byte) 0);
         dest.writeByte(this.updateShippingStatus ? (byte) 1 : (byte) 0);
         dest.writeString(this.user);
@@ -96,6 +98,7 @@ public final class Channel implements Parcelable {
         this.shippingMethod = in.readParcelable(FilterItem.class.getClassLoader());
         this.token = in.readString();
         this.type = in.readString();
+        this.version = in.readString();
         this.updateShippingMethod = in.readByte() != 0;
         this.updateShippingStatus = in.readByte() != 0;
         this.user = in.readString();

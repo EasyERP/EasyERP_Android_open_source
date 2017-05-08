@@ -1,5 +1,7 @@
 package com.thinkmobiles.easyerp.presentation.screens.integrations.details;
 
+import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.thinkmobiles.easyerp.R;
@@ -18,7 +20,7 @@ import org.androidannotations.annotations.ViewById;
  *         Email:  michael.soyma@thinkmobiles.com
  */
 @EFragment
-public abstract class IntegrationChannelDetailFragment extends ContentFragment {
+public abstract class IntegrationChannelDetailFragment extends ContentFragment implements IntegrationChannelDetailView {
 
     @FragmentArg
     protected Channel channel;
@@ -27,6 +29,10 @@ public abstract class IntegrationChannelDetailFragment extends ContentFragment {
     protected TextView tvChannel_VICH, tvChannelStatus_VICH;
     @ViewById
     protected TextView tvOrdersValue_VICH, tvConflictedProductsValue_VICH, tvListingValue_VICH, tvUnlinkedOrdersValue_VICH;
+    @ViewById
+    protected View tilContainerBankAccount_VICWS;
+    @ViewById
+    protected EditText etWarehouse_VICWS, etLocation_VICWS, etPriceList_VICWS, etBankAccount_VICWS;
 
     @AfterViews
     protected void fillHeaderUI() {
@@ -38,6 +44,21 @@ public abstract class IntegrationChannelDetailFragment extends ContentFragment {
         tvConflictedProductsValue_VICH.setText(String.valueOf(channel.conflictProducts));
         tvListingValue_VICH.setText(String.valueOf(channel.importedProducts));
         tvUnlinkedOrdersValue_VICH.setText(String.valueOf(channel.unlinkedOrders));
+    }
+
+    @Override
+    public void displayWarehouse(String warehouse) {
+        etWarehouse_VICWS.setText(warehouse);
+    }
+
+    @Override
+    public void displayLocation(String location) {
+        etLocation_VICWS.setText(location);
+    }
+
+    @Override
+    public void displayPriceList(String priceList) {
+        etPriceList_VICWS.setText(priceList);
     }
 
     @Override

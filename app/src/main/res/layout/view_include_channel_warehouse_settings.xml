@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/default_padding"
+    android:orientation="vertical"
+    tools:background="@android:color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.design.widget.TextInputLayout
+            style="@style/DefaultTheme.LeadTextInputLayoutStyle"
+            android:layout_marginEnd="@dimen/default_padding_half"
+            android:hint="@string/warehouse">
+
+            <EditText
+                android:id="@+id/etWarehouse_VICWS"
+                style="@style/DefaultTheme.LeadInputFieldStyle"
+                android:text="@string/err_not_specified" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            style="@style/DefaultTheme.LeadTextInputLayoutStyle"
+            android:layout_marginStart="@dimen/default_padding_half"
+            android:hint="@string/location">
+
+            <EditText
+                android:id="@+id/etLocation_VICWS"
+                style="@style/DefaultTheme.LeadInputFieldStyle"
+                android:inputType="textUri"
+                android:text="@string/err_not_specified" />
+
+        </android.support.design.widget.TextInputLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="2">
+
+        <android.support.design.widget.TextInputLayout
+            style="@style/DefaultTheme.LeadTextInputLayoutStyle"
+            android:hint="@string/price_list">
+
+            <EditText
+                android:id="@+id/etPriceList_VICWS"
+                style="@style/DefaultTheme.LeadInputFieldStyle"
+                android:text="@string/err_not_specified" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.v4.widget.Space
+            android:layout_width="@dimen/default_padding"
+            android:layout_height="0dp" />
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/tilContainerBankAccount_VICWS"
+            style="@style/DefaultTheme.LeadTextInputLayoutStyle"
+            android:hint="@string/bank_account"
+            android:visibility="gone">
+
+            <EditText
+                android:id="@+id/etBankAccount_VICWS"
+                style="@style/DefaultTheme.LeadInputFieldStyle"
+                android:inputType="textUri"
+                android:text="@string/err_not_specified" />
+
+        </android.support.design.widget.TextInputLayout>
+
+    </LinearLayout>
+</LinearLayout>

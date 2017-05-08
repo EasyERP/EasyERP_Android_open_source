@@ -1,5 +1,6 @@
-package com.thinkmobiles.easyerp.presentation.screens.integrations.details.magento;
+package com.thinkmobiles.easyerp.presentation.screens.integrations.details.etsy;
 
+import android.view.View;
 import android.widget.EditText;
 
 import com.thinkmobiles.easyerp.R;
@@ -13,21 +14,21 @@ import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.ViewById;
 
 /**
- * @author Michael Soyma (Created on 5/4/2017).
+ * @author Michael Soyma (Created on 5/8/2017).
  *         Company: Thinkmobiles
  *         Email:  michael.soyma@thinkmobiles.com
  */
 @EFragment
-public class MagentoChannelDetailFragment extends IntegrationChannelDetailFragment implements MagentoChannelDetailContract.MagnetoChannelView {
+public class EtsyChannelDetailFragment extends IntegrationChannelDetailFragment implements EtsyChannelDetailContract.EtsyChannelView {
 
-    private MagentoChannelDetailContract.MagentoChannelPresenter presenter;
+    private EtsyChannelDetailContract.EtsyChannelPresenter presenter;
 
     @ViewById
-    protected EditText etChannelName_FCMD, etBaseUrl_FCMD, etUserName_FCMD, etApiPassword_FCMD;
+    protected EditText etChannelName_FCED, etShopName_FCED, etKeyString_FCED, etSharedSecret_FCED;
 
     @Override
     protected int getLayoutRes() {
-        return R.layout.fragment_channel_magento_details;
+        return R.layout.fragment_channel_etsy_details;
     }
 
     @Override
@@ -38,11 +39,11 @@ public class MagentoChannelDetailFragment extends IntegrationChannelDetailFragme
     @AfterInject
     @Override
     public void initPresenter() {
-        new MagentoChannelDetailPresenter(this, channel);
+        new EtsyChannelDetailPresenter(this, channel);
     }
 
     @Override
-    public void setPresenter(MagentoChannelDetailContract.MagentoChannelPresenter presenter) {
+    public void setPresenter(EtsyChannelDetailContract.EtsyChannelPresenter presenter) {
         this.presenter = presenter;
     }
 
@@ -56,30 +57,34 @@ public class MagentoChannelDetailFragment extends IntegrationChannelDetailFragme
         getPresenter().subscribe();
     }
 
-
     @Override
     public String getScreenName() {
-        return "Integrations | Magento details screen";
+        return "Integrations | Etsy details screen";
     }
 
     @Override
     public void displayChannelName(String channelName) {
-        etChannelName_FCMD.setText(channelName);
+        etChannelName_FCED.setText(channelName);
     }
 
     @Override
-    public void displayBaseUrl(String url) {
-        etBaseUrl_FCMD.setText(url);
+    public void displayShopName(String shopName) {
+        etShopName_FCED.setText(shopName);
     }
 
     @Override
-    public void displayUserName(String userName) {
-        etUserName_FCMD.setText(userName);
+    public void displayKeyString(String keyString) {
+        etKeyString_FCED.setText(keyString);
     }
 
     @Override
-    public void displayPassword(String apiPassword) {
-        etApiPassword_FCMD.setText(apiPassword);
+    public void displaySharedSecret(String sharedSecret) {
+        etSharedSecret_FCED.setText(sharedSecret);
     }
 
+    @Override
+    public void displayBankAccount(String bankAccount) {
+        tilContainerBankAccount_VICWS.setVisibility(View.VISIBLE);
+        etBankAccount_VICWS.setText(bankAccount);
+    }
 }
