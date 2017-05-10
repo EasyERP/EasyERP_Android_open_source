@@ -77,7 +77,10 @@
 
 
     <color name="color_facebook">#3b5998</color>
+    <color name="color_skype">#00aaf2</color>
+    <color name="color_twitter">#32a0df</color>
     <color name="color_linked_in">#0077b5</color>
     <color name="color_google_plus">#de4830</color>
+    <color name="color_youtube">#f61c0d</color>
 
 </resources>

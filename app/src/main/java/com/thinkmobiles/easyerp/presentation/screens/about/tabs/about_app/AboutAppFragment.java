@@ -50,7 +50,7 @@ public class AboutAppFragment extends BaseSupportFragment<AboutUsActivity> imple
 
     @AfterViews
     protected void initUI() {
-        tvVersion_FAUS.setText(Html.fromHtml(String.format("Version: <b>%s (%s)</b>", BuildConfig.VERSION_NAME, BuildConfig.VERSION_CODE)));
+        tvVersion_FAUS.setText(BuildConfig.VERSION_NAME);
         tvDescription_FAUS.setText(Html.fromHtml(getString(R.string.app_description)));
         tvDescription_FAUS.setMovementMethod(LinkMovementMethod.getInstance());
         presenter.subscribe();
@@ -66,22 +66,22 @@ public class AboutAppFragment extends BaseSupportFragment<AboutUsActivity> imple
         presenter.rateTheApp(BuildConfig.APPLICATION_ID);
     }
 
-    @Click({R.id.ivFacebook_FAUE, R.id.ivLinkedIn_FAUE, R.id.ivSkype_FAUE, R.id.ivTwitter_FAUE, R.id.ivYouTube_FAUE})
+    @Click({R.id.tvFacebook_FAUE, R.id.tvLinkedIn_FAUE, R.id.tvSkype_FAUE, R.id.tvTwitter_FAUE, R.id.tvYouTube_FAUE})
     protected void socialClick(final View clickedView) {
         switch (clickedView.getId()) {
-            case R.id.ivFacebook_FAUE:
+            case R.id.tvFacebook_FAUE:
                 presenter.openSocial(ShareSocialType.FACEBOOK);
                 break;
-            case R.id.ivLinkedIn_FAUE:
+            case R.id.tvLinkedIn_FAUE:
                 presenter.openSocial(ShareSocialType.LINKEDIN);
                 break;
-            case R.id.ivSkype_FAUE:
+            case R.id.tvSkype_FAUE:
                 presenter.openSocial(ShareSocialType.SKYPE);
                 break;
-            case R.id.ivTwitter_FAUE:
+            case R.id.tvTwitter_FAUE:
                 presenter.openSocial(ShareSocialType.TWITTER);
                 break;
-            case R.id.ivYouTube_FAUE:
+            case R.id.tvYouTube_FAUE:
                 presenter.openSocial(ShareSocialType.YOUTUBE);
                 break;
         }

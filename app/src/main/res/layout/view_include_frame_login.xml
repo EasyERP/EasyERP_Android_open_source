@@ -132,7 +132,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
                                 android:drawablePadding="@dimen/default_padding_half"
-                                android:drawableStart="@drawable/ic_g_plus_28"
+                                android:drawableStart="@drawable/ic_g_plus"
                                 android:text="@string/gplus"
                                 android:textColor="@color/color_google_plus" />
                         </FrameLayout>

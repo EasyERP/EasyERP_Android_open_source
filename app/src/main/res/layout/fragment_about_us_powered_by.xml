@@ -27,6 +27,7 @@
             android:layout_marginTop="@dimen/default_padding_quart"
             android:gravity="center_horizontal"
             android:padding="@dimen/default_padding_half"
+            android:textSize="@dimen/text_list_item_medium_16"
             tools:text="@string/thinkmobiles_description" />
 
         <android.support.v7.widget.AppCompatButton
