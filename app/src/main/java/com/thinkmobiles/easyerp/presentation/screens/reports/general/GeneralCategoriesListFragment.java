@@ -67,9 +67,9 @@ public class GeneralCategoriesListFragment extends MasterSelectableFragment impl
     @Override
     public void openCategoryDetail(String key) {
         if (key != null) {
-            mActivity.replaceFragmentContentDetail(GeneralReportDetailFragment_.builder()
+            getMasterDelegate().replaceFragmentContentDetail(GeneralReportDetailFragment_.builder()
                     .categoryKey(key)
                     .build());
-        } else mActivity.replaceFragmentContentDetail(null);
+        } else getMasterDelegate().replaceFragmentContentDetail(null);
     }
 }

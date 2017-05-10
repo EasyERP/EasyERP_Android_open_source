@@ -63,7 +63,7 @@ public class LibrariesFragment extends BaseSupportFragment<AboutUsActivity> impl
 
     @Override
     public void openLink(String uriPath) {
-        IntentActionHelper.callViewIntent(mActivity, uriPath, null);
+        IntentActionHelper.callViewIntent(contextActivity(), uriPath, null);
     }
 
     @Override

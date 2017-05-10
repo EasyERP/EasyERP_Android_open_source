@@ -62,11 +62,11 @@ public class StockReturnsListFragment extends MasterSelectableFragment implement
     @Override
     public void openStockReturnDetail(String id) {
         if (id != null) {
-            mActivity.replaceFragmentContentDetail(StockReturnsDetailsFragment_.builder()
+            getMasterDelegate().replaceFragmentContentDetail(StockReturnsDetailsFragment_.builder()
                     .id(id)
                     .build());
         } else {
-            mActivity.replaceFragmentContentDetail(null);
+            getMasterDelegate().replaceFragmentContentDetail(null);
         }
     }
 }

@@ -23,7 +23,7 @@ public abstract class MasterSelectableFragment extends MasterListFragment implem
 
     @Override
     public boolean withItemSelecting() {
-        return mActivity.isTablet && !mActivity.isPortrait;
+        return getMasterDelegate().isTablet() && !getMasterDelegate().isPortrait();
     }
 
     @Override

@@ -55,9 +55,13 @@ public class PersonsFragment extends MasterAlphabeticalFragment implements Perso
 
     @Override
     public void openDetailsScreen(String personID) {
-        mActivity.replaceFragmentContentDetail(PersonDetailsFragment_.builder()
-                .personID(personID)
-                .build());
+        if (personID != null) {
+            getMasterDelegate().replaceFragmentContentDetail(PersonDetailsFragment_.builder()
+                    .personID(personID)
+                    .build());
+        } else {
+            getMasterDelegate().replaceFragmentContentDetail(null);
+        }
     }
 
     @Override

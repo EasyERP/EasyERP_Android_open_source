@@ -306,6 +306,6 @@ public class InvoiceDetailsFragment extends ContentFragment implements InvoiceDe
 
     @Override
     public void startUrlIntent(String url) {
-        IntentActionHelper.callViewIntent(mActivity, url, null);
+        IntentActionHelper.callViewIntent(contextActivity(), url, null);
     }
 }

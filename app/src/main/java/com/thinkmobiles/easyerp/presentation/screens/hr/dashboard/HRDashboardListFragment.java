@@ -17,12 +17,12 @@ public class HRDashboardListFragment extends DashboardListFragment {
     @Override
     public void openDashboardChartDetail(DashboardListItem itemChartDashboard) {
         if (itemChartDashboard != null) {
-            mActivity.replaceFragmentContentDetail(HRDashboardDetailChartFragment_.builder()
+            getMasterDelegate().replaceFragmentContentDetail(HRDashboardDetailChartFragment_.builder()
                     .dashboardConfigsForChart(itemChartDashboard)
                     .moduleId(moduleId)
                     .build());
         } else {
-            mActivity.replaceFragmentContentDetail(null);
+            getMasterDelegate().replaceFragmentContentDetail(null);
         }
     }
 }

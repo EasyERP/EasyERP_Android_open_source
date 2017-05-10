@@ -68,12 +68,12 @@ public class InvoicesFragment extends MasterFilterableFragment implements Invoic
     @Override
     public void openDetailsScreen(String invoiceID) {
         if (invoiceID != null) {
-            mActivity.replaceFragmentContentDetail(InvoiceDetailsFragment_.builder()
+            getMasterDelegate().replaceFragmentContentDetail(InvoiceDetailsFragment_.builder()
                     .invoiceId(invoiceID)
                     .moduleId(moduleId)
                     .build());
         } else {
-            mActivity.replaceFragmentContentDetail(null);
+            getMasterDelegate().replaceFragmentContentDetail(null);
         }
     }
 }

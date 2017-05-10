@@ -99,11 +99,11 @@ public class HRDashboardDetailChartFragment extends ContentFragment implements H
 
     @Override
     public void displayPickerCustomYearMonth(int year, int month) {
-        final MonthYearView monthYearView = MonthYearView_.build(mActivity, 1980, 2050);
+        final MonthYearView monthYearView = MonthYearView_.build(contextActivity(), 1980, 2050);
         monthYearView.setCurrentYear(year);
         monthYearView.setCurrentMonth(month);
 
-        final AlertDialog alertDialog = new AlertDialog.Builder(mActivity, R.style.DefaultTheme_NoTitleDialogWithAnimation)
+        final AlertDialog alertDialog = new AlertDialog.Builder(contextActivity(), R.style.DefaultTheme_NoTitleDialogWithAnimation)
                 .setCancelable(true)
                 .setPositiveButton(R.string.dialog_btn_ok, (dialogInterface, i) -> {
                     presenter.setYearMonth(monthYearView.getChosenYear(), monthYearView.getChosenMonth());

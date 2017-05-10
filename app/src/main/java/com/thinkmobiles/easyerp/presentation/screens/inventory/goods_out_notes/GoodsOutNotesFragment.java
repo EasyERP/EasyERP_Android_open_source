@@ -56,11 +56,11 @@ public class GoodsOutNotesFragment extends MasterFilterableFragment implements G
     @Override
     public void openDetailsScreen(String goodOutNoteID) {
         if (goodOutNoteID != null) {
-            mActivity.replaceFragmentContentDetail(GoodsOutNotesDetailsFragment_.builder()
+            getMasterDelegate().replaceFragmentContentDetail(GoodsOutNotesDetailsFragment_.builder()
                     .id(goodOutNoteID)
                     .build());
         } else {
-            mActivity.replaceFragmentContentDetail(null);
+            getMasterDelegate().replaceFragmentContentDetail(null);
         }
     }
 

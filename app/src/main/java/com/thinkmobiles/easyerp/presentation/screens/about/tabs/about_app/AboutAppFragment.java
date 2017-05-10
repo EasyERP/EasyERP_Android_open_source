@@ -89,12 +89,12 @@ public class AboutAppFragment extends BaseSupportFragment<AboutUsActivity> imple
 
     @Override
     public void sendEmailIntent(String email, String subject) {
-        IntentActionHelper.callSendEmailIntent(mActivity, email, subject);
+        IntentActionHelper.callSendEmailIntent(contextActivity(), email, subject);
     }
 
     @Override
     public void sendViewIntent(String uriPath, String alternativeUriPath) {
-        IntentActionHelper.callViewIntent(mActivity, uriPath, alternativeUriPath);
+        IntentActionHelper.callViewIntent(contextActivity(), uriPath, alternativeUriPath);
     }
 
     @Override

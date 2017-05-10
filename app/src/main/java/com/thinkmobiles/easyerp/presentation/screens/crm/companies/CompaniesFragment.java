@@ -40,11 +40,11 @@ public class CompaniesFragment extends MasterAlphabeticalFragment implements Com
     @Override
     public void openDetailsScreen(String companyID) {
         if (companyID != null) {
-            mActivity.replaceFragmentContentDetail(CompanyDetailsFragment_.builder()
+            getMasterDelegate().replaceFragmentContentDetail(CompanyDetailsFragment_.builder()
                     .companyID(companyID)
                     .build());
         } else {
-            mActivity.replaceFragmentContentDetail(null);
+            getMasterDelegate().replaceFragmentContentDetail(null);
         }
     }
 

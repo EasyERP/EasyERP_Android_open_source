@@ -66,11 +66,11 @@ public class EmployeesFragment extends MasterAlphabeticalFragment implements Emp
     @Override
     public void openDetailsScreen(String employeeID) {
         if (employeeID != null) {
-            mActivity.replaceFragmentContentDetail(EmployeeDetailsFragment_.builder()
+            getMasterDelegate().replaceFragmentContentDetail(EmployeeDetailsFragment_.builder()
                     .employeeID(employeeID)
                     .build());
         } else {
-            mActivity.replaceFragmentContentDetail(null);
+            getMasterDelegate().replaceFragmentContentDetail(null);
         }
     }
 }

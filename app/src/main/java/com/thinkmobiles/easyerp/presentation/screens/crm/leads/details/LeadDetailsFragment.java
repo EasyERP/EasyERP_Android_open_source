@@ -256,7 +256,7 @@ public class LeadDetailsFragment extends ContentFragment implements LeadDetailsC
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
                 .subscribe(aVoid -> {
                     GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_URL, "Email");
-                    IntentActionHelper.callSendEmailIntent(mActivity, email, null);
+                    IntentActionHelper.callSendEmailIntent(contextActivity(), email, null);
                 });
     }
 
@@ -266,7 +266,7 @@ public class LeadDetailsFragment extends ContentFragment implements LeadDetailsC
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
                 .subscribe(aVoid -> {
                     GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_URL, "Phone");
-                    IntentActionHelper.callDialIntent(mActivity, phone);
+                    IntentActionHelper.callDialIntent(contextActivity(), phone);
                 });
     }
 
@@ -369,6 +369,6 @@ public class LeadDetailsFragment extends ContentFragment implements LeadDetailsC
 
     @Override
     public void startUrlIntent(String url) {
-        IntentActionHelper.callViewIntent(mActivity, url, null);
+        IntentActionHelper.callViewIntent(contextActivity(), url, null);
     }
 }

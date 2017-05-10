@@ -28,7 +28,7 @@ import org.androidannotations.annotations.res.StringRes;
  * @author michael.soyma@thinkmobiles.com (Created on 1/17/2017.)
  */
 @EActivity
-public abstract class BaseMasterFlowActivity extends AppCompatActivity {
+public abstract class BaseMasterFlowActivity extends AppCompatActivity implements BaseMasterFlowDelegate {
 
     @ViewById
     protected Toolbar toolbar;
@@ -76,20 +76,34 @@ public abstract class BaseMasterFlowActivity extends AppCompatActivity {
         else return R.drawable.ic_back;
     }
 
+    @Override
+    public boolean isTablet() {
+        return isTablet;
+    }
+
+    @Override
+    public boolean isPortrait() {
+        return isPortrait;
+    }
+
+    @Override
     public Toolbar getToolbar() {
         return toolbar;
     }
 
+    @Override
     public Toolbar getToolbarDetail() {
         return toolbarDetail;
     }
 
+    @Override
     public void resetDetailToolbarToBase() {
         toolbarDetail.getMenu().clear();
         toolbarDetail.inflateMenu(R.menu.menu_base);
         toolbarDetail.setOnMenuItemClickListener(this::onOptionsItemSelected);
     }
 
+    @Override
     public void resetToolbar(Menu menu) {
         menu.clear();
         getMenuInflater().inflate(R.menu.menu_base, menu);
@@ -111,12 +125,14 @@ public abstract class BaseMasterFlowActivity extends AppCompatActivity {
         }
     }
 
+    @Override
     public void replaceFragmentContent(final BaseMasterFlowFragment fragment, final String title) {
         setToolbarTitle(title);
         replaceFragmentContentDetail(null);
         replaceFragment(fragment, contentIdLayout(), false);
     }
 
+    @Override
     public void replaceFragmentContentDetail(final BaseMasterFlowFragment fragment) {
         if (!isPortrait && getFragmentManager().getBackStackEntryCount() > 0)
             getFragmentManager().popBackStackImmediate();

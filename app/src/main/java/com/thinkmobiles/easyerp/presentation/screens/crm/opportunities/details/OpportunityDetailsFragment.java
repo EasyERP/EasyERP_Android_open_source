@@ -309,7 +309,7 @@ public class OpportunityDetailsFragment extends ContentFragment implements Oppor
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
                 .subscribe(aVoid -> {
                     GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_URL, "Email");
-                    IntentActionHelper.callSendEmailIntent(mActivity, email, null);
+                    IntentActionHelper.callSendEmailIntent(contextActivity(), email, null);
                 });
     }
 
@@ -319,7 +319,7 @@ public class OpportunityDetailsFragment extends ContentFragment implements Oppor
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
                 .subscribe(aVoid -> {
                     GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_URL, "Phone");
-                    IntentActionHelper.callDialIntent(mActivity, phone);
+                    IntentActionHelper.callDialIntent(contextActivity(), phone);
                 });
     }
 
@@ -342,7 +342,7 @@ public class OpportunityDetailsFragment extends ContentFragment implements Oppor
 
     @Override
     public void startUrlIntent(String url) {
-        IntentActionHelper.callViewIntent(mActivity, url, null);
+        IntentActionHelper.callViewIntent(contextActivity(), url, null);
     }
 
     @Override

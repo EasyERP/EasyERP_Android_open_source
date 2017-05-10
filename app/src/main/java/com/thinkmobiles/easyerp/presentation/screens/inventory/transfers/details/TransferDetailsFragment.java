@@ -239,7 +239,7 @@ public class TransferDetailsFragment extends ContentFragment implements Transfer
 
     @Override
     public void startUrlIntent(String url) {
-        IntentActionHelper.callViewIntent(mActivity, url, null);
+        IntentActionHelper.callViewIntent(contextActivity(), url, null);
     }
 
     @Override

@@ -57,11 +57,11 @@ public class ProductsListFragment extends MasterFilterableFragment implements Pr
     @Override
     public void openProductDetail(String id) {
         if (id != null) {
-            mActivity.replaceFragmentContentDetail(ProductDetailsFragment_.builder()
+            getMasterDelegate().replaceFragmentContentDetail(ProductDetailsFragment_.builder()
                     .id(id)
                     .build());
         } else {
-            mActivity.replaceFragmentContentDetail(null);
+            getMasterDelegate().replaceFragmentContentDetail(null);
         }
     }
 

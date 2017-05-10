@@ -62,11 +62,11 @@ public class BirthdaysListFragment extends MasterSelectableFragment implements B
     @Override
     public void openEmployeeDetail(String id) {
         if (id != null) {
-            mActivity.replaceFragmentContentDetail(EmployeeDetailsFragment_.builder()
+            getMasterDelegate().replaceFragmentContentDetail(EmployeeDetailsFragment_.builder()
                     .employeeID(id)
                     .build());
         } else {
-            mActivity.replaceFragmentContentDetail(null);
+            getMasterDelegate().replaceFragmentContentDetail(null);
         }
     }
 }

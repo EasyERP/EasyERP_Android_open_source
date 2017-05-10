@@ -62,12 +62,12 @@ public class AttendanceListFragment extends MasterSelectableFragment implements 
     @Override
     public void openAttendanceDetail(String id, String fullName) {
         if (id != null) {
-            mActivity.replaceFragmentContentDetail(AttendanceDetailsFragment_.builder()
+            getMasterDelegate().replaceFragmentContentDetail(AttendanceDetailsFragment_.builder()
                     .id(id)
                     .fullName(fullName)
                     .build());
         } else {
-            mActivity.replaceFragmentContentDetail(null);
+            getMasterDelegate().replaceFragmentContentDetail(null);
         }
     }
 }

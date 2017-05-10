@@ -82,16 +82,16 @@ public class IntegrationsListFragment extends MasterSelectableFragment implement
     public void openDetailChannel(Channel channel) {
         switch (channel.getChannelType()) {
             case MAGENTO:
-                mActivity.replaceFragmentContentDetail(MagentoChannelDetailFragment_.builder().channel(channel).build());
+                getMasterDelegate().replaceFragmentContentDetail(MagentoChannelDetailFragment_.builder().channel(channel).build());
                 break;
             case SHOPIFY:
-                mActivity.replaceFragmentContentDetail(ShopifyChannelDetailFragment_.builder().channel(channel).build());
+                getMasterDelegate().replaceFragmentContentDetail(ShopifyChannelDetailFragment_.builder().channel(channel).build());
                 break;
             case ETSY:
-                mActivity.replaceFragmentContentDetail(EtsyChannelDetailFragment_.builder().channel(channel).build());
+                getMasterDelegate().replaceFragmentContentDetail(EtsyChannelDetailFragment_.builder().channel(channel).build());
                 break;
             case WOO:
-                mActivity.replaceFragmentContentDetail(WooChannelDetailFragment_.builder().channel(channel).build());
+                getMasterDelegate().replaceFragmentContentDetail(WooChannelDetailFragment_.builder().channel(channel).build());
                 break;
         }
     }

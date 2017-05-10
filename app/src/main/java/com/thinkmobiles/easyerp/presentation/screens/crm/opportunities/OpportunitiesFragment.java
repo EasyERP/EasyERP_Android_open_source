@@ -51,11 +51,11 @@ public class OpportunitiesFragment extends MasterFilterableFragment implements O
     @Override
     public void openDetailsScreen(String opportunityID) {
         if (opportunityID != null) {
-            mActivity.replaceFragmentContentDetail(OpportunityDetailsFragment_.builder()
+            getMasterDelegate().replaceFragmentContentDetail(OpportunityDetailsFragment_.builder()
                     .opportunityID(opportunityID)
                     .build());
         } else {
-            mActivity.replaceFragmentContentDetail(null);
+            getMasterDelegate().replaceFragmentContentDetail(null);
         }
     }
 

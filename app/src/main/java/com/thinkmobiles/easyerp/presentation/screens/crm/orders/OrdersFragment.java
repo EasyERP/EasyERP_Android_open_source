@@ -63,12 +63,12 @@ public class OrdersFragment extends MasterFilterableFragment implements OrdersCo
     @Override
     public void openDetailsScreen(String orderID) {
         if (orderID != null) {
-            mActivity.replaceFragmentContentDetail(OrderDetailsFragment_.builder()
+            getMasterDelegate().replaceFragmentContentDetail(OrderDetailsFragment_.builder()
                     .orderId(orderID)
                     .moduleId(moduleId)
                     .build());
         } else {
-            mActivity.replaceFragmentContentDetail(null);
+            getMasterDelegate().replaceFragmentContentDetail(null);
         }
     }
 

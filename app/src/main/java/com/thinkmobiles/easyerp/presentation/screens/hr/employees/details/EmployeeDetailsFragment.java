@@ -272,7 +272,7 @@ public class EmployeeDetailsFragment extends ContentFragment implements Employee
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
                 .subscribe(aVoid -> {
                     GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_SOCIAL_BUTTON, "Skype");
-                    IntentActionHelper.callViewIntent(mActivity, uriPath, null);
+                    IntentActionHelper.callViewIntent(contextActivity(), uriPath, null);
                 });
     }
 
@@ -283,7 +283,7 @@ public class EmployeeDetailsFragment extends ContentFragment implements Employee
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
                 .subscribe(aVoid -> {
                     GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_SOCIAL_BUTTON, "Linked In");
-                    IntentActionHelper.callViewIntent(mActivity, uriPath, null);
+                    IntentActionHelper.callViewIntent(contextActivity(), uriPath, null);
                 });
     }
 
@@ -294,7 +294,7 @@ public class EmployeeDetailsFragment extends ContentFragment implements Employee
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
                 .subscribe(aVoid -> {
                     GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_SOCIAL_BUTTON, "Facebook");
-                    IntentActionHelper.callViewIntent(mActivity, uriPath, null);
+                    IntentActionHelper.callViewIntent(contextActivity(), uriPath, null);
                 });
     }
 
@@ -305,7 +305,7 @@ public class EmployeeDetailsFragment extends ContentFragment implements Employee
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
                 .subscribe(aVoid -> {
                     GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_SOCIAL_BUTTON, "Email");
-                    IntentActionHelper.callSendEmailIntent(mActivity, email, null);
+                    IntentActionHelper.callSendEmailIntent(contextActivity(), email, null);
                 });
     }
 
@@ -316,7 +316,7 @@ public class EmployeeDetailsFragment extends ContentFragment implements Employee
                 .subscribe(aVoid -> {
                     if (phone != null) {
                         GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_URL, "Personal Mobile");
-                        IntentActionHelper.callDialIntent(mActivity, phone);
+                        IntentActionHelper.callDialIntent(contextActivity(), phone);
                     }
                 });
     }
@@ -328,7 +328,7 @@ public class EmployeeDetailsFragment extends ContentFragment implements Employee
                 .subscribe(aVoid -> {
                     if (phone != null) {
                         GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_URL, "Work Phone");
-                        IntentActionHelper.callDialIntent(mActivity, phone);
+                        IntentActionHelper.callDialIntent(contextActivity(), phone);
                     }
                 });
     }
@@ -340,7 +340,7 @@ public class EmployeeDetailsFragment extends ContentFragment implements Employee
                 .subscribe(aVoid -> {
                     if (email != null) {
                         GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_URL, "Personal Email");
-                        IntentActionHelper.callSendEmailIntent(mActivity, email, null);
+                        IntentActionHelper.callSendEmailIntent(contextActivity(), email, null);
                     }
                 });
     }
@@ -352,7 +352,7 @@ public class EmployeeDetailsFragment extends ContentFragment implements Employee
                 .subscribe(aVoid -> {
                     if (email != null) {
                         GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_URL, "Work Email");
-                        IntentActionHelper.callSendEmailIntent(mActivity, email, null);
+                        IntentActionHelper.callSendEmailIntent(contextActivity(), email, null);
                     }
                 });
     }
@@ -557,7 +557,7 @@ public class EmployeeDetailsFragment extends ContentFragment implements Employee
 
     @Override
     public void startUrlIntent(String url) {
-        IntentActionHelper.callViewIntent(mActivity, url, null);
+        IntentActionHelper.callViewIntent(contextActivity(), url, null);
     }
 
     @Override

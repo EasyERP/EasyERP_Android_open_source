@@ -55,13 +55,13 @@ public class ApplicationsListFragment extends MasterFilterableFragment implement
     }
 
     @Override
-    public void openApplicationDetail(String id) {
-        if (id != null) {
-            mActivity.replaceFragmentContentDetail(ApplicationDetailsFragment_.builder()
-                    .applicationID(id)
+    public void openApplicationDetail(String applicationId) {
+        if (applicationId != null) {
+            getMasterDelegate().replaceFragmentContentDetail(ApplicationDetailsFragment_.builder()
+                    .applicationID(applicationId)
                     .build());
         } else {
-            mActivity.replaceFragmentContentDetail(null);
+            getMasterDelegate().replaceFragmentContentDetail(null);
         }
     }
 

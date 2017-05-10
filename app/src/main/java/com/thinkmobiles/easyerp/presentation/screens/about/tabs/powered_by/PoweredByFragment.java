@@ -56,7 +56,7 @@ public class PoweredByFragment extends BaseSupportFragment<AboutUsActivity> impl
 
     @Override
     public void visitSite(String uriPath) {
-        IntentActionHelper.callViewIntent(mActivity, uriPath, null);
+        IntentActionHelper.callViewIntent(contextActivity(), uriPath, null);
     }
 
     @Override

@@ -73,12 +73,12 @@ public class DashboardListFragment extends MasterSelectableFragment implements D
     @Override
     public void openDashboardChartDetail(DashboardListItem itemChartDashboard) {
         if (itemChartDashboard != null) {
-            mActivity.replaceFragmentContentDetail(DashboardDetailChartFragment_.builder()
+            getMasterDelegate().replaceFragmentContentDetail(DashboardDetailChartFragment_.builder()
                     .dashboardConfigsForChart(itemChartDashboard)
                     .moduleId(moduleId)
                     .build());
         } else {
-            mActivity.replaceFragmentContentDetail(null);
+            getMasterDelegate().replaceFragmentContentDetail(null);
         }
     }
 }

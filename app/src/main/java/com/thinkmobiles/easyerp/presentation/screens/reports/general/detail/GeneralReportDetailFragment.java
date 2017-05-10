@@ -64,7 +64,7 @@ public class GeneralReportDetailFragment extends MasterListFragment implements G
     @AfterInject
     @Override
     public void initPresenter() {
-        new GeneralReportDetailPresenter(this, reportsRepository, dynamicallySharedPrefs, categoryKey, ((HomeActivity) mActivity).userInfo);
+        new GeneralReportDetailPresenter(this, reportsRepository, dynamicallySharedPrefs, categoryKey, ((HomeActivity) contextActivity()).userInfo);
     }
 
     @Override
@@ -162,14 +162,14 @@ public class GeneralReportDetailFragment extends MasterListFragment implements G
     @Override
     public void showDescriptionPopUpWindow(final int position, String description) {
         if (TextUtils.isEmpty(description)) {
-            Toast.makeText(mActivity, R.string.description_is_empty, Toast.LENGTH_SHORT).show();
+            Toast.makeText(contextActivity(), R.string.description_is_empty, Toast.LENGTH_SHORT).show();
         } else {
             final View itemView = listRecycler.getLayoutManager().findViewByPosition(position);
-            final View popupView = LayoutInflater.from(mActivity).inflate(R.layout.popup_window_reports_description, null, false);
+            final View popupView = LayoutInflater.from(contextActivity()).inflate(R.layout.popup_window_reports_description, null, false);
             final TextView descriptionView = ((TextView) popupView.findViewById(R.id.tvDescription_PWRD));
             descriptionView.setText(description);
 
-            final PopupWindow popupWindowCompat = new PopupWindow(mActivity);
+            final PopupWindow popupWindowCompat = new PopupWindow(contextActivity());
             popupWindowCompat.setContentView(popupView);
             popupWindowCompat.setWidth((int) getResources().getDimension(R.dimen.popup_window_description_width));
             popupWindowCompat.setHeight((int) getResources().getDimension(R.dimen.popup_window_description_height));

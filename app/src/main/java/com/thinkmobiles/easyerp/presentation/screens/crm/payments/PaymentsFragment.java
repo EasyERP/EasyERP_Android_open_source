@@ -71,12 +71,12 @@ public class PaymentsFragment extends MasterFilterableFragment implements Paymen
     @Override
     public void openDetailsScreen(Payment payment) {
         if (payment != null) {
-            mActivity.replaceFragmentContentDetail(PaymentDetailsFragment_.builder()
+            getMasterDelegate().replaceFragmentContentDetail(PaymentDetailsFragment_.builder()
                     .payment(payment)
                     .moduleId(moduleId)
                     .build());
         } else {
-            mActivity.replaceFragmentContentDetail(null);
+            getMasterDelegate().replaceFragmentContentDetail(null);
         }
     }
 }

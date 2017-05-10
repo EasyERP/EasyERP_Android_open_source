@@ -81,7 +81,7 @@ public abstract class IntegrationChannelDetailFragment extends ContentFragment i
 
     @Override
     public void showProgress(String msg) {
-        progressDialog = new ProgressDialog(mActivity, R.style.DefaultTheme_NoTitleDialogWithAnimation);
+        progressDialog = new ProgressDialog(contextActivity(), R.style.DefaultTheme_NoTitleDialogWithAnimation);
         progressDialog.setCancelable(false);
         progressDialog.setMessage(msg);
         progressDialog.show();
@@ -97,7 +97,7 @@ public abstract class IntegrationChannelDetailFragment extends ContentFragment i
 
     @Override
     public void showInfoToast(String msg) {
-        Toast.makeText(mActivity, msg, Toast.LENGTH_LONG).show();
+        Toast.makeText(contextActivity(), msg, Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -134,7 +134,7 @@ public abstract class IntegrationChannelDetailFragment extends ContentFragment i
     public void sendBroadcastUpdateChannel(Channel channel) {
         final Intent intent = new Intent(Constants.Actions.ACTION_UPDATE_CHANNEL);
         intent.putExtra(Constants.KEY_CHANNEL, channel);
-        LocalBroadcastManager.getInstance(mActivity).sendBroadcast(intent);
+        LocalBroadcastManager.getInstance(contextActivity()).sendBroadcast(intent);
     }
 
     protected abstract void changeConnectState();

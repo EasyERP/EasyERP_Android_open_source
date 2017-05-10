@@ -62,11 +62,11 @@ public class StockCorrectionsListFragment extends MasterSelectableFragment imple
     @Override
     public void openStockCorrectionDetail(String id) {
         if (id != null) {
-            mActivity.replaceFragmentContentDetail(StockCorrectionsDetailsFragment_.builder()
+            getMasterDelegate().replaceFragmentContentDetail(StockCorrectionsDetailsFragment_.builder()
                     .id(id)
                     .build());
         } else {
-            mActivity.replaceFragmentContentDetail(null);
+            getMasterDelegate().replaceFragmentContentDetail(null);
         }
     }
 }

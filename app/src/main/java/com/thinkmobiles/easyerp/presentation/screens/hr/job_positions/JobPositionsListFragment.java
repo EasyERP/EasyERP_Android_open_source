@@ -60,13 +60,13 @@ public class JobPositionsListFragment extends MasterSelectableFragment implement
     }
 
     @Override
-    public void openJobPositionDetail(String id) {
-        if (id != null) {
-            mActivity.replaceFragmentContentDetail(JobPositionDetailsFragment_.builder()
-                    .jobPositionID(id)
+    public void openJobPositionDetail(String jobPositionId) {
+        if (jobPositionId != null) {
+            getMasterDelegate().replaceFragmentContentDetail(JobPositionDetailsFragment_.builder()
+                    .jobPositionID(jobPositionId)
                     .build());
         } else {
-            mActivity.replaceFragmentContentDetail(null);
+            getMasterDelegate().replaceFragmentContentDetail(null);
         }
     }
 }

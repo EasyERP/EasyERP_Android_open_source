@@ -56,11 +56,11 @@ public class TransfersFragment extends MasterFilterableFragment implements Trans
     @Override
     public void openDetailsScreen(String transferID) {
         if (transferID != null) {
-            mActivity.replaceFragmentContentDetail(TransferDetailsFragment_.builder()
+            getMasterDelegate().replaceFragmentContentDetail(TransferDetailsFragment_.builder()
                     .id(transferID)
                     .build());
         } else {
-            mActivity.replaceFragmentContentDetail(null);
+            getMasterDelegate().replaceFragmentContentDetail(null);
         }
     }
 

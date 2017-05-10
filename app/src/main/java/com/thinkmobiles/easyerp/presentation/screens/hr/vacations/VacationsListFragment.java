@@ -56,12 +56,12 @@ public class VacationsListFragment extends MasterAlphabeticalFragment implements
     @Override
     public void openDetailsScreen(int year, int month) {
         if (year != 0) {
-            mActivity.replaceFragmentContentDetail(VacationDetailsFragment_.builder()
+            getMasterDelegate().replaceFragmentContentDetail(VacationDetailsFragment_.builder()
                     .year(year)
                     .month(month)
                     .build());
         } else
-            mActivity.replaceFragmentContentDetail(null);
+            getMasterDelegate().replaceFragmentContentDetail(null);
     }
 
     @Override

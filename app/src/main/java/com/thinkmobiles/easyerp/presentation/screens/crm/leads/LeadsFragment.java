@@ -60,11 +60,11 @@ public class LeadsFragment extends MasterFilterableFragment implements LeadsCont
     @Override
     public void openDetailsScreen(String leadId) {
         if (leadId != null) {
-            mActivity.replaceFragmentContentDetail(LeadDetailsFragment_.builder()
+            getMasterDelegate().replaceFragmentContentDetail(LeadDetailsFragment_.builder()
                     .leadId(leadId)
                     .build());
         } else {
-            mActivity.replaceFragmentContentDetail(null);
+            getMasterDelegate().replaceFragmentContentDetail(null);
         }
     }
 }

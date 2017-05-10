@@ -14,7 +14,7 @@ import org.androidannotations.annotations.EFragment;
 @EFragment
 public abstract class BaseSupportFragment<T extends AppCompatActivity> extends Fragment {
 
-    protected T mActivity;
+    private T mActivity;
 
     @Override
     public void onAttach(Activity context) {
@@ -24,5 +24,9 @@ public abstract class BaseSupportFragment<T extends AppCompatActivity> extends F
         } catch (ClassCastException e) {
             throw new RuntimeException("This fragment should have Activity instance");
         }
+    }
+
+    protected T contextActivity() {
+        return mActivity;
     }
 }

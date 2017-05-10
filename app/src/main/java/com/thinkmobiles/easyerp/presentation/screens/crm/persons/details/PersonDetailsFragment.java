@@ -295,7 +295,7 @@ public class PersonDetailsFragment extends ContentFragment implements PersonDeta
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
                 .subscribe(aVoid -> {
                     GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_SOCIAL_BUTTON, "Skype");
-                    IntentActionHelper.callViewIntent(mActivity, uriPath, null);
+                    IntentActionHelper.callViewIntent(contextActivity(), uriPath, null);
                 });
     }
 
@@ -306,7 +306,7 @@ public class PersonDetailsFragment extends ContentFragment implements PersonDeta
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
                 .subscribe(aVoid -> {
                     GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_SOCIAL_BUTTON, "Linked In");
-                    IntentActionHelper.callViewIntent(mActivity, uriPath, null);
+                    IntentActionHelper.callViewIntent(contextActivity(), uriPath, null);
                 });
     }
 
@@ -317,7 +317,7 @@ public class PersonDetailsFragment extends ContentFragment implements PersonDeta
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
                 .subscribe(aVoid -> {
                     GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_SOCIAL_BUTTON, "Facebook");
-                    IntentActionHelper.callViewIntent(mActivity, uriPath, null);
+                    IntentActionHelper.callViewIntent(contextActivity(), uriPath, null);
                 });
     }
 
@@ -328,7 +328,7 @@ public class PersonDetailsFragment extends ContentFragment implements PersonDeta
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
                 .subscribe(aVoid -> {
                     GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_SOCIAL_BUTTON, "Email");
-                    IntentActionHelper.callSendEmailIntent(mActivity, email, null);
+                    IntentActionHelper.callSendEmailIntent(contextActivity(), email, null);
                 });
     }
 
@@ -338,7 +338,7 @@ public class PersonDetailsFragment extends ContentFragment implements PersonDeta
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
                 .subscribe(aVoid -> {
                     GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_URL, "Email");
-                    IntentActionHelper.callSendEmailIntent(mActivity, email, null);
+                    IntentActionHelper.callSendEmailIntent(contextActivity(), email, null);
                 });
     }
 
@@ -348,7 +348,7 @@ public class PersonDetailsFragment extends ContentFragment implements PersonDeta
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
                 .subscribe(aVoid -> {
                     GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_URL, "Phone");
-                    IntentActionHelper.callDialIntent(mActivity, phone);
+                    IntentActionHelper.callDialIntent(contextActivity(), phone);
                 });
     }
 
@@ -358,7 +358,7 @@ public class PersonDetailsFragment extends ContentFragment implements PersonDeta
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
                 .subscribe(aVoid -> {
                     GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_URL, "Phone");
-                    IntentActionHelper.callDialIntent(mActivity, phone);
+                    IntentActionHelper.callDialIntent(contextActivity(), phone);
                 });
     }
 
@@ -368,7 +368,7 @@ public class PersonDetailsFragment extends ContentFragment implements PersonDeta
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
                 .subscribe(aVoid -> {
                     GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_URL, "Mobile");
-                    IntentActionHelper.callDialIntent(mActivity, mobilePhone);
+                    IntentActionHelper.callDialIntent(contextActivity(), mobilePhone);
                 });
     }
 
@@ -582,7 +582,7 @@ public class PersonDetailsFragment extends ContentFragment implements PersonDeta
 
     @Override
     public void startUrlIntent(String url) {
-        IntentActionHelper.callViewIntent(mActivity, url, null);
+        IntentActionHelper.callViewIntent(contextActivity(), url, null);
     }
 
     @Override

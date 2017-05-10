@@ -17,9 +17,18 @@ import org.androidannotations.annotations.SystemService;
  */
 
 @EFragment
-public abstract class BaseMasterFlowFragment<T extends BaseMasterFlowActivity> extends Fragment {
+public abstract class BaseMasterFlowFragment<T extends BaseMasterFlowDelegate> extends Fragment {
 
-    protected T mActivity;
+    private T masterFlowDelegate;
+    private Activity activity;
+
+    protected BaseMasterFlowDelegate getMasterDelegate() {
+        return masterFlowDelegate;
+    }
+
+    protected Activity contextActivity() {
+        return activity;
+    }
 
     @SystemService
     protected InputMethodManager inputMethodManager;
@@ -28,7 +37,8 @@ public abstract class BaseMasterFlowFragment<T extends BaseMasterFlowActivity> e
     public void onAttach(Activity context) {
         super.onAttach(context);
         try {
-            mActivity = (T) context;
+            masterFlowDelegate = (T) context;
+            activity = context;
         } catch (ClassCastException e) {
             throw new RuntimeException("This fragment should have Activity instance");
         }
@@ -49,25 +59,25 @@ public abstract class BaseMasterFlowFragment<T extends BaseMasterFlowActivity> e
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         if (optionsMenuRes() != 0) {
-            if (mActivity.isTablet && !mActivity.isPortrait && optionsMenuForDetail()) {
-                mActivity.getToolbarDetail().inflateMenu(optionsMenuRes());
-                mActivity.getToolbarDetail().setOnMenuItemClickListener(this::onOptionsItemSelected);
-                optionsMenuInitialized(mActivity.getToolbarDetail().getMenu());
+            if (masterFlowDelegate.isTablet() && !masterFlowDelegate.isPortrait() && optionsMenuForDetail()) {
+                masterFlowDelegate.getToolbarDetail().inflateMenu(optionsMenuRes());
+                masterFlowDelegate.getToolbarDetail().setOnMenuItemClickListener(this::onOptionsItemSelected);
+                optionsMenuInitialized(masterFlowDelegate.getToolbarDetail().getMenu());
             } else {
                 inflater.inflate(optionsMenuRes(), menu);
                 optionsMenuInitialized(menu);
             }
         } else {
-            if (mActivity.isPortrait) {
-                mActivity.resetToolbar(menu);
+            if (masterFlowDelegate.isPortrait()) {
+                masterFlowDelegate.resetToolbar(menu);
             }
         }
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (mActivity.isTablet && !mActivity.isPortrait && optionsMenuForDetail()) {
-            mActivity.onOptionsItemSelected(item);
+        if (masterFlowDelegate.isTablet() && !masterFlowDelegate.isPortrait() && optionsMenuForDetail()) {
+            masterFlowDelegate.onOptionsItemSelected(item);
             return true;
         } else return super.onOptionsItemSelected(item);
     }
@@ -75,8 +85,8 @@ public abstract class BaseMasterFlowFragment<T extends BaseMasterFlowActivity> e
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        if (mActivity.isTablet && !mActivity.isPortrait && optionsMenuForDetail()) {
-            mActivity.resetDetailToolbarToBase();
+        if (masterFlowDelegate.isTablet() && !masterFlowDelegate.isPortrait() && optionsMenuForDetail()) {
+            masterFlowDelegate.resetDetailToolbarToBase();
         }
     }
 
