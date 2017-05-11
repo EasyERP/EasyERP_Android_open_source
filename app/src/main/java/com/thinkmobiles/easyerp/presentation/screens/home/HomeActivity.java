@@ -132,6 +132,18 @@ public class HomeActivity extends BaseMasterFlowActivity implements HomeContract
     }
 
     @Override
+    public void selectMenuInvoices() {
+        // 7 - id invoices menu item
+        menuDrawerView.selectItem(1, 7, true);
+    }
+
+    @Override
+    public void selectMenuOrders() {
+        // 6 - id orders menu item
+        menuDrawerView.selectItem(1, 6, true);
+    }
+
+    @Override
     public void restartApp() {
         EasyErpApplication.getInstance().restartApp();
     }

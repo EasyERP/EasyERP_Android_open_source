@@ -78,17 +78,16 @@ public abstract class MenuConfigs {
     private static List<MenuItem> getCRMModule() {
         final List<MenuItem> menuItems = new ArrayList<>();
         menuItems.add(new MenuItem(0, R.drawable.ic_dashboard, "Dashboard", true));
-//        menuItems.add(new MenuItem(1, R.drawable.ic_menu_item_placeholder, "Custom Dashboard", false));
-        menuItems.add(new MenuItem(2, R.drawable.ic_leads, "Leads", true));
-        menuItems.add(new MenuItem(3, R.drawable.ic_opportunities, "Opportunities", true));
-        menuItems.add(new MenuItem(4, R.drawable.ic_persons, "Persons", true));
-        menuItems.add(new MenuItem(5, R.drawable.ic_companies, "Companies", true));
-        menuItems.add(new MenuItem(6, R.drawable.ic_reports_crm, "Reports", false));
-        menuItems.add(new MenuItem(7, R.drawable.ic_orders, "Orders", true));
-        menuItems.add(new MenuItem(8, R.drawable.ic_invoices, "Invoices", true));
-        menuItems.add(new MenuItem(9, R.drawable.ic_paymens, "Payments", true));
-        menuItems.add(new MenuItem(10, R.drawable.ic_invoice_aging, "Invoice Aging", false));
-        menuItems.add(new MenuItem(11, R.drawable.ic_tasks, "Tasks", false));
+        menuItems.add(new MenuItem(1, R.drawable.ic_leads, "Leads", true));
+        menuItems.add(new MenuItem(2, R.drawable.ic_opportunities, "Opportunities", true));
+        menuItems.add(new MenuItem(3, R.drawable.ic_persons, "Persons", true));
+        menuItems.add(new MenuItem(4, R.drawable.ic_companies, "Companies", true));
+        menuItems.add(new MenuItem(5, R.drawable.ic_reports_crm, "Reports", false));
+        menuItems.add(new MenuItem(6, R.drawable.ic_orders, "Orders", true));
+        menuItems.add(new MenuItem(7, R.drawable.ic_invoices, "Invoices", true));
+        menuItems.add(new MenuItem(8, R.drawable.ic_paymens, "Payments", true));
+        menuItems.add(new MenuItem(9, R.drawable.ic_invoice_aging, "Invoice Aging", false));
+        menuItems.add(new MenuItem(10, R.drawable.ic_tasks, "Tasks", false));
         return menuItems;
     }
 
@@ -214,17 +213,16 @@ public abstract class MenuConfigs {
         final int crmModuleId = 1;
         switch (itemId) {
            case 0: return DashboardListFragment_.builder().moduleId(crmModuleId).build();
-           case 1: return null;
-           case 2: return LeadsFragment_.builder().build();
-           case 3: return OpportunitiesFragment_.builder().build();
-           case 4: return PersonsFragment_.builder().build();
-           case 5: return CompaniesFragment_.builder().build();
-           case 6: return null;
-           case 7: return OrdersFragment_.builder().moduleId(crmModuleId).build();
-           case 8: return InvoicesFragment_.builder().moduleId(crmModuleId).build();
-           case 9: return PaymentsFragment_.builder().moduleId(crmModuleId).build();
+           case 1: return LeadsFragment_.builder().build();
+           case 2: return OpportunitiesFragment_.builder().build();
+           case 3: return PersonsFragment_.builder().build();
+           case 4: return CompaniesFragment_.builder().build();
+           case 5: return null;
+           case 6: return OrdersFragment_.builder().moduleId(crmModuleId).build();
+           case 7: return InvoicesFragment_.builder().moduleId(crmModuleId).build();
+           case 8: return PaymentsFragment_.builder().moduleId(crmModuleId).build();
+           case 9: return null;
            case 10: return null;
-           case 11: return null;
         }
         return null;
     }

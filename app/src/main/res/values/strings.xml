@@ -403,7 +403,11 @@
     <string name="location">Location</string>
     <string name="price_list">Price List</string>
 
-    <string name="change_connect_state">Connect</string>
+    <string name="change_connect_state">Change connect state</string>
     <string name="connect">Connect</string>
     <string name="disconnect">Disconnect</string>
+
+    <string name="view_all">View all items</string>
+    <string name="view_all_invoices">View all invoices</string>
+    <string name="view_all_orders">View all orders</string>
 </resources>

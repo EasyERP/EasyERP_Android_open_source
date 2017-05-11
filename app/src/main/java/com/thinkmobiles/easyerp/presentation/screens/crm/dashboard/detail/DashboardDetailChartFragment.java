@@ -2,6 +2,7 @@ package com.thinkmobiles.easyerp.presentation.screens.crm.dashboard.detail;
 
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
@@ -61,6 +62,9 @@ public class DashboardDetailChartFragment extends ContentFragment implements Das
     @FragmentArg
     protected int moduleId;
 
+    private MenuItem viewAllMenuItem;
+    private Menu filtersMenu;
+
     @AfterInject
     @Override
     public void initPresenter() {
@@ -71,7 +75,6 @@ public class DashboardDetailChartFragment extends ContentFragment implements Das
     @AfterViews
     protected void initAnalytics() {
         GoogleAnalyticHelper.trackScreenView(this, getResources().getConfiguration());
-        getPresenter().subscribe();
     }
 
     @Override
@@ -87,6 +90,49 @@ public class DashboardDetailChartFragment extends ContentFragment implements Das
     @Override
     public String getScreenName() {
         return String.format("%s Dashboard details screen", MenuConfigs.getModuleLabel(moduleId));
+    }
+
+    @Override
+    public void displayViewAll(boolean isInvoices) {
+        final Button viewAllBtn = (Button) viewAllMenuItem.getActionView().findViewById(R.id.btnViewAll_MLAVA);
+        viewAllBtn.setText(isInvoices ? R.string.view_all_invoices : R.string.view_all_orders);
+        viewAllBtn.setOnClickListener(v -> presenter.viewAllItems());
+    }
+
+    @Override
+    public void initCurrentFilter(final DateFilterType dateFilterType) {
+        switch (dateFilterType) {
+            case THIS_MONTH:
+                filtersMenu.findItem(R.id.thisMonth_MCDD).setChecked(true);
+                break;
+            case THIS_FINANCIAL_YEAR:
+                filtersMenu.findItem(R.id.thisFinancialYear_MCDD).setChecked(true);
+                break;
+            case LAST_MONTH:
+                filtersMenu.findItem(R.id.lastMonth_MCDD).setChecked(true);
+                break;
+            case LAST_QUARTER:
+                filtersMenu.findItem(R.id.lastQuarter_MCDD).setChecked(true);
+                break;
+            case LAST_FINANCIAL_YEAR:
+                filtersMenu.findItem(R.id.lastFinancialYear_MCDD).setChecked(true);
+                break;
+            case CUSTOM_DATES:
+                filtersMenu.findItem(R.id.customDates_MCDD).setChecked(true);
+                break;
+        }
+    }
+
+    @Override
+    public void viewAllInvoices() {
+        GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_BUTTON, getString(R.string.view_all_invoices));
+        getMasterDelegate().selectMenuInvoices();
+    }
+
+    @Override
+    public void viewAllOrders() {
+        GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_BUTTON, getString(R.string.view_all_orders));
+        getMasterDelegate().selectMenuOrders();
     }
 
     @Override
@@ -163,31 +209,13 @@ public class DashboardDetailChartFragment extends ContentFragment implements Das
 
     @Override
     public void optionsMenuInitialized(Menu menu) {
-        switch (presenter.getCurrentFilterType()) {
-            case THIS_MONTH:
-                menu.findItem(R.id.thisMonth_MCDD).setChecked(true);
-                break;
-            case THIS_FINANCIAL_YEAR:
-                menu.findItem(R.id.thisFinancialYear_MCDD).setChecked(true);
-                break;
-            case LAST_MONTH:
-                menu.findItem(R.id.lastMonth_MCDD).setChecked(true);
-                break;
-            case LAST_QUARTER:
-                menu.findItem(R.id.lastQuarter_MCDD).setChecked(true);
-                break;
-            case LAST_FINANCIAL_YEAR:
-                menu.findItem(R.id.lastFinancialYear_MCDD).setChecked(true);
-                break;
-            case CUSTOM_DATES:
-                menu.findItem(R.id.customDates_MCDD).setChecked(true);
-                break;
-        }
+        filtersMenu = menu;
+        viewAllMenuItem = menu.findItem(R.id.actionViewAll_MCDD);
+        getPresenter().subscribe();
     }
 
     @Override
     public boolean optionsMenuForDetail() {
         return true;
     }
-
 }

@@ -17,15 +17,20 @@ import rx.Observable;
 
 public interface DashboardDetailChartContract {
     interface DashboardDetailChartView extends BaseView<DashboardDetailChartPresenter>, ContentView {
+        void displayViewAll(final boolean isInvoices);
+        void initCurrentFilter(final DateFilterType dateFilterType);
         void displayHeader(final String title);
         void displayChart(final Object data, final DashboardChartType chartType);
         void displayDateFilterFromTo(final String fromToDate);
         void chooseCustomDateRangeFromTo(final Calendar dateFrom, final Calendar dateTo);
+
+        void viewAllInvoices();
+        void viewAllOrders();
     }
     interface DashboardDetailChartPresenter extends ContentPresenter {
+        void viewAllItems();
         void chooseFilterType(final DateFilterType dateFilterType);
         void setCustomFilterRangeDateFromTo(final Calendar dateFrom, final Calendar dateTo);
-        DateFilterType getCurrentFilterType();
     }
     interface DashboardDetailChartModel extends BaseModel {
         Observable<?> getDashboardChartInfo(

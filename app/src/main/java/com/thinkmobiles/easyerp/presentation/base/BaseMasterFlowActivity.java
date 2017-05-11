@@ -128,7 +128,8 @@ public abstract class BaseMasterFlowActivity extends AppCompatActivity implement
     @Override
     public void replaceFragmentContent(final BaseMasterFlowFragment fragment, final String title) {
         setToolbarTitle(title);
-        replaceFragmentContentDetail(null);
+        if (getFragmentManager().getBackStackEntryCount() > 0)
+            getFragmentManager().popBackStackImmediate();
         replaceFragment(fragment, contentIdLayout(), false);
     }
 
@@ -189,6 +190,12 @@ public abstract class BaseMasterFlowActivity extends AppCompatActivity implement
     protected void onHomeMenuSelect() {
         onHomeMenuSelect(getFragmentManager().getBackStackEntryCount() == 0 || (isTablet && !isPortrait));
     }
+
+    @Override
+    public void selectMenuInvoices() {}
+
+    @Override
+    public void selectMenuOrders() {}
 
     @OptionsItem(R.id.menuLogout_MB)
     protected abstract void logOut();
