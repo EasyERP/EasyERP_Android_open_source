@@ -3,6 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
+        android:id="@+id/actionViewAll_MCDD"
+        android:title="@string/change_connect_state"
+        app:actionLayout="@layout/menu_layout_action_view_all"
+        app:showAsAction="ifRoom" />
+
+    <item
         android:id="@+id/filterDateForCharts_MCDD"
         android:icon="@drawable/ic_calendar_menu_icon"
         android:title="@string/date_filter"

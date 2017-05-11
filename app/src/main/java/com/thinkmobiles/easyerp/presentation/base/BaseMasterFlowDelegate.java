@@ -19,4 +19,7 @@ public interface BaseMasterFlowDelegate {
     void replaceFragmentContent(final BaseMasterFlowFragment fragment, final String title);
     void replaceFragmentContentDetail(final BaseMasterFlowFragment fragment);
     boolean onOptionsItemSelected(MenuItem item);
+
+    void selectMenuInvoices();
+    void selectMenuOrders();
 }

@@ -20,6 +20,8 @@ import java.util.GregorianCalendar;
 
 public class DashboardDetailChartPresenter extends ContentPresenterHelper implements DashboardDetailChartContract.DashboardDetailChartPresenter {
 
+    private static final String ORDERS_DATA_SET = "orders";
+
     private DashboardDetailChartContract.DashboardDetailChartView view;
     private DashboardDetailChartContract.DashboardDetailChartModel model;
     private DashboardListItem workDashboardInfoForChart;
@@ -48,6 +50,9 @@ public class DashboardDetailChartPresenter extends ContentPresenterHelper implem
         customDateFrom = defaultStatesPreferences.customDateFilterFromForCRMDashboardCharts().get();
         customDateTo = defaultStatesPreferences.customDateFilterToForCRMDashboardCharts().get();
         dateFilterType = DateFilterType.valueOf(defaultStatesPreferences.defaultDateFilterTypeForCRMDashboardCharts().get());
+
+        view.displayViewAll(!workDashboardInfoForChart.dataset.equals(ORDERS_DATA_SET));
+        view.initCurrentFilter(dateFilterType);
 
         view.displayDateFilterFromTo(getDateFromToString(getFromToFilterDate()));
         view.displayHeader(workDashboardInfoForChart.name);
@@ -85,8 +90,10 @@ public class DashboardDetailChartPresenter extends ContentPresenterHelper implem
     }
 
     @Override
-    public DateFilterType getCurrentFilterType() {
-        return dateFilterType;
+    public void viewAllItems() {
+        if (workDashboardInfoForChart.dataset.equals(ORDERS_DATA_SET))
+            view.viewAllOrders();
+        else view.viewAllInvoices();
     }
 
     @Override
