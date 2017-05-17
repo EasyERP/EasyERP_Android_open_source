@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/tutorial_margin_title"
-        android:layout_marginBottom="@dimen/default_padding_big"
+        android:layout_marginBottom="@dimen/default_dimen_32"
         android:gravity="center"
         android:textColor="@android:color/white"
         android:textSize="@dimen/text_title_tutorial"
@@ -22,6 +22,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
+        android:layout_marginBottom="@dimen/default_padding_big"
         tools:src="@drawable/tutorial1" />
 
 </LinearLayout>

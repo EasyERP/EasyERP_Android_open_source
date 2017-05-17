@@ -22,7 +22,7 @@
 
     <dimen name="login_logo_margin">32dp</dimen>
     <dimen name="login_icons_size">17dp</dimen>
-    <dimen name="tutorial_margin_title">170dp</dimen>
+    <dimen name="tutorial_margin_title">140dp</dimen>
 
     <!--/////////////////////// DESIGN ///////////////////////-->
 

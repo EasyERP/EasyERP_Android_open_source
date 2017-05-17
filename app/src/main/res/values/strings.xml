@@ -182,10 +182,15 @@
 
     <string name="tutorial">Tutorial</string>
     <string name="tutorial_1"><b>Keep</b> your finger on the pulse\nof sales in your company</string>
-    <string name="tutorial_2"><b>See</b> all incoming Leads and Opportunities\nwith ease</string>
-    <string name="tutorial_3"><b>Hold</b> all your working contacts\nnear at hand</string>
-    <string name="tutorial_4"><b>Look</b> through sales orders\nwith fulfilled products</string>
-    <string name="tutorial_5"><b>Get</b> up-to-date information about\ninvoices and payments</string>
+    <string name="tutorial_2"><b>Hold</b> all your working contacts\nnear at hand</string>
+    <string name="tutorial_3"><b>Look</b> through sales orders with\nfulfilled products</string>
+    <string name="tutorial_4"><b>Configure</b> and get reports instantly</string>
+    <string name="tutorial_5"><b>View</b> all ecommerce channels\nstatuses in real time</string>
+    <string name="tutorial_6"><b>Get</b> access to all product details\nand their variants</string>
+    <string name="tutorial_7"><b>Boost</b> your business grow with sales\nand purchases dashboards</string>
+    <string name="tutorial_8"><b>Hire</b> best people to build your business</string>
+    <string name="tutorial_9"><b>Keep</b> track of employees work\nand attendance</string>
+    <string name="tutorial_10"><b>Manage</b> all aspects of human resources</string>
 
     <string name="app_description"><![CDATA[
     We are a software engineering and consulting company which helps you to manage your working processes.<br>
