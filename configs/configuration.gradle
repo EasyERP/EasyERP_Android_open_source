@@ -6,8 +6,8 @@ allprojects {
         androidVersionName = '1.0.0'
 
         // Android config
-        androidBuildToolsVersion = '25.0.2'
-        androidMinSdkVersion = 19
+        androidBuildToolsVersion = '25.0.3'
+        androidMinSdkVersion = 21
         androidTargetSdkVersion = 24
         androidCompileSdkVersion = 25
 
