@@ -13,7 +13,7 @@ allprojects {
 
         // Library versions
         androidSupportVersion = '25.0.1'
-        androidAnnotationVersion = '4.2.0'
+        androidAnnotationVersion = '4.3.0'
         recyclerAdaptersVersion = '0.2.6'
         rxJavaVersion = '1.1.3'
         rxBindingVersion = '0.4.0'
