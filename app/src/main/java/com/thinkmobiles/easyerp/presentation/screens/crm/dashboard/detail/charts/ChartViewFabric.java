@@ -16,7 +16,8 @@ public final class ChartViewFabric {
     public static IChartView implementByChartType(final DashboardChartType chartType) {
         switch (chartType) {
             case DONUT: return new DonutChartViewImpl();
-            case OVERVIEW: return new OverViewChartViewImpl();
+            case OVERVIEW:
+            case SINGLEVALUE: return new OverViewChartViewImpl();
             case TABLE: return new TableChartViewImpl();
             case HORIZONTALBAR: return new HorizontalBarChartViewImpl();
             default : return null;

@@ -5,5 +5,5 @@ package com.thinkmobiles.easyerp.data.model.crm.dashboard.detail;
  */
 
 public enum DashboardChartType {
-    OVERVIEW, HORIZONTALBAR, TABLE, DONUT, COLORCARDSVIEW, REVERSEHORIZONTALBAR
+    OVERVIEW, SINGLEVALUE, HORIZONTALBAR, TABLE, DONUT, COLORCARDSVIEW, REVERSEHORIZONTALBAR
 }
