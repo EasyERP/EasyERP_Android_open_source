@@ -680,9 +680,9 @@
                     android:background="@drawable/bg_container_product_image"
                     android:nestedScrollingEnabled="false"
                     android:overScrollMode="never"
+                    android:padding="@dimen/default_padding_half"
                     android:visibility="gone"
-                    tools:visibility="visible"
-                    android:padding="@dimen/default_padding_half"/>
+                    tools:visibility="visible" />
 
                 <TextView
                     android:id="@+id/tvEmptyImages_FPD"

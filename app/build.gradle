@@ -96,6 +96,7 @@ dependencies {
     /*Networking*/
     compile appDependencies.retrofitGson
     compile appDependencies.retrofitAdapterRx
+//    compile 'com.squareup.okhttp3:logging-interceptor:3.8.0'
 
     /*UI*/
     compile appDependencies.mpAndroidChart

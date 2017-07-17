@@ -54,6 +54,10 @@ public final class ProductsListPresenter extends MasterFilterablePresenterHelper
                 responseItems -> {
                     currentPage = page;
                     totalItems = responseItems.total;
+
+                    if (responseItems.data == null)
+                        responseItems.data = new ArrayList<>();
+
                     saveData(responseItems.data, needClear);
                     setData(responseItems.data, needClear);
                 }, t -> error(t)));

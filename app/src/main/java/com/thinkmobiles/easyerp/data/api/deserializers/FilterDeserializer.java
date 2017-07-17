@@ -42,9 +42,13 @@ public class FilterDeserializer implements JsonDeserializer<ResponseFilters> {
             String filterName = filter.get("displayName").getAsString();
             String filterKey = filter.get("backend").getAsString();
             ArrayList<FilterItem> items = gson.fromJson(response.get(filterType), listType);
-            Collections.sort(items, comparator);
 
-            responseFilters.filters.add(new FilterInfo(items, filterName, filterType, filterKey, i));
+            if (items == null)
+                items = new ArrayList<>();
+//            if (items != null && !items.isEmpty()) {
+                Collections.sort(items, comparator);
+                responseFilters.filters.add(new FilterInfo(items, filterName, filterType, filterKey, i));
+//            }
         }
 
         return responseFilters;

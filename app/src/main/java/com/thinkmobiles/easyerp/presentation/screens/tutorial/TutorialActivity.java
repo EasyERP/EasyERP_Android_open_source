@@ -73,6 +73,7 @@ public class TutorialActivity extends AppCompatActivity implements TutorialContr
         vpTutorial_AT.setPageTransformer(true, new ZoomOutSlideTransformer());
 
         btnLogin_AT.setVisibility(isPreview ? View.INVISIBLE : View.VISIBLE);
+        btnSignUp_AT.setVisibility(isPreview ? View.INVISIBLE : View.VISIBLE);
 
         RxView.clicks(btnLogin_AT)
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)

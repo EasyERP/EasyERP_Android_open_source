@@ -1,12 +1,17 @@
 package com.thinkmobiles.easyerp.data.services;
 
 import com.thinkmobiles.easyerp.data.model.social.SocialRegisterProfile;
+import com.thinkmobiles.easyerp.data.model.user.UpdateUser;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
 
 import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.PATCH;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
+import retrofit2.http.Path;
+import retrofit2.http.Query;
 import rx.Observable;
 
 /**
@@ -31,6 +36,9 @@ public interface LoginService {
             @Field("last") String lName,
             @Field("pass") String password,
             @Field("dbId") String dbId);
+
+    @PATCH(Constants.POST_UPDATE_USER)
+    Observable<Void> update(@Path("userId") String userId, @Body UpdateUser data);
 
     @FormUrlEncoded
     @POST(Constants.POST_FORGOT_PASSWORD)

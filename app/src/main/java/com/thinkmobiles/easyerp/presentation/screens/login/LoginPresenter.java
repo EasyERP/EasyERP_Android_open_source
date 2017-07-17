@@ -2,6 +2,7 @@ package com.thinkmobiles.easyerp.presentation.screens.login;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.text.TextUtils;
 import android.util.Log;
 
 import com.facebook.CallbackManager;
@@ -20,6 +21,7 @@ import com.linkedin.platform.listeners.AuthListener;
 import com.linkedin.platform.utils.Scope;
 import com.thinkmobiles.easyerp.data.model.social.SocialRegisterProfile;
 import com.thinkmobiles.easyerp.data.model.social.SocialType;
+import com.thinkmobiles.easyerp.data.model.user.UserInfo;
 import com.thinkmobiles.easyerp.presentation.EasyErpApplication_;
 import com.thinkmobiles.easyerp.presentation.managers.CookieManager;
 import com.thinkmobiles.easyerp.presentation.managers.ErrorManager;
@@ -45,6 +47,8 @@ public class LoginPresenter implements LoginContract.LoginPresenter {
     private CallbackManager callbackManager = CallbackManager.Factory.create();
 
     private CompositeSubscription compositeSubscription;
+
+    private UserInfo user = null;
 
     public LoginPresenter(LoginContract.LoginView view,
                           LoginContract.LoginModel loginModel,
@@ -109,16 +113,38 @@ public class LoginPresenter implements LoginContract.LoginPresenter {
         Constants.ErrorCode errCodeEmail = ValidationManager.isEmailValid(email);
         Constants.ErrorCode errCodePassword = ValidationManager.isPasswordValid(password);
 
-        view.displayFirstNameError(errCodeFirstName);
-        view.displayLastNameError(errCodeLastName);
+//        view.displayFirstNameError(errCodeFirstName);
+//        view.displayLastNameError(errCodeLastName);
         view.displaySignUpEmailError(errCodeEmail);
         view.displaySignUpPasswordError(errCodePassword);
 
-        if(errCodeFirstName.equals(Constants.ErrorCode.OK) &&
-                errCodeLastName.equals(Constants.ErrorCode.OK) &&
-                errCodeEmail.equals(Constants.ErrorCode.OK) &&
+//        if(errCodeFirstName.equals(Constants.ErrorCode.OK) &&
+//                errCodeLastName.equals(Constants.ErrorCode.OK) &&
+        if(errCodeEmail.equals(Constants.ErrorCode.OK) &&
                 errCodePassword.equals(Constants.ErrorCode.OK))
             signUp(firstName, lastName, email, password);
+    }
+
+    @Override
+    public void updateUserDetails() {
+        String firstName = view.getFirstName();
+        String lastName = view.getLastName();
+        String phone = view.getPhone();
+        String companyName = view.getCompanyName();
+        String companySite = view.getCompanySite();
+
+        Constants.ErrorCode errCodeFirstName = ValidationManager.isNameValid(firstName);
+        Constants.ErrorCode errCodeLastName = ValidationManager.isNameValid(lastName);
+        Constants.ErrorCode errCodePhone = ValidationManager.isPhoneValid(phone);
+        Constants.ErrorCode errCodeCompanyName = ValidationManager.isNameValid(companyName);
+        Constants.ErrorCode errCodeCompanySite = ValidationManager.isSiteValid(companySite);
+
+        if (errCodeFirstName.equals(Constants.ErrorCode.OK)
+                && errCodeLastName.equals(Constants.ErrorCode.OK)
+                && errCodeCompanyName.equals(Constants.ErrorCode.OK)
+                && errCodeCompanySite.equals(Constants.ErrorCode.OK)
+                && errCodePhone.equals(Constants.ErrorCode.OK))
+            update(firstName, lastName, phone, companyName, companySite);
     }
 
     @Override
@@ -127,7 +153,11 @@ public class LoginPresenter implements LoginContract.LoginPresenter {
                 userModel.getCurrentUser()
                         .subscribe(responseGetCurrentUser -> {
                             view.dismissProgress();
-                            view.startHomeScreen(responseGetCurrentUser.user);
+                            if (TextUtils.isEmpty(responseGetCurrentUser.user.mobilePhone)) {
+                                user = responseGetCurrentUser.user;
+                                view.showSignUpDetails();
+                            } else
+                                view.startHomeScreen(responseGetCurrentUser.user);
                         }, t -> {
                             view.dismissProgress();
                             view.showErrorToast(ErrorManager.getErrorMessage(t));
@@ -168,6 +198,23 @@ public class LoginPresenter implements LoginContract.LoginPresenter {
                             view.dismissProgress();
                             view.signUpDoSuccess();
                         }, t -> {
+                            android.util.Log.e("TAG", t.getMessage(), t);
+                            view.dismissProgress();
+                            view.showErrorToast(ErrorManager.getErrorMessage(t));
+                        })
+        );
+    }
+
+    private void update(final String fName, final String lName, final String phone, final String compName, final String compSite) {
+        view.showProgress("Updating information. Please wait a second...");
+        android.util.Log.e("URL", user.id);
+        compositeSubscription.add(
+                loginModel.update(user.id, fName, lName, phone, compName, compSite)
+                        .subscribe(s -> {
+                            view.dismissProgress();
+                            view.startHomeScreen(user);
+                        }, t -> {
+                            android.util.Log.e("TAG", t.getMessage(), t);
                             view.dismissProgress();
                             view.showErrorToast(ErrorManager.getErrorMessage(t));
                         })

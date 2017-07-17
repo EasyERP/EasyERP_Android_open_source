@@ -11,7 +11,7 @@ public class AboutAppPresenter implements AboutAppContract.AboutAppPresenter {
 
     private static final String SUFFIX_FACEBOOK = "easyerp";
     private static final String SUFFIX_LINKEDIN = "easyerp";
-    private static final String SUFFIX_YOUTUBE = "EasyERP";
+    private static final String SUFFIX_YOUTUBE = "UCXylOIZMcCvjE6ri0EufVWg";
     private static final String SUFFIX_TWITER = "easy_erp";
     private static final String SUFFIX_SKYPE = "live:ligintir";
 

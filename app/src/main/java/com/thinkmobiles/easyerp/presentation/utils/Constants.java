@@ -28,7 +28,8 @@ public abstract class Constants {
     //Login
     public static final String POST_LOGIN                   = "users/login";
     public static final String POST_LOGIN_SOCIAL            = PRODUCTION ? "saas/social" : "users/login/social";
-    public static final String POST_SIGN_UP                 = "users/signUp";
+    public static final String POST_SIGN_UP                 = PRODUCTION ? "saas" : "users/signUp";
+    public static final String POST_UPDATE_USER             = "users/{userId}";
     public static final String POST_FORGOT_PASSWORD         = "users/forgotPassword";
     //End Login
 
@@ -188,14 +189,17 @@ public abstract class Constants {
         FIELD_EMPTY,
         INVALID_CHARS,
         INVALID_EMAIL,
-        SHORTNESS
+        SHORTNESS,
+        WEAK_PASSWORD,
+        INVALID_PHONE,
+        INVALID_SITE
     }
 
     public enum ProgressType {
         CENTER, BOTTOM, NONE
     }
 
-    public static final String DB_TEST_ID                   = "CRM";
+    public static final String DB_TEST_ID                   = "ishtvandb";
 
     public enum ErrorType {
         LIST_EMPTY, NETWORK, UNKNOWN

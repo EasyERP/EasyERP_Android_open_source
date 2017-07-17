@@ -237,6 +237,11 @@ public class EmployeeDetailsFragment extends ContentFragment implements Employee
     }
 
     @Override
+    public void hideHistory(boolean hide) {
+        btnHistory.setVisibility(hide ? View.GONE : View.VISIBLE);
+    }
+
+    @Override
     public void showPersonalInformation(boolean isShown) {
         llContainerPersonalInformation_FED.setVisibility(isShown ? View.VISIBLE : View.GONE);
         tvEmptyPersonalInformation_FED.setVisibility(isShown ? View.GONE : View.VISIBLE);

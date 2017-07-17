@@ -24,6 +24,8 @@ public final class ReportDH extends RecyclerDH {
     }
 
     public boolean isFavorite(final String reportId) {
-        return currentUser.favorite.reports.contains(reportId);
+        return currentUser.favorite != null
+                && currentUser.favorite.reports != null
+                && currentUser.favorite.reports.contains(reportId);
     }
 }

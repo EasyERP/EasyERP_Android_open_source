@@ -46,6 +46,7 @@ import java.util.ArrayList;
 
 import okhttp3.OkHttpClient;
 import okhttp3.ResponseBody;
+//import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Converter;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
@@ -109,6 +110,11 @@ public class Rest {
         OkHttpClient.Builder clientBuilder = new OkHttpClient.Builder().addInterceptor(receiveCookieInterceptor);
         BuildConfig.STETHO.configureInterceptor(clientBuilder);
 
+//        HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
+//        logging.setLevel(HttpLoggingInterceptor.Level.BODY);
+
+//        clientBuilder.addInterceptor(logging);
+
         Retrofit.Builder builder = new Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create(malformedGson))
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
@@ -118,6 +124,7 @@ public class Rest {
         retrofit = builder.build();
 
         clientBuilder
+//                .addInterceptor(logging)
                 .addInterceptor(addCookieInterceptor)
                 .addInterceptor(badCookieInterceptor);
 
@@ -133,7 +140,7 @@ public class Rest {
     }
 
     public LoginService getLoginService() {
-        return loginService == null ? loginService = createService(LoginService.class, false) : loginService;
+        return loginService == null ? loginService = createService(LoginService.class, true) : loginService;
     }
 
     public UserService getUserService() {

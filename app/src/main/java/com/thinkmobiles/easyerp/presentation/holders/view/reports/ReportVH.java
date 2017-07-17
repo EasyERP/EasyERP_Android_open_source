@@ -60,7 +60,10 @@ public class ReportVH extends RecyclerVH<ReportDH> {
         final Report report = data.getReport();
         cbFavorite_VLIGR.setChecked(data.isFavorite(report.id));
         tvName_VLIGR.setText(report.name);
-        tvEditedBy_VLIGR.setText(report.editedBy.user.login);
+        if (report.editedBy.user != null)
+            tvEditedBy_VLIGR.setText(report.editedBy.user.login);
+        else
+            tvEditedBy_VLIGR.setText(null);
         tvType_VLIGR.setText(report.reportType);
         tvDateRange_VLIGR.setText(String.format("%s\n%s",
                 new DateManager.DateConverter(report.dateRange.from).setDstPattern(PATTERN_DATE_SIMPLE_PREVIEW).toString(),

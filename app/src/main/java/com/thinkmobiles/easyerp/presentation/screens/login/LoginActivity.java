@@ -69,6 +69,8 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
 
     private boolean isCookieExpired = true;
     private boolean isAnimationFinished = false;
+    private boolean isSecondAnimationFinished = false;
+    private boolean isProfileComplete = true;
 
     private AnimatorSet animatorSet1, animatorSet2;
     private UserInfo userInfo;
@@ -80,6 +82,8 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
     protected View llAppLogo_AL;
     @ViewById
     protected View flInput_VIFL;
+    @ViewById
+    protected View flInput_VIFSD;
 
     @ViewById
     protected TextView tvTabLogIn_VIFL, tvTabSignUp_VIFL;
@@ -97,7 +101,9 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
     @ViewById
     protected EditText etFirstName_VIFL, etLastName_VIFL, etEmail_VIFL, etPasswordSignUp_VIFL;
     @ViewById
-    protected Button btnLogin_VIFL, btnSignUp_VIFL;
+    protected EditText etFirstName_VIFSD, etLastName_VIFSD, etPhone_VIFSD, etCompanyName_VIFSD, etWeb_VIFSD;
+    @ViewById
+    protected Button btnLogin_VIFL, btnSignUp_VIFL, btnContinue_VIFSD;
     @ViewById
     protected TextView tvOrViaSocial_VIFL, tvForgotPassword_VIFL, tvTermsAndCondition_VIFL;
     @ViewById
@@ -115,6 +121,8 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
     protected String errEmptyEmail;
     @StringRes(R.string.err_password_wrong_symbols)
     protected String errInvalidChars;
+    @StringRes(R.string.err_password_weak)
+    protected String errWeakPassword;
     @StringRes(R.string.err_email_wrong)
     protected String errInvalidEmail;
     @StringRes(R.string.err_password_short)
@@ -167,6 +175,12 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
                     GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_BUTTON, "Sign Up");
                     presenter.signUp();
                 });
+        RxView.clicks(btnContinue_VIFSD)
+                .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
+                .subscribe(aVoid -> {
+                    GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_BUTTON, "Continue");
+                    presenter.updateUserDetails();
+                });
         RxView.clicks(tvBtnFacebook_VIFL)
                 .throttleFirst(Constants.DELAY_CLICK, TimeUnit.MILLISECONDS)
                 .subscribe(aVoid -> {
@@ -198,6 +212,8 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
         initSelectedStatesInTabs();
         tvTermsAndCondition_VIFL.setText(buildTermsAndConditions());
         tvTermsAndCondition_VIFL.setMovementMethod(LinkMovementMethod.getInstance());
+
+        flInput_VIFSD.setVisibility(View.GONE);
     }
 
     @Click({R.id.tvTabLogIn_VIFL, R.id.tvTabSignUp_VIFL})
@@ -323,12 +339,12 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
 
     @Override
     public String getFirstName() {
-        return etFirstName_VIFL.getText().toString().trim();
+        return etFirstName_VIFSD.getText().toString().trim();
     }
 
     @Override
     public String getLastName() {
-        return etLastName_VIFL.getText().toString().trim();
+        return etLastName_VIFSD.getText().toString().trim();
     }
 
     @Override
@@ -339,6 +355,21 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
     @Override
     public String getSignUpPassword() {
         return etPasswordSignUp_VIFL.getText().toString().trim();
+    }
+
+    @Override
+    public String getPhone() {
+        return etPhone_VIFSD.getText().toString().trim();
+    }
+
+    @Override
+    public String getCompanyName() {
+        return etCompanyName_VIFSD.getText().toString().trim();
+    }
+
+    @Override
+    public String getCompanySite() {
+        return etWeb_VIFSD.getText().toString().trim();
     }
 
     @Override
@@ -397,6 +428,10 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
                 til.setError(errPasswordShort);
                 til.setErrorEnabled(true);
                 break;
+            case WEAK_PASSWORD:
+                til.setError(errWeakPassword);
+                til.setErrorEnabled(true);
+                break;
             case OK:
                 til.setError(null);
                 til.setErrorEnabled(false);
@@ -413,6 +448,20 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
                     .flags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK)
                     .start();
         }
+    }
+
+    @Override
+    public void showSignUpDetails() {
+        isProfileComplete = false;
+        if (!isSecondAnimationFinished)
+            animatorSet2.start();
+        else
+            showDetailsTab();
+    }
+
+    private void showDetailsTab() {
+        flInput_VIFL.setVisibility(View.GONE);
+        flInput_VIFSD.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -454,7 +503,11 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
             @Override
             public void onAnimationStart(Animator animation) {
                 super.onAnimationStart(animation);
-                flInput_VIFL.setVisibility(View.VISIBLE);
+                isSecondAnimationFinished = true;
+                if (isProfileComplete)
+                    flInput_VIFL.setVisibility(View.VISIBLE);
+                else
+                    flInput_VIFSD.setVisibility(View.VISIBLE);
             }
         });
 

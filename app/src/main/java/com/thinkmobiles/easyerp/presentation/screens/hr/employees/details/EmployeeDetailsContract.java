@@ -20,6 +20,7 @@ import rx.Observable;
 public interface EmployeeDetailsContract {
     interface EmployeeDetailsView extends BaseView<EmployeeDetailsPresenter>, ContentView {
         void showHistory(boolean isShow);
+        void hideHistory(boolean hide);
 
         void showPersonalInformation(boolean isShown);
         void showAddress(boolean isShown);

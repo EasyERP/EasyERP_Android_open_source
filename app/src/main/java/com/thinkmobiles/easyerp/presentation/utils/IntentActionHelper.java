@@ -18,7 +18,7 @@ public abstract class IntentActionHelper {
     public static final String FORMAT_LINKEDIN_PROFILE  = "https://www.linkedin.com/profile/view?id=%s";
     public static final String FORMAT_LINKEDIN_COMPANY  = "https://www.linkedin.com/company/%s/";
     public static final String FORMAT_FACEBOOK          = "https://www.facebook.com/%s/";
-    public static final String FORMAT_YOUTUBE           = "https://www.youtube.com/user/%s/";
+    public static final String FORMAT_YOUTUBE           = "https://www.youtube.com/channel/%s/";
     public static final String FORMAT_TWITTER           = "https://twitter.com/%s/";
 
     public static final String FORMAT_MARKET            = "market://details?id=%s";

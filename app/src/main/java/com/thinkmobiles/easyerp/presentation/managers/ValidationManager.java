@@ -16,7 +16,13 @@ public abstract class ValidationManager {
 
     private static final Pattern invalidCharsRegExp = Pattern.compile("^[a-zA-Z0-9_@]+$");
     private static final Pattern invalidEmailRegExp = Patterns.EMAIL_ADDRESS;
-    private static final Pattern shortRegExp = Pattern.compile("^[a-zA-Z0-9_@.]{3,100}$");
+    private static final Pattern invalidPhoneRegExp = Patterns.PHONE;
+    private static final Pattern invalidWebSiteRegExp = Patterns.WEB_URL;
+    private static final Pattern shortRegExp = Pattern.compile("^[a-zA-Z0-9_@.]{8,100}$");
+
+    private static final Pattern hasUpperCaseRegExp = Pattern.compile("[A-Z]");
+    private static final Pattern hasSymbolRegExp = Pattern.compile("[_@]");
+    private static final Pattern hasNumberRegExp = Pattern.compile("[0-9]");
 
     public static Constants.ErrorCode isNameValid(String name) {
         if (TextUtils.isEmpty(name))
@@ -44,6 +50,10 @@ public abstract class ValidationManager {
             return Constants.ErrorCode.INVALID_CHARS;
         else if (!passMatcher.matches())
             return Constants.ErrorCode.SHORTNESS;
+        else if (!hasUpperCaseRegExp.matcher(password).find()
+                || !hasNumberRegExp.matcher(password).find()
+                || !hasSymbolRegExp.matcher(password).find())
+            return Constants.ErrorCode.WEAK_PASSWORD;
         else
             return Constants.ErrorCode.OK;
     }
@@ -54,6 +64,24 @@ public abstract class ValidationManager {
             return Constants.ErrorCode.FIELD_EMPTY;
         else if (!invalidCharsMatcher.matches())
             return Constants.ErrorCode.INVALID_EMAIL;
+        else
+            return Constants.ErrorCode.OK;
+    }
+
+    public static Constants.ErrorCode isPhoneValid(String phone) {
+        if (TextUtils.isEmpty(phone))
+            return Constants.ErrorCode.FIELD_EMPTY;
+        else if (!invalidPhoneRegExp.matcher(phone).matches())
+            return Constants.ErrorCode.INVALID_PHONE;
+        else
+            return Constants.ErrorCode.OK;
+    }
+
+    public static Constants.ErrorCode isSiteValid(String site) {
+        if (TextUtils.isEmpty(site))
+            return Constants.ErrorCode.FIELD_EMPTY;
+        else if (!invalidWebSiteRegExp.matcher(site).matches())
+            return Constants.ErrorCode.INVALID_SITE;
         else
             return Constants.ErrorCode.OK;
     }

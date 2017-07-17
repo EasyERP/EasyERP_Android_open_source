@@ -1,40 +1,40 @@
 {
   "project_info": {
-    "project_number": "642326708291",
-    "project_id": "easyerpandroid-158811"
+    "project_number": "115004546787",
+    "project_id": "easyerpandroid"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:642326708291:android:39526700d0935e53",
+        "mobilesdk_app_id": "1:115004546787:android:39526700d0935e53",
         "android_client_info": {
           "package_name": "com.thinkmobiles.easyerp"
         }
       },
       "oauth_client": [
         {
-          "client_id": "642326708291-b1iabrrlgk9c6f2um3mtoh1mv1638fni.apps.googleusercontent.com",
+          "client_id": "115004546787-amer7bbb2fp952lecue5sr3gfklo0oli.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.thinkmobiles.easyerp",
-            "certificate_hash": "d163045abde9f5663bf6dea2a9559bf75390b353"
+            "certificate_hash": "98bf91438246a7d8cf7e1d7dc8ff31fe68726608"
           }
         },
         {
-          "client_id": "642326708291-mo6efa01j14vcppf9vcc235vk2bmftub.apps.googleusercontent.com",
+          "client_id": "115004546787-qmuhi940qb0qnasvmvmn80mijnjdm796.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCJvrWSpIAg-mwFp12yLRHGyfwxn1nXBE0"
+          "current_key": "AIzaSyD4KLkY_G1tD8yTANqOA2g8FJkOw8tjHxY"
         }
       ],
       "services": {
         "analytics_service": {
           "status": 2,
           "analytics_property": {
-            "tracking_id": "UA-92035026-1"
+            "tracking_id": "UA-92034912-1"
           }
         },
         "appinvite_service": {

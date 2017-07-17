@@ -26,8 +26,11 @@ public class SuggestionAdapter extends SimpleCursorAdapter {
     private ArrayList<FilterDH> temp = new ArrayList<>();
 
     public void setItems(ArrayList<FilterDH> items) {
-        this.items.clear();
-        this.items.addAll(items);
+        //TODO: NPE
+//        if (items != null) {
+            this.items.clear();
+            this.items.addAll(items);
+//        }
     }
 
     public FilterDH getSuggestion(int position) {

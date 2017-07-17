@@ -63,7 +63,8 @@ public final class JobPositionDetailsPresenter extends ContentPresenterHelper im
     private void setMain(JobPositionDetail data) {
         view.displayJobName(data.name);
         view.displayExpectedInRecruitment(data.expectedRecruitment);
-        view.displayDepartment(data.department.name);
+        //TODO: no department message
+        view.displayDepartment(data.department != null ? data.department.name : "");
         view.displayStage(data.workflow.name);
         if (!TextUtils.isEmpty(data.requirements))
             view.displayRequirements(data.requirements);

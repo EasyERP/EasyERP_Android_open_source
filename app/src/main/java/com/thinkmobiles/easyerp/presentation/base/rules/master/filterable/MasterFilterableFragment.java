@@ -86,7 +86,8 @@ public abstract class MasterFilterableFragment extends MasterSelectableFragment 
 
     @Override
     public void createMenuFilters(FilterHelper helper) {
-        if (helper.isInitialized()) {
+        //TODO: NPE
+        if (helper.isInitialized() && helper.getSearchableFilterList() != null) {
             menuFilters.setVisible(true);
             menuSearch.setVisible(true);
             suggestionAdapter.setItems(helper.getSearchableFilterList());

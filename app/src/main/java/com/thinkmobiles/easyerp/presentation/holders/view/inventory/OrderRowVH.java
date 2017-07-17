@@ -44,7 +44,8 @@ public final class OrderRowVH extends RecyclerVH<OrderRowDH> {
         tvName_LIOR.setText(model.description);
         if (model.product != null && model.product.info != null)
             tvSku_LIOR.setText(model.product.info.SKU);
-        if (model.locationsDeliver != null)
+        //TODO: index out of bounds
+        if (model.locationsDeliver != null && !model.locationsDeliver.isEmpty())
             tvLocation_LIOR.setText(model.locationsDeliver.get(0).name);
         tvShipped_LIOR.setText(String.valueOf(model.shipped));
         tvShipment_LIOR.setText(String.valueOf(model.selectedQuantity));

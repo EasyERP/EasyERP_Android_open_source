@@ -18,6 +18,9 @@ public final class UserInfo implements Parcelable {
     public String lastAccess;
     public UserFavorite favorite;
     public UserProfile profile;
+    public String mobilePhone;
+    public String company;
+    public String website;
 
     public UserInfo() {
     }
@@ -36,6 +39,9 @@ public final class UserInfo implements Parcelable {
         dest.writeString(this.lastAccess);
         dest.writeParcelable(this.favorite, flags);
         dest.writeParcelable(this.profile, flags);
+        dest.writeString(this.mobilePhone);
+        dest.writeString(this.company);
+        dest.writeString(this.website);
     }
 
     protected UserInfo(Parcel in) {
@@ -46,6 +52,9 @@ public final class UserInfo implements Parcelable {
         this.lastAccess = in.readString();
         this.favorite = in.readParcelable(UserFavorite.class.getClassLoader());
         this.profile = in.readParcelable(UserProfile.class.getClassLoader());
+        this.mobilePhone = in.readString();
+        this.company = in.readString();
+        this.website = in.readString();
     }
 
     public static final Creator<UserInfo> CREATOR = new Creator<UserInfo>() {

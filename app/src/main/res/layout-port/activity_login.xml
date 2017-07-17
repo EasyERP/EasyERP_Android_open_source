@@ -35,6 +35,8 @@
 
         <include layout="@layout/view_include_frame_login" />
 
+        <include layout="@layout/view_include_frame_signup_details" />
+
     </FrameLayout>
 
 </android.support.percent.PercentRelativeLayout>

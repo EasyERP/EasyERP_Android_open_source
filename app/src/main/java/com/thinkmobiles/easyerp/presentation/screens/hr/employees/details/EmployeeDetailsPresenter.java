@@ -282,6 +282,7 @@ public class EmployeeDetailsPresenter extends ContentPresenterHelper implements 
         Collections.reverse(info.notes);
         view.displayHistory(SimpleNoteDH.convert(info.notes));
         view.showHistory(isVisibleHistory);
+        view.hideHistory(info.notes.isEmpty());
     }
 
 

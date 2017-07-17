@@ -18,10 +18,13 @@ public final class ResponseGetChannels implements Parcelable {
 
     public ArrayList<Channel> getPackedChannels() {
         for (Channel channel: result) {
-            channel.conflictProducts = getCountInStats(channel.id, stats.conflictProducts);
-            channel.importedOrders = getCountInStats(channel.id, stats.importedOrders);
-            channel.importedProducts = getCountInStats(channel.id, stats.importedProducts);
-            channel.unlinkedOrders = getCountInStats(channel.id, stats.unlinkedOrders);
+            //TODO: NPE
+            if (stats != null) {
+                channel.conflictProducts = getCountInStats(channel.id, stats.conflictProducts);
+                channel.importedOrders = getCountInStats(channel.id, stats.importedOrders);
+                channel.importedProducts = getCountInStats(channel.id, stats.importedProducts);
+                channel.unlinkedOrders = getCountInStats(channel.id, stats.unlinkedOrders);
+            }
         }
         return result;
     }

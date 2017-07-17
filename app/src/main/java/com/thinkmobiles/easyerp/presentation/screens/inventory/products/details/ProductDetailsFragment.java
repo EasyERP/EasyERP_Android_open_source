@@ -233,22 +233,25 @@ public class ProductDetailsFragment extends ContentFragment implements ProductDe
     public void setPriceLists(ArrayList<PriceList> prices) {
         priceAdapter.clear();
         for (PriceList item : prices) {
-            priceAdapter.add(item.priceLists.name);
+            priceAdapter.add(item.priceLists.name != null ? item.priceLists.name : "Price");
         }
     }
 
     @Override
     public void setPrices(ArrayList<Price> prices) {
-        etCount1_FPD.setText(String.valueOf(prices.get(0).count));
-        etPrice1_FPD.setText(String.valueOf(prices.get(0).price));
-        etCount2_FPD.setText(String.valueOf(prices.get(1).count));
-        etPrice2_FPD.setText(String.valueOf(prices.get(1).price));
-        etCount3_FPD.setText(String.valueOf(prices.get(2).count));
-        etPrice3_FPD.setText(String.valueOf(prices.get(2).price));
-        etCount4_FPD.setText(String.valueOf(prices.get(3).count));
-        etPrice4_FPD.setText(String.valueOf(prices.get(3).price));
-        etCount5_FPD.setText(String.valueOf(prices.get(4).count));
-        etPrice5_FPD.setText(String.valueOf(prices.get(4).price));
+        //TODO: array out of bounds
+        if (prices != null && prices.size() > 4) {
+            etCount1_FPD.setText(String.valueOf(prices.get(0).count));
+            etPrice1_FPD.setText(String.valueOf(prices.get(0).price));
+            etCount2_FPD.setText(String.valueOf(prices.get(1).count));
+            etPrice2_FPD.setText(String.valueOf(prices.get(1).price));
+            etCount3_FPD.setText(String.valueOf(prices.get(2).count));
+            etPrice3_FPD.setText(String.valueOf(prices.get(2).price));
+            etCount4_FPD.setText(String.valueOf(prices.get(3).count));
+            etPrice4_FPD.setText(String.valueOf(prices.get(3).price));
+            etCount5_FPD.setText(String.valueOf(prices.get(4).count));
+            etPrice5_FPD.setText(String.valueOf(prices.get(4).price));
+        }
     }
 
     @Override

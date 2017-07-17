@@ -2,6 +2,7 @@ package com.thinkmobiles.easyerp.domain.auth;
 
 import com.thinkmobiles.easyerp.data.api.Rest;
 import com.thinkmobiles.easyerp.data.model.social.SocialRegisterProfile;
+import com.thinkmobiles.easyerp.data.model.user.UpdateUser;
 import com.thinkmobiles.easyerp.data.services.LoginService;
 import com.thinkmobiles.easyerp.presentation.base.NetworkRepository;
 import com.thinkmobiles.easyerp.presentation.screens.login.LoginContract;
@@ -48,6 +49,13 @@ public class LoginRepository extends NetworkRepository implements LoginContract.
                         lName,
                         password,
                         PRODUCTION ? null : Constants.DB_TEST_ID)
+        );
+    }
+
+    @Override
+    public Observable<?> update(String userId, String fName, String lName, String phone, String compName, String compSite) {
+        return getNetworkObservable(
+                loginService.update(userId, new UpdateUser(fName, lName, phone, compName, compSite))
         );
     }
 
