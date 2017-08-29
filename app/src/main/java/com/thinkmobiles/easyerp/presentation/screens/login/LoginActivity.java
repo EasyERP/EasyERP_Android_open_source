@@ -93,9 +93,9 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
     protected FrameLayout flContainerChangedContent_VIFL;
 
     @ViewById
-    protected TextInputLayout tilLogin_VIFL, tilPassword_VIFL;
+    protected TextInputLayout tilLogin_VIFL, tilPassword_VIFL, tilPhone_VIFSD, tilCompanyName_VIFSD, tilWeb_VIFSD;
     @ViewById
-    protected TextInputLayout tilFirstName_VIFL, tilLastName_VIFL, tilEmail_VIFL, tilPasswordSignUp_VIFL;
+    protected TextInputLayout tilFirstName_VIFSD, tilLastName_VIFSD, tilEmail_VIFL, tilPasswordSignUp_VIFL;
     @ViewById
     protected EditText etLogin_VIFL, etPassword_VIFL;
     @ViewById
@@ -117,6 +117,16 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
     protected String errEmptyFirstName;
     @StringRes(R.string.err_l_name_required)
     protected String errEmptyLastName;
+    @StringRes(R.string.err_phone_required)
+    protected String errEmptyPhone;
+    @StringRes(R.string.err_company_name_required)
+    protected String errEmptyCompanyName;
+    @StringRes(R.string.err_site_required)
+    protected String errEmptyWebsite;
+    @StringRes(R.string.err_invalid_phone)
+    protected String errInvalidPhone;
+    @StringRes(R.string.err_invalid_site)
+    protected String errInvalidSite;
     @StringRes(R.string.err_email_required)
     protected String errEmptyEmail;
     @StringRes(R.string.err_password_wrong_symbols)
@@ -384,12 +394,27 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
 
     @Override
     public void displayFirstNameError(Constants.ErrorCode code) {
-        displayError(code, tilFirstName_VIFL, errEmptyFirstName);
+        displayError(code, tilFirstName_VIFSD, errEmptyFirstName);
     }
 
     @Override
     public void displayLastNameError(Constants.ErrorCode code) {
-        displayError(code, tilLastName_VIFL, errEmptyLastName);
+        displayError(code, tilLastName_VIFSD, errEmptyLastName);
+    }
+
+    @Override
+    public void displayPhoneError(Constants.ErrorCode code) {
+        displayError(code, tilPhone_VIFSD, errEmptyPhone);
+    }
+
+    @Override
+    public void displayCompanyNameError(Constants.ErrorCode code) {
+        displayError(code, tilCompanyName_VIFSD, errEmptyCompanyName);
+    }
+
+    @Override
+    public void displayWebError(Constants.ErrorCode code) {
+        displayError(code, tilWeb_VIFSD, errEmptyWebsite);
     }
 
     @Override
@@ -430,6 +455,14 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
                 break;
             case WEAK_PASSWORD:
                 til.setError(errWeakPassword);
+                til.setErrorEnabled(true);
+                break;
+            case INVALID_PHONE:
+                til.setError(errInvalidPhone);
+                til.setErrorEnabled(true);
+                break;
+            case INVALID_SITE:
+                til.setError(errInvalidSite);
                 til.setErrorEnabled(true);
                 break;
             case OK:

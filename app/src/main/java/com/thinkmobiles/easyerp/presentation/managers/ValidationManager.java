@@ -14,11 +14,12 @@ import java.util.regex.Pattern;
 
 public abstract class ValidationManager {
 
-    private static final Pattern invalidCharsRegExp = Pattern.compile("^[a-zA-Z0-9_@]+$");
+//    private static final Pattern invalidCharsRegExp = Pattern.compile("^[a-zA-Z0-9_$@!%*?&]+$");
     private static final Pattern invalidEmailRegExp = Patterns.EMAIL_ADDRESS;
     private static final Pattern invalidPhoneRegExp = Patterns.PHONE;
     private static final Pattern invalidWebSiteRegExp = Patterns.WEB_URL;
-    private static final Pattern shortRegExp = Pattern.compile("^[a-zA-Z0-9_@.]{8,100}$");
+//    private static final Pattern shortRegExp = Pattern.compile("^[a-zA-Z0-9_@.]{8,100}$");
+    private static final Pattern passwordMatcherFromWeb = Pattern.compile("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[$@!%*?&])[A-Za-z\\d$@!%*?&]{8,}");
 
     private static final Pattern hasUpperCaseRegExp = Pattern.compile("[A-Z]");
     private static final Pattern hasSymbolRegExp = Pattern.compile("[_@]");
@@ -32,27 +33,28 @@ public abstract class ValidationManager {
     }
 
     public static Constants.ErrorCode isLoginValid(String login) {
-        final Matcher loginMatcher = shortRegExp.matcher(login);
+//        final Matcher loginMatcher = shortRegExp.matcher(login);
         if (TextUtils.isEmpty(login))
             return Constants.ErrorCode.FIELD_EMPTY;
-        else if (!loginMatcher.matches())
+        else if (login.length() < 8 && login.length() > 100)
             return Constants.ErrorCode.SHORTNESS;
         else
             return Constants.ErrorCode.OK;
     }
 
     public static Constants.ErrorCode isPasswordValid(String password) {
-        final Matcher invalidCharsMatcher = invalidCharsRegExp.matcher(password);
-        final Matcher passMatcher = shortRegExp.matcher(password);
+//        final Matcher invalidCharsMatcher = invalidCharsRegExp.matcher(password);
+//        final Matcher passMatcher = shortRegExp.matcher(password);
         if (TextUtils.isEmpty(password))
             return Constants.ErrorCode.FIELD_EMPTY;
-        else if (!invalidCharsMatcher.matches())
-            return Constants.ErrorCode.INVALID_CHARS;
-        else if (!passMatcher.matches())
+//        else if (!invalidCharsMatcher.matches())
+//            return Constants.ErrorCode.INVALID_CHARS;
+        else if (password.length() < 8 && password.length() > 100)
             return Constants.ErrorCode.SHORTNESS;
-        else if (!hasUpperCaseRegExp.matcher(password).find()
-                || !hasNumberRegExp.matcher(password).find()
-                || !hasSymbolRegExp.matcher(password).find())
+//        else if (!hasUpperCaseRegExp.matcher(password).find()
+//                || !hasNumberRegExp.matcher(password).find()
+//                || !hasSymbolRegExp.matcher(password).find())
+        else if (!passwordMatcherFromWeb.matcher(password).find()) //TODO: this find() is incorrect, but PM said it's ok :)
             return Constants.ErrorCode.WEAK_PASSWORD;
         else
             return Constants.ErrorCode.OK;

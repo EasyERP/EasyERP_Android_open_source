@@ -139,6 +139,12 @@ public class LoginPresenter implements LoginContract.LoginPresenter {
         Constants.ErrorCode errCodeCompanyName = ValidationManager.isNameValid(companyName);
         Constants.ErrorCode errCodeCompanySite = ValidationManager.isSiteValid(companySite);
 
+        view.displayFirstNameError(errCodeFirstName);
+        view.displayLastNameError(errCodeLastName);
+        view.displayPhoneError(errCodePhone);
+        view.displayCompanyNameError(errCodeCompanyName);
+        view.displayWebError(errCodeCompanySite);
+
         if (errCodeFirstName.equals(Constants.ErrorCode.OK)
                 && errCodeLastName.equals(Constants.ErrorCode.OK)
                 && errCodeCompanyName.equals(Constants.ErrorCode.OK)

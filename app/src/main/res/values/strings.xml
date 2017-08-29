@@ -31,6 +31,11 @@
     <string name="err_f_name_required">First Name is required</string>
     <string name="err_l_name_required">Last Name is required</string>
     <string name="err_email_required">Email is required</string>
+    <string name="err_phone_required">Phone is required</string>
+    <string name="err_company_name_required">Companu name is required</string>
+    <string name="err_site_required">Company website is required</string>
+    <string name="err_invalid_phone">Phone is invalid</string>
+    <string name="err_invalid_site">Company website is invalid</string>
     <string name="err_password_required">Password is required</string>
     <string name="err_password_old_required">Old password is required</string>
     <string name="err_password_new_required">New password is required</string>

@@ -52,6 +52,9 @@ public interface LoginContract {
 
         void displayFirstNameError(Constants.ErrorCode code);
         void displayLastNameError(Constants.ErrorCode code);
+        void displayPhoneError(Constants.ErrorCode code);
+        void displayCompanyNameError(Constants.ErrorCode code);
+        void displayWebError(Constants.ErrorCode code);
         void displaySignUpEmailError(Constants.ErrorCode code);
         void displaySignUpPasswordError(Constants.ErrorCode code);
 
