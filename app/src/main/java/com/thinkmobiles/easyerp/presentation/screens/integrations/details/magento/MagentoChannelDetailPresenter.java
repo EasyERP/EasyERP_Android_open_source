@@ -74,8 +74,10 @@ public final class MagentoChannelDetailPresenter extends ContentPresenterHelper 
         view.displayUserName(channel.username);
         view.displayPassword(channel.password);
 
-        view.displayWarehouse(channel.warehouseSettings.warehouse.name);
-        view.displayLocation(channel.warehouseSettings.location.name);
+        view.displayWarehouse(channel.warehouseSettings != null && channel.warehouseSettings.warehouse != null ?
+                channel.warehouseSettings.warehouse.name : "");
+        view.displayLocation(channel.warehouseSettings != null && channel.warehouseSettings.location != null ?
+                channel.warehouseSettings.location.name : "");
         if (channel.priceList != null)
             view.displayPriceList(channel.priceList.name);
     }

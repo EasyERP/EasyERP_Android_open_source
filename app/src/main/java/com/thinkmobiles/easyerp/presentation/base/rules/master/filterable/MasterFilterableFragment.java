@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.support.v7.widget.SearchView;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.thinkmobiles.easyerp.R;
 import com.thinkmobiles.easyerp.presentation.adapters.crm.SuggestionAdapter;
@@ -34,6 +35,7 @@ public abstract class MasterFilterableFragment extends MasterSelectableFragment 
     protected SuggestionAdapter suggestionAdapter;
     protected MenuItem menuFilters;
     protected MenuItem menuSearch;
+    protected MenuItem menuClear;
 
     @AfterInject
     protected void initSearchAdapter() {
@@ -49,7 +51,8 @@ public abstract class MasterFilterableFragment extends MasterSelectableFragment 
     public void optionsMenuInitialized(Menu menu) {
         menuFilters = menu.findItem(R.id.menuFilters);
         menuSearch = menu.findItem(R.id.menuSearch);
-        SearchView searchView = (SearchView) menuSearch.getActionView();
+        menuClear = menu.findItem(R.id.menuFilterRemoveAll);
+        final SearchView searchView = (SearchView) menuSearch.getActionView();
         searchView.setSuggestionsAdapter(suggestionAdapter);
         searchView.setFocusable(false);
         searchView.setOnSuggestionListener(new SearchView.OnSuggestionListener()
@@ -81,6 +84,14 @@ public abstract class MasterFilterableFragment extends MasterSelectableFragment 
                 return false;
             }
         });
+
+        View clearButton = searchView.findViewById(R.id.search_close_btn);
+        clearButton.setOnClickListener(v -> {
+            searchView.setQuery("", false);
+            searchView.clearFocus();
+            getPresenter().removeAll();
+        });
+
         getPresenter().buildOptionMenu();
     }
 

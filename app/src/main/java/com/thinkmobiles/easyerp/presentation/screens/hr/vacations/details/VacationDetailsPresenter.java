@@ -58,6 +58,8 @@ public class VacationDetailsPresenter extends ContentPresenterHelper implements 
 
     private void setData(ArrayList<MonthDetail> data) {
         DateFormatSymbols dfs = new DateFormatSymbols();
+        if (month == 0)
+            month = 1;
         String strMonth = dfs.getMonths()[month - 1];
         view.setTitleMonth(strMonth);
         view.setVacationPersons(prepareVacationPersonDHs(data));

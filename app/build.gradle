@@ -55,6 +55,7 @@ android {
             buildConfigField "boolean", "PRODUCTION", "true"
             buildConfigField packageForStetho + '.IStethoConfigure', 'STETHO', 'new ' + packageForStetho + '.ReleaseStethoHelper()'
             resValue "string", "FACEBOOK_APP_ID", "2275263652698073"
+//            debuggable true
         }
     }
 

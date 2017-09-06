@@ -19,10 +19,10 @@
     <string name="or_sign_up_with">Or sign up with</string>
 
     <string name="menu_filter">Filter</string>
-    <string name="menu_filter_remove_all">Remove all</string>
+    <string name="menu_filter_remove_all">Clear Filters</string>
     <string name="menu_logout">Logout</string>
 
-    <string name="list_is_empty">Sorry, but list is empty.\nPlease try again later!</string>
+    <string name="list_is_empty">The list is empty.\nPlease try again later.</string>
     <string name="try_again">Try again</string>
 
     <!--Errors-->
@@ -102,7 +102,7 @@
     <string name="dialog_btn_cancel">Cancel</string>
     <string name="dialog_btn_today">Today</string>
     <string name="dialog_btn_remove">Remove</string>
-    <string name="dialog_btn_remove_all">Remove All</string>
+    <string name="dialog_btn_remove_all">Clear Filters</string>
     <string name="dialog_btn_send">Send</string>
     <string name="dialog_btn_change">Change</string>
     <string name="amount">Amount</string>
@@ -203,7 +203,7 @@
 
     <string name="app_description"><![CDATA[
     We are a software engineering and consulting company which helps you to manage your working processes.<br>
-    <a href="https://easyerp.com">EasyERP</a> is a multichannel e-commerce management solution designed to meet varied operational requirements of the enterprises,  it is ideal for small and medium business.
+    <b><a href="https://easyerp.com">EasyERP</a></b> is a multichannel e-commerce management solution designed to meet varied operational requirements of the enterprises,  it is ideal for small and medium business.
     <p>
     <b><a href="https://easyerp.com">EasyERP</a> has the next features that can make your work more effective:</b><br>
     &nbsp;&nbsp;&nbsp;&nbsp;    • Customer Relationship Management<br>

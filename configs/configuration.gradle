@@ -3,7 +3,7 @@ allprojects {
         // App config
         androidApplicationId = 'com.thinkmobiles.easyerp'
         androidVersionCode = 1
-        androidVersionName = '1.0.0'
+        androidVersionName = '2.0.0'
 
         // Android config
         androidBuildToolsVersion = '25.0.3'

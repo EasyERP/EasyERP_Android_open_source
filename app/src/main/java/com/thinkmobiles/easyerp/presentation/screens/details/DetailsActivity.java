@@ -13,6 +13,7 @@ import com.thinkmobiles.easyerp.presentation.base.BaseMasterFlowActivity;
 import com.thinkmobiles.easyerp.presentation.listeners.IFragmentInstance;
 import com.thinkmobiles.easyerp.presentation.managers.CookieManager;
 import com.thinkmobiles.easyerp.presentation.managers.GoogleAnalyticHelper;
+import com.thinkmobiles.easyerp.presentation.utils.DynamicallyPreferences;
 
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterViews;
@@ -42,13 +43,16 @@ public class DetailsActivity extends BaseMasterFlowActivity implements DetailsCo
     protected UserRepository userRepository;
     @Bean
     protected CookieManager cookieManager;
+    @Bean
+    protected DynamicallyPreferences dynamicallyPreferences;
+
 
     private ProgressDialog progressDialog;
 
     @AfterInject
     @Override
     public void initPresenter() {
-        new DetailsPresenter(userRepository, this, cookieManager);
+        new DetailsPresenter(userRepository, this, cookieManager, dynamicallyPreferences);
         progressDialog = new ProgressDialog(this, R.style.DefaultTheme_NoTitleDialogWithAnimation);
         progressDialog.setMessage(getString(R.string.dialog_logout_message));
         progressDialog.setCancelable(false);

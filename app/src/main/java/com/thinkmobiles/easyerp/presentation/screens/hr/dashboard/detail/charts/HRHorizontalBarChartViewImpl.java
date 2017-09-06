@@ -21,6 +21,7 @@ import com.thinkmobiles.easyerp.data.model.ResponseGetTotalItems;
 import com.thinkmobiles.easyerp.data.model.hr.dashboard.DepartmentSalary;
 import com.thinkmobiles.easyerp.presentation.screens.crm.dashboard.detail.charts.DollarFormatter;
 import com.thinkmobiles.easyerp.presentation.screens.crm.dashboard.detail.charts.IChartView;
+import com.thinkmobiles.easyerp.presentation.screens.crm.dashboard.detail.charts.IntegerFormatter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,8 +46,8 @@ public final class HRHorizontalBarChartViewImpl implements IChartView<BarData> {
             case "hrEmployeesSalary":
                 this.mDescription = "Count";
                 this.mBarDataSetLabel = "Salary";
-                this.valueFormatter = null;
-                this.axisValueFormatter = null;
+                this.valueFormatter = new IntegerFormatter();
+                this.axisValueFormatter = new IntegerFormatter();
                 break;
             case "hrEmployeesDepartment":
                 this.mDescription = "Salary";

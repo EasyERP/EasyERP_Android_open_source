@@ -61,8 +61,12 @@ public class ApplicationVH extends SelectableVHHelper<ApplicationDH> {
         tvStage_VLIA.setText(application.workflow.name);
         tvStage_VLIA.setBackgroundDrawable(new RoundRectDrawable(ContextCompat.getColor(itemView.getContext(), ColorHelper.getStatusColorRes(application.workflow.status))));
 
-        tvCratedBy_VLIA.setText(String.format(createdByFormatter,
-                new DateManager.DateConverter(application.createdBy.date).setDstPattern(DateManager.PATTERN_DATE_MONTH_PREVIEW).toString(),
-                application.createdBy.user));
+        String createdString;
+        String date = new DateManager.DateConverter(application.createdBy.date).setDstPattern(DateManager.PATTERN_DATE_MONTH_PREVIEW).toString();
+        if (!TextUtils.isEmpty(application.createdBy.user))
+            createdString = String.format(createdByFormatter, date, application.createdBy.user);
+        else
+            createdString = String.format("Created: %s", date);
+        tvCratedBy_VLIA.setText(createdString);
     }
 }

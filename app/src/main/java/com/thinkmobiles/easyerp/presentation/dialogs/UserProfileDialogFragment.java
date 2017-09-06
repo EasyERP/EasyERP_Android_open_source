@@ -41,6 +41,8 @@ public class UserProfileDialogFragment extends DialogFragment implements BaseVie
 
     @FragmentArg
     protected UserInfo userInfo;
+    @FragmentArg
+    protected boolean isSocial;
 
     @Override
     public void onAttach(Activity activity) {
@@ -81,7 +83,12 @@ public class UserProfileDialogFragment extends DialogFragment implements BaseVie
                 .setCancelable(true);
 
         final AlertDialog dialog = builder.create();
-        dialog.setOnShowListener(dialogInterface -> dialog.getButton(DialogInterface.BUTTON_NEUTRAL).setOnClickListener(view -> changePassword()));
+        dialog.setOnShowListener(dialogInterface -> {
+            View button = dialog.getButton(DialogInterface.BUTTON_NEUTRAL);
+            if (isSocial)
+                button.setVisibility(View.GONE);
+            button.setOnClickListener(view -> changePassword());
+        });
 
         return dialog;
     }

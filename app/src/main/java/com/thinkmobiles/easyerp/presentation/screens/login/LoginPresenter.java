@@ -27,6 +27,7 @@ import com.thinkmobiles.easyerp.presentation.managers.CookieManager;
 import com.thinkmobiles.easyerp.presentation.managers.ErrorManager;
 import com.thinkmobiles.easyerp.presentation.managers.ValidationManager;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
+import com.thinkmobiles.easyerp.presentation.utils.DynamicallyPreferences;
 
 import java.util.Arrays;
 
@@ -45,6 +46,7 @@ public class LoginPresenter implements LoginContract.LoginPresenter {
 
     private CookieManager cookieManager;
     private CallbackManager callbackManager = CallbackManager.Factory.create();
+    private DynamicallyPreferences dynamicallyPreferences;
 
     private CompositeSubscription compositeSubscription;
 
@@ -54,12 +56,14 @@ public class LoginPresenter implements LoginContract.LoginPresenter {
                           LoginContract.LoginModel loginModel,
                           LoginContract.UserModel userModel,
                           LoginContract.SocialModel socialModel,
-                          CookieManager cookieManager) {
+                          CookieManager cookieManager,
+                          DynamicallyPreferences dynamicallyPreferences) {
         this.view = view;
         this.loginModel = loginModel;
         this.userModel = userModel;
         this.socialModel = socialModel;
         this.cookieManager = cookieManager;
+        this.dynamicallyPreferences = dynamicallyPreferences;
         compositeSubscription = new CompositeSubscription();
 
         view.setPresenter(this);
@@ -189,6 +193,7 @@ public class LoginPresenter implements LoginContract.LoginPresenter {
                 loginModel.login(socialRegisterProfile)
                         .subscribe(s -> {
                             getCurrentUser();
+                            dynamicallyPreferences.putBoolean(Constants.KEY_IS_SOCIAL, true);
                         }, t -> {
                             view.dismissProgress();
                             view.showErrorToast(ErrorManager.getErrorMessage(t));

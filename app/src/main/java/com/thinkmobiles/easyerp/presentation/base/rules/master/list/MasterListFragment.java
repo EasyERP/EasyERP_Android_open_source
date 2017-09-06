@@ -102,6 +102,7 @@ public abstract class MasterListFragment extends ContentFragment implements Mast
         if (!super.showErrorState(errorType)) {
             switch (errorType) {
                 case LIST_EMPTY:
+                    hideHeader();
                     btnHolderTry.setVisibility(View.GONE);
                     srlHolderRefresh.setEnabled(true);
                     return true;
@@ -111,5 +112,15 @@ public abstract class MasterListFragment extends ContentFragment implements Mast
         } else {
             return true;
         }
+    }
+
+    private void hideHeader() {
+        View header = getHeaderView();
+        if (header != null)
+            header.setVisibility(View.GONE);
+    }
+
+    protected View getHeaderView() {
+        return null;
     }
 }

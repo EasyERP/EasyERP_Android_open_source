@@ -183,6 +183,7 @@ public abstract class Constants {
     public static final String KEY_FILTER_LIST              = "keyFilterList";
     public static final String KEY_REPORT_TYPES_LIST        = "keyReportTypesList";
     public static final String KEY_CHANNEL                  = "keyChannel";
+    public static final String KEY_IS_SOCIAL                = "keyIsSocial";
 
     public enum ErrorCode {
         OK,

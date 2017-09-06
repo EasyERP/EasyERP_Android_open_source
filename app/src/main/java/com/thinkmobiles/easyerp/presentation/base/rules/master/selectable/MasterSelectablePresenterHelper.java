@@ -52,7 +52,8 @@ public abstract class MasterSelectablePresenterHelper extends MasterListPresente
     }
 
     protected void selectFirstElementIfNeed(final List<? extends SelectableDHHelper> preparedDHs) {
-        if (getSelectedItemId() == null && preparedDHs.size() > 0 && getView().withItemSelecting()) {
+        if ((getSelectedItemId() == null && preparedDHs.size() > 0
+                || preparedDHs.size() == 1) && getView().withItemSelecting()) {
             clickItem(0);
             makeSelectedDHIfNeed(preparedDHs.get(0), 0);
         }

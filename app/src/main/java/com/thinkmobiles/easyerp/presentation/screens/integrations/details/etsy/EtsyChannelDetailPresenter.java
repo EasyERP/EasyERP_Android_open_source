@@ -74,11 +74,14 @@ public final class EtsyChannelDetailPresenter extends ContentPresenterHelper imp
         view.displayKeyString(channel.consumerKey);
         view.displaySharedSecret(channel.consumerSecret);
 
-        view.displayWarehouse(channel.warehouseSettings.warehouse.name);
-        view.displayLocation(channel.warehouseSettings.location.name);
+        view.displayWarehouse(channel.warehouseSettings != null && channel.warehouseSettings.warehouse != null ?
+                channel.warehouseSettings.warehouse.name : "");
+        view.displayLocation(channel.warehouseSettings != null && channel.warehouseSettings.location != null ?
+                channel.warehouseSettings.location.name : "");
         if (channel.priceList != null)
             view.displayPriceList(channel.priceList.name);
         if (channel.bankAccount != null)
-            view.displayBankAccount(channel.bankAccount.name);
+//            view.displayBankAccount(channel.bankAccount.name);
+            view.displayBankAccount(channel.bankAccount);
     }
 }

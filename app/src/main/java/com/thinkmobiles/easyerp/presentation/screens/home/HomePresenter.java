@@ -2,6 +2,8 @@ package com.thinkmobiles.easyerp.presentation.screens.home;
 
 import com.thinkmobiles.easyerp.presentation.managers.CookieManager;
 import com.thinkmobiles.easyerp.presentation.managers.ErrorManager;
+import com.thinkmobiles.easyerp.presentation.utils.Constants;
+import com.thinkmobiles.easyerp.presentation.utils.DynamicallyPreferences;
 
 import rx.subscriptions.CompositeSubscription;
 
@@ -14,13 +16,16 @@ public final class HomePresenter implements HomeContract.HomePresenter {
     private final HomeContract.HomeView view;
     private final HomeContract.HomeModel model;
     private final CookieManager cookieManager;
+    private final DynamicallyPreferences dynamicallyPreferences;
 
     private final CompositeSubscription subscription;
 
-    public HomePresenter(HomeContract.HomeView view, HomeContract.HomeModel model, CookieManager cookieManager) {
+    public HomePresenter(HomeContract.HomeView view, HomeContract.HomeModel model, CookieManager cookieManager,
+                         DynamicallyPreferences dynamicallyPreferences) {
         this.view = view;
         this.model = model;
         this.cookieManager = cookieManager;
+        this.dynamicallyPreferences = dynamicallyPreferences;
 
         this.subscription = new CompositeSubscription();
 
@@ -47,6 +52,7 @@ public final class HomePresenter implements HomeContract.HomePresenter {
                             cookieManager.clearCookie();
                             view.dismissProgress();
                             view.restartApp();
+                            dynamicallyPreferences.putBoolean(Constants.KEY_IS_SOCIAL, false);
                         },
                         t -> {
                             view.dismissProgress();

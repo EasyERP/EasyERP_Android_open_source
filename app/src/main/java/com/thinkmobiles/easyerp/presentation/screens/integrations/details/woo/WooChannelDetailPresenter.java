@@ -75,8 +75,10 @@ public final class WooChannelDetailPresenter extends ContentPresenterHelper impl
         view.displayConsumerSecret(channel.password);
         view.displayVersion(channel.version);
 
-        view.displayWarehouse(channel.warehouseSettings.warehouse.name);
-        view.displayLocation(channel.warehouseSettings.location.name);
+        view.displayWarehouse(channel.warehouseSettings != null && channel.warehouseSettings.warehouse != null ?
+                channel.warehouseSettings.warehouse.name : "");
+        view.displayLocation(channel.warehouseSettings != null && channel.warehouseSettings.location != null ?
+                channel.warehouseSettings.location.name : "");
         if (channel.priceList != null)
             view.displayPriceList(channel.priceList.name);
     }

@@ -2,6 +2,8 @@ package com.thinkmobiles.easyerp.presentation.screens.integrations.details;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.content.LocalBroadcastManager;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -48,6 +50,12 @@ public abstract class IntegrationChannelDetailFragment extends ContentFragment i
 
     protected MenuItem menuItemConnection;
     private ProgressDialog progressDialog;
+//
+//    @Override
+//    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+//        super.onViewCreated(view, savedInstanceState);
+//        getPresenter().refresh();
+//    }
 
     @Override
     public void fillHeaderUI(final Channel _channel) {

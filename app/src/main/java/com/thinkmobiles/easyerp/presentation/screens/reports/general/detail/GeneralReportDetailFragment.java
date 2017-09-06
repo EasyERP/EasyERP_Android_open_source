@@ -37,6 +37,7 @@ import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.FragmentArg;
 import org.androidannotations.annotations.OnActivityResult;
+import org.androidannotations.annotations.ViewById;
 
 import java.util.ArrayList;
 
@@ -60,6 +61,14 @@ public class GeneralReportDetailFragment extends MasterListFragment implements G
     @FragmentArg
     protected String categoryKey;
     protected MenuItem reportTypesItem;
+
+    @ViewById
+    protected View llGeneralReportsHeader_VIHGR;
+
+    @Override
+    protected View getHeaderView() {
+        return llGeneralReportsHeader_VIHGR;
+    }
 
     @AfterInject
     @Override

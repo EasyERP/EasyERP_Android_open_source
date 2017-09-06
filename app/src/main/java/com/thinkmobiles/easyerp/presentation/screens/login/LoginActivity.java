@@ -12,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
+import android.text.TextUtils;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
 import android.view.View;
@@ -47,6 +48,7 @@ import com.thinkmobiles.easyerp.presentation.managers.GoogleAnalyticHelper;
 import com.thinkmobiles.easyerp.presentation.screens.home.HomeActivity_;
 import com.thinkmobiles.easyerp.presentation.screens.web.WebActivity_;
 import com.thinkmobiles.easyerp.presentation.utils.Constants;
+import com.thinkmobiles.easyerp.presentation.utils.DynamicallyPreferences;
 
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterViews;
@@ -148,13 +150,15 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
     protected SocialRepository socialRepository;
     @Bean
     protected CookieManager cookieManager;
+    @Bean
+    protected DynamicallyPreferences dynamicallyPreferences;
 
     private ProgressDialog progressDialog;
 
     @AfterInject
     @Override
     public void initPresenter() {
-        new LoginPresenter(this, loginRepository, userRepository, socialRepository, cookieManager);
+        new LoginPresenter(this, loginRepository, userRepository, socialRepository, cookieManager, dynamicallyPreferences);
 
         isCookieExpired = cookieManager.isCookieExpired();
         if (isCookieExpired) presenter.clearCookies();
@@ -327,6 +331,8 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
 
     @Override
     public void showErrorToast(String msg) {
+        if (TextUtils.isEmpty(msg))
+            return;
         if (flInput_VIFL.getVisibility() != View.VISIBLE)
             animatorSet2.start();
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
@@ -334,6 +340,8 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
 
     @Override
     public void showInfoToast(String msg) {
+        if (TextUtils.isEmpty(msg))
+            return;
         Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
     }
 

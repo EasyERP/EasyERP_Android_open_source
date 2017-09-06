@@ -29,7 +29,7 @@ public abstract class ErrorManager {
 
     public static String getErrorMessage(Throwable t) {
         if(t == null)
-            return "Sorry, but list is empty.\nPlease try again later!";    //exist in res
+            return "The list is empty.\\nPlease try again later.";    //exist in res
         else if(t instanceof HttpException) {
             HttpException e = (HttpException) t;
             if (e.response().errorBody() != null) {

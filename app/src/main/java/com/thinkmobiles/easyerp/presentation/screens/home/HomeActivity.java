@@ -1,6 +1,13 @@
 package com.thinkmobiles.easyerp.presentation.screens.home;
 
 import android.app.ProgressDialog;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.Signature;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.util.Base64;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.thinkmobiles.easyerp.R;
@@ -20,6 +27,8 @@ import com.thinkmobiles.easyerp.presentation.dialogs.UserProfileDialogFragment_;
 import com.thinkmobiles.easyerp.presentation.managers.CookieManager;
 import com.thinkmobiles.easyerp.presentation.managers.GoogleAnalyticHelper;
 import com.thinkmobiles.easyerp.presentation.managers.RateAppManager;
+import com.thinkmobiles.easyerp.presentation.utils.Constants;
+import com.thinkmobiles.easyerp.presentation.utils.DynamicallyPreferences;
 
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterViews;
@@ -27,6 +36,9 @@ import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.Extra;
 import org.androidannotations.annotations.ViewById;
+
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 /**
  * Created by Lynx on 1/13/2017.
@@ -44,6 +56,8 @@ public class HomeActivity extends BaseMasterFlowActivity implements HomeContract
     protected CookieManager cookieManager;
     @Bean
     protected RateAppManager rateAppManager;
+    @Bean
+    protected DynamicallyPreferences dynamicallyPreferences;
 
     @Extra
     public UserInfo userInfo;
@@ -59,7 +73,7 @@ public class HomeActivity extends BaseMasterFlowActivity implements HomeContract
     @AfterInject
     @Override
     public void initPresenter() {
-        new HomePresenter(this, userRepository, cookieManager);
+        new HomePresenter(this, userRepository, cookieManager, dynamicallyPreferences);
     }
 
     @Override
@@ -122,7 +136,10 @@ public class HomeActivity extends BaseMasterFlowActivity implements HomeContract
     @Override
     public void onClickUser() {
         GoogleAnalyticHelper.trackClick(this, GoogleAnalyticHelper.EventType.CLICK_IMAGE, "Side menu user profile");
-        UserProfileDialogFragment_.builder().userInfo(userInfo).build().show(getFragmentManager(), null);
+        UserProfileDialogFragment_.builder()
+                .userInfo(userInfo)
+                .isSocial(dynamicallyPreferences.getBoolean(Constants.KEY_IS_SOCIAL, false))
+                .build().show(getFragmentManager(), null);
     }
 
     @Override

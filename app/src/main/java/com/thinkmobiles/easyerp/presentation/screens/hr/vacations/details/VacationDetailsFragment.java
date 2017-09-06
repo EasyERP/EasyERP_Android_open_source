@@ -91,7 +91,7 @@ public class VacationDetailsFragment extends ContentFragment implements Vacation
 
     @Override
     public void setTitleMonth(String month) {
-        tvTitleMonth_FVD.setText(month);
+        tvTitleMonth_FVD.setText(month + " " + year);
     }
 
     @Override

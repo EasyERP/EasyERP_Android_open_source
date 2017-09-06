@@ -20,7 +20,8 @@ public final class Channel implements Parcelable {
     @Expose
     public boolean active;
     @Expose
-    public BankAccount bankAccount;
+//    public BankAccount bankAccount;
+    public String bankAccount;
     @Expose
     public String baseUrl;
     @Expose
@@ -89,7 +90,8 @@ public final class Channel implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(this.id);
         dest.writeByte(this.active ? (byte) 1 : (byte) 0);
-        dest.writeParcelable(this.bankAccount, flags);
+//        dest.writeParcelable(this.bankAccount, flags);
+        dest.writeString(this.bankAccount);
         dest.writeString(this.baseUrl);
         dest.writeString(this.channelName);
         dest.writeByte(this.connected ? (byte) 1 : (byte) 0);
@@ -117,7 +119,8 @@ public final class Channel implements Parcelable {
     protected Channel(Parcel in) {
         this.id = in.readString();
         this.active = in.readByte() != 0;
-        this.bankAccount = in.readParcelable(BankAccount.class.getClassLoader());
+//        this.bankAccount = in.readParcelable(BankAccount.class.getClassLoader());
+        this.bankAccount = in.readString();
         this.baseUrl = in.readString();
         this.channelName = in.readString();
         this.connected = in.readByte() != 0;
